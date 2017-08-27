@@ -1,0 +1,60 @@
+// Fonts
+//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+//@import "variables";
+
+// Bootstrap 3
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Bootstrap 4
+@import "~bootstrap/scss/bootstrap";
+
+$bipolar-color: #fcbeb9;
+$bipolar-black: black;
+
+.text-heading-mobile {
+  margin-top: 12px;
+}
+
+.bipolar-background {
+  background-color: $bipolar-color;
+}
+
+a, .btn-link {
+  color: $bipolar-black;
+}
+
+.header-mobile {
+  background: $bipolar-color url('../../img/linea.png') repeat-x 0 55px;
+  padding: 30px;
+  text-align: center;
+}
+
+.header-desktop {
+  background: transparent url('../../img/linea.png') repeat-x 0 55px;
+  padding: 30px;
+  text-align: center;
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+}
+
+.header-mobile-menu {
+  background: $bipolar-black;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.header-worldwide-shipping {
+  @extend .header-mobile-menu;
+  text-align: center;
+  line-height: 68px;
+}
+
+.bipolar-footer {
+  background: $bipolar-black;
+  color: white;
+  padding: 30px;
+}
