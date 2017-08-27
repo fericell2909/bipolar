@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getActiveLabelAdmin()
+    {
+        if ($this->active) {
+            return "<span class='label label-table label-danger'>Inactivo</span>";
+        }
+
+        return "<span class='label label-table label-success'>Activo</span>";
+    }
 }

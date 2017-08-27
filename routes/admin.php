@@ -9,4 +9,5 @@ Route::get('/login', function () {
 
 Route::prefix('users')->group(function () {
     Route::get('/', 'UserController@index')->name('users.index');
+    Route::get('/search', 'UserController@search')->name('users.search');
 });
