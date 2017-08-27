@@ -10324,9 +10324,7 @@ return jQuery;
 
 
 /***/ }),
-/* 1 */,
-/* 2 */,
-/* 3 */
+/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12762,10 +12760,10 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
 
 /***/ }),
-/* 4 */
+/* 2 */
 /***/ (function(module, exports) {
 
 var g;
@@ -12792,6 +12790,8 @@ module.exports = g;
 
 
 /***/ }),
+/* 3 */,
+/* 4 */,
 /* 5 */,
 /* 6 */,
 /* 7 */,
@@ -12812,7 +12812,7 @@ module.exports = __webpack_require__(14);
 
 window.$ = window.jQuery = __webpack_require__(0);
 
-window.Popper = __webpack_require__(3).default;
+window.Popper = __webpack_require__(1).default;
 __webpack_require__(15);
 
 /***/ }),

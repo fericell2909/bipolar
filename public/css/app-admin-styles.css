@@ -21395,6 +21395,7 @@ table.focus-on tbody tr.focused td {
 /* Login- register pages */
 
 .login-register {
+  background: url(https://placehold.it/2500x1668) no-repeat center center/cover !important;
   height: 100%;
   position: fixed;
 }
