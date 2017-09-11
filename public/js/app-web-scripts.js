@@ -12815,6 +12815,19 @@ window.$ = window.jQuery = __webpack_require__(0);
 window.Popper = __webpack_require__(1).default;
 __webpack_require__(15);
 
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+window.$.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': token.content }
+});
+
+window.$('#logoutLink').click(function (event) {
+    event.preventDefault();
+    window.$.post('/logout', {}).done(function () {
+        return location.reload();
+    });
+});
+
 /***/ }),
 /* 15 */
 /***/ (function(module, exports) {

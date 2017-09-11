@@ -7,39 +7,52 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bipolar</title>
     <link rel="stylesheet" href="{{ mix('css/app-web-styles.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bipolar-background">
         <span class="navbar-text">
-            Hola <a href="#">Ingresa</a> o <a href="#">regístrate</a>
+            Hola <a href="{{ route('login-with-register') }}">Ingresa</a> o <a href="{{ route('login-with-register') }}">regístrate</a>
         </span>
         <ul class="navbar-nav mr-auto">
 
         </ul>
         <div class="btn-group">
             <a class="btn btn-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Mi cuenta
+                @auth
+                    {{ Auth::user()->name }}
+                @endauth
+                @guest
+                    Mi cuenta
+                @endguest
             </a>
 
-            <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+            @auth
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#">Mis datos</a>
+                    <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
+                </div>
+            @endauth
         </div>
     </nav>
     <section class="container d-sm-none d-md-none d-lg-none">
         <p class="text-center text-heading-mobile">¡Bienvenido invitado! Ingresa o regístrate</p>
         <div class="dropdown show">
             <a class="btn btn-link btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Mi cuenta
+                @auth
+                    {{ Auth::user()->name }}
+                @endauth
+                @guest
+                    Mi cuenta
+                @endguest
             </a>
 
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+            @auth
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#">Mis datos</a>
+                    <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
+                </div>
+            @endauth
         </div>
     </section>
     <section class="header-mobile d-sm-none d-md-none d-lg-none">
@@ -70,29 +83,29 @@
     <section class="header-worldwide-shipping">
         Envío a todo el mundo
     </section>
+    @guest
     <div class="card text-center">
         <div class="card-body">
             <h4 class="card-title">Regístrate</h4>
             <p class="card-text">Y disfruta de nuestras compras y descuentos especiales.</p>
-            <form action="#" class="mx-auto" style="width: 20%;">
+            {!! Form::open(['route' => 'register.post','class' => 'mx-auto', 'style' => 'width: 20%']) !!}
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nombre">
+                    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required' => true]) !!}
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Apellidos (opcional)">
+                    {!! Form::text('lastname', null, ['class' => 'form-control', 'placeholder' => 'Apellidos (opcional)']) !!}
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Cumpleaños">
+                    {!! Form::password('password', ['class' => 'form-control', 'required' => true, 'placeholder' => 'Contraseña']) !!}
                 </div>
                 <div class="form-group">
-                    <select name="pais" id="" class="form-control">
-                        <option selected disabled>País</option>
-                    </select>
+                    {!! Form::password('password_confirmation', ['class' => 'form-control', 'required' => true, 'placeholder' => 'Confirmar contraseña']) !!}
                 </div>
                 <button class="btn btn-dark">Enviar</button>
-            </form>
+            {!! Form::close() !!}
         </div>
     </div>
+    @endguest
     <footer class="bipolar-footer">
         <div class="container">
             <div class="row">
