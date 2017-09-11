@@ -29,7 +29,7 @@
 
             @auth
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">Mis datos</a>
+                    <a class="dropdown-item" href="{{ route('profile') }}">Mis datos</a>
                     <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
                 </div>
             @endauth
@@ -49,7 +49,7 @@
 
             @auth
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">Mis datos</a>
+                    <a class="dropdown-item" href="{{ route('profile') }}">Mis datos</a>
                     <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
                 </div>
             @endauth
@@ -94,6 +94,9 @@
                 </div>
                 <div class="form-group">
                     {!! Form::text('lastname', null, ['class' => 'form-control', 'placeholder' => 'Apellidos (opcional)']) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Correo', 'required' => true]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::password('password', ['class' => 'form-control', 'required' => true, 'placeholder' => 'Contraseña']) !!}

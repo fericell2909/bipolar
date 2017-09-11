@@ -7,23 +7,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bipolar</title>
     <link rel="stylesheet" href="{{ mix('css/app-web-styles.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bipolar-background">
-            <span class="navbar-text">
-                Hola <a href="{{ route('login-with-register') }}">Ingresa</a> o <a href="{{ route('login-with-register') }}">regístrate</a>
-            </span>
+        @auth
+        <span class="navbar-text">
+            Hola <a href="{{ route('login-with-register') }}">Ingresa</a> o <a href="{{ route('login-with-register') }}">regístrate</a>
+        </span>
+        @endauth
         <ul class="navbar-nav mr-auto">
 
         </ul>
         <div class="btn-group">
             <a class="btn btn-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Mi cuenta
+                @auth
+                    {{ Auth::user()->name }}
+                @endauth
+                @guest
+                    Mi cuenta
+                @endguest
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">Mis datos</a>
-                <a class="dropdown-item" href="#">Cerrar sesión</a>
+                <a class="dropdown-item" href="{{ route('profile') }}">Mis datos</a>
+                <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
             </div>
         </div>
     </nav>
@@ -31,12 +39,17 @@
         <p class="text-center text-heading-mobile">¡Bienvenido invitado! Ingresa o regístrate</p>
         <div class="dropdown show">
             <a class="btn btn-link btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Mi cuenta
+                @auth
+                    {{ Auth::user()->name }}
+                @endauth
+                @guest
+                    Mi cuenta
+                @endguest
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">Mis datos</a>
-                <a class="dropdown-item" href="#">Cerrar sesión</a>
+                <a class="dropdown-item" href="{{ route('profile') }}">Mis datos</a>
+                <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
             </div>
         </div>
     </section>
