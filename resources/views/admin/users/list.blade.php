@@ -23,6 +23,8 @@
                             <th>#</th>
                             <th>Nombre</th>
                             <th>Apellidos</th>
+                            <th>Correo</th>
+                            <th>Nacimiento</th>
                             <th>Activo</th>
                         </tr>
                     </thead>
@@ -33,6 +35,8 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->lastname }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->birthday_date ? $user->birthday_date->toDateString() : '--' }}</td>
                                 <td>{!! $user->getActiveLabelAdmin() !!}</td>
                             </tr>
                         @empty

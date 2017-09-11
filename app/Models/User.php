@@ -9,6 +9,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $dates = ['birthday_date'];
+
     /**
      * The attributes that are mass assignable.
      *

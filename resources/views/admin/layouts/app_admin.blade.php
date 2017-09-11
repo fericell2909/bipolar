@@ -13,7 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <title>Elite Admin - is a responsive admin template</title>
+    <title>Bipolar Administrador</title>
     <!-- Custom CSS -->
     <link href="{{ mix('css/app-admin-styles.css') }}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -72,17 +72,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav" id="side-menu">
                 <li class="nav-small-cap m-t-10">--- Menú</li>
                 <li>
-                    <a href="javascript:void(0);" class="waves-effect">
-                        <i class="fa fa-dashboard"></i>
-                        <span class="hide-menu"> Dashboard <span class="fa arrow"></span>
-                            <span class="label label-rouded label-custom pull-right">4</span></span>
+                    <a href="#" class="waves-effect">
+                        <i class="fa fa-dashboard"></i> <span class="hide-menu">Dashboard</span>
                     </a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="index.html">Demographical</a></li>
-                        <li><a href="index2.html">Minimalistic</a></li>
-                        <li><a href="index3.html">Analitical</a></li>
-                        <li><a href="index4.html">Simpler</a></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="javascript:void(0);" class="waves-effect">
