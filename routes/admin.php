@@ -8,6 +8,8 @@ Route::get('/login', function () {
 });
 
 Route::prefix('users')->group(function () {
-    Route::get('/', 'UserController@index')->name('users.index');
-    Route::get('/search', 'UserController@search')->name('users.search');
+    Route::get('/', 'Admin\UserController@index')->name('users.index');
+    Route::get('/search', 'Admin\UserController@search')->name('users.search');
+    Route::get('/edit/{userId}', 'Admin\UserController@edit')->name('user.edit');
+    Route::post('/edit/{userId}', 'Admin\UserController@update');
 });

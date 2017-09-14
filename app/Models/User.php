@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * @method static User findOrFail($id, array $columns = ['*'])
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -36,5 +39,14 @@ class User extends Authenticatable
         }
 
         return "<span class='label label-table label-success'>Activo</span>";
+    }
+
+    public function getBirthdayOrNull($format = 'Y-m-d')
+    {
+        if ($this->birthday_date) {
+            return $this->birthday_date->format($format);
+        }
+
+        return null;
     }
 }

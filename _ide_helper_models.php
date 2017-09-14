@@ -12,6 +12,7 @@ namespace App\Models{
 /**
  * App\Models\User
  *
+ * @method static User findOrFail($id, array $columns = ['*'])
  * @property int $id
  * @property string $name
  * @property string|null $lastname

@@ -100,6 +100,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @include('flash::message')
             @yield('content')
         </div>
         <!-- /.container-fluid -->

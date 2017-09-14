@@ -26,6 +26,7 @@
                             <th>Correo</th>
                             <th>Nacimiento</th>
                             <th>Activo</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +39,12 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->birthday_date ? $user->birthday_date->toDateString() : '--' }}</td>
                                 <td>{!! $user->getActiveLabelAdmin() !!}</td>
+                                <td>
+                                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-rounded btn-primary">
+                                        <i class="fa fa-pencil"></i>
+                                        Editar
+                                    </a>
+                                </td>
                             </tr>
                         @empty
                             <tr>
