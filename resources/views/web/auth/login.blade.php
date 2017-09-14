@@ -40,6 +40,10 @@
                         {!! Form::email('email', null, ['class' => 'form-control', 'required' => true]) !!}
                     </div>
                     <div class="form-group">
+                        <label>Fecha de cumpleaños (Opcional)</label>
+                        {!! Form::date('birthday', null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
                         <label>Contraseña <span class="text-danger">*</span></label>
                         {!! Form::password('password', ['class' => 'form-control', 'required' => true]) !!}
                     </div>

@@ -23,27 +23,45 @@
             <h4>Información de tu cuenta</h4>
             <div class="form-row">
                 <div class="col">
-                    <label>Nombre <span class="text-danger">*</span></label>
-                    {!! Form::text('name', Auth::user()->name, ['class' => 'form-control', 'required' => true]) !!}
+                    <div class="form-group">
+                        {!! Form::label('Nombre') !!} <span class="text-danger">*</span>
+                        {!! Form::text('name', Auth::user()->name, ['class' => 'form-control', 'required' => true]) !!}
+                    </div>
                 </div>
                 <div class="col">
-                    <label>Apellido(s)</label>
-                    {!! Form::text('lastname', Auth::user()->lastname, ['class' => 'form-control']) !!}
+                    <div class="form-group">
+                        {!! Form::label('Apellido(s)') !!}
+                        {!! Form::text('lastname', Auth::user()->lastname, ['class' => 'form-control', 'placeholder' => 'Opcional']) !!}
+                    </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col">
-                    <label>Correo electrónico</label>
-                    {!! Form::email('email', Auth::user()->email, ['class' => 'form-control', 'required' => true]) !!}
+                    <div class="form-group">
+                        {!! Form::label('Correo electrónico') !!} <span class="text-danger">*</span>
+                        {!! Form::email('email', Auth::user()->email, ['class' => 'form-control', 'required' => true]) !!}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {!! Form::label('Fecha de cumpleaños') !!}
+                        {!! Form::date('birthday', Auth::user()->getBirthdayOrNull(), ['class' => 'form-control']) !!}
+                    </div>
                 </div>
             </div>
             <h4>Cambio de contraseña</h4>
-            <label>Contraseña antigua (dejar en blanco para no realizar cambios)</label>
-            {!! Form::password('old_password', ['class' => 'form-control']) !!}
-            <label>Nueva contraseña (dejar en blanco para no realizar cambios)</label>
-            {!! Form::password('new_password', ['class' => 'form-control']) !!}
-            <label>Confirmar nueva contraseña (dejar en blanco para no realizar cambios)</label>
-            {!! Form::password('new_password_confirmation', ['class' => 'form-control']) !!}
+            <div class="form-group">
+                {!! Form::label('Contraseña antigua (dejar en blanco para no realizar cambios)') !!}
+                {!! Form::password('old_password', ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('Nueva contraseña (dejar en blanco para no realizar cambios)') !!}
+                {!! Form::password('new_password', ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('Confirmar nueva contraseña (dejar en blanco para no realizar cambios)') !!}
+                {!! Form::password('new_password_confirmation', ['class' => 'form-control']) !!}
+            </div>
             {!! Form::submit('Actualizar', ['class' => 'btn btn-dark']) !!}
         {!! Form::close() !!}
     </div>

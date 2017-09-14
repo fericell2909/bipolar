@@ -49,7 +49,7 @@ class UserController extends Controller
         $user->lastname = $request->input('lastname');
         $user->email = $request->input('email');
         if ($request->has('birthday')) {
-            $user->birthday_date = $request->input('birthday');
+            $user->birthday_date = "{$request->input('birthday')} 00:00:00";
         }
         $user->active = boolval($request->input('active')) === true ? date('Y-m-d H:i:s') : null;
         $user->save();

@@ -40,6 +40,7 @@ class RegisterController extends Controller
             'name'     => 'required|string|max:255',
             'lastname' => 'nullable|string|max:255',
             'email'    => 'required|string|email|max:255|unique:users',
+            'birthday' => 'nullable|date_format:Y-m-d',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -56,6 +57,7 @@ class RegisterController extends Controller
             'name'     => $data['name'],
             'lastname' => $data['lastname'] ?? null,
             'email'    => $data['email'],
+            'birthday' => !empty($data['birthday']) ? "{$data['birthday']} 00:00:00" : null,
             'password' => bcrypt($data['password']),
         ]);
     }
