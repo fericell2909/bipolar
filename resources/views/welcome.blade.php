@@ -80,35 +80,25 @@
     <section class="header-mobile-menu d-sm-none d-md-none d-lg-none">
         MENU
     </section>
+    @include('flash::message')
     <section class="header-worldwide-shipping">
         Envío a todo el mundo
     </section>
-    @guest
     <div class="card text-center">
         <div class="card-body">
-            <h4 class="card-title">Regístrate</h4>
-            <p class="card-text">Y disfruta de nuestras compras y descuentos especiales.</p>
-            {!! Form::open(['route' => 'register.post','class' => 'mx-auto', 'style' => 'width: 20%']) !!}
+            <h4 class="card-title">Regístrate a nuestro Newsletter</h4>
+            <p class="card-text">Y disfruta de descuentos especiales.</p>
+            {!! Form::open(['route' => 'register.newsletter','class' => 'mx-auto', 'style' => 'width: 20%']) !!}
                 <div class="form-group">
                     {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required' => true]) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::text('lastname', null, ['class' => 'form-control', 'placeholder' => 'Apellidos (opcional)']) !!}
-                </div>
-                <div class="form-group">
                     {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Correo', 'required' => true]) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::password('password', ['class' => 'form-control', 'required' => true, 'placeholder' => 'Contraseña']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::password('password_confirmation', ['class' => 'form-control', 'required' => true, 'placeholder' => 'Confirmar contraseña']) !!}
                 </div>
                 <button class="btn btn-dark">Enviar</button>
             {!! Form::close() !!}
         </div>
     </div>
-    @endguest
     <footer class="bipolar-footer">
         <div class="container">
             <div class="row">
