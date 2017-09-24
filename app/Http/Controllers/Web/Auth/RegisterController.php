@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'name'     => $data['name'],
             'lastname' => $data['lastname'] ?? null,
             'email'    => $data['email'],
-            'birthday' => !empty($data['birthday']) ? "{$data['birthday']} 00:00:00" : null,
+            'birthday' => $data['birthday'] ?? null,
             'password' => bcrypt($data['password']),
         ]);
     }

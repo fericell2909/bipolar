@@ -14,9 +14,10 @@ namespace App\Models{
  *
  * @method static User findOrFail($id, array $columns = ['*'])
  * @property int $id
+ * @property string $email
  * @property string $name
  * @property string|null $lastname
- * @property string $email
+ * @property string|null $photo
  * @property string $password
  * @property string|null $active
  * @property string|null $facebook_id
@@ -34,6 +35,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereLastname($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoto($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  */

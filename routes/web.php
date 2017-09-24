@@ -16,3 +16,5 @@ Route::middleware('auth')->group(function () {
     Route::get('my-account', 'Web\UserController@profile')->name('profile');
     Route::post('my-account', 'Web\UserController@updateProfile')->name('profile.update');
 });
+
+Route::post('ajax/oauth/facebook', 'Web\Auth\LoginController@facebookAuth');

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -11,8 +12,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-
-    protected $dates = ['birthday_date'];
 
     /**
      * The attributes that are mass assignable.
@@ -44,7 +43,7 @@ class User extends Authenticatable
     public function getBirthdayOrNull($format = 'Y-m-d')
     {
         if ($this->birthday_date) {
-            return $this->birthday_date->format($format);
+            return Carbon::createFromFormat('Y-m-d', $this->birthday_date)->format($format);
         }
 
         return null;

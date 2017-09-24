@@ -86,5 +86,6 @@
         </div>
     </footer>
     <script src="{{ mix('js/app-web-scripts.js') }}"></script>
+    @stack('script_plus')
 </body>
 </html>

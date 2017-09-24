@@ -21,6 +21,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th class="text-center"><i class="fa fa-photo"></i></th>
                             <th>Nombre</th>
                             <th>Apellidos</th>
                             <th>Correo</th>
@@ -34,10 +35,17 @@
                             <?php /** @var \App\Models\User $user */ ?>
                             <tr>
                                 <td>{{ $user->id }}</td>
+                                <td class="text-center">
+                                    @if($user->photo)
+                                        <img src="{{ $user->photo }}" alt="" class="img-circle" style="width: 32px; height: 32px">
+                                    @else
+                                        <i class="fa fa-file-image-o"></i>
+                                    @endif
+                                </td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->lastname }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->birthday_date ? $user->birthday_date->toDateString() : '--' }}</td>
+                                <td>{{ $user->getBirthdayOrNull() }}</td>
                                 <td>{!! $user->getActiveLabelAdmin() !!}</td>
                                 <td>
                                     <a href="{{ route('user.edit', $user->id) }}" class="btn btn-rounded btn-primary">

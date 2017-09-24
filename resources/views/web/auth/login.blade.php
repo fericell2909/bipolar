@@ -14,6 +14,9 @@
             <div class="col">
                 <p class="text-center">Ingresar</p>
                 <p class="text-center">Si has comprado antes con nosotros, por favor introduce tu nombre de usuario y contraseña. Si eres un cliente nuevo por favor regístrate.</p>
+                <button id="authFacebook" class="btn btn-dark">
+                    <i class="fa fa-facebook"></i> Iniciar sesión con Facebook
+                </button>
                 {!! Form::open(['route' => 'login.post']) !!}
                     <div class="form-group">
                         <label>Correo electrónico <span class="text-danger">*</span></label>
@@ -56,4 +59,7 @@
             </div>
         </div>
     </div>
+    @push('script_plus')
+        @include('web.partials.facebook')
+    @endpush
 @endsection

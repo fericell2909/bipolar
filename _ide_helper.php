@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.4 on 2017-09-18.
+ * Generated for Laravel 5.5.4 on 2017-09-24.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -13791,6 +13791,175 @@ namespace Laracasts\Flash {
  
 }
 
+namespace Spatie\Newsletter { 
+
+    class NewsletterFacade {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function subscribe($email, $mergeFields = array(), $listName = '', $options = array())
+        {
+            return \Spatie\Newsletter\Newsletter::subscribe($email, $mergeFields, $listName, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function subscribePending($email, $mergeFields = array(), $listName = '', $options = array())
+        {
+            return \Spatie\Newsletter\Newsletter::subscribePending($email, $mergeFields, $listName, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function subscribeOrUpdate($email, $mergeFields = array(), $listName = '', $options = array())
+        {
+            return \Spatie\Newsletter\Newsletter::subscribeOrUpdate($email, $mergeFields, $listName, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMembers($listName = '', $parameters = array())
+        {
+            return \Spatie\Newsletter\Newsletter::getMembers($listName, $parameters);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMember($email, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::getMember($email, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMemberActivity($email, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::getMemberActivity($email, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function hasMember($email, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::hasMember($email, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isSubscribed($email, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::isSubscribed($email, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function unsubscribe($email, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::unsubscribe($email, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function updateEmailAddress($currentEmailAddress, $newEmailAddress, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::updateEmailAddress($currentEmailAddress, $newEmailAddress, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function delete($email, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::delete($email, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function createCampaign($fromName, $replyTo, $subject, $html = '', $listName = '', $options = array(), $contentOptions = array())
+        {
+            return \Spatie\Newsletter\Newsletter::createCampaign($fromName, $replyTo, $subject, $html, $listName, $options, $contentOptions);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function updateContent($campaignId, $html, $options = array())
+        {
+            return \Spatie\Newsletter\Newsletter::updateContent($campaignId, $html, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getApi()
+        {
+            return \Spatie\Newsletter\Newsletter::getApi();
+        }
+        
+        /**
+         * 
+         *
+         * @return array|false 
+         * @static 
+         */ 
+        public static function getLastError()
+        {
+            return \Spatie\Newsletter\Newsletter::getLastError();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function lastActionSucceeded()
+        {
+            return \Spatie\Newsletter\Newsletter::lastActionSucceeded();
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -15911,6 +16080,8 @@ namespace  {
     class Html extends \Collective\Html\HtmlFacade {}
 
     class Flash extends \Laracasts\Flash\Flash {}
+
+    class Newsletter extends \Spatie\Newsletter\NewsletterFacade {}
  
 }
 
