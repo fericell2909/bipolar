@@ -16,7 +16,17 @@
         </div>
         <div class="col-md-12">
             <div class="white-box">
-                <h3 class="box-title">Lista de Usuarios</h3>
+                <div class="row">
+                    <div class="col-md-10">
+                        <h3 class="box-title">Lista de Usuarios</h3>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ route('users.download') }}" class="btn btn-sm btn-outline-success btn-rounded">
+                            <i class="fa fa-file-excel-o"></i>
+                            Descargar todos
+                        </a>
+                    </div>
+                </div>
                 <table class="table">
                     <thead>
                         <tr>

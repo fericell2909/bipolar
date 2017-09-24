@@ -57,4 +57,32 @@ class UserController extends Controller
         flash()->success('Actualizado con éxito');
         return redirect()->back();
     }
+
+    public function download()
+    {
+        $users = User::orderByDesc('created_at')->get();
+
+        \Excel::create('bipolar_usuarios', function ($excel) use ($users) {
+            $excel->setTitle('Lista de usuarios de bipolar');
+            $excel->sheet('Usuarios', function ($sheet) use ($users) {
+                $sheet->setOrientation('landscape');
+                $sheet->appendRow([
+                    'Nombres',
+                    'Correo',
+                    'Cumpleaños',
+                    'Activo',
+                ]);
+
+                foreach ($users as $user) {
+                    $sheet->appendRow([
+                        "{$user->name} {$user->lastname}",
+                        $user->email,
+                        $user->getBirthdayOrNull(),
+                        $user->active ? 'Sí' : 'No',
+                    ]);
+                }
+            });
+        })
+            ->download('xlsx');
+    }
 }

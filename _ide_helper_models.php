@@ -21,7 +21,7 @@ namespace App\Models{
  * @property string $password
  * @property string|null $active
  * @property string|null $facebook_id
- * @property \Carbon\Carbon|null $birthday_date
+ * @property string|null $birthday_date
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
