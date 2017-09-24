@@ -46,4 +46,36 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+
+    private function getRouteForGuard(AuthenticationException $exception)
+    {
+        if (empty($exception->guards())) {
+            return false;
+        }
+        
+        $guard = array_first($exception->guards());
+        
+        $routeForAuth = '';
+        
+        switch ($guard) {
+            case 'web': $routeForAuth = route('login-with-register'); break;
+            case 'admin': $routeForAuth = route('login.admin'); break;
+        }
+        
+        return $routeForAuth;
+    }
+
+    /**
+     * Override for special auth
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param AuthenticationException $exception
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $request->expectsJson()
+            ? response()->json(['message' => 'Unauthenticated.'], 401)
+            : redirect()->guest($this->getRouteForGuard($exception));
+    }
 }

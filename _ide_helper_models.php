@@ -10,6 +10,35 @@
 
 namespace App\Models{
 /**
+ * App\Models\Manager
+ *
+ * @property int $id
+ * @property int|null $role_id
+ * @property string $email
+ * @property string $name
+ * @property-read \App\Models\Role|null $role
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereRoleId($value)
+ */
+	class Manager extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Role
+ *
+ * @property int $id
+ * @property string $name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereName($value)
+ */
+	class Role extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @method static User findOrFail($id, array $columns = ['*'])

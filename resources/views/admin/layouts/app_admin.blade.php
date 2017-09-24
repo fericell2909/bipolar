@@ -44,9 +44,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav navbar-top-links navbar-right pull-right">
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img
-                                src="https://placekitten.com/g/128/128" alt="user-img" width="36" class="img-circle"><b
-                                class="hidden-xs">Steave</b> </a>
+                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user"></i>
+                        <b class="hidden-xs">{{ Auth::user()->name }}</b>
+                    </a>
                     <ul class="dropdown-menu dropdown-user scale-up">
                         <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
                         <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
@@ -85,8 +86,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li><a href="{{ route('users.index') }}">Listar usuarios</a></li>
                     </ul>
                 </li>
-                <li><a href="login.html" class="waves-effect"><i class="zmdi zmdi-power zmdi-hc-fw fa-fw"></i> <span
-                                class="hide-menu">Log out</span></a></li>
             </ul>
         </div>
     </div>
