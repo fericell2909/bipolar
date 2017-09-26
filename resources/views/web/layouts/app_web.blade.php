@@ -30,8 +30,15 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="{{ route('profile') }}">Mis datos</a>
-                <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
+                @auth
+                    <a class="dropdown-item" href="{{ route('profile') }}">Mis datos</a>
+                    <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
+                @endauth
+                @guest
+                    <h6 class="dropdown-header">Idioma</h6>
+                    <a href="{{ route('change.language', 'es') }}" class="dropdown-item">Español</a>
+                    <a href="{{ route('change.language', 'en') }}" class="dropdown-item">Inglés</a>
+                @endguest
             </div>
         </div>
     </nav>
@@ -48,8 +55,15 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="{{ route('profile') }}">Mis datos</a>
-                <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
+                @auth
+                    <a class="dropdown-item" href="{{ route('profile') }}">Mis datos</a>
+                    <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
+                @endauth
+                @guest
+                    <h6 class="dropdown-header">Idioma</h6>
+                    <a href="{{ route('change.language', 'es') }}" class="dropdown-item">Español</a>
+                    <a href="{{ route('change.language', 'en') }}" class="dropdown-item">Inglés</a>
+                @endguest
             </div>
         </div>
     </section>

@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-09-24.
+    * Generated on 2017-09-26.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -50,6 +50,7 @@ namespace PHPSTORM_META {
         'phpexcel' => \Maatwebsite\Excel\Classes\PHPExcel::class,
         'excel.writer' => \Maatwebsite\Excel\Writers\LaravelExcelWriter::class,
         'excel' => \Maatwebsite\Excel\Excel::class,
+        'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
@@ -193,6 +194,7 @@ namespace PHPSTORM_META {
         'phpexcel' => \Maatwebsite\Excel\Classes\PHPExcel::class,
         'excel.writer' => \Maatwebsite\Excel\Writers\LaravelExcelWriter::class,
         'excel' => \Maatwebsite\Excel\Excel::class,
+        'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
@@ -336,6 +338,7 @@ namespace PHPSTORM_META {
         'phpexcel' => \Maatwebsite\Excel\Classes\PHPExcel::class,
         'excel.writer' => \Maatwebsite\Excel\Writers\LaravelExcelWriter::class,
         'excel' => \Maatwebsite\Excel\Excel::class,
+        'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
@@ -479,6 +482,7 @@ namespace PHPSTORM_META {
         'phpexcel' => \Maatwebsite\Excel\Classes\PHPExcel::class,
         'excel.writer' => \Maatwebsite\Excel\Writers\LaravelExcelWriter::class,
         'excel' => \Maatwebsite\Excel\Excel::class,
+        'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
@@ -622,6 +626,7 @@ namespace PHPSTORM_META {
         'phpexcel' => \Maatwebsite\Excel\Classes\PHPExcel::class,
         'excel.writer' => \Maatwebsite\Excel\Writers\LaravelExcelWriter::class,
         'excel' => \Maatwebsite\Excel\Excel::class,
+        'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
@@ -765,6 +770,7 @@ namespace PHPSTORM_META {
         'phpexcel' => \Maatwebsite\Excel\Classes\PHPExcel::class,
         'excel.writer' => \Maatwebsite\Excel\Writers\LaravelExcelWriter::class,
         'excel' => \Maatwebsite\Excel\Excel::class,
+        'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
@@ -908,6 +914,7 @@ namespace PHPSTORM_META {
         'phpexcel' => \Maatwebsite\Excel\Classes\PHPExcel::class,
         'excel.writer' => \Maatwebsite\Excel\Writers\LaravelExcelWriter::class,
         'excel' => \Maatwebsite\Excel\Excel::class,
+        'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,

@@ -16,10 +16,14 @@ namespace App\Models{
  * @property int|null $role_id
  * @property string $email
  * @property string $name
+ * @property string $password
+ * @property string|null $remember_token
  * @property-read \App\Models\Role|null $role
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereRoleId($value)
  */
 	class Manager extends \Eloquent {}

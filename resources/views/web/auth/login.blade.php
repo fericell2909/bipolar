@@ -12,8 +12,8 @@
         @endif
         <div class="row">
             <div class="col">
-                <p class="text-center">Ingresar</p>
-                <p class="text-center">Si has comprado antes con nosotros, por favor introduce tu nombre de usuario y contraseña. Si eres un cliente nuevo por favor regístrate.</p>
+                <p class="text-center">{{ __('login-register.login') }}</p>
+                <p class="text-center">{{ __('login-register.login_text') }}.</p>
                 <div class="text-center">
                     <button id="authFacebook" class="btn btn-dark">
                         <i class="fa fa-facebook"></i> Inicia sesión con Facebook
@@ -37,8 +37,8 @@
                 </div>
             </div>
             <div class="col">
-                <p class="text-center">Crear cuenta</p>
-                <p class="text-center">Crea tu cuenta eligiendo una contraseña. Si ya eres cliente, por favor introduce tu nombre de usuario en el cuadro de la izquierda.</p>
+                <p class="text-center">{{ __('login-register.register') }}</p>
+                <p class="text-center">{{ __('login-register.register_text') }}.</p>
                 <div class="text-center">
                     <button id="authFacebook" class="btn btn-dark">
                         <i class="fa fa-facebook"></i> Regístrate con Facebook
