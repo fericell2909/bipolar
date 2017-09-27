@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bipolar-background">
         @auth
         <span class="navbar-text">
-            Hola <a href="{{ route('login-with-register') }}">Ingresa</a> o <a href="{{ route('login-with-register') }}">regístrate</a>
+            Hola <a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">Ingresa</a> o <a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">regístrate</a>
         </span>
         @endauth
         <ul class="navbar-nav mr-auto">

@@ -13,9 +13,9 @@ class LoginController extends Controller
 
     protected $redirectTo = '/';
 
-    public function showLoginForm()
+    public function showLoginForm($loginRegister = 'login')
     {
-        return view('web.auth.login');
+        return view('web.auth.login-register', compact('loginRegister'));
     }
 
     public function __construct()

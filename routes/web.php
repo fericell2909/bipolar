@@ -8,7 +8,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::prefix(LaravelLocalization::setLocale())->group(function () {
-    Route::get('account-management', 'Web\Auth\LoginController@showLoginForm')->name('login-with-register');
+    Route::get('account-management/{loginRegister?}', 'Web\Auth\LoginController@showLoginForm')->name('login-with-register');
 });
 
 Route::post('login', 'Web\Auth\LoginController@login')->name('login.post');
