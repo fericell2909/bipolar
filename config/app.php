@@ -181,6 +181,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        Vinkla\Hashids\HashidsServiceProvider::class,
     ],
 
     /*
@@ -237,6 +238,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
     ],
 
 ];

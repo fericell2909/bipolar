@@ -15,4 +15,12 @@ Route::middleware('auth:admin')->group(function() {
         Route::post('/edit/{userId}', 'Admin\UserController@update');
         Route::get('download', 'Admin\UserController@download')->name('users.download');
     });
+
+    Route::prefix('settings')->group(function () {
+        Route::get('sizes', 'Admin\SettingsController@seeSizes')->name('settings.sizes');
+        Route::post('sizes', 'Admin\SettingsController@saveSize')->name('settings.sizes.save');
+        Route::get('size/{sizeHashId}', 'Admin\SettingsController@showSize')->name('settings.sized.show');
+        Route::post('size/{sizeHashId}', 'Admin\SettingsController@updateSize')->name('settings.sized.update');
+        Route::delete('size/{sizeHashId}', 'Admin\SettingsController@deleteSize');
+    });
 });

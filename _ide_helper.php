@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.13 on 2017-09-26.
+ * Generated for Laravel 5.5.14 on 2017-10-09.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -6747,7 +6747,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get the current encoded path info for the request.
+         * Get the current decoded path info for the request.
          *
          * @return string 
          * @static 
@@ -13850,279 +13850,6 @@ namespace Maatwebsite\Excel\Facades {
  
 }
 
-namespace Laracasts\Flash { 
-
-    class Flash {
-        
-        /**
-         * Flash an information message.
-         *
-         * @param string|null $message
-         * @return $this 
-         * @static 
-         */ 
-        public static function info($message = null)
-        {
-            return \Laracasts\Flash\FlashNotifier::info($message);
-        }
-        
-        /**
-         * Flash a success message.
-         *
-         * @param string|null $message
-         * @return $this 
-         * @static 
-         */ 
-        public static function success($message = null)
-        {
-            return \Laracasts\Flash\FlashNotifier::success($message);
-        }
-        
-        /**
-         * Flash an error message.
-         *
-         * @param string|null $message
-         * @return $this 
-         * @static 
-         */ 
-        public static function error($message = null)
-        {
-            return \Laracasts\Flash\FlashNotifier::error($message);
-        }
-        
-        /**
-         * Flash a warning message.
-         *
-         * @param string|null $message
-         * @return $this 
-         * @static 
-         */ 
-        public static function warning($message = null)
-        {
-            return \Laracasts\Flash\FlashNotifier::warning($message);
-        }
-        
-        /**
-         * Flash a general message.
-         *
-         * @param string|null $message
-         * @param string|null $level
-         * @return $this 
-         * @static 
-         */ 
-        public static function message($message = null, $level = null)
-        {
-            return \Laracasts\Flash\FlashNotifier::message($message, $level);
-        }
-        
-        /**
-         * Flash an overlay modal.
-         *
-         * @param string|null $message
-         * @param string $title
-         * @return $this 
-         * @static 
-         */ 
-        public static function overlay($message = null, $title = 'Notice')
-        {
-            return \Laracasts\Flash\FlashNotifier::overlay($message, $title);
-        }
-        
-        /**
-         * Add an "important" flash to the session.
-         *
-         * @return $this 
-         * @static 
-         */ 
-        public static function important()
-        {
-            return \Laracasts\Flash\FlashNotifier::important();
-        }
-        
-        /**
-         * Clear all registered messages.
-         *
-         * @return $this 
-         * @static 
-         */ 
-        public static function clear()
-        {
-            return \Laracasts\Flash\FlashNotifier::clear();
-        }
-         
-    }
- 
-}
-
-namespace Spatie\Newsletter { 
-
-    class NewsletterFacade {
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function subscribe($email, $mergeFields = array(), $listName = '', $options = array())
-        {
-            return \Spatie\Newsletter\Newsletter::subscribe($email, $mergeFields, $listName, $options);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function subscribePending($email, $mergeFields = array(), $listName = '', $options = array())
-        {
-            return \Spatie\Newsletter\Newsletter::subscribePending($email, $mergeFields, $listName, $options);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function subscribeOrUpdate($email, $mergeFields = array(), $listName = '', $options = array())
-        {
-            return \Spatie\Newsletter\Newsletter::subscribeOrUpdate($email, $mergeFields, $listName, $options);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getMembers($listName = '', $parameters = array())
-        {
-            return \Spatie\Newsletter\Newsletter::getMembers($listName, $parameters);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getMember($email, $listName = '')
-        {
-            return \Spatie\Newsletter\Newsletter::getMember($email, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getMemberActivity($email, $listName = '')
-        {
-            return \Spatie\Newsletter\Newsletter::getMemberActivity($email, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function hasMember($email, $listName = '')
-        {
-            return \Spatie\Newsletter\Newsletter::hasMember($email, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function isSubscribed($email, $listName = '')
-        {
-            return \Spatie\Newsletter\Newsletter::isSubscribed($email, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function unsubscribe($email, $listName = '')
-        {
-            return \Spatie\Newsletter\Newsletter::unsubscribe($email, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function updateEmailAddress($currentEmailAddress, $newEmailAddress, $listName = '')
-        {
-            return \Spatie\Newsletter\Newsletter::updateEmailAddress($currentEmailAddress, $newEmailAddress, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function delete($email, $listName = '')
-        {
-            return \Spatie\Newsletter\Newsletter::delete($email, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function createCampaign($fromName, $replyTo, $subject, $html = '', $listName = '', $options = array(), $contentOptions = array())
-        {
-            return \Spatie\Newsletter\Newsletter::createCampaign($fromName, $replyTo, $subject, $html, $listName, $options, $contentOptions);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function updateContent($campaignId, $html, $options = array())
-        {
-            return \Spatie\Newsletter\Newsletter::updateContent($campaignId, $html, $options);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getApi()
-        {
-            return \Spatie\Newsletter\Newsletter::getApi();
-        }
-        
-        /**
-         * 
-         *
-         * @return array|false 
-         * @static 
-         */ 
-        public static function getLastError()
-        {
-            return \Spatie\Newsletter\Newsletter::getLastError();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function lastActionSucceeded()
-        {
-            return \Spatie\Newsletter\Newsletter::lastActionSucceeded();
-        }
-         
-    }
- 
-}
-
 namespace Mcamara\LaravelLocalization\Facades { 
 
     class LaravelLocalization {
@@ -14425,6 +14152,414 @@ namespace Mcamara\LaravelLocalization\Facades {
         public static function setBaseUrl($url)
         {
             return \Mcamara\LaravelLocalization\LaravelLocalization::setBaseUrl($url);
+        }
+         
+    }
+ 
+}
+
+namespace Vinkla\Hashids\Facades { 
+
+    class Hashids {
+        
+        /**
+         * Get the factory instance.
+         *
+         * @return \Vinkla\Hashids\HashidsFactory 
+         * @static 
+         */ 
+        public static function getFactory()
+        {
+            return \Vinkla\Hashids\HashidsManager::getFactory();
+        }
+        
+        /**
+         * Get a connection instance.
+         *
+         * @param string|null $name
+         * @return object 
+         * @static 
+         */ 
+        public static function connection($name = null)
+        {
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            return \Vinkla\Hashids\HashidsManager::connection($name);
+        }
+        
+        /**
+         * Reconnect to the given connection.
+         *
+         * @param string|null $name
+         * @return object 
+         * @static 
+         */ 
+        public static function reconnect($name = null)
+        {
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            return \Vinkla\Hashids\HashidsManager::reconnect($name);
+        }
+        
+        /**
+         * Disconnect from the given connection.
+         *
+         * @param string|null $name
+         * @return void 
+         * @static 
+         */ 
+        public static function disconnect($name = null)
+        {
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            \Vinkla\Hashids\HashidsManager::disconnect($name);
+        }
+        
+        /**
+         * Get the configuration for a connection.
+         *
+         * @param string|null $name
+         * @throws \InvalidArgumentException
+         * @return array 
+         * @static 
+         */ 
+        public static function getConnectionConfig($name = null)
+        {
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            return \Vinkla\Hashids\HashidsManager::getConnectionConfig($name);
+        }
+        
+        /**
+         * Get the default connection name.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getDefaultConnection()
+        {
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            return \Vinkla\Hashids\HashidsManager::getDefaultConnection();
+        }
+        
+        /**
+         * Set the default connection name.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */ 
+        public static function setDefaultConnection($name)
+        {
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            \Vinkla\Hashids\HashidsManager::setDefaultConnection($name);
+        }
+        
+        /**
+         * Register an extension connection resolver.
+         *
+         * @param string $name
+         * @param callable $resolver
+         * @return void 
+         * @static 
+         */ 
+        public static function extend($name, $resolver)
+        {
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            \Vinkla\Hashids\HashidsManager::extend($name, $resolver);
+        }
+        
+        /**
+         * Return all of the created connections.
+         *
+         * @return object[] 
+         * @static 
+         */ 
+        public static function getConnections()
+        {
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            return \Vinkla\Hashids\HashidsManager::getConnections();
+        }
+        
+        /**
+         * Get the config instance.
+         *
+         * @return \Illuminate\Contracts\Config\Repository 
+         * @static 
+         */ 
+        public static function getConfig()
+        {
+            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
+            return \Vinkla\Hashids\HashidsManager::getConfig();
+        }
+         
+    }
+ 
+}
+
+namespace Laracasts\Flash { 
+
+    class Flash {
+        
+        /**
+         * Flash an information message.
+         *
+         * @param string|null $message
+         * @return $this 
+         * @static 
+         */ 
+        public static function info($message = null)
+        {
+            return \Laracasts\Flash\FlashNotifier::info($message);
+        }
+        
+        /**
+         * Flash a success message.
+         *
+         * @param string|null $message
+         * @return $this 
+         * @static 
+         */ 
+        public static function success($message = null)
+        {
+            return \Laracasts\Flash\FlashNotifier::success($message);
+        }
+        
+        /**
+         * Flash an error message.
+         *
+         * @param string|null $message
+         * @return $this 
+         * @static 
+         */ 
+        public static function error($message = null)
+        {
+            return \Laracasts\Flash\FlashNotifier::error($message);
+        }
+        
+        /**
+         * Flash a warning message.
+         *
+         * @param string|null $message
+         * @return $this 
+         * @static 
+         */ 
+        public static function warning($message = null)
+        {
+            return \Laracasts\Flash\FlashNotifier::warning($message);
+        }
+        
+        /**
+         * Flash a general message.
+         *
+         * @param string|null $message
+         * @param string|null $level
+         * @return $this 
+         * @static 
+         */ 
+        public static function message($message = null, $level = null)
+        {
+            return \Laracasts\Flash\FlashNotifier::message($message, $level);
+        }
+        
+        /**
+         * Flash an overlay modal.
+         *
+         * @param string|null $message
+         * @param string $title
+         * @return $this 
+         * @static 
+         */ 
+        public static function overlay($message = null, $title = 'Notice')
+        {
+            return \Laracasts\Flash\FlashNotifier::overlay($message, $title);
+        }
+        
+        /**
+         * Add an "important" flash to the session.
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function important()
+        {
+            return \Laracasts\Flash\FlashNotifier::important();
+        }
+        
+        /**
+         * Clear all registered messages.
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function clear()
+        {
+            return \Laracasts\Flash\FlashNotifier::clear();
+        }
+         
+    }
+ 
+}
+
+namespace Spatie\Newsletter { 
+
+    class NewsletterFacade {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function subscribe($email, $mergeFields = array(), $listName = '', $options = array())
+        {
+            return \Spatie\Newsletter\Newsletter::subscribe($email, $mergeFields, $listName, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function subscribePending($email, $mergeFields = array(), $listName = '', $options = array())
+        {
+            return \Spatie\Newsletter\Newsletter::subscribePending($email, $mergeFields, $listName, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function subscribeOrUpdate($email, $mergeFields = array(), $listName = '', $options = array())
+        {
+            return \Spatie\Newsletter\Newsletter::subscribeOrUpdate($email, $mergeFields, $listName, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMembers($listName = '', $parameters = array())
+        {
+            return \Spatie\Newsletter\Newsletter::getMembers($listName, $parameters);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMember($email, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::getMember($email, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMemberActivity($email, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::getMemberActivity($email, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function hasMember($email, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::hasMember($email, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isSubscribed($email, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::isSubscribed($email, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function unsubscribe($email, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::unsubscribe($email, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function updateEmailAddress($currentEmailAddress, $newEmailAddress, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::updateEmailAddress($currentEmailAddress, $newEmailAddress, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function delete($email, $listName = '')
+        {
+            return \Spatie\Newsletter\Newsletter::delete($email, $listName);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function createCampaign($fromName, $replyTo, $subject, $html = '', $listName = '', $options = array(), $contentOptions = array())
+        {
+            return \Spatie\Newsletter\Newsletter::createCampaign($fromName, $replyTo, $subject, $html, $listName, $options, $contentOptions);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function updateContent($campaignId, $html, $options = array())
+        {
+            return \Spatie\Newsletter\Newsletter::updateContent($campaignId, $html, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getApi()
+        {
+            return \Spatie\Newsletter\Newsletter::getApi();
+        }
+        
+        /**
+         * 
+         *
+         * @return array|false 
+         * @static 
+         */ 
+        public static function getLastError()
+        {
+            return \Spatie\Newsletter\Newsletter::getLastError();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function lastActionSucceeded()
+        {
+            return \Spatie\Newsletter\Newsletter::lastActionSucceeded();
         }
          
     }
@@ -16552,11 +16687,13 @@ namespace  {
 
     class Excel extends \Maatwebsite\Excel\Facades\Excel {}
 
+    class LaravelLocalization extends \Mcamara\LaravelLocalization\Facades\LaravelLocalization {}
+
+    class Hashids extends \Vinkla\Hashids\Facades\Hashids {}
+
     class Flash extends \Laracasts\Flash\Flash {}
 
     class Newsletter extends \Spatie\Newsletter\NewsletterFacade {}
-
-    class LaravelLocalization extends \Mcamara\LaravelLocalization\Facades\LaravelLocalization {}
  
 }
 

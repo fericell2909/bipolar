@@ -23,6 +23,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="https://use.fontawesome.com/d71cf672b2.js"></script>
+    <script>
+        window.Laravel = <?= json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>;
+    </script>
 </head>
 
 <body class="fix-sidebar">
@@ -94,6 +99,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="nav nav-second-level">
                         <li><a href="#">Nuevo producto</a></li>
                         <li><a href="#">Listar productos</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="waves-effect">
+                        <i class="fa fa-cog"></i>
+                        <span class="hide-menu"> Configuraciones<span class="fa arrow"></span></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="{{ route('settings.sizes') }}">Tallas</a></li>
                     </ul>
                 </li>
             </ul>

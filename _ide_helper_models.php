@@ -10,35 +10,15 @@
 
 namespace App\Models{
 /**
- * App\Models\Manager
- *
- * @property int $id
- * @property int|null $role_id
- * @property string $email
- * @property string $name
- * @property string $password
- * @property string|null $remember_token
- * @property-read \App\Models\Role|null $role
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereRoleId($value)
- */
-	class Manager extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Role
+ * App\Models\Size
  *
  * @property int $id
  * @property string $name
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereName($value)
+ * @property-read string $hash_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereName($value)
  */
-	class Role extends \Eloquent {}
+	class Size extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -73,5 +53,38 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Role
+ *
+ * @property int $id
+ * @property string $name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereName($value)
+ */
+	class Role extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Manager
+ *
+ * @property int $id
+ * @property int|null $role_id
+ * @property string $email
+ * @property string $name
+ * @property string $password
+ * @property string|null $remember_token
+ * @property-read \App\Models\Role|null $role
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereRoleId($value)
+ */
+	class Manager extends \Eloquent {}
 }
 
