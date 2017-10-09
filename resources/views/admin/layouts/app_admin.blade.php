@@ -86,6 +86,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li><a href="{{ route('users.index') }}">Listar usuarios</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript:void(0);" class="waves-effect">
+                        <i class="fa fa-archive"></i>
+                        <span class="hide-menu"> Productos<span class="fa arrow"></span></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="#">Nuevo producto</a></li>
+                        <li><a href="#">Listar productos</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
