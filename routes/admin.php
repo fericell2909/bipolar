@@ -17,10 +17,16 @@ Route::middleware('auth:admin')->group(function() {
     });
 
     Route::prefix('settings')->group(function () {
+        // Sizes
         Route::get('sizes', 'Admin\SettingsController@seeSizes')->name('settings.sizes');
         Route::post('sizes', 'Admin\SettingsController@saveSize')->name('settings.sizes.save');
-        Route::get('size/{sizeHashId}', 'Admin\SettingsController@showSize')->name('settings.sized.show');
-        Route::post('size/{sizeHashId}', 'Admin\SettingsController@updateSize')->name('settings.sized.update');
-        Route::delete('size/{sizeHashId}', 'Admin\SettingsController@deleteSize');
+        Route::get('sizes/{sizeHashId}', 'Admin\SettingsController@showSize')->name('settings.sizes.show');
+        Route::post('sizes/{sizeHashId}', 'Admin\SettingsController@updateSize')->name('settings.sizes.update');
+        Route::delete('sizes/{sizeHashId}', 'Admin\SettingsController@deleteSize');
+        // Colors
+        Route::get('colors', 'Admin\ColorController@index')->name('settings.colors');
+        Route::post('colors', 'Admin\ColorController@create')->name('settings.colors.save');
+        Route::get('colors/{colorHashid}', 'Admin\ColorController@show')->name('settings.colors.show');
+        Route::post('colors/{colorHashid}', 'Admin\ColorController@update');
     });
 });

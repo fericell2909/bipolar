@@ -69,6 +69,20 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Color
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $hexadecimal
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereHexadecimal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereName($value)
+ */
+	class Color extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Manager
  *
  * @property int $id

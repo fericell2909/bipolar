@@ -14,4 +14,5 @@ require('jquery-slimscroll');
 require('./plugins/sidebar-nav.min');
 require('./plugins/waves');
 require('./plugins/theme-scripts');
+require('./plugins/jscolor.min');
 require('./settings-scripts');

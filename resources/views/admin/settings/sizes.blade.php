@@ -43,7 +43,7 @@
                             <td>{{ $size->id }}</td>
                             <td>{{ $size->name }}</td>
                             <td>
-                                <a href="{{ route('settings.sized.show', $size->hash_id) }}" class="btn btn-sm btn-primary">
+                                <a href="{{ route('settings.sizes.show', $size->hash_id) }}" class="btn btn-sm btn-primary">
                                     <i class="fa fa-pencil"></i> Actualizar
                                 </a>
                                 <button class="btn btn-sm btn-danger size-delete" data-size-id="{{ $size->hash_id }}">
