@@ -55,4 +55,17 @@ class ColorController extends Controller
 
         return redirect()->route('settings.colors');
     }
+
+    public function delete($colorHashId)
+    {
+        $color = Color::findByHash($colorHashId);
+
+        // todo: check if color has products
+
+        $color->delete();
+
+        flash()->success('Eliminado correctamente');
+
+        return response()->json(['message' => 'Eliminado correctamente']);
+    }
 }

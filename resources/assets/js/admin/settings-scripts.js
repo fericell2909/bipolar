@@ -18,4 +18,22 @@ $(function () {
             }).done(() => location.reload());
         })
     });
+
+    $('.color-delete').click(function () {
+        swal({
+            title: 'Eliminar color',
+            text: 'Seguro que desea eliminar',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+        }).then(() => {
+            let sizeHashId = $(this).data('colorId');
+
+            $.ajax({
+                method: 'DELETE',
+                url: `/admin/settings/colors/${sizeHashId}`
+            }).done(() => location.reload());
+        })
+    });
 });

@@ -55,7 +55,7 @@
                                 <a href="{{ route('settings.colors.show', $color->hash_id) }}" class="btn btn-sm btn-primary">
                                     <i class="fa fa-pencil"></i> Actualizar
                                 </a>
-                                <button class="btn btn-sm btn-danger size-delete" data-size-id="{{ $color->hash_id }}">
+                                <button class="btn btn-sm btn-danger color-delete" data-color-id="{{ $color->hash_id }}">
                                     <i class="fa fa-trash"></i>
                                     Eliminar
                                 </button>

@@ -14552,6 +14552,28 @@ $(function () {
             });
         });
     });
+
+    $('.color-delete').click(function () {
+        var _this2 = this;
+
+        __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
+            title: 'Eliminar color',
+            text: 'Seguro que desea eliminar',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true
+        }).then(function () {
+            var sizeHashId = $(_this2).data('colorId');
+
+            $.ajax({
+                method: 'DELETE',
+                url: '/admin/settings/colors/' + sizeHashId
+            }).done(function () {
+                return location.reload();
+            });
+        });
+    });
 });
 
 /***/ }),
