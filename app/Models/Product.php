@@ -14,9 +14,9 @@ class Product extends Model
     protected $table = 'products';
     protected $dates = ['deleted_at'];
 
-    public function color()
+    public function colors()
     {
-        return $this->belongsTo(Color::class, 'color_id');
+        return $this->belongsToMany(Color::class, 'colors_products', 'product_id', 'color_id');
     }
 
     public function getAdminActiveButton()

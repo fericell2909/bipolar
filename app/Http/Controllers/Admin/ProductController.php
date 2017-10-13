@@ -28,12 +28,19 @@ class ProductController extends Controller
 
     public function store(ProductNewRequest $request)
     {
+        $colors = [];
+        $requestColors = $request->input('colors');
+        foreach ($requestColors as $color) {
+            $colors[] = array_first(\Hashids::decode($color));
+        }
+
         $product = new Product;
         $product->name = $request->input('name');
         $product->subtitle = $request->input('subtitle');
         $product->price = number_format($request->input('price'), 2);
         $product->active = boolval($request->input('active')) ? date('Y-m-d H:i:s') : null;
         $product->save();
+        $product->colors()->sync($colors);
 
         return redirect()->route('products.photos', $product->slug);
     }

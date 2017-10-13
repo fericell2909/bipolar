@@ -37,8 +37,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {!! Form::label('Color') !!}
-                        {!! Form::select('color', $colors, null, ['class' => 'form-control select2', 'required' => true]) !!}
+                        {!! Form::label('Colores') !!}
+                        {!! Form::select('colors[]', $colors, null, ['class' => 'form-control select2', 'required' => true, 'multiple' => true]) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('Precio') !!}

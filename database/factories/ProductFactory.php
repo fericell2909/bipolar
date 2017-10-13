@@ -9,8 +9,5 @@ $factory->define(\App\Models\Product::class, function (Faker $faker) {
         'subtitle' => $faker->optional()->word,
         'price'    => $faker->randomFloat(2, 10, 3000),
         'active'   => $faker->optional()->dateTime,
-        'color_id' => function () {
-            return factory(App\Models\Color::class)->create()->id;
-        },
     ];
 });

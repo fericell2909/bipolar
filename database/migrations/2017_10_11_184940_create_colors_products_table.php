@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColorIdForeignToProducts extends Migration
+class CreateColorsProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class AddColorIdForeignToProducts extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::create('colors_products', function (Blueprint $table) {
+            $table->unsignedInteger('color_id');
+            $table->unsignedInteger('product_id');
+        });
+
+        Schema::table('colors_products', function (Blueprint $table) {
             $table->foreign('color_id')->references('id')->on('colors');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
@@ -25,8 +31,6 @@ class AddColorIdForeignToProducts extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign(['color_id']);
-        });
+
     }
 }

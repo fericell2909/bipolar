@@ -26,7 +26,7 @@ class ProductNewRequest extends FormRequest
         return [
             'name'     => 'required|between:1,255|string',
             'subtitle' => 'sometimes|between:1,255',
-            'color'    => 'required|string',
+            'colors'   => 'required|array',
             'price'    => 'required|numeric|min:1',
             'active'   => 'boolean',
         ];
