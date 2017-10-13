@@ -16,6 +16,14 @@ Route::middleware('auth:admin')->group(function() {
         Route::get('download', 'Admin\UserController@download')->name('users.download');
     });
 
+    Route::prefix('products')->group(function () {
+        Route::get('/', 'Admin\ProductController@index')->name('products.index');
+        Route::get('new', 'Admin\ProductController@create')->name('products.create');
+        Route::post('new', 'Admin\ProductController@store');
+        Route::get('photos/{slug}', 'Admin\ProductController@photos')->name('products.photos');
+        Route::post('{productHashId}/photo/upload', 'Admin\ProductController@uploadPhoto')->name('products.photo.upload');
+    });
+
     Route::prefix('settings')->group(function () {
         // Sizes
         Route::get('sizes', 'Admin\SettingsController@seeSizes')->name('settings.sizes');

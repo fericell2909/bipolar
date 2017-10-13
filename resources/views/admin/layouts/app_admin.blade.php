@@ -98,7 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </a>
                     <ul class="nav nav-second-level">
                         <li><a href="#">Nuevo producto</a></li>
-                        <li><a href="#">Listar productos</a></li>
+                        <li><a href="{{ route('products.index') }}">Listar productos</a></li>
                     </ul>
                 </li>
                 <li>

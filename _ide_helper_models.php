@@ -23,6 +23,37 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Product
+ *
+ * @property int $id
+ * @property int|null $color_id
+ * @property string $name
+ * @property string|null $slug
+ * @property string|null $subtitle
+ * @property float $price
+ * @property string|null $active
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property-read \App\Models\Color|null $color
+ * @property-read string $hash_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereColorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSubtitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
+ */
+	class Product extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @method static User findOrFail($id, array $columns = ['*'])
@@ -74,6 +105,7 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property string $hexadecimal
+ * @property-read string $hash_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereHexadecimal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereName($value)

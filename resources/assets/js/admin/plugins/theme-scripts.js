@@ -1,5 +1,6 @@
-/*jslint browser: true*/
-/*global $, jQuery, alert*/
+const switcher = require('switchery/switchery');
+const select2 = require('select2/dist/js/select2.full');
+require('dropzone/dist/dropzone-amd-module');
 
 $(document).ready(function () {
 
@@ -11,6 +12,15 @@ $(document).ready(function () {
         $(".preloader").fadeOut();
         $('#side-menu').metisMenu();
     });
+
+    // Select 2
+    $('.select2').select2();
+
+    // Switchery
+    if ($('.js-switch').length) {
+        let elem = document.querySelector('.js-switch');
+        let init = new switcher(elem, {color: '#F9967B'});
+    }
 
     /* ===== Open-Close Right Sidebar ===== */
 
