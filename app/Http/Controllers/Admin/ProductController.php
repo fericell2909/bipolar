@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductNewRequest;
 use App\Models\Color;
+use App\Models\Photo;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -54,10 +55,14 @@ class ProductController extends Controller
         $bucket = env('AWS_BUCKET');
 
         if ($image->isValid()) {
-            // todo: upload the photo to s3
             $imagePath = $image->storePubliclyAs('products', "{$product->slug}_{$now->timestamp}.{$image->extension()}", 's3');
             $amazonPath = "https://s3.amazonaws.com/{$bucket}/{$imagePath}";
-            // todo: save to photo model
+
+            $photo = new Photo;
+            $photo->product()->associate($product);
+            $photo->url = $amazonPath;
+            $photo->order = 0;
+            $photo->save();
         }
 
         return response()->json(compact('path'));

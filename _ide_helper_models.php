@@ -100,6 +100,27 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Photo
+ *
+ * @property int $id
+ * @property int $product_id
+ * @property string $url
+ * @property int $order
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\Product $product
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereUrl($value)
+ */
+	class Photo extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Color
  *
  * @property int $id
