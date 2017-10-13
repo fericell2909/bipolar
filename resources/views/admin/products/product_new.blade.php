@@ -32,7 +32,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 {!! Form::label('Subtítulo') !!}
-                                {!! Form::text('subtitle', null, ['class' => 'form-control']) !!}
+                                {!! Form::text('subtitle', null, ['class' => 'form-control', 'placeholder' => 'Ej: Negro&Blanco']) !!}
                             </div>
                         </div>
                     </div>

@@ -12794,8 +12794,8 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(4);
-__webpack_require__(22);
-module.exports = __webpack_require__(23);
+__webpack_require__(23);
+module.exports = __webpack_require__(24);
 
 
 /***/ }),
@@ -12818,8 +12818,8 @@ __webpack_require__(7);
 __webpack_require__(8);
 __webpack_require__(9);
 __webpack_require__(10);
-__webpack_require__(19);
 __webpack_require__(20);
+__webpack_require__(21);
 
 /***/ }),
 /* 5 */
@@ -13872,7 +13872,9 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
 
 var switcher = __webpack_require__(11);
 var select2 = __webpack_require__(18);
-__webpack_require__(33);
+__webpack_require__(19);
+var Sortable = __webpack_require__(33);
+__webpack_require__(34);
 
 $(document).ready(function () {
 
@@ -13892,6 +13894,19 @@ $(document).ready(function () {
     if ($('.js-switch').length) {
         var elem = document.querySelector('.js-switch');
         var init = new switcher(elem, { color: '#F9967B' });
+    }
+
+    if ($('#sortable-items').length) {
+        var _elem = document.querySelector('#sortable-items');
+        var sortable = new Sortable(_elem, {
+            onEnd: function onEnd(event) {
+                $.blockUI({ message: "<i class='fa fa-refresh fa-spin'></i> Guardando, espere <i class='fa fa-refresh fa-spin'></i>" });
+
+                $.post('/admin/products/photos/order', { newOrder: sortable.toArray() }).done(function () {
+                    return $.unblockUI();
+                });
+            }
+        });
     }
 
     /* ===== Open-Close Right Sidebar ===== */
@@ -14579,7 +14594,7 @@ if(false) {
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(36)(undefined);
+exports = module.exports = __webpack_require__(35)(undefined);
 // imports
 
 
@@ -21514,2301 +21529,6 @@ S2.define('jquery.select2',[
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/**
- * jscolor - JavaScript Color Picker
- *
- * @link    http://jscolor.com
- * @license For open source use: GPLv3
- *          For commercial use: JSColor Commercial License
- * @author  Jan Odvarko
- *
- * See usage examples at http://jscolor.com/examples/
- */
-window.jscolor || (window.jscolor = function () {
-  var e = { register: function register() {
-      e.attachDOMReadyEvent(e.init), e.attachEvent(document, "mousedown", e.onDocumentMouseDown), e.attachEvent(document, "touchstart", e.onDocumentTouchStart), e.attachEvent(window, "resize", e.onWindowResize);
-    }, init: function init() {
-      e.jscolor.lookupClass && e.jscolor.installByClassName(e.jscolor.lookupClass);
-    }, tryInstallOnElements: function tryInstallOnElements(t, n) {
-      var r = new RegExp("(^|\\s)(" + n + ")(\\s*(\\{[^}]*\\})|\\s|$)", "i");for (var i = 0; i < t.length; i += 1) {
-        if (t[i].type !== undefined && t[i].type.toLowerCase() == "color" && e.isColorAttrSupported) continue;var s;if (!t[i].jscolor && t[i].className && (s = t[i].className.match(r))) {
-          var o = t[i],
-              u = null,
-              a = e.getDataAttr(o, "jscolor");a !== null ? u = a : s[4] && (u = s[4]);var f = {};if (u) try {
-            f = new Function("return (" + u + ")")();
-          } catch (l) {
-            e.warn("Error parsing jscolor options: " + l + ":\n" + u);
-          }o.jscolor = new e.jscolor(o, f);
-        }
-      }
-    }, isColorAttrSupported: function () {
-      var e = document.createElement("input");if (e.setAttribute) {
-        e.setAttribute("type", "color");if (e.type.toLowerCase() == "color") return !0;
-      }return !1;
-    }(), isCanvasSupported: function () {
-      var e = document.createElement("canvas");return !!e.getContext && !!e.getContext("2d");
-    }(), fetchElement: function fetchElement(e) {
-      return typeof e == "string" ? document.getElementById(e) : e;
-    }, isElementType: function isElementType(e, t) {
-      return e.nodeName.toLowerCase() === t.toLowerCase();
-    }, getDataAttr: function getDataAttr(e, t) {
-      var n = "data-" + t,
-          r = e.getAttribute(n);return r !== null ? r : null;
-    }, attachEvent: function attachEvent(e, t, n) {
-      e.addEventListener ? e.addEventListener(t, n, !1) : e.attachEvent && e.attachEvent("on" + t, n);
-    }, detachEvent: function detachEvent(e, t, n) {
-      e.removeEventListener ? e.removeEventListener(t, n, !1) : e.detachEvent && e.detachEvent("on" + t, n);
-    }, _attachedGroupEvents: {}, attachGroupEvent: function attachGroupEvent(t, n, r, i) {
-      e._attachedGroupEvents.hasOwnProperty(t) || (e._attachedGroupEvents[t] = []), e._attachedGroupEvents[t].push([n, r, i]), e.attachEvent(n, r, i);
-    }, detachGroupEvents: function detachGroupEvents(t) {
-      if (e._attachedGroupEvents.hasOwnProperty(t)) {
-        for (var n = 0; n < e._attachedGroupEvents[t].length; n += 1) {
-          var r = e._attachedGroupEvents[t][n];e.detachEvent(r[0], r[1], r[2]);
-        }delete e._attachedGroupEvents[t];
-      }
-    }, attachDOMReadyEvent: function attachDOMReadyEvent(e) {
-      var t = !1,
-          n = function n() {
-        t || (t = !0, e());
-      };if (document.readyState === "complete") {
-        setTimeout(n, 1);return;
-      }if (document.addEventListener) document.addEventListener("DOMContentLoaded", n, !1), window.addEventListener("load", n, !1);else if (document.attachEvent) {
-        document.attachEvent("onreadystatechange", function () {
-          document.readyState === "complete" && (document.detachEvent("onreadystatechange", arguments.callee), n());
-        }), window.attachEvent("onload", n);if (document.documentElement.doScroll && window == window.top) {
-          var r = function r() {
-            if (!document.body) return;try {
-              document.documentElement.doScroll("left"), n();
-            } catch (e) {
-              setTimeout(r, 1);
-            }
-          };r();
-        }
-      }
-    }, warn: function warn(e) {
-      window.console && window.console.warn && window.console.warn(e);
-    }, preventDefault: function preventDefault(e) {
-      e.preventDefault && e.preventDefault(), e.returnValue = !1;
-    }, captureTarget: function captureTarget(t) {
-      t.setCapture && (e._capturedTarget = t, e._capturedTarget.setCapture());
-    }, releaseTarget: function releaseTarget() {
-      e._capturedTarget && (e._capturedTarget.releaseCapture(), e._capturedTarget = null);
-    }, fireEvent: function fireEvent(e, t) {
-      if (!e) return;if (document.createEvent) {
-        var n = document.createEvent("HTMLEvents");n.initEvent(t, !0, !0), e.dispatchEvent(n);
-      } else if (document.createEventObject) {
-        var n = document.createEventObject();e.fireEvent("on" + t, n);
-      } else e["on" + t] && e["on" + t]();
-    }, classNameToList: function classNameToList(e) {
-      return e.replace(/^\s+|\s+$/g, "").split(/\s+/);
-    }, hasClass: function hasClass(e, t) {
-      return t ? -1 != (" " + e.className.replace(/\s+/g, " ") + " ").indexOf(" " + t + " ") : !1;
-    }, setClass: function setClass(t, n) {
-      var r = e.classNameToList(n);for (var i = 0; i < r.length; i += 1) {
-        e.hasClass(t, r[i]) || (t.className += (t.className ? " " : "") + r[i]);
-      }
-    }, unsetClass: function unsetClass(t, n) {
-      var r = e.classNameToList(n);for (var i = 0; i < r.length; i += 1) {
-        var s = new RegExp("^\\s*" + r[i] + "\\s*|" + "\\s*" + r[i] + "\\s*$|" + "\\s+" + r[i] + "(\\s+)", "g");t.className = t.className.replace(s, "$1");
-      }
-    }, getStyle: function getStyle(e) {
-      return window.getComputedStyle ? window.getComputedStyle(e) : e.currentStyle;
-    }, setStyle: function () {
-      var e = document.createElement("div"),
-          t = function t(_t) {
-        for (var n = 0; n < _t.length; n += 1) {
-          if (_t[n] in e.style) return _t[n];
-        }
-      },
-          n = { borderRadius: t(["borderRadius", "MozBorderRadius", "webkitBorderRadius"]), boxShadow: t(["boxShadow", "MozBoxShadow", "webkitBoxShadow"]) };return function (e, t, r) {
-        switch (t.toLowerCase()) {case "opacity":
-            var i = Math.round(parseFloat(r) * 100);e.style.opacity = r, e.style.filter = "alpha(opacity=" + i + ")";break;default:
-            e.style[n[t]] = r;}
-      };
-    }(), setBorderRadius: function setBorderRadius(t, n) {
-      e.setStyle(t, "borderRadius", n || "0");
-    }, setBoxShadow: function setBoxShadow(t, n) {
-      e.setStyle(t, "boxShadow", n || "none");
-    }, getElementPos: function getElementPos(t, n) {
-      var r = 0,
-          i = 0,
-          s = t.getBoundingClientRect();r = s.left, i = s.top;if (!n) {
-        var o = e.getViewPos();r += o[0], i += o[1];
-      }return [r, i];
-    }, getElementSize: function getElementSize(e) {
-      return [e.offsetWidth, e.offsetHeight];
-    }, getAbsPointerPos: function getAbsPointerPos(e) {
-      e || (e = window.event);var t = 0,
-          n = 0;return typeof e.changedTouches != "undefined" && e.changedTouches.length ? (t = e.changedTouches[0].clientX, n = e.changedTouches[0].clientY) : typeof e.clientX == "number" && (t = e.clientX, n = e.clientY), { x: t, y: n };
-    }, getRelPointerPos: function getRelPointerPos(e) {
-      e || (e = window.event);var t = e.target || e.srcElement,
-          n = t.getBoundingClientRect(),
-          r = 0,
-          i = 0,
-          s = 0,
-          o = 0;return typeof e.changedTouches != "undefined" && e.changedTouches.length ? (s = e.changedTouches[0].clientX, o = e.changedTouches[0].clientY) : typeof e.clientX == "number" && (s = e.clientX, o = e.clientY), r = s - n.left, i = o - n.top, { x: r, y: i };
-    }, getViewPos: function getViewPos() {
-      var e = document.documentElement;return [(window.pageXOffset || e.scrollLeft) - (e.clientLeft || 0), (window.pageYOffset || e.scrollTop) - (e.clientTop || 0)];
-    }, getViewSize: function getViewSize() {
-      var e = document.documentElement;return [window.innerWidth || e.clientWidth, window.innerHeight || e.clientHeight];
-    }, redrawPosition: function redrawPosition() {
-      if (e.picker && e.picker.owner) {
-        var t = e.picker.owner,
-            n,
-            r;t.fixed ? (n = e.getElementPos(t.targetElement, !0), r = [0, 0]) : (n = e.getElementPos(t.targetElement), r = e.getViewPos());var i = e.getElementSize(t.targetElement),
-            s = e.getViewSize(),
-            o = e.getPickerOuterDims(t),
-            u,
-            a,
-            f;switch (t.position.toLowerCase()) {case "left":
-            u = 1, a = 0, f = -1;break;case "right":
-            u = 1, a = 0, f = 1;break;case "top":
-            u = 0, a = 1, f = -1;break;default:
-            u = 0, a = 1, f = 1;}var l = (i[a] + o[a]) / 2;if (!t.smartPosition) var c = [n[u], n[a] + i[a] - l + l * f];else var c = [-r[u] + n[u] + o[u] > s[u] ? -r[u] + n[u] + i[u] / 2 > s[u] / 2 && n[u] + i[u] - o[u] >= 0 ? n[u] + i[u] - o[u] : n[u] : n[u], -r[a] + n[a] + i[a] + o[a] - l + l * f > s[a] ? -r[a] + n[a] + i[a] / 2 > s[a] / 2 && n[a] + i[a] - l - l * f >= 0 ? n[a] + i[a] - l - l * f : n[a] + i[a] - l + l * f : n[a] + i[a] - l + l * f >= 0 ? n[a] + i[a] - l + l * f : n[a] + i[a] - l - l * f];var h = c[u],
-            p = c[a],
-            d = t.fixed ? "fixed" : "absolute",
-            v = (c[0] + o[0] > n[0] || c[0] < n[0] + i[0]) && c[1] + o[1] < n[1] + i[1];e._drawPosition(t, h, p, d, v);
-      }
-    }, _drawPosition: function _drawPosition(t, n, r, i, s) {
-      var o = s ? 0 : t.shadowBlur;e.picker.wrap.style.position = i, e.picker.wrap.style.left = n + "px", e.picker.wrap.style.top = r + "px", e.setBoxShadow(e.picker.boxS, t.shadow ? new e.BoxShadow(0, o, t.shadowBlur, 0, t.shadowColor) : null);
-    }, getPickerDims: function getPickerDims(t) {
-      var n = !!e.getSliderComponent(t),
-          r = [2 * t.insetWidth + 2 * t.padding + t.width + (n ? 2 * t.insetWidth + e.getPadToSliderPadding(t) + t.sliderSize : 0), 2 * t.insetWidth + 2 * t.padding + t.height + (t.closable ? 2 * t.insetWidth + t.padding + t.buttonHeight : 0)];return r;
-    }, getPickerOuterDims: function getPickerOuterDims(t) {
-      var n = e.getPickerDims(t);return [n[0] + 2 * t.borderWidth, n[1] + 2 * t.borderWidth];
-    }, getPadToSliderPadding: function getPadToSliderPadding(e) {
-      return Math.max(e.padding, 1.5 * (2 * e.pointerBorderWidth + e.pointerThickness));
-    }, getPadYComponent: function getPadYComponent(e) {
-      switch (e.mode.charAt(1).toLowerCase()) {case "v":
-          return "v";}return "s";
-    }, getSliderComponent: function getSliderComponent(e) {
-      if (e.mode.length > 2) switch (e.mode.charAt(2).toLowerCase()) {case "s":
-          return "s";case "v":
-          return "v";}return null;
-    }, onDocumentMouseDown: function onDocumentMouseDown(t) {
-      t || (t = window.event);var n = t.target || t.srcElement;n._jscLinkedInstance ? n._jscLinkedInstance.showOnClick && n._jscLinkedInstance.show() : n._jscControlName ? e.onControlPointerStart(t, n, n._jscControlName, "mouse") : e.picker && e.picker.owner && e.picker.owner.hide();
-    }, onDocumentTouchStart: function onDocumentTouchStart(t) {
-      t || (t = window.event);var n = t.target || t.srcElement;n._jscLinkedInstance ? n._jscLinkedInstance.showOnClick && n._jscLinkedInstance.show() : n._jscControlName ? e.onControlPointerStart(t, n, n._jscControlName, "touch") : e.picker && e.picker.owner && e.picker.owner.hide();
-    }, onWindowResize: function onWindowResize(t) {
-      e.redrawPosition();
-    }, onParentScroll: function onParentScroll(t) {
-      e.picker && e.picker.owner && e.picker.owner.hide();
-    }, _pointerMoveEvent: { mouse: "mousemove", touch: "touchmove" }, _pointerEndEvent: { mouse: "mouseup", touch: "touchend" }, _pointerOrigin: null, _capturedTarget: null, onControlPointerStart: function onControlPointerStart(t, n, r, i) {
-      var s = n._jscInstance;e.preventDefault(t), e.captureTarget(n);var o = function o(s, _o) {
-        e.attachGroupEvent("drag", s, e._pointerMoveEvent[i], e.onDocumentPointerMove(t, n, r, i, _o)), e.attachGroupEvent("drag", s, e._pointerEndEvent[i], e.onDocumentPointerEnd(t, n, r, i));
-      };o(document, [0, 0]);if (window.parent && window.frameElement) {
-        var u = window.frameElement.getBoundingClientRect(),
-            a = [-u.left, -u.top];o(window.parent.window.document, a);
-      }var f = e.getAbsPointerPos(t),
-          l = e.getRelPointerPos(t);e._pointerOrigin = { x: f.x - l.x, y: f.y - l.y };switch (r) {case "pad":
-          switch (e.getSliderComponent(s)) {case "s":
-              s.hsv[1] === 0 && s.fromHSV(null, 100, null);break;case "v":
-              s.hsv[2] === 0 && s.fromHSV(null, null, 100);}e.setPad(s, t, 0, 0);break;case "sld":
-          e.setSld(s, t, 0);}e.dispatchFineChange(s);
-    }, onDocumentPointerMove: function onDocumentPointerMove(t, n, r, i, s) {
-      return function (t) {
-        var i = n._jscInstance;switch (r) {case "pad":
-            t || (t = window.event), e.setPad(i, t, s[0], s[1]), e.dispatchFineChange(i);break;case "sld":
-            t || (t = window.event), e.setSld(i, t, s[1]), e.dispatchFineChange(i);}
-      };
-    }, onDocumentPointerEnd: function onDocumentPointerEnd(t, n, r, i) {
-      return function (t) {
-        var r = n._jscInstance;e.detachGroupEvents("drag"), e.releaseTarget(), e.dispatchChange(r);
-      };
-    }, dispatchChange: function dispatchChange(t) {
-      t.valueElement && e.isElementType(t.valueElement, "input") && e.fireEvent(t.valueElement, "change");
-    }, dispatchFineChange: function dispatchFineChange(e) {
-      if (e.onFineChange) {
-        var t;typeof e.onFineChange == "string" ? t = new Function(e.onFineChange) : t = e.onFineChange, t.call(e);
-      }
-    }, setPad: function setPad(t, n, r, i) {
-      var s = e.getAbsPointerPos(n),
-          o = r + s.x - e._pointerOrigin.x - t.padding - t.insetWidth,
-          u = i + s.y - e._pointerOrigin.y - t.padding - t.insetWidth,
-          a = o * (360 / (t.width - 1)),
-          f = 100 - u * (100 / (t.height - 1));switch (e.getPadYComponent(t)) {case "s":
-          t.fromHSV(a, f, null, e.leaveSld);break;case "v":
-          t.fromHSV(a, null, f, e.leaveSld);}
-    }, setSld: function setSld(t, n, r) {
-      var i = e.getAbsPointerPos(n),
-          s = r + i.y - e._pointerOrigin.y - t.padding - t.insetWidth,
-          o = 100 - s * (100 / (t.height - 1));switch (e.getSliderComponent(t)) {case "s":
-          t.fromHSV(null, o, null, e.leavePad);break;case "v":
-          t.fromHSV(null, null, o, e.leavePad);}
-    }, _vmlNS: "jsc_vml_", _vmlCSS: "jsc_vml_css_", _vmlReady: !1, initVML: function initVML() {
-      if (!e._vmlReady) {
-        var t = document;t.namespaces[e._vmlNS] || t.namespaces.add(e._vmlNS, "urn:schemas-microsoft-com:vml");if (!t.styleSheets[e._vmlCSS]) {
-          var n = ["shape", "shapetype", "group", "background", "path", "formulas", "handles", "fill", "stroke", "shadow", "textbox", "textpath", "imagedata", "line", "polyline", "curve", "rect", "roundrect", "oval", "arc", "image"],
-              r = t.createStyleSheet();r.owningElement.id = e._vmlCSS;for (var i = 0; i < n.length; i += 1) {
-            r.addRule(e._vmlNS + "\\:" + n[i], "behavior:url(#default#VML);");
-          }
-        }e._vmlReady = !0;
-      }
-    }, createPalette: function createPalette() {
-      var t = { elm: null, draw: null };if (e.isCanvasSupported) {
-        var n = document.createElement("canvas"),
-            r = n.getContext("2d"),
-            i = function i(e, t, _i) {
-          n.width = e, n.height = t, r.clearRect(0, 0, n.width, n.height);var s = r.createLinearGradient(0, 0, n.width, 0);s.addColorStop(0, "#F00"), s.addColorStop(1 / 6, "#FF0"), s.addColorStop(2 / 6, "#0F0"), s.addColorStop(.5, "#0FF"), s.addColorStop(4 / 6, "#00F"), s.addColorStop(5 / 6, "#F0F"), s.addColorStop(1, "#F00"), r.fillStyle = s, r.fillRect(0, 0, n.width, n.height);var o = r.createLinearGradient(0, 0, 0, n.height);switch (_i.toLowerCase()) {case "s":
-              o.addColorStop(0, "rgba(255,255,255,0)"), o.addColorStop(1, "rgba(255,255,255,1)");break;case "v":
-              o.addColorStop(0, "rgba(0,0,0,0)"), o.addColorStop(1, "rgba(0,0,0,1)");}r.fillStyle = o, r.fillRect(0, 0, n.width, n.height);
-        };t.elm = n, t.draw = i;
-      } else {
-        e.initVML();var s = document.createElement("div");s.style.position = "relative", s.style.overflow = "hidden";var o = document.createElement(e._vmlNS + ":fill");o.type = "gradient", o.method = "linear", o.angle = "90", o.colors = "16.67% #F0F, 33.33% #00F, 50% #0FF, 66.67% #0F0, 83.33% #FF0";var u = document.createElement(e._vmlNS + ":rect");u.style.position = "absolute", u.style.left = "-1px", u.style.top = "-1px", u.stroked = !1, u.appendChild(o), s.appendChild(u);var a = document.createElement(e._vmlNS + ":fill");a.type = "gradient", a.method = "linear", a.angle = "180", a.opacity = "0";var f = document.createElement(e._vmlNS + ":rect");f.style.position = "absolute", f.style.left = "-1px", f.style.top = "-1px", f.stroked = !1, f.appendChild(a), s.appendChild(f);var i = function i(e, t, n) {
-          s.style.width = e + "px", s.style.height = t + "px", u.style.width = f.style.width = e + 1 + "px", u.style.height = f.style.height = t + 1 + "px", o.color = "#F00", o.color2 = "#F00";switch (n.toLowerCase()) {case "s":
-              a.color = a.color2 = "#FFF";break;case "v":
-              a.color = a.color2 = "#000";}
-        };t.elm = s, t.draw = i;
-      }return t;
-    }, createSliderGradient: function createSliderGradient() {
-      var t = { elm: null, draw: null };if (e.isCanvasSupported) {
-        var n = document.createElement("canvas"),
-            r = n.getContext("2d"),
-            i = function i(e, t, _i2, s) {
-          n.width = e, n.height = t, r.clearRect(0, 0, n.width, n.height);var o = r.createLinearGradient(0, 0, 0, n.height);o.addColorStop(0, _i2), o.addColorStop(1, s), r.fillStyle = o, r.fillRect(0, 0, n.width, n.height);
-        };t.elm = n, t.draw = i;
-      } else {
-        e.initVML();var s = document.createElement("div");s.style.position = "relative", s.style.overflow = "hidden";var o = document.createElement(e._vmlNS + ":fill");o.type = "gradient", o.method = "linear", o.angle = "180";var u = document.createElement(e._vmlNS + ":rect");u.style.position = "absolute", u.style.left = "-1px", u.style.top = "-1px", u.stroked = !1, u.appendChild(o), s.appendChild(u);var i = function i(e, t, n, r) {
-          s.style.width = e + "px", s.style.height = t + "px", u.style.width = e + 1 + "px", u.style.height = t + 1 + "px", o.color = n, o.color2 = r;
-        };t.elm = s, t.draw = i;
-      }return t;
-    }, leaveValue: 1, leaveStyle: 2, leavePad: 4, leaveSld: 8, BoxShadow: function () {
-      var e = function e(_e, t, n, r, i, s) {
-        this.hShadow = _e, this.vShadow = t, this.blur = n, this.spread = r, this.color = i, this.inset = !!s;
-      };return e.prototype.toString = function () {
-        var e = [Math.round(this.hShadow) + "px", Math.round(this.vShadow) + "px", Math.round(this.blur) + "px", Math.round(this.spread) + "px", this.color];return this.inset && e.push("inset"), e.join(" ");
-      }, e;
-    }(), jscolor: function jscolor(t, n) {
-      function i(e, t, n) {
-        e /= 255, t /= 255, n /= 255;var r = Math.min(Math.min(e, t), n),
-            i = Math.max(Math.max(e, t), n),
-            s = i - r;if (s === 0) return [null, 0, 100 * i];var o = e === r ? 3 + (n - t) / s : t === r ? 5 + (e - n) / s : 1 + (t - e) / s;return [60 * (o === 6 ? 0 : o), 100 * (s / i), 100 * i];
-      }function s(e, t, n) {
-        var r = 255 * (n / 100);if (e === null) return [r, r, r];e /= 60, t /= 100;var i = Math.floor(e),
-            s = i % 2 ? e - i : 1 - (e - i),
-            o = r * (1 - t),
-            u = r * (1 - t * s);switch (i) {case 6:case 0:
-            return [r, u, o];case 1:
-            return [u, r, o];case 2:
-            return [o, r, u];case 3:
-            return [o, u, r];case 4:
-            return [u, o, r];case 5:
-            return [r, o, u];}
-      }function o() {
-        e.unsetClass(d.targetElement, d.activeClass), e.picker.wrap.parentNode.removeChild(e.picker.wrap), delete e.picker.owner;
-      }function u() {
-        function l() {
-          var e = d.insetColor.split(/\s+/),
-              n = e.length < 2 ? e[0] : e[1] + " " + e[0] + " " + e[0] + " " + e[1];t.btn.style.borderColor = n;
-        }d._processParentElementsInDOM(), e.picker || (e.picker = { owner: null, wrap: document.createElement("div"), box: document.createElement("div"), boxS: document.createElement("div"), boxB: document.createElement("div"), pad: document.createElement("div"), padB: document.createElement("div"), padM: document.createElement("div"), padPal: e.createPalette(), cross: document.createElement("div"), crossBY: document.createElement("div"), crossBX: document.createElement("div"), crossLY: document.createElement("div"), crossLX: document.createElement("div"), sld: document.createElement("div"), sldB: document.createElement("div"), sldM: document.createElement("div"), sldGrad: e.createSliderGradient(), sldPtrS: document.createElement("div"), sldPtrIB: document.createElement("div"), sldPtrMB: document.createElement("div"), sldPtrOB: document.createElement("div"), btn: document.createElement("div"), btnT: document.createElement("span") }, e.picker.pad.appendChild(e.picker.padPal.elm), e.picker.padB.appendChild(e.picker.pad), e.picker.cross.appendChild(e.picker.crossBY), e.picker.cross.appendChild(e.picker.crossBX), e.picker.cross.appendChild(e.picker.crossLY), e.picker.cross.appendChild(e.picker.crossLX), e.picker.padB.appendChild(e.picker.cross), e.picker.box.appendChild(e.picker.padB), e.picker.box.appendChild(e.picker.padM), e.picker.sld.appendChild(e.picker.sldGrad.elm), e.picker.sldB.appendChild(e.picker.sld), e.picker.sldB.appendChild(e.picker.sldPtrOB), e.picker.sldPtrOB.appendChild(e.picker.sldPtrMB), e.picker.sldPtrMB.appendChild(e.picker.sldPtrIB), e.picker.sldPtrIB.appendChild(e.picker.sldPtrS), e.picker.box.appendChild(e.picker.sldB), e.picker.box.appendChild(e.picker.sldM), e.picker.btn.appendChild(e.picker.btnT), e.picker.box.appendChild(e.picker.btn), e.picker.boxB.appendChild(e.picker.box), e.picker.wrap.appendChild(e.picker.boxS), e.picker.wrap.appendChild(e.picker.boxB));var t = e.picker,
-            n = !!e.getSliderComponent(d),
-            r = e.getPickerDims(d),
-            i = 2 * d.pointerBorderWidth + d.pointerThickness + 2 * d.crossSize,
-            s = e.getPadToSliderPadding(d),
-            o = Math.min(d.borderRadius, Math.round(d.padding * Math.PI)),
-            u = "crosshair";t.wrap.style.clear = "both", t.wrap.style.width = r[0] + 2 * d.borderWidth + "px", t.wrap.style.height = r[1] + 2 * d.borderWidth + "px", t.wrap.style.zIndex = d.zIndex, t.box.style.width = r[0] + "px", t.box.style.height = r[1] + "px", t.boxS.style.position = "absolute", t.boxS.style.left = "0", t.boxS.style.top = "0", t.boxS.style.width = "100%", t.boxS.style.height = "100%", e.setBorderRadius(t.boxS, o + "px"), t.boxB.style.position = "relative", t.boxB.style.border = d.borderWidth + "px solid", t.boxB.style.borderColor = d.borderColor, t.boxB.style.background = d.backgroundColor, e.setBorderRadius(t.boxB, o + "px"), t.padM.style.background = t.sldM.style.background = "#FFF", e.setStyle(t.padM, "opacity", "0"), e.setStyle(t.sldM, "opacity", "0"), t.pad.style.position = "relative", t.pad.style.width = d.width + "px", t.pad.style.height = d.height + "px", t.padPal.draw(d.width, d.height, e.getPadYComponent(d)), t.padB.style.position = "absolute", t.padB.style.left = d.padding + "px", t.padB.style.top = d.padding + "px", t.padB.style.border = d.insetWidth + "px solid", t.padB.style.borderColor = d.insetColor, t.padM._jscInstance = d, t.padM._jscControlName = "pad", t.padM.style.position = "absolute", t.padM.style.left = "0", t.padM.style.top = "0", t.padM.style.width = d.padding + 2 * d.insetWidth + d.width + s / 2 + "px", t.padM.style.height = r[1] + "px", t.padM.style.cursor = u, t.cross.style.position = "absolute", t.cross.style.left = t.cross.style.top = "0", t.cross.style.width = t.cross.style.height = i + "px", t.crossBY.style.position = t.crossBX.style.position = "absolute", t.crossBY.style.background = t.crossBX.style.background = d.pointerBorderColor, t.crossBY.style.width = t.crossBX.style.height = 2 * d.pointerBorderWidth + d.pointerThickness + "px", t.crossBY.style.height = t.crossBX.style.width = i + "px", t.crossBY.style.left = t.crossBX.style.top = Math.floor(i / 2) - Math.floor(d.pointerThickness / 2) - d.pointerBorderWidth + "px", t.crossBY.style.top = t.crossBX.style.left = "0", t.crossLY.style.position = t.crossLX.style.position = "absolute", t.crossLY.style.background = t.crossLX.style.background = d.pointerColor, t.crossLY.style.height = t.crossLX.style.width = i - 2 * d.pointerBorderWidth + "px", t.crossLY.style.width = t.crossLX.style.height = d.pointerThickness + "px", t.crossLY.style.left = t.crossLX.style.top = Math.floor(i / 2) - Math.floor(d.pointerThickness / 2) + "px", t.crossLY.style.top = t.crossLX.style.left = d.pointerBorderWidth + "px", t.sld.style.overflow = "hidden", t.sld.style.width = d.sliderSize + "px", t.sld.style.height = d.height + "px", t.sldGrad.draw(d.sliderSize, d.height, "#000", "#000"), t.sldB.style.display = n ? "block" : "none", t.sldB.style.position = "absolute", t.sldB.style.right = d.padding + "px", t.sldB.style.top = d.padding + "px", t.sldB.style.border = d.insetWidth + "px solid", t.sldB.style.borderColor = d.insetColor, t.sldM._jscInstance = d, t.sldM._jscControlName = "sld", t.sldM.style.display = n ? "block" : "none", t.sldM.style.position = "absolute", t.sldM.style.right = "0", t.sldM.style.top = "0", t.sldM.style.width = d.sliderSize + s / 2 + d.padding + 2 * d.insetWidth + "px", t.sldM.style.height = r[1] + "px", t.sldM.style.cursor = "default", t.sldPtrIB.style.border = t.sldPtrOB.style.border = d.pointerBorderWidth + "px solid " + d.pointerBorderColor, t.sldPtrOB.style.position = "absolute", t.sldPtrOB.style.left = -(2 * d.pointerBorderWidth + d.pointerThickness) + "px", t.sldPtrOB.style.top = "0", t.sldPtrMB.style.border = d.pointerThickness + "px solid " + d.pointerColor, t.sldPtrS.style.width = d.sliderSize + "px", t.sldPtrS.style.height = m + "px", t.btn.style.display = d.closable ? "block" : "none", t.btn.style.position = "absolute", t.btn.style.left = d.padding + "px", t.btn.style.bottom = d.padding + "px", t.btn.style.padding = "0 15px", t.btn.style.height = d.buttonHeight + "px", t.btn.style.border = d.insetWidth + "px solid", l(), t.btn.style.color = d.buttonColor, t.btn.style.font = "12px sans-serif", t.btn.style.textAlign = "center";try {
-          t.btn.style.cursor = "pointer";
-        } catch (c) {
-          t.btn.style.cursor = "hand";
-        }t.btn.onmousedown = function () {
-          d.hide();
-        }, t.btnT.style.lineHeight = d.buttonHeight + "px", t.btnT.innerHTML = "", t.btnT.appendChild(document.createTextNode(d.closeText)), a(), f(), e.picker.owner && e.picker.owner !== d && e.unsetClass(e.picker.owner.targetElement, d.activeClass), e.picker.owner = d, e.isElementType(v, "body") ? e.redrawPosition() : e._drawPosition(d, 0, 0, "relative", !1), t.wrap.parentNode != v && v.appendChild(t.wrap), e.setClass(d.targetElement, d.activeClass);
-      }function a() {
-        switch (e.getPadYComponent(d)) {case "s":
-            var t = 1;break;case "v":
-            var t = 2;}var n = Math.round(d.hsv[0] / 360 * (d.width - 1)),
-            r = Math.round((1 - d.hsv[t] / 100) * (d.height - 1)),
-            i = 2 * d.pointerBorderWidth + d.pointerThickness + 2 * d.crossSize,
-            o = -Math.floor(i / 2);e.picker.cross.style.left = n + o + "px", e.picker.cross.style.top = r + o + "px";switch (e.getSliderComponent(d)) {case "s":
-            var u = s(d.hsv[0], 100, d.hsv[2]),
-                a = s(d.hsv[0], 0, d.hsv[2]),
-                f = "rgb(" + Math.round(u[0]) + "," + Math.round(u[1]) + "," + Math.round(u[2]) + ")",
-                l = "rgb(" + Math.round(a[0]) + "," + Math.round(a[1]) + "," + Math.round(a[2]) + ")";e.picker.sldGrad.draw(d.sliderSize, d.height, f, l);break;case "v":
-            var c = s(d.hsv[0], d.hsv[1], 100),
-                f = "rgb(" + Math.round(c[0]) + "," + Math.round(c[1]) + "," + Math.round(c[2]) + ")",
-                l = "#000";e.picker.sldGrad.draw(d.sliderSize, d.height, f, l);}
-      }function f() {
-        var t = e.getSliderComponent(d);if (t) {
-          switch (t) {case "s":
-              var n = 1;break;case "v":
-              var n = 2;}var r = Math.round((1 - d.hsv[n] / 100) * (d.height - 1));e.picker.sldPtrOB.style.top = r - (2 * d.pointerBorderWidth + d.pointerThickness) - Math.floor(m / 2) + "px";
-        }
-      }function l() {
-        return e.picker && e.picker.owner === d;
-      }function c() {
-        d.importColor();
-      }this.value = null, this.valueElement = t, this.styleElement = t, this.required = !0, this.refine = !0, this.hash = !1, this.uppercase = !0, this.onFineChange = null, this.activeClass = "jscolor-active", this.minS = 0, this.maxS = 100, this.minV = 0, this.maxV = 100, this.hsv = [0, 0, 100], this.rgb = [255, 255, 255], this.width = 181, this.height = 101, this.showOnClick = !0, this.mode = "HSV", this.position = "bottom", this.smartPosition = !0, this.sliderSize = 16, this.crossSize = 8, this.closable = !1, this.closeText = "Close", this.buttonColor = "#000000", this.buttonHeight = 18, this.padding = 12, this.backgroundColor = "#FFFFFF", this.borderWidth = 1, this.borderColor = "#BBBBBB", this.borderRadius = 8, this.insetWidth = 1, this.insetColor = "#BBBBBB", this.shadow = !0, this.shadowBlur = 15, this.shadowColor = "rgba(0,0,0,0.2)", this.pointerColor = "#4C4C4C", this.pointerBorderColor = "#FFFFFF", this.pointerBorderWidth = 1, this.pointerThickness = 2, this.zIndex = 1e3, this.container = null;for (var r in n) {
-        n.hasOwnProperty(r) && (this[r] = n[r]);
-      }this.hide = function () {
-        l() && o();
-      }, this.show = function () {
-        u();
-      }, this.redraw = function () {
-        l() && u();
-      }, this.importColor = function () {
-        this.valueElement ? e.isElementType(this.valueElement, "input") ? this.refine ? !this.required && /^\s*$/.test(this.valueElement.value) ? (this.valueElement.value = "", this.styleElement && (this.styleElement.style.backgroundImage = this.styleElement._jscOrigStyle.backgroundImage, this.styleElement.style.backgroundColor = this.styleElement._jscOrigStyle.backgroundColor, this.styleElement.style.color = this.styleElement._jscOrigStyle.color), this.exportColor(e.leaveValue | e.leaveStyle)) : this.fromString(this.valueElement.value) || this.exportColor() : this.fromString(this.valueElement.value, e.leaveValue) || (this.styleElement && (this.styleElement.style.backgroundImage = this.styleElement._jscOrigStyle.backgroundImage, this.styleElement.style.backgroundColor = this.styleElement._jscOrigStyle.backgroundColor, this.styleElement.style.color = this.styleElement._jscOrigStyle.color), this.exportColor(e.leaveValue | e.leaveStyle)) : this.exportColor() : this.exportColor();
-      }, this.exportColor = function (t) {
-        if (!(t & e.leaveValue) && this.valueElement) {
-          var n = this.toString();this.uppercase && (n = n.toUpperCase()), this.hash && (n = "#" + n), e.isElementType(this.valueElement, "input") ? this.valueElement.value = n : this.valueElement.innerHTML = n;
-        }t & e.leaveStyle || this.styleElement && (this.styleElement.style.backgroundImage = "none", this.styleElement.style.backgroundColor = "#" + this.toString(), this.styleElement.style.color = this.isLight() ? "#000" : "#FFF"), !(t & e.leavePad) && l() && a(), !(t & e.leaveSld) && l() && f();
-      }, this.fromHSV = function (e, t, n, r) {
-        if (e !== null) {
-          if (isNaN(e)) return !1;e = Math.max(0, Math.min(360, e));
-        }if (t !== null) {
-          if (isNaN(t)) return !1;t = Math.max(0, Math.min(100, this.maxS, t), this.minS);
-        }if (n !== null) {
-          if (isNaN(n)) return !1;n = Math.max(0, Math.min(100, this.maxV, n), this.minV);
-        }this.rgb = s(e === null ? this.hsv[0] : this.hsv[0] = e, t === null ? this.hsv[1] : this.hsv[1] = t, n === null ? this.hsv[2] : this.hsv[2] = n), this.exportColor(r);
-      }, this.fromRGB = function (e, t, n, r) {
-        if (e !== null) {
-          if (isNaN(e)) return !1;e = Math.max(0, Math.min(255, e));
-        }if (t !== null) {
-          if (isNaN(t)) return !1;t = Math.max(0, Math.min(255, t));
-        }if (n !== null) {
-          if (isNaN(n)) return !1;n = Math.max(0, Math.min(255, n));
-        }var o = i(e === null ? this.rgb[0] : e, t === null ? this.rgb[1] : t, n === null ? this.rgb[2] : n);o[0] !== null && (this.hsv[0] = Math.max(0, Math.min(360, o[0]))), o[2] !== 0 && (this.hsv[1] = o[1] === null ? null : Math.max(0, this.minS, Math.min(100, this.maxS, o[1]))), this.hsv[2] = o[2] === null ? null : Math.max(0, this.minV, Math.min(100, this.maxV, o[2]));var u = s(this.hsv[0], this.hsv[1], this.hsv[2]);this.rgb[0] = u[0], this.rgb[1] = u[1], this.rgb[2] = u[2], this.exportColor(r);
-      }, this.fromString = function (e, t) {
-        var n;if (n = e.match(/^\W*([0-9A-F]{3}([0-9A-F]{3})?)\W*$/i)) return n[1].length === 6 ? this.fromRGB(parseInt(n[1].substr(0, 2), 16), parseInt(n[1].substr(2, 2), 16), parseInt(n[1].substr(4, 2), 16), t) : this.fromRGB(parseInt(n[1].charAt(0) + n[1].charAt(0), 16), parseInt(n[1].charAt(1) + n[1].charAt(1), 16), parseInt(n[1].charAt(2) + n[1].charAt(2), 16), t), !0;if (n = e.match(/^\W*rgba?\(([^)]*)\)\W*$/i)) {
-          var r = n[1].split(","),
-              i = /^\s*(\d*)(\.\d+)?\s*$/,
-              s,
-              o,
-              u;if (r.length >= 3 && (s = r[0].match(i)) && (o = r[1].match(i)) && (u = r[2].match(i))) {
-            var a = parseFloat((s[1] || "0") + (s[2] || "")),
-                f = parseFloat((o[1] || "0") + (o[2] || "")),
-                l = parseFloat((u[1] || "0") + (u[2] || ""));return this.fromRGB(a, f, l, t), !0;
-          }
-        }return !1;
-      }, this.toString = function () {
-        return (256 | Math.round(this.rgb[0])).toString(16).substr(1) + (256 | Math.round(this.rgb[1])).toString(16).substr(1) + (256 | Math.round(this.rgb[2])).toString(16).substr(1);
-      }, this.toHEXString = function () {
-        return "#" + this.toString().toUpperCase();
-      }, this.toRGBString = function () {
-        return "rgb(" + Math.round(this.rgb[0]) + "," + Math.round(this.rgb[1]) + "," + Math.round(this.rgb[2]) + ")";
-      }, this.isLight = function () {
-        return .213 * this.rgb[0] + .715 * this.rgb[1] + .072 * this.rgb[2] > 127.5;
-      }, this._processParentElementsInDOM = function () {
-        if (this._linkedElementsProcessed) return;this._linkedElementsProcessed = !0;var t = this.targetElement;do {
-          var n = e.getStyle(t);n && n.position.toLowerCase() === "fixed" && (this.fixed = !0), t !== this.targetElement && (t._jscEventsAttached || (e.attachEvent(t, "scroll", e.onParentScroll), t._jscEventsAttached = !0));
-        } while ((t = t.parentNode) && !e.isElementType(t, "body"));
-      };if (typeof t == "string") {
-        var h = t,
-            p = document.getElementById(h);p ? this.targetElement = p : e.warn("Could not find target element with ID '" + h + "'");
-      } else t ? this.targetElement = t : e.warn("Invalid target element: '" + t + "'");if (this.targetElement._jscLinkedInstance) {
-        e.warn("Cannot link jscolor twice to the same element. Skipping.");return;
-      }this.targetElement._jscLinkedInstance = this, this.valueElement = e.fetchElement(this.valueElement), this.styleElement = e.fetchElement(this.styleElement);var d = this,
-          v = this.container ? e.fetchElement(this.container) : document.getElementsByTagName("body")[0],
-          m = 3;if (e.isElementType(this.targetElement, "button")) if (this.targetElement.onclick) {
-        var g = this.targetElement.onclick;this.targetElement.onclick = function (e) {
-          return g.call(this, e), !1;
-        };
-      } else this.targetElement.onclick = function () {
-        return !1;
-      };if (this.valueElement && e.isElementType(this.valueElement, "input")) {
-        var y = function y() {
-          d.fromString(d.valueElement.value, e.leaveValue), e.dispatchFineChange(d);
-        };e.attachEvent(this.valueElement, "keyup", y), e.attachEvent(this.valueElement, "input", y), e.attachEvent(this.valueElement, "blur", c), this.valueElement.setAttribute("autocomplete", "off");
-      }this.styleElement && (this.styleElement._jscOrigStyle = { backgroundImage: this.styleElement.style.backgroundImage, backgroundColor: this.styleElement.style.backgroundColor, color: this.styleElement.style.color }), this.value ? this.fromString(this.value) || this.exportColor() : this.importColor();
-    } };return e.jscolor.lookupClass = "jscolor", e.jscolor.installByClassName = function (t) {
-    var n = document.getElementsByTagName("input"),
-        r = document.getElementsByTagName("button");e.tryInstallOnElements(n, t), e.tryInstallOnElements(r, t);
-  }, e.register(), e.jscolor;
-}());
-
-/***/ }),
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert2__);
-
-
-$(function () {
-    $('.size-delete').click(function () {
-        var _this = this;
-
-        __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
-            title: 'Eliminar talla',
-            text: 'Seguro que desea eliminar',
-            type: 'question',
-            showCancelButton: true,
-            cancelButtonText: "Cancelar",
-            showLoaderOnConfirm: true
-        }).then(function () {
-            var sizeHashId = $(_this).data('sizeId');
-
-            $.ajax({
-                method: 'DELETE',
-                url: '/admin/settings/size/' + sizeHashId
-            }).done(function () {
-                return location.reload();
-            });
-        });
-    });
-
-    $('.color-delete').click(function () {
-        var _this2 = this;
-
-        __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
-            title: 'Eliminar color',
-            text: 'Seguro que desea eliminar',
-            type: 'question',
-            showCancelButton: true,
-            cancelButtonText: "Cancelar",
-            showLoaderOnConfirm: true
-        }).then(function () {
-            var sizeHashId = $(_this2).data('colorId');
-
-            $.ajax({
-                method: 'DELETE',
-                url: '/admin/settings/colors/' + sizeHashId
-            }).done(function () {
-                return location.reload();
-            });
-        });
-    });
-});
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*!
- * sweetalert2 v6.10.2
- * Released under the MIT License.
- */
-(function (global, factory) {
-	 true ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.Sweetalert2 = factory());
-}(this, (function () { 'use strict';
-
-function __$styleInject(css, returnValue) {
-  if (typeof document === 'undefined') {
-    return returnValue;
-  }
-  css = css || '';
-  var head = document.head || document.getElementsByTagName('head')[0];
-  var style = document.createElement('style');
-  style.type = 'text/css';
-  head.appendChild(style);
-  
-  if (style.styleSheet){
-    style.styleSheet.cssText = css;
-  } else {
-    style.appendChild(document.createTextNode(css));
-  }
-  return returnValue;
-}
-
-var defaultParams = {
-  title: '',
-  titleText: '',
-  text: '',
-  html: '',
-  type: null,
-  customClass: '',
-  target: 'body',
-  animation: true,
-  allowOutsideClick: true,
-  allowEscapeKey: true,
-  allowEnterKey: true,
-  showConfirmButton: true,
-  showCancelButton: false,
-  preConfirm: null,
-  confirmButtonText: 'OK',
-  confirmButtonAriaLabel: '',
-  confirmButtonColor: '#3085d6',
-  confirmButtonClass: null,
-  cancelButtonText: 'Cancel',
-  cancelButtonAriaLabel: '',
-  cancelButtonColor: '#aaa',
-  cancelButtonClass: null,
-  buttonsStyling: true,
-  reverseButtons: false,
-  focusConfirm: true,
-  focusCancel: false,
-  showCloseButton: false,
-  closeButtonAriaLabel: 'Close this dialog',
-  showLoaderOnConfirm: false,
-  imageUrl: null,
-  imageWidth: null,
-  imageHeight: null,
-  imageAlt: '',
-  imageClass: null,
-  timer: null,
-  width: 500,
-  padding: 20,
-  background: '#fff',
-  input: null,
-  inputPlaceholder: '',
-  inputValue: '',
-  inputOptions: {},
-  inputAutoTrim: true,
-  inputClass: null,
-  inputAttributes: {},
-  inputValidator: null,
-  progressSteps: [],
-  currentProgressStep: null,
-  progressStepsDistance: '40px',
-  onOpen: null,
-  onClose: null,
-  useRejections: true
-};
-
-var swalPrefix = 'swal2-';
-
-var prefix = function prefix(items) {
-  var result = {};
-  for (var i in items) {
-    result[items[i]] = swalPrefix + items[i];
-  }
-  return result;
-};
-
-var swalClasses = prefix(['container', 'shown', 'iosfix', 'modal', 'overlay', 'fade', 'show', 'hide', 'noanimation', 'close', 'title', 'content', 'buttonswrapper', 'confirm', 'cancel', 'icon', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea', 'inputerror', 'validationerror', 'progresssteps', 'activeprogressstep', 'progresscircle', 'progressline', 'loading', 'styled']);
-
-var iconTypes = prefix(['success', 'warning', 'info', 'question', 'error']);
-
-var consolePrefix = 'SweetAlert2:';
-
-/*
- * Set hover, active and focus-states for buttons (source: http://www.sitepoint.com/javascript-generate-lighter-darker-color)
- */
-var colorLuminance = function colorLuminance(hex, lum) {
-  // Validate hex string
-  hex = String(hex).replace(/[^0-9a-f]/gi, '');
-  if (hex.length < 6) {
-    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-  }
-  lum = lum || 0;
-
-  // Convert to decimal and change luminosity
-  var rgb = '#';
-  for (var i = 0; i < 3; i++) {
-    var c = parseInt(hex.substr(i * 2, 2), 16);
-    c = Math.round(Math.min(Math.max(0, c + c * lum), 255)).toString(16);
-    rgb += ('00' + c).substr(c.length);
-  }
-
-  return rgb;
-};
-
-var uniqueArray = function uniqueArray(arr) {
-  var result = [];
-  for (var i in arr) {
-    if (result.indexOf(arr[i]) === -1) {
-      result.push(arr[i]);
-    }
-  }
-  return result;
-};
-
-/**
- * Standardise console warnings
- * @param message
- */
-var warn = function warn(message) {
-  console.warn(consolePrefix + ' ' + message);
-};
-
-/**
- * Standardise console errors
- * @param message
- */
-var error = function error(message) {
-  console.error(consolePrefix + ' ' + message);
-};
-
-// Remember state in cases where opening and handling a modal will fiddle with it.
-var states = {
-  previousWindowKeyDown: null,
-  previousActiveElement: null,
-  previousBodyPadding: null
-
-  /*
-   * Add modal + overlay to DOM
-   */
-};var init = function init(params) {
-  // Clean up the old modal if it exists
-  var c = getContainer();
-  if (c) {
-    c.parentNode.removeChild(c);
-  }
-
-  if (typeof document === 'undefined') {
-    error('SweetAlert2 requires document to initialize');
-    return;
-  }
-
-  var container = document.createElement('div');
-  container.className = swalClasses.container;
-  container.innerHTML = sweetHTML;
-
-  var targetElement = typeof params.target === 'string' ? document.querySelector(params.target) : params.target;
-  targetElement.appendChild(container);
-
-  var modal = getModal();
-  var input = getChildByClass(modal, swalClasses.input);
-  var file = getChildByClass(modal, swalClasses.file);
-  var range = modal.querySelector('.' + swalClasses.range + ' input');
-  var rangeOutput = modal.querySelector('.' + swalClasses.range + ' output');
-  var select = getChildByClass(modal, swalClasses.select);
-  var checkbox = modal.querySelector('.' + swalClasses.checkbox + ' input');
-  var textarea = getChildByClass(modal, swalClasses.textarea);
-
-  input.oninput = function () {
-    sweetAlert.resetValidationError();
-  };
-
-  file.onchange = function () {
-    sweetAlert.resetValidationError();
-  };
-
-  range.oninput = function () {
-    sweetAlert.resetValidationError();
-    rangeOutput.value = range.value;
-  };
-
-  range.onchange = function () {
-    sweetAlert.resetValidationError();
-    range.previousSibling.value = range.value;
-  };
-
-  select.onchange = function () {
-    sweetAlert.resetValidationError();
-  };
-
-  checkbox.onchange = function () {
-    sweetAlert.resetValidationError();
-  };
-
-  textarea.oninput = function () {
-    sweetAlert.resetValidationError();
-  };
-
-  return modal;
-};
-
-/*
- * Manipulate DOM
- */
-
-var sweetHTML = ('\n <div role="dialog" aria-labelledby="' + swalClasses.title + '" aria-describedby="' + swalClasses.content + '" class="' + swalClasses.modal + '" tabindex="-1">\n   <ul class="' + swalClasses.progresssteps + '"></ul>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.error + '">\n     <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span>\n   </div>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.question + '">?</div>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.warning + '">!</div>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.info + '">i</div>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.success + '">\n     <div class="swal2-success-circular-line-left"></div>\n     <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>\n     <div class="swal2-success-ring"></div> <div class="swal2-success-fix"></div>\n     <div class="swal2-success-circular-line-right"></div>\n   </div>\n   <img class="' + swalClasses.image + '" />\n   <h2 class="' + swalClasses.title + '" id="' + swalClasses.title + '"></h2>\n   <div id="' + swalClasses.content + '" class="' + swalClasses.content + '"></div>\n   <input class="' + swalClasses.input + '" />\n   <input type="file" class="' + swalClasses.file + '" />\n   <div class="' + swalClasses.range + '">\n     <output></output>\n     <input type="range" />\n   </div>\n   <select class="' + swalClasses.select + '"></select>\n   <div class="' + swalClasses.radio + '"></div>\n   <label for="' + swalClasses.checkbox + '" class="' + swalClasses.checkbox + '">\n     <input type="checkbox" />\n   </label>\n   <textarea class="' + swalClasses.textarea + '"></textarea>\n   <div class="' + swalClasses.validationerror + '" id="' + swalClasses.validationerror + '"></div>\n   <div class="' + swalClasses.buttonswrapper + '">\n     <button type="button" class="' + swalClasses.confirm + '">OK</button>\n     <button type="button" class="' + swalClasses.cancel + '">Cancel</button>\n   </div>\n   <button type="button" class="' + swalClasses.close + '">\xD7</button>\n </div>\n').replace(/(^|\n)\s*/g, '');
-
-var getContainer = function getContainer() {
-  return document.body.querySelector('.' + swalClasses.container);
-};
-
-var getModal = function getModal() {
-  return getContainer() ? getContainer().querySelector('.' + swalClasses.modal) : null;
-};
-
-var getIcons = function getIcons() {
-  var modal = getModal();
-  return modal.querySelectorAll('.' + swalClasses.icon);
-};
-
-var elementByClass = function elementByClass(className) {
-  return getContainer() ? getContainer().querySelector('.' + className) : null;
-};
-
-var getTitle = function getTitle() {
-  return elementByClass(swalClasses.title);
-};
-
-var getContent = function getContent() {
-  return elementByClass(swalClasses.content);
-};
-
-var getImage = function getImage() {
-  return elementByClass(swalClasses.image);
-};
-
-var getProgressSteps = function getProgressSteps() {
-  return elementByClass(swalClasses.progresssteps);
-};
-
-var getValidationError = function getValidationError() {
-  return elementByClass(swalClasses.validationerror);
-};
-
-var getConfirmButton = function getConfirmButton() {
-  return elementByClass(swalClasses.confirm);
-};
-
-var getCancelButton = function getCancelButton() {
-  return elementByClass(swalClasses.cancel);
-};
-
-var getButtonsWrapper = function getButtonsWrapper() {
-  return elementByClass(swalClasses.buttonswrapper);
-};
-
-var getCloseButton = function getCloseButton() {
-  return elementByClass(swalClasses.close);
-};
-
-var getFocusableElements = function getFocusableElements() {
-  var focusableElementsWithTabindex = Array.from(getModal().querySelectorAll('[tabindex]:not([tabindex="-1"]):not([tabindex="0"])'))
-  // sort according to tabindex
-  .sort(function (a, b) {
-    a = parseInt(a.getAttribute('tabindex'));
-    b = parseInt(b.getAttribute('tabindex'));
-    if (a > b) {
-      return 1;
-    } else if (a < b) {
-      return -1;
-    }
-    return 0;
-  });
-
-  var otherFocusableElements = Array.prototype.slice.call(getModal().querySelectorAll('button, input:not([type=hidden]), textarea, select, a, [tabindex="0"]'));
-
-  return uniqueArray(focusableElementsWithTabindex.concat(otherFocusableElements));
-};
-
-var hasClass = function hasClass(elem, className) {
-  if (elem.classList) {
-    return elem.classList.contains(className);
-  }
-  return false;
-};
-
-var focusInput = function focusInput(input) {
-  input.focus();
-
-  // place cursor at end of text in text input
-  if (input.type !== 'file') {
-    // http://stackoverflow.com/a/2345915/1331425
-    var val = input.value;
-    input.value = '';
-    input.value = val;
-  }
-};
-
-var addClass = function addClass(elem, className) {
-  if (!elem || !className) {
-    return;
-  }
-  var classes = className.split(/\s+/).filter(Boolean);
-  classes.forEach(function (className) {
-    elem.classList.add(className);
-  });
-};
-
-var removeClass = function removeClass(elem, className) {
-  if (!elem || !className) {
-    return;
-  }
-  var classes = className.split(/\s+/).filter(Boolean);
-  classes.forEach(function (className) {
-    elem.classList.remove(className);
-  });
-};
-
-var getChildByClass = function getChildByClass(elem, className) {
-  for (var i = 0; i < elem.childNodes.length; i++) {
-    if (hasClass(elem.childNodes[i], className)) {
-      return elem.childNodes[i];
-    }
-  }
-};
-
-var show = function show(elem, display) {
-  if (!display) {
-    display = 'block';
-  }
-  elem.style.opacity = '';
-  elem.style.display = display;
-};
-
-var hide = function hide(elem) {
-  elem.style.opacity = '';
-  elem.style.display = 'none';
-};
-
-var empty = function empty(elem) {
-  while (elem.firstChild) {
-    elem.removeChild(elem.firstChild);
-  }
-};
-
-// borrowed from jqeury $(elem).is(':visible') implementation
-var isVisible = function isVisible(elem) {
-  return elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length;
-};
-
-var removeStyleProperty = function removeStyleProperty(elem, property) {
-  if (elem.style.removeProperty) {
-    elem.style.removeProperty(property);
-  } else {
-    elem.style.removeAttribute(property);
-  }
-};
-
-var animationEndEvent = function () {
-  var testEl = document.createElement('div');
-  var transEndEventNames = {
-    'WebkitAnimation': 'webkitAnimationEnd',
-    'OAnimation': 'oAnimationEnd oanimationend',
-    'animation': 'animationend'
-  };
-  for (var i in transEndEventNames) {
-    if (transEndEventNames.hasOwnProperty(i) && testEl.style[i] !== undefined) {
-      return transEndEventNames[i];
-    }
-  }
-
-  return false;
-}();
-
-// Reset previous window keydown handler and focued element
-var resetPrevState = function resetPrevState() {
-  window.onkeydown = states.previousWindowKeyDown;
-  if (states.previousActiveElement && states.previousActiveElement.focus) {
-    var x = window.scrollX;
-    var y = window.scrollY;
-    states.previousActiveElement.focus();
-    if (x && y) {
-      // IE has no scrollX/scrollY support
-      window.scrollTo(x, y);
-    }
-  }
-};
-
-// Measure width of scrollbar
-// https://github.com/twbs/bootstrap/blob/master/js/modal.js#L279-L286
-var measureScrollbar = function measureScrollbar() {
-  var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
-  if (supportsTouch) {
-    return 0;
-  }
-  var scrollDiv = document.createElement('div');
-  scrollDiv.style.width = '50px';
-  scrollDiv.style.height = '50px';
-  scrollDiv.style.overflow = 'scroll';
-  document.body.appendChild(scrollDiv);
-  var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-  document.body.removeChild(scrollDiv);
-  return scrollbarWidth;
-};
-
-// JavaScript Debounce Function
-// Simplivied version of https://davidwalsh.name/javascript-debounce-function
-var debounce = function debounce(func, wait) {
-  var timeout = void 0;
-  return function () {
-    var later = function later() {
-      timeout = null;
-      func();
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-};
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-  return typeof obj;
-} : function (obj) {
-  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-};
-
-
-
-
-
-var asyncGenerator = function () {
-  function AwaitValue(value) {
-    this.value = value;
-  }
-
-  function AsyncGenerator(gen) {
-    var front, back;
-
-    function send(key, arg) {
-      return new Promise(function (resolve, reject) {
-        var request = {
-          key: key,
-          arg: arg,
-          resolve: resolve,
-          reject: reject,
-          next: null
-        };
-
-        if (back) {
-          back = back.next = request;
-        } else {
-          front = back = request;
-          resume(key, arg);
-        }
-      });
-    }
-
-    function resume(key, arg) {
-      try {
-        var result = gen[key](arg);
-        var value = result.value;
-
-        if (value instanceof AwaitValue) {
-          Promise.resolve(value.value).then(function (arg) {
-            resume("next", arg);
-          }, function (arg) {
-            resume("throw", arg);
-          });
-        } else {
-          settle(result.done ? "return" : "normal", result.value);
-        }
-      } catch (err) {
-        settle("throw", err);
-      }
-    }
-
-    function settle(type, value) {
-      switch (type) {
-        case "return":
-          front.resolve({
-            value: value,
-            done: true
-          });
-          break;
-
-        case "throw":
-          front.reject(value);
-          break;
-
-        default:
-          front.resolve({
-            value: value,
-            done: false
-          });
-          break;
-      }
-
-      front = front.next;
-
-      if (front) {
-        resume(front.key, front.arg);
-      } else {
-        back = null;
-      }
-    }
-
-    this._invoke = send;
-
-    if (typeof gen.return !== "function") {
-      this.return = undefined;
-    }
-  }
-
-  if (typeof Symbol === "function" && Symbol.asyncIterator) {
-    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
-      return this;
-    };
-  }
-
-  AsyncGenerator.prototype.next = function (arg) {
-    return this._invoke("next", arg);
-  };
-
-  AsyncGenerator.prototype.throw = function (arg) {
-    return this._invoke("throw", arg);
-  };
-
-  AsyncGenerator.prototype.return = function (arg) {
-    return this._invoke("return", arg);
-  };
-
-  return {
-    wrap: function (fn) {
-      return function () {
-        return new AsyncGenerator(fn.apply(this, arguments));
-      };
-    },
-    await: function (value) {
-      return new AwaitValue(value);
-    }
-  };
-}();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-var modalParams = _extends({}, defaultParams);
-var queue = [];
-var swal2Observer = void 0;
-
-/*
- * Check for the existence of Promise
- * Hopefully to avoid many github issues
- */
-if (typeof Promise === 'undefined') {
-  error('This package requires a Promise library, please include a shim to enable it in this browser (See: https://github.com/limonte/sweetalert2/wiki/Migration-from-SweetAlert-to-SweetAlert2#1-ie-support)');
-}
-
-/*
- * Set type, text and actions on modal
- */
-var setParameters = function setParameters(params) {
-  // If a custom element is set, determine if it is valid
-  if (typeof params.target === 'string' && !document.querySelector(params.target) || typeof params.target !== 'string' && !params.target.appendChild) {
-    warn('Target parameter is not valid, defaulting to "body"');
-    params.target = 'body';
-  }
-
-  var modal = void 0;
-  var oldModal = getModal();
-  var targetElement = typeof params.target === 'string' ? document.querySelector(params.target) : params.target;
-  // If the model target has changed, refresh the modal
-  if (oldModal && targetElement && oldModal.parentNode !== targetElement.parentNode) {
-    modal = init(params);
-  } else {
-    modal = oldModal || init(params);
-  }
-
-  for (var param in params) {
-    if (!sweetAlert.isValidParameter(param)) {
-      warn('Unknown parameter "' + param + '"');
-    }
-  }
-
-  // Set modal width
-  modal.style.width = typeof params.width === 'number' ? params.width + 'px' : params.width;
-
-  modal.style.padding = params.padding + 'px';
-  modal.style.background = params.background;
-  var successIconParts = modal.querySelectorAll('[class^=swal2-success-circular-line], .swal2-success-fix');
-  for (var i = 0; i < successIconParts.length; i++) {
-    successIconParts[i].style.background = params.background;
-  }
-
-  var title = getTitle();
-  var content = getContent();
-  var buttonsWrapper = getButtonsWrapper();
-  var confirmButton = getConfirmButton();
-  var cancelButton = getCancelButton();
-  var closeButton = getCloseButton();
-
-  // Title
-  if (params.titleText) {
-    title.innerText = params.titleText;
-  } else {
-    title.innerHTML = params.title.split('\n').join('<br />');
-  }
-
-  // Content
-  if (params.text || params.html) {
-    if (_typeof(params.html) === 'object') {
-      content.innerHTML = '';
-      if (0 in params.html) {
-        for (var _i = 0; _i in params.html; _i++) {
-          content.appendChild(params.html[_i].cloneNode(true));
-        }
-      } else {
-        content.appendChild(params.html.cloneNode(true));
-      }
-    } else if (params.html) {
-      content.innerHTML = params.html;
-    } else if (params.text) {
-      content.textContent = params.text;
-    }
-    show(content);
-  } else {
-    hide(content);
-  }
-
-  // Close button
-  if (params.showCloseButton) {
-    closeButton.setAttribute('aria-label', params.closeButtonAriaLabel);
-    show(closeButton);
-  } else {
-    hide(closeButton);
-  }
-
-  // Custom Class
-  modal.className = swalClasses.modal;
-  if (params.customClass) {
-    addClass(modal, params.customClass);
-  }
-
-  // Progress steps
-  var progressStepsContainer = getProgressSteps();
-  var currentProgressStep = parseInt(params.currentProgressStep === null ? sweetAlert.getQueueStep() : params.currentProgressStep, 10);
-  if (params.progressSteps.length) {
-    show(progressStepsContainer);
-    empty(progressStepsContainer);
-    if (currentProgressStep >= params.progressSteps.length) {
-      warn('Invalid currentProgressStep parameter, it should be less than progressSteps.length ' + '(currentProgressStep like JS arrays starts from 0)');
-    }
-    params.progressSteps.forEach(function (step, index) {
-      var circle = document.createElement('li');
-      addClass(circle, swalClasses.progresscircle);
-      circle.innerHTML = step;
-      if (index === currentProgressStep) {
-        addClass(circle, swalClasses.activeprogressstep);
-      }
-      progressStepsContainer.appendChild(circle);
-      if (index !== params.progressSteps.length - 1) {
-        var line = document.createElement('li');
-        addClass(line, swalClasses.progressline);
-        line.style.width = params.progressStepsDistance;
-        progressStepsContainer.appendChild(line);
-      }
-    });
-  } else {
-    hide(progressStepsContainer);
-  }
-
-  // Icon
-  var icons = getIcons();
-  for (var _i2 = 0; _i2 < icons.length; _i2++) {
-    hide(icons[_i2]);
-  }
-  if (params.type) {
-    var validType = false;
-    for (var iconType in iconTypes) {
-      if (params.type === iconType) {
-        validType = true;
-        break;
-      }
-    }
-    if (!validType) {
-      error('Unknown alert type: ' + params.type);
-      return false;
-    }
-    var icon = modal.querySelector('.' + swalClasses.icon + '.' + iconTypes[params.type]);
-    show(icon);
-
-    // Animate icon
-    if (params.animation) {
-      switch (params.type) {
-        case 'success':
-          addClass(icon, 'swal2-animate-success-icon');
-          addClass(icon.querySelector('.swal2-success-line-tip'), 'swal2-animate-success-line-tip');
-          addClass(icon.querySelector('.swal2-success-line-long'), 'swal2-animate-success-line-long');
-          break;
-        case 'error':
-          addClass(icon, 'swal2-animate-error-icon');
-          addClass(icon.querySelector('.swal2-x-mark'), 'swal2-animate-x-mark');
-          break;
-        default:
-          break;
-      }
-    }
-  }
-
-  // Custom image
-  var image = getImage();
-  if (params.imageUrl) {
-    image.setAttribute('src', params.imageUrl);
-    image.setAttribute('alt', params.imageAlt);
-    show(image);
-
-    if (params.imageWidth) {
-      image.setAttribute('width', params.imageWidth);
-    } else {
-      image.removeAttribute('width');
-    }
-
-    if (params.imageHeight) {
-      image.setAttribute('height', params.imageHeight);
-    } else {
-      image.removeAttribute('height');
-    }
-
-    image.className = swalClasses.image;
-    if (params.imageClass) {
-      addClass(image, params.imageClass);
-    }
-  } else {
-    hide(image);
-  }
-
-  // Cancel button
-  if (params.showCancelButton) {
-    cancelButton.style.display = 'inline-block';
-  } else {
-    hide(cancelButton);
-  }
-
-  // Confirm button
-  if (params.showConfirmButton) {
-    removeStyleProperty(confirmButton, 'display');
-  } else {
-    hide(confirmButton);
-  }
-
-  // Buttons wrapper
-  if (!params.showConfirmButton && !params.showCancelButton) {
-    hide(buttonsWrapper);
-  } else {
-    show(buttonsWrapper);
-  }
-
-  // Edit text on confirm and cancel buttons
-  confirmButton.innerHTML = params.confirmButtonText;
-  cancelButton.innerHTML = params.cancelButtonText;
-
-  // ARIA labels for confirm and cancel buttons
-  confirmButton.setAttribute('aria-label', params.confirmButtonAriaLabel);
-  cancelButton.setAttribute('aria-label', params.cancelButtonAriaLabel);
-
-  // Set buttons to selected background colors
-  if (params.buttonsStyling) {
-    confirmButton.style.backgroundColor = params.confirmButtonColor;
-    cancelButton.style.backgroundColor = params.cancelButtonColor;
-  }
-
-  // Add buttons custom classes
-  confirmButton.className = swalClasses.confirm;
-  addClass(confirmButton, params.confirmButtonClass);
-  cancelButton.className = swalClasses.cancel;
-  addClass(cancelButton, params.cancelButtonClass);
-
-  // Buttons styling
-  if (params.buttonsStyling) {
-    addClass(confirmButton, swalClasses.styled);
-    addClass(cancelButton, swalClasses.styled);
-  } else {
-    removeClass(confirmButton, swalClasses.styled);
-    removeClass(cancelButton, swalClasses.styled);
-
-    confirmButton.style.backgroundColor = confirmButton.style.borderLeftColor = confirmButton.style.borderRightColor = '';
-    cancelButton.style.backgroundColor = cancelButton.style.borderLeftColor = cancelButton.style.borderRightColor = '';
-  }
-
-  // CSS animation
-  if (params.animation === true) {
-    removeClass(modal, swalClasses.noanimation);
-  } else {
-    addClass(modal, swalClasses.noanimation);
-  }
-
-  // showLoaderOnConfirm && preConfirm
-  if (params.showLoaderOnConfirm && !params.preConfirm) {
-    warn('showLoaderOnConfirm is set to true, but preConfirm is not defined.\n' + 'showLoaderOnConfirm should be used together with preConfirm, see usage example:\n' + 'https://limonte.github.io/sweetalert2/#ajax-request');
-  }
-};
-
-/*
- * Animations
- */
-var openModal = function openModal(animation, onComplete) {
-  var container = getContainer();
-  var modal = getModal();
-
-  if (animation) {
-    addClass(modal, swalClasses.show);
-    addClass(container, swalClasses.fade);
-    removeClass(modal, swalClasses.hide);
-  } else {
-    removeClass(modal, swalClasses.fade);
-  }
-  show(modal);
-
-  // scrolling is 'hidden' until animation is done, after that 'auto'
-  container.style.overflowY = 'hidden';
-  if (animationEndEvent && !hasClass(modal, swalClasses.noanimation)) {
-    modal.addEventListener(animationEndEvent, function swalCloseEventFinished() {
-      modal.removeEventListener(animationEndEvent, swalCloseEventFinished);
-      container.style.overflowY = 'auto';
-    });
-  } else {
-    container.style.overflowY = 'auto';
-  }
-
-  addClass(document.documentElement, swalClasses.shown);
-  addClass(document.body, swalClasses.shown);
-  addClass(container, swalClasses.shown);
-  fixScrollbar();
-  iOSfix();
-  states.previousActiveElement = document.activeElement;
-  if (onComplete !== null && typeof onComplete === 'function') {
-    setTimeout(function () {
-      onComplete(modal);
-    });
-  }
-};
-
-var fixScrollbar = function fixScrollbar() {
-  // for queues, do not do this more than once
-  if (states.previousBodyPadding !== null) {
-    return;
-  }
-  // if the body has overflow
-  if (document.body.scrollHeight > window.innerHeight) {
-    // add padding so the content doesn't shift after removal of scrollbar
-    states.previousBodyPadding = document.body.style.paddingRight;
-    document.body.style.paddingRight = measureScrollbar() + 'px';
-  }
-};
-
-var undoScrollbar = function undoScrollbar() {
-  if (states.previousBodyPadding !== null) {
-    document.body.style.paddingRight = states.previousBodyPadding;
-    states.previousBodyPadding = null;
-  }
-};
-
-// Fix iOS scrolling http://stackoverflow.com/q/39626302/1331425
-var iOSfix = function iOSfix() {
-  var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  if (iOS && !hasClass(document.body, swalClasses.iosfix)) {
-    var offset = document.body.scrollTop;
-    document.body.style.top = offset * -1 + 'px';
-    addClass(document.body, swalClasses.iosfix);
-  }
-};
-
-var undoIOSfix = function undoIOSfix() {
-  if (hasClass(document.body, swalClasses.iosfix)) {
-    var offset = parseInt(document.body.style.top, 10);
-    removeClass(document.body, swalClasses.iosfix);
-    document.body.style.top = '';
-    document.body.scrollTop = offset * -1;
-  }
-};
-
-// SweetAlert entry point
-var sweetAlert = function sweetAlert() {
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-
-  if (args[0] === undefined) {
-    error('SweetAlert2 expects at least 1 attribute!');
-    return false;
-  }
-
-  var params = _extends({}, modalParams);
-
-  switch (_typeof(args[0])) {
-    case 'string':
-      params.title = args[0];
-      params.html = args[1];
-      params.type = args[2];
-
-      break;
-
-    case 'object':
-      _extends(params, args[0]);
-      params.extraParams = args[0].extraParams;
-
-      if (params.input === 'email' && params.inputValidator === null) {
-        params.inputValidator = function (email) {
-          return new Promise(function (resolve, reject) {
-            var emailRegex = /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-            if (emailRegex.test(email)) {
-              resolve();
-            } else {
-              reject('Invalid email address');
-            }
-          });
-        };
-      }
-
-      if (params.input === 'url' && params.inputValidator === null) {
-        params.inputValidator = function (url) {
-          return new Promise(function (resolve, reject) {
-            // taken from https://stackoverflow.com/a/3809435/1331425
-            var urlRegex = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/;
-            if (urlRegex.test(url)) {
-              resolve();
-            } else {
-              reject('Invalid URL');
-            }
-          });
-        };
-      }
-      break;
-
-    default:
-      error('Unexpected type of argument! Expected "string" or "object", got ' + _typeof(args[0]));
-      return false;
-  }
-
-  setParameters(params);
-
-  var container = getContainer();
-  var modal = getModal();
-
-  return new Promise(function (resolve, reject) {
-    // Close on timer
-    if (params.timer) {
-      modal.timeout = setTimeout(function () {
-        sweetAlert.closeModal(params.onClose);
-        if (params.useRejections) {
-          reject('timer');
-        } else {
-          resolve({ dismiss: 'timer' });
-        }
-      }, params.timer);
-    }
-
-    // Get input element by specified type or, if type isn't specified, by params.input
-    var getInput = function getInput(inputType) {
-      inputType = inputType || params.input;
-      if (!inputType) {
-        return null;
-      }
-      switch (inputType) {
-        case 'select':
-        case 'textarea':
-        case 'file':
-          return getChildByClass(modal, swalClasses[inputType]);
-        case 'checkbox':
-          return modal.querySelector('.' + swalClasses.checkbox + ' input');
-        case 'radio':
-          return modal.querySelector('.' + swalClasses.radio + ' input:checked') || modal.querySelector('.' + swalClasses.radio + ' input:first-child');
-        case 'range':
-          return modal.querySelector('.' + swalClasses.range + ' input');
-        default:
-          return getChildByClass(modal, swalClasses.input);
-      }
-    };
-
-    // Get the value of the modal input
-    var getInputValue = function getInputValue() {
-      var input = getInput();
-      if (!input) {
-        return null;
-      }
-      switch (params.input) {
-        case 'checkbox':
-          return input.checked ? 1 : 0;
-        case 'radio':
-          return input.checked ? input.value : null;
-        case 'file':
-          return input.files.length ? input.files[0] : null;
-        default:
-          return params.inputAutoTrim ? input.value.trim() : input.value;
-      }
-    };
-
-    // input autofocus
-    if (params.input) {
-      setTimeout(function () {
-        var input = getInput();
-        if (input) {
-          focusInput(input);
-        }
-      }, 0);
-    }
-
-    var confirm = function confirm(value) {
-      if (params.showLoaderOnConfirm) {
-        sweetAlert.showLoading();
-      }
-
-      if (params.preConfirm) {
-        params.preConfirm(value, params.extraParams).then(function (preConfirmValue) {
-          sweetAlert.closeModal(params.onClose);
-          resolve(preConfirmValue || value);
-        }, function (error$$1) {
-          sweetAlert.hideLoading();
-          if (error$$1) {
-            sweetAlert.showValidationError(error$$1);
-          }
-        });
-      } else {
-        sweetAlert.closeModal(params.onClose);
-        if (params.useRejections) {
-          resolve(value);
-        } else {
-          resolve({ value: value });
-        }
-      }
-    };
-
-    // Mouse interactions
-    var onButtonEvent = function onButtonEvent(event) {
-      var e = event || window.event;
-      var target = e.target || e.srcElement;
-      var confirmButton = getConfirmButton();
-      var cancelButton = getCancelButton();
-      var targetedConfirm = confirmButton && (confirmButton === target || confirmButton.contains(target));
-      var targetedCancel = cancelButton && (cancelButton === target || cancelButton.contains(target));
-
-      switch (e.type) {
-        case 'mouseover':
-        case 'mouseup':
-          if (params.buttonsStyling) {
-            if (targetedConfirm) {
-              confirmButton.style.backgroundColor = colorLuminance(params.confirmButtonColor, -0.1);
-            } else if (targetedCancel) {
-              cancelButton.style.backgroundColor = colorLuminance(params.cancelButtonColor, -0.1);
-            }
-          }
-          break;
-        case 'mouseout':
-          if (params.buttonsStyling) {
-            if (targetedConfirm) {
-              confirmButton.style.backgroundColor = params.confirmButtonColor;
-            } else if (targetedCancel) {
-              cancelButton.style.backgroundColor = params.cancelButtonColor;
-            }
-          }
-          break;
-        case 'mousedown':
-          if (params.buttonsStyling) {
-            if (targetedConfirm) {
-              confirmButton.style.backgroundColor = colorLuminance(params.confirmButtonColor, -0.2);
-            } else if (targetedCancel) {
-              cancelButton.style.backgroundColor = colorLuminance(params.cancelButtonColor, -0.2);
-            }
-          }
-          break;
-        case 'click':
-          // Clicked 'confirm'
-          if (targetedConfirm && sweetAlert.isVisible()) {
-            sweetAlert.disableButtons();
-            if (params.input) {
-              var inputValue = getInputValue();
-
-              if (params.inputValidator) {
-                sweetAlert.disableInput();
-                params.inputValidator(inputValue, params.extraParams).then(function () {
-                  sweetAlert.enableButtons();
-                  sweetAlert.enableInput();
-                  confirm(inputValue);
-                }, function (error$$1) {
-                  sweetAlert.enableButtons();
-                  sweetAlert.enableInput();
-                  if (error$$1) {
-                    sweetAlert.showValidationError(error$$1);
-                  }
-                });
-              } else {
-                confirm(inputValue);
-              }
-            } else {
-              confirm(true);
-            }
-
-            // Clicked 'cancel'
-          } else if (targetedCancel && sweetAlert.isVisible()) {
-            sweetAlert.disableButtons();
-            sweetAlert.closeModal(params.onClose);
-            if (params.useRejections) {
-              reject('cancel');
-            } else {
-              resolve({ dismiss: 'cancel' });
-            }
-          }
-          break;
-        default:
-      }
-    };
-
-    var buttons = modal.querySelectorAll('button');
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].onclick = onButtonEvent;
-      buttons[i].onmouseover = onButtonEvent;
-      buttons[i].onmouseout = onButtonEvent;
-      buttons[i].onmousedown = onButtonEvent;
-    }
-
-    // Closing modal by close button
-    getCloseButton().onclick = function () {
-      sweetAlert.closeModal(params.onClose);
-      if (params.useRejections) {
-        reject('close');
-      } else {
-        resolve({ dismiss: 'close' });
-      }
-    };
-
-    // Closing modal by overlay click
-    container.onclick = function (e) {
-      if (e.target !== container) {
-        return;
-      }
-      if (params.allowOutsideClick) {
-        sweetAlert.closeModal(params.onClose);
-        if (params.useRejections) {
-          reject('overlay');
-        } else {
-          resolve({ dismiss: 'overlay' });
-        }
-      }
-    };
-
-    var buttonsWrapper = getButtonsWrapper();
-    var confirmButton = getConfirmButton();
-    var cancelButton = getCancelButton();
-
-    // Reverse buttons (Confirm on the right side)
-    if (params.reverseButtons) {
-      confirmButton.parentNode.insertBefore(cancelButton, confirmButton);
-    } else {
-      confirmButton.parentNode.insertBefore(confirmButton, cancelButton);
-    }
-
-    // Focus handling
-    var setFocus = function setFocus(index, increment) {
-      var focusableElements = getFocusableElements(params.focusCancel);
-      // search for visible elements and select the next possible match
-      for (var _i3 = 0; _i3 < focusableElements.length; _i3++) {
-        index = index + increment;
-
-        // rollover to first item
-        if (index === focusableElements.length) {
-          index = 0;
-
-          // go to last item
-        } else if (index === -1) {
-          index = focusableElements.length - 1;
-        }
-
-        // determine if element is visible
-        var el = focusableElements[index];
-        if (isVisible(el)) {
-          return el.focus();
-        }
-      }
-    };
-
-    var handleKeyDown = function handleKeyDown(event) {
-      var e = event || window.event;
-
-      if (e.key === 'Enter') {
-        if (e.target === getInput()) {
-          sweetAlert.clickConfirm();
-          e.preventDefault();
-        }
-
-        // TAB
-      } else if (e.key === 'Tab') {
-        var targetElement = e.target || e.srcElement;
-
-        var focusableElements = getFocusableElements(params.focusCancel);
-        var btnIndex = -1; // Find the button - note, this is a nodelist, not an array.
-        for (var _i4 = 0; _i4 < focusableElements.length; _i4++) {
-          if (targetElement === focusableElements[_i4]) {
-            btnIndex = _i4;
-            break;
-          }
-        }
-
-        if (!e.shiftKey) {
-          // Cycle to the next button
-          setFocus(btnIndex, 1);
-        } else {
-          // Cycle to the prev button
-          setFocus(btnIndex, -1);
-        }
-        e.stopPropagation();
-        e.preventDefault();
-
-        // ARROWS - switch focus between buttons
-      } else if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'Arrowdown'].includes(e.key)) {
-        // focus Cancel button if Confirm button is currently focused
-        if (document.activeElement === confirmButton && isVisible(cancelButton)) {
-          cancelButton.focus();
-          // and vice versa
-        } else if (document.activeElement === cancelButton && isVisible(confirmButton)) {
-          confirmButton.focus();
-        }
-
-        // ESC
-      } else if (e.key === 'Escape' && params.allowEscapeKey === true) {
-        sweetAlert.closeModal(params.onClose);
-        if (params.useRejections) {
-          reject('esc');
-        } else {
-          resolve({ dismiss: 'esc' });
-        }
-      }
-    };
-
-    if (!window.onkeydown || window.onkeydown.toString() !== handleKeyDown.toString()) {
-      states.previousWindowKeyDown = window.onkeydown;
-      window.onkeydown = handleKeyDown;
-    }
-
-    // Loading state
-    if (params.buttonsStyling) {
-      confirmButton.style.borderLeftColor = params.confirmButtonColor;
-      confirmButton.style.borderRightColor = params.confirmButtonColor;
-    }
-
-    /**
-     * Show spinner instead of Confirm button and disable Cancel button
-     */
-    sweetAlert.hideLoading = sweetAlert.disableLoading = function () {
-      if (!params.showConfirmButton) {
-        hide(confirmButton);
-        if (!params.showCancelButton) {
-          hide(getButtonsWrapper());
-        }
-      }
-      removeClass(buttonsWrapper, swalClasses.loading);
-      removeClass(modal, swalClasses.loading);
-      modal.removeAttribute('aria-busy');
-      confirmButton.disabled = false;
-      cancelButton.disabled = false;
-    };
-
-    sweetAlert.getTitle = function () {
-      return getTitle();
-    };
-    sweetAlert.getContent = function () {
-      return getContent();
-    };
-    sweetAlert.getInput = function () {
-      return getInput();
-    };
-    sweetAlert.getImage = function () {
-      return getImage();
-    };
-    sweetAlert.getButtonsWrapper = function () {
-      return getButtonsWrapper();
-    };
-    sweetAlert.getConfirmButton = function () {
-      return getConfirmButton();
-    };
-    sweetAlert.getCancelButton = function () {
-      return getCancelButton();
-    };
-
-    sweetAlert.enableButtons = function () {
-      confirmButton.disabled = false;
-      cancelButton.disabled = false;
-    };
-
-    sweetAlert.disableButtons = function () {
-      confirmButton.disabled = true;
-      cancelButton.disabled = true;
-    };
-
-    sweetAlert.enableConfirmButton = function () {
-      confirmButton.disabled = false;
-    };
-
-    sweetAlert.disableConfirmButton = function () {
-      confirmButton.disabled = true;
-    };
-
-    sweetAlert.enableInput = function () {
-      var input = getInput();
-      if (!input) {
-        return false;
-      }
-      if (input.type === 'radio') {
-        var radiosContainer = input.parentNode.parentNode;
-        var radios = radiosContainer.querySelectorAll('input');
-        for (var _i5 = 0; _i5 < radios.length; _i5++) {
-          radios[_i5].disabled = false;
-        }
-      } else {
-        input.disabled = false;
-      }
-    };
-
-    sweetAlert.disableInput = function () {
-      var input = getInput();
-      if (!input) {
-        return false;
-      }
-      if (input && input.type === 'radio') {
-        var radiosContainer = input.parentNode.parentNode;
-        var radios = radiosContainer.querySelectorAll('input');
-        for (var _i6 = 0; _i6 < radios.length; _i6++) {
-          radios[_i6].disabled = true;
-        }
-      } else {
-        input.disabled = true;
-      }
-    };
-
-    // Set modal min-height to disable scrolling inside the modal
-    sweetAlert.recalculateHeight = debounce(function () {
-      var modal = getModal();
-      if (!modal) {
-        return;
-      }
-      var prevState = modal.style.display;
-      modal.style.minHeight = '';
-      show(modal);
-      modal.style.minHeight = modal.scrollHeight + 1 + 'px';
-      modal.style.display = prevState;
-    }, 50);
-
-    // Show block with validation error
-    sweetAlert.showValidationError = function (error$$1) {
-      var validationError = getValidationError();
-      validationError.innerHTML = error$$1;
-      show(validationError);
-
-      var input = getInput();
-      if (input) {
-        input.setAttribute('aria-invalid', true);
-        input.setAttribute('aria-describedBy', swalClasses.validationerror);
-        focusInput(input);
-        addClass(input, swalClasses.inputerror);
-      }
-    };
-
-    // Hide block with validation error
-    sweetAlert.resetValidationError = function () {
-      var validationError = getValidationError();
-      hide(validationError);
-      sweetAlert.recalculateHeight();
-
-      var input = getInput();
-      if (input) {
-        input.removeAttribute('aria-invalid');
-        input.removeAttribute('aria-describedBy');
-        removeClass(input, swalClasses.inputerror);
-      }
-    };
-
-    sweetAlert.getProgressSteps = function () {
-      return params.progressSteps;
-    };
-
-    sweetAlert.setProgressSteps = function (progressSteps) {
-      params.progressSteps = progressSteps;
-      setParameters(params);
-    };
-
-    sweetAlert.showProgressSteps = function () {
-      show(getProgressSteps());
-    };
-
-    sweetAlert.hideProgressSteps = function () {
-      hide(getProgressSteps());
-    };
-
-    sweetAlert.enableButtons();
-    sweetAlert.hideLoading();
-    sweetAlert.resetValidationError();
-
-    // inputs
-    var inputTypes = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea'];
-    var input = void 0;
-    for (var _i7 = 0; _i7 < inputTypes.length; _i7++) {
-      var inputClass = swalClasses[inputTypes[_i7]];
-      var inputContainer = getChildByClass(modal, inputClass);
-      input = getInput(inputTypes[_i7]);
-
-      // set attributes
-      if (input) {
-        for (var j in input.attributes) {
-          if (input.attributes.hasOwnProperty(j)) {
-            var attrName = input.attributes[j].name;
-            if (attrName !== 'type' && attrName !== 'value') {
-              input.removeAttribute(attrName);
-            }
-          }
-        }
-        for (var attr in params.inputAttributes) {
-          input.setAttribute(attr, params.inputAttributes[attr]);
-        }
-      }
-
-      // set class
-      inputContainer.className = inputClass;
-      if (params.inputClass) {
-        addClass(inputContainer, params.inputClass);
-      }
-
-      hide(inputContainer);
-    }
-
-    var populateInputOptions = void 0;
-    switch (params.input) {
-      case 'text':
-      case 'email':
-      case 'password':
-      case 'number':
-      case 'tel':
-      case 'url':
-        input = getChildByClass(modal, swalClasses.input);
-        input.value = params.inputValue;
-        input.placeholder = params.inputPlaceholder;
-        input.type = params.input;
-        show(input);
-        break;
-      case 'file':
-        input = getChildByClass(modal, swalClasses.file);
-        input.placeholder = params.inputPlaceholder;
-        input.type = params.input;
-        show(input);
-        break;
-      case 'range':
-        var range = getChildByClass(modal, swalClasses.range);
-        var rangeInput = range.querySelector('input');
-        var rangeOutput = range.querySelector('output');
-        rangeInput.value = params.inputValue;
-        rangeInput.type = params.input;
-        rangeOutput.value = params.inputValue;
-        show(range);
-        break;
-      case 'select':
-        var select = getChildByClass(modal, swalClasses.select);
-        select.innerHTML = '';
-        if (params.inputPlaceholder) {
-          var placeholder = document.createElement('option');
-          placeholder.innerHTML = params.inputPlaceholder;
-          placeholder.value = '';
-          placeholder.disabled = true;
-          placeholder.selected = true;
-          select.appendChild(placeholder);
-        }
-        populateInputOptions = function populateInputOptions(inputOptions) {
-          for (var optionValue in inputOptions) {
-            var option = document.createElement('option');
-            option.value = optionValue;
-            option.innerHTML = inputOptions[optionValue];
-            if (params.inputValue === optionValue) {
-              option.selected = true;
-            }
-            select.appendChild(option);
-          }
-          show(select);
-          select.focus();
-        };
-        break;
-      case 'radio':
-        var radio = getChildByClass(modal, swalClasses.radio);
-        radio.innerHTML = '';
-        populateInputOptions = function populateInputOptions(inputOptions) {
-          for (var radioValue in inputOptions) {
-            var radioInput = document.createElement('input');
-            var radioLabel = document.createElement('label');
-            var radioLabelSpan = document.createElement('span');
-            radioInput.type = 'radio';
-            radioInput.name = swalClasses.radio;
-            radioInput.value = radioValue;
-            if (params.inputValue === radioValue) {
-              radioInput.checked = true;
-            }
-            radioLabelSpan.innerHTML = inputOptions[radioValue];
-            radioLabel.appendChild(radioInput);
-            radioLabel.appendChild(radioLabelSpan);
-            radioLabel.for = radioInput.id;
-            radio.appendChild(radioLabel);
-          }
-          show(radio);
-          var radios = radio.querySelectorAll('input');
-          if (radios.length) {
-            radios[0].focus();
-          }
-        };
-        break;
-      case 'checkbox':
-        var checkbox = getChildByClass(modal, swalClasses.checkbox);
-        var checkboxInput = getInput('checkbox');
-        checkboxInput.type = 'checkbox';
-        checkboxInput.value = 1;
-        checkboxInput.id = swalClasses.checkbox;
-        checkboxInput.checked = Boolean(params.inputValue);
-        var label = checkbox.getElementsByTagName('span');
-        if (label.length) {
-          checkbox.removeChild(label[0]);
-        }
-        label = document.createElement('span');
-        label.innerHTML = params.inputPlaceholder;
-        checkbox.appendChild(label);
-        show(checkbox);
-        break;
-      case 'textarea':
-        var textarea = getChildByClass(modal, swalClasses.textarea);
-        textarea.value = params.inputValue;
-        textarea.placeholder = params.inputPlaceholder;
-        show(textarea);
-        break;
-      case null:
-        break;
-      default:
-        error('Unexpected type of input! Expected "text", "email", "password", "number", "tel", "select", "radio", "checkbox", "textarea", "file" or "url", got "' + params.input + '"');
-        break;
-    }
-
-    if (params.input === 'select' || params.input === 'radio') {
-      if (params.inputOptions instanceof Promise) {
-        sweetAlert.showLoading();
-        params.inputOptions.then(function (inputOptions) {
-          sweetAlert.hideLoading();
-          populateInputOptions(inputOptions);
-        });
-      } else if (_typeof(params.inputOptions) === 'object') {
-        populateInputOptions(params.inputOptions);
-      } else {
-        error('Unexpected type of inputOptions! Expected object or Promise, got ' + _typeof(params.inputOptions));
-      }
-    }
-
-    openModal(params.animation, params.onOpen);
-
-    if (!params.allowEnterKey) {
-      if (document.activeElement) {
-        document.activeElement.blur();
-      }
-    } else if (params.focusCancel && isVisible(cancelButton)) {
-      cancelButton.focus();
-    } else if (params.focusConfirm && isVisible(confirmButton)) {
-      confirmButton.focus();
-    } else {
-      setFocus(-1, 1);
-    }
-
-    // fix scroll
-    getContainer().scrollTop = 0;
-
-    // Observe changes inside the modal and adjust height
-    if (typeof MutationObserver !== 'undefined' && !swal2Observer) {
-      swal2Observer = new MutationObserver(sweetAlert.recalculateHeight);
-      swal2Observer.observe(modal, { childList: true, characterData: true, subtree: true });
-    }
-  });
-};
-
-/*
- * Global function to determine if swal2 modal is shown
- */
-sweetAlert.isVisible = function () {
-  return !!getModal();
-};
-
-/*
- * Global function for chaining sweetAlert modals
- */
-sweetAlert.queue = function (steps) {
-  queue = steps;
-  var resetQueue = function resetQueue() {
-    queue = [];
-    document.body.removeAttribute('data-swal2-queue-step');
-  };
-  var queueResult = [];
-  return new Promise(function (resolve, reject) {
-    (function step(i, callback) {
-      if (i < queue.length) {
-        document.body.setAttribute('data-swal2-queue-step', i);
-
-        sweetAlert(queue[i]).then(function (result) {
-          queueResult.push(result);
-          step(i + 1, callback);
-        }, function (dismiss) {
-          resetQueue();
-          reject(dismiss);
-        });
-      } else {
-        resetQueue();
-        resolve(queueResult);
-      }
-    })(0);
-  });
-};
-
-/*
- * Global function for getting the index of current modal in queue
- */
-sweetAlert.getQueueStep = function () {
-  return document.body.getAttribute('data-swal2-queue-step');
-};
-
-/*
- * Global function for inserting a modal to the queue
- */
-sweetAlert.insertQueueStep = function (step, index) {
-  if (index && index < queue.length) {
-    return queue.splice(index, 0, step);
-  }
-  return queue.push(step);
-};
-
-/*
- * Global function for deleting a modal from the queue
- */
-sweetAlert.deleteQueueStep = function (index) {
-  if (typeof queue[index] !== 'undefined') {
-    queue.splice(index, 1);
-  }
-};
-
-/*
- * Global function to close sweetAlert
- */
-sweetAlert.close = sweetAlert.closeModal = function (onComplete) {
-  var container = getContainer();
-  var modal = getModal();
-  if (!modal) {
-    return;
-  }
-  removeClass(modal, swalClasses.show);
-  addClass(modal, swalClasses.hide);
-  clearTimeout(modal.timeout);
-
-  resetPrevState();
-
-  var removeModalAndResetState = function removeModalAndResetState() {
-    if (container.parentNode) {
-      container.parentNode.removeChild(container);
-    }
-    removeClass(document.documentElement, swalClasses.shown);
-    removeClass(document.body, swalClasses.shown);
-    undoScrollbar();
-    undoIOSfix();
-  };
-
-  // If animation is supported, animate
-  if (animationEndEvent && !hasClass(modal, swalClasses.noanimation)) {
-    modal.addEventListener(animationEndEvent, function swalCloseEventFinished() {
-      modal.removeEventListener(animationEndEvent, swalCloseEventFinished);
-      if (hasClass(modal, swalClasses.hide)) {
-        removeModalAndResetState();
-      }
-    });
-  } else {
-    // Otherwise, remove immediately
-    removeModalAndResetState();
-  }
-  if (onComplete !== null && typeof onComplete === 'function') {
-    setTimeout(function () {
-      onComplete(modal);
-    });
-  }
-};
-
-/*
- * Global function to click 'Confirm' button
- */
-sweetAlert.clickConfirm = function () {
-  return getConfirmButton().click();
-};
-
-/*
- * Global function to click 'Cancel' button
- */
-sweetAlert.clickCancel = function () {
-  return getCancelButton().click();
-};
-
-/**
- * Show spinner instead of Confirm button and disable Cancel button
- */
-sweetAlert.showLoading = sweetAlert.enableLoading = function () {
-  var modal = getModal();
-  if (!modal) {
-    sweetAlert('');
-  }
-  modal = getModal();
-  var buttonsWrapper = getButtonsWrapper();
-  var confirmButton = getConfirmButton();
-  var cancelButton = getCancelButton();
-
-  show(buttonsWrapper);
-  show(confirmButton, 'inline-block');
-  addClass(buttonsWrapper, swalClasses.loading);
-  addClass(modal, swalClasses.loading);
-  confirmButton.disabled = true;
-  cancelButton.disabled = true;
-
-  modal.setAttribute('aria-busy', true);
-  modal.focus();
-};
-
-/**
- * Is valid parameter
- * @param {String} paramName
- */
-sweetAlert.isValidParameter = function (paramName) {
-  return defaultParams.hasOwnProperty(paramName) || paramName === 'extraParams';
-};
-
-/**
-* Set default params for each popup
-* @param {Object} userParams
-*/
-sweetAlert.setDefaults = function (userParams) {
-  if (!userParams || (typeof userParams === 'undefined' ? 'undefined' : _typeof(userParams)) !== 'object') {
-    return error('the argument for setDefaults() is required and has to be a object');
-  }
-
-  for (var param in userParams) {
-    if (!sweetAlert.isValidParameter(param)) {
-      warn('Unknown parameter "' + param + '"');
-      delete userParams[param];
-    }
-  }
-
-  _extends(modalParams, userParams);
-};
-
-/**
- * Reset default params for each popup
- */
-sweetAlert.resetDefaults = function () {
-  modalParams = _extends({}, defaultParams);
-};
-
-sweetAlert.noop = function () {};
-
-sweetAlert.version = '6.10.2';
-
-sweetAlert.default = sweetAlert;
-
-return sweetAlert;
-
-})));
-if (window.Sweetalert2) window.sweetAlert = window.swal = window.Sweetalert2;
-
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Uses AMD or browser globals to create a jQuery plugin.
 (function (factory) {
   if (true) {
@@ -27333,9 +25053,4436 @@ function __guardMethod__(obj, methodName, transform) {
 }));
 
 /***/ }),
-/* 34 */,
-/* 35 */,
-/* 36 */
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * jscolor - JavaScript Color Picker
+ *
+ * @link    http://jscolor.com
+ * @license For open source use: GPLv3
+ *          For commercial use: JSColor Commercial License
+ * @author  Jan Odvarko
+ *
+ * See usage examples at http://jscolor.com/examples/
+ */
+window.jscolor || (window.jscolor = function () {
+  var e = { register: function register() {
+      e.attachDOMReadyEvent(e.init), e.attachEvent(document, "mousedown", e.onDocumentMouseDown), e.attachEvent(document, "touchstart", e.onDocumentTouchStart), e.attachEvent(window, "resize", e.onWindowResize);
+    }, init: function init() {
+      e.jscolor.lookupClass && e.jscolor.installByClassName(e.jscolor.lookupClass);
+    }, tryInstallOnElements: function tryInstallOnElements(t, n) {
+      var r = new RegExp("(^|\\s)(" + n + ")(\\s*(\\{[^}]*\\})|\\s|$)", "i");for (var i = 0; i < t.length; i += 1) {
+        if (t[i].type !== undefined && t[i].type.toLowerCase() == "color" && e.isColorAttrSupported) continue;var s;if (!t[i].jscolor && t[i].className && (s = t[i].className.match(r))) {
+          var o = t[i],
+              u = null,
+              a = e.getDataAttr(o, "jscolor");a !== null ? u = a : s[4] && (u = s[4]);var f = {};if (u) try {
+            f = new Function("return (" + u + ")")();
+          } catch (l) {
+            e.warn("Error parsing jscolor options: " + l + ":\n" + u);
+          }o.jscolor = new e.jscolor(o, f);
+        }
+      }
+    }, isColorAttrSupported: function () {
+      var e = document.createElement("input");if (e.setAttribute) {
+        e.setAttribute("type", "color");if (e.type.toLowerCase() == "color") return !0;
+      }return !1;
+    }(), isCanvasSupported: function () {
+      var e = document.createElement("canvas");return !!e.getContext && !!e.getContext("2d");
+    }(), fetchElement: function fetchElement(e) {
+      return typeof e == "string" ? document.getElementById(e) : e;
+    }, isElementType: function isElementType(e, t) {
+      return e.nodeName.toLowerCase() === t.toLowerCase();
+    }, getDataAttr: function getDataAttr(e, t) {
+      var n = "data-" + t,
+          r = e.getAttribute(n);return r !== null ? r : null;
+    }, attachEvent: function attachEvent(e, t, n) {
+      e.addEventListener ? e.addEventListener(t, n, !1) : e.attachEvent && e.attachEvent("on" + t, n);
+    }, detachEvent: function detachEvent(e, t, n) {
+      e.removeEventListener ? e.removeEventListener(t, n, !1) : e.detachEvent && e.detachEvent("on" + t, n);
+    }, _attachedGroupEvents: {}, attachGroupEvent: function attachGroupEvent(t, n, r, i) {
+      e._attachedGroupEvents.hasOwnProperty(t) || (e._attachedGroupEvents[t] = []), e._attachedGroupEvents[t].push([n, r, i]), e.attachEvent(n, r, i);
+    }, detachGroupEvents: function detachGroupEvents(t) {
+      if (e._attachedGroupEvents.hasOwnProperty(t)) {
+        for (var n = 0; n < e._attachedGroupEvents[t].length; n += 1) {
+          var r = e._attachedGroupEvents[t][n];e.detachEvent(r[0], r[1], r[2]);
+        }delete e._attachedGroupEvents[t];
+      }
+    }, attachDOMReadyEvent: function attachDOMReadyEvent(e) {
+      var t = !1,
+          n = function n() {
+        t || (t = !0, e());
+      };if (document.readyState === "complete") {
+        setTimeout(n, 1);return;
+      }if (document.addEventListener) document.addEventListener("DOMContentLoaded", n, !1), window.addEventListener("load", n, !1);else if (document.attachEvent) {
+        document.attachEvent("onreadystatechange", function () {
+          document.readyState === "complete" && (document.detachEvent("onreadystatechange", arguments.callee), n());
+        }), window.attachEvent("onload", n);if (document.documentElement.doScroll && window == window.top) {
+          var r = function r() {
+            if (!document.body) return;try {
+              document.documentElement.doScroll("left"), n();
+            } catch (e) {
+              setTimeout(r, 1);
+            }
+          };r();
+        }
+      }
+    }, warn: function warn(e) {
+      window.console && window.console.warn && window.console.warn(e);
+    }, preventDefault: function preventDefault(e) {
+      e.preventDefault && e.preventDefault(), e.returnValue = !1;
+    }, captureTarget: function captureTarget(t) {
+      t.setCapture && (e._capturedTarget = t, e._capturedTarget.setCapture());
+    }, releaseTarget: function releaseTarget() {
+      e._capturedTarget && (e._capturedTarget.releaseCapture(), e._capturedTarget = null);
+    }, fireEvent: function fireEvent(e, t) {
+      if (!e) return;if (document.createEvent) {
+        var n = document.createEvent("HTMLEvents");n.initEvent(t, !0, !0), e.dispatchEvent(n);
+      } else if (document.createEventObject) {
+        var n = document.createEventObject();e.fireEvent("on" + t, n);
+      } else e["on" + t] && e["on" + t]();
+    }, classNameToList: function classNameToList(e) {
+      return e.replace(/^\s+|\s+$/g, "").split(/\s+/);
+    }, hasClass: function hasClass(e, t) {
+      return t ? -1 != (" " + e.className.replace(/\s+/g, " ") + " ").indexOf(" " + t + " ") : !1;
+    }, setClass: function setClass(t, n) {
+      var r = e.classNameToList(n);for (var i = 0; i < r.length; i += 1) {
+        e.hasClass(t, r[i]) || (t.className += (t.className ? " " : "") + r[i]);
+      }
+    }, unsetClass: function unsetClass(t, n) {
+      var r = e.classNameToList(n);for (var i = 0; i < r.length; i += 1) {
+        var s = new RegExp("^\\s*" + r[i] + "\\s*|" + "\\s*" + r[i] + "\\s*$|" + "\\s+" + r[i] + "(\\s+)", "g");t.className = t.className.replace(s, "$1");
+      }
+    }, getStyle: function getStyle(e) {
+      return window.getComputedStyle ? window.getComputedStyle(e) : e.currentStyle;
+    }, setStyle: function () {
+      var e = document.createElement("div"),
+          t = function t(_t) {
+        for (var n = 0; n < _t.length; n += 1) {
+          if (_t[n] in e.style) return _t[n];
+        }
+      },
+          n = { borderRadius: t(["borderRadius", "MozBorderRadius", "webkitBorderRadius"]), boxShadow: t(["boxShadow", "MozBoxShadow", "webkitBoxShadow"]) };return function (e, t, r) {
+        switch (t.toLowerCase()) {case "opacity":
+            var i = Math.round(parseFloat(r) * 100);e.style.opacity = r, e.style.filter = "alpha(opacity=" + i + ")";break;default:
+            e.style[n[t]] = r;}
+      };
+    }(), setBorderRadius: function setBorderRadius(t, n) {
+      e.setStyle(t, "borderRadius", n || "0");
+    }, setBoxShadow: function setBoxShadow(t, n) {
+      e.setStyle(t, "boxShadow", n || "none");
+    }, getElementPos: function getElementPos(t, n) {
+      var r = 0,
+          i = 0,
+          s = t.getBoundingClientRect();r = s.left, i = s.top;if (!n) {
+        var o = e.getViewPos();r += o[0], i += o[1];
+      }return [r, i];
+    }, getElementSize: function getElementSize(e) {
+      return [e.offsetWidth, e.offsetHeight];
+    }, getAbsPointerPos: function getAbsPointerPos(e) {
+      e || (e = window.event);var t = 0,
+          n = 0;return typeof e.changedTouches != "undefined" && e.changedTouches.length ? (t = e.changedTouches[0].clientX, n = e.changedTouches[0].clientY) : typeof e.clientX == "number" && (t = e.clientX, n = e.clientY), { x: t, y: n };
+    }, getRelPointerPos: function getRelPointerPos(e) {
+      e || (e = window.event);var t = e.target || e.srcElement,
+          n = t.getBoundingClientRect(),
+          r = 0,
+          i = 0,
+          s = 0,
+          o = 0;return typeof e.changedTouches != "undefined" && e.changedTouches.length ? (s = e.changedTouches[0].clientX, o = e.changedTouches[0].clientY) : typeof e.clientX == "number" && (s = e.clientX, o = e.clientY), r = s - n.left, i = o - n.top, { x: r, y: i };
+    }, getViewPos: function getViewPos() {
+      var e = document.documentElement;return [(window.pageXOffset || e.scrollLeft) - (e.clientLeft || 0), (window.pageYOffset || e.scrollTop) - (e.clientTop || 0)];
+    }, getViewSize: function getViewSize() {
+      var e = document.documentElement;return [window.innerWidth || e.clientWidth, window.innerHeight || e.clientHeight];
+    }, redrawPosition: function redrawPosition() {
+      if (e.picker && e.picker.owner) {
+        var t = e.picker.owner,
+            n,
+            r;t.fixed ? (n = e.getElementPos(t.targetElement, !0), r = [0, 0]) : (n = e.getElementPos(t.targetElement), r = e.getViewPos());var i = e.getElementSize(t.targetElement),
+            s = e.getViewSize(),
+            o = e.getPickerOuterDims(t),
+            u,
+            a,
+            f;switch (t.position.toLowerCase()) {case "left":
+            u = 1, a = 0, f = -1;break;case "right":
+            u = 1, a = 0, f = 1;break;case "top":
+            u = 0, a = 1, f = -1;break;default:
+            u = 0, a = 1, f = 1;}var l = (i[a] + o[a]) / 2;if (!t.smartPosition) var c = [n[u], n[a] + i[a] - l + l * f];else var c = [-r[u] + n[u] + o[u] > s[u] ? -r[u] + n[u] + i[u] / 2 > s[u] / 2 && n[u] + i[u] - o[u] >= 0 ? n[u] + i[u] - o[u] : n[u] : n[u], -r[a] + n[a] + i[a] + o[a] - l + l * f > s[a] ? -r[a] + n[a] + i[a] / 2 > s[a] / 2 && n[a] + i[a] - l - l * f >= 0 ? n[a] + i[a] - l - l * f : n[a] + i[a] - l + l * f : n[a] + i[a] - l + l * f >= 0 ? n[a] + i[a] - l + l * f : n[a] + i[a] - l - l * f];var h = c[u],
+            p = c[a],
+            d = t.fixed ? "fixed" : "absolute",
+            v = (c[0] + o[0] > n[0] || c[0] < n[0] + i[0]) && c[1] + o[1] < n[1] + i[1];e._drawPosition(t, h, p, d, v);
+      }
+    }, _drawPosition: function _drawPosition(t, n, r, i, s) {
+      var o = s ? 0 : t.shadowBlur;e.picker.wrap.style.position = i, e.picker.wrap.style.left = n + "px", e.picker.wrap.style.top = r + "px", e.setBoxShadow(e.picker.boxS, t.shadow ? new e.BoxShadow(0, o, t.shadowBlur, 0, t.shadowColor) : null);
+    }, getPickerDims: function getPickerDims(t) {
+      var n = !!e.getSliderComponent(t),
+          r = [2 * t.insetWidth + 2 * t.padding + t.width + (n ? 2 * t.insetWidth + e.getPadToSliderPadding(t) + t.sliderSize : 0), 2 * t.insetWidth + 2 * t.padding + t.height + (t.closable ? 2 * t.insetWidth + t.padding + t.buttonHeight : 0)];return r;
+    }, getPickerOuterDims: function getPickerOuterDims(t) {
+      var n = e.getPickerDims(t);return [n[0] + 2 * t.borderWidth, n[1] + 2 * t.borderWidth];
+    }, getPadToSliderPadding: function getPadToSliderPadding(e) {
+      return Math.max(e.padding, 1.5 * (2 * e.pointerBorderWidth + e.pointerThickness));
+    }, getPadYComponent: function getPadYComponent(e) {
+      switch (e.mode.charAt(1).toLowerCase()) {case "v":
+          return "v";}return "s";
+    }, getSliderComponent: function getSliderComponent(e) {
+      if (e.mode.length > 2) switch (e.mode.charAt(2).toLowerCase()) {case "s":
+          return "s";case "v":
+          return "v";}return null;
+    }, onDocumentMouseDown: function onDocumentMouseDown(t) {
+      t || (t = window.event);var n = t.target || t.srcElement;n._jscLinkedInstance ? n._jscLinkedInstance.showOnClick && n._jscLinkedInstance.show() : n._jscControlName ? e.onControlPointerStart(t, n, n._jscControlName, "mouse") : e.picker && e.picker.owner && e.picker.owner.hide();
+    }, onDocumentTouchStart: function onDocumentTouchStart(t) {
+      t || (t = window.event);var n = t.target || t.srcElement;n._jscLinkedInstance ? n._jscLinkedInstance.showOnClick && n._jscLinkedInstance.show() : n._jscControlName ? e.onControlPointerStart(t, n, n._jscControlName, "touch") : e.picker && e.picker.owner && e.picker.owner.hide();
+    }, onWindowResize: function onWindowResize(t) {
+      e.redrawPosition();
+    }, onParentScroll: function onParentScroll(t) {
+      e.picker && e.picker.owner && e.picker.owner.hide();
+    }, _pointerMoveEvent: { mouse: "mousemove", touch: "touchmove" }, _pointerEndEvent: { mouse: "mouseup", touch: "touchend" }, _pointerOrigin: null, _capturedTarget: null, onControlPointerStart: function onControlPointerStart(t, n, r, i) {
+      var s = n._jscInstance;e.preventDefault(t), e.captureTarget(n);var o = function o(s, _o) {
+        e.attachGroupEvent("drag", s, e._pointerMoveEvent[i], e.onDocumentPointerMove(t, n, r, i, _o)), e.attachGroupEvent("drag", s, e._pointerEndEvent[i], e.onDocumentPointerEnd(t, n, r, i));
+      };o(document, [0, 0]);if (window.parent && window.frameElement) {
+        var u = window.frameElement.getBoundingClientRect(),
+            a = [-u.left, -u.top];o(window.parent.window.document, a);
+      }var f = e.getAbsPointerPos(t),
+          l = e.getRelPointerPos(t);e._pointerOrigin = { x: f.x - l.x, y: f.y - l.y };switch (r) {case "pad":
+          switch (e.getSliderComponent(s)) {case "s":
+              s.hsv[1] === 0 && s.fromHSV(null, 100, null);break;case "v":
+              s.hsv[2] === 0 && s.fromHSV(null, null, 100);}e.setPad(s, t, 0, 0);break;case "sld":
+          e.setSld(s, t, 0);}e.dispatchFineChange(s);
+    }, onDocumentPointerMove: function onDocumentPointerMove(t, n, r, i, s) {
+      return function (t) {
+        var i = n._jscInstance;switch (r) {case "pad":
+            t || (t = window.event), e.setPad(i, t, s[0], s[1]), e.dispatchFineChange(i);break;case "sld":
+            t || (t = window.event), e.setSld(i, t, s[1]), e.dispatchFineChange(i);}
+      };
+    }, onDocumentPointerEnd: function onDocumentPointerEnd(t, n, r, i) {
+      return function (t) {
+        var r = n._jscInstance;e.detachGroupEvents("drag"), e.releaseTarget(), e.dispatchChange(r);
+      };
+    }, dispatchChange: function dispatchChange(t) {
+      t.valueElement && e.isElementType(t.valueElement, "input") && e.fireEvent(t.valueElement, "change");
+    }, dispatchFineChange: function dispatchFineChange(e) {
+      if (e.onFineChange) {
+        var t;typeof e.onFineChange == "string" ? t = new Function(e.onFineChange) : t = e.onFineChange, t.call(e);
+      }
+    }, setPad: function setPad(t, n, r, i) {
+      var s = e.getAbsPointerPos(n),
+          o = r + s.x - e._pointerOrigin.x - t.padding - t.insetWidth,
+          u = i + s.y - e._pointerOrigin.y - t.padding - t.insetWidth,
+          a = o * (360 / (t.width - 1)),
+          f = 100 - u * (100 / (t.height - 1));switch (e.getPadYComponent(t)) {case "s":
+          t.fromHSV(a, f, null, e.leaveSld);break;case "v":
+          t.fromHSV(a, null, f, e.leaveSld);}
+    }, setSld: function setSld(t, n, r) {
+      var i = e.getAbsPointerPos(n),
+          s = r + i.y - e._pointerOrigin.y - t.padding - t.insetWidth,
+          o = 100 - s * (100 / (t.height - 1));switch (e.getSliderComponent(t)) {case "s":
+          t.fromHSV(null, o, null, e.leavePad);break;case "v":
+          t.fromHSV(null, null, o, e.leavePad);}
+    }, _vmlNS: "jsc_vml_", _vmlCSS: "jsc_vml_css_", _vmlReady: !1, initVML: function initVML() {
+      if (!e._vmlReady) {
+        var t = document;t.namespaces[e._vmlNS] || t.namespaces.add(e._vmlNS, "urn:schemas-microsoft-com:vml");if (!t.styleSheets[e._vmlCSS]) {
+          var n = ["shape", "shapetype", "group", "background", "path", "formulas", "handles", "fill", "stroke", "shadow", "textbox", "textpath", "imagedata", "line", "polyline", "curve", "rect", "roundrect", "oval", "arc", "image"],
+              r = t.createStyleSheet();r.owningElement.id = e._vmlCSS;for (var i = 0; i < n.length; i += 1) {
+            r.addRule(e._vmlNS + "\\:" + n[i], "behavior:url(#default#VML);");
+          }
+        }e._vmlReady = !0;
+      }
+    }, createPalette: function createPalette() {
+      var t = { elm: null, draw: null };if (e.isCanvasSupported) {
+        var n = document.createElement("canvas"),
+            r = n.getContext("2d"),
+            i = function i(e, t, _i) {
+          n.width = e, n.height = t, r.clearRect(0, 0, n.width, n.height);var s = r.createLinearGradient(0, 0, n.width, 0);s.addColorStop(0, "#F00"), s.addColorStop(1 / 6, "#FF0"), s.addColorStop(2 / 6, "#0F0"), s.addColorStop(.5, "#0FF"), s.addColorStop(4 / 6, "#00F"), s.addColorStop(5 / 6, "#F0F"), s.addColorStop(1, "#F00"), r.fillStyle = s, r.fillRect(0, 0, n.width, n.height);var o = r.createLinearGradient(0, 0, 0, n.height);switch (_i.toLowerCase()) {case "s":
+              o.addColorStop(0, "rgba(255,255,255,0)"), o.addColorStop(1, "rgba(255,255,255,1)");break;case "v":
+              o.addColorStop(0, "rgba(0,0,0,0)"), o.addColorStop(1, "rgba(0,0,0,1)");}r.fillStyle = o, r.fillRect(0, 0, n.width, n.height);
+        };t.elm = n, t.draw = i;
+      } else {
+        e.initVML();var s = document.createElement("div");s.style.position = "relative", s.style.overflow = "hidden";var o = document.createElement(e._vmlNS + ":fill");o.type = "gradient", o.method = "linear", o.angle = "90", o.colors = "16.67% #F0F, 33.33% #00F, 50% #0FF, 66.67% #0F0, 83.33% #FF0";var u = document.createElement(e._vmlNS + ":rect");u.style.position = "absolute", u.style.left = "-1px", u.style.top = "-1px", u.stroked = !1, u.appendChild(o), s.appendChild(u);var a = document.createElement(e._vmlNS + ":fill");a.type = "gradient", a.method = "linear", a.angle = "180", a.opacity = "0";var f = document.createElement(e._vmlNS + ":rect");f.style.position = "absolute", f.style.left = "-1px", f.style.top = "-1px", f.stroked = !1, f.appendChild(a), s.appendChild(f);var i = function i(e, t, n) {
+          s.style.width = e + "px", s.style.height = t + "px", u.style.width = f.style.width = e + 1 + "px", u.style.height = f.style.height = t + 1 + "px", o.color = "#F00", o.color2 = "#F00";switch (n.toLowerCase()) {case "s":
+              a.color = a.color2 = "#FFF";break;case "v":
+              a.color = a.color2 = "#000";}
+        };t.elm = s, t.draw = i;
+      }return t;
+    }, createSliderGradient: function createSliderGradient() {
+      var t = { elm: null, draw: null };if (e.isCanvasSupported) {
+        var n = document.createElement("canvas"),
+            r = n.getContext("2d"),
+            i = function i(e, t, _i2, s) {
+          n.width = e, n.height = t, r.clearRect(0, 0, n.width, n.height);var o = r.createLinearGradient(0, 0, 0, n.height);o.addColorStop(0, _i2), o.addColorStop(1, s), r.fillStyle = o, r.fillRect(0, 0, n.width, n.height);
+        };t.elm = n, t.draw = i;
+      } else {
+        e.initVML();var s = document.createElement("div");s.style.position = "relative", s.style.overflow = "hidden";var o = document.createElement(e._vmlNS + ":fill");o.type = "gradient", o.method = "linear", o.angle = "180";var u = document.createElement(e._vmlNS + ":rect");u.style.position = "absolute", u.style.left = "-1px", u.style.top = "-1px", u.stroked = !1, u.appendChild(o), s.appendChild(u);var i = function i(e, t, n, r) {
+          s.style.width = e + "px", s.style.height = t + "px", u.style.width = e + 1 + "px", u.style.height = t + 1 + "px", o.color = n, o.color2 = r;
+        };t.elm = s, t.draw = i;
+      }return t;
+    }, leaveValue: 1, leaveStyle: 2, leavePad: 4, leaveSld: 8, BoxShadow: function () {
+      var e = function e(_e, t, n, r, i, s) {
+        this.hShadow = _e, this.vShadow = t, this.blur = n, this.spread = r, this.color = i, this.inset = !!s;
+      };return e.prototype.toString = function () {
+        var e = [Math.round(this.hShadow) + "px", Math.round(this.vShadow) + "px", Math.round(this.blur) + "px", Math.round(this.spread) + "px", this.color];return this.inset && e.push("inset"), e.join(" ");
+      }, e;
+    }(), jscolor: function jscolor(t, n) {
+      function i(e, t, n) {
+        e /= 255, t /= 255, n /= 255;var r = Math.min(Math.min(e, t), n),
+            i = Math.max(Math.max(e, t), n),
+            s = i - r;if (s === 0) return [null, 0, 100 * i];var o = e === r ? 3 + (n - t) / s : t === r ? 5 + (e - n) / s : 1 + (t - e) / s;return [60 * (o === 6 ? 0 : o), 100 * (s / i), 100 * i];
+      }function s(e, t, n) {
+        var r = 255 * (n / 100);if (e === null) return [r, r, r];e /= 60, t /= 100;var i = Math.floor(e),
+            s = i % 2 ? e - i : 1 - (e - i),
+            o = r * (1 - t),
+            u = r * (1 - t * s);switch (i) {case 6:case 0:
+            return [r, u, o];case 1:
+            return [u, r, o];case 2:
+            return [o, r, u];case 3:
+            return [o, u, r];case 4:
+            return [u, o, r];case 5:
+            return [r, o, u];}
+      }function o() {
+        e.unsetClass(d.targetElement, d.activeClass), e.picker.wrap.parentNode.removeChild(e.picker.wrap), delete e.picker.owner;
+      }function u() {
+        function l() {
+          var e = d.insetColor.split(/\s+/),
+              n = e.length < 2 ? e[0] : e[1] + " " + e[0] + " " + e[0] + " " + e[1];t.btn.style.borderColor = n;
+        }d._processParentElementsInDOM(), e.picker || (e.picker = { owner: null, wrap: document.createElement("div"), box: document.createElement("div"), boxS: document.createElement("div"), boxB: document.createElement("div"), pad: document.createElement("div"), padB: document.createElement("div"), padM: document.createElement("div"), padPal: e.createPalette(), cross: document.createElement("div"), crossBY: document.createElement("div"), crossBX: document.createElement("div"), crossLY: document.createElement("div"), crossLX: document.createElement("div"), sld: document.createElement("div"), sldB: document.createElement("div"), sldM: document.createElement("div"), sldGrad: e.createSliderGradient(), sldPtrS: document.createElement("div"), sldPtrIB: document.createElement("div"), sldPtrMB: document.createElement("div"), sldPtrOB: document.createElement("div"), btn: document.createElement("div"), btnT: document.createElement("span") }, e.picker.pad.appendChild(e.picker.padPal.elm), e.picker.padB.appendChild(e.picker.pad), e.picker.cross.appendChild(e.picker.crossBY), e.picker.cross.appendChild(e.picker.crossBX), e.picker.cross.appendChild(e.picker.crossLY), e.picker.cross.appendChild(e.picker.crossLX), e.picker.padB.appendChild(e.picker.cross), e.picker.box.appendChild(e.picker.padB), e.picker.box.appendChild(e.picker.padM), e.picker.sld.appendChild(e.picker.sldGrad.elm), e.picker.sldB.appendChild(e.picker.sld), e.picker.sldB.appendChild(e.picker.sldPtrOB), e.picker.sldPtrOB.appendChild(e.picker.sldPtrMB), e.picker.sldPtrMB.appendChild(e.picker.sldPtrIB), e.picker.sldPtrIB.appendChild(e.picker.sldPtrS), e.picker.box.appendChild(e.picker.sldB), e.picker.box.appendChild(e.picker.sldM), e.picker.btn.appendChild(e.picker.btnT), e.picker.box.appendChild(e.picker.btn), e.picker.boxB.appendChild(e.picker.box), e.picker.wrap.appendChild(e.picker.boxS), e.picker.wrap.appendChild(e.picker.boxB));var t = e.picker,
+            n = !!e.getSliderComponent(d),
+            r = e.getPickerDims(d),
+            i = 2 * d.pointerBorderWidth + d.pointerThickness + 2 * d.crossSize,
+            s = e.getPadToSliderPadding(d),
+            o = Math.min(d.borderRadius, Math.round(d.padding * Math.PI)),
+            u = "crosshair";t.wrap.style.clear = "both", t.wrap.style.width = r[0] + 2 * d.borderWidth + "px", t.wrap.style.height = r[1] + 2 * d.borderWidth + "px", t.wrap.style.zIndex = d.zIndex, t.box.style.width = r[0] + "px", t.box.style.height = r[1] + "px", t.boxS.style.position = "absolute", t.boxS.style.left = "0", t.boxS.style.top = "0", t.boxS.style.width = "100%", t.boxS.style.height = "100%", e.setBorderRadius(t.boxS, o + "px"), t.boxB.style.position = "relative", t.boxB.style.border = d.borderWidth + "px solid", t.boxB.style.borderColor = d.borderColor, t.boxB.style.background = d.backgroundColor, e.setBorderRadius(t.boxB, o + "px"), t.padM.style.background = t.sldM.style.background = "#FFF", e.setStyle(t.padM, "opacity", "0"), e.setStyle(t.sldM, "opacity", "0"), t.pad.style.position = "relative", t.pad.style.width = d.width + "px", t.pad.style.height = d.height + "px", t.padPal.draw(d.width, d.height, e.getPadYComponent(d)), t.padB.style.position = "absolute", t.padB.style.left = d.padding + "px", t.padB.style.top = d.padding + "px", t.padB.style.border = d.insetWidth + "px solid", t.padB.style.borderColor = d.insetColor, t.padM._jscInstance = d, t.padM._jscControlName = "pad", t.padM.style.position = "absolute", t.padM.style.left = "0", t.padM.style.top = "0", t.padM.style.width = d.padding + 2 * d.insetWidth + d.width + s / 2 + "px", t.padM.style.height = r[1] + "px", t.padM.style.cursor = u, t.cross.style.position = "absolute", t.cross.style.left = t.cross.style.top = "0", t.cross.style.width = t.cross.style.height = i + "px", t.crossBY.style.position = t.crossBX.style.position = "absolute", t.crossBY.style.background = t.crossBX.style.background = d.pointerBorderColor, t.crossBY.style.width = t.crossBX.style.height = 2 * d.pointerBorderWidth + d.pointerThickness + "px", t.crossBY.style.height = t.crossBX.style.width = i + "px", t.crossBY.style.left = t.crossBX.style.top = Math.floor(i / 2) - Math.floor(d.pointerThickness / 2) - d.pointerBorderWidth + "px", t.crossBY.style.top = t.crossBX.style.left = "0", t.crossLY.style.position = t.crossLX.style.position = "absolute", t.crossLY.style.background = t.crossLX.style.background = d.pointerColor, t.crossLY.style.height = t.crossLX.style.width = i - 2 * d.pointerBorderWidth + "px", t.crossLY.style.width = t.crossLX.style.height = d.pointerThickness + "px", t.crossLY.style.left = t.crossLX.style.top = Math.floor(i / 2) - Math.floor(d.pointerThickness / 2) + "px", t.crossLY.style.top = t.crossLX.style.left = d.pointerBorderWidth + "px", t.sld.style.overflow = "hidden", t.sld.style.width = d.sliderSize + "px", t.sld.style.height = d.height + "px", t.sldGrad.draw(d.sliderSize, d.height, "#000", "#000"), t.sldB.style.display = n ? "block" : "none", t.sldB.style.position = "absolute", t.sldB.style.right = d.padding + "px", t.sldB.style.top = d.padding + "px", t.sldB.style.border = d.insetWidth + "px solid", t.sldB.style.borderColor = d.insetColor, t.sldM._jscInstance = d, t.sldM._jscControlName = "sld", t.sldM.style.display = n ? "block" : "none", t.sldM.style.position = "absolute", t.sldM.style.right = "0", t.sldM.style.top = "0", t.sldM.style.width = d.sliderSize + s / 2 + d.padding + 2 * d.insetWidth + "px", t.sldM.style.height = r[1] + "px", t.sldM.style.cursor = "default", t.sldPtrIB.style.border = t.sldPtrOB.style.border = d.pointerBorderWidth + "px solid " + d.pointerBorderColor, t.sldPtrOB.style.position = "absolute", t.sldPtrOB.style.left = -(2 * d.pointerBorderWidth + d.pointerThickness) + "px", t.sldPtrOB.style.top = "0", t.sldPtrMB.style.border = d.pointerThickness + "px solid " + d.pointerColor, t.sldPtrS.style.width = d.sliderSize + "px", t.sldPtrS.style.height = m + "px", t.btn.style.display = d.closable ? "block" : "none", t.btn.style.position = "absolute", t.btn.style.left = d.padding + "px", t.btn.style.bottom = d.padding + "px", t.btn.style.padding = "0 15px", t.btn.style.height = d.buttonHeight + "px", t.btn.style.border = d.insetWidth + "px solid", l(), t.btn.style.color = d.buttonColor, t.btn.style.font = "12px sans-serif", t.btn.style.textAlign = "center";try {
+          t.btn.style.cursor = "pointer";
+        } catch (c) {
+          t.btn.style.cursor = "hand";
+        }t.btn.onmousedown = function () {
+          d.hide();
+        }, t.btnT.style.lineHeight = d.buttonHeight + "px", t.btnT.innerHTML = "", t.btnT.appendChild(document.createTextNode(d.closeText)), a(), f(), e.picker.owner && e.picker.owner !== d && e.unsetClass(e.picker.owner.targetElement, d.activeClass), e.picker.owner = d, e.isElementType(v, "body") ? e.redrawPosition() : e._drawPosition(d, 0, 0, "relative", !1), t.wrap.parentNode != v && v.appendChild(t.wrap), e.setClass(d.targetElement, d.activeClass);
+      }function a() {
+        switch (e.getPadYComponent(d)) {case "s":
+            var t = 1;break;case "v":
+            var t = 2;}var n = Math.round(d.hsv[0] / 360 * (d.width - 1)),
+            r = Math.round((1 - d.hsv[t] / 100) * (d.height - 1)),
+            i = 2 * d.pointerBorderWidth + d.pointerThickness + 2 * d.crossSize,
+            o = -Math.floor(i / 2);e.picker.cross.style.left = n + o + "px", e.picker.cross.style.top = r + o + "px";switch (e.getSliderComponent(d)) {case "s":
+            var u = s(d.hsv[0], 100, d.hsv[2]),
+                a = s(d.hsv[0], 0, d.hsv[2]),
+                f = "rgb(" + Math.round(u[0]) + "," + Math.round(u[1]) + "," + Math.round(u[2]) + ")",
+                l = "rgb(" + Math.round(a[0]) + "," + Math.round(a[1]) + "," + Math.round(a[2]) + ")";e.picker.sldGrad.draw(d.sliderSize, d.height, f, l);break;case "v":
+            var c = s(d.hsv[0], d.hsv[1], 100),
+                f = "rgb(" + Math.round(c[0]) + "," + Math.round(c[1]) + "," + Math.round(c[2]) + ")",
+                l = "#000";e.picker.sldGrad.draw(d.sliderSize, d.height, f, l);}
+      }function f() {
+        var t = e.getSliderComponent(d);if (t) {
+          switch (t) {case "s":
+              var n = 1;break;case "v":
+              var n = 2;}var r = Math.round((1 - d.hsv[n] / 100) * (d.height - 1));e.picker.sldPtrOB.style.top = r - (2 * d.pointerBorderWidth + d.pointerThickness) - Math.floor(m / 2) + "px";
+        }
+      }function l() {
+        return e.picker && e.picker.owner === d;
+      }function c() {
+        d.importColor();
+      }this.value = null, this.valueElement = t, this.styleElement = t, this.required = !0, this.refine = !0, this.hash = !1, this.uppercase = !0, this.onFineChange = null, this.activeClass = "jscolor-active", this.minS = 0, this.maxS = 100, this.minV = 0, this.maxV = 100, this.hsv = [0, 0, 100], this.rgb = [255, 255, 255], this.width = 181, this.height = 101, this.showOnClick = !0, this.mode = "HSV", this.position = "bottom", this.smartPosition = !0, this.sliderSize = 16, this.crossSize = 8, this.closable = !1, this.closeText = "Close", this.buttonColor = "#000000", this.buttonHeight = 18, this.padding = 12, this.backgroundColor = "#FFFFFF", this.borderWidth = 1, this.borderColor = "#BBBBBB", this.borderRadius = 8, this.insetWidth = 1, this.insetColor = "#BBBBBB", this.shadow = !0, this.shadowBlur = 15, this.shadowColor = "rgba(0,0,0,0.2)", this.pointerColor = "#4C4C4C", this.pointerBorderColor = "#FFFFFF", this.pointerBorderWidth = 1, this.pointerThickness = 2, this.zIndex = 1e3, this.container = null;for (var r in n) {
+        n.hasOwnProperty(r) && (this[r] = n[r]);
+      }this.hide = function () {
+        l() && o();
+      }, this.show = function () {
+        u();
+      }, this.redraw = function () {
+        l() && u();
+      }, this.importColor = function () {
+        this.valueElement ? e.isElementType(this.valueElement, "input") ? this.refine ? !this.required && /^\s*$/.test(this.valueElement.value) ? (this.valueElement.value = "", this.styleElement && (this.styleElement.style.backgroundImage = this.styleElement._jscOrigStyle.backgroundImage, this.styleElement.style.backgroundColor = this.styleElement._jscOrigStyle.backgroundColor, this.styleElement.style.color = this.styleElement._jscOrigStyle.color), this.exportColor(e.leaveValue | e.leaveStyle)) : this.fromString(this.valueElement.value) || this.exportColor() : this.fromString(this.valueElement.value, e.leaveValue) || (this.styleElement && (this.styleElement.style.backgroundImage = this.styleElement._jscOrigStyle.backgroundImage, this.styleElement.style.backgroundColor = this.styleElement._jscOrigStyle.backgroundColor, this.styleElement.style.color = this.styleElement._jscOrigStyle.color), this.exportColor(e.leaveValue | e.leaveStyle)) : this.exportColor() : this.exportColor();
+      }, this.exportColor = function (t) {
+        if (!(t & e.leaveValue) && this.valueElement) {
+          var n = this.toString();this.uppercase && (n = n.toUpperCase()), this.hash && (n = "#" + n), e.isElementType(this.valueElement, "input") ? this.valueElement.value = n : this.valueElement.innerHTML = n;
+        }t & e.leaveStyle || this.styleElement && (this.styleElement.style.backgroundImage = "none", this.styleElement.style.backgroundColor = "#" + this.toString(), this.styleElement.style.color = this.isLight() ? "#000" : "#FFF"), !(t & e.leavePad) && l() && a(), !(t & e.leaveSld) && l() && f();
+      }, this.fromHSV = function (e, t, n, r) {
+        if (e !== null) {
+          if (isNaN(e)) return !1;e = Math.max(0, Math.min(360, e));
+        }if (t !== null) {
+          if (isNaN(t)) return !1;t = Math.max(0, Math.min(100, this.maxS, t), this.minS);
+        }if (n !== null) {
+          if (isNaN(n)) return !1;n = Math.max(0, Math.min(100, this.maxV, n), this.minV);
+        }this.rgb = s(e === null ? this.hsv[0] : this.hsv[0] = e, t === null ? this.hsv[1] : this.hsv[1] = t, n === null ? this.hsv[2] : this.hsv[2] = n), this.exportColor(r);
+      }, this.fromRGB = function (e, t, n, r) {
+        if (e !== null) {
+          if (isNaN(e)) return !1;e = Math.max(0, Math.min(255, e));
+        }if (t !== null) {
+          if (isNaN(t)) return !1;t = Math.max(0, Math.min(255, t));
+        }if (n !== null) {
+          if (isNaN(n)) return !1;n = Math.max(0, Math.min(255, n));
+        }var o = i(e === null ? this.rgb[0] : e, t === null ? this.rgb[1] : t, n === null ? this.rgb[2] : n);o[0] !== null && (this.hsv[0] = Math.max(0, Math.min(360, o[0]))), o[2] !== 0 && (this.hsv[1] = o[1] === null ? null : Math.max(0, this.minS, Math.min(100, this.maxS, o[1]))), this.hsv[2] = o[2] === null ? null : Math.max(0, this.minV, Math.min(100, this.maxV, o[2]));var u = s(this.hsv[0], this.hsv[1], this.hsv[2]);this.rgb[0] = u[0], this.rgb[1] = u[1], this.rgb[2] = u[2], this.exportColor(r);
+      }, this.fromString = function (e, t) {
+        var n;if (n = e.match(/^\W*([0-9A-F]{3}([0-9A-F]{3})?)\W*$/i)) return n[1].length === 6 ? this.fromRGB(parseInt(n[1].substr(0, 2), 16), parseInt(n[1].substr(2, 2), 16), parseInt(n[1].substr(4, 2), 16), t) : this.fromRGB(parseInt(n[1].charAt(0) + n[1].charAt(0), 16), parseInt(n[1].charAt(1) + n[1].charAt(1), 16), parseInt(n[1].charAt(2) + n[1].charAt(2), 16), t), !0;if (n = e.match(/^\W*rgba?\(([^)]*)\)\W*$/i)) {
+          var r = n[1].split(","),
+              i = /^\s*(\d*)(\.\d+)?\s*$/,
+              s,
+              o,
+              u;if (r.length >= 3 && (s = r[0].match(i)) && (o = r[1].match(i)) && (u = r[2].match(i))) {
+            var a = parseFloat((s[1] || "0") + (s[2] || "")),
+                f = parseFloat((o[1] || "0") + (o[2] || "")),
+                l = parseFloat((u[1] || "0") + (u[2] || ""));return this.fromRGB(a, f, l, t), !0;
+          }
+        }return !1;
+      }, this.toString = function () {
+        return (256 | Math.round(this.rgb[0])).toString(16).substr(1) + (256 | Math.round(this.rgb[1])).toString(16).substr(1) + (256 | Math.round(this.rgb[2])).toString(16).substr(1);
+      }, this.toHEXString = function () {
+        return "#" + this.toString().toUpperCase();
+      }, this.toRGBString = function () {
+        return "rgb(" + Math.round(this.rgb[0]) + "," + Math.round(this.rgb[1]) + "," + Math.round(this.rgb[2]) + ")";
+      }, this.isLight = function () {
+        return .213 * this.rgb[0] + .715 * this.rgb[1] + .072 * this.rgb[2] > 127.5;
+      }, this._processParentElementsInDOM = function () {
+        if (this._linkedElementsProcessed) return;this._linkedElementsProcessed = !0;var t = this.targetElement;do {
+          var n = e.getStyle(t);n && n.position.toLowerCase() === "fixed" && (this.fixed = !0), t !== this.targetElement && (t._jscEventsAttached || (e.attachEvent(t, "scroll", e.onParentScroll), t._jscEventsAttached = !0));
+        } while ((t = t.parentNode) && !e.isElementType(t, "body"));
+      };if (typeof t == "string") {
+        var h = t,
+            p = document.getElementById(h);p ? this.targetElement = p : e.warn("Could not find target element with ID '" + h + "'");
+      } else t ? this.targetElement = t : e.warn("Invalid target element: '" + t + "'");if (this.targetElement._jscLinkedInstance) {
+        e.warn("Cannot link jscolor twice to the same element. Skipping.");return;
+      }this.targetElement._jscLinkedInstance = this, this.valueElement = e.fetchElement(this.valueElement), this.styleElement = e.fetchElement(this.styleElement);var d = this,
+          v = this.container ? e.fetchElement(this.container) : document.getElementsByTagName("body")[0],
+          m = 3;if (e.isElementType(this.targetElement, "button")) if (this.targetElement.onclick) {
+        var g = this.targetElement.onclick;this.targetElement.onclick = function (e) {
+          return g.call(this, e), !1;
+        };
+      } else this.targetElement.onclick = function () {
+        return !1;
+      };if (this.valueElement && e.isElementType(this.valueElement, "input")) {
+        var y = function y() {
+          d.fromString(d.valueElement.value, e.leaveValue), e.dispatchFineChange(d);
+        };e.attachEvent(this.valueElement, "keyup", y), e.attachEvent(this.valueElement, "input", y), e.attachEvent(this.valueElement, "blur", c), this.valueElement.setAttribute("autocomplete", "off");
+      }this.styleElement && (this.styleElement._jscOrigStyle = { backgroundImage: this.styleElement.style.backgroundImage, backgroundColor: this.styleElement.style.backgroundColor, color: this.styleElement.style.color }), this.value ? this.fromString(this.value) || this.exportColor() : this.importColor();
+    } };return e.jscolor.lookupClass = "jscolor", e.jscolor.installByClassName = function (t) {
+    var n = document.getElementsByTagName("input"),
+        r = document.getElementsByTagName("button");e.tryInstallOnElements(n, t), e.tryInstallOnElements(r, t);
+  }, e.register(), e.jscolor;
+}());
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert2__);
+
+
+$(function () {
+    $('.size-delete').click(function () {
+        var _this = this;
+
+        __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
+            title: 'Eliminar talla',
+            text: 'Seguro que desea eliminar',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true
+        }).then(function () {
+            var sizeHashId = $(_this).data('sizeId');
+
+            $.ajax({
+                method: 'DELETE',
+                url: '/admin/settings/size/' + sizeHashId
+            }).done(function () {
+                return location.reload();
+            });
+        });
+    });
+
+    $('.color-delete').click(function () {
+        var _this2 = this;
+
+        __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
+            title: 'Eliminar color',
+            text: 'Seguro que desea eliminar',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true
+        }).then(function () {
+            var sizeHashId = $(_this2).data('colorId');
+
+            $.ajax({
+                method: 'DELETE',
+                url: '/admin/settings/colors/' + sizeHashId
+            }).done(function () {
+                return location.reload();
+            });
+        });
+    });
+});
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * sweetalert2 v6.10.2
+ * Released under the MIT License.
+ */
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.Sweetalert2 = factory());
+}(this, (function () { 'use strict';
+
+function __$styleInject(css, returnValue) {
+  if (typeof document === 'undefined') {
+    return returnValue;
+  }
+  css = css || '';
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+  head.appendChild(style);
+  
+  if (style.styleSheet){
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+  return returnValue;
+}
+
+var defaultParams = {
+  title: '',
+  titleText: '',
+  text: '',
+  html: '',
+  type: null,
+  customClass: '',
+  target: 'body',
+  animation: true,
+  allowOutsideClick: true,
+  allowEscapeKey: true,
+  allowEnterKey: true,
+  showConfirmButton: true,
+  showCancelButton: false,
+  preConfirm: null,
+  confirmButtonText: 'OK',
+  confirmButtonAriaLabel: '',
+  confirmButtonColor: '#3085d6',
+  confirmButtonClass: null,
+  cancelButtonText: 'Cancel',
+  cancelButtonAriaLabel: '',
+  cancelButtonColor: '#aaa',
+  cancelButtonClass: null,
+  buttonsStyling: true,
+  reverseButtons: false,
+  focusConfirm: true,
+  focusCancel: false,
+  showCloseButton: false,
+  closeButtonAriaLabel: 'Close this dialog',
+  showLoaderOnConfirm: false,
+  imageUrl: null,
+  imageWidth: null,
+  imageHeight: null,
+  imageAlt: '',
+  imageClass: null,
+  timer: null,
+  width: 500,
+  padding: 20,
+  background: '#fff',
+  input: null,
+  inputPlaceholder: '',
+  inputValue: '',
+  inputOptions: {},
+  inputAutoTrim: true,
+  inputClass: null,
+  inputAttributes: {},
+  inputValidator: null,
+  progressSteps: [],
+  currentProgressStep: null,
+  progressStepsDistance: '40px',
+  onOpen: null,
+  onClose: null,
+  useRejections: true
+};
+
+var swalPrefix = 'swal2-';
+
+var prefix = function prefix(items) {
+  var result = {};
+  for (var i in items) {
+    result[items[i]] = swalPrefix + items[i];
+  }
+  return result;
+};
+
+var swalClasses = prefix(['container', 'shown', 'iosfix', 'modal', 'overlay', 'fade', 'show', 'hide', 'noanimation', 'close', 'title', 'content', 'buttonswrapper', 'confirm', 'cancel', 'icon', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea', 'inputerror', 'validationerror', 'progresssteps', 'activeprogressstep', 'progresscircle', 'progressline', 'loading', 'styled']);
+
+var iconTypes = prefix(['success', 'warning', 'info', 'question', 'error']);
+
+var consolePrefix = 'SweetAlert2:';
+
+/*
+ * Set hover, active and focus-states for buttons (source: http://www.sitepoint.com/javascript-generate-lighter-darker-color)
+ */
+var colorLuminance = function colorLuminance(hex, lum) {
+  // Validate hex string
+  hex = String(hex).replace(/[^0-9a-f]/gi, '');
+  if (hex.length < 6) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+  lum = lum || 0;
+
+  // Convert to decimal and change luminosity
+  var rgb = '#';
+  for (var i = 0; i < 3; i++) {
+    var c = parseInt(hex.substr(i * 2, 2), 16);
+    c = Math.round(Math.min(Math.max(0, c + c * lum), 255)).toString(16);
+    rgb += ('00' + c).substr(c.length);
+  }
+
+  return rgb;
+};
+
+var uniqueArray = function uniqueArray(arr) {
+  var result = [];
+  for (var i in arr) {
+    if (result.indexOf(arr[i]) === -1) {
+      result.push(arr[i]);
+    }
+  }
+  return result;
+};
+
+/**
+ * Standardise console warnings
+ * @param message
+ */
+var warn = function warn(message) {
+  console.warn(consolePrefix + ' ' + message);
+};
+
+/**
+ * Standardise console errors
+ * @param message
+ */
+var error = function error(message) {
+  console.error(consolePrefix + ' ' + message);
+};
+
+// Remember state in cases where opening and handling a modal will fiddle with it.
+var states = {
+  previousWindowKeyDown: null,
+  previousActiveElement: null,
+  previousBodyPadding: null
+
+  /*
+   * Add modal + overlay to DOM
+   */
+};var init = function init(params) {
+  // Clean up the old modal if it exists
+  var c = getContainer();
+  if (c) {
+    c.parentNode.removeChild(c);
+  }
+
+  if (typeof document === 'undefined') {
+    error('SweetAlert2 requires document to initialize');
+    return;
+  }
+
+  var container = document.createElement('div');
+  container.className = swalClasses.container;
+  container.innerHTML = sweetHTML;
+
+  var targetElement = typeof params.target === 'string' ? document.querySelector(params.target) : params.target;
+  targetElement.appendChild(container);
+
+  var modal = getModal();
+  var input = getChildByClass(modal, swalClasses.input);
+  var file = getChildByClass(modal, swalClasses.file);
+  var range = modal.querySelector('.' + swalClasses.range + ' input');
+  var rangeOutput = modal.querySelector('.' + swalClasses.range + ' output');
+  var select = getChildByClass(modal, swalClasses.select);
+  var checkbox = modal.querySelector('.' + swalClasses.checkbox + ' input');
+  var textarea = getChildByClass(modal, swalClasses.textarea);
+
+  input.oninput = function () {
+    sweetAlert.resetValidationError();
+  };
+
+  file.onchange = function () {
+    sweetAlert.resetValidationError();
+  };
+
+  range.oninput = function () {
+    sweetAlert.resetValidationError();
+    rangeOutput.value = range.value;
+  };
+
+  range.onchange = function () {
+    sweetAlert.resetValidationError();
+    range.previousSibling.value = range.value;
+  };
+
+  select.onchange = function () {
+    sweetAlert.resetValidationError();
+  };
+
+  checkbox.onchange = function () {
+    sweetAlert.resetValidationError();
+  };
+
+  textarea.oninput = function () {
+    sweetAlert.resetValidationError();
+  };
+
+  return modal;
+};
+
+/*
+ * Manipulate DOM
+ */
+
+var sweetHTML = ('\n <div role="dialog" aria-labelledby="' + swalClasses.title + '" aria-describedby="' + swalClasses.content + '" class="' + swalClasses.modal + '" tabindex="-1">\n   <ul class="' + swalClasses.progresssteps + '"></ul>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.error + '">\n     <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span>\n   </div>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.question + '">?</div>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.warning + '">!</div>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.info + '">i</div>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.success + '">\n     <div class="swal2-success-circular-line-left"></div>\n     <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>\n     <div class="swal2-success-ring"></div> <div class="swal2-success-fix"></div>\n     <div class="swal2-success-circular-line-right"></div>\n   </div>\n   <img class="' + swalClasses.image + '" />\n   <h2 class="' + swalClasses.title + '" id="' + swalClasses.title + '"></h2>\n   <div id="' + swalClasses.content + '" class="' + swalClasses.content + '"></div>\n   <input class="' + swalClasses.input + '" />\n   <input type="file" class="' + swalClasses.file + '" />\n   <div class="' + swalClasses.range + '">\n     <output></output>\n     <input type="range" />\n   </div>\n   <select class="' + swalClasses.select + '"></select>\n   <div class="' + swalClasses.radio + '"></div>\n   <label for="' + swalClasses.checkbox + '" class="' + swalClasses.checkbox + '">\n     <input type="checkbox" />\n   </label>\n   <textarea class="' + swalClasses.textarea + '"></textarea>\n   <div class="' + swalClasses.validationerror + '" id="' + swalClasses.validationerror + '"></div>\n   <div class="' + swalClasses.buttonswrapper + '">\n     <button type="button" class="' + swalClasses.confirm + '">OK</button>\n     <button type="button" class="' + swalClasses.cancel + '">Cancel</button>\n   </div>\n   <button type="button" class="' + swalClasses.close + '">\xD7</button>\n </div>\n').replace(/(^|\n)\s*/g, '');
+
+var getContainer = function getContainer() {
+  return document.body.querySelector('.' + swalClasses.container);
+};
+
+var getModal = function getModal() {
+  return getContainer() ? getContainer().querySelector('.' + swalClasses.modal) : null;
+};
+
+var getIcons = function getIcons() {
+  var modal = getModal();
+  return modal.querySelectorAll('.' + swalClasses.icon);
+};
+
+var elementByClass = function elementByClass(className) {
+  return getContainer() ? getContainer().querySelector('.' + className) : null;
+};
+
+var getTitle = function getTitle() {
+  return elementByClass(swalClasses.title);
+};
+
+var getContent = function getContent() {
+  return elementByClass(swalClasses.content);
+};
+
+var getImage = function getImage() {
+  return elementByClass(swalClasses.image);
+};
+
+var getProgressSteps = function getProgressSteps() {
+  return elementByClass(swalClasses.progresssteps);
+};
+
+var getValidationError = function getValidationError() {
+  return elementByClass(swalClasses.validationerror);
+};
+
+var getConfirmButton = function getConfirmButton() {
+  return elementByClass(swalClasses.confirm);
+};
+
+var getCancelButton = function getCancelButton() {
+  return elementByClass(swalClasses.cancel);
+};
+
+var getButtonsWrapper = function getButtonsWrapper() {
+  return elementByClass(swalClasses.buttonswrapper);
+};
+
+var getCloseButton = function getCloseButton() {
+  return elementByClass(swalClasses.close);
+};
+
+var getFocusableElements = function getFocusableElements() {
+  var focusableElementsWithTabindex = Array.from(getModal().querySelectorAll('[tabindex]:not([tabindex="-1"]):not([tabindex="0"])'))
+  // sort according to tabindex
+  .sort(function (a, b) {
+    a = parseInt(a.getAttribute('tabindex'));
+    b = parseInt(b.getAttribute('tabindex'));
+    if (a > b) {
+      return 1;
+    } else if (a < b) {
+      return -1;
+    }
+    return 0;
+  });
+
+  var otherFocusableElements = Array.prototype.slice.call(getModal().querySelectorAll('button, input:not([type=hidden]), textarea, select, a, [tabindex="0"]'));
+
+  return uniqueArray(focusableElementsWithTabindex.concat(otherFocusableElements));
+};
+
+var hasClass = function hasClass(elem, className) {
+  if (elem.classList) {
+    return elem.classList.contains(className);
+  }
+  return false;
+};
+
+var focusInput = function focusInput(input) {
+  input.focus();
+
+  // place cursor at end of text in text input
+  if (input.type !== 'file') {
+    // http://stackoverflow.com/a/2345915/1331425
+    var val = input.value;
+    input.value = '';
+    input.value = val;
+  }
+};
+
+var addClass = function addClass(elem, className) {
+  if (!elem || !className) {
+    return;
+  }
+  var classes = className.split(/\s+/).filter(Boolean);
+  classes.forEach(function (className) {
+    elem.classList.add(className);
+  });
+};
+
+var removeClass = function removeClass(elem, className) {
+  if (!elem || !className) {
+    return;
+  }
+  var classes = className.split(/\s+/).filter(Boolean);
+  classes.forEach(function (className) {
+    elem.classList.remove(className);
+  });
+};
+
+var getChildByClass = function getChildByClass(elem, className) {
+  for (var i = 0; i < elem.childNodes.length; i++) {
+    if (hasClass(elem.childNodes[i], className)) {
+      return elem.childNodes[i];
+    }
+  }
+};
+
+var show = function show(elem, display) {
+  if (!display) {
+    display = 'block';
+  }
+  elem.style.opacity = '';
+  elem.style.display = display;
+};
+
+var hide = function hide(elem) {
+  elem.style.opacity = '';
+  elem.style.display = 'none';
+};
+
+var empty = function empty(elem) {
+  while (elem.firstChild) {
+    elem.removeChild(elem.firstChild);
+  }
+};
+
+// borrowed from jqeury $(elem).is(':visible') implementation
+var isVisible = function isVisible(elem) {
+  return elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length;
+};
+
+var removeStyleProperty = function removeStyleProperty(elem, property) {
+  if (elem.style.removeProperty) {
+    elem.style.removeProperty(property);
+  } else {
+    elem.style.removeAttribute(property);
+  }
+};
+
+var animationEndEvent = function () {
+  var testEl = document.createElement('div');
+  var transEndEventNames = {
+    'WebkitAnimation': 'webkitAnimationEnd',
+    'OAnimation': 'oAnimationEnd oanimationend',
+    'animation': 'animationend'
+  };
+  for (var i in transEndEventNames) {
+    if (transEndEventNames.hasOwnProperty(i) && testEl.style[i] !== undefined) {
+      return transEndEventNames[i];
+    }
+  }
+
+  return false;
+}();
+
+// Reset previous window keydown handler and focued element
+var resetPrevState = function resetPrevState() {
+  window.onkeydown = states.previousWindowKeyDown;
+  if (states.previousActiveElement && states.previousActiveElement.focus) {
+    var x = window.scrollX;
+    var y = window.scrollY;
+    states.previousActiveElement.focus();
+    if (x && y) {
+      // IE has no scrollX/scrollY support
+      window.scrollTo(x, y);
+    }
+  }
+};
+
+// Measure width of scrollbar
+// https://github.com/twbs/bootstrap/blob/master/js/modal.js#L279-L286
+var measureScrollbar = function measureScrollbar() {
+  var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+  if (supportsTouch) {
+    return 0;
+  }
+  var scrollDiv = document.createElement('div');
+  scrollDiv.style.width = '50px';
+  scrollDiv.style.height = '50px';
+  scrollDiv.style.overflow = 'scroll';
+  document.body.appendChild(scrollDiv);
+  var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+  document.body.removeChild(scrollDiv);
+  return scrollbarWidth;
+};
+
+// JavaScript Debounce Function
+// Simplivied version of https://davidwalsh.name/javascript-debounce-function
+var debounce = function debounce(func, wait) {
+  var timeout = void 0;
+  return function () {
+    var later = function later() {
+      timeout = null;
+      func();
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+
+
+
+
+var asyncGenerator = function () {
+  function AwaitValue(value) {
+    this.value = value;
+  }
+
+  function AsyncGenerator(gen) {
+    var front, back;
+
+    function send(key, arg) {
+      return new Promise(function (resolve, reject) {
+        var request = {
+          key: key,
+          arg: arg,
+          resolve: resolve,
+          reject: reject,
+          next: null
+        };
+
+        if (back) {
+          back = back.next = request;
+        } else {
+          front = back = request;
+          resume(key, arg);
+        }
+      });
+    }
+
+    function resume(key, arg) {
+      try {
+        var result = gen[key](arg);
+        var value = result.value;
+
+        if (value instanceof AwaitValue) {
+          Promise.resolve(value.value).then(function (arg) {
+            resume("next", arg);
+          }, function (arg) {
+            resume("throw", arg);
+          });
+        } else {
+          settle(result.done ? "return" : "normal", result.value);
+        }
+      } catch (err) {
+        settle("throw", err);
+      }
+    }
+
+    function settle(type, value) {
+      switch (type) {
+        case "return":
+          front.resolve({
+            value: value,
+            done: true
+          });
+          break;
+
+        case "throw":
+          front.reject(value);
+          break;
+
+        default:
+          front.resolve({
+            value: value,
+            done: false
+          });
+          break;
+      }
+
+      front = front.next;
+
+      if (front) {
+        resume(front.key, front.arg);
+      } else {
+        back = null;
+      }
+    }
+
+    this._invoke = send;
+
+    if (typeof gen.return !== "function") {
+      this.return = undefined;
+    }
+  }
+
+  if (typeof Symbol === "function" && Symbol.asyncIterator) {
+    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
+      return this;
+    };
+  }
+
+  AsyncGenerator.prototype.next = function (arg) {
+    return this._invoke("next", arg);
+  };
+
+  AsyncGenerator.prototype.throw = function (arg) {
+    return this._invoke("throw", arg);
+  };
+
+  AsyncGenerator.prototype.return = function (arg) {
+    return this._invoke("return", arg);
+  };
+
+  return {
+    wrap: function (fn) {
+      return function () {
+        return new AsyncGenerator(fn.apply(this, arguments));
+      };
+    },
+    await: function (value) {
+      return new AwaitValue(value);
+    }
+  };
+}();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+var modalParams = _extends({}, defaultParams);
+var queue = [];
+var swal2Observer = void 0;
+
+/*
+ * Check for the existence of Promise
+ * Hopefully to avoid many github issues
+ */
+if (typeof Promise === 'undefined') {
+  error('This package requires a Promise library, please include a shim to enable it in this browser (See: https://github.com/limonte/sweetalert2/wiki/Migration-from-SweetAlert-to-SweetAlert2#1-ie-support)');
+}
+
+/*
+ * Set type, text and actions on modal
+ */
+var setParameters = function setParameters(params) {
+  // If a custom element is set, determine if it is valid
+  if (typeof params.target === 'string' && !document.querySelector(params.target) || typeof params.target !== 'string' && !params.target.appendChild) {
+    warn('Target parameter is not valid, defaulting to "body"');
+    params.target = 'body';
+  }
+
+  var modal = void 0;
+  var oldModal = getModal();
+  var targetElement = typeof params.target === 'string' ? document.querySelector(params.target) : params.target;
+  // If the model target has changed, refresh the modal
+  if (oldModal && targetElement && oldModal.parentNode !== targetElement.parentNode) {
+    modal = init(params);
+  } else {
+    modal = oldModal || init(params);
+  }
+
+  for (var param in params) {
+    if (!sweetAlert.isValidParameter(param)) {
+      warn('Unknown parameter "' + param + '"');
+    }
+  }
+
+  // Set modal width
+  modal.style.width = typeof params.width === 'number' ? params.width + 'px' : params.width;
+
+  modal.style.padding = params.padding + 'px';
+  modal.style.background = params.background;
+  var successIconParts = modal.querySelectorAll('[class^=swal2-success-circular-line], .swal2-success-fix');
+  for (var i = 0; i < successIconParts.length; i++) {
+    successIconParts[i].style.background = params.background;
+  }
+
+  var title = getTitle();
+  var content = getContent();
+  var buttonsWrapper = getButtonsWrapper();
+  var confirmButton = getConfirmButton();
+  var cancelButton = getCancelButton();
+  var closeButton = getCloseButton();
+
+  // Title
+  if (params.titleText) {
+    title.innerText = params.titleText;
+  } else {
+    title.innerHTML = params.title.split('\n').join('<br />');
+  }
+
+  // Content
+  if (params.text || params.html) {
+    if (_typeof(params.html) === 'object') {
+      content.innerHTML = '';
+      if (0 in params.html) {
+        for (var _i = 0; _i in params.html; _i++) {
+          content.appendChild(params.html[_i].cloneNode(true));
+        }
+      } else {
+        content.appendChild(params.html.cloneNode(true));
+      }
+    } else if (params.html) {
+      content.innerHTML = params.html;
+    } else if (params.text) {
+      content.textContent = params.text;
+    }
+    show(content);
+  } else {
+    hide(content);
+  }
+
+  // Close button
+  if (params.showCloseButton) {
+    closeButton.setAttribute('aria-label', params.closeButtonAriaLabel);
+    show(closeButton);
+  } else {
+    hide(closeButton);
+  }
+
+  // Custom Class
+  modal.className = swalClasses.modal;
+  if (params.customClass) {
+    addClass(modal, params.customClass);
+  }
+
+  // Progress steps
+  var progressStepsContainer = getProgressSteps();
+  var currentProgressStep = parseInt(params.currentProgressStep === null ? sweetAlert.getQueueStep() : params.currentProgressStep, 10);
+  if (params.progressSteps.length) {
+    show(progressStepsContainer);
+    empty(progressStepsContainer);
+    if (currentProgressStep >= params.progressSteps.length) {
+      warn('Invalid currentProgressStep parameter, it should be less than progressSteps.length ' + '(currentProgressStep like JS arrays starts from 0)');
+    }
+    params.progressSteps.forEach(function (step, index) {
+      var circle = document.createElement('li');
+      addClass(circle, swalClasses.progresscircle);
+      circle.innerHTML = step;
+      if (index === currentProgressStep) {
+        addClass(circle, swalClasses.activeprogressstep);
+      }
+      progressStepsContainer.appendChild(circle);
+      if (index !== params.progressSteps.length - 1) {
+        var line = document.createElement('li');
+        addClass(line, swalClasses.progressline);
+        line.style.width = params.progressStepsDistance;
+        progressStepsContainer.appendChild(line);
+      }
+    });
+  } else {
+    hide(progressStepsContainer);
+  }
+
+  // Icon
+  var icons = getIcons();
+  for (var _i2 = 0; _i2 < icons.length; _i2++) {
+    hide(icons[_i2]);
+  }
+  if (params.type) {
+    var validType = false;
+    for (var iconType in iconTypes) {
+      if (params.type === iconType) {
+        validType = true;
+        break;
+      }
+    }
+    if (!validType) {
+      error('Unknown alert type: ' + params.type);
+      return false;
+    }
+    var icon = modal.querySelector('.' + swalClasses.icon + '.' + iconTypes[params.type]);
+    show(icon);
+
+    // Animate icon
+    if (params.animation) {
+      switch (params.type) {
+        case 'success':
+          addClass(icon, 'swal2-animate-success-icon');
+          addClass(icon.querySelector('.swal2-success-line-tip'), 'swal2-animate-success-line-tip');
+          addClass(icon.querySelector('.swal2-success-line-long'), 'swal2-animate-success-line-long');
+          break;
+        case 'error':
+          addClass(icon, 'swal2-animate-error-icon');
+          addClass(icon.querySelector('.swal2-x-mark'), 'swal2-animate-x-mark');
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  // Custom image
+  var image = getImage();
+  if (params.imageUrl) {
+    image.setAttribute('src', params.imageUrl);
+    image.setAttribute('alt', params.imageAlt);
+    show(image);
+
+    if (params.imageWidth) {
+      image.setAttribute('width', params.imageWidth);
+    } else {
+      image.removeAttribute('width');
+    }
+
+    if (params.imageHeight) {
+      image.setAttribute('height', params.imageHeight);
+    } else {
+      image.removeAttribute('height');
+    }
+
+    image.className = swalClasses.image;
+    if (params.imageClass) {
+      addClass(image, params.imageClass);
+    }
+  } else {
+    hide(image);
+  }
+
+  // Cancel button
+  if (params.showCancelButton) {
+    cancelButton.style.display = 'inline-block';
+  } else {
+    hide(cancelButton);
+  }
+
+  // Confirm button
+  if (params.showConfirmButton) {
+    removeStyleProperty(confirmButton, 'display');
+  } else {
+    hide(confirmButton);
+  }
+
+  // Buttons wrapper
+  if (!params.showConfirmButton && !params.showCancelButton) {
+    hide(buttonsWrapper);
+  } else {
+    show(buttonsWrapper);
+  }
+
+  // Edit text on confirm and cancel buttons
+  confirmButton.innerHTML = params.confirmButtonText;
+  cancelButton.innerHTML = params.cancelButtonText;
+
+  // ARIA labels for confirm and cancel buttons
+  confirmButton.setAttribute('aria-label', params.confirmButtonAriaLabel);
+  cancelButton.setAttribute('aria-label', params.cancelButtonAriaLabel);
+
+  // Set buttons to selected background colors
+  if (params.buttonsStyling) {
+    confirmButton.style.backgroundColor = params.confirmButtonColor;
+    cancelButton.style.backgroundColor = params.cancelButtonColor;
+  }
+
+  // Add buttons custom classes
+  confirmButton.className = swalClasses.confirm;
+  addClass(confirmButton, params.confirmButtonClass);
+  cancelButton.className = swalClasses.cancel;
+  addClass(cancelButton, params.cancelButtonClass);
+
+  // Buttons styling
+  if (params.buttonsStyling) {
+    addClass(confirmButton, swalClasses.styled);
+    addClass(cancelButton, swalClasses.styled);
+  } else {
+    removeClass(confirmButton, swalClasses.styled);
+    removeClass(cancelButton, swalClasses.styled);
+
+    confirmButton.style.backgroundColor = confirmButton.style.borderLeftColor = confirmButton.style.borderRightColor = '';
+    cancelButton.style.backgroundColor = cancelButton.style.borderLeftColor = cancelButton.style.borderRightColor = '';
+  }
+
+  // CSS animation
+  if (params.animation === true) {
+    removeClass(modal, swalClasses.noanimation);
+  } else {
+    addClass(modal, swalClasses.noanimation);
+  }
+
+  // showLoaderOnConfirm && preConfirm
+  if (params.showLoaderOnConfirm && !params.preConfirm) {
+    warn('showLoaderOnConfirm is set to true, but preConfirm is not defined.\n' + 'showLoaderOnConfirm should be used together with preConfirm, see usage example:\n' + 'https://limonte.github.io/sweetalert2/#ajax-request');
+  }
+};
+
+/*
+ * Animations
+ */
+var openModal = function openModal(animation, onComplete) {
+  var container = getContainer();
+  var modal = getModal();
+
+  if (animation) {
+    addClass(modal, swalClasses.show);
+    addClass(container, swalClasses.fade);
+    removeClass(modal, swalClasses.hide);
+  } else {
+    removeClass(modal, swalClasses.fade);
+  }
+  show(modal);
+
+  // scrolling is 'hidden' until animation is done, after that 'auto'
+  container.style.overflowY = 'hidden';
+  if (animationEndEvent && !hasClass(modal, swalClasses.noanimation)) {
+    modal.addEventListener(animationEndEvent, function swalCloseEventFinished() {
+      modal.removeEventListener(animationEndEvent, swalCloseEventFinished);
+      container.style.overflowY = 'auto';
+    });
+  } else {
+    container.style.overflowY = 'auto';
+  }
+
+  addClass(document.documentElement, swalClasses.shown);
+  addClass(document.body, swalClasses.shown);
+  addClass(container, swalClasses.shown);
+  fixScrollbar();
+  iOSfix();
+  states.previousActiveElement = document.activeElement;
+  if (onComplete !== null && typeof onComplete === 'function') {
+    setTimeout(function () {
+      onComplete(modal);
+    });
+  }
+};
+
+var fixScrollbar = function fixScrollbar() {
+  // for queues, do not do this more than once
+  if (states.previousBodyPadding !== null) {
+    return;
+  }
+  // if the body has overflow
+  if (document.body.scrollHeight > window.innerHeight) {
+    // add padding so the content doesn't shift after removal of scrollbar
+    states.previousBodyPadding = document.body.style.paddingRight;
+    document.body.style.paddingRight = measureScrollbar() + 'px';
+  }
+};
+
+var undoScrollbar = function undoScrollbar() {
+  if (states.previousBodyPadding !== null) {
+    document.body.style.paddingRight = states.previousBodyPadding;
+    states.previousBodyPadding = null;
+  }
+};
+
+// Fix iOS scrolling http://stackoverflow.com/q/39626302/1331425
+var iOSfix = function iOSfix() {
+  var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  if (iOS && !hasClass(document.body, swalClasses.iosfix)) {
+    var offset = document.body.scrollTop;
+    document.body.style.top = offset * -1 + 'px';
+    addClass(document.body, swalClasses.iosfix);
+  }
+};
+
+var undoIOSfix = function undoIOSfix() {
+  if (hasClass(document.body, swalClasses.iosfix)) {
+    var offset = parseInt(document.body.style.top, 10);
+    removeClass(document.body, swalClasses.iosfix);
+    document.body.style.top = '';
+    document.body.scrollTop = offset * -1;
+  }
+};
+
+// SweetAlert entry point
+var sweetAlert = function sweetAlert() {
+  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  if (args[0] === undefined) {
+    error('SweetAlert2 expects at least 1 attribute!');
+    return false;
+  }
+
+  var params = _extends({}, modalParams);
+
+  switch (_typeof(args[0])) {
+    case 'string':
+      params.title = args[0];
+      params.html = args[1];
+      params.type = args[2];
+
+      break;
+
+    case 'object':
+      _extends(params, args[0]);
+      params.extraParams = args[0].extraParams;
+
+      if (params.input === 'email' && params.inputValidator === null) {
+        params.inputValidator = function (email) {
+          return new Promise(function (resolve, reject) {
+            var emailRegex = /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (emailRegex.test(email)) {
+              resolve();
+            } else {
+              reject('Invalid email address');
+            }
+          });
+        };
+      }
+
+      if (params.input === 'url' && params.inputValidator === null) {
+        params.inputValidator = function (url) {
+          return new Promise(function (resolve, reject) {
+            // taken from https://stackoverflow.com/a/3809435/1331425
+            var urlRegex = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/;
+            if (urlRegex.test(url)) {
+              resolve();
+            } else {
+              reject('Invalid URL');
+            }
+          });
+        };
+      }
+      break;
+
+    default:
+      error('Unexpected type of argument! Expected "string" or "object", got ' + _typeof(args[0]));
+      return false;
+  }
+
+  setParameters(params);
+
+  var container = getContainer();
+  var modal = getModal();
+
+  return new Promise(function (resolve, reject) {
+    // Close on timer
+    if (params.timer) {
+      modal.timeout = setTimeout(function () {
+        sweetAlert.closeModal(params.onClose);
+        if (params.useRejections) {
+          reject('timer');
+        } else {
+          resolve({ dismiss: 'timer' });
+        }
+      }, params.timer);
+    }
+
+    // Get input element by specified type or, if type isn't specified, by params.input
+    var getInput = function getInput(inputType) {
+      inputType = inputType || params.input;
+      if (!inputType) {
+        return null;
+      }
+      switch (inputType) {
+        case 'select':
+        case 'textarea':
+        case 'file':
+          return getChildByClass(modal, swalClasses[inputType]);
+        case 'checkbox':
+          return modal.querySelector('.' + swalClasses.checkbox + ' input');
+        case 'radio':
+          return modal.querySelector('.' + swalClasses.radio + ' input:checked') || modal.querySelector('.' + swalClasses.radio + ' input:first-child');
+        case 'range':
+          return modal.querySelector('.' + swalClasses.range + ' input');
+        default:
+          return getChildByClass(modal, swalClasses.input);
+      }
+    };
+
+    // Get the value of the modal input
+    var getInputValue = function getInputValue() {
+      var input = getInput();
+      if (!input) {
+        return null;
+      }
+      switch (params.input) {
+        case 'checkbox':
+          return input.checked ? 1 : 0;
+        case 'radio':
+          return input.checked ? input.value : null;
+        case 'file':
+          return input.files.length ? input.files[0] : null;
+        default:
+          return params.inputAutoTrim ? input.value.trim() : input.value;
+      }
+    };
+
+    // input autofocus
+    if (params.input) {
+      setTimeout(function () {
+        var input = getInput();
+        if (input) {
+          focusInput(input);
+        }
+      }, 0);
+    }
+
+    var confirm = function confirm(value) {
+      if (params.showLoaderOnConfirm) {
+        sweetAlert.showLoading();
+      }
+
+      if (params.preConfirm) {
+        params.preConfirm(value, params.extraParams).then(function (preConfirmValue) {
+          sweetAlert.closeModal(params.onClose);
+          resolve(preConfirmValue || value);
+        }, function (error$$1) {
+          sweetAlert.hideLoading();
+          if (error$$1) {
+            sweetAlert.showValidationError(error$$1);
+          }
+        });
+      } else {
+        sweetAlert.closeModal(params.onClose);
+        if (params.useRejections) {
+          resolve(value);
+        } else {
+          resolve({ value: value });
+        }
+      }
+    };
+
+    // Mouse interactions
+    var onButtonEvent = function onButtonEvent(event) {
+      var e = event || window.event;
+      var target = e.target || e.srcElement;
+      var confirmButton = getConfirmButton();
+      var cancelButton = getCancelButton();
+      var targetedConfirm = confirmButton && (confirmButton === target || confirmButton.contains(target));
+      var targetedCancel = cancelButton && (cancelButton === target || cancelButton.contains(target));
+
+      switch (e.type) {
+        case 'mouseover':
+        case 'mouseup':
+          if (params.buttonsStyling) {
+            if (targetedConfirm) {
+              confirmButton.style.backgroundColor = colorLuminance(params.confirmButtonColor, -0.1);
+            } else if (targetedCancel) {
+              cancelButton.style.backgroundColor = colorLuminance(params.cancelButtonColor, -0.1);
+            }
+          }
+          break;
+        case 'mouseout':
+          if (params.buttonsStyling) {
+            if (targetedConfirm) {
+              confirmButton.style.backgroundColor = params.confirmButtonColor;
+            } else if (targetedCancel) {
+              cancelButton.style.backgroundColor = params.cancelButtonColor;
+            }
+          }
+          break;
+        case 'mousedown':
+          if (params.buttonsStyling) {
+            if (targetedConfirm) {
+              confirmButton.style.backgroundColor = colorLuminance(params.confirmButtonColor, -0.2);
+            } else if (targetedCancel) {
+              cancelButton.style.backgroundColor = colorLuminance(params.cancelButtonColor, -0.2);
+            }
+          }
+          break;
+        case 'click':
+          // Clicked 'confirm'
+          if (targetedConfirm && sweetAlert.isVisible()) {
+            sweetAlert.disableButtons();
+            if (params.input) {
+              var inputValue = getInputValue();
+
+              if (params.inputValidator) {
+                sweetAlert.disableInput();
+                params.inputValidator(inputValue, params.extraParams).then(function () {
+                  sweetAlert.enableButtons();
+                  sweetAlert.enableInput();
+                  confirm(inputValue);
+                }, function (error$$1) {
+                  sweetAlert.enableButtons();
+                  sweetAlert.enableInput();
+                  if (error$$1) {
+                    sweetAlert.showValidationError(error$$1);
+                  }
+                });
+              } else {
+                confirm(inputValue);
+              }
+            } else {
+              confirm(true);
+            }
+
+            // Clicked 'cancel'
+          } else if (targetedCancel && sweetAlert.isVisible()) {
+            sweetAlert.disableButtons();
+            sweetAlert.closeModal(params.onClose);
+            if (params.useRejections) {
+              reject('cancel');
+            } else {
+              resolve({ dismiss: 'cancel' });
+            }
+          }
+          break;
+        default:
+      }
+    };
+
+    var buttons = modal.querySelectorAll('button');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].onclick = onButtonEvent;
+      buttons[i].onmouseover = onButtonEvent;
+      buttons[i].onmouseout = onButtonEvent;
+      buttons[i].onmousedown = onButtonEvent;
+    }
+
+    // Closing modal by close button
+    getCloseButton().onclick = function () {
+      sweetAlert.closeModal(params.onClose);
+      if (params.useRejections) {
+        reject('close');
+      } else {
+        resolve({ dismiss: 'close' });
+      }
+    };
+
+    // Closing modal by overlay click
+    container.onclick = function (e) {
+      if (e.target !== container) {
+        return;
+      }
+      if (params.allowOutsideClick) {
+        sweetAlert.closeModal(params.onClose);
+        if (params.useRejections) {
+          reject('overlay');
+        } else {
+          resolve({ dismiss: 'overlay' });
+        }
+      }
+    };
+
+    var buttonsWrapper = getButtonsWrapper();
+    var confirmButton = getConfirmButton();
+    var cancelButton = getCancelButton();
+
+    // Reverse buttons (Confirm on the right side)
+    if (params.reverseButtons) {
+      confirmButton.parentNode.insertBefore(cancelButton, confirmButton);
+    } else {
+      confirmButton.parentNode.insertBefore(confirmButton, cancelButton);
+    }
+
+    // Focus handling
+    var setFocus = function setFocus(index, increment) {
+      var focusableElements = getFocusableElements(params.focusCancel);
+      // search for visible elements and select the next possible match
+      for (var _i3 = 0; _i3 < focusableElements.length; _i3++) {
+        index = index + increment;
+
+        // rollover to first item
+        if (index === focusableElements.length) {
+          index = 0;
+
+          // go to last item
+        } else if (index === -1) {
+          index = focusableElements.length - 1;
+        }
+
+        // determine if element is visible
+        var el = focusableElements[index];
+        if (isVisible(el)) {
+          return el.focus();
+        }
+      }
+    };
+
+    var handleKeyDown = function handleKeyDown(event) {
+      var e = event || window.event;
+
+      if (e.key === 'Enter') {
+        if (e.target === getInput()) {
+          sweetAlert.clickConfirm();
+          e.preventDefault();
+        }
+
+        // TAB
+      } else if (e.key === 'Tab') {
+        var targetElement = e.target || e.srcElement;
+
+        var focusableElements = getFocusableElements(params.focusCancel);
+        var btnIndex = -1; // Find the button - note, this is a nodelist, not an array.
+        for (var _i4 = 0; _i4 < focusableElements.length; _i4++) {
+          if (targetElement === focusableElements[_i4]) {
+            btnIndex = _i4;
+            break;
+          }
+        }
+
+        if (!e.shiftKey) {
+          // Cycle to the next button
+          setFocus(btnIndex, 1);
+        } else {
+          // Cycle to the prev button
+          setFocus(btnIndex, -1);
+        }
+        e.stopPropagation();
+        e.preventDefault();
+
+        // ARROWS - switch focus between buttons
+      } else if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'Arrowdown'].includes(e.key)) {
+        // focus Cancel button if Confirm button is currently focused
+        if (document.activeElement === confirmButton && isVisible(cancelButton)) {
+          cancelButton.focus();
+          // and vice versa
+        } else if (document.activeElement === cancelButton && isVisible(confirmButton)) {
+          confirmButton.focus();
+        }
+
+        // ESC
+      } else if (e.key === 'Escape' && params.allowEscapeKey === true) {
+        sweetAlert.closeModal(params.onClose);
+        if (params.useRejections) {
+          reject('esc');
+        } else {
+          resolve({ dismiss: 'esc' });
+        }
+      }
+    };
+
+    if (!window.onkeydown || window.onkeydown.toString() !== handleKeyDown.toString()) {
+      states.previousWindowKeyDown = window.onkeydown;
+      window.onkeydown = handleKeyDown;
+    }
+
+    // Loading state
+    if (params.buttonsStyling) {
+      confirmButton.style.borderLeftColor = params.confirmButtonColor;
+      confirmButton.style.borderRightColor = params.confirmButtonColor;
+    }
+
+    /**
+     * Show spinner instead of Confirm button and disable Cancel button
+     */
+    sweetAlert.hideLoading = sweetAlert.disableLoading = function () {
+      if (!params.showConfirmButton) {
+        hide(confirmButton);
+        if (!params.showCancelButton) {
+          hide(getButtonsWrapper());
+        }
+      }
+      removeClass(buttonsWrapper, swalClasses.loading);
+      removeClass(modal, swalClasses.loading);
+      modal.removeAttribute('aria-busy');
+      confirmButton.disabled = false;
+      cancelButton.disabled = false;
+    };
+
+    sweetAlert.getTitle = function () {
+      return getTitle();
+    };
+    sweetAlert.getContent = function () {
+      return getContent();
+    };
+    sweetAlert.getInput = function () {
+      return getInput();
+    };
+    sweetAlert.getImage = function () {
+      return getImage();
+    };
+    sweetAlert.getButtonsWrapper = function () {
+      return getButtonsWrapper();
+    };
+    sweetAlert.getConfirmButton = function () {
+      return getConfirmButton();
+    };
+    sweetAlert.getCancelButton = function () {
+      return getCancelButton();
+    };
+
+    sweetAlert.enableButtons = function () {
+      confirmButton.disabled = false;
+      cancelButton.disabled = false;
+    };
+
+    sweetAlert.disableButtons = function () {
+      confirmButton.disabled = true;
+      cancelButton.disabled = true;
+    };
+
+    sweetAlert.enableConfirmButton = function () {
+      confirmButton.disabled = false;
+    };
+
+    sweetAlert.disableConfirmButton = function () {
+      confirmButton.disabled = true;
+    };
+
+    sweetAlert.enableInput = function () {
+      var input = getInput();
+      if (!input) {
+        return false;
+      }
+      if (input.type === 'radio') {
+        var radiosContainer = input.parentNode.parentNode;
+        var radios = radiosContainer.querySelectorAll('input');
+        for (var _i5 = 0; _i5 < radios.length; _i5++) {
+          radios[_i5].disabled = false;
+        }
+      } else {
+        input.disabled = false;
+      }
+    };
+
+    sweetAlert.disableInput = function () {
+      var input = getInput();
+      if (!input) {
+        return false;
+      }
+      if (input && input.type === 'radio') {
+        var radiosContainer = input.parentNode.parentNode;
+        var radios = radiosContainer.querySelectorAll('input');
+        for (var _i6 = 0; _i6 < radios.length; _i6++) {
+          radios[_i6].disabled = true;
+        }
+      } else {
+        input.disabled = true;
+      }
+    };
+
+    // Set modal min-height to disable scrolling inside the modal
+    sweetAlert.recalculateHeight = debounce(function () {
+      var modal = getModal();
+      if (!modal) {
+        return;
+      }
+      var prevState = modal.style.display;
+      modal.style.minHeight = '';
+      show(modal);
+      modal.style.minHeight = modal.scrollHeight + 1 + 'px';
+      modal.style.display = prevState;
+    }, 50);
+
+    // Show block with validation error
+    sweetAlert.showValidationError = function (error$$1) {
+      var validationError = getValidationError();
+      validationError.innerHTML = error$$1;
+      show(validationError);
+
+      var input = getInput();
+      if (input) {
+        input.setAttribute('aria-invalid', true);
+        input.setAttribute('aria-describedBy', swalClasses.validationerror);
+        focusInput(input);
+        addClass(input, swalClasses.inputerror);
+      }
+    };
+
+    // Hide block with validation error
+    sweetAlert.resetValidationError = function () {
+      var validationError = getValidationError();
+      hide(validationError);
+      sweetAlert.recalculateHeight();
+
+      var input = getInput();
+      if (input) {
+        input.removeAttribute('aria-invalid');
+        input.removeAttribute('aria-describedBy');
+        removeClass(input, swalClasses.inputerror);
+      }
+    };
+
+    sweetAlert.getProgressSteps = function () {
+      return params.progressSteps;
+    };
+
+    sweetAlert.setProgressSteps = function (progressSteps) {
+      params.progressSteps = progressSteps;
+      setParameters(params);
+    };
+
+    sweetAlert.showProgressSteps = function () {
+      show(getProgressSteps());
+    };
+
+    sweetAlert.hideProgressSteps = function () {
+      hide(getProgressSteps());
+    };
+
+    sweetAlert.enableButtons();
+    sweetAlert.hideLoading();
+    sweetAlert.resetValidationError();
+
+    // inputs
+    var inputTypes = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea'];
+    var input = void 0;
+    for (var _i7 = 0; _i7 < inputTypes.length; _i7++) {
+      var inputClass = swalClasses[inputTypes[_i7]];
+      var inputContainer = getChildByClass(modal, inputClass);
+      input = getInput(inputTypes[_i7]);
+
+      // set attributes
+      if (input) {
+        for (var j in input.attributes) {
+          if (input.attributes.hasOwnProperty(j)) {
+            var attrName = input.attributes[j].name;
+            if (attrName !== 'type' && attrName !== 'value') {
+              input.removeAttribute(attrName);
+            }
+          }
+        }
+        for (var attr in params.inputAttributes) {
+          input.setAttribute(attr, params.inputAttributes[attr]);
+        }
+      }
+
+      // set class
+      inputContainer.className = inputClass;
+      if (params.inputClass) {
+        addClass(inputContainer, params.inputClass);
+      }
+
+      hide(inputContainer);
+    }
+
+    var populateInputOptions = void 0;
+    switch (params.input) {
+      case 'text':
+      case 'email':
+      case 'password':
+      case 'number':
+      case 'tel':
+      case 'url':
+        input = getChildByClass(modal, swalClasses.input);
+        input.value = params.inputValue;
+        input.placeholder = params.inputPlaceholder;
+        input.type = params.input;
+        show(input);
+        break;
+      case 'file':
+        input = getChildByClass(modal, swalClasses.file);
+        input.placeholder = params.inputPlaceholder;
+        input.type = params.input;
+        show(input);
+        break;
+      case 'range':
+        var range = getChildByClass(modal, swalClasses.range);
+        var rangeInput = range.querySelector('input');
+        var rangeOutput = range.querySelector('output');
+        rangeInput.value = params.inputValue;
+        rangeInput.type = params.input;
+        rangeOutput.value = params.inputValue;
+        show(range);
+        break;
+      case 'select':
+        var select = getChildByClass(modal, swalClasses.select);
+        select.innerHTML = '';
+        if (params.inputPlaceholder) {
+          var placeholder = document.createElement('option');
+          placeholder.innerHTML = params.inputPlaceholder;
+          placeholder.value = '';
+          placeholder.disabled = true;
+          placeholder.selected = true;
+          select.appendChild(placeholder);
+        }
+        populateInputOptions = function populateInputOptions(inputOptions) {
+          for (var optionValue in inputOptions) {
+            var option = document.createElement('option');
+            option.value = optionValue;
+            option.innerHTML = inputOptions[optionValue];
+            if (params.inputValue === optionValue) {
+              option.selected = true;
+            }
+            select.appendChild(option);
+          }
+          show(select);
+          select.focus();
+        };
+        break;
+      case 'radio':
+        var radio = getChildByClass(modal, swalClasses.radio);
+        radio.innerHTML = '';
+        populateInputOptions = function populateInputOptions(inputOptions) {
+          for (var radioValue in inputOptions) {
+            var radioInput = document.createElement('input');
+            var radioLabel = document.createElement('label');
+            var radioLabelSpan = document.createElement('span');
+            radioInput.type = 'radio';
+            radioInput.name = swalClasses.radio;
+            radioInput.value = radioValue;
+            if (params.inputValue === radioValue) {
+              radioInput.checked = true;
+            }
+            radioLabelSpan.innerHTML = inputOptions[radioValue];
+            radioLabel.appendChild(radioInput);
+            radioLabel.appendChild(radioLabelSpan);
+            radioLabel.for = radioInput.id;
+            radio.appendChild(radioLabel);
+          }
+          show(radio);
+          var radios = radio.querySelectorAll('input');
+          if (radios.length) {
+            radios[0].focus();
+          }
+        };
+        break;
+      case 'checkbox':
+        var checkbox = getChildByClass(modal, swalClasses.checkbox);
+        var checkboxInput = getInput('checkbox');
+        checkboxInput.type = 'checkbox';
+        checkboxInput.value = 1;
+        checkboxInput.id = swalClasses.checkbox;
+        checkboxInput.checked = Boolean(params.inputValue);
+        var label = checkbox.getElementsByTagName('span');
+        if (label.length) {
+          checkbox.removeChild(label[0]);
+        }
+        label = document.createElement('span');
+        label.innerHTML = params.inputPlaceholder;
+        checkbox.appendChild(label);
+        show(checkbox);
+        break;
+      case 'textarea':
+        var textarea = getChildByClass(modal, swalClasses.textarea);
+        textarea.value = params.inputValue;
+        textarea.placeholder = params.inputPlaceholder;
+        show(textarea);
+        break;
+      case null:
+        break;
+      default:
+        error('Unexpected type of input! Expected "text", "email", "password", "number", "tel", "select", "radio", "checkbox", "textarea", "file" or "url", got "' + params.input + '"');
+        break;
+    }
+
+    if (params.input === 'select' || params.input === 'radio') {
+      if (params.inputOptions instanceof Promise) {
+        sweetAlert.showLoading();
+        params.inputOptions.then(function (inputOptions) {
+          sweetAlert.hideLoading();
+          populateInputOptions(inputOptions);
+        });
+      } else if (_typeof(params.inputOptions) === 'object') {
+        populateInputOptions(params.inputOptions);
+      } else {
+        error('Unexpected type of inputOptions! Expected object or Promise, got ' + _typeof(params.inputOptions));
+      }
+    }
+
+    openModal(params.animation, params.onOpen);
+
+    if (!params.allowEnterKey) {
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
+    } else if (params.focusCancel && isVisible(cancelButton)) {
+      cancelButton.focus();
+    } else if (params.focusConfirm && isVisible(confirmButton)) {
+      confirmButton.focus();
+    } else {
+      setFocus(-1, 1);
+    }
+
+    // fix scroll
+    getContainer().scrollTop = 0;
+
+    // Observe changes inside the modal and adjust height
+    if (typeof MutationObserver !== 'undefined' && !swal2Observer) {
+      swal2Observer = new MutationObserver(sweetAlert.recalculateHeight);
+      swal2Observer.observe(modal, { childList: true, characterData: true, subtree: true });
+    }
+  });
+};
+
+/*
+ * Global function to determine if swal2 modal is shown
+ */
+sweetAlert.isVisible = function () {
+  return !!getModal();
+};
+
+/*
+ * Global function for chaining sweetAlert modals
+ */
+sweetAlert.queue = function (steps) {
+  queue = steps;
+  var resetQueue = function resetQueue() {
+    queue = [];
+    document.body.removeAttribute('data-swal2-queue-step');
+  };
+  var queueResult = [];
+  return new Promise(function (resolve, reject) {
+    (function step(i, callback) {
+      if (i < queue.length) {
+        document.body.setAttribute('data-swal2-queue-step', i);
+
+        sweetAlert(queue[i]).then(function (result) {
+          queueResult.push(result);
+          step(i + 1, callback);
+        }, function (dismiss) {
+          resetQueue();
+          reject(dismiss);
+        });
+      } else {
+        resetQueue();
+        resolve(queueResult);
+      }
+    })(0);
+  });
+};
+
+/*
+ * Global function for getting the index of current modal in queue
+ */
+sweetAlert.getQueueStep = function () {
+  return document.body.getAttribute('data-swal2-queue-step');
+};
+
+/*
+ * Global function for inserting a modal to the queue
+ */
+sweetAlert.insertQueueStep = function (step, index) {
+  if (index && index < queue.length) {
+    return queue.splice(index, 0, step);
+  }
+  return queue.push(step);
+};
+
+/*
+ * Global function for deleting a modal from the queue
+ */
+sweetAlert.deleteQueueStep = function (index) {
+  if (typeof queue[index] !== 'undefined') {
+    queue.splice(index, 1);
+  }
+};
+
+/*
+ * Global function to close sweetAlert
+ */
+sweetAlert.close = sweetAlert.closeModal = function (onComplete) {
+  var container = getContainer();
+  var modal = getModal();
+  if (!modal) {
+    return;
+  }
+  removeClass(modal, swalClasses.show);
+  addClass(modal, swalClasses.hide);
+  clearTimeout(modal.timeout);
+
+  resetPrevState();
+
+  var removeModalAndResetState = function removeModalAndResetState() {
+    if (container.parentNode) {
+      container.parentNode.removeChild(container);
+    }
+    removeClass(document.documentElement, swalClasses.shown);
+    removeClass(document.body, swalClasses.shown);
+    undoScrollbar();
+    undoIOSfix();
+  };
+
+  // If animation is supported, animate
+  if (animationEndEvent && !hasClass(modal, swalClasses.noanimation)) {
+    modal.addEventListener(animationEndEvent, function swalCloseEventFinished() {
+      modal.removeEventListener(animationEndEvent, swalCloseEventFinished);
+      if (hasClass(modal, swalClasses.hide)) {
+        removeModalAndResetState();
+      }
+    });
+  } else {
+    // Otherwise, remove immediately
+    removeModalAndResetState();
+  }
+  if (onComplete !== null && typeof onComplete === 'function') {
+    setTimeout(function () {
+      onComplete(modal);
+    });
+  }
+};
+
+/*
+ * Global function to click 'Confirm' button
+ */
+sweetAlert.clickConfirm = function () {
+  return getConfirmButton().click();
+};
+
+/*
+ * Global function to click 'Cancel' button
+ */
+sweetAlert.clickCancel = function () {
+  return getCancelButton().click();
+};
+
+/**
+ * Show spinner instead of Confirm button and disable Cancel button
+ */
+sweetAlert.showLoading = sweetAlert.enableLoading = function () {
+  var modal = getModal();
+  if (!modal) {
+    sweetAlert('');
+  }
+  modal = getModal();
+  var buttonsWrapper = getButtonsWrapper();
+  var confirmButton = getConfirmButton();
+  var cancelButton = getCancelButton();
+
+  show(buttonsWrapper);
+  show(confirmButton, 'inline-block');
+  addClass(buttonsWrapper, swalClasses.loading);
+  addClass(modal, swalClasses.loading);
+  confirmButton.disabled = true;
+  cancelButton.disabled = true;
+
+  modal.setAttribute('aria-busy', true);
+  modal.focus();
+};
+
+/**
+ * Is valid parameter
+ * @param {String} paramName
+ */
+sweetAlert.isValidParameter = function (paramName) {
+  return defaultParams.hasOwnProperty(paramName) || paramName === 'extraParams';
+};
+
+/**
+* Set default params for each popup
+* @param {Object} userParams
+*/
+sweetAlert.setDefaults = function (userParams) {
+  if (!userParams || (typeof userParams === 'undefined' ? 'undefined' : _typeof(userParams)) !== 'object') {
+    return error('the argument for setDefaults() is required and has to be a object');
+  }
+
+  for (var param in userParams) {
+    if (!sweetAlert.isValidParameter(param)) {
+      warn('Unknown parameter "' + param + '"');
+      delete userParams[param];
+    }
+  }
+
+  _extends(modalParams, userParams);
+};
+
+/**
+ * Reset default params for each popup
+ */
+sweetAlert.resetDefaults = function () {
+  modalParams = _extends({}, defaultParams);
+};
+
+sweetAlert.noop = function () {};
+
+sweetAlert.version = '6.10.2';
+
+sweetAlert.default = sweetAlert;
+
+return sweetAlert;
+
+})));
+if (window.Sweetalert2) window.sweetAlert = window.swal = window.Sweetalert2;
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
+ * Sortable
+ * @author	RubaXa   <trash@rubaxa.org>
+ * @license MIT
+ */
+
+(function sortableModule(factory) {
+	"use strict";
+
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	}
+	else if (typeof module != "undefined" && typeof module.exports != "undefined") {
+		module.exports = factory();
+	}
+	else {
+		/* jshint sub:true */
+		window["Sortable"] = factory();
+	}
+})(function sortableFactory() {
+	"use strict";
+
+	if (typeof window == "undefined" || !window.document) {
+		return function sortableError() {
+			throw new Error("Sortable.js requires a window with a document");
+		};
+	}
+
+	var dragEl,
+		parentEl,
+		ghostEl,
+		cloneEl,
+		rootEl,
+		nextEl,
+		lastDownEl,
+
+		scrollEl,
+		scrollParentEl,
+		scrollCustomFn,
+
+		lastEl,
+		lastCSS,
+		lastParentCSS,
+
+		oldIndex,
+		newIndex,
+
+		activeGroup,
+		putSortable,
+
+		autoScroll = {},
+
+		tapEvt,
+		touchEvt,
+
+		moved,
+
+		/** @const */
+		R_SPACE = /\s+/g,
+		R_FLOAT = /left|right|inline/,
+
+		expando = 'Sortable' + (new Date).getTime(),
+
+		win = window,
+		document = win.document,
+		parseInt = win.parseInt,
+
+		$ = win.jQuery || win.Zepto,
+		Polymer = win.Polymer,
+
+		captureMode = false,
+
+		supportDraggable = !!('draggable' in document.createElement('div')),
+		supportCssPointerEvents = (function (el) {
+			// false when IE11
+			if (!!navigator.userAgent.match(/Trident.*rv[ :]?11\./)) {
+				return false;
+			}
+			el = document.createElement('x');
+			el.style.cssText = 'pointer-events:auto';
+			return el.style.pointerEvents === 'auto';
+		})(),
+
+		_silent = false,
+
+		abs = Math.abs,
+		min = Math.min,
+
+		savedInputChecked = [],
+		touchDragOverListeners = [],
+
+		_autoScroll = _throttle(function (/**Event*/evt, /**Object*/options, /**HTMLElement*/rootEl) {
+			// Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=505521
+			if (rootEl && options.scroll) {
+				var _this = rootEl[expando],
+					el,
+					rect,
+					sens = options.scrollSensitivity,
+					speed = options.scrollSpeed,
+
+					x = evt.clientX,
+					y = evt.clientY,
+
+					winWidth = window.innerWidth,
+					winHeight = window.innerHeight,
+
+					vx,
+					vy,
+
+					scrollOffsetX,
+					scrollOffsetY
+				;
+
+				// Delect scrollEl
+				if (scrollParentEl !== rootEl) {
+					scrollEl = options.scroll;
+					scrollParentEl = rootEl;
+					scrollCustomFn = options.scrollFn;
+
+					if (scrollEl === true) {
+						scrollEl = rootEl;
+
+						do {
+							if ((scrollEl.offsetWidth < scrollEl.scrollWidth) ||
+								(scrollEl.offsetHeight < scrollEl.scrollHeight)
+							) {
+								break;
+							}
+							/* jshint boss:true */
+						} while (scrollEl = scrollEl.parentNode);
+					}
+				}
+
+				if (scrollEl) {
+					el = scrollEl;
+					rect = scrollEl.getBoundingClientRect();
+					vx = (abs(rect.right - x) <= sens) - (abs(rect.left - x) <= sens);
+					vy = (abs(rect.bottom - y) <= sens) - (abs(rect.top - y) <= sens);
+				}
+
+
+				if (!(vx || vy)) {
+					vx = (winWidth - x <= sens) - (x <= sens);
+					vy = (winHeight - y <= sens) - (y <= sens);
+
+					/* jshint expr:true */
+					(vx || vy) && (el = win);
+				}
+
+
+				if (autoScroll.vx !== vx || autoScroll.vy !== vy || autoScroll.el !== el) {
+					autoScroll.el = el;
+					autoScroll.vx = vx;
+					autoScroll.vy = vy;
+
+					clearInterval(autoScroll.pid);
+
+					if (el) {
+						autoScroll.pid = setInterval(function () {
+							scrollOffsetY = vy ? vy * speed : 0;
+							scrollOffsetX = vx ? vx * speed : 0;
+
+							if ('function' === typeof(scrollCustomFn)) {
+								return scrollCustomFn.call(_this, scrollOffsetX, scrollOffsetY, evt);
+							}
+
+							if (el === win) {
+								win.scrollTo(win.pageXOffset + scrollOffsetX, win.pageYOffset + scrollOffsetY);
+							} else {
+								el.scrollTop += scrollOffsetY;
+								el.scrollLeft += scrollOffsetX;
+							}
+						}, 24);
+					}
+				}
+			}
+		}, 30),
+
+		_prepareGroup = function (options) {
+			function toFn(value, pull) {
+				if (value === void 0 || value === true) {
+					value = group.name;
+				}
+
+				if (typeof value === 'function') {
+					return value;
+				} else {
+					return function (to, from) {
+						var fromGroup = from.options.group.name;
+
+						return pull
+							? value
+							: value && (value.join
+								? value.indexOf(fromGroup) > -1
+								: (fromGroup == value)
+							);
+					};
+				}
+			}
+
+			var group = {};
+			var originalGroup = options.group;
+
+			if (!originalGroup || typeof originalGroup != 'object') {
+				originalGroup = {name: originalGroup};
+			}
+
+			group.name = originalGroup.name;
+			group.checkPull = toFn(originalGroup.pull, true);
+			group.checkPut = toFn(originalGroup.put);
+			group.revertClone = originalGroup.revertClone;
+
+			options.group = group;
+		}
+	;
+
+
+	/**
+	 * @class  Sortable
+	 * @param  {HTMLElement}  el
+	 * @param  {Object}       [options]
+	 */
+	function Sortable(el, options) {
+		if (!(el && el.nodeType && el.nodeType === 1)) {
+			throw 'Sortable: `el` must be HTMLElement, and not ' + {}.toString.call(el);
+		}
+
+		this.el = el; // root element
+		this.options = options = _extend({}, options);
+
+
+		// Export instance
+		el[expando] = this;
+
+		// Default options
+		var defaults = {
+			group: Math.random(),
+			sort: true,
+			disabled: false,
+			store: null,
+			handle: null,
+			scroll: true,
+			scrollSensitivity: 30,
+			scrollSpeed: 10,
+			draggable: /[uo]l/i.test(el.nodeName) ? 'li' : '>*',
+			ghostClass: 'sortable-ghost',
+			chosenClass: 'sortable-chosen',
+			dragClass: 'sortable-drag',
+			ignore: 'a, img',
+			filter: null,
+			preventOnFilter: true,
+			animation: 0,
+			setData: function (dataTransfer, dragEl) {
+				dataTransfer.setData('Text', dragEl.textContent);
+			},
+			dropBubble: false,
+			dragoverBubble: false,
+			dataIdAttr: 'data-id',
+			delay: 0,
+			forceFallback: false,
+			fallbackClass: 'sortable-fallback',
+			fallbackOnBody: false,
+			fallbackTolerance: 0,
+			fallbackOffset: {x: 0, y: 0}
+		};
+
+
+		// Set default options
+		for (var name in defaults) {
+			!(name in options) && (options[name] = defaults[name]);
+		}
+
+		_prepareGroup(options);
+
+		// Bind all private methods
+		for (var fn in this) {
+			if (fn.charAt(0) === '_' && typeof this[fn] === 'function') {
+				this[fn] = this[fn].bind(this);
+			}
+		}
+
+		// Setup drag mode
+		this.nativeDraggable = options.forceFallback ? false : supportDraggable;
+
+		// Bind events
+		_on(el, 'mousedown', this._onTapStart);
+		_on(el, 'touchstart', this._onTapStart);
+		_on(el, 'pointerdown', this._onTapStart);
+
+		if (this.nativeDraggable) {
+			_on(el, 'dragover', this);
+			_on(el, 'dragenter', this);
+		}
+
+		touchDragOverListeners.push(this._onDragOver);
+
+		// Restore sorting
+		options.store && this.sort(options.store.get(this));
+	}
+
+
+	Sortable.prototype = /** @lends Sortable.prototype */ {
+		constructor: Sortable,
+
+		_onTapStart: function (/** Event|TouchEvent */evt) {
+			var _this = this,
+				el = this.el,
+				options = this.options,
+				preventOnFilter = options.preventOnFilter,
+				type = evt.type,
+				touch = evt.touches && evt.touches[0],
+				target = (touch || evt).target,
+				originalTarget = evt.target.shadowRoot && (evt.path && evt.path[0]) || target,
+				filter = options.filter,
+				startIndex;
+
+			_saveInputCheckedState(el);
+
+
+			// Don't trigger start event when an element is been dragged, otherwise the evt.oldindex always wrong when set option.group.
+			if (dragEl) {
+				return;
+			}
+
+			if (/mousedown|pointerdown/.test(type) && evt.button !== 0 || options.disabled) {
+				return; // only left button or enabled
+			}
+
+
+			target = _closest(target, options.draggable, el);
+
+			if (!target) {
+				return;
+			}
+
+			if (lastDownEl === target) {
+				// Ignoring duplicate `down`
+				return;
+			}
+
+			// Get the index of the dragged element within its parent
+			startIndex = _index(target, options.draggable);
+
+			// Check filter
+			if (typeof filter === 'function') {
+				if (filter.call(this, evt, target, this)) {
+					_dispatchEvent(_this, originalTarget, 'filter', target, el, startIndex);
+					preventOnFilter && evt.preventDefault();
+					return; // cancel dnd
+				}
+			}
+			else if (filter) {
+				filter = filter.split(',').some(function (criteria) {
+					criteria = _closest(originalTarget, criteria.trim(), el);
+
+					if (criteria) {
+						_dispatchEvent(_this, criteria, 'filter', target, el, startIndex);
+						return true;
+					}
+				});
+
+				if (filter) {
+					preventOnFilter && evt.preventDefault();
+					return; // cancel dnd
+				}
+			}
+
+			if (options.handle && !_closest(originalTarget, options.handle, el)) {
+				return;
+			}
+
+			// Prepare `dragstart`
+			this._prepareDragStart(evt, touch, target, startIndex);
+		},
+
+		_prepareDragStart: function (/** Event */evt, /** Touch */touch, /** HTMLElement */target, /** Number */startIndex) {
+			var _this = this,
+				el = _this.el,
+				options = _this.options,
+				ownerDocument = el.ownerDocument,
+				dragStartFn;
+
+			if (target && !dragEl && (target.parentNode === el)) {
+				tapEvt = evt;
+
+				rootEl = el;
+				dragEl = target;
+				parentEl = dragEl.parentNode;
+				nextEl = dragEl.nextSibling;
+				lastDownEl = target;
+				activeGroup = options.group;
+				oldIndex = startIndex;
+
+				this._lastX = (touch || evt).clientX;
+				this._lastY = (touch || evt).clientY;
+
+				dragEl.style['will-change'] = 'transform';
+
+				dragStartFn = function () {
+					// Delayed drag has been triggered
+					// we can re-enable the events: touchmove/mousemove
+					_this._disableDelayedDrag();
+
+					// Make the element draggable
+					dragEl.draggable = _this.nativeDraggable;
+
+					// Chosen item
+					_toggleClass(dragEl, options.chosenClass, true);
+
+					// Bind the events: dragstart/dragend
+					_this._triggerDragStart(evt, touch);
+
+					// Drag start event
+					_dispatchEvent(_this, rootEl, 'choose', dragEl, rootEl, oldIndex);
+				};
+
+				// Disable "draggable"
+				options.ignore.split(',').forEach(function (criteria) {
+					_find(dragEl, criteria.trim(), _disableDraggable);
+				});
+
+				_on(ownerDocument, 'mouseup', _this._onDrop);
+				_on(ownerDocument, 'touchend', _this._onDrop);
+				_on(ownerDocument, 'touchcancel', _this._onDrop);
+				_on(ownerDocument, 'pointercancel', _this._onDrop);
+				_on(ownerDocument, 'selectstart', _this);
+
+				if (options.delay) {
+					// If the user moves the pointer or let go the click or touch
+					// before the delay has been reached:
+					// disable the delayed drag
+					_on(ownerDocument, 'mouseup', _this._disableDelayedDrag);
+					_on(ownerDocument, 'touchend', _this._disableDelayedDrag);
+					_on(ownerDocument, 'touchcancel', _this._disableDelayedDrag);
+					_on(ownerDocument, 'mousemove', _this._disableDelayedDrag);
+					_on(ownerDocument, 'touchmove', _this._disableDelayedDrag);
+					_on(ownerDocument, 'pointermove', _this._disableDelayedDrag);
+
+					_this._dragStartTimer = setTimeout(dragStartFn, options.delay);
+				} else {
+					dragStartFn();
+				}
+
+
+			}
+		},
+
+		_disableDelayedDrag: function () {
+			var ownerDocument = this.el.ownerDocument;
+
+			clearTimeout(this._dragStartTimer);
+			_off(ownerDocument, 'mouseup', this._disableDelayedDrag);
+			_off(ownerDocument, 'touchend', this._disableDelayedDrag);
+			_off(ownerDocument, 'touchcancel', this._disableDelayedDrag);
+			_off(ownerDocument, 'mousemove', this._disableDelayedDrag);
+			_off(ownerDocument, 'touchmove', this._disableDelayedDrag);
+			_off(ownerDocument, 'pointermove', this._disableDelayedDrag);
+		},
+
+		_triggerDragStart: function (/** Event */evt, /** Touch */touch) {
+			touch = touch || (evt.pointerType == 'touch' ? evt : null);
+
+			if (touch) {
+				// Touch device support
+				tapEvt = {
+					target: dragEl,
+					clientX: touch.clientX,
+					clientY: touch.clientY
+				};
+
+				this._onDragStart(tapEvt, 'touch');
+			}
+			else if (!this.nativeDraggable) {
+				this._onDragStart(tapEvt, true);
+			}
+			else {
+				_on(dragEl, 'dragend', this);
+				_on(rootEl, 'dragstart', this._onDragStart);
+			}
+
+			try {
+				if (document.selection) {
+					// Timeout neccessary for IE9
+					setTimeout(function () {
+						document.selection.empty();
+					});
+				} else {
+					window.getSelection().removeAllRanges();
+				}
+			} catch (err) {
+			}
+		},
+
+		_dragStarted: function () {
+			if (rootEl && dragEl) {
+				var options = this.options;
+
+				// Apply effect
+				_toggleClass(dragEl, options.ghostClass, true);
+				_toggleClass(dragEl, options.dragClass, false);
+
+				Sortable.active = this;
+
+				// Drag start event
+				_dispatchEvent(this, rootEl, 'start', dragEl, rootEl, oldIndex);
+			} else {
+				this._nulling();
+			}
+		},
+
+		_emulateDragOver: function () {
+			if (touchEvt) {
+				if (this._lastX === touchEvt.clientX && this._lastY === touchEvt.clientY) {
+					return;
+				}
+
+				this._lastX = touchEvt.clientX;
+				this._lastY = touchEvt.clientY;
+
+				if (!supportCssPointerEvents) {
+					_css(ghostEl, 'display', 'none');
+				}
+
+				var target = document.elementFromPoint(touchEvt.clientX, touchEvt.clientY),
+					parent = target,
+					i = touchDragOverListeners.length;
+
+				if (parent) {
+					do {
+						if (parent[expando]) {
+							while (i--) {
+								touchDragOverListeners[i]({
+									clientX: touchEvt.clientX,
+									clientY: touchEvt.clientY,
+									target: target,
+									rootEl: parent
+								});
+							}
+
+							break;
+						}
+
+						target = parent; // store last element
+					}
+					/* jshint boss:true */
+					while (parent = parent.parentNode);
+				}
+
+				if (!supportCssPointerEvents) {
+					_css(ghostEl, 'display', '');
+				}
+			}
+		},
+
+
+		_onTouchMove: function (/**TouchEvent*/evt) {
+			if (tapEvt) {
+				var	options = this.options,
+					fallbackTolerance = options.fallbackTolerance,
+					fallbackOffset = options.fallbackOffset,
+					touch = evt.touches ? evt.touches[0] : evt,
+					dx = (touch.clientX - tapEvt.clientX) + fallbackOffset.x,
+					dy = (touch.clientY - tapEvt.clientY) + fallbackOffset.y,
+					translate3d = evt.touches ? 'translate3d(' + dx + 'px,' + dy + 'px,0)' : 'translate(' + dx + 'px,' + dy + 'px)';
+
+				// only set the status to dragging, when we are actually dragging
+				if (!Sortable.active) {
+					if (fallbackTolerance &&
+						min(abs(touch.clientX - this._lastX), abs(touch.clientY - this._lastY)) < fallbackTolerance
+					) {
+						return;
+					}
+
+					this._dragStarted();
+				}
+
+				// as well as creating the ghost element on the document body
+				this._appendGhost();
+
+				moved = true;
+				touchEvt = touch;
+
+				_css(ghostEl, 'webkitTransform', translate3d);
+				_css(ghostEl, 'mozTransform', translate3d);
+				_css(ghostEl, 'msTransform', translate3d);
+				_css(ghostEl, 'transform', translate3d);
+
+				evt.preventDefault();
+			}
+		},
+
+		_appendGhost: function () {
+			if (!ghostEl) {
+				var rect = dragEl.getBoundingClientRect(),
+					css = _css(dragEl),
+					options = this.options,
+					ghostRect;
+
+				ghostEl = dragEl.cloneNode(true);
+
+				_toggleClass(ghostEl, options.ghostClass, false);
+				_toggleClass(ghostEl, options.fallbackClass, true);
+				_toggleClass(ghostEl, options.dragClass, true);
+
+				_css(ghostEl, 'top', rect.top - parseInt(css.marginTop, 10));
+				_css(ghostEl, 'left', rect.left - parseInt(css.marginLeft, 10));
+				_css(ghostEl, 'width', rect.width);
+				_css(ghostEl, 'height', rect.height);
+				_css(ghostEl, 'opacity', '0.8');
+				_css(ghostEl, 'position', 'fixed');
+				_css(ghostEl, 'zIndex', '100000');
+				_css(ghostEl, 'pointerEvents', 'none');
+
+				options.fallbackOnBody && document.body.appendChild(ghostEl) || rootEl.appendChild(ghostEl);
+
+				// Fixing dimensions.
+				ghostRect = ghostEl.getBoundingClientRect();
+				_css(ghostEl, 'width', rect.width * 2 - ghostRect.width);
+				_css(ghostEl, 'height', rect.height * 2 - ghostRect.height);
+			}
+		},
+
+		_onDragStart: function (/**Event*/evt, /**boolean*/useFallback) {
+			var dataTransfer = evt.dataTransfer,
+				options = this.options;
+
+			this._offUpEvents();
+
+			if (activeGroup.checkPull(this, this, dragEl, evt)) {
+				cloneEl = _clone(dragEl);
+
+				cloneEl.draggable = false;
+				cloneEl.style['will-change'] = '';
+
+				_css(cloneEl, 'display', 'none');
+				_toggleClass(cloneEl, this.options.chosenClass, false);
+
+				rootEl.insertBefore(cloneEl, dragEl);
+				_dispatchEvent(this, rootEl, 'clone', dragEl);
+			}
+
+			_toggleClass(dragEl, options.dragClass, true);
+
+			if (useFallback) {
+				if (useFallback === 'touch') {
+					// Bind touch events
+					_on(document, 'touchmove', this._onTouchMove);
+					_on(document, 'touchend', this._onDrop);
+					_on(document, 'touchcancel', this._onDrop);
+					_on(document, 'pointermove', this._onTouchMove);
+					_on(document, 'pointerup', this._onDrop);
+				} else {
+					// Old brwoser
+					_on(document, 'mousemove', this._onTouchMove);
+					_on(document, 'mouseup', this._onDrop);
+				}
+
+				this._loopId = setInterval(this._emulateDragOver, 50);
+			}
+			else {
+				if (dataTransfer) {
+					dataTransfer.effectAllowed = 'move';
+					options.setData && options.setData.call(this, dataTransfer, dragEl);
+				}
+
+				_on(document, 'drop', this);
+				setTimeout(this._dragStarted, 0);
+			}
+		},
+
+		_onDragOver: function (/**Event*/evt) {
+			var el = this.el,
+				target,
+				dragRect,
+				targetRect,
+				revert,
+				options = this.options,
+				group = options.group,
+				activeSortable = Sortable.active,
+				isOwner = (activeGroup === group),
+				isMovingBetweenSortable = false,
+				canSort = options.sort;
+
+			if (evt.preventDefault !== void 0) {
+				evt.preventDefault();
+				!options.dragoverBubble && evt.stopPropagation();
+			}
+
+			if (dragEl.animated) {
+				return;
+			}
+
+			moved = true;
+
+			if (activeSortable && !options.disabled &&
+				(isOwner
+					? canSort || (revert = !rootEl.contains(dragEl)) // Reverting item into the original list
+					: (
+						putSortable === this ||
+						(
+							(activeSortable.lastPullMode = activeGroup.checkPull(this, activeSortable, dragEl, evt)) &&
+							group.checkPut(this, activeSortable, dragEl, evt)
+						)
+					)
+				) &&
+				(evt.rootEl === void 0 || evt.rootEl === this.el) // touch fallback
+			) {
+				// Smart auto-scrolling
+				_autoScroll(evt, options, this.el);
+
+				if (_silent) {
+					return;
+				}
+
+				target = _closest(evt.target, options.draggable, el);
+				dragRect = dragEl.getBoundingClientRect();
+
+				if (putSortable !== this) {
+					putSortable = this;
+					isMovingBetweenSortable = true;
+				}
+
+				if (revert) {
+					_cloneHide(activeSortable, true);
+					parentEl = rootEl; // actualization
+
+					if (cloneEl || nextEl) {
+						rootEl.insertBefore(dragEl, cloneEl || nextEl);
+					}
+					else if (!canSort) {
+						rootEl.appendChild(dragEl);
+					}
+
+					return;
+				}
+
+
+				if ((el.children.length === 0) || (el.children[0] === ghostEl) ||
+					(el === evt.target) && (_ghostIsLast(el, evt))
+				) {
+					//assign target only if condition is true
+					if (el.children.length !== 0 && el.children[0] !== ghostEl && el === evt.target) {
+						target = el.lastElementChild;
+					}
+
+					if (target) {
+						if (target.animated) {
+							return;
+						}
+
+						targetRect = target.getBoundingClientRect();
+					}
+
+					_cloneHide(activeSortable, isOwner);
+
+					if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt) !== false) {
+						if (!dragEl.contains(el)) {
+							el.appendChild(dragEl);
+							parentEl = el; // actualization
+						}
+
+						this._animate(dragRect, dragEl);
+						target && this._animate(targetRect, target);
+					}
+				}
+				else if (target && !target.animated && target !== dragEl && (target.parentNode[expando] !== void 0)) {
+					if (lastEl !== target) {
+						lastEl = target;
+						lastCSS = _css(target);
+						lastParentCSS = _css(target.parentNode);
+					}
+
+					targetRect = target.getBoundingClientRect();
+
+					var width = targetRect.right - targetRect.left,
+						height = targetRect.bottom - targetRect.top,
+						floating = R_FLOAT.test(lastCSS.cssFloat + lastCSS.display)
+							|| (lastParentCSS.display == 'flex' && lastParentCSS['flex-direction'].indexOf('row') === 0),
+						isWide = (target.offsetWidth > dragEl.offsetWidth),
+						isLong = (target.offsetHeight > dragEl.offsetHeight),
+						halfway = (floating ? (evt.clientX - targetRect.left) / width : (evt.clientY - targetRect.top) / height) > 0.5,
+						nextSibling = target.nextElementSibling,
+						after = false
+					;
+
+					if (floating) {
+						var elTop = dragEl.offsetTop,
+							tgTop = target.offsetTop;
+
+						if (elTop === tgTop) {
+							after = (target.previousElementSibling === dragEl) && !isWide || halfway && isWide;
+						}
+						else if (target.previousElementSibling === dragEl || dragEl.previousElementSibling === target) {
+							after = (evt.clientY - targetRect.top) / height > 0.5;
+						} else {
+							after = tgTop > elTop;
+						}
+						} else if (!isMovingBetweenSortable) {
+						after = (nextSibling !== dragEl) && !isLong || halfway && isLong;
+					}
+
+					var moveVector = _onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, after);
+
+					if (moveVector !== false) {
+						if (moveVector === 1 || moveVector === -1) {
+							after = (moveVector === 1);
+						}
+
+						_silent = true;
+						setTimeout(_unsilent, 30);
+
+						_cloneHide(activeSortable, isOwner);
+
+						if (!dragEl.contains(el)) {
+							if (after && !nextSibling) {
+								el.appendChild(dragEl);
+							} else {
+								target.parentNode.insertBefore(dragEl, after ? nextSibling : target);
+							}
+						}
+
+						parentEl = dragEl.parentNode; // actualization
+
+						this._animate(dragRect, dragEl);
+						this._animate(targetRect, target);
+					}
+				}
+			}
+		},
+
+		_animate: function (prevRect, target) {
+			var ms = this.options.animation;
+
+			if (ms) {
+				var currentRect = target.getBoundingClientRect();
+
+				if (prevRect.nodeType === 1) {
+					prevRect = prevRect.getBoundingClientRect();
+				}
+
+				_css(target, 'transition', 'none');
+				_css(target, 'transform', 'translate3d('
+					+ (prevRect.left - currentRect.left) + 'px,'
+					+ (prevRect.top - currentRect.top) + 'px,0)'
+				);
+
+				target.offsetWidth; // repaint
+
+				_css(target, 'transition', 'all ' + ms + 'ms');
+				_css(target, 'transform', 'translate3d(0,0,0)');
+
+				clearTimeout(target.animated);
+				target.animated = setTimeout(function () {
+					_css(target, 'transition', '');
+					_css(target, 'transform', '');
+					target.animated = false;
+				}, ms);
+			}
+		},
+
+		_offUpEvents: function () {
+			var ownerDocument = this.el.ownerDocument;
+
+			_off(document, 'touchmove', this._onTouchMove);
+			_off(document, 'pointermove', this._onTouchMove);
+			_off(ownerDocument, 'mouseup', this._onDrop);
+			_off(ownerDocument, 'touchend', this._onDrop);
+			_off(ownerDocument, 'pointerup', this._onDrop);
+			_off(ownerDocument, 'touchcancel', this._onDrop);
+			_off(ownerDocument, 'pointercancel', this._onDrop);
+			_off(ownerDocument, 'selectstart', this);
+		},
+
+		_onDrop: function (/**Event*/evt) {
+			var el = this.el,
+				options = this.options;
+
+			clearInterval(this._loopId);
+			clearInterval(autoScroll.pid);
+			clearTimeout(this._dragStartTimer);
+
+			// Unbind events
+			_off(document, 'mousemove', this._onTouchMove);
+
+			if (this.nativeDraggable) {
+				_off(document, 'drop', this);
+				_off(el, 'dragstart', this._onDragStart);
+			}
+
+			this._offUpEvents();
+
+			if (evt) {
+				if (moved) {
+					evt.preventDefault();
+					!options.dropBubble && evt.stopPropagation();
+				}
+
+				ghostEl && ghostEl.parentNode && ghostEl.parentNode.removeChild(ghostEl);
+
+				if (rootEl === parentEl || Sortable.active.lastPullMode !== 'clone') {
+					// Remove clone
+					cloneEl && cloneEl.parentNode && cloneEl.parentNode.removeChild(cloneEl);
+				}
+
+				if (dragEl) {
+					if (this.nativeDraggable) {
+						_off(dragEl, 'dragend', this);
+					}
+
+					_disableDraggable(dragEl);
+					dragEl.style['will-change'] = '';
+
+					// Remove class's
+					_toggleClass(dragEl, this.options.ghostClass, false);
+					_toggleClass(dragEl, this.options.chosenClass, false);
+
+					// Drag stop event
+					_dispatchEvent(this, rootEl, 'unchoose', dragEl, rootEl, oldIndex);
+
+					if (rootEl !== parentEl) {
+						newIndex = _index(dragEl, options.draggable);
+
+						if (newIndex >= 0) {
+							// Add event
+							_dispatchEvent(null, parentEl, 'add', dragEl, rootEl, oldIndex, newIndex);
+
+							// Remove event
+							_dispatchEvent(this, rootEl, 'remove', dragEl, rootEl, oldIndex, newIndex);
+
+							// drag from one list and drop into another
+							_dispatchEvent(null, parentEl, 'sort', dragEl, rootEl, oldIndex, newIndex);
+							_dispatchEvent(this, rootEl, 'sort', dragEl, rootEl, oldIndex, newIndex);
+						}
+					}
+					else {
+						if (dragEl.nextSibling !== nextEl) {
+							// Get the index of the dragged element within its parent
+							newIndex = _index(dragEl, options.draggable);
+
+							if (newIndex >= 0) {
+								// drag & drop within the same list
+								_dispatchEvent(this, rootEl, 'update', dragEl, rootEl, oldIndex, newIndex);
+								_dispatchEvent(this, rootEl, 'sort', dragEl, rootEl, oldIndex, newIndex);
+							}
+						}
+					}
+
+					if (Sortable.active) {
+						/* jshint eqnull:true */
+						if (newIndex == null || newIndex === -1) {
+							newIndex = oldIndex;
+						}
+
+						_dispatchEvent(this, rootEl, 'end', dragEl, rootEl, oldIndex, newIndex);
+
+						// Save sorting
+						this.save();
+					}
+				}
+
+			}
+
+			this._nulling();
+		},
+
+		_nulling: function() {
+			rootEl =
+			dragEl =
+			parentEl =
+			ghostEl =
+			nextEl =
+			cloneEl =
+			lastDownEl =
+
+			scrollEl =
+			scrollParentEl =
+
+			tapEvt =
+			touchEvt =
+
+			moved =
+			newIndex =
+
+			lastEl =
+			lastCSS =
+
+			putSortable =
+			activeGroup =
+			Sortable.active = null;
+
+			savedInputChecked.forEach(function (el) {
+				el.checked = true;
+			});
+			savedInputChecked.length = 0;
+		},
+
+		handleEvent: function (/**Event*/evt) {
+			switch (evt.type) {
+				case 'drop':
+				case 'dragend':
+					this._onDrop(evt);
+					break;
+
+				case 'dragover':
+				case 'dragenter':
+					if (dragEl) {
+						this._onDragOver(evt);
+						_globalDragOver(evt);
+					}
+					break;
+
+				case 'selectstart':
+					evt.preventDefault();
+					break;
+			}
+		},
+
+
+		/**
+		 * Serializes the item into an array of string.
+		 * @returns {String[]}
+		 */
+		toArray: function () {
+			var order = [],
+				el,
+				children = this.el.children,
+				i = 0,
+				n = children.length,
+				options = this.options;
+
+			for (; i < n; i++) {
+				el = children[i];
+				if (_closest(el, options.draggable, this.el)) {
+					order.push(el.getAttribute(options.dataIdAttr) || _generateId(el));
+				}
+			}
+
+			return order;
+		},
+
+
+		/**
+		 * Sorts the elements according to the array.
+		 * @param  {String[]}  order  order of the items
+		 */
+		sort: function (order) {
+			var items = {}, rootEl = this.el;
+
+			this.toArray().forEach(function (id, i) {
+				var el = rootEl.children[i];
+
+				if (_closest(el, this.options.draggable, rootEl)) {
+					items[id] = el;
+				}
+			}, this);
+
+			order.forEach(function (id) {
+				if (items[id]) {
+					rootEl.removeChild(items[id]);
+					rootEl.appendChild(items[id]);
+				}
+			});
+		},
+
+
+		/**
+		 * Save the current sorting
+		 */
+		save: function () {
+			var store = this.options.store;
+			store && store.set(this);
+		},
+
+
+		/**
+		 * For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.
+		 * @param   {HTMLElement}  el
+		 * @param   {String}       [selector]  default: `options.draggable`
+		 * @returns {HTMLElement|null}
+		 */
+		closest: function (el, selector) {
+			return _closest(el, selector || this.options.draggable, this.el);
+		},
+
+
+		/**
+		 * Set/get option
+		 * @param   {string} name
+		 * @param   {*}      [value]
+		 * @returns {*}
+		 */
+		option: function (name, value) {
+			var options = this.options;
+
+			if (value === void 0) {
+				return options[name];
+			} else {
+				options[name] = value;
+
+				if (name === 'group') {
+					_prepareGroup(options);
+				}
+			}
+		},
+
+
+		/**
+		 * Destroy
+		 */
+		destroy: function () {
+			var el = this.el;
+
+			el[expando] = null;
+
+			_off(el, 'mousedown', this._onTapStart);
+			_off(el, 'touchstart', this._onTapStart);
+			_off(el, 'pointerdown', this._onTapStart);
+
+			if (this.nativeDraggable) {
+				_off(el, 'dragover', this);
+				_off(el, 'dragenter', this);
+			}
+
+			// Remove draggable attributes
+			Array.prototype.forEach.call(el.querySelectorAll('[draggable]'), function (el) {
+				el.removeAttribute('draggable');
+			});
+
+			touchDragOverListeners.splice(touchDragOverListeners.indexOf(this._onDragOver), 1);
+
+			this._onDrop();
+
+			this.el = el = null;
+		}
+	};
+
+
+	function _cloneHide(sortable, state) {
+		if (sortable.lastPullMode !== 'clone') {
+			state = true;
+		}
+
+		if (cloneEl && (cloneEl.state !== state)) {
+			_css(cloneEl, 'display', state ? 'none' : '');
+
+			if (!state) {
+				if (cloneEl.state) {
+					if (sortable.options.group.revertClone) {
+						rootEl.insertBefore(cloneEl, nextEl);
+						sortable._animate(dragEl, cloneEl);
+					} else {
+						rootEl.insertBefore(cloneEl, dragEl);
+					}
+				}
+			}
+
+			cloneEl.state = state;
+		}
+	}
+
+
+	function _closest(/**HTMLElement*/el, /**String*/selector, /**HTMLElement*/ctx) {
+		if (el) {
+			ctx = ctx || document;
+
+			do {
+				if ((selector === '>*' && el.parentNode === ctx) || _matches(el, selector)) {
+					return el;
+				}
+				/* jshint boss:true */
+			} while (el = _getParentOrHost(el));
+		}
+
+		return null;
+	}
+
+
+	function _getParentOrHost(el) {
+		var parent = el.host;
+
+		return (parent && parent.nodeType) ? parent : el.parentNode;
+	}
+
+
+	function _globalDragOver(/**Event*/evt) {
+		if (evt.dataTransfer) {
+			evt.dataTransfer.dropEffect = 'move';
+		}
+		evt.preventDefault();
+	}
+
+
+	function _on(el, event, fn) {
+		el.addEventListener(event, fn, captureMode);
+	}
+
+
+	function _off(el, event, fn) {
+		el.removeEventListener(event, fn, captureMode);
+	}
+
+
+	function _toggleClass(el, name, state) {
+		if (el) {
+			if (el.classList) {
+				el.classList[state ? 'add' : 'remove'](name);
+			}
+			else {
+				var className = (' ' + el.className + ' ').replace(R_SPACE, ' ').replace(' ' + name + ' ', ' ');
+				el.className = (className + (state ? ' ' + name : '')).replace(R_SPACE, ' ');
+			}
+		}
+	}
+
+
+	function _css(el, prop, val) {
+		var style = el && el.style;
+
+		if (style) {
+			if (val === void 0) {
+				if (document.defaultView && document.defaultView.getComputedStyle) {
+					val = document.defaultView.getComputedStyle(el, '');
+				}
+				else if (el.currentStyle) {
+					val = el.currentStyle;
+				}
+
+				return prop === void 0 ? val : val[prop];
+			}
+			else {
+				if (!(prop in style)) {
+					prop = '-webkit-' + prop;
+				}
+
+				style[prop] = val + (typeof val === 'string' ? '' : 'px');
+			}
+		}
+	}
+
+
+	function _find(ctx, tagName, iterator) {
+		if (ctx) {
+			var list = ctx.getElementsByTagName(tagName), i = 0, n = list.length;
+
+			if (iterator) {
+				for (; i < n; i++) {
+					iterator(list[i], i);
+				}
+			}
+
+			return list;
+		}
+
+		return [];
+	}
+
+
+
+	function _dispatchEvent(sortable, rootEl, name, targetEl, fromEl, startIndex, newIndex) {
+		sortable = (sortable || rootEl[expando]);
+
+		var evt = document.createEvent('Event'),
+			options = sortable.options,
+			onName = 'on' + name.charAt(0).toUpperCase() + name.substr(1);
+
+		evt.initEvent(name, true, true);
+
+		evt.to = rootEl;
+		evt.from = fromEl || rootEl;
+		evt.item = targetEl || rootEl;
+		evt.clone = cloneEl;
+
+		evt.oldIndex = startIndex;
+		evt.newIndex = newIndex;
+
+		rootEl.dispatchEvent(evt);
+
+		if (options[onName]) {
+			options[onName].call(sortable, evt);
+		}
+	}
+
+
+	function _onMove(fromEl, toEl, dragEl, dragRect, targetEl, targetRect, originalEvt, willInsertAfter) {
+		var evt,
+			sortable = fromEl[expando],
+			onMoveFn = sortable.options.onMove,
+			retVal;
+
+		evt = document.createEvent('Event');
+		evt.initEvent('move', true, true);
+
+		evt.to = toEl;
+		evt.from = fromEl;
+		evt.dragged = dragEl;
+		evt.draggedRect = dragRect;
+		evt.related = targetEl || toEl;
+		evt.relatedRect = targetRect || toEl.getBoundingClientRect();
+		evt.willInsertAfter = willInsertAfter;
+
+		fromEl.dispatchEvent(evt);
+
+		if (onMoveFn) {
+			retVal = onMoveFn.call(sortable, evt, originalEvt);
+		}
+
+		return retVal;
+	}
+
+
+	function _disableDraggable(el) {
+		el.draggable = false;
+	}
+
+
+	function _unsilent() {
+		_silent = false;
+	}
+
+
+	/** @returns {HTMLElement|false} */
+	function _ghostIsLast(el, evt) {
+		var lastEl = el.lastElementChild,
+			rect = lastEl.getBoundingClientRect();
+
+		// 5 — min delta
+		// abs — нельзя добавлять, а то глюки при наведении сверху
+		return (evt.clientY - (rect.top + rect.height) > 5) ||
+			(evt.clientX - (rect.left + rect.width) > 5);
+	}
+
+
+	/**
+	 * Generate id
+	 * @param   {HTMLElement} el
+	 * @returns {String}
+	 * @private
+	 */
+	function _generateId(el) {
+		var str = el.tagName + el.className + el.src + el.href + el.textContent,
+			i = str.length,
+			sum = 0;
+
+		while (i--) {
+			sum += str.charCodeAt(i);
+		}
+
+		return sum.toString(36);
+	}
+
+	/**
+	 * Returns the index of an element within its parent for a selected set of
+	 * elements
+	 * @param  {HTMLElement} el
+	 * @param  {selector} selector
+	 * @return {number}
+	 */
+	function _index(el, selector) {
+		var index = 0;
+
+		if (!el || !el.parentNode) {
+			return -1;
+		}
+
+		while (el && (el = el.previousElementSibling)) {
+			if ((el.nodeName.toUpperCase() !== 'TEMPLATE') && (selector === '>*' || _matches(el, selector))) {
+				index++;
+			}
+		}
+
+		return index;
+	}
+
+	function _matches(/**HTMLElement*/el, /**String*/selector) {
+		if (el) {
+			selector = selector.split('.');
+
+			var tag = selector.shift().toUpperCase(),
+				re = new RegExp('\\s(' + selector.join('|') + ')(?=\\s)', 'g');
+
+			return (
+				(tag === '' || el.nodeName.toUpperCase() == tag) &&
+				(!selector.length || ((' ' + el.className + ' ').match(re) || []).length == selector.length)
+			);
+		}
+
+		return false;
+	}
+
+	function _throttle(callback, ms) {
+		var args, _this;
+
+		return function () {
+			if (args === void 0) {
+				args = arguments;
+				_this = this;
+
+				setTimeout(function () {
+					if (args.length === 1) {
+						callback.call(_this, args[0]);
+					} else {
+						callback.apply(_this, args);
+					}
+
+					args = void 0;
+				}, ms);
+			}
+		};
+	}
+
+	function _extend(dst, src) {
+		if (dst && src) {
+			for (var key in src) {
+				if (src.hasOwnProperty(key)) {
+					dst[key] = src[key];
+				}
+			}
+		}
+
+		return dst;
+	}
+
+	function _clone(el) {
+		return $
+			? $(el).clone(true)[0]
+			: (Polymer && Polymer.dom
+				? Polymer.dom(el).cloneNode(true)
+				: el.cloneNode(true)
+			);
+	}
+
+	function _saveInputCheckedState(root) {
+		var inputs = root.getElementsByTagName('input');
+		var idx = inputs.length;
+
+		while (idx--) {
+			var el = inputs[idx];
+			el.checked && savedInputChecked.push(el);
+		}
+	}
+
+	// Fixed #973: 
+	_on(document, 'touchmove', function (evt) {
+		if (Sortable.active) {
+			evt.preventDefault();
+		}
+	});
+
+	try {
+		window.addEventListener('test', null, Object.defineProperty({}, 'passive', {
+			get: function () {
+				captureMode = {
+					capture: false,
+					passive: false
+				};
+			}
+		}));
+	} catch (err) {}
+
+	// Export utils
+	Sortable.utils = {
+		on: _on,
+		off: _off,
+		css: _css,
+		find: _find,
+		is: function (el, selector) {
+			return !!_closest(el, selector, el);
+		},
+		extend: _extend,
+		throttle: _throttle,
+		closest: _closest,
+		toggleClass: _toggleClass,
+		clone: _clone,
+		index: _index
+	};
+
+
+	/**
+	 * Create sortable instance
+	 * @param {HTMLElement}  el
+	 * @param {Object}      [options]
+	 */
+	Sortable.create = function (el, options) {
+		return new Sortable(el, options);
+	};
+
+
+	// Export
+	Sortable.version = '1.6.1';
+	return Sortable;
+});
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * jQuery blockUI plugin
+ * Version 2.70.0-2014.11.23
+ * Requires jQuery v1.7 or later
+ *
+ * Examples at: http://malsup.com/jquery/block/
+ * Copyright (c) 2007-2013 M. Alsup
+ * Dual licensed under the MIT and GPL licenses:
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.gnu.org/licenses/gpl.html
+ *
+ * Thanks to Amir-Hossein Sobhi for some excellent contributions!
+ */
+
+;(function() {
+/*jshint eqeqeq:false curly:false latedef:false */
+"use strict";
+
+	function setup($) {
+		$.fn._fadeIn = $.fn.fadeIn;
+
+		var noOp = $.noop || function() {};
+
+		// this bit is to ensure we don't call setExpression when we shouldn't (with extra muscle to handle
+		// confusing userAgent strings on Vista)
+		var msie = /MSIE/.test(navigator.userAgent);
+		var ie6  = /MSIE 6.0/.test(navigator.userAgent) && ! /MSIE 8.0/.test(navigator.userAgent);
+		var mode = document.documentMode || 0;
+		var setExpr = $.isFunction( document.createElement('div').style.setExpression );
+
+		// global $ methods for blocking/unblocking the entire page
+		$.blockUI   = function(opts) { install(window, opts); };
+		$.unblockUI = function(opts) { remove(window, opts); };
+
+		// convenience method for quick growl-like notifications  (http://www.google.com/search?q=growl)
+		$.growlUI = function(title, message, timeout, onClose) {
+			var $m = $('<div class="growlUI"></div>');
+			if (title) $m.append('<h1>'+title+'</h1>');
+			if (message) $m.append('<h2>'+message+'</h2>');
+			if (timeout === undefined) timeout = 3000;
+
+			// Added by konapun: Set timeout to 30 seconds if this growl is moused over, like normal toast notifications
+			var callBlock = function(opts) {
+				opts = opts || {};
+
+				$.blockUI({
+					message: $m,
+					fadeIn : typeof opts.fadeIn  !== 'undefined' ? opts.fadeIn  : 700,
+					fadeOut: typeof opts.fadeOut !== 'undefined' ? opts.fadeOut : 1000,
+					timeout: typeof opts.timeout !== 'undefined' ? opts.timeout : timeout,
+					centerY: false,
+					showOverlay: false,
+					onUnblock: onClose,
+					css: $.blockUI.defaults.growlCSS
+				});
+			};
+
+			callBlock();
+			var nonmousedOpacity = $m.css('opacity');
+			$m.mouseover(function() {
+				callBlock({
+					fadeIn: 0,
+					timeout: 30000
+				});
+
+				var displayBlock = $('.blockMsg');
+				displayBlock.stop(); // cancel fadeout if it has started
+				displayBlock.fadeTo(300, 1); // make it easier to read the message by removing transparency
+			}).mouseout(function() {
+				$('.blockMsg').fadeOut(1000);
+			});
+			// End konapun additions
+		};
+
+		// plugin method for blocking element content
+		$.fn.block = function(opts) {
+			if ( this[0] === window ) {
+				$.blockUI( opts );
+				return this;
+			}
+			var fullOpts = $.extend({}, $.blockUI.defaults, opts || {});
+			this.each(function() {
+				var $el = $(this);
+				if (fullOpts.ignoreIfBlocked && $el.data('blockUI.isBlocked'))
+					return;
+				$el.unblock({ fadeOut: 0 });
+			});
+
+			return this.each(function() {
+				if ($.css(this,'position') == 'static') {
+					this.style.position = 'relative';
+					$(this).data('blockUI.static', true);
+				}
+				this.style.zoom = 1; // force 'hasLayout' in ie
+				install(this, opts);
+			});
+		};
+
+		// plugin method for unblocking element content
+		$.fn.unblock = function(opts) {
+			if ( this[0] === window ) {
+				$.unblockUI( opts );
+				return this;
+			}
+			return this.each(function() {
+				remove(this, opts);
+			});
+		};
+
+		$.blockUI.version = 2.70; // 2nd generation blocking at no extra cost!
+
+		// override these in your code to change the default behavior and style
+		$.blockUI.defaults = {
+			// message displayed when blocking (use null for no message)
+			message:  '<h1>Please wait...</h1>',
+
+			title: null,		// title string; only used when theme == true
+			draggable: true,	// only used when theme == true (requires jquery-ui.js to be loaded)
+
+			theme: false, // set to true to use with jQuery UI themes
+
+			// styles for the message when blocking; if you wish to disable
+			// these and use an external stylesheet then do this in your code:
+			// $.blockUI.defaults.css = {};
+			css: {
+				padding:	0,
+				margin:		0,
+				width:		'30%',
+				top:		'40%',
+				left:		'35%',
+				textAlign:	'center',
+				color:		'#000',
+				border:		'3px solid #aaa',
+				backgroundColor:'#fff',
+				cursor:		'wait'
+			},
+
+			// minimal style set used when themes are used
+			themedCSS: {
+				width:	'30%',
+				top:	'40%',
+				left:	'35%'
+			},
+
+			// styles for the overlay
+			overlayCSS:  {
+				backgroundColor:	'#000',
+				opacity:			0.6,
+				cursor:				'wait'
+			},
+
+			// style to replace wait cursor before unblocking to correct issue
+			// of lingering wait cursor
+			cursorReset: 'default',
+
+			// styles applied when using $.growlUI
+			growlCSS: {
+				width:		'350px',
+				top:		'10px',
+				left:		'',
+				right:		'10px',
+				border:		'none',
+				padding:	'5px',
+				opacity:	0.6,
+				cursor:		'default',
+				color:		'#fff',
+				backgroundColor: '#000',
+				'-webkit-border-radius':'10px',
+				'-moz-border-radius':	'10px',
+				'border-radius':		'10px'
+			},
+
+			// IE issues: 'about:blank' fails on HTTPS and javascript:false is s-l-o-w
+			// (hat tip to Jorge H. N. de Vasconcelos)
+			/*jshint scripturl:true */
+			iframeSrc: /^https/i.test(window.location.href || '') ? 'javascript:false' : 'about:blank',
+
+			// force usage of iframe in non-IE browsers (handy for blocking applets)
+			forceIframe: false,
+
+			// z-index for the blocking overlay
+			baseZ: 1000,
+
+			// set these to true to have the message automatically centered
+			centerX: true, // <-- only effects element blocking (page block controlled via css above)
+			centerY: true,
+
+			// allow body element to be stetched in ie6; this makes blocking look better
+			// on "short" pages.  disable if you wish to prevent changes to the body height
+			allowBodyStretch: true,
+
+			// enable if you want key and mouse events to be disabled for content that is blocked
+			bindEvents: true,
+
+			// be default blockUI will supress tab navigation from leaving blocking content
+			// (if bindEvents is true)
+			constrainTabKey: true,
+
+			// fadeIn time in millis; set to 0 to disable fadeIn on block
+			fadeIn:  200,
+
+			// fadeOut time in millis; set to 0 to disable fadeOut on unblock
+			fadeOut:  400,
+
+			// time in millis to wait before auto-unblocking; set to 0 to disable auto-unblock
+			timeout: 0,
+
+			// disable if you don't want to show the overlay
+			showOverlay: true,
+
+			// if true, focus will be placed in the first available input field when
+			// page blocking
+			focusInput: true,
+
+            // elements that can receive focus
+            focusableElements: ':input:enabled:visible',
+
+			// suppresses the use of overlay styles on FF/Linux (due to performance issues with opacity)
+			// no longer needed in 2012
+			// applyPlatformOpacityRules: true,
+
+			// callback method invoked when fadeIn has completed and blocking message is visible
+			onBlock: null,
+
+			// callback method invoked when unblocking has completed; the callback is
+			// passed the element that has been unblocked (which is the window object for page
+			// blocks) and the options that were passed to the unblock call:
+			//	onUnblock(element, options)
+			onUnblock: null,
+
+			// callback method invoked when the overlay area is clicked.
+			// setting this will turn the cursor to a pointer, otherwise cursor defined in overlayCss will be used.
+			onOverlayClick: null,
+
+			// don't ask; if you really must know: http://groups.google.com/group/jquery-en/browse_thread/thread/36640a8730503595/2f6a79a77a78e493#2f6a79a77a78e493
+			quirksmodeOffsetHack: 4,
+
+			// class name of the message block
+			blockMsgClass: 'blockMsg',
+
+			// if it is already blocked, then ignore it (don't unblock and reblock)
+			ignoreIfBlocked: false
+		};
+
+		// private data and functions follow...
+
+		var pageBlock = null;
+		var pageBlockEls = [];
+
+		function install(el, opts) {
+			var css, themedCSS;
+			var full = (el == window);
+			var msg = (opts && opts.message !== undefined ? opts.message : undefined);
+			opts = $.extend({}, $.blockUI.defaults, opts || {});
+
+			if (opts.ignoreIfBlocked && $(el).data('blockUI.isBlocked'))
+				return;
+
+			opts.overlayCSS = $.extend({}, $.blockUI.defaults.overlayCSS, opts.overlayCSS || {});
+			css = $.extend({}, $.blockUI.defaults.css, opts.css || {});
+			if (opts.onOverlayClick)
+				opts.overlayCSS.cursor = 'pointer';
+
+			themedCSS = $.extend({}, $.blockUI.defaults.themedCSS, opts.themedCSS || {});
+			msg = msg === undefined ? opts.message : msg;
+
+			// remove the current block (if there is one)
+			if (full && pageBlock)
+				remove(window, {fadeOut:0});
+
+			// if an existing element is being used as the blocking content then we capture
+			// its current place in the DOM (and current display style) so we can restore
+			// it when we unblock
+			if (msg && typeof msg != 'string' && (msg.parentNode || msg.jquery)) {
+				var node = msg.jquery ? msg[0] : msg;
+				var data = {};
+				$(el).data('blockUI.history', data);
+				data.el = node;
+				data.parent = node.parentNode;
+				data.display = node.style.display;
+				data.position = node.style.position;
+				if (data.parent)
+					data.parent.removeChild(node);
+			}
+
+			$(el).data('blockUI.onUnblock', opts.onUnblock);
+			var z = opts.baseZ;
+
+			// blockUI uses 3 layers for blocking, for simplicity they are all used on every platform;
+			// layer1 is the iframe layer which is used to supress bleed through of underlying content
+			// layer2 is the overlay layer which has opacity and a wait cursor (by default)
+			// layer3 is the message content that is displayed while blocking
+			var lyr1, lyr2, lyr3, s;
+			if (msie || opts.forceIframe)
+				lyr1 = $('<iframe class="blockUI" style="z-index:'+ (z++) +';display:none;border:none;margin:0;padding:0;position:absolute;width:100%;height:100%;top:0;left:0" src="'+opts.iframeSrc+'"></iframe>');
+			else
+				lyr1 = $('<div class="blockUI" style="display:none"></div>');
+
+			if (opts.theme)
+				lyr2 = $('<div class="blockUI blockOverlay ui-widget-overlay" style="z-index:'+ (z++) +';display:none"></div>');
+			else
+				lyr2 = $('<div class="blockUI blockOverlay" style="z-index:'+ (z++) +';display:none;border:none;margin:0;padding:0;width:100%;height:100%;top:0;left:0"></div>');
+
+			if (opts.theme && full) {
+				s = '<div class="blockUI ' + opts.blockMsgClass + ' blockPage ui-dialog ui-widget ui-corner-all" style="z-index:'+(z+10)+';display:none;position:fixed">';
+				if ( opts.title ) {
+					s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">'+(opts.title || '&nbsp;')+'</div>';
+				}
+				s += '<div class="ui-widget-content ui-dialog-content"></div>';
+				s += '</div>';
+			}
+			else if (opts.theme) {
+				s = '<div class="blockUI ' + opts.blockMsgClass + ' blockElement ui-dialog ui-widget ui-corner-all" style="z-index:'+(z+10)+';display:none;position:absolute">';
+				if ( opts.title ) {
+					s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">'+(opts.title || '&nbsp;')+'</div>';
+				}
+				s += '<div class="ui-widget-content ui-dialog-content"></div>';
+				s += '</div>';
+			}
+			else if (full) {
+				s = '<div class="blockUI ' + opts.blockMsgClass + ' blockPage" style="z-index:'+(z+10)+';display:none;position:fixed"></div>';
+			}
+			else {
+				s = '<div class="blockUI ' + opts.blockMsgClass + ' blockElement" style="z-index:'+(z+10)+';display:none;position:absolute"></div>';
+			}
+			lyr3 = $(s);
+
+			// if we have a message, style it
+			if (msg) {
+				if (opts.theme) {
+					lyr3.css(themedCSS);
+					lyr3.addClass('ui-widget-content');
+				}
+				else
+					lyr3.css(css);
+			}
+
+			// style the overlay
+			if (!opts.theme /*&& (!opts.applyPlatformOpacityRules)*/)
+				lyr2.css(opts.overlayCSS);
+			lyr2.css('position', full ? 'fixed' : 'absolute');
+
+			// make iframe layer transparent in IE
+			if (msie || opts.forceIframe)
+				lyr1.css('opacity',0.0);
+
+			//$([lyr1[0],lyr2[0],lyr3[0]]).appendTo(full ? 'body' : el);
+			var layers = [lyr1,lyr2,lyr3], $par = full ? $('body') : $(el);
+			$.each(layers, function() {
+				this.appendTo($par);
+			});
+
+			if (opts.theme && opts.draggable && $.fn.draggable) {
+				lyr3.draggable({
+					handle: '.ui-dialog-titlebar',
+					cancel: 'li'
+				});
+			}
+
+			// ie7 must use absolute positioning in quirks mode and to account for activex issues (when scrolling)
+			var expr = setExpr && (!$.support.boxModel || $('object,embed', full ? null : el).length > 0);
+			if (ie6 || expr) {
+				// give body 100% height
+				if (full && opts.allowBodyStretch && $.support.boxModel)
+					$('html,body').css('height','100%');
+
+				// fix ie6 issue when blocked element has a border width
+				if ((ie6 || !$.support.boxModel) && !full) {
+					var t = sz(el,'borderTopWidth'), l = sz(el,'borderLeftWidth');
+					var fixT = t ? '(0 - '+t+')' : 0;
+					var fixL = l ? '(0 - '+l+')' : 0;
+				}
+
+				// simulate fixed position
+				$.each(layers, function(i,o) {
+					var s = o[0].style;
+					s.position = 'absolute';
+					if (i < 2) {
+						if (full)
+							s.setExpression('height','Math.max(document.body.scrollHeight, document.body.offsetHeight) - (jQuery.support.boxModel?0:'+opts.quirksmodeOffsetHack+') + "px"');
+						else
+							s.setExpression('height','this.parentNode.offsetHeight + "px"');
+						if (full)
+							s.setExpression('width','jQuery.support.boxModel && document.documentElement.clientWidth || document.body.clientWidth + "px"');
+						else
+							s.setExpression('width','this.parentNode.offsetWidth + "px"');
+						if (fixL) s.setExpression('left', fixL);
+						if (fixT) s.setExpression('top', fixT);
+					}
+					else if (opts.centerY) {
+						if (full) s.setExpression('top','(document.documentElement.clientHeight || document.body.clientHeight) / 2 - (this.offsetHeight / 2) + (blah = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop) + "px"');
+						s.marginTop = 0;
+					}
+					else if (!opts.centerY && full) {
+						var top = (opts.css && opts.css.top) ? parseInt(opts.css.top, 10) : 0;
+						var expression = '((document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop) + '+top+') + "px"';
+						s.setExpression('top',expression);
+					}
+				});
+			}
+
+			// show the message
+			if (msg) {
+				if (opts.theme)
+					lyr3.find('.ui-widget-content').append(msg);
+				else
+					lyr3.append(msg);
+				if (msg.jquery || msg.nodeType)
+					$(msg).show();
+			}
+
+			if ((msie || opts.forceIframe) && opts.showOverlay)
+				lyr1.show(); // opacity is zero
+			if (opts.fadeIn) {
+				var cb = opts.onBlock ? opts.onBlock : noOp;
+				var cb1 = (opts.showOverlay && !msg) ? cb : noOp;
+				var cb2 = msg ? cb : noOp;
+				if (opts.showOverlay)
+					lyr2._fadeIn(opts.fadeIn, cb1);
+				if (msg)
+					lyr3._fadeIn(opts.fadeIn, cb2);
+			}
+			else {
+				if (opts.showOverlay)
+					lyr2.show();
+				if (msg)
+					lyr3.show();
+				if (opts.onBlock)
+					opts.onBlock.bind(lyr3)();
+			}
+
+			// bind key and mouse events
+			bind(1, el, opts);
+
+			if (full) {
+				pageBlock = lyr3[0];
+				pageBlockEls = $(opts.focusableElements,pageBlock);
+				if (opts.focusInput)
+					setTimeout(focus, 20);
+			}
+			else
+				center(lyr3[0], opts.centerX, opts.centerY);
+
+			if (opts.timeout) {
+				// auto-unblock
+				var to = setTimeout(function() {
+					if (full)
+						$.unblockUI(opts);
+					else
+						$(el).unblock(opts);
+				}, opts.timeout);
+				$(el).data('blockUI.timeout', to);
+			}
+		}
+
+		// remove the block
+		function remove(el, opts) {
+			var count;
+			var full = (el == window);
+			var $el = $(el);
+			var data = $el.data('blockUI.history');
+			var to = $el.data('blockUI.timeout');
+			if (to) {
+				clearTimeout(to);
+				$el.removeData('blockUI.timeout');
+			}
+			opts = $.extend({}, $.blockUI.defaults, opts || {});
+			bind(0, el, opts); // unbind events
+
+			if (opts.onUnblock === null) {
+				opts.onUnblock = $el.data('blockUI.onUnblock');
+				$el.removeData('blockUI.onUnblock');
+			}
+
+			var els;
+			if (full) // crazy selector to handle odd field errors in ie6/7
+				els = $('body').children().filter('.blockUI').add('body > .blockUI');
+			else
+				els = $el.find('>.blockUI');
+
+			// fix cursor issue
+			if ( opts.cursorReset ) {
+				if ( els.length > 1 )
+					els[1].style.cursor = opts.cursorReset;
+				if ( els.length > 2 )
+					els[2].style.cursor = opts.cursorReset;
+			}
+
+			if (full)
+				pageBlock = pageBlockEls = null;
+
+			if (opts.fadeOut) {
+				count = els.length;
+				els.stop().fadeOut(opts.fadeOut, function() {
+					if ( --count === 0)
+						reset(els,data,opts,el);
+				});
+			}
+			else
+				reset(els, data, opts, el);
+		}
+
+		// move blocking element back into the DOM where it started
+		function reset(els,data,opts,el) {
+			var $el = $(el);
+			if ( $el.data('blockUI.isBlocked') )
+				return;
+
+			els.each(function(i,o) {
+				// remove via DOM calls so we don't lose event handlers
+				if (this.parentNode)
+					this.parentNode.removeChild(this);
+			});
+
+			if (data && data.el) {
+				data.el.style.display = data.display;
+				data.el.style.position = data.position;
+				data.el.style.cursor = 'default'; // #59
+				if (data.parent)
+					data.parent.appendChild(data.el);
+				$el.removeData('blockUI.history');
+			}
+
+			if ($el.data('blockUI.static')) {
+				$el.css('position', 'static'); // #22
+			}
+
+			if (typeof opts.onUnblock == 'function')
+				opts.onUnblock(el,opts);
+
+			// fix issue in Safari 6 where block artifacts remain until reflow
+			var body = $(document.body), w = body.width(), cssW = body[0].style.width;
+			body.width(w-1).width(w);
+			body[0].style.width = cssW;
+		}
+
+		// bind/unbind the handler
+		function bind(b, el, opts) {
+			var full = el == window, $el = $(el);
+
+			// don't bother unbinding if there is nothing to unbind
+			if (!b && (full && !pageBlock || !full && !$el.data('blockUI.isBlocked')))
+				return;
+
+			$el.data('blockUI.isBlocked', b);
+
+			// don't bind events when overlay is not in use or if bindEvents is false
+			if (!full || !opts.bindEvents || (b && !opts.showOverlay))
+				return;
+
+			// bind anchors and inputs for mouse and key events
+			var events = 'mousedown mouseup keydown keypress keyup touchstart touchend touchmove';
+			if (b)
+				$(document).bind(events, opts, handler);
+			else
+				$(document).unbind(events, handler);
+
+		// former impl...
+		//		var $e = $('a,:input');
+		//		b ? $e.bind(events, opts, handler) : $e.unbind(events, handler);
+		}
+
+		// event handler to suppress keyboard/mouse events when blocking
+		function handler(e) {
+			// allow tab navigation (conditionally)
+			if (e.type === 'keydown' && e.keyCode && e.keyCode == 9) {
+				if (pageBlock && e.data.constrainTabKey) {
+					var els = pageBlockEls;
+					var fwd = !e.shiftKey && e.target === els[els.length-1];
+					var back = e.shiftKey && e.target === els[0];
+					if (fwd || back) {
+						setTimeout(function(){focus(back);},10);
+						return false;
+					}
+				}
+			}
+			var opts = e.data;
+			var target = $(e.target);
+			if (target.hasClass('blockOverlay') && opts.onOverlayClick)
+				opts.onOverlayClick(e);
+
+			// allow events within the message content
+			if (target.parents('div.' + opts.blockMsgClass).length > 0)
+				return true;
+
+			// allow events for content that is not being blocked
+			return target.parents().children().filter('div.blockUI').length === 0;
+		}
+
+		function focus(back) {
+			if (!pageBlockEls)
+				return;
+			var e = pageBlockEls[back===true ? pageBlockEls.length-1 : 0];
+			if (e)
+				e.focus();
+		}
+
+		function center(el, x, y) {
+			var p = el.parentNode, s = el.style;
+			var l = ((p.offsetWidth - el.offsetWidth)/2) - sz(p,'borderLeftWidth');
+			var t = ((p.offsetHeight - el.offsetHeight)/2) - sz(p,'borderTopWidth');
+			if (x) s.left = l > 0 ? (l+'px') : '0';
+			if (y) s.top  = t > 0 ? (t+'px') : '0';
+		}
+
+		function sz(el, p) {
+			return parseInt($.css(el,p),10)||0;
+		}
+
+	}
+
+
+	/*global define:true */
+	if (true) {
+		// AMD. Register as an anonymous module.
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (setup),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else if (typeof exports === 'object') {
+		// Node/CommonJS
+		setup(require('jquery'));
+	} else {
+		// Browser globals
+		setup(jQuery);
+	}
+
+})();
+
+
+/***/ }),
+/* 35 */
 /***/ (function(module, exports) {
 
 /*

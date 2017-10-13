@@ -24,6 +24,10 @@
                 <form action="{{ route('products.photo.upload', $product->hash_id) }}" class="dropzone" id="my-awesome-dropzone">
                     {!! csrf_field() !!}
                 </form>
+                <hr>
+                <p class="text-center">
+                    <a href="{{ route('products.photos.order', $product->slug) }}" class="btn btn-success">Ir a ordenar fotos &raquo;</a>
+                </p>
             </div>
         </div>
     </div>

@@ -39,10 +39,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Logo -->
             <div class="top-left-part">
                 <a class="logo" href="#">
-                    <!-- Logo icon image, you can use font-icon also -->
-                    <b><img src="https://placekitten.com/g/60/60" alt="home"/></b>
                     <!-- Logo text image you can use text also -->
-                    <span class="hidden-xs"><img src="https://placekitten.com/g/108/21" alt="home"/></span> </a>
+                    <span class="hidden-xs">
+                        <img src="{{ asset('images/logo-linea.png') }}" alt="home" width="220" height="60"/>
+                    </span>
+                </a>
             </div>
             <!-- /Logo -->
             <!-- This is the message dropdown -->

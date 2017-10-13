@@ -36,6 +36,7 @@ namespace App\Models{
  * @property \Carbon\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
  * @property-read string $hash_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)

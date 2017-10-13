@@ -1,12 +1,14 @@
 const switcher = require('switchery/switchery');
 const select2 = require('select2/dist/js/select2.full');
 require('dropzone/dist/dropzone-amd-module');
+const Sortable = require('sortablejs');
+require('block-ui');
 
 $(document).ready(function () {
 
     "use strict";
 
-    var body = $("body");
+    const body = $("body");
 
     $(function () {
         $(".preloader").fadeOut();
@@ -20,6 +22,18 @@ $(document).ready(function () {
     if ($('.js-switch').length) {
         let elem = document.querySelector('.js-switch');
         let init = new switcher(elem, {color: '#F9967B'});
+    }
+
+    if ($('#sortable-items').length) {
+        let elem = document.querySelector('#sortable-items');
+        const sortable = new Sortable(elem, {
+            onEnd(event) {
+                $.blockUI({ message: "<i class='fa fa-refresh fa-spin'></i> Guardando, espere <i class='fa fa-refresh fa-spin'></i>" });
+
+                $.post(`/admin/products/photos/order`, { newOrder: sortable.toArray() })
+                    .done(() => $.unblockUI());
+            }
+        });
     }
 
     /* ===== Open-Close Right Sidebar ===== */

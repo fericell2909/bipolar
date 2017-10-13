@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::orderByDesc('id')->with('color')->get();
+        $products = Product::orderByDesc('id')->with('colors')->get();
 
         return view('admin.products.products', compact('products'));
     }
@@ -73,5 +73,29 @@ class ProductController extends Controller
         }
 
         return response()->json(compact('path'));
+    }
+
+    public function seePhotos($productSlug)
+    {
+        $product = Product::findBySlug($productSlug);
+
+        $product->load(['photos' => function ($queryWithPhotos) {
+            return $queryWithPhotos->orderBy('order');
+        }]);
+
+        return view('admin.products.photos_order', compact('product'));
+    }
+
+    public function orderAndSavePosition(Request $request)
+    {
+        $newOrder = $request->input('newOrder');
+
+        foreach ($newOrder as $orderKey => $photoHashId) {
+            $photo = Photo::findByHash($photoHashId);
+            $photo->order = $orderKey;
+            $photo->save();
+        }
+
+        return response()->json(['success' => true]);
     }
 }

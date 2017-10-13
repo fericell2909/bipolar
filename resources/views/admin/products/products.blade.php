@@ -18,6 +18,7 @@
                     <tr>
                         <th>#</th>
                         <th>Nombre</th>
+                        <th>Colores</th>
                         <th class="text-right">Precio</th>
                         <th class="text-center">Activo</th>
                         <th>Acciones</th>
@@ -28,7 +29,14 @@
                         <?php /** @var \App\Models\Product $product */ ?>
                         <tr>
                             <td>{{ $product->id }}</td>
-                            <td>{{ $product->name }} {{ $product->color->name }}</td>
+                            <td>{{ $product->name }} - {{ $product->subtitle }}</td>
+                            <td>
+                                @foreach($product->colors as $color)
+                                    <div style="background-color: {{ $color->hexadecimal }}">
+                                        {{ $color->name }}
+                                    </div>
+                                @endforeach
+                            </td>
                             <td class="text-right">{{ $product->price }}</td>
                             <td class="text-center">{!! $product->getAdminActiveButton() !!}</td>
                             <td>
