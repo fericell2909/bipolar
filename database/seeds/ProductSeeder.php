@@ -11,13 +11,6 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        if (\DB::table('colors')->count() > 0) {
-            /** @var \App\Models\Color $randomColor */
-            $randomColor = \DB::table('colors')->get()->random();
-
-            factory(\App\Models\Product::class, 20)->create(['color_id' => $randomColor->id]);
-        } else {
-            factory(\App\Models\Product::class, 20)->create();
-        }
+        factory(\App\Models\Product::class, 20)->create();
     }
 }
