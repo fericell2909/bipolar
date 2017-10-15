@@ -8,33 +8,55 @@
     <title>Bipolar</title>
     <link rel="stylesheet" href="{{ mix('css/app-web-styles.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- Script de Font Awesome --}}
+    <script src="https://use.fontawesome.com/d71cf672b2.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bipolar-background">
-        <span class="navbar-text">
-            Hola <a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">Ingresa</a> o <a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">regístrate</a>
-        </span>
-        <ul class="navbar-nav mr-auto">
+    <div class="bipolar-header-desktop">
+        <nav class="navbar navbar-expand-lg navbar-light color-transparent">
+            <span class="navbar-text">
+                Hola <a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">Ingresa</a> o <a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">regístrate</a>
+            </span>
+            {{-- This is for pull the content to the right --}}
+            <ul class="navbar-nav mr-auto"></ul>
+            {{-- This is for pull the content to the right --}}
+            <div class="btn-group">
+                <a class="btn btn-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @auth
+                        {{ Auth::user()->name }}
+                    @endauth
+                    @guest
+                        Mi cuenta
+                    @endguest
+                </a>
 
-        </ul>
-        <div class="btn-group">
-            <a class="btn btn-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 @auth
-                    {{ Auth::user()->name }}
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="{{ route('profile') }}">Mis datos</a>
+                        <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
+                    </div>
                 @endauth
-                @guest
-                    Mi cuenta
-                @endguest
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-lg color-transparent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i class="fa fa-envelope-o"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i class="fa fa-instagram"></i></a>
+                </li>
+            </ul>
+        </nav>
+        <section class="header-desktop">
+            <a href="#">
+                <img src="{{ asset('images/logo-linea.png') }}">
             </a>
-
-            @auth
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="{{ route('profile') }}">Mis datos</a>
-                    <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
-                </div>
-            @endauth
-        </div>
-    </nav>
+        </section>
+    </div>
     <section class="container d-sm-none d-md-none d-lg-none">
         <p class="text-center text-heading-mobile">¡Bienvenido invitado! Ingresa o regístrate</p>
         <div class="dropdown show">
@@ -61,18 +83,13 @@
         </a>
     </section>
     <div>
-        <section class="header-desktop">
-            <a href="#">
-                <img src="{{ asset('images/logo-linea.png') }}">
-            </a>
-        </section>
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://bipolar.com.pe/wp-content/uploads/2017/08/6.png" alt="First slide">
+                    <img class="d-block w-100" src="https://bipolar.com.pe/wp-content/uploads/2017/08/103.jpg" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="https://bipolar.com.pe/wp-content/uploads/2017/08/6.png" alt="Second slide">
+                    <img class="d-block w-100" src="https://bipolar.com.pe/wp-content/uploads/2017/08/103.jpg" alt="Second slide">
                 </div>
             </div>
         </div>

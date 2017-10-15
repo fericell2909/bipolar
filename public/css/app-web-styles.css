@@ -9194,7 +9194,24 @@ a.text-dark:hover {
   background-color: #fcbeb9;
 }
 
-a,
+.bipolar-header-desktop {
+  position: absolute;
+  z-index: 30;
+  width: 100%;
+}
+
+.color-transparent {
+  background: transparent;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: black;
+}
+
 .btn-link {
   color: black;
 }
@@ -9209,7 +9226,6 @@ a,
   background: transparent url(/images/linea.png?5b723fca197b8da1ba59bb91e81e95e4) repeat-x 0 55px;
   padding: 30px;
   text-align: center;
-  position: absolute;
   z-index: 3;
   width: 100%;
 }

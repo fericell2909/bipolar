@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 25);
+/******/ 	return __webpack_require__(__webpack_require__.s = 28);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10327,13 +10327,39 @@ return jQuery;
 /***/ }),
 
 /***/ 1:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function(global) {/**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.11.1
+ * @version 1.12.5
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
@@ -10355,6 +10381,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.Popper = factory());
+}(this, (function () { 'use strict';
+
 var nativeHints = ['native code', '[object MutationObserverConstructor]'];
 
 /**
@@ -10674,7 +10706,7 @@ var isIE10$1 = function () {
 };
 
 function getSize(axis, body, html, computedStyle) {
-  return Math.max(body['offset' + axis], html['client' + axis], html['offset' + axis], isIE10$1() ? html['offset' + axis] + computedStyle['margin' + (axis === 'Height' ? 'Top' : 'Left')] + computedStyle['margin' + (axis === 'Height' ? 'Bottom' : 'Right')] : 0);
+  return Math.max(body['offset' + axis], body['scroll' + axis], html['client' + axis], html['offset' + axis], html['scroll' + axis], isIE10$1() ? html['offset' + axis] + computedStyle['margin' + (axis === 'Height' ? 'Top' : 'Left')] + computedStyle['margin' + (axis === 'Height' ? 'Bottom' : 'Right')] : 0);
 }
 
 function getWindowSizes() {
@@ -11200,6 +11232,7 @@ function update() {
   var data = {
     instance: this,
     styles: {},
+    arrowStyles: {},
     attributes: {},
     flipped: false,
     offsets: {}
@@ -11444,9 +11477,9 @@ function applyStyle(data) {
   // they will be set as HTML attributes of the element
   setAttributes(data.instance.popper, data.attributes);
 
-  // if the arrow style has been computed, apply the arrow style
-  if (data.offsets.arrow) {
-    setStyles(data.arrowElement, data.offsets.arrow);
+  // if arrowElement is defined and arrowStyles has some properties
+  if (data.arrowElement && Object.keys(data.arrowStyles).length) {
+    setStyles(data.arrowElement, data.arrowStyles);
   }
 
   return data;
@@ -11566,9 +11599,10 @@ function computeStyle(data, options) {
     'x-placement': data.placement
   };
 
-  // Update attributes and styles of `data`
+  // Update `data` attributes, styles and arrowStyles
   data.attributes = _extends({}, attributes, data.attributes);
   data.styles = _extends({}, styles, data.styles);
+  data.arrowStyles = _extends({}, data.offsets.arrow, data.arrowStyles);
 
   return data;
 }
@@ -11641,13 +11675,15 @@ function arrow(data, options) {
   var isVertical = ['left', 'right'].indexOf(placement) !== -1;
 
   var len = isVertical ? 'height' : 'width';
-  var side = isVertical ? 'top' : 'left';
+  var sideCapitalized = isVertical ? 'Top' : 'Left';
+  var side = sideCapitalized.toLowerCase();
   var altSide = isVertical ? 'left' : 'top';
   var opSide = isVertical ? 'bottom' : 'right';
   var arrowElementSize = getOuterSizes(arrowElement)[len];
 
   //
-  // extends keepTogether behavior making sure the popper and its reference have enough pixels in conjuction
+  // extends keepTogether behavior making sure the popper and its
+  // reference have enough pixels in conjuction
   //
 
   // top/left side
@@ -11663,7 +11699,9 @@ function arrow(data, options) {
   var center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
 
   // Compute the sideValue using the updated popper offsets
-  var sideValue = center - getClientRect(data.offsets.popper)[side];
+  // take popper margin in account because we don't have this info available
+  var popperMarginSide = getStyleComputedProperty(data.instance.popper, 'margin' + sideCapitalized).replace('px', '');
+  var sideValue = center - getClientRect(data.offsets.popper)[side] - popperMarginSide;
 
   // prevent arrowElement from being placed not contiguously to its popper
   sideValue = Math.max(Math.min(popper[len] - arrowElementSize, sideValue), 0);
@@ -12185,7 +12223,7 @@ function inner(data) {
 
   var subtractLength = ['top', 'left'].indexOf(basePlacement) === -1;
 
-  popper[isHoriz ? 'left' : 'top'] = reference[placement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
+  popper[isHoriz ? 'left' : 'top'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
 
   data.placement = getOppositePlacement(placement);
   data.offsets.popper = getClientRect(popper);
@@ -12263,6 +12301,9 @@ var modifiers = {
    * '10 - 5vh + 3%'
    * '-10px + 5vh, 5px - 6%'
    * ```
+   * > **NB**: If you desire to apply offsets to your poppers in a way that may make them overlap
+   * > with their reference element, unfortunately, you will have to disable the `flip` modifier.
+   * > More on this [reading this issue](https://github.com/FezVrasta/popper.js/issues/373)
    *
    * @memberof modifiers
    * @inner
@@ -12525,6 +12566,7 @@ var modifiers = {
  * @property {Boolean} data.hide True if the reference element is out of boundaries, useful to know when to hide the popper.
  * @property {HTMLElement} data.arrowElement Node used as arrow by arrow modifier
  * @property {Object} data.styles Any CSS property defined here will be applied to the popper, it expects the JavaScript nomenclature (eg. `marginBottom`)
+ * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow, it expects the JavaScript nomenclature (eg. `marginBottom`)
  * @property {Object} data.boundaries Offsets of the popper boundaries
  * @property {Object} data.offsets The measurements of popper, reference and arrow elements.
  * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values
@@ -12759,62 +12801,47 @@ Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
 Popper.placements = placements;
 Popper.Defaults = Defaults;
 
-/* harmony default export */ __webpack_exports__["default"] = (Popper);
+return Popper;
+
+})));
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 
-/***/ 2:
-/***/ (function(module, exports) {
+/***/ 28:
+/***/ (function(module, exports, __webpack_require__) {
 
-var g;
+module.exports = __webpack_require__(29);
 
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
+
+/***/ }),
+
+/***/ 29:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_popper_js_dist_umd_popper__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_popper_js_dist_umd_popper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_popper_js_dist_umd_popper__);
+
 
 try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
-/***/ 25:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(26);
-
-
-/***/ }),
-
-/***/ 26:
-/***/ (function(module, exports, __webpack_require__) {
-
-window.$ = window.jQuery = __webpack_require__(0);
-
-window.Popper = __webpack_require__(1).default;
-__webpack_require__(27);
+    window.$ = __webpack_provided_window_dot_jQuery = __webpack_require__(0);
+    window.Popper = __WEBPACK_IMPORTED_MODULE_0_popper_js_dist_umd_popper___default.a;
+    __webpack_require__(30);
+} catch (e) {}
 
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
-window.$.ajaxSetup({
-    headers: { 'X-CSRF-TOKEN': token.content }
-});
+if (token) {
+    window.$.ajaxSetup({
+        headers: { 'X-CSRF-TOKEN': token.content }
+    });
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 
 window.$('#logoutLink').click(function (event) {
     event.preventDefault();
@@ -12822,13 +12849,14 @@ window.$('#logoutLink').click(function (event) {
         return location.reload();
     });
 });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 27:
-/***/ (function(module, exports) {
+/***/ 30:
+/***/ (function(module, exports, __webpack_require__) {
 
-/*!
+/* WEBPACK VAR INJECTION */(function(jQuery, Popper) {/*!
  * Bootstrap v4.0.0-beta (https://getbootstrap.com)
  * Copyright 2011-2017 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -16659,6 +16687,7 @@ var Popover = function ($) {
 
 
 })();
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(2)))
 
 /***/ })
 

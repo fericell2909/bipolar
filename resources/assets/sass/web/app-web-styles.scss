@@ -21,7 +21,24 @@ $bipolar-black: black;
   background-color: $bipolar-color;
 }
 
-a, .btn-link {
+.bipolar-header-desktop {
+  position: absolute;
+  z-index: 30;
+  width: 100%;
+}
+
+.color-transparent {
+  background: transparent;
+}
+
+a {
+  color: $bipolar-black;
+  &:hover {
+    color: $bipolar-black;
+  }
+}
+
+.btn-link {
   color: $bipolar-black;
 }
 
@@ -35,7 +52,6 @@ a, .btn-link {
   background: transparent url('../../img/linea.png') repeat-x 0 55px;
   padding: 30px;
   text-align: center;
-  position: absolute;
   z-index: 3;
   width: 100%;
 }

@@ -1,13 +1,20 @@
-window.$ = window.jQuery = require('jquery');
+import Popper from 'popper.js/dist/umd/popper';
 
-window.Popper = require('popper.js').default;
-require('bootstrap');
+try {
+    window.$ = window.jQuery = require('jquery');
+    window.Popper = Popper;
+    require('bootstrap');
+} catch (e) {}
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
-window.$.ajaxSetup({
-    headers: {'X-CSRF-TOKEN': token.content}
-});
+if (token) {
+    window.$.ajaxSetup({
+        headers: {'X-CSRF-TOKEN': token.content}
+    });
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 
 window.$('#logoutLink').click(event => {
     event.preventDefault();
