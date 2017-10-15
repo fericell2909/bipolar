@@ -13,51 +13,48 @@
 </head>
 <body>
     <div class="bipolar-header-desktop">
-        <nav class="navbar navbar-expand-lg navbar-light color-transparent">
-            <span class="navbar-text">
-                Hola <a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">Ingresa</a> o <a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">regístrate</a>
-            </span>
-            {{-- This is for pull the content to the right --}}
-            <ul class="navbar-nav mr-auto"></ul>
-            {{-- This is for pull the content to the right --}}
-            <div class="btn-group">
-                <a class="btn btn-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @auth
-                        {{ Auth::user()->name }}
-                    @endauth
-                    @guest
-                        Mi cuenta
-                    @endguest
-                </a>
-
-                @auth
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="{{ route('profile') }}">Mis datos</a>
-                        <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
+        <nav class="navbar color-transparent">
+            <div class="container">
+                <div class="navbar-header">
+                    <div class="navbar-brand">
+                        Hola <a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">Ingresa</a> o <a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">regístrate</a>
                     </div>
-                @endauth
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user"></i> {{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Mi cuenta</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="{{ route('change.language', 'es') }}" class="dropdown-item">Español</a><li>
+                            <li><a href="{{ route('change.language', 'en') }}" class="dropdown-item">Inglés</a></li>
+                            @auth
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Cerrar sesión</a></li>
+                            @endauth
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </nav>
-        <nav class="navbar navbar-expand-lg color-transparent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-envelope-o"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-facebook"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-instagram"></i></a>
-                </li>
-            </ul>
+        <nav class="navbar color-transparent">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" class="nav-link"><i class="fa fa-envelope-o"></i></a></li>
+                    <li><a href="#" class="nav-link"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#" class="nav-link"><i class="fa fa-instagram"></i></a></li>
+                </ul>
+            </div>
         </nav>
-        <section class="header-desktop">
+        <section class="header-desktop-transparent">
             <a href="#">
                 <img src="{{ asset('images/logo-linea.png') }}">
             </a>
         </section>
     </div>
-    <section class="container d-sm-none d-md-none d-lg-none">
+    <section class="container visible-xs-block">
         <p class="text-center text-heading-mobile">¡Bienvenido invitado! Ingresa o regístrate</p>
         <div class="dropdown show">
             <a class="btn btn-link btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -77,69 +74,68 @@
             @endauth
         </div>
     </section>
-    <section class="header-mobile d-sm-none d-md-none d-lg-none">
+    <section class="header-mobile visible-xs-block">
         <a href="#">
             <img src="{{ asset('images/logo-linea.png') }}">
         </a>
     </section>
     <div>
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://bipolar.com.pe/wp-content/uploads/2017/08/103.jpg" alt="First slide">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img class="d-block w-100" src="https://bipolar.com.pe/wp-content/uploads/2017/08/101.png" alt="First slide">
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://bipolar.com.pe/wp-content/uploads/2017/08/103.jpg" alt="Second slide">
+                <div class="item">
+                    <img class="d-block w-100" src="https://bipolar.com.pe/wp-content/uploads/2017/08/101.png" alt="Second slide">
                 </div>
             </div>
         </div>
     </div>
-    <section class="header-mobile-menu d-sm-none d-md-none d-lg-none">
+    <section class="header-mobile-menu visible-xs-block">
         MENU
     </section>
     @include('flash::message')
     <section class="header-worldwide-shipping">
         Envío a todo el mundo
     </section>
-    <div class="card text-center">
-        <div class="card-body">
-            <h4 class="card-title">Regístrate a nuestro Newsletter</h4>
-            <p class="card-text">Y disfruta de descuentos especiales.</p>
-            {!! Form::open(['route' => 'register.newsletter','class' => 'mx-auto', 'style' => 'width: 20%']) !!}
-                <div class="form-group">
-                    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required' => true]) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Correo', 'required' => true]) !!}
-                </div>
-                <button class="btn btn-dark">Enviar</button>
-            {!! Form::close() !!}
+    <div class="row content-newsletter">
+        <div class="col-md-offset-4 col-md-4">
+            <div class="card-body">
+                <h4 class="card-title">Regístrate a nuestro Newsletter</h4>
+                <p class="card-text">Y disfruta de descuentos especiales.</p>
+                {!! Form::open(['route' => 'register.newsletter']) !!}
+                    <div class="form-group">
+                        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required' => true]) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Correo', 'required' => true]) !!}
+                    </div>
+                    <button class="btn btn-default">Enviar</button>
+                {!! Form::close() !!}
+            </div>
         </div>
     </div>
     <footer class="bipolar-footer">
         <div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col-md-4">
                     SAN ISIDRO, LIMA - PERÚ
                     (+51) 965.367.385
                     EMAIL: BIPOLAR@BIPOLAR.COM.PE
                 </div>
-                <div class="col">
+                <div class="col-md-4">
                     <ul>
                         <li>Envíos</li>
                         <li>Cambios y devoluciones</li>
                         <li>Recomendaciones de Uso</li>
                     </ul>
                 </div>
-                <div class="col">
+                <div class="col-md-4">
                     <ul>
                         <li>Envíos</li>
                         <li>Cambios y devoluciones</li>
                         <li>Recomendaciones de Uso</li>
                     </ul>
-                </div>
-                <div class="col">
-
                 </div>
             </div>
         </div>

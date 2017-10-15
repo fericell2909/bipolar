@@ -5,10 +5,10 @@
 //@import "variables";
 
 // Bootstrap 3
-//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 // Bootstrap 4
-@import "~bootstrap/scss/bootstrap";
+//@import "~bootstrap/scss/bootstrap";
 
 $bipolar-color: #fcbeb9;
 $bipolar-black: black;
@@ -29,6 +29,7 @@ $bipolar-black: black;
 
 .color-transparent {
   background: transparent;
+  margin-bottom: 0;
 }
 
 a {
@@ -42,6 +43,15 @@ a {
   color: $bipolar-black;
 }
 
+.content-newsletter {
+  background: url(https://bipolar.com.pe/wp-content/uploads/2015/03/huevos.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  padding: 30px;
+}
+
 .header-mobile {
   background: $bipolar-color url('../../img/linea.png') repeat-x 0 55px;
   padding: 30px;
@@ -49,11 +59,14 @@ a {
 }
 
 .header-desktop {
-  background: transparent url('../../img/linea.png') repeat-x 0 55px;
-  padding: 30px;
+  background: $bipolar-color url('../../img/linea.png') repeat-x 0 25px;
   text-align: center;
   z-index: 3;
-  width: 100%;
+}
+
+.header-desktop-transparent {
+  @extend .header-desktop;
+  background: transparent url('../../img/linea.png') repeat-x 0 25px;
 }
 
 .header-mobile-menu {

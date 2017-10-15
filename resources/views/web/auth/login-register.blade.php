@@ -11,11 +11,11 @@
             </div>
         @endif
         <div class="row">
-            <div class="col">
+            <div class="col-md-6">
                 @includeWhen($loginRegister === 'login', 'web.auth.login-form')
                 @includeWhen($loginRegister === 'register', 'web.auth.register-form')
             </div>
-            <div class="col">
+            <div class="col-md-6">
                 @includeWhen($loginRegister === 'login', 'web.auth.register-form')
                 @includeWhen($loginRegister === 'register', 'web.auth.login-form')
             </div>

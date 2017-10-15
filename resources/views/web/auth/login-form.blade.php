@@ -1,7 +1,7 @@
 <p class="text-center">{{ __('login-register.login') }}</p>
 <p class="text-center">{{ __('login-register.login_text') }}.</p>
 <div class="text-center">
-    <button id="authFacebook" class="btn btn-dark">
+    <button id="authFacebook" class="btn btn-default">
         <i class="fa fa-facebook"></i> Inicia sesión con Facebook
     </button>
 </div>
@@ -15,7 +15,7 @@
         {!! Form::password('password', ['class' => 'form-control', 'required' => true]) !!}
     </div>
     <div class="text-center">
-        {!! Form::submit('Identificarse', ['class' => 'btn btn-dark']) !!}
+        {!! Form::submit('Identificarse', ['class' => 'btn btn-default']) !!}
     </div>
 {!! Form::close() !!}
 <div class="text-center">

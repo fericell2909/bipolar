@@ -1,9 +1,6 @@
-import Popper from 'popper.js/dist/umd/popper';
-
 try {
     window.$ = window.jQuery = require('jquery');
-    window.Popper = Popper;
-    require('bootstrap');
+    require('bootstrap-sass');
 } catch (e) {}
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
