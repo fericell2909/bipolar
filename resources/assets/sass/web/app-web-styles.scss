@@ -62,6 +62,7 @@ a {
   background: $bipolar-color url('../../img/linea.png') repeat-x 0 25px;
   text-align: center;
   z-index: 3;
+  margin-top: -25px;
 }
 
 .header-desktop-transparent {
@@ -86,4 +87,54 @@ a {
   background: $bipolar-black;
   color: white;
   padding: 30px;
+}
+
+.remove-navbar-margin  {
+  margin-bottom: 0;
+}
+
+.bipolar-navigation {
+  padding: 30px;
+  div {
+    a {
+      &:hover {
+        color: white;
+      }
+    }
+  }
+}
+
+.nav .open > a {
+  background-color: transparent;
+  border-color: transparent;
+  &:hover, &:focus {
+    background-color: transparent;
+    border-color: transparent;
+  }
+}
+
+.nav > li > a {
+  &:hover, &:focus {
+    text-decoration: none;
+    background-color: transparent;
+  }
+}
+
+.navbar-brand {
+  font-size: 14px;
+}
+
+.cart-number-count {
+  position: absolute;
+  background-color: black;
+  color: white;
+  font-size: 12px;
+  padding: 2px;
+  border-radius: 100%;
+  top: 13px;
+  right: 7px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 18px;
 }

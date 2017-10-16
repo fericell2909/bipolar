@@ -23,7 +23,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user"></i> {{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }} <span class="caret"></span>
+                            {{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Mi cuenta</a></li>
@@ -46,12 +46,24 @@
                     <li><a href="#" class="nav-link"><i class="fa fa-facebook"></i></a></li>
                     <li><a href="#" class="nav-link"><i class="fa fa-instagram"></i></a></li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a>
+                            <img src="{{ asset('images/cart.svg') }}" width="35">
+                            <span class="cart-number-count">0</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </nav>
         <section class="header-desktop-transparent">
-            <a href="#">
-                <img src="{{ asset('images/logo-linea.png') }}">
-            </a>
+            <div class="row">
+                <div class="col-md-offset-4 col-md-4">
+                    <a href="#">
+                        <img src="{{ asset('images/logo-linea.png') }}">
+                    </a>
+                </div>
+            </div>
         </section>
     </div>
     <section class="container visible-xs-block">

@@ -10335,12 +10335,11 @@ module.exports = __webpack_require__(29);
 /***/ }),
 
 /***/ 29:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 /* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {try {
     window.$ = __webpack_provided_window_dot_jQuery = __webpack_require__(0);
-    __webpack_require__(42);
+    __webpack_require__(30);
 } catch (e) {}
 
 var token = document.head.querySelector('meta[name="csrf-token"]');
@@ -10359,11 +10358,11 @@ window.$('#logoutLink').click(function (event) {
         return location.reload();
     });
 });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 42:
+/***/ 30:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!

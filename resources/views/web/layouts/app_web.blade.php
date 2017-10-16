@@ -12,7 +12,7 @@
     <script src="https://use.fontawesome.com/d71cf672b2.js"></script>
 </head>
 <body>
-    <nav class="navbar bipolar-background">
+    <nav class="navbar bipolar-background remove-navbar-margin">
         <div class="container">
             <div class="navbar-header">
                 <div class="navbar-brand">
@@ -22,7 +22,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user"></i> {{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }} <span class="caret"></span>
+                        {{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Mi cuenta</a></li>
@@ -38,21 +38,33 @@
             </ul>
         </div>
     </nav>
-    <nav class="navbar bipolar-background">
+    <nav class="navbar bipolar-background remove-navbar-margin">
         <div class="container">
             <ul class="nav navbar-nav">
                 <li><a href="#"><i class="fa fa-envelope-o"></i></a></li>
                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fa fa-instagram"></i></a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a>
+                        <img src="{{ asset('images/cart.svg') }}" width="35">
+                        <span class="cart-number-count">0</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
     <section class="header-desktop">
-        <a href="{{ route('home') }}">
-            <img src="{{ asset('images/logo-linea.png') }}">
-        </a>
+        <div class="row">
+            <div class="col-md-offset-4 col-md-4">
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('images/logo-linea.png') }}">
+                </a>
+            </div>
+        </div>
     </section>
-    <section class="row bipolar-background">
+    <section class="row bipolar-background bipolar-navigation">
         <div class="col-md-offset-3 col-md-1">
             <a href="">Home</a>
         </div>
@@ -61,6 +73,9 @@
         </div>
         <div class="col-md-1">
             <a href="">Showroom</a>
+        </div>
+        <div class="col-md-1">
+            <a href="">Contacto</a>
         </div>
     </section>
     <section class="container visible-xs-block">
