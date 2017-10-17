@@ -48,7 +48,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a>
+                        <a href="{{ route('home') }}">
                             <img src="{{ asset('images/cart.svg') }}" width="35">
                             <span class="cart-number-count">0</span>
                         </a>
@@ -65,6 +65,31 @@
                 </div>
             </div>
         </section>
+    </div>
+    <div class="bipolar-alternate-grand-header hidden bipolar-background">
+        <div class="container">
+            <div class="img-item">
+                <a href="{{ route('home') }}"><img src="{{ asset('images/logo-linea.png') }}" width="160"></a>
+            </div>
+            <div class="items">
+                <a href="">Home</a>
+            </div>
+            <div class="items">
+                <a href="{{ route('landings.bipolar') }}">Bipolar</a>
+            </div>
+            <div class="items">
+                <a href="{{ route('landings.showroom') }}">Showroom</a>
+            </div>
+            <div class="items">
+                <a href="#">Shop</a>
+            </div>
+            <div class="items">
+                <a href="#">Newsletter</a>
+            </div>
+            <div class="items">
+                <a href="#">Contacto</a>
+            </div>
+        </div>
     </div>
     <section class="container visible-xs-block">
         <p class="text-center text-heading-mobile">¡Bienvenido invitado! Ingresa o regístrate</p>

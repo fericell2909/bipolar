@@ -10337,7 +10337,7 @@ module.exports = __webpack_require__(29);
 /***/ 29:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {try {
+/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery, $) {try {
     window.$ = __webpack_provided_window_dot_jQuery = __webpack_require__(0);
     __webpack_require__(30);
 } catch (e) {}
@@ -10358,7 +10358,26 @@ window.$('#logoutLink').click(function (event) {
         return location.reload();
     });
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+$(function () {
+    $(document).scroll(function () {
+        var $transparentHeader = $('.bipolar-header-desktop');
+        var $grandHeader = $(".bipolar-grand-header");
+        var $grandHeaderAlternate = $('.bipolar-alternate-grand-header');
+        var isLongScroll = $(this).scrollTop() > $grandHeader.height();
+        var homeIsLongScroll = $(this).scrollTop() > $transparentHeader.height();
+        if (isLongScroll === true || homeIsLongScroll === true) {
+            $transparentHeader.addClass('hidden');
+            $grandHeader.addClass('hidden');
+            $grandHeaderAlternate.removeClass('hidden');
+        } else {
+            $transparentHeader.removeClass('hidden');
+            $grandHeader.removeClass('hidden');
+            $grandHeaderAlternate.addClass('hidden');
+        }
+    });
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(0)))
 
 /***/ }),
 

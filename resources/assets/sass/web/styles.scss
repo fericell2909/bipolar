@@ -6,6 +6,37 @@
   background-color: $bipolar-color;
 }
 
+.bipolar-grand-header {
+  position: fixed;
+  width: 100%;
+}
+
+.bipolar-alternate-grand-header {
+  @extend .bipolar-grand-header;
+  box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
+  .img-item {
+    display: inline-block;
+    width: 13%;
+  }
+  .items {
+    display: inline-block;
+    width: 12%;
+    margin-top: 25px;
+    margin-bottom: 23px;
+    text-align: center;
+    a {
+      font-size: 15px;
+      text-transform: uppercase;
+      padding-bottom: 6px;
+      &:hover {
+        color: white;
+        border-bottom: 2px solid white;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
 .bipolar-header-desktop {
   position: absolute;
   z-index: 30;

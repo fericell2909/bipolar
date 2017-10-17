@@ -12,88 +12,110 @@
     <script src="https://use.fontawesome.com/d71cf672b2.js"></script>
 </head>
 <body>
-    <nav class="navbar bipolar-background remove-navbar-margin">
-        <div class="container">
-            <div class="navbar-header">
-                <div class="navbar-brand">
-                    Hola <a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">Ingresa</a> o <a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">regístrate</a>
+    <div class="bipolar-grand-header hidden-xs">
+        <nav class="navbar bipolar-background remove-navbar-margin">
+            <div class="container">
+                <div class="navbar-header">
+                    <div class="navbar-brand">
+                        Hola <a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">Ingresa</a> o <a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">regístrate</a>
+                    </div>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            {{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Mi cuenta</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="{{ route('change.language', 'es') }}" class="dropdown-item">Español</a><li>
+                            <li><a href="{{ route('change.language', 'en') }}" class="dropdown-item">Inglés</a></li>
+                            @auth
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Cerrar sesión</a></li>
+                            @endauth
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <nav class="navbar bipolar-background remove-navbar-margin">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li><a href="mailto:bipolar@bipolar.com.pe"><i class="fa fa-envelope-o"></i></a></li>
+                    <li><a href="https://www.facebook.com/bipolar.zapatos"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://instagram.com/bipolar_zapatos"><i class="fa fa-instagram"></i></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a>
+                            <img src="{{ asset('images/cart.svg') }}" width="35">
+                            <span class="cart-number-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <section class="header-desktop">
+            <div class="row">
+                <div class="col-md-offset-4 col-md-4">
+                    <a href="{{ route('home') }}">
+                        <img src="{{ asset('images/logo-linea.png') }}">
+                    </a>
                 </div>
             </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        {{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }} <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Mi cuenta</a></li>
-                        <li><a href="#">Checkout</a></li>
-                        <li><a href="{{ route('change.language', 'es') }}" class="dropdown-item">Español</a><li>
-                        <li><a href="{{ route('change.language', 'en') }}" class="dropdown-item">Inglés</a></li>
-                        @auth
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Cerrar sesión</a></li>
-                        @endauth
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <nav class="navbar bipolar-background remove-navbar-margin">
+        </section>
+        <section class="row bipolar-background bipolar-navigation text-center">
+            <div class="col-md-offset-3 col-md-1">
+                <a href="">Home</a>
+            </div>
+            <div class="col-md-1">
+                <a href="{{ route('landings.bipolar') }}">Bipolar</a>
+            </div>
+            <div class="col-md-1">
+                <a href="{{ route('landings.showroom') }}">Showroom</a>
+            </div>
+            <div class="col-md-1">
+                <a href="#">Shop</a>
+            </div>
+            <div class="col-md-1">
+                <a href="#">Newsletter</a>
+            </div>
+            <div class="col-md-1">
+                <a href="#">Contacto</a>
+            </div>
+        </section>
+    </div>
+    <div class="bipolar-alternate-grand-header hidden bipolar-background">
         <div class="container">
-            <ul class="nav navbar-nav">
-                <li><a href="mailto:bipolar@bipolar.com.pe"><i class="fa fa-envelope-o"></i></a></li>
-                <li><a href="https://www.facebook.com/bipolar.zapatos"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="https://instagram.com/bipolar_zapatos"><i class="fa fa-instagram"></i></a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a>
-                        <img src="{{ asset('images/cart.svg') }}" width="35">
-                        <span class="cart-number-count">0</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <section class="header-desktop">
-        <div class="row">
-            <div class="col-md-offset-4 col-md-4">
-                <a href="{{ route('home') }}">
-                    <img src="{{ asset('images/logo-linea.png') }}">
-                </a>
+            <div class="img-item">
+                <a href="{{ route('home') }}"><img src="{{ asset('images/logo-linea.png') }}" width="160"></a>
+            </div>
+            <div class="items">
+                <a href="">Home</a>
+            </div>
+            <div class="items">
+                <a href="{{ route('landings.bipolar') }}">Bipolar</a>
+            </div>
+            <div class="items">
+                <a href="{{ route('landings.showroom') }}">Showroom</a>
+            </div>
+            <div class="items">
+                <a href="#">Shop</a>
+            </div>
+            <div class="items">
+                <a href="#">Newsletter</a>
+            </div>
+            <div class="items">
+                <a href="#">Contacto</a>
             </div>
         </div>
-    </section>
-    <section class="row bipolar-background bipolar-navigation text-center">
-        <div class="col-md-offset-3 col-md-1">
-            <a href="">Home</a>
-        </div>
-        <div class="col-md-1">
-            <a href="{{ route('landings.bipolar') }}">Bipolar</a>
-        </div>
-        <div class="col-md-1">
-            <a href="{{ route('landings.showroom') }}">Showroom</a>
-        </div>
-        <div class="col-md-1">
-            <a href="">Shop</a>
-        </div>
-        <div class="col-md-1">
-            <a href="">Newsletter</a>
-        </div>
-        <div class="col-md-1">
-            <a href="">Contacto</a>
-        </div>
-    </section>
+    </div>
     <section class="container visible-xs-block">
         <p class="text-center text-heading-mobile">¡Bienvenido invitado! Ingresa o regístrate</p>
         <div class="dropdown show">
             <a class="btn btn-link btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                @auth
-                    {{ Auth::user()->name }}
-                @endauth
-                @guest
-                    Mi cuenta
-                @endguest
+                {{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }}
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
