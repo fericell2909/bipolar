@@ -8431,6 +8431,11 @@ a:hover {
   font-weight: 600;
 }
 
+.carousel-home {
+  height: 800px;
+  z-index: -10;
+}
+
 .header-worldwide-shipping {
   text-align: center;
   line-height: 68px;

@@ -62,6 +62,11 @@ a {
   font-weight: 600;
 }
 
+.carousel-home {
+  height: 800px;
+  z-index: $z-index-slider;
+}
+
 .header-worldwide-shipping {
   @extend .header-mobile-menu;
   text-align: center;

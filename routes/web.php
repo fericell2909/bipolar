@@ -21,6 +21,7 @@ Route::middleware('auth:web')->group(function () {
     Route::post('my-account', 'Web\UserController@updateProfile')->name('profile.update');
 });
 
+Route::get('bipolar', 'Web\LandingsController@bipolar')->name('landings.bipolar');
 Route::get('shipping', 'Web\LandingsController@shipping')->name('landings.shipping');
 
 Route::post('ajax/oauth/facebook', 'Web\Auth\LoginController@facebookAuth');

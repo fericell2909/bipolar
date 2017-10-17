@@ -70,14 +70,8 @@
         <p class="text-center text-heading-mobile">¡Bienvenido invitado! Ingresa o regístrate</p>
         <div class="dropdown show">
             <a class="btn btn-link btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                @auth
-                    {{ Auth::user()->name }}
-                @endauth
-                @guest
-                    Mi cuenta
-                @endguest
+                {{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }}
             </a>
-
             @auth
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="{{ route('profile') }}">Mis datos</a>
@@ -92,7 +86,7 @@
         </a>
     </section>
     <div>
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel slide carousel-home" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <img class="d-block w-100" src="https://bipolar.com.pe/wp-content/uploads/2017/08/101.png" alt="First slide">
