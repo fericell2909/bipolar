@@ -69,10 +69,10 @@
             <a href="">Home</a>
         </div>
         <div class="col-md-1">
-            <a href="">Bipolar</a>
+            <a href="{{ route('landings.bipolar') }}">Bipolar</a>
         </div>
         <div class="col-md-1">
-            <a href="">Showroom</a>
+            <a href="{{ route('landings.showroom') }}">Showroom</a>
         </div>
         <div class="col-md-1">
             <a href="">Shop</a>

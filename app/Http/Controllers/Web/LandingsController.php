@@ -15,4 +15,9 @@ class LandingsController extends Controller
     {
         return view('web.landings.shipping');
     }
+
+    public function showroom()
+    {
+        return view('web.landings.showroom');
+    }
 }

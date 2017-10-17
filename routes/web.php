@@ -23,6 +23,7 @@ Route::middleware('auth:web')->group(function () {
 
 Route::get('bipolar', 'Web\LandingsController@bipolar')->name('landings.bipolar');
 Route::get('shipping', 'Web\LandingsController@shipping')->name('landings.shipping');
+Route::get('showroom', 'Web\LandingsController@showroom')->name('landings.showroom');
 
 Route::post('ajax/oauth/facebook', 'Web\Auth\LoginController@facebookAuth');
 
