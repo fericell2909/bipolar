@@ -8444,8 +8444,16 @@ a:hover {
   padding: 30px;
 }
 
+.bipolar-navigation div a {
+  font-size: 15px;
+  text-transform: uppercase;
+  padding-bottom: 6px;
+}
+
 .bipolar-navigation div a:hover {
   color: white;
+  border-bottom: 2px solid white;
+  text-decoration: none;
 }
 
 .nav .open > a {

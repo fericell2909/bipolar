@@ -64,7 +64,7 @@
             </div>
         </div>
     </section>
-    <section class="row bipolar-background bipolar-navigation">
+    <section class="row bipolar-background bipolar-navigation text-center">
         <div class="col-md-offset-3 col-md-1">
             <a href="">Home</a>
         </div>
@@ -73,6 +73,12 @@
         </div>
         <div class="col-md-1">
             <a href="">Showroom</a>
+        </div>
+        <div class="col-md-1">
+            <a href="">Shop</a>
+        </div>
+        <div class="col-md-1">
+            <a href="">Newsletter</a>
         </div>
         <div class="col-md-1">
             <a href="">Contacto</a>

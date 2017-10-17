@@ -76,8 +76,13 @@ a {
   padding: 30px;
   div {
     a {
+      font-size: 15px;
+      text-transform: uppercase;
+      padding-bottom: 6px;
       &:hover {
         color: white;
+        border-bottom: 2px solid white;
+        text-decoration: none;
       }
     }
   }
