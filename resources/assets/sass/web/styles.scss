@@ -1,0 +1,131 @@
+.text-heading-mobile {
+  margin-top: 12px;
+}
+
+.bipolar-background {
+  background-color: $bipolar-color;
+}
+
+.bipolar-header-desktop {
+  position: absolute;
+  z-index: 30;
+  width: 100%;
+}
+
+.color-transparent {
+  background: transparent;
+  margin-bottom: 0;
+}
+
+a {
+  color: $bipolar-black;
+  &:hover {
+    color: $bipolar-black;
+  }
+}
+
+.btn-link {
+  color: $bipolar-black;
+}
+
+.content-newsletter {
+  background: url(https://bipolar.com.pe/wp-content/uploads/2015/03/huevos.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  padding: 30px;
+}
+
+.header-mobile {
+  background: $bipolar-color url('../../img/linea.png') repeat-x 0 55px;
+  padding: 30px;
+  text-align: center;
+}
+
+.header-desktop {
+  background: $bipolar-color url('../../img/linea.png') repeat-x 0 25px;
+  text-align: center;
+  z-index: 3;
+  margin-top: -25px;
+}
+
+.header-desktop-transparent {
+  @extend .header-desktop;
+  background: transparent url('../../img/linea.png') repeat-x 0 25px;
+}
+
+.header-mobile-menu {
+  background: $bipolar-black;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.header-worldwide-shipping {
+  @extend .header-mobile-menu;
+  text-align: center;
+  line-height: 68px;
+}
+
+.remove-navbar-margin  {
+  margin-bottom: 0;
+}
+
+.bipolar-navigation {
+  padding: 30px;
+  div {
+    a {
+      &:hover {
+        color: white;
+      }
+    }
+  }
+}
+
+.nav .open > a {
+  background-color: transparent;
+  border-color: transparent;
+  &:hover, &:focus {
+    background-color: transparent;
+    border-color: transparent;
+  }
+}
+
+.nav > li > a {
+  &:hover, &:focus {
+    text-decoration: none;
+    background-color: transparent;
+  }
+}
+
+.navbar-brand {
+  font-size: 14px;
+}
+
+.navbar-nav {
+  i {
+    font-size: 1.2em;
+  }
+}
+
+.cart-number-count {
+  position: absolute;
+  background-color: black;
+  color: white;
+  font-size: 12px;
+  padding: 2px;
+  border-radius: 100%;
+  top: 13px;
+  right: 7px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 18px;
+}
+
+.bipolar-container {
+  @extend .container;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

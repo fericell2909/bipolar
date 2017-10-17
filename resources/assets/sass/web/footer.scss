@@ -1,0 +1,44 @@
+.bipolar-footer {
+  background: $bipolar-black;
+  color: white;
+  padding: 30px;
+
+  .title-section {
+    span {
+      text-transform: uppercase;
+      font-size: 20px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid white;
+    }
+  }
+
+  ul {
+    padding: 0;
+    margin-top: 17px;
+    list-style-type: none;
+    > li {
+      > a {
+        color: white;
+        &:hover {
+          color: $bipolar-color;
+          text-decoration: none;
+        }
+      }
+      margin-top: 5px;
+      list-style: none;
+    }
+  }
+
+  .footer-icons {
+    margin-top: 17px;
+    a {
+      color: white;
+      margin-right: 15px;
+      font-size: 1.4em;
+      &:hover {
+        color: $bipolar-color;
+        text-decoration: none;
+      }
+    }
+  }
+}

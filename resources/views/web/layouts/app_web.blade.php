@@ -41,9 +41,9 @@
     <nav class="navbar bipolar-background remove-navbar-margin">
         <div class="container">
             <ul class="nav navbar-nav">
-                <li><a href="#"><i class="fa fa-envelope-o"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="mailto:bipolar@bipolar.com.pe"><i class="fa fa-envelope-o"></i></a></li>
+                <li><a href="https://www.facebook.com/bipolar.zapatos"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://instagram.com/bipolar_zapatos"><i class="fa fa-instagram"></i></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -107,31 +107,7 @@
         MENU
     </section>
     @yield('content')
-    <footer class="bipolar-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    SAN ISIDRO, LIMA - PERÚ
-                    (+51) 965.367.385
-                    EMAIL: BIPOLAR@BIPOLAR.COM.PE
-                </div>
-                <div class="col-md-4">
-                    <ul>
-                        <li>Envíos</li>
-                        <li>Cambios y devoluciones</li>
-                        <li>Recomendaciones de Uso</li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <ul>
-                        <li>Envíos</li>
-                        <li>Cambios y devoluciones</li>
-                        <li>Recomendaciones de Uso</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('web.partials.footer')
     <script src="{{ mix('js/app-web-scripts.js') }}"></script>
     @stack('script_plus')
 </body>

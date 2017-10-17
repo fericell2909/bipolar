@@ -127,31 +127,7 @@
             </div>
         </div>
     </div>
-    <footer class="bipolar-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    SAN ISIDRO, LIMA - PERÚ
-                    (+51) 965.367.385
-                    EMAIL: BIPOLAR@BIPOLAR.COM.PE
-                </div>
-                <div class="col-md-4">
-                    <ul>
-                        <li>Envíos</li>
-                        <li>Cambios y devoluciones</li>
-                        <li>Recomendaciones de Uso</li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <ul>
-                        <li>Envíos</li>
-                        <li>Cambios y devoluciones</li>
-                        <li>Recomendaciones de Uso</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('web.partials.footer')
     <script src="{{ mix('js/app-web-scripts.js') }}"></script>
 </body>
 </html>
