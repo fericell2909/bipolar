@@ -106,6 +106,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="nav nav-second-level">
                         <li><a href="{{ route('settings.sizes') }}">Tallas</a></li>
                         <li><a href="{{ route('settings.colors') }}">Colores</a></li>
+                        <li><a href="{{ route('settings.types') }}">Tipos</a></li>
                     </ul>
                 </li>
             </ul>

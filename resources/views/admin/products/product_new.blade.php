@@ -48,11 +48,26 @@
                         {!! Form::label('Precio') !!} <span class="text-danger">*</span>
                         {!! Form::number('price', 1.0, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
                     </div>
-                    <div class="">
+                    <div>
                         {!! Form::label('Activo') !!}<br>
                         {!! Form::checkbox('active', 1, null, ['class' => 'js-switch']) !!}
                     </div>
                     <hr>
+                    @if($types)
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                @foreach($types as $type)
+                                    <li role="presentation" class="{{ $loop->first ? 'active' : null }}"><a href="#{{ $type->slug }}" aria-controls="{{ $type->slug }}" role="tab" data-toggle="tab">Tipo de {{ $type->name }}</a></li>
+                                @endforeach
+                            </ul>
+                            <div class="tab-content">
+                                @foreach($types as $type)
+                                    <div role="tabpanel" class="tab-pane {{ $loop->first ? 'active' : null }}" id="{{ $type->slug }}">Contenido {{ $type->id }}</div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <hr>
+                    @endif
                     <button type="submit" class="btn btn-info btn-rounded">
                         <i class="fa fa-floppy-o"></i>
                         Guardar y subir fotos

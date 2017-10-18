@@ -7,6 +7,7 @@ use App\Http\Requests\ProductNewRequest;
 use App\Models\Color;
 use App\Models\Photo;
 use App\Models\Product;
+use App\Models\Type;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -22,8 +23,9 @@ class ProductController extends Controller
     public function create()
     {
         $colors = Color::orderBy('name')->get()->pluck('name', 'hash_id');
+        $types = Type::orderBy('name')->get();
 
-        return view('admin.products.product_new', compact('colors', 'sizes'));
+        return view('admin.products.product_new', compact('colors', 'types'));
     }
 
     public function store(ProductNewRequest $request)

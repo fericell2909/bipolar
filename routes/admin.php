@@ -39,5 +39,8 @@ Route::middleware('auth:admin')->group(function() {
         Route::get('colors/{colorHashid}', 'Admin\ColorController@show')->name('settings.colors.show');
         Route::post('colors/{colorHashid}', 'Admin\ColorController@update');
         Route::delete('colors/{sizeHashId}', 'Admin\ColorController@delete');
+        // Types
+        Route::get('types', 'Admin\TypesController@index')->name('settings.types');
+        Route::post('types', 'Admin\TypesController@store');
     });
 });

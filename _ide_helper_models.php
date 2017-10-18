@@ -26,9 +26,13 @@ namespace App\Models{
  * App\Models\Type
  *
  * @property int $id
+ * @property string|null $slug
  * @property string $name
+ * @property-read string $hash_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereSlug($value)
  */
 	class Type extends \Eloquent {}
 }
