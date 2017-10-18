@@ -30,7 +30,7 @@ class AddRoleIdManagers extends Migration
                     'password' => bcrypt('123456'),
                 ],
                 [
-                    'email'    => 'info@helmer.me',
+                    'email'    => 'info@helmerdavila.com',
                     'name'     => 'Helmer',
                     'role_id'  => 1,
                     'password' => bcrypt('123456'),
