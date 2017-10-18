@@ -102,10 +102,10 @@
         <div class="carousel slide carousel-home" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img style="width: 100%" src="https://bipolar.com.pe/wp-content/uploads/2017/08/101.png" alt="First slide">
+                    <img style="width: 100%" src="https://bipolar-peru.s3.amazonaws.com/assets/bipolar-gold.png" alt="First slide">
                 </div>
                 <div class="item">
-                    <img style="width: 100%" src="https://bipolar.com.pe/wp-content/uploads/2017/08/101.png" alt="Second slide">
+                    <img style="width: 100%" src="https://bipolar-peru.s3.amazonaws.com/assets/bipolar-gold.png" alt="Second slide">
                 </div>
             </div>
         </div>

@@ -17266,7 +17266,7 @@ hr {
 }
 
 .text-primary {
-  color: #ab8ce4 !important;
+  color: #DE6D66 !important;
 }
 
 .text-megna {
@@ -17280,7 +17280,7 @@ hr {
 /********** Background colors **********/
 
 .bg-primary {
-  background-color: #ab8ce4 !important;
+  background-color: #DE6D66 !important;
 }
 
 .bg-success {
@@ -17364,7 +17364,7 @@ hr {
 }
 
 .label-primary {
-  background-color: #ab8ce4;
+  background-color: #DE6D66;
 }
 
 .label-purple {
@@ -18024,8 +18024,8 @@ pre {
 
 .btn-primary,
 .btn-primary.disabled {
-  background: #ab8ce4;
-  border: 1px solid #ab8ce4;
+  background: #DE6D66;
+  border: 1px solid #DE6D66;
 }
 
 .btn-primary:hover,
@@ -18034,9 +18034,9 @@ pre {
 .btn-primary.disabled:hover,
 .btn-primary.disabled:focus,
 .btn-primary.disabled.focus {
-  background: #ab8ce4;
+  background: #DE6D66;
   opacity: 0.8;
-  border: 1px solid #ab8ce4;
+  border: 1px solid #DE6D66;
 }
 
 .btn-success,
@@ -18135,14 +18135,14 @@ pre {
 }
 
 .btn-primary.btn-outline {
-  color: #ab8ce4;
+  color: #DE6D66;
   background-color: #ffffff;
 }
 
 .btn-primary.btn-outline:hover,
 .btn-primary.btn-outline:focus,
 .btn-primary.btn-outline.focus {
-  background: #ab8ce4;
+  background: #DE6D66;
   color: #ffffff;
 }
 
@@ -18289,8 +18289,8 @@ pre {
 .open > .dropdown-toggle.btn-primary:hover,
 .btn-primary.focus,
 .btn-primary:focus {
-  background-color: #ab8ce4;
-  border: 1px solid #ab8ce4;
+  background-color: #DE6D66;
+  border: 1px solid #DE6D66;
 }
 
 .btn-success.active.focus,
@@ -18619,14 +18619,14 @@ table.dataTable thead .sorting:after {
 
 .panel-darkblue,
 .panel-primary {
-  border-color: #ab8ce4;
+  border-color: #DE6D66;
 }
 
 .panel-darkblue .panel-heading,
 .panel-primary .panel-heading {
-  border-color: #ab8ce4;
+  border-color: #DE6D66;
   color: white;
-  background-color: #ab8ce4;
+  background-color: #DE6D66;
 }
 
 .panel-darkblue .panel-heading a,
@@ -18641,12 +18641,12 @@ table.dataTable thead .sorting:after {
 
 .panel-darkblue a,
 .panel-primary a {
-  color: #ab8ce4;
+  color: #DE6D66;
 }
 
 .panel-darkblue a:hover,
 .panel-primary a:hover {
-  color: #7e4ed5;
+  color: #cc352c;
 }
 
 .panel-blue,
@@ -19220,8 +19220,8 @@ table.dataTable thead .sorting:after {
 }
 
 .checkbox-primary input[type="checkbox"]:checked + label::before {
-  background-color: #ab8ce4;
-  border-color: #ab8ce4;
+  background-color: #DE6D66;
+  border-color: #DE6D66;
 }
 
 .checkbox-primary input[type="checkbox"]:checked + label::after {
@@ -19379,15 +19379,15 @@ table.dataTable thead .sorting:after {
 }
 
 .radio-primary input[type="radio"] + label::after {
-  background-color: #ab8ce4;
+  background-color: #DE6D66;
 }
 
 .radio-primary input[type="radio"]:checked + label::before {
-  border-color: #ab8ce4;
+  border-color: #DE6D66;
 }
 
 .radio-primary input[type="radio"]:checked + label::after {
-  background-color: #ab8ce4;
+  background-color: #DE6D66;
 }
 
 .radio-danger input[type="radio"] + label::after {
@@ -19665,8 +19665,8 @@ ul.common li a:hover {
 /********** Card Background colors **********/
 
 .card-primary {
-  background-color: #ab8ce4;
-  border-color: #ab8ce4;
+  background-color: #DE6D66;
+  border-color: #DE6D66;
 }
 
 .card-success {
@@ -19715,7 +19715,7 @@ ul.common li a:hover {
 }
 
 .card-outline-primary {
-  border-color: #ab8ce4;
+  border-color: #DE6D66;
 }
 
 .card-outline-success {
@@ -20702,7 +20702,7 @@ Basic List
 }
 
 .progress-bar-primary {
-  background-color: #ab8ce4;
+  background-color: #DE6D66;
 }
 
 .progress-bar-success {
@@ -20942,7 +20942,7 @@ Basic List
 }
 
 .timeline-badge.primary {
-  background-color: #ab8ce4 !important;
+  background-color: #DE6D66 !important;
 }
 
 .timeline-badge.success {
@@ -21358,7 +21358,7 @@ table.focus-on tbody tr.focused td {
   color: #ffffff;
   font-size: 16px;
   line-height: 40px;
-  background: #ab8ce4;
+  background: #DE6D66;
   border-radius: 4px;
   padding: 10px 20px;
 }
@@ -21375,14 +21375,14 @@ table.focus-on tbody tr.focused td {
   bottom: -15px;
   border-left: 16px solid transparent;
   border-right: 16px solid transparent;
-  border-top: 16px solid #ab8ce4;
+  border-top: 16px solid #DE6D66;
 }
 
 .gmaps-overlay_arrow.below {
   top: -15px;
   border-left: 16px solid transparent;
   border-right: 16px solid transparent;
-  border-bottom: 16px solid #ab8ce4;
+  border-bottom: 16px solid #DE6D66;
 }
 
 .jvectormap-zoomin,
@@ -21420,10 +21420,8 @@ table.focus-on tbody tr.focused td {
   line-height: 210px;
 }
 
-/* Login- register pages */
-
 .login-register {
-  background: url(https://placehold.it/2500x1668) no-repeat center center/cover !important;
+  background: url(https://bipolar-peru.s3.amazonaws.com/assets/bipolar-gold.png) no-repeat center center/cover !important;
   height: 100%;
   position: fixed;
 }
@@ -22410,27 +22408,27 @@ ul.list-icons li i {
 .tooltip-primary.tooltip .tooltip-inner,
 .tooltip-primary + .tooltip .tooltip-inner {
   color: #ffffff;
-  background-color: #ab8ce4;
+  background-color: #DE6D66;
 }
 
 .tooltip-primary.tooltip.top .tooltip-arrow,
 .tooltip-primary + .tooltip.top .tooltip-arrow {
-  border-top-color: #ab8ce4;
+  border-top-color: #DE6D66;
 }
 
 .tooltip-primary.tooltip.right .tooltip-arrow,
 .tooltip-primary + .tooltip.right .tooltip-arrow {
-  border-right-color: #ab8ce4;
+  border-right-color: #DE6D66;
 }
 
 .tooltip-primary.tooltip.bottom .tooltip-arrow,
 .tooltip-primary + .tooltip.bottom .tooltip-arrow {
-  border-bottom-color: #ab8ce4;
+  border-bottom-color: #DE6D66;
 }
 
 .tooltip-primary.tooltip.left .tooltip-arrow,
 .tooltip-primary + .tooltip.left .tooltip-arrow {
-  border-left-color: #ab8ce4;
+  border-left-color: #DE6D66;
 }
 
 .tooltip-success.tooltip .tooltip-inner,
@@ -22559,16 +22557,16 @@ ul.list-icons li i {
 
 .popover-primary + .popover .popover-title {
   color: #ffffff;
-  background-color: #ab8ce4;
-  border-color: #ab8ce4;
+  background-color: #DE6D66;
+  border-color: #DE6D66;
 }
 
 .popover-primary + .popover.bottom .arrow {
-  border-bottom-color: #ab8ce4;
+  border-bottom-color: #DE6D66;
 }
 
 .popover-primary + .popover.bottom .arrow:after {
-  border-bottom-color: #ab8ce4;
+  border-bottom-color: #DE6D66;
 }
 
 .popover-success + .popover .popover-title {
@@ -25033,7 +25031,7 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
 /*table layouts*/
 
 .color-table.primary-table thead th {
-  background-color: #ab8ce4;
+  background-color: #DE6D66;
   color: #ffffff;
 }
 
@@ -25083,11 +25081,11 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
 }
 
 .color-bordered-table.primary-bordered-table {
-  border: 2px solid #ab8ce4;
+  border: 2px solid #DE6D66;
 }
 
 .color-bordered-table.primary-bordered-table thead th {
-  background-color: #ab8ce4;
+  background-color: #DE6D66;
   color: #ffffff;
 }
 
@@ -25177,7 +25175,7 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
 }
 
 .full-color-table.full-primary-table thead th {
-  background-color: #ab8ce4;
+  background-color: #DE6D66;
   border: 0 !important;
   color: #ffffff;
 }
@@ -25188,7 +25186,7 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
 }
 
 .full-color-table.full-primary-table tr:hover {
-  background-color: #ab8ce4;
+  background-color: #DE6D66;
 }
 
 .full-color-table.full-success-table {
@@ -25412,7 +25410,7 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
 .floating-labels .form-control:valid ~ label {
   top: -20px;
   font-size: 12px;
-  color: #ab8ce4;
+  color: #DE6D66;
 }
 
 .floating-labels .bar {
@@ -25427,7 +25425,7 @@ table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
   width: 0;
   bottom: 1px;
   position: absolute;
-  background: #ab8ce4;
+  background: #DE6D66;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
@@ -26370,38 +26368,38 @@ ul.pro-amenities li span i {
 }
 
 .ribbon-primary {
-  background: #ab8ce4;
+  background: #DE6D66;
 }
 
 .ribbon-bookmark.ribbon-primary:before {
-  border-color: #ab8ce4;
+  border-color: #DE6D66;
   border-right-color: transparent;
 }
 
 .ribbon-bookmark.ribbon-right.ribbon-primary:before {
-  border-right-color: #ab8ce4;
+  border-right-color: #DE6D66;
   border-left-color: transparent;
 }
 
 .ribbon-bookmark.ribbon-vertical-l.ribbon-primary:before,
 .ribbon-bookmark.ribbon-vertical-r.ribbon-primary:before {
-  border-right-color: #ab8ce4;
+  border-right-color: #DE6D66;
   border-bottom-color: transparent;
 }
 
 .ribbon-primary.ribbon-corner:before {
-  border-top-color: #ab8ce4;
-  border-left-color: #ab8ce4;
+  border-top-color: #DE6D66;
+  border-left-color: #DE6D66;
 }
 
 .ribbon-primary.ribbon-corner.ribbon-right:before {
-  border-right-color: #ab8ce4;
+  border-right-color: #DE6D66;
   border-left-color: transparent;
 }
 
 .ribbon-primary.ribbon-corner.ribbon-bottom:before {
   border-top-color: transparent;
-  border-bottom-color: #ab8ce4;
+  border-bottom-color: #DE6D66;
 }
 
 .ribbon-success {
@@ -26601,7 +26599,7 @@ ul.pro-amenities li span i {
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary,
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
   color: #ffffff;
-  background: #ab8ce4;
+  background: #DE6D66;
 }
 
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-info,
@@ -27146,61 +27144,6 @@ h6 {
 pre {
   -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
-}
-
-/*Theme Colors*/
-
-/*bootstrap Color*/
-
-/*Normal Color*/
-
-/*Border radius*/
-
-/*Preloader*/
-
-.preloader {
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  position: fixed;
-  z-index: 99999;
-  background: #fff;
-}
-
-.preloader .cssload-speeding-wheel {
-  position: absolute;
-  top: calc(50% - 3.5px);
-  left: calc(50% - 3.5px);
-}
-
-/* This is for popins font for firefox */
-
-@font-face {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/poppins/v1/2fCJtbhSlhNNa6S2xlh9GyEAvth_LlrfE80CYdSH47w.woff2) format("woff2");
-  unicode-range: U+02BC, U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200B-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
-}
-
-/* This is for popins font for firefox */
-
-@font-face {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/poppins/v1/UGh2YG8gx86rRGiAZYIbVyEAvth_LlrfE80CYdSH47w.woff2) format("woff2");
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-
-/* This is for popins font for firefox */
-
-@font-face {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/poppins/v1/yQWaOD4iNU5NTY0apN-qj_k_vArhqVIZ0nv9q090hN8.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
 /*------Top bar header------*/

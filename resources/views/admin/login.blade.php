@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
-    <title>Elite Admin - is a responsive admin template</title>
+    <title>Bipolar Administrador</title>
     <link href="{{ mix('css/app-admin-styles.css') }}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,7 +25,7 @@
         <div class="white-box">
             {!! Form::open(['url' => route('login.admin.post'),'class' => 'form-horizontal form-material']) !!}
                 <a href="javascript:void(0)" class="text-center db">
-                    <br/><img src="https://placehold.it/108x21" alt="Home"/>
+                    <br/><img src="{{ asset('images/logo-linea.png') }}" width="160"/>
                 </a>
                 <div class="form-group m-t-40">
                     <div class="col-xs-12">
@@ -41,13 +41,13 @@
                     <div class="col-md-12">
                         <div class="checkbox checkbox-primary pull-left p-t-0">
                             <input id="checkbox-signup" type="checkbox">
-                            <label for="checkbox-signup"> Remember me </label>
+                            <label for="checkbox-signup"> Recordarme </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group text-center m-t-20">
                     <div class="col-xs-12">
-                        <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">
+                        <button class="btn btn-outline-warning btn-lg btn-block text-uppercase" type="submit">
                             Iniciar sesión
                         </button>
                     </div>
