@@ -16,6 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>Bipolar Administrador</title>
     <!-- Custom CSS -->
     <link href="{{ mix('css/app-admin-styles.css') }}" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -23,11 +24,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="https://use.fontawesome.com/d71cf672b2.js"></script>
-    <script>
-        window.Laravel = <?= json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>;
-    </script>
 </head>
 
 <body class="fix-sidebar">

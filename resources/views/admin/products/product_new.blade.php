@@ -21,27 +21,31 @@
         </div>
         <div class="col-md-12">
             <div class="white-box">
-                {!! Form::open(['class' => 'form-material']) !!}
+                {!! Form::open() !!}
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                {!! Form::label('Nombre') !!}
+                                {!! Form::label('Nombre') !!} <span class="text-danger">*</span>
                                 {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                {!! Form::label('Subtítulo') !!}
+                                {!! Form::label('Subtítulo (Opcional)') !!}
                                 {!! Form::text('subtitle', null, ['class' => 'form-control', 'placeholder' => 'Ej: Negro&Blanco']) !!}
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        {!! Form::label('Colores') !!}
+                        {!! Form::label('Descripción (Opcional)') !!}
+                        {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 7]) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('Colores') !!} <span class="text-danger">*</span>
                         {!! Form::select('colors[]', $colors, null, ['class' => 'form-control select2', 'required' => true, 'multiple' => true]) !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::label('Precio') !!}
+                        {!! Form::label('Precio') !!} <span class="text-danger">*</span>
                         {!! Form::number('price', 1.0, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
                     </div>
                     <div class="">

@@ -37,6 +37,7 @@ class ProductController extends Controller
         $product = new Product;
         $product->name = $request->input('name');
         $product->subtitle = $request->input('subtitle');
+        $product->description = $request->input('description');
         $product->price = number_format($request->input('price'), 2);
         $product->active = boolval($request->input('active')) ? date('Y-m-d H:i:s') : null;
         $product->save();

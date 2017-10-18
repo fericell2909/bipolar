@@ -24,11 +24,12 @@ class ProductNewRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => 'required|between:1,255|string',
-            'subtitle' => 'sometimes|between:1,255',
-            'colors'   => 'required|array',
-            'price'    => 'required|numeric|min:1',
-            'active'   => 'boolean',
+            'name'        => 'required|between:1,255|string',
+            'subtitle'    => 'sometimes|between:1,255',
+            'description' => 'sometimes|max:4000',
+            'colors'      => 'required|array',
+            'price'       => 'required|numeric|min:1',
+            'active'      => 'boolean',
         ];
     }
 }
