@@ -8385,26 +8385,26 @@ button.close {
           box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
 }
 
-.bipolar-alternate-grand-header .img-item {
-  display: inline-block;
-  width: 13%;
+.bipolar-alternate-grand-header li:first-child {
+  margin-top: 10px;
+  margin-right: 10px;
 }
 
-.bipolar-alternate-grand-header .items {
-  display: inline-block;
-  width: 12%;
-  margin-top: 25px;
-  margin-bottom: 23px;
-  text-align: center;
+.bipolar-alternate-grand-header li:not(:first-child) {
+  margin-top: 24px;
+  margin-bottom: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.bipolar-alternate-grand-header .items a {
+.bipolar-alternate-grand-header li:not(:first-child) a {
   font-size: 15px;
   text-transform: uppercase;
   padding-bottom: 6px;
+  letter-spacing: 4px;
 }
 
-.bipolar-alternate-grand-header .items a:hover {
+.bipolar-alternate-grand-header li:not(:first-child) a:hover {
   color: white;
   border-bottom: 2px solid white;
   text-decoration: none;
@@ -8487,13 +8487,19 @@ a:hover {
   padding: 30px;
 }
 
-.bipolar-navigation div a {
+.bipolar-navigation div li {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.bipolar-navigation div li a {
   font-size: 15px;
   text-transform: uppercase;
   padding-bottom: 6px;
+  letter-spacing: 4px;
 }
 
-.bipolar-navigation div a:hover {
+.bipolar-navigation div li a:hover {
   color: white;
   border-bottom: 2px solid white;
   text-decoration: none;

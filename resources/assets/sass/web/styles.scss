@@ -15,20 +15,20 @@
 .bipolar-alternate-grand-header {
   @extend .bipolar-grand-header;
   box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
-  .img-item {
-    display: inline-block;
-    width: 13%;
+  li:first-child {
+    margin-top: 10px;
+    margin-right: 10px;
   }
-  .items {
-    display: inline-block;
-    width: 12%;
-    margin-top: 25px;
-    margin-bottom: 23px;
-    text-align: center;
+  li:not(:first-child) {
+    margin-top: 24px;
+    margin-bottom: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
     a {
       font-size: 15px;
       text-transform: uppercase;
       padding-bottom: 6px;
+      letter-spacing: 4px;
       &:hover {
         color: white;
         border-bottom: 2px solid white;
@@ -113,14 +113,19 @@ a {
 .bipolar-navigation {
   padding: 30px;
   div {
-    a {
-      font-size: 15px;
-      text-transform: uppercase;
-      padding-bottom: 6px;
-      &:hover {
-        color: white;
-        border-bottom: 2px solid white;
-        text-decoration: none;
+    li {
+      padding-left: 15px;
+      padding-right: 15px;
+      a {
+        font-size: 15px;
+        text-transform: uppercase;
+        padding-bottom: 6px;
+        letter-spacing: 4px;
+        &:hover {
+          color: white;
+          border-bottom: 2px solid white;
+          text-decoration: none;
+        }
       }
     }
   }

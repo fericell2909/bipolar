@@ -66,50 +66,30 @@
                 </div>
             </div>
         </section>
-        <section class="row bipolar-background bipolar-navigation text-center">
-            <div class="col-md-offset-3 col-md-1">
-                <a href="">Home</a>
-            </div>
-            <div class="col-md-1">
-                <a href="{{ route('landings.bipolar') }}">Bipolar</a>
-            </div>
-            <div class="col-md-1">
-                <a href="{{ route('landings.showroom') }}">Showroom</a>
-            </div>
-            <div class="col-md-1">
-                <a href="{{ route('shop') }}">Shop</a>
-            </div>
-            <div class="col-md-1">
-                <a href="#">Newsletter</a>
-            </div>
-            <div class="col-md-1">
-                <a href="#">Contacto</a>
+        <section class="bipolar-background bipolar-navigation text-center">
+            <div class="container">
+                <ul class="list-inline">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="{{ route('landings.bipolar') }}">Bipolar</a></li>
+                    <li><a href="{{ route('landings.showroom') }}">Showroom</a></li>
+                    <li><a href="{{ route('shop') }}">Shop</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
             </div>
         </section>
     </div>
     <div class="bipolar-alternate-grand-header hidden bipolar-background">
         <div class="container">
-            <div class="img-item">
-                <a href="{{ route('home') }}"><img src="{{ asset('images/logo-linea.png') }}" width="160"></a>
-            </div>
-            <div class="items">
-                <a href="">Home</a>
-            </div>
-            <div class="items">
-                <a href="{{ route('landings.bipolar') }}">Bipolar</a>
-            </div>
-            <div class="items">
-                <a href="{{ route('landings.showroom') }}">Showroom</a>
-            </div>
-            <div class="items">
-                <a href="{{ route('shop') }}">Shop</a>
-            </div>
-            <div class="items">
-                <a href="#">Newsletter</a>
-            </div>
-            <div class="items">
-                <a href="#">Contacto</a>
-            </div>
+            <ul class="list-inline">
+                <li><a href="#"><img src="{{ asset('images/logo-linea.png') }}" width="160"></a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="{{ route('landings.bipolar') }}">Bipolar</a></li>
+                <li><a href="{{ route('landings.showroom') }}">Showroom</a></li>
+                <li><a href="{{ route('shop') }}">Shop</a></li>
+                <li><a href="#">Newsletter</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
         </div>
     </div>
     <section class="container visible-xs-block">
