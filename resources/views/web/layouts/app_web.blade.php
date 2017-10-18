@@ -10,10 +10,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- Script de Font Awesome --}}
     <script src="https://use.fontawesome.com/d71cf672b2.js"></script>
+    @stack('css_plus')
 </head>
 <body>
     <div class="bipolar-grand-header hidden-xs">
-        <nav class="navbar bipolar-background remove-navbar-margin">
+        <nav class="navbar bipolar-background bipolar-navbar-styles">
             <div class="container">
                 <div class="navbar-header">
                     <div class="navbar-brand">
@@ -39,7 +40,7 @@
                 </ul>
             </div>
         </nav>
-        <nav class="navbar bipolar-background remove-navbar-margin">
+        <nav class="navbar bipolar-background bipolar-navbar-styles">
             <div class="container">
                 <ul class="nav navbar-nav">
                     <li><a href="mailto:bipolar@bipolar.com.pe"><i class="fa fa-envelope-o"></i></a></li>
@@ -76,7 +77,7 @@
                 <a href="{{ route('landings.showroom') }}">Showroom</a>
             </div>
             <div class="col-md-1">
-                <a href="#">Shop</a>
+                <a href="{{ route('shop') }}">Shop</a>
             </div>
             <div class="col-md-1">
                 <a href="#">Newsletter</a>
@@ -101,7 +102,7 @@
                 <a href="{{ route('landings.showroom') }}">Showroom</a>
             </div>
             <div class="items">
-                <a href="#">Shop</a>
+                <a href="{{ route('shop') }}">Shop</a>
             </div>
             <div class="items">
                 <a href="#">Newsletter</a>
@@ -137,6 +138,6 @@
     @yield('content')
     @include('web.partials.footer')
     <script src="{{ mix('js/app-web-scripts.js') }}"></script>
-    @stack('script_plus')
+    @stack('js_plus')
 </body>
 </html>

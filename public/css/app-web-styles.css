@@ -8377,6 +8377,7 @@ button.close {
 .bipolar-alternate-grand-header {
   position: fixed;
   width: 100%;
+  z-index: 10;
 }
 
 .bipolar-alternate-grand-header {
@@ -8477,8 +8478,9 @@ a:hover {
   line-height: 68px;
 }
 
-.remove-navbar-margin {
+.bipolar-navbar-styles {
   margin-bottom: 0;
+  border-radius: 0;
 }
 
 .bipolar-navigation {
@@ -8540,6 +8542,48 @@ a:hover {
 .bipolar-container {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.bipolar-filter-title {
+  font-size: 15px;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+  letter-spacing: 2.3px;
+}
+
+.bipolar-shop-results-filter {
+  margin-bottom: 17px;
+}
+
+.bipolar-product {
+  margin-bottom: 30px;
+}
+
+.bipolar-product-showed {
+  margin-bottom: 15px;
+}
+
+.bipolar-filters li a:hover {
+  color: #fcbeb9;
+  text-decoration: none;
+}
+
+.pagination li a.page-number {
+  background: #f5f5f5;
+  color: black;
+  border: none;
+  border-radius: 100%;
+  line-height: 30px;
+  width: 42px;
+  height: 42px;
+  margin-left: 12px;
+}
+
+.pagination li a.page-number.active,
+.pagination li a.page-number:hover {
+  background: black;
+  color: #f5f5f5;
 }
 
 .bipolar-footer {

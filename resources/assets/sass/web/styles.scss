@@ -9,6 +9,7 @@
 .bipolar-grand-header {
   position: fixed;
   width: 100%;
+  z-index: $z-index-navbar;
 }
 
 .bipolar-alternate-grand-header {
@@ -104,8 +105,9 @@ a {
   line-height: 68px;
 }
 
-.remove-navbar-margin  {
+.bipolar-navbar-styles  {
   margin-bottom: 0;
+  border-radius: 0;
 }
 
 .bipolar-navigation {

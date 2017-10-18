@@ -81,7 +81,7 @@
                 <a href="{{ route('landings.showroom') }}">Showroom</a>
             </div>
             <div class="items">
-                <a href="#">Shop</a>
+                <a href="{{ route('shop') }}">Shop</a>
             </div>
             <div class="items">
                 <a href="#">Newsletter</a>

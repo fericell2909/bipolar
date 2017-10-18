@@ -1,0 +1,48 @@
+.bipolar-filter-title {
+  font-size: 15px;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $bipolar-black;
+  letter-spacing: 2.3px;
+}
+
+.bipolar-shop-results-filter {
+  margin-bottom: 17px;
+}
+
+.bipolar-product {
+  margin-bottom: 30px;
+}
+
+.bipolar-product-showed {
+  margin-bottom: 15px;
+}
+
+.bipolar-filters {
+  li {
+    a:hover {
+      color: $bipolar-color;
+      text-decoration: none;
+    }
+  }
+}
+
+.pagination {
+  li {
+    a.page-number {
+      background: $bipolar-gray;
+      color: $bipolar-black;
+      border: none;
+      border-radius: 100%;
+      line-height: 30px;
+      width: 42px;
+      height: 42px;
+      margin-left: 12px;
+
+      &.active, &:hover {
+        background: $bipolar-black;
+        color: $bipolar-gray;
+      }
+    }
+  }
+}
