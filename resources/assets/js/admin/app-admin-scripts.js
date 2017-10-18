@@ -1,10 +1,14 @@
 window.$ = window.jQuery = require('jquery');
 
-window.$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': window.Laravel.csrfToken
-    }
-});
+let token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+    window.$.ajaxSetup({
+        headers: {'X-CSRF-TOKEN': token.content}
+    });
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 
 // Plugins
 window.Popper = require('popper.js').default;

@@ -23,12 +23,25 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Type
+ *
+ * @property int $id
+ * @property string $name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereName($value)
+ */
+	class Type extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Product
  *
  * @property int $id
  * @property string $name
  * @property string|null $slug
  * @property string|null $subtitle
+ * @property string|null $description
  * @property float $price
  * @property string|null $active
  * @property \Carbon\Carbon|null $created_at
@@ -41,6 +54,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePrice($value)
@@ -107,6 +121,7 @@ namespace App\Models{
  * @property int $order
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read string $hash_id
  * @property-read \App\Models\Product $product
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereId($value)
