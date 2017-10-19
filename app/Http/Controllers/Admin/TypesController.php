@@ -27,4 +27,24 @@ class TypesController extends Controller
 
         return redirect()->route('settings.types');
     }
+
+    public function edit($typeHashId)
+    {
+        $type = Type::findByHash($typeHashId);
+
+        return view('admin.types.edit', compact('type'));
+    }
+
+    public function update(Request $request, $typeHashId)
+    {
+        $this->validate($request, ['name' => 'required|between:1,255']);
+
+        $type = Type::findByHash($typeHashId);
+        $type->name = $request->input('name');
+        $type->save();
+
+        flash()->success('Tipo actualizado correctamente');
+
+        return redirect()->route('settings.types');
+    }
 }

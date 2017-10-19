@@ -44,9 +44,9 @@
                             <td>{{ $type->name }}</td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-rounded btn-success"><i class="fa fa-list-alt"></i> Subtipos</a>
-                                <a href="{{ route('settings.sizes.show', $type->hash_id) }}"
+                                <a href="{{ route('settings.types.edit', $type->hash_id) }}"
                                    class="btn btn-sm btn-rounded btn-primary">
-                                    <i class="fa fa-pencil"></i> Actualizar
+                                    <i class="fa fa-pencil"></i> Editar
                                 </a>
                                 <button class="btn btn-sm btn-rounded btn-danger type-delete" data-type-id="{{ $type->hash_id }}">
                                     <i class="fa fa-trash"></i>

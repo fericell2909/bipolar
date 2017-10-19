@@ -42,5 +42,7 @@ Route::middleware('auth:admin')->group(function() {
         // Types
         Route::get('types', 'Admin\TypesController@index')->name('settings.types');
         Route::post('types', 'Admin\TypesController@store');
+        Route::get('type/{typeHashId}', 'Admin\TypesController@edit')->name('settings.types.edit');
+        Route::post('type/{typeHashId}', 'Admin\TypesController@update');
     });
 });
