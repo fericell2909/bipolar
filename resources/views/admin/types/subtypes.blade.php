@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="white-box">
-                <h3 class="box-title">Nuevo tipo</h3>
+                <h3 class="box-title">Nuevo subtipo para  {{ $type->name }}</h3>
                 {!! Form::open() !!}
                 <div class="form-row">
                     <div class="col-md-11">
@@ -37,20 +37,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($types as $type)
-                        <?php /** @var \App\Models\Type $type */ ?>
+                    @foreach($type->subtypes as $subtype)
+                        <?php /** @var \App\Models\Subtype $subtype */ ?>
                         <tr>
-                            <td>{{ $type->id }}</td>
-                            <td>{{ $type->name }}</td>
+                            <td>{{ $subtype->id }}</td>
+                            <td>{{ $subtype->name }}</td>
                             <td>
-                                <a href="{{ route('settings.types.subtypes', $type->hash_id) }}" class="btn btn-sm btn-rounded btn-success"><i class="fa fa-list-alt"></i> Subtipos</a>
-                                <a href="{{ route('settings.types.edit', $type->hash_id) }}"
+                                <a href="{{ route('settings.types.edit', $subtype->hash_id) }}"
                                    class="btn btn-sm btn-rounded btn-primary">
                                     <i class="fa fa-pencil"></i> Editar
                                 </a>
-                                <button class="btn btn-sm btn-rounded btn-danger type-delete" data-type-id="{{ $type->hash_id }}">
-                                    <i class="fa fa-trash"></i>
-                                    Eliminar
+                                <button class="btn btn-sm btn-rounded btn-danger subtype-delete" data-subtype-id="{{ $subtype->hash_id }}">
+                                    <i class="fa fa-trash"></i> Eliminar
                                 </button>
                             </td>
                         </tr>

@@ -60,4 +60,11 @@ class TypesController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function subtypes($typeHashId)
+    {
+        $type = Type::findByHash($typeHashId);
+
+        return view('admin.types.subtypes', compact('type'));
+    }
 }
