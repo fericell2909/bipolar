@@ -30205,6 +30205,28 @@ $(function () {
             });
         });
     });
+
+    $('.type-delete').click(function () {
+        var _this3 = this;
+
+        __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
+            title: 'Eliminar tipo',
+            text: 'Seguro que desea eliminar',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true
+        }).then(function () {
+            var typeHashId = $(_this3).data('typeId');
+
+            $.ajax({
+                method: 'DELETE',
+                url: '/admin/settings/types/' + typeHashId
+            }).done(function () {
+                return location.reload();
+            });
+        });
+    });
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 

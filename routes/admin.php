@@ -38,11 +38,12 @@ Route::middleware('auth:admin')->group(function() {
         Route::post('colors', 'Admin\ColorController@create')->name('settings.colors.save');
         Route::get('colors/{colorHashid}', 'Admin\ColorController@show')->name('settings.colors.show');
         Route::post('colors/{colorHashid}', 'Admin\ColorController@update');
-        Route::delete('colors/{sizeHashId}', 'Admin\ColorController@delete');
+        Route::delete('colors/{colorHashid}', 'Admin\ColorController@delete');
         // Types
         Route::get('types', 'Admin\TypesController@index')->name('settings.types');
         Route::post('types', 'Admin\TypesController@store');
-        Route::get('type/{typeHashId}', 'Admin\TypesController@edit')->name('settings.types.edit');
-        Route::post('type/{typeHashId}', 'Admin\TypesController@update');
+        Route::get('types/{typeHashId}', 'Admin\TypesController@edit')->name('settings.types.edit');
+        Route::post('types/{typeHashId}', 'Admin\TypesController@update');
+        Route::delete('types/{sizeHashId}', 'Admin\TypesController@delete');
     });
 });

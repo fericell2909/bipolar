@@ -36,4 +36,22 @@ $(function () {
             }).done(() => location.reload());
         })
     });
+
+    $('.type-delete').click(function () {
+        swal({
+            title: 'Eliminar tipo',
+            text: 'Seguro que desea eliminar',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+        }).then(() => {
+            let typeHashId = $(this).data('typeId');
+
+            $.ajax({
+                method: 'DELETE',
+                url: `/admin/settings/types/${typeHashId}`
+            }).done(() => location.reload());
+        })
+    });
 });

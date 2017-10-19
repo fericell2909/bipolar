@@ -47,4 +47,17 @@ class TypesController extends Controller
 
         return redirect()->route('settings.types');
     }
+
+    public function delete($typeHashId)
+    {
+        $type = Type::findByHash($typeHashId);
+
+        if (count($type->subtypes) == 0) {
+            $type->delete();
+        } else {
+            flash()->error('No se puede eliminar un producto con subtipos registrados');
+        }
+
+        return response()->json(['success' => true]);
+    }
 }
