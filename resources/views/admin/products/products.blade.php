@@ -32,9 +32,7 @@
                             <td>{{ $product->name }} - {{ $product->subtitle }}</td>
                             <td>
                                 @foreach($product->colors as $color)
-                                    <div style="background-color: {{ $color->hexadecimal }}">
-                                        {{ $color->name }}
-                                    </div>
+                                    <span class="badge">{{ $color->name }}</span>
                                 @endforeach
                             </td>
                             <td class="text-right">{{ $product->price }}</td>

@@ -62,7 +62,11 @@
                             </ul>
                             <div class="tab-content">
                                 @foreach($types as $type)
-                                    <div role="tabpanel" class="tab-pane {{ $loop->first ? 'active' : null }}" id="{{ $type->slug }}">Contenido {{ $type->id }}</div>
+                                    <div role="tabpanel" class="tab-pane {{ $loop->first ? 'active' : null }}" id="{{ $type->slug }}">
+                                        @foreach($type->subtypes as $subtype)
+                                            {!! Form::checkbox('subtypes[]', $subtype->hash_id) !!} {{ $subtype->name }}
+                                        @endforeach
+                                    </div>
                                 @endforeach
                             </div>
                         </div>

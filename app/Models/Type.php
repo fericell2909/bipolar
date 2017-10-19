@@ -14,6 +14,11 @@ class Type extends Model
     protected $table = 'types';
     public $timestamps = false;
 
+    public function subtypes()
+    {
+        return $this->hasMany(Subtype::class, 'type_id');
+    }
+
     public function sluggable()
     {
         return [

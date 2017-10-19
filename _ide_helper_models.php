@@ -29,6 +29,7 @@ namespace App\Models{
  * @property string|null $slug
  * @property string $name
  * @property-read string $hash_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereName($value)
@@ -54,6 +55,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)
@@ -151,6 +153,23 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereName($value)
  */
 	class Color extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Subtype
+ *
+ * @property int $id
+ * @property int $type_id
+ * @property string $name
+ * @property-read string $hash_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read \App\Models\Type $type
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereTypeId($value)
+ */
+	class Subtype extends \Eloquent {}
 }
 
 namespace App\Models{

@@ -24,6 +24,11 @@ class Product extends Model
         return $this->hasMany(Photo::class, 'product_id');
     }
 
+    public function subtypes()
+    {
+        return $this->belongsToMany(Subtype::class, 'products_subtypes', 'product_id', 'subtype_id');
+    }
+
     public function getAdminActiveButton()
     {
         return $this->active ? "<span class='label label-pill label-success'>Activo</span>" : "<span class='label label-pill label-danger'>Inactivo</span>";

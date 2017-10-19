@@ -31,7 +31,9 @@ class ProductController extends Controller
     public function store(ProductNewRequest $request)
     {
         $colors = [];
+        $subtypes = [];
         $requestColors = $request->input('colors');
+
         foreach ($requestColors as $color) {
             $colors[] = array_first(\Hashids::decode($color));
         }
@@ -44,6 +46,14 @@ class ProductController extends Controller
         $product->active = boolval($request->input('active')) ? date('Y-m-d H:i:s') : null;
         $product->save();
         $product->colors()->sync($colors);
+
+        if ($request->has('subtypes')) {
+            $requestSubtypes = $request->input('subtypes');
+            foreach ($requestSubtypes as $subtypeHashId) {
+                $subtypes[] = array_first(\Hashids::decode($subtypeHashId));
+            }
+            $product->subtypes()->sync($subtypes);
+        }
 
         return redirect()->route('products.photos', $product->slug);
     }
