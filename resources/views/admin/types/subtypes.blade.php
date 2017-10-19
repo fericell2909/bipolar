@@ -43,7 +43,7 @@
                             <td>{{ $subtype->id }}</td>
                             <td>{{ $subtype->name }}</td>
                             <td>
-                                <a href="{{ route('settings.types.edit', $subtype->hash_id) }}"
+                                <a href="{{ route('settings.subtypes.edit', $subtype->hash_id) }}"
                                    class="btn btn-sm btn-rounded btn-primary">
                                     <i class="fa fa-pencil"></i> Editar
                                 </a>

@@ -46,5 +46,8 @@ Route::middleware('auth:admin')->group(function() {
         Route::post('types/{typeHashId}', 'Admin\TypesController@update');
         Route::get('types/{typeHashId}/subtypes', 'Admin\TypesController@subtypes')->name('settings.types.subtypes');
         Route::delete('types/{sizeHashId}', 'Admin\TypesController@delete');
+        // Subtypes
+        Route::get('subtypes/{subtypeHashId}', 'Admin\SubtypeController@edit')->name('settings.subtypes.edit');
+        Route::post('subtypes/{subtypeHashId}', 'Admin\SubtypeController@update');
     });
 });
