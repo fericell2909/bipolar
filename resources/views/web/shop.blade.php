@@ -12,20 +12,14 @@
         <div class="row">
             <div class="col-md-3">
                 {!! Form::text('search', null, ['class' => 'form-control']) !!}
-                <h4 class="bipolar-filter-title">Filtrar zapatos</h4>
-                <ul class="list-unstyled bipolar-filters">
-                    <li><a href="#">Test 1</a></li>
-                    <li><a href="#">Test 1</a></li>
-                    <li><a href="#">Test 1</a></li>
-                    <li><a href="#">Test 1</a></li>
-                </ul>
-                <h4 class="bipolar-filter-title">Filtrar accesorios</h4>
-                <ul class="list-unstyled bipolar-filters">
-                    <li><a href="#">Test 1</a></li>
-                    <li><a href="#">Test 1</a></li>
-                    <li><a href="#">Test 1</a></li>
-                    <li><a href="#">Test 1</a></li>
-                </ul>
+                @foreach($types as $type)
+                    <h4 class="bipolar-filter-title">Filtrar {{ $type->name }}</h4>
+                    <ul class="list-unstyled bipolar-filters">
+                        @foreach($type->subtypes as $subtype)
+                            <li><a href="#">{{ $subtype->name }} ({{ count($subtype->products) }})</a></li>
+                        @endforeach
+                    </ul>
+                @endforeach
                 <h4 class="bipolar-filter-title">Destacados</h4>
                 @for($i = 0; $i < 5; $i++)
                     <div class="row bipolar-product-showed">
@@ -41,27 +35,24 @@
             </div>
             <div class="col-md-9">
                 <div class="row bipolar-shop-results-filter">
-                    <div class="col-md-5">MOSTRANDO 1–12 DE 63 RESULTADOS</div>
+                    <div class="col-md-5">MOSTRANDO 1–12 DE {{ $products->total() }} RESULTADOS</div>
                     <div class="col-md-offset-2 col-md-5">
                         {!! Form::select('order', [0 => 'Orden predeterminado', 1 => 'Ordenar por popularidad'], null, ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="row">
-                    @for($i = 0; $i < 13; $i++)
+                    @foreach($products as $product)
                         <div class="col-md-4 bipolar-product">
-                            <img src="https://placehold.it/212x141" alt="Shop" class="img-responsive">
+                            @if(count($product->photos))
+                                <img src="{{ $product->photos->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
+                            @else
+                                <img src="https://placehold.it/212x141" alt="Shop" class="img-responsive">
+                            @endif
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
                 <div class="text-center">
-                    <ul class="pagination">
-                        <li><a href="#" class="page-number active">1</a></li>
-                        <li><a href="#" class="page-number">1</a></li>
-                        <li><a href="#" class="page-number">1</a></li>
-                        <li><a href="#" class="page-number">1</a></li>
-                        <li><a href="#" class="page-number">1</a></li>
-                        <li><a href="#" class="page-number">&raquo;</a></li>
-                    </ul>
+                    {{ $products->links('web.partials.pagination-web') }}
                 </div>
             </div>
         </div>

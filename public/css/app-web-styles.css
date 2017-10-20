@@ -8556,6 +8556,7 @@ a:hover {
   padding-bottom: 10px;
   border-bottom: 1px solid black;
   letter-spacing: 2.3px;
+  margin-top: 15px;
 }
 
 .bipolar-shop-results-filter {
@@ -8568,6 +8569,10 @@ a:hover {
 
 .bipolar-product-showed {
   margin-bottom: 15px;
+}
+
+.bipolar-filters {
+  margin-bottom: 40px;
 }
 
 .bipolar-filters li a:hover {
