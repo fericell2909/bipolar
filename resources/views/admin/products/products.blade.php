@@ -19,6 +19,7 @@
                         <th>#</th>
                         <th>Nombre</th>
                         <th>Colores</th>
+                        <th>Tallas</th>
                         <th class="text-right">Precio</th>
                         <th class="text-center">Activo</th>
                         <th>Acciones</th>
@@ -32,7 +33,12 @@
                             <td>{{ $product->name }} - {{ $product->subtitle }}</td>
                             <td>
                                 @foreach($product->colors as $color)
-                                    <span class="badge">{{ $color->name }}</span>
+                                    <span class="badge badge-success">{{ $color->name }}</span>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($product->stocks as $stock)
+                                    <span class="badge badge-success">{{ $stock->size->name }}</span>
                                 @endforeach
                             </td>
                             <td class="text-right">{{ $product->price }}</td>

@@ -35,9 +35,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Logo -->
             <div class="top-left-part">
                 <a class="logo" href="#">
-                    <!-- Logo text image you can use text also -->
                     <span class="hidden-xs">
-                        <img src="{{ asset('images/logo-linea.png') }}" alt="home" width="220" height="60"/>
+                        <img src="{{ asset('images/logo-linea.png') }}" class="image-logo" alt="home"/>
                     </span>
                 </a>
             </div>

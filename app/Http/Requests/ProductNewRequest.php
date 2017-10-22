@@ -31,6 +31,7 @@ class ProductNewRequest extends FormRequest
             'price'       => 'required|numeric|min:1',
             'active'      => 'boolean',
             'subtype'     => 'nullable|array',
+            'sizes'       => 'nullable|array',
         ];
     }
 }

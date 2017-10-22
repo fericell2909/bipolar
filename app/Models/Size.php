@@ -11,4 +11,9 @@ class Size extends Model
 
     protected $table = 'sizes';
     public $timestamps = false;
+
+    public function stocks()
+    {
+        return $this->hasMany(Product::class, 'size_id');
+    }
 }

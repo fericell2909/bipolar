@@ -3,6 +3,7 @@ const select2 = require('select2/dist/js/select2.full');
 require('dropzone/dist/dropzone-amd-module');
 const Sortable = require('sortablejs');
 require('block-ui');
+require('icheck');
 
 $(document).ready(function () {
 
@@ -23,6 +24,12 @@ $(document).ready(function () {
         let elem = document.querySelector('.js-switch');
         let init = new switcher(elem, {color: '#F9967B'});
     }
+
+    // Icheck
+    $('.icheck').iCheck({
+        checkboxClass: 'icheckbox_flat',
+        radioClass: 'iradio_flat',
+    });
 
     if ($('#sortable-items').length) {
         let elem = document.querySelector('#sortable-items');

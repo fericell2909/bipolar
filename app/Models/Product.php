@@ -24,6 +24,11 @@ class Product extends Model
         return $this->hasMany(Photo::class, 'product_id');
     }
 
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class, 'product_id');
+    }
+
     public function subtypes()
     {
         return $this->belongsToMany(Subtype::class, 'products_subtypes', 'product_id', 'subtype_id');

@@ -7,6 +7,8 @@ use App\Http\Requests\ProductNewRequest;
 use App\Models\Color;
 use App\Models\Photo;
 use App\Models\Product;
+use App\Models\Size;
+use App\Models\Stock;
 use App\Models\Type;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -24,8 +26,9 @@ class ProductController extends Controller
     {
         $colors = Color::orderBy('name')->get()->pluck('name', 'hash_id');
         $types = Type::orderBy('name')->get();
+        $sizes = Size::orderBy('name')->get();
 
-        return view('admin.products.product_new', compact('colors', 'types'));
+        return view('admin.products.product_new', compact('colors', 'types', 'sizes'));
     }
 
     public function store(ProductNewRequest $request)
@@ -53,6 +56,19 @@ class ProductController extends Controller
                 $subtypes[] = array_first(\Hashids::decode($subtypeHashId));
             }
             $product->subtypes()->sync($subtypes);
+        }
+
+        if ($request->has('sizes')) {
+            $requestSizes = $request->input('sizes');
+            foreach ($requestSizes as $sizeHashId) {
+                $size = Size::findByHash($sizeHashId);
+                $stock = new Stock;
+                $stock->product()->associate($product);
+                $stock->size()->associate($size);
+                $stock->incoming_date = now()->toDateString();
+                $stock->active = now();
+                $stock->save();
+            }
         }
 
         return redirect()->route('products.photos', $product->slug);

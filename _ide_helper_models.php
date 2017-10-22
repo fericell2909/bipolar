@@ -55,6 +55,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Stock[] $stocks
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereActive($value)
@@ -69,6 +70,32 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
  */
 	class Product extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Stock
+ *
+ * @property int $id
+ * @property int $product_id
+ * @property int|null $size_id
+ * @property string $incoming_date
+ * @property int $quantity
+ * @property string|null $active
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\Product $product
+ * @property-read \App\Models\Size|null $size
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereIncomingDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereSizeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereUpdatedAt($value)
+ */
+	class Stock extends \Eloquent {}
 }
 
 namespace App\Models{

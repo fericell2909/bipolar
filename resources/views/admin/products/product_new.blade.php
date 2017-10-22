@@ -20,62 +20,79 @@
             </div>
         </div>
         <div class="col-md-12">
-            <div class="white-box">
+            <div class="">
                 {!! Form::open() !!}
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                {!! Form::label('Nombre') !!} <span class="text-danger">*</span>
-                                {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
+                    <div class="row">
+                        <div class="col-md-9 white-box">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {!! Form::label('Nombre') !!} <span class="text-danger">*</span>
+                                        {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {!! Form::label('Subtítulo (Opcional)') !!}
+                                        {!! Form::text('subtitle', null, ['class' => 'form-control', 'placeholder' => 'Ej: Negro&Blanco']) !!}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="form-group">
-                                {!! Form::label('Subtítulo (Opcional)') !!}
-                                {!! Form::text('subtitle', null, ['class' => 'form-control', 'placeholder' => 'Ej: Negro&Blanco']) !!}
+                                {!! Form::label('Descripción (Opcional)') !!}
+                                {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 7]) !!}
                             </div>
+                            <div class="form-group">
+                                {!! Form::label('Colores') !!} <span class="text-danger">*</span>
+                                {!! Form::select('colors[]', $colors, null, ['class' => 'form-control select2', 'required' => true, 'multiple' => true]) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('Precio') !!} <span class="text-danger">*</span>
+                                {!! Form::number('price', 1.0, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
+                            </div>
+                            <div>
+                                {!! Form::label('Activo') !!}<br>
+                                {!! Form::checkbox('active', 1, null, ['class' => 'js-switch']) !!}
+                            </div>
+                            <hr>
+                            <button type="submit" class="btn btn-inverse btn-rounded">
+                                <i class="fa fa-floppy-o"></i>
+                                Guardar y subir fotos
+                            </button>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('Descripción (Opcional)') !!}
-                        {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 7]) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('Colores') !!} <span class="text-danger">*</span>
-                        {!! Form::select('colors[]', $colors, null, ['class' => 'form-control select2', 'required' => true, 'multiple' => true]) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('Precio') !!} <span class="text-danger">*</span>
-                        {!! Form::number('price', 1.0, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
-                    </div>
-                    <div>
-                        {!! Form::label('Activo') !!}<br>
-                        {!! Form::checkbox('active', 1, null, ['class' => 'js-switch']) !!}
-                    </div>
-                    <hr>
-                    @if($types)
-                        <div>
-                            <ul class="nav nav-tabs" role="tablist">
+                        <div class="col-md-3 white-box">
+                            @if($types)
                                 @foreach($types as $type)
-                                    <li role="presentation" class="{{ $loop->first ? 'active' : null }}"><a href="#{{ $type->slug }}" aria-controls="{{ $type->slug }}" role="tab" data-toggle="tab">Tipo de {{ $type->name }}</a></li>
-                                @endforeach
-                            </ul>
-                            <div class="tab-content">
-                                @foreach($types as $type)
-                                    <div role="tabpanel" class="tab-pane {{ $loop->first ? 'active' : null }}" id="{{ $type->slug }}">
-                                        @foreach($type->subtypes as $subtype)
-                                            {!! Form::checkbox('subtypes[]', $subtype->hash_id) !!} {{ $subtype->name }}
-                                        @endforeach
+                                    <div class="panel panel-inverse">
+                                        <div class="panel-heading">Tipo de {{ $type->name }}</div>
+                                    </div>
+                                    <div class="panel-wrapper collapse in">
+                                        <div class="panel-body">
+                                            @foreach($type->subtypes as $subtype)
+                                                <div class="icheck">
+                                                    {!! Form::checkbox('subtypes[]', $subtype->hash_id) !!} {{ $subtype->name }}
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 @endforeach
-                            </div>
+                            @endif
+                            @if($sizes)
+                                <div class="panel panel-inverse">
+                                    <div class="panel-heading">Tallas</div>
+                                </div>
+                                <div class="panel-wrapper collapse in">
+                                    <div class="panel-body">
+                                        @foreach($sizes as $size)
+                                            <div class="icheck">
+                                                {!! Form::checkbox('sizes[]', $size->hash_id) !!} {!! $size->name !!}
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
                         </div>
-                        <hr>
-                    @endif
-                    <button type="submit" class="btn btn-info btn-rounded">
-                        <i class="fa fa-floppy-o"></i>
-                        Guardar y subir fotos
-                    </button>
+                    </div>
                 {!! Form::close() !!}
             </div>
         </div>
