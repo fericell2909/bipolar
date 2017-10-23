@@ -13,7 +13,8 @@ class ProductSeeder extends Seeder
     {
         factory(\App\Models\Product::class, 20)->create(['active' => null]);
         factory(\App\Models\Product::class, 20)->create(['active' => now()])->each(function ($p) {
-            $p->photos()->save(factory(\App\Models\Photo::class)->make(['product_id' => $p->id]));
+            /** @var \App\Models\Product $p */
+            $p->photos()->saveMany(factory(\App\Models\Photo::class, 3)->make(['product_id' => $p->id]));
         });
     }
 }
