@@ -29,17 +29,24 @@
                     </ul>
                 @endif
                 <h4 class="bipolar-filter-title">Destacados</h4>
-                @for($i = 0; $i < 5; $i++)
+                @foreach($productsSalient as $salient)
+                    <? /** @var \App\Models\Product $salient */ ?>
                     <div class="row bipolar-product-showed">
                         <div class="col-md-6 ">
-                            <img class="img-responsive" src="https://placehold.it/212x141" alt="Bipolar">
+                            @if(count($salient->photos))
+                                <a href="{{ route('shop.product', $salient->slug) }}">
+                                    <img src="{{ $salient->photos->first()->url }}" alt="{{ $salient->name }}" class="img-responsive">
+                                </a>
+                            @else
+                                <img src="https://placehold.it/212x141" alt="Shop" class="img-responsive">
+                            @endif
                         </div>
                         <div class="col-md-6">
-                            10{{ $i }}<br>
-                            S/ 10{{ $i }}
+                            {{ $salient->name }}<br>
+                            {{ $salient->price }}
                         </div>
                     </div>
-                @endfor
+                @endforeach
             </div>
             <div class="col-md-9">
                 <div class="row bipolar-shop-results-filter">

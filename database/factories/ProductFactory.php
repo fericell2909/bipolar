@@ -9,5 +9,6 @@ $factory->define(\App\Models\Product::class, function (Faker $faker) {
         'subtitle' => $faker->optional()->word,
         'price'    => $faker->randomFloat(2, 10, 3000),
         'active'   => $faker->optional()->dateTime,
+        'salient'  => $faker->optional()->dateTime(),
     ];
 });

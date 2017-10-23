@@ -11,11 +11,25 @@ class ShopController extends Controller
 {
     public function shop()
     {
-        $products = Product::whereNotNull('active')->with('photos')->paginate(12);
+        $products = Product::whereNotNull('active')
+            ->with([
+                'photos' => function ($withPhotos) {
+                    $withPhotos->orderBy('order');
+                }
+            ])
+            ->paginate(12);
+        $productsSalient = Product::whereNotNull('salient')
+            ->whereNotNull('active')
+            ->with([
+                'photos' => function ($withPhotos) {
+                    $withPhotos->orderBy('order');
+                }
+            ])
+            ->get();
         $types = Type::with(['subtypes', 'subtypes.products'])->get();
         $sizes = Size::orderBy('name')->get();
 
-        return view('web.shop.shop', compact('countProducts','products', 'types', 'sizes'));
+        return view('web.shop.shop', compact('countProducts','products', 'types', 'sizes', 'productsSalient'));
     }
 
     public function product($slugProduct)
