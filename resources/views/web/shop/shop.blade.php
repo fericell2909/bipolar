@@ -20,6 +20,14 @@
                         @endforeach
                     </ul>
                 @endforeach
+                @if($sizes)
+                    <h4 class="bipolar-filter-title">Tallas</h4>
+                    <ul class="list-unstyled bipolar-filters">
+                        @foreach($sizes as $size)
+                            <li><a href="#">{{ $size->name }}</a></li>
+                        @endforeach
+                    </ul>
+                @endif
                 <h4 class="bipolar-filter-title">Destacados</h4>
                 @for($i = 0; $i < 5; $i++)
                     <div class="row bipolar-product-showed">
@@ -44,7 +52,9 @@
                     @foreach($products as $product)
                         <div class="col-md-4 bipolar-product">
                             @if(count($product->photos))
-                                <img src="{{ $product->photos->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
+                                <a href="{{ route('shop.product', $product->slug) }}">
+                                    <img src="{{ $product->photos->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
+                                </a>
                             @else
                                 <img src="https://placehold.it/212x141" alt="Shop" class="img-responsive">
                             @endif
