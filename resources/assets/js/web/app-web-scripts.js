@@ -18,6 +18,10 @@ window.$('#logoutLink').click(event => {
     window.$.post('/logout', {}).done(() => location.reload());
 });
 
+require('owl.carousel/dist/owl.carousel');
+require('./theme-scripts');
+
+// Scroll header function
 $(function () {
     $(document).scroll(function () {
         let $transparentHeader = $('.bipolar-header-desktop');

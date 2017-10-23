@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Size;
 use App\Models\Type;
 
 class ShopController extends Controller
@@ -12,7 +13,16 @@ class ShopController extends Controller
     {
         $products = Product::whereNotNull('active')->with('photos')->paginate(12);
         $types = Type::with(['subtypes', 'subtypes.products'])->get();
+        $sizes = Size::orderBy('name')->get();
 
-        return view('web.shop', compact('countProducts','products', 'types'));
+        return view('web.shop.shop', compact('countProducts','products', 'types', 'sizes'));
+    }
+
+    public function product($slugProduct)
+    {
+        /** @var Product $product */
+        $product = Product::findBySlugOrFail($slugProduct);
+
+        return view('web.shop.product', compact('product'));
     }
 }
