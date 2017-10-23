@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->unsignedDecimal('price', 7, 2);
             $table->timestamp('active')->nullable();
+            $table->timestamp('salient')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
