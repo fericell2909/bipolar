@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-md-1 text-center">
                         <div class="form-group">
-                            <button class="btn btn-sm btn-info">
+                            <button class="btn btn-sm btn-dark btn-rounded">
                                 <i class="fa fa-floppy-o"></i>
                                 Guardar
                             </button>
@@ -52,10 +52,10 @@
                                 {{ $color->hexadecimal }}
                             </td>
                             <td>
-                                <a href="{{ route('settings.colors.show', $color->hash_id) }}" class="btn btn-sm btn-primary">
+                                <a href="{{ route('settings.colors.show', $color->hash_id) }}" class="btn btn-sm btn-dark btn-rounded">
                                     <i class="fa fa-pencil"></i> Actualizar
                                 </a>
-                                <button class="btn btn-sm btn-danger color-delete" data-color-id="{{ $color->hash_id }}">
+                                <button class="btn btn-sm btn-dark btn-rounded color-delete" data-color-id="{{ $color->hash_id }}">
                                     <i class="fa fa-trash"></i>
                                     Eliminar
                                 </button>

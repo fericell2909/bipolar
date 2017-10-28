@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-md-1 text-center">
                         <div class="form-group">
-                            <button class="btn btn-sm btn-info">
+                            <button class="btn btn-sm btn-dark btn-rounded">
                                 <i class="fa fa-refresh"></i>
                                 Actualizar
                             </button>

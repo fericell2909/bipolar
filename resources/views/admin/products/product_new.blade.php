@@ -55,7 +55,7 @@
                                 {!! Form::checkbox('active', 1, null, ['class' => 'js-switch']) !!}
                             </div>
                             <hr>
-                            <button type="submit" class="btn btn-inverse btn-rounded">
+                            <button type="submit" class="btn btn-dark btn-rounded">
                                 <i class="fa fa-floppy-o"></i>
                                 Guardar y subir fotos
                             </button>

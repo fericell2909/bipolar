@@ -8,7 +8,7 @@
                         <h3 class="box-title">Listar los productos</h3>
                     </div>
                     <div class="col-md-1">
-                        <a href="{{ route('products.create') }}" class="btn btn-success btn-rounded">
+                        <a href="{{ route('products.create') }}" class="btn btn-dark btn-rounded">
                             <i class="fa fa-plus"></i> Nuevo
                         </a>
                     </div>
@@ -44,10 +44,10 @@
                             <td class="text-right">{{ $product->price }}</td>
                             <td class="text-center">{!! $product->getAdminActiveButton() !!}</td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-primary btn-rounded">
+                                <a href="#" class="btn btn-sm btn-dark btn-rounded">
                                     <i class="fa fa-pencil"></i> Editar
                                 </a>
-                                <button class="btn btn-sm btn-danger btn-rounded product-delete"
+                                <button class="btn btn-sm btn-dark btn-rounded product-delete"
                                         data-product-id="{{ $product->hash_id }}">
                                     <i class="fa fa-trash"></i>
                                     Eliminar

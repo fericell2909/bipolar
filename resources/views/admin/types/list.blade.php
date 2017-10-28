@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-md-1 text-center">
                         <div class="form-group">
-                            <button class="btn btn-sm btn-info">
+                            <button class="btn btn-sm btn-dark btn-rounded">
                                 <i class="fa fa-floppy-o"></i>
                                 Guardar
                             </button>
@@ -43,12 +43,12 @@
                             <td>{{ $type->id }}</td>
                             <td>{{ $type->name }}</td>
                             <td>
-                                <a href="{{ route('settings.types.subtypes', $type->hash_id) }}" class="btn btn-sm btn-rounded btn-success"><i class="fa fa-list-alt"></i> Subtipos</a>
+                                <a href="{{ route('settings.types.subtypes', $type->hash_id) }}" class="btn btn-sm btn-rounded btn-dark"><i class="fa fa-list-alt"></i> Subtipos</a>
                                 <a href="{{ route('settings.types.edit', $type->hash_id) }}"
-                                   class="btn btn-sm btn-rounded btn-primary">
+                                   class="btn btn-sm btn-rounded btn-dark">
                                     <i class="fa fa-pencil"></i> Editar
                                 </a>
-                                <button class="btn btn-sm btn-rounded btn-danger type-delete" data-type-id="{{ $type->hash_id }}">
+                                <button class="btn btn-sm btn-rounded btn-dark type-delete" data-type-id="{{ $type->hash_id }}">
                                     <i class="fa fa-trash"></i>
                                     Eliminar
                                 </button>
