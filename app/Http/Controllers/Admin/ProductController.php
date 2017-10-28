@@ -127,4 +127,37 @@ class ProductController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function salientAndHome()
+    {
+        $products = Product::orderBy('name')->get();
+
+        $productsForSelect = $products->mapWithKeys(function ($product) {
+            /** @var Product $product */
+            return [$product->id => "{$product->name} - {$product->subtitle} - {$product->price}"];
+        });
+
+        $productsInSalient = $products->filter->is_salient;
+        $productsInHome = $products->filter->is_home;
+
+
+        return view('admin.products.salient_and_home', compact('productsForSelect', 'productsInSalient', 'productsInHome'));
+    }
+
+    public function salientAndHomeSave(Request $request)
+    {
+        if ($request->input('homes')) {
+            Product::whereNotNull('is_home')->update(['is_home' => null]);
+            Product::whereIn('id', $request->input('homes'))->update(['is_home' => date('Y-m-d H:i:s')]);
+        }
+
+        if ($request->input('salients')) {
+            Product::whereNotNull('is_home')->update(['is_salient' => null]);
+            Product::whereIn('id', $request->input('salients'))->update(['is_salient' => date('Y-m-d H:i:s')]);
+        }
+
+        flash()->success('Se guardó los cambios con éxito');
+
+        return redirect()->back();
+    }
 }

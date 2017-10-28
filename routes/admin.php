@@ -24,6 +24,8 @@ Route::middleware('auth:admin')->group(function() {
         Route::post('{productHashId}/photo/upload', 'Admin\ProductController@uploadPhoto')->name('products.photo.upload');
         Route::get('photos/{slug}/order', 'Admin\ProductController@seePhotos')->name('products.photos.order');
         Route::post('photos/order', 'Admin\ProductController@orderAndSavePosition');
+        Route::get('salient-and-home', 'Admin\ProductController@salientAndHome')->name('products.salient-home');
+        Route::post('salient-and-home', 'Admin\ProductController@salientAndHomeSave');
     });
 
     Route::prefix('settings')->group(function () {

@@ -117,6 +117,15 @@
     <section class="header-worldwide-shipping">
         Envío a todo el mundo
     </section>
+    <div class="row no-gutters">
+        @foreach($productsInHome as $product)
+            @if($product->photos->count() > 0)
+                <div class="col-md-3">
+                    <img src="{{ $product->photos->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
+                </div>
+            @endif
+        @endforeach
+    </div>
     <div class="row content-newsletter">
         <div class="col-md-offset-4 col-md-4">
             <div class="card-body">

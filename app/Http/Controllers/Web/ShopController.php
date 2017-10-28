@@ -18,13 +18,14 @@ class ShopController extends Controller
                 }
             ])
             ->paginate(12);
-        $productsSalient = Product::whereNotNull('salient')
+        $productsSalient = Product::whereNotNull('is_salient')
             ->whereNotNull('active')
             ->with([
                 'photos' => function ($withPhotos) {
                     $withPhotos->orderBy('order');
                 }
             ])
+            ->orderBy('name')
             ->get();
         $types = Type::with(['subtypes', 'subtypes.products'])->get();
         $sizes = Size::orderBy('name')->get();

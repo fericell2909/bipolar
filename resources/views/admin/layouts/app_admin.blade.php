@@ -50,13 +50,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <b class="hidden-xs">{{ Auth::user()->name }}</b>
                     </a>
                     <ul class="dropdown-menu dropdown-user scale-up">
-                        <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                        <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                        <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                        <li><a href="#"><i class="fa fa-user"></i> Mi perfil</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                        <li><a href="#"><i class="fa fa-power-off"></i> Cerrar sesión</a></li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -95,6 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="nav nav-second-level">
                         <li><a href="{{ route('products.create') }}">Nuevo producto</a></li>
                         <li><a href="{{ route('products.index') }}">Listar productos</a></li>
+                        <li><a href="{{ route('products.salient-home') }}">Destacados & Home</a></li>
                     </ul>
                 </li>
                 <li>

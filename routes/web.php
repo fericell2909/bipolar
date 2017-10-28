@@ -3,9 +3,7 @@
 //Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', 'Web\LandingsController@home')->name('home');
 
 Route::prefix(LaravelLocalization::setLocale())->group(function () {
     Route::get('account-management/{loginRegister?}', 'Web\Auth\LoginController@showLoginForm')->name('login-with-register');
