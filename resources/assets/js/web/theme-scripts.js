@@ -1,3 +1,5 @@
+import Viewer from 'viewerjs/dist/viewer.esm'
+
 $(function () {
     // Owl Carousel scripts
     let thumbs = 5;
@@ -20,5 +22,34 @@ $(function () {
         let index = $(this).index();
         owlMain.trigger('to.owl.carousel', [index, duration, true]);
         owlThumbnail.trigger('to.owl.carousel', [index, duration, true]);
+    });
+
+    // Scroll header function
+    $(function () {
+        $(document).scroll(function () {
+            let $transparentHeader = $('.bipolar-header-desktop');
+            let $grandHeader = $(".bipolar-grand-header");
+            let $grandHeaderAlternate = $('.bipolar-alternate-grand-header');
+            let isLongScroll = $(this).scrollTop() > $grandHeader.height();
+            let homeIsLongScroll = $(this).scrollTop() > $transparentHeader.height();
+            if (isLongScroll === true || homeIsLongScroll === true) {
+                $transparentHeader.addClass('hidden');
+                $grandHeader.addClass('hidden');
+                $grandHeaderAlternate.removeClass('hidden');
+            } else {
+                $transparentHeader.removeClass('hidden');
+                $grandHeader.removeClass('hidden');
+                $grandHeaderAlternate.addClass('hidden');
+            }
+        });
+    });
+
+    // Viewer function
+    const viewer = new Viewer(document.querySelector('#viewer-images'), {
+        rotatable: false,
+        movable: false,
+        interval: 9999999,
+        title: false,
+        minZoomRatio: 1,
     });
 });

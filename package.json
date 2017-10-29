@@ -27,6 +27,7 @@
     "sortablejs": "^1.6.1",
     "sweetalert2": "^6.10.2",
     "switchery": "^0.0.2",
+    "viewerjs": "^0.8.0",
     "vue": "^2.1.10"
   },
   "dependencies": {

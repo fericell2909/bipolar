@@ -10,7 +10,7 @@
         <div class="row product-content">
             <div class="col-md-6">
                 @if(count($product->photos))
-                    <div class="owl-carousel-main owl-carousel owl-theme">
+                    <div id="viewer-images" class="owl-carousel-main owl-carousel owl-theme">
                         @foreach($product->photos as $photo)
                             <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive">
                         @endforeach
