@@ -16084,13 +16084,16 @@ $(function () {
     });
 
     // Viewer function
-    var viewer = new __WEBPACK_IMPORTED_MODULE_0_viewerjs_dist_viewer_esm__["a" /* default */](document.querySelector('#viewer-images'), {
-        rotatable: false,
-        movable: false,
-        interval: 9999999,
-        title: false,
-        minZoomRatio: 1
-    });
+    if (document.querySelector('#viewer-images')) {
+        var viewerImages = document.querySelector('#viewer-images');
+        var viewer = new __WEBPACK_IMPORTED_MODULE_0_viewerjs_dist_viewer_esm__["a" /* default */](viewerImages, {
+            rotatable: false,
+            movable: false,
+            interval: 9999999,
+            title: false,
+            minZoomRatio: 1
+        });
+    }
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 

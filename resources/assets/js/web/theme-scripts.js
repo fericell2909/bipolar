@@ -45,11 +45,14 @@ $(function () {
     });
 
     // Viewer function
-    const viewer = new Viewer(document.querySelector('#viewer-images'), {
-        rotatable: false,
-        movable: false,
-        interval: 9999999,
-        title: false,
-        minZoomRatio: 1,
-    });
+    if (document.querySelector('#viewer-images')) {
+        const viewerImages = document.querySelector('#viewer-images');
+        const viewer = new Viewer(viewerImages, {
+            rotatable: false,
+            movable: false,
+            interval: 9999999,
+            title: false,
+            minZoomRatio: 1,
+        });
+    }
 });
