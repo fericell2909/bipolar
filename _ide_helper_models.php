@@ -15,10 +15,23 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property-read string $hash_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $stocks
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereName($value)
  */
 	class Size extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Settings
+ *
+ * @property int $id
+ * @property float $dolar_change
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDolarChange($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereId($value)
+ */
+	class Settings extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -49,6 +62,8 @@ namespace App\Models{
  * @property string|null $description
  * @property float $price
  * @property string|null $active
+ * @property string|null $is_salient
+ * @property string|null $is_home
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $deleted_at
@@ -63,6 +78,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsHome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSalient($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSlug($value)
@@ -84,6 +101,7 @@ namespace App\Models{
  * @property string|null $active
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read string $hash_id
  * @property-read \App\Models\Product $product
  * @property-read \App\Models\Size|null $size
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereActive($value)
