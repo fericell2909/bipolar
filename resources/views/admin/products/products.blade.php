@@ -18,8 +18,9 @@
                     <tr>
                         <th>#</th>
                         <th>Nombre</th>
-                        <th>Colores</th>
+                        <th>Tipos</th>
                         <th>Tallas</th>
+                        <th>Colores</th>
                         <th class="text-right">Precio</th>
                         <th class="text-center">Activo</th>
                         <th>Acciones</th>
@@ -30,17 +31,22 @@
                         <?php /** @var \App\Models\Product $product */ ?>
                         <tr>
                             <td>{{ $product->id }}</td>
-                            <td>{{ $product->name }} - {{ $product->subtitle }}</td>
+                            <td>{{ $product->name }} - {!! $product->subtitle ?? "<i>Sin subtítulo</i>" !!}</td>
                             <td>
-                                @foreach($product->colors as $color)
-                                    <span class="badge badge-success">{{ $color->name }}</span>
+                                @foreach($product->subtypes as $subtype)
+                                    <span class="badge badge-dark">{{ $subtype->name }}</span>
                                 @endforeach
                             </td>
                             <td>
                                 @foreach($product->stocks as $stock)
                                     @if($stock->size)
-                                        <span class="badge badge-success">{{ $stock->size->name }}</span>
+                                        <span class="badge badge-dark">{{ $stock->size->name }}</span>
                                     @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($product->colors as $color)
+                                    <span class="badge badge-success">{{ $color->name }}</span>
                                 @endforeach
                             </td>
                             <td class="text-right">{{ $product->price }}</td>

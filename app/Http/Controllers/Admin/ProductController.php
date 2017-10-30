@@ -17,7 +17,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::orderByDesc('id')->with('colors', 'stocks.size')->get();
+        $products = Product::orderByDesc('id')->with('colors', 'stocks.size', 'subtypes')->get();
 
         return view('admin.products.products', compact('products'));
     }
@@ -35,7 +35,6 @@ class ProductController extends Controller
     {
         $colors = [];
         $subtypes = [];
-
 
         $product = new Product;
         $product->name = $request->input('name');
