@@ -38,7 +38,9 @@
                             </td>
                             <td>
                                 @foreach($product->stocks as $stock)
-                                    <span class="badge badge-success">{{ $stock->size->name }}</span>
+                                    @if($stock->size)
+                                        <span class="badge badge-success">{{ $stock->size->name }}</span>
+                                    @endif
                                 @endforeach
                             </td>
                             <td class="text-right">{{ $product->price }}</td>
