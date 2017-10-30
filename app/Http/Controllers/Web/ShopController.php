@@ -52,7 +52,9 @@ class ShopController extends Controller
                 $whereHasProduct->whereNotNull('active');
             })
                 ->whereNotNull('active');
-        }])->orderBy('name')->get();
+        }, 'stocks.product'])
+            ->orderBy('name')
+            ->get();
 
         $sizes = $sizes->each(function (&$size) {
             /** @var Size $size */
