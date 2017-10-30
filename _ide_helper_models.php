@@ -14,10 +14,13 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
+ * @property string|null $slug
  * @property-read string $hash_id
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $stocks
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Stock[] $stocks
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereSlug($value)
  */
 	class Size extends \Eloquent {}
 }
@@ -39,8 +42,8 @@ namespace App\Models{
  * App\Models\Type
  *
  * @property int $id
- * @property string|null $slug
  * @property string $name
+ * @property string|null $slug
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type findSimilarSlugs($attribute, $config, $slug)
@@ -207,11 +210,14 @@ namespace App\Models{
  * @property int $id
  * @property int $type_id
  * @property string $name
+ * @property string|null $slug
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @property-read \App\Models\Type $type
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereTypeId($value)
  */
 	class Subtype extends \Eloquent {}

@@ -17,6 +17,7 @@ class CreateSubtypesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('type_id');
             $table->string('name');
+            $table->string('slug', 300)->nullable();
         });
     }
 

@@ -10326,7 +10326,7 @@ return jQuery;
 
 /***/ }),
 
-/***/ 23:
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {/*!
@@ -10878,6 +10878,7 @@ window.$('#logoutLink').click(function (event) {
 
 __webpack_require__(32);
 __webpack_require__(33);
+__webpack_require__(35);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -16555,7 +16556,7 @@ if (typeof jQuery === 'undefined') {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_viewerjs_dist_viewer_esm__ = __webpack_require__(34);
 
-__webpack_require__(23);
+__webpack_require__(1);
 
 $(function () {
     // Owl Carousel scripts
@@ -16612,12 +16613,6 @@ $(function () {
             minZoomRatio: 1
         });
     }
-
-    // Icheck
-    $('.icheck').iCheck({
-        checkboxClass: 'icheckbox_flat',
-        radioClass: 'iradio_flat'
-    });
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
@@ -19236,6 +19231,34 @@ if (typeof window !== 'undefined') {
 
 /* harmony default export */ __webpack_exports__["a"] = (Viewer);
 
+
+/***/ }),
+
+/***/ 35:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {$(function () {
+    // Icheck
+    var shopIcheck = $('.icheck').iCheck({
+        checkboxClass: 'icheckbox_flat',
+        radioClass: 'iradio_flat'
+    });
+
+    if ($('#shopForm').length) {
+        shopIcheck.on('ifClicked', function () {
+            setTimeout(function () {
+                $('#shopForm').submit();
+            }, 1000);
+        });
+
+        $('#shop-sort-by').change(function () {
+            setTimeout(function () {
+                $('#shopForm').submit();
+            }, 1000);
+        });
+    }
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 

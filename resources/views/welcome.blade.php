@@ -113,6 +113,15 @@
     <section class="header-mobile-menu visible-xs-block">
         MENU
     </section>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @include('flash::message')
     <section class="header-worldwide-shipping">
         Envío a todo el mundo

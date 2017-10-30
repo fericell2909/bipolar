@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Traits\Hashable;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Subtype extends Model
 {
-    use Hashable;
+    use Hashable, Sluggable, SluggableScopeHelpers;
 
     protected $table = 'subtypes';
     public $timestamps = false;
@@ -20,5 +22,14 @@ class Subtype extends Model
     public function type()
     {
         return $this->belongsTo(Type::class, 'type_id');
+    }
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+            ]
+        ];
     }
 }

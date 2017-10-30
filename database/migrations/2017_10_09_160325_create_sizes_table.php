@@ -16,6 +16,7 @@ class CreateSizesTable extends Migration
         Schema::create('sizes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('slug', 300)->nullable();
         });
     }
 

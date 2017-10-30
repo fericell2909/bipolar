@@ -20,6 +20,7 @@ Route::middleware('auth:web')->group(function () {
 });
 
 Route::get('shop', 'Web\ShopController@shop')->name('shop');
+Route::post('shop', 'Web\ShopController@shop')->name('shop.post');
 Route::get('shop/{productSlug}', 'Web\ShopController@product')->name('shop.product');
 
 Route::get('bipolar', 'Web\LandingsController@bipolar')->name('landings.bipolar');

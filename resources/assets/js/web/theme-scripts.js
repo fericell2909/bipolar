@@ -56,10 +56,4 @@ $(function () {
             minZoomRatio: 1,
         });
     }
-
-    // Icheck
-    $('.icheck').iCheck({
-        checkboxClass: 'icheckbox_flat',
-        radioClass: 'iradio_flat',
-    });
 });
