@@ -2,7 +2,7 @@
 //@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
-//@import "variables";
+@import "variables";
 
 // Bootstrap 3
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
@@ -14,8 +14,9 @@
 @import "~owl.carousel/dist/assets/owl.carousel.css";
 // Viewer JS
 @import "~viewerjs/dist/viewer";
+// Flat skins
+@import "~icheck/skins/flat/flat";
 
-@import "variables";
 @import "styles";
 @import "shop";
 @import "footer";

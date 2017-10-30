@@ -11,12 +11,19 @@
     <div class="bipolar-container">
         <div class="row">
             <div class="col-md-3">
-                {!! Form::text('search', null, ['class' => 'form-control']) !!}
+                <div class="form-group">
+                    <div class="input-group">
+                        {!! Form::text('search', null, ['class' => 'form-control', 'placeholder' => 'Buscar']) !!}
+                        <div class="input-group-addon">
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </div>
+                </div>
                 @foreach($types as $type)
                     <h4 class="bipolar-filter-title">Filtrar {{ $type->name }}</h4>
                     <ul class="list-unstyled bipolar-filters">
                         @foreach($type->subtypes as $subtype)
-                            <li><a href="#">{{ $subtype->name }} ({{ count($subtype->products) }})</a></li>
+                            <li class="icheck">{!! Form::checkbox('subtypes[]', $subtype->hash_id) !!} {{ $subtype->name }} ({{ count($subtype->products) }})</li>
                         @endforeach
                     </ul>
                 @endforeach
@@ -24,7 +31,9 @@
                     <h4 class="bipolar-filter-title">Tallas</h4>
                     <ul class="list-unstyled bipolar-filters">
                         @foreach($sizes as $size)
-                            <li><a href="#">{{ $size->name }}</a></li>
+                            <li class="icheck">
+                                {!! Form::checkbox('sizes[]', $size->hash_id) !!} {{ $size->name }} ({{ $size->product_count }})
+                            </li>
                         @endforeach
                     </ul>
                 @endif

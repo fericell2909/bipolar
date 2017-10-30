@@ -3,3 +3,6 @@ $bipolar-black: black;
 $bipolar-gray: #f5f5f5;
 $z-index-slider:-10;
 $z-index-navbar:10;
+
+// Override the bootstrap primary
+$brand-primary: $bipolar-black;

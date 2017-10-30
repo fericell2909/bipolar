@@ -1,4 +1,6 @@
-window.$ = window.jQuery = require('jquery');
+try {
+    window.$ = window.jQuery = require('jquery');
+} catch (e) {}
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 

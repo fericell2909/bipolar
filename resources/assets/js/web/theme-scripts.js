@@ -1,4 +1,5 @@
-import Viewer from 'viewerjs/dist/viewer.esm'
+import Viewer from 'viewerjs/dist/viewer.esm';
+require('icheck');
 
 $(function () {
     // Owl Carousel scripts
@@ -55,4 +56,10 @@ $(function () {
             minZoomRatio: 1,
         });
     }
+
+    // Icheck
+    $('.icheck').iCheck({
+        checkboxClass: 'icheckbox_flat',
+        radioClass: 'iradio_flat',
+    });
 });

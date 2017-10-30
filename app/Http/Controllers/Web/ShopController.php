@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Size;
 use App\Models\Stock;
 use App\Models\Type;
+use Illuminate\Database\Eloquent\Builder;
 
 class ShopController extends Controller
 {
@@ -29,9 +30,35 @@ class ShopController extends Controller
             ->orderBy('name')
             ->get();
         $types = Type::with(['subtypes', 'subtypes.products'])->get();
-        $sizes = Size::orderBy('name')->get();
 
-        return view('web.shop.shop', compact('countProducts','products', 'types', 'sizes', 'productsSalient'));
+        $sizes = Size::with(['stocks' => function ($withStocks) {
+            /** @var Builder $withStocks */
+            $withStocks->whereHas('product', function ($whereHasProduct) {
+                /** @var Builder $whereHasProduct */
+                $whereHasProduct->whereNotNull('active');
+            })
+                ->whereNotNull('active');
+        }])->orderBy('name')->get();
+
+        $sizes = $sizes->each(function (&$size) {
+            /** @var Size $size */
+            $productsArray = [];
+
+            $size->stocks->each(function ($stock) use (&$productsArray) {
+                /** @var Stock $stock */
+                $productsArray[] = $stock->product->id;
+            });
+
+            $size->product_count = count($productsArray);
+        });
+
+        return view('web.shop.shop', compact(
+            'countProducts',
+            'products',
+            'types',
+            'sizes',
+            'productsSalient'
+        ));
     }
 
     public function product($slugProduct)
