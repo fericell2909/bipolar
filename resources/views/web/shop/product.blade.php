@@ -31,19 +31,25 @@
                     Charol malva. Gamuza negra. Cuero dorado. Lazo de metal bañado en oro.
                     Taco 9cms. + 2cms. de plataforma.
                 </p>
+                {!! Form::open() !!}
+                    @if(count($stockWithSizes))
+                        <div class="row">
+                            <div class="col-md-1">Talla</div>
+                            <div class="col-md-3">
+                                {!! Form::select('sizes', $stockWithSizes, null, ['style' => 'width: 100%']) !!}
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#testingModal">Ver guía de tallas</button>
+                            </div>
+                        </div>
+                    @endif
+                {!! Form::close() !!}
                 <p>
                     <u>Status: en stock</u>
                     Compártelo: <i class="fa fa-facebook"></i> <i class="fa fa-envelope-o"></i>
                 </p>
             </div>
         </div>
-        <strong>Descripción del producto</strong>
-        <p>
-            Exterior. Charol malva. Gamuza negra. Cuero dorado. Lazo de metal bañado en oro.
-            Interior. Piel rosa.
-            Suela. Neolite.
-            Alto. Taco 9cms. + 2cms. de plataforma.
-        </p>
         <h3>Te recomendamos</h3>
         <div class="row">
             @foreach(range(1, 4) as $number)
@@ -53,6 +59,15 @@
                     <h6>99.99</h6>
                 </div>
             @endforeach
+        </div>
+    </div>
+    <div class="modal fade" id="testingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="https://bipolar-peru.s3.amazonaws.com/assets/guia-de-tallas.jpg" alt="Guia de tallas Bipolar" class="img-responsive">
+                </div>
+            </div>
         </div>
     </div>
 @endsection

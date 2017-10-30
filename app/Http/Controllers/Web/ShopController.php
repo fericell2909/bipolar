@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Size;
+use App\Models\Stock;
 use App\Models\Type;
 
 class ShopController extends Controller
@@ -38,6 +39,16 @@ class ShopController extends Controller
         /** @var Product $product */
         $product = Product::findBySlugOrFail($slugProduct);
 
-        return view('web.shop.product', compact('product'));
+        $product->load('stocks');
+
+        $stockWithSizes = $product->stocks
+            ->filter(function ($stock) {
+                /** @var Stock $stock */
+                return !is_null($stock->size_id);
+            })
+            ->pluck('size.name', 'hash_id')
+            ->toArray();
+
+        return view('web.shop.product', compact('product', 'stockWithSizes'));
     }
 }
