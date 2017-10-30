@@ -17,7 +17,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::orderByDesc('id')->with('colors')->get();
+        $products = Product::orderByDesc('id')->with('colors', 'stocks.size')->get();
 
         return view('admin.products.products', compact('products'));
     }
@@ -35,11 +35,7 @@ class ProductController extends Controller
     {
         $colors = [];
         $subtypes = [];
-        $requestColors = $request->input('colors');
 
-        foreach ($requestColors as $color) {
-            $colors[] = array_first(\Hashids::decode($color));
-        }
 
         $product = new Product;
         $product->name = $request->input('name');
@@ -48,9 +44,18 @@ class ProductController extends Controller
         $product->price = number_format($request->input('price'), 2);
         $product->active = boolval($request->input('active')) ? now() : null;
         $product->save();
-        $product->colors()->sync($colors);
 
-        if ($request->has('subtypes')) {
+        if ($request->filled('colors')) {
+            $requestColors = $request->input('colors');
+
+            foreach ($requestColors as $color) {
+                $colors[] = array_first(\Hashids::decode($color));
+            }
+
+            $product->colors()->sync($colors);
+        }
+
+        if ($request->filled('subtypes')) {
             $requestSubtypes = $request->input('subtypes');
             foreach ($requestSubtypes as $subtypeHashId) {
                 $subtypes[] = array_first(\Hashids::decode($subtypeHashId));
@@ -58,7 +63,7 @@ class ProductController extends Controller
             $product->subtypes()->sync($subtypes);
         }
 
-        if ($request->has('sizes')) {
+        if ($request->filled('sizes')) {
             $requestSizes = $request->input('sizes');
             foreach ($requestSizes as $sizeHashId) {
                 $size = Size::findByHash($sizeHashId);

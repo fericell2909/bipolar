@@ -43,8 +43,8 @@
                                 {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 7]) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('Colores') !!} <span class="text-danger">*</span>
-                                {!! Form::select('colors[]', $colors, null, ['class' => 'form-control select2', 'required' => true, 'multiple' => true]) !!}
+                                {!! Form::label('Colores') !!}
+                                {!! Form::select('colors[]', $colors, null, ['class' => 'form-control select2', 'multiple' => true]) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('Precio') !!} <span class="text-danger">*</span>
