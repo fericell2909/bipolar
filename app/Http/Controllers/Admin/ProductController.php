@@ -4,12 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductNewRequest;
-use App\Models\Color;
-use App\Models\Photo;
-use App\Models\Product;
-use App\Models\Size;
-use App\Models\Stock;
-use App\Models\Type;
+use App\Models\{
+    Color, Photo, Product, Size, Stock, Type
+};
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -24,7 +21,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $colors = Color::orderBy('name')->get()->pluck('name', 'hash_id');
+        $colors = Color::orderBy('name')->get()->pluck('name', 'hash_id')->toArray();
         $types = Type::orderBy('name')->get();
         $sizes = Size::orderBy('name')->get();
 
@@ -163,5 +160,105 @@ class ProductController extends Controller
         flash()->success('Se guardó los cambios con éxito');
 
         return redirect()->back();
+    }
+
+    public function edit($productId)
+    {
+        /** @var Product $product */
+        $product = Product::findOrFail($productId);
+        $colors = Color::orderBy('name')->get()->pluck('name', 'hash_id')->toArray();
+        $types = Type::orderBy('name')->get();
+        $sizes = Size::orderBy('name')->get();
+
+        $selectedColors = $product->colors->pluck('name', 'hash_id')->toArray();
+        $selectedSubtypes = $product->subtypes->pluck('hash_id')->toArray();
+        $selectedSizes = $product->stocks->filter(function ($stock) {
+                /** @var Stock $stock */
+                return !is_null($stock->size_id);
+            })
+            ->map(function ($stock) {
+                /** @var Stock $stock */
+                return $stock->size->hash_id ?? null;
+            })
+            ->toArray();
+
+        return view('admin.products.product_edit', compact(
+            'product',
+            'colors',
+            'types',
+            'sizes',
+            'selectedColors',
+            'selectedSubtypes',
+            'selectedSizes'
+        ));
+    }
+
+    public function update(ProductNewRequest $request, $productId)
+    {
+        $colors = [];
+        $subtypes = [];
+        /** @var Product $product */
+        $product = Product::findOrFail($productId);
+
+        $product->name = $request->input('name');
+        $product->subtitle = $request->input('subtitle');
+        $product->description = $request->input('description');
+        $product->price = number_format($request->input('price'), 2);
+        $product->active = boolval($request->input('active')) ? now() : null;
+        $product->save();
+
+        if ($request->filled('colors')) {
+            $requestColors = $request->input('colors');
+
+            foreach ($requestColors as $color) {
+                $colors[] = array_first(\Hashids::decode($color));
+            }
+
+            $product->colors()->sync($colors);
+        }
+
+        if ($request->filled('subtypes')) {
+            $requestSubtypes = $request->input('subtypes');
+            foreach ($requestSubtypes as $subtypeHashId) {
+                $subtypes[] = array_first(\Hashids::decode($subtypeHashId));
+            }
+            $product->subtypes()->sync($subtypes);
+        }
+
+        if ($request->filled('sizes')) {
+            $requestSizes = $request->input('sizes');
+
+            $product->stocks->each(function ($stock) use (&$requestSizes) {
+                /** @var Stock $stock */
+                if (is_null($stock->size_id)) {
+                    return false;
+                }
+
+                $findedElement = array_search($stock->size->hash_id, $requestSizes);
+
+                if ($findedElement === false) {
+                    return $stock->delete();
+                } else {
+                    unset($requestSizes[$findedElement]);
+                    $requestSizes = array_values($requestSizes);
+                }
+            });
+
+            if (count($requestSizes) > 0) {
+                foreach ($requestSizes as $sizeHashId) {
+                    $size = Size::findByHash($sizeHashId);
+                    $stock = new Stock;
+                    $stock->product()->associate($product);
+                    $stock->size()->associate($size);
+                    $stock->incoming_date = now()->toDateString();
+                    $stock->active = now();
+                    $stock->save();
+                }
+            }
+        }
+
+        flash()->success('Editado correctamente');
+
+        return redirect()->route('products.photos', $product->slug);
     }
 }

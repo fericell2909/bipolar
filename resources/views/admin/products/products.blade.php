@@ -52,7 +52,7 @@
                             <td class="text-right">{{ $product->price }}</td>
                             <td class="text-center">{!! $product->getAdminActiveButton() !!}</td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-dark btn-rounded">
+                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-dark btn-rounded">
                                     <i class="fa fa-pencil"></i> Editar
                                 </a>
                                 <button class="btn btn-sm btn-dark btn-rounded product-delete"
