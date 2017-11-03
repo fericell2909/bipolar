@@ -54,4 +54,22 @@ $(function () {
             }).done(() => location.reload());
         })
     });
+
+    $('.photo-delete').click(function () {
+        swal({
+            title: 'Eliminar foto',
+            text: 'Seguro que desea eliminar la foto',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+        }).then(() => {
+            let photoId = $(this).data('photoId');
+
+            $.ajax({
+                method: 'DELETE',
+                url: `/admin/photo/delete/${photoId}`
+            }).done(() => location.reload());
+        })
+    });
 });

@@ -30752,6 +30752,28 @@ $(function () {
             });
         });
     });
+
+    $('.photo-delete').click(function () {
+        var _this4 = this;
+
+        __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
+            title: 'Eliminar foto',
+            text: 'Seguro que desea eliminar la foto',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true
+        }).then(function () {
+            var photoId = $(_this4).data('photoId');
+
+            $.ajax({
+                method: 'DELETE',
+                url: '/admin/photo/delete/' + photoId
+            }).done(function () {
+                return location.reload();
+            });
+        });
+    });
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 

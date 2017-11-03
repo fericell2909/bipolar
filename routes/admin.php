@@ -54,4 +54,6 @@ Route::middleware('auth:admin')->group(function() {
         Route::get('subtypes/{subtypeHashId}', 'Admin\SubtypeController@edit')->name('settings.subtypes.edit');
         Route::post('subtypes/{subtypeHashId}', 'Admin\SubtypeController@update');
     });
+
+    Route::delete('photo/delete/{photoHashId}', 'Admin\ProductController@deletePhoto');
 });

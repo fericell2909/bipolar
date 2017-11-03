@@ -105,6 +105,32 @@ class ProductController extends Controller
         return response()->json(compact('path'));
     }
 
+    public function deletePhoto($photoHashId)
+    {
+        $photo = Photo::findByHash($photoHashId);
+        $photoUrl = $photo->url;
+        $photo->delete();
+
+        if (\Storage::disk('s3')->exists($photoUrl) === false) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Foto eliminada, pero aún permanece en el repositorio de imágenes',
+            ]);
+        }
+
+        if (\Storage::disk('s3')->delete($photoUrl) === false) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Foto eliminada, pero no se pudo eliminar del repositorio de imágenes',
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Foto eliminada correctamente',
+        ]);
+    }
+
     public function seePhotos($productSlug)
     {
         $product = Product::findBySlug($productSlug);

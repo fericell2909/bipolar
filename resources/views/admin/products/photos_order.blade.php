@@ -27,7 +27,7 @@
                     @foreach($product->photos as $photo)
                         <div class="list-group-item" data-id="{{ $photo->hash_id }}">
                             <img class="img-thumbnail" width="200px;" src="{{ $photo->url }}" alt="{{ $product->name }}">
-                            <button class="btn btn-danger btn-rounded">
+                            <button class="btn btn-danger btn-rounded photo-delete" data-photo-id="{{ $photo->hash_id }}">
                                 <i class="fa fa-close"></i> Eliminar
                             </button>
                         </div>
