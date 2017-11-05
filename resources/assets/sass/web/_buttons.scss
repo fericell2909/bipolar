@@ -1,0 +1,91 @@
+.btn-dark {
+  color: white;
+  background-color: $bipolar-black;
+  border-color: $bipolar-black;
+  &:hover, &:focus, &:active, &.active {
+    color: white;
+    background-color: #312E36;
+    border-color: $bipolar-black;
+  }
+}
+
+.open .dropdown-toggle.btn-dark {
+  color: white;
+  background-color: #312E36;
+  border-color: $bipolar-black;
+}
+
+.btn-dark {
+  &:active, &.active {
+    background-image: none;
+  }
+}
+
+.open .dropdown-toggle.btn-dark {
+  background-image: none;
+}
+
+.btn-dark {
+  &.disabled, &[disabled] {
+    background-color: $bipolar-black;
+    border-color: $bipolar-black;
+  }
+}
+
+fieldset[disabled] .btn-dark {
+  background-color: $bipolar-black;
+  border-color: $bipolar-black;
+}
+
+.btn-dark {
+  &.disabled:hover, &[disabled]:hover {
+    background-color: $bipolar-black;
+    border-color: $bipolar-black;
+  }
+}
+
+fieldset[disabled] .btn-dark:hover {
+  background-color: $bipolar-black;
+  border-color: $bipolar-black;
+}
+
+.btn-dark {
+  &.disabled:focus, &[disabled]:focus {
+    background-color: $bipolar-black;
+    border-color: $bipolar-black;
+  }
+}
+
+fieldset[disabled] .btn-dark:focus {
+  background-color: $bipolar-black;
+  border-color: $bipolar-black;
+}
+
+.btn-dark {
+  &.disabled:active, &[disabled]:active {
+    background-color: $bipolar-black;
+    border-color: $bipolar-black;
+  }
+}
+
+fieldset[disabled] .btn-dark:active {
+  background-color: $bipolar-black;
+  border-color: $bipolar-black;
+}
+
+.btn-dark {
+  &.disabled.active, &[disabled].active {
+    background-color: $bipolar-black;
+    border-color: $bipolar-black;
+  }
+}
+
+fieldset[disabled] .btn-dark.active {
+  background-color: $bipolar-black;
+  border-color: $bipolar-black;
+}
+
+.btn-dark .badge {
+  color: $bipolar-black;
+  background-color: white;
+}

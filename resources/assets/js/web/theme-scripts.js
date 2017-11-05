@@ -56,4 +56,7 @@ $(function () {
             minZoomRatio: 1,
         });
     }
+
+    // Bootstrap tooltip
+    $('[data-toggle="tooltip"]').tooltip();
 });

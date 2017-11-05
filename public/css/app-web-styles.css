@@ -8973,6 +8973,96 @@ button.close {
   }
 }
 
+.btn-dark {
+  color: white;
+  background-color: black;
+  border-color: black;
+}
+
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark:active,
+.btn-dark.active {
+  color: white;
+  background-color: #312E36;
+  border-color: black;
+}
+
+.open .dropdown-toggle.btn-dark {
+  color: white;
+  background-color: #312E36;
+  border-color: black;
+}
+
+.btn-dark:active,
+.btn-dark.active {
+  background-image: none;
+}
+
+.open .dropdown-toggle.btn-dark {
+  background-image: none;
+}
+
+.btn-dark.disabled,
+.btn-dark[disabled] {
+  background-color: black;
+  border-color: black;
+}
+
+fieldset[disabled] .btn-dark {
+  background-color: black;
+  border-color: black;
+}
+
+.btn-dark.disabled:hover,
+.btn-dark[disabled]:hover {
+  background-color: black;
+  border-color: black;
+}
+
+fieldset[disabled] .btn-dark:hover {
+  background-color: black;
+  border-color: black;
+}
+
+.btn-dark.disabled:focus,
+.btn-dark[disabled]:focus {
+  background-color: black;
+  border-color: black;
+}
+
+fieldset[disabled] .btn-dark:focus {
+  background-color: black;
+  border-color: black;
+}
+
+.btn-dark.disabled:active,
+.btn-dark[disabled]:active {
+  background-color: black;
+  border-color: black;
+}
+
+fieldset[disabled] .btn-dark:active {
+  background-color: black;
+  border-color: black;
+}
+
+.btn-dark.disabled.active,
+.btn-dark[disabled].active {
+  background-color: black;
+  border-color: black;
+}
+
+fieldset[disabled] .btn-dark.active {
+  background-color: black;
+  border-color: black;
+}
+
+.btn-dark .badge {
+  color: black;
+  background-color: white;
+}
+
 .text-heading-mobile {
   margin-top: 12px;
 }
@@ -9251,6 +9341,23 @@ a:hover {
   margin-bottom: 10px;
 }
 
+.shop-discount-container {
+  position: absolute;
+  top: 7%;
+  right: 10%;
+}
+
+.shop-discount-container .shop-discount {
+  background-color: black;
+  color: #fcbeb9;
+  text-align: center;
+  line-height: 45px;
+  width: 44px;
+  height: 44px;
+  font-size: 15px;
+  border-radius: 100%;
+}
+
 .bipolar-footer {
   background: black;
   color: white;
@@ -9326,5 +9433,50 @@ a:hover {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+}
+
+.overlay-shop-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 14px;
+  right: 0;
+  height: 100%;
+  width: 90%;
+  opacity: 0;
+  -webkit-transition: ease .5s;
+  transition: ease .5s;
+  background-color: #fcbeb9;
+}
+
+.overlay-shop-container:hover .overlay-shop-image {
+  opacity: 1;
+}
+
+.overlay-shop-text {
+  position: relative;
+  color: black;
+  font-size: 40px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.overlay-shop-color-text {
+  position: relative;
+  color: black;
+  text-align: center;
+  margin-top: -5px;
+  letter-spacing: 0.75px;
+}
+
+.overlay-shop-buttons {
+  position: relative;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.overlay-shop-buttons .overlay-radio-button {
+  border-radius: 100%;
+  min-height: 38px;
 }
 

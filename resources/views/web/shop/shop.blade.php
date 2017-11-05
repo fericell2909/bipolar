@@ -54,8 +54,8 @@
                             @endif
                         </div>
                         <div class="col-md-6">
-                            {{ $salient->name }}<br>
-                            {{ $salient->price }}
+                            <strong>{{ $salient->name }}</strong><br>
+                            <strong>{{ $salient->price }}</strong>
                         </div>
                     </div>
                 @endforeach
@@ -72,7 +72,29 @@
                         <div class="col-md-4 bipolar-product">
                             @if(count($product->photos))
                                 <a href="{{ route('shop.product', $product->slug) }}">
-                                    <img src="{{ $product->photos->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
+                                    <div class="shop-discount-container">
+                                        <div class="shop-discount">
+                                            <span>30%</span>
+                                        </div>
+                                    </div>
+                                    <div class="overlay-shop-container">
+                                        <img src="{{ $product->photos->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
+                                        <div class="overlay-shop-image">
+                                            <div class="overlay-shop-text">{{ $product->name }}</div>
+                                            <div class="overlay-shop-color-text">Blanco&Negro</div>
+                                            <div class="overlay-shop-buttons">
+                                                <button class="btn btn-dark overlay-radio-button" data-toggle="tooltip" data-placement="top" title="Wishlist">
+                                                    <i class="fa fa-heart"></i>
+                                                </button>
+                                                <button class="btn btn-dark overlay-radio-button" data-toggle="tooltip" data-placement="top" title="Detalles">
+                                                    <i class="fa fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-dark overlay-radio-button" data-toggle="tooltip" data-placement="top" title="Agregar al carrito">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </a>
                             @else
                                 <a href="{{ route('shop.product', $salient->slug) }}">

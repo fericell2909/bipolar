@@ -1,0 +1,48 @@
+.overlay-shop-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 14px;
+  right: 0;
+  height: 100%;
+  width: 90%;
+  opacity: 0;
+  -webkit-transition: ease .5s;
+  -moz-transition: ease .5s;
+  -ms-transition: ease .5s;
+  -o-transition: ease .5s;
+  transition: ease .5s;
+  background-color: $bipolar-color;
+}
+
+.overlay-shop-container:hover .overlay-shop-image {
+  opacity: 1;
+}
+
+.overlay-shop-text {
+  position: relative;
+  color: $bipolar-black;
+  font-size: 40px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.overlay-shop-color-text {
+  position: relative;
+  color: $bipolar-black;
+  text-align: center;
+  margin-top: -5px;
+  letter-spacing: 0.75px;
+}
+
+.overlay-shop-buttons {
+  position: relative;
+  margin-top: 5px;
+  text-align: center;
+  .overlay-radio-button {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    min-height: 38px;
+  }
+}
