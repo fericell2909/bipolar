@@ -1,0 +1,80 @@
+.product-content {
+  margin-top: 50px;
+
+  .product-title {
+    font-size: 75px;
+  }
+
+  .product-colors {
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+  }
+
+  .product-price {
+    margin-bottom: 30px;
+    .product-amount {
+      font-size: 36px;
+    }
+  }
+
+  .product-description {
+    line-height: 1.8;
+    margin-bottom: 35px;
+  }
+
+  .product-size-select {
+    width: 100%;
+    border: none;
+    background-color: $bipolar-gray;
+    color: #878787;
+    line-height: 1;
+    -webkit-border-radius: 42px;
+    -moz-border-radius: 42px;
+    border-radius: 42px;
+    outline: none;
+    padding: 0 25px;
+    font-size: 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 35px;
+    background-image: url(../../img/arrow_down.png);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px);
+  }
+
+  .bipolar-action-button-container {
+    > a {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      background-color: $bipolar-gray;
+      text-align: center;
+      border-radius: 100%;
+      line-height: 35px;
+      color: #999999;
+      margin-right: 5px;
+
+      &:hover {
+        background-color: $bipolar-color;
+        color: white;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .bipolar-stock-status {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+    color: #eee;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+  }
+}

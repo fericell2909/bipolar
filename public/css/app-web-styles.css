@@ -9325,18 +9325,6 @@ a:hover {
   color: #f5f5f5;
 }
 
-.product-content {
-  margin-top: 50px;
-}
-
-.product-content .product-title {
-  font-size: 75px;
-}
-
-.product-content .product-amount {
-  font-size: 36px;
-}
-
 .owl-carousel-main {
   margin-bottom: 10px;
 }
@@ -9345,6 +9333,7 @@ a:hover {
   position: absolute;
   top: 7%;
   right: 10%;
+  z-index: 4;
 }
 
 .shop-discount-container .shop-discount {
@@ -9356,6 +9345,84 @@ a:hover {
   height: 44px;
   font-size: 15px;
   border-radius: 100%;
+}
+
+.product-content {
+  margin-top: 50px;
+}
+
+.product-content .product-title {
+  font-size: 75px;
+}
+
+.product-content .product-colors {
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+}
+
+.product-content .product-price {
+  margin-bottom: 30px;
+}
+
+.product-content .product-price .product-amount {
+  font-size: 36px;
+}
+
+.product-content .product-description {
+  line-height: 1.8;
+  margin-bottom: 35px;
+}
+
+.product-content .product-size-select {
+  width: 100%;
+  border: none;
+  background-color: #f5f5f5;
+  color: #878787;
+  line-height: 1;
+  border-radius: 42px;
+  outline: none;
+  padding: 0 25px;
+  font-size: 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 35px;
+  background-image: url(/images/arrow_down.png?321c26753bb0f9825710a27f813910d5);
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px);
+}
+
+.product-content .bipolar-action-button-container > a {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background-color: #f5f5f5;
+  text-align: center;
+  border-radius: 100%;
+  line-height: 35px;
+  color: #999999;
+  margin-right: 5px;
+}
+
+.product-content .bipolar-action-button-container > a:hover {
+  background-color: #fcbeb9;
+  color: white;
+}
+
+.product-content .bipolar-action-button-container > a:focus {
+  outline: none;
+}
+
+.product-content .bipolar-stock-status {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+  color: #eee;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
 
 .bipolar-footer {
