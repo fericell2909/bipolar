@@ -44,10 +44,6 @@
                             {!! Form::textarea('description', $product->description, ['class' => 'form-control', 'rows' => 7]) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('Colores') !!}
-                            {!! Form::select('colors[]', $colors, $selectedColors, ['class' => 'form-control select2', 'multiple' => true]) !!}
-                        </div>
-                        <div class="form-group">
                             {!! Form::label('Precio') !!} <span class="text-danger">*</span>
                             {!! Form::number('price', $product->price, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
                         </div>
@@ -62,6 +58,20 @@
                         </button>
                     </div>
                     <div class="col-md-3 white-box">
+                        @if($colors)
+                            <div class="panel panel-inverse">
+                                <div class="panel-heading">Colores</div>
+                            </div>
+                            <div class="panel-wrapper collapse in">
+                                <div class="panel-body">
+                                    @foreach($colors as $color)
+                                        <div class="icheck">
+                                            {!! Form::checkbox('colors[]', $color->hash_id, in_array($color->hash_id, $selectedColors)) !!} {{ $color->name }}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                         @if($types)
                             @foreach($types as $type)
                                 <div class="panel panel-inverse">

@@ -4,16 +4,11 @@
         <div class="col-md-12">
             <div class="white-box">
                 <h3 class="box-title">Nuevo color</h3>
-                {!! Form::open(['class' => 'form-material']) !!}
+                {!! Form::open() !!}
                 <div class="form-row">
-                    <div class="col-md-6">
+                    <div class="col-md-10">
                         <div class="form-group">
                             {!! Form::text('name', null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Nombre']) !!}
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            {!! Form::text('hexadecimal', null, ['class' => 'form-control jscolor {hash: true}', 'required' => true, 'placeholder' => 'Color']) !!}
                         </div>
                     </div>
                     <div class="col-md-1 text-center">
@@ -38,7 +33,6 @@
                     <tr>
                         <th>#</th>
                         <th>Nombre</th>
-                        <th>Color hexadecimal</th>
                         <th>Acciones</th>
                     </tr>
                     </thead>
@@ -48,9 +42,6 @@
                         <tr>
                             <td>{{ $color->id }}</td>
                             <td>{{ $color->name }}</td>
-                            <td style="background-color: {{ $color->hexadecimal }}">
-                                {{ $color->hexadecimal }}
-                            </td>
                             <td>
                                 <a href="{{ route('settings.colors.show', $color->hash_id) }}" class="btn btn-sm btn-dark btn-rounded">
                                     <i class="fa fa-pencil"></i> Actualizar

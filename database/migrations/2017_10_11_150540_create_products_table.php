@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('slug', 300)->nullable();
             $table->string('subtitle')->nullable();
             $table->text('description')->nullable();
-            $table->unsignedDecimal('price', 7, 2);
+            $table->decimal('price', 7, 2);
             $table->timestamp('active')->nullable();
             $table->timestamp('is_salient')->nullable();
             $table->timestamp('is_home')->nullable();

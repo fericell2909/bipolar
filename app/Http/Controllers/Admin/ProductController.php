@@ -21,7 +21,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $colors = Color::orderBy('name')->get()->pluck('name', 'hash_id')->toArray();
+        $colors = Color::orderBy('name')->get();
         $types = Type::orderBy('name')->get();
         $sizes = Size::orderBy('name')->get();
 
@@ -192,11 +192,11 @@ class ProductController extends Controller
     {
         /** @var Product $product */
         $product = Product::findOrFail($productId);
-        $colors = Color::orderBy('name')->get()->pluck('name', 'hash_id')->toArray();
+        $colors = Color::orderBy('name')->get();
         $types = Type::orderBy('name')->get();
         $sizes = Size::orderBy('name')->get();
 
-        $selectedColors = $product->colors->pluck('name', 'hash_id')->toArray();
+        $selectedColors = $product->colors->pluck('hash_id')->toArray();
         $selectedSubtypes = $product->subtypes->pluck('hash_id')->toArray();
         $selectedSizes = $product->stocks->filter(function ($stock) {
                 /** @var Stock $stock */
@@ -229,7 +229,7 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->subtitle = $request->input('subtitle');
         $product->description = $request->input('description');
-        $product->price = number_format($request->input('price'), 2);
+        $product->price = number_format($request->input('price'), 2, '.', '');
         $product->active = boolval($request->input('active')) ? now() : null;
         $product->save();
 
