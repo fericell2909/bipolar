@@ -83,6 +83,7 @@ class ShopController extends Controller
                 'subtypes',
                 'stocks',
                 'stocks.size',
+                'colors',
             ])
             ->get()
             ->when($request->filled('search'), function ($products) use ($request) {

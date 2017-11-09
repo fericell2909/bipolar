@@ -18,4 +18,13 @@ $(function () {
             }, 1000);
         });
     }
+
+    if ($('.button-see-details').length) {
+        let $buttonSeeDetails = $('.button-see-details');
+        
+        $buttonSeeDetails.click(function () {
+            let productHashId = $(this).data('hashId');
+            $(`.modal-product-detail-${productHashId}`).modal({ show: true });
+        });
+    }
 });

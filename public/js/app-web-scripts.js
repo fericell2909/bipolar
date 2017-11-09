@@ -19260,6 +19260,15 @@ if (typeof window !== 'undefined') {
             }, 1000);
         });
     }
+
+    if ($('.button-see-details').length) {
+        var $buttonSeeDetails = $('.button-see-details');
+
+        $buttonSeeDetails.click(function () {
+            var productHashId = $(this).data('hashId');
+            $('.modal-product-detail-' + productHashId).modal({ show: true });
+        });
+    }
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 

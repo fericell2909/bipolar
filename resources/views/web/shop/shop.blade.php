@@ -81,14 +81,23 @@
                                         <img src="{{ $product->photos->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
                                         <div class="overlay-shop-image">
                                             <div class="overlay-shop-text">{{ $product->name }}</div>
-                                            <div class="overlay-shop-color-text">Blanco&Negro</div>
+                                            @if($product->colors->count() > 0)
+                                                <div class="overlay-shop-color-text">
+                                                    {{ $product->colors->first()->name }}
+                                                </div>
+                                            @endif
                                             <div class="overlay-shop-buttons">
                                                 <button class="btn btn-dark overlay-radio-button" data-toggle="tooltip" data-placement="top" title="Wishlist">
                                                     <i class="fa fa-heart"></i>
                                                 </button>
-                                                <button class="btn btn-dark overlay-radio-button" data-toggle="tooltip" data-placement="top" title="Detalles">
+                                                <a href="#"
+                                                    class="btn btn-dark overlay-radio-button button-see-details"
+                                                    data-hash-id="{{ $product->hash_id }}"
+                                                    data-toggle="tooltip" 
+                                                    data-placement="top" 
+                                                    title="Detalles">
                                                     <i class="fa fa-eye"></i>
-                                                </button>
+                                                </a>
                                                 <button class="btn btn-dark overlay-radio-button" data-toggle="tooltip" data-placement="top" title="Agregar al carrito">
                                                     <i class="fa fa-shopping-cart"></i>
                                                 </button>
@@ -113,4 +122,63 @@
         </div>
     </div>
     {!! Form::close() !!}
+    @foreach($products as $product)
+        <div class="modal fade modal-product-detail-{{ $product->hash_id }}" tabindex="-1" role="dialog" aria-labelledby="shopModalDetail">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="container-fluid">
+                        <div class="row product-content">
+                            <div class="col-md-6">
+                                @if(count($product->photos))
+                                    <div>
+                                        <div class="shop-discount-container">
+                                            <div class="shop-discount">
+                                                <span>30%</span>
+                                            </div>
+                                        </div>
+                                        <div id="viewer-images" class="owl-carousel-main owl-carousel owl-theme">
+                                            @foreach($product->photos as $photo)
+                                                <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive">
+                                            @endforeach
+                                        </div>
+                                        <div class="owl-carousel-thumbnails owl-carousel owl-theme">
+                                            @foreach($product->photos as $photo)
+                                                <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $product->name }}">
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-md-6">
+                                <h1 class="product-title">{{ $product->name }}</h1>
+                                <div class="product-colors">{{ $product->subtitle }}</div>
+                                <p class="product-price">
+                                    <span class="product-amount">S/. {{ $product->price }}</span>
+                                </p>
+                                <p class="product-description">
+                                    Zapato de cuero hecho a mano en Perú.
+                                    Charol malva. Gamuza negra. Cuero dorado. Lazo de metal bañado en oro.
+                                    Taco 9cms. + 2cms. de plataforma.
+                                </p>
+                                <div class="bipolar-stock-status">
+                                    STATUS: EN STOCK
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        COMPÁRTELO
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="bipolar-action-button-container">
+                                            <a href="#"><i class="fa fa-facebook"></i></a>
+                                            <a href="#"><i class="fa fa-envelope-o"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection
