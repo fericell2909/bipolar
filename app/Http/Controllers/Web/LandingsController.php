@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Settings;
 
 class LandingsController extends Controller
 {
@@ -19,7 +20,9 @@ class LandingsController extends Controller
             ->orderBy('name')
             ->get();
 
-        return view('welcome', compact('productsInHome'));
+        $settings = Settings::first();
+
+        return view('welcome', compact('productsInHome', 'settings'));
     }
 
     public function bipolar()

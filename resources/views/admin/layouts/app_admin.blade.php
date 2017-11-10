@@ -100,6 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <span class="hide-menu"> Configuraciones<span class="fa arrow"></span></span>
                     </a>
                     <ul class="nav nav-second-level">
+                        <li><a href="{{ route('settings.general') }}">General</a></li>
                         <li><a href="{{ route('settings.sizes') }}">Tallas</a></li>
                         <li><a href="{{ route('settings.colors') }}">Colores</a></li>
                         <li><a href="{{ route('settings.types') }}">Tipos</a></li>

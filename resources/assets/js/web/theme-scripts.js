@@ -1,4 +1,5 @@
 import Viewer from 'viewerjs/dist/viewer.esm';
+import CountUp from 'countup.js';
 require('icheck');
 
 $(function () {
@@ -59,4 +60,20 @@ $(function () {
 
     // Bootstrap tooltip
     $('[data-toggle="tooltip"]').tooltip();
+
+    if ($('.bipolar-counts-title').length) {
+        const $firstCounter = $('#bipolar-first-counter');
+        const $secondCounter = $('#bipolar-second-counter');
+        const counterOptions = {
+            useEasing: true,
+            useGrouping: true,
+            separator: '',
+            decimal: '.',
+        };
+        const firstCounter = new CountUp('bipolar-first-counter', 0, $firstCounter.data('number'), 0, 2.5, counterOptions);
+        const secondCounter = new CountUp('bipolar-second-counter', 0, $secondCounter.data('number'), 0, 2.5, counterOptions);
+        
+        firstCounter.start();
+        secondCounter.start();
+    }
 });

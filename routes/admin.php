@@ -32,6 +32,8 @@ Route::middleware('auth:admin')->group(function() {
     });
 
     Route::prefix('settings')->group(function () {
+        Route::get('general', 'Admin\SettingsController@general')->name('settings.general');
+        Route::post('general', 'Admin\SettingsController@saveGeneral');
         // Sizes
         Route::get('sizes', 'Admin\SettingsController@seeSizes')->name('settings.sizes');
         Route::post('sizes', 'Admin\SettingsController@saveSize')->name('settings.sizes.save');

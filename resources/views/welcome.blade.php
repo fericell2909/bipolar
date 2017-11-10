@@ -138,6 +138,22 @@
             @endif
         @endforeach
     </div>
+    @if($settings)
+    <div class="bipolar-counts-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 bipolar-counts"> 
+                    <div id="bipolar-first-counter" class="bipolar-counts-title" data-number="{{ $settings->bipolar_counts }}"></div>
+                    <div class="bipolar-counts-subtitle">Bipolares</div>
+                </div>
+                <div class="col-md-6 bipolar-counts">
+                    <div id="bipolar-second-counter" class="bipolar-counts-title" data-number="888888"></div>
+                    <div class="bipolar-counts-subtitle">Facebook Fans</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
     <div class="row content-newsletter">
         <div class="col-md-offset-4 col-md-4">
             <div class="card-body">

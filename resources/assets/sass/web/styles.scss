@@ -38,6 +38,29 @@
   }
 }
 
+.bipolar-counts-container {
+  background-image: url(https://bipolar-peru.s3.amazonaws.com/assets/jeringas_close.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .bipolar-counts {
+    padding: 172px 0;
+    text-align: center;
+
+    .bipolar-counts-title {
+      font-size: 60px;
+      line-height: 1.2;
+    }
+
+    .bipolar-counts-subtitle {
+      line-height: 1.4;
+      margin-top: 12px;
+      text-transform: uppercase;
+    }
+  }
+}
+
 .bipolar-header-desktop {
   position: absolute;
   z-index: 30;

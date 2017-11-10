@@ -4,10 +4,31 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Size;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
+    public function general()
+    {
+        $settings = Settings::first();
+
+        return view('admin.settings.general', compact('settings'));
+    }
+
+    public function saveGeneral(Request $request)
+    {
+        $this->validate($request, ['bipolar_counts' => 'required|integer|min:0']);
+
+        $settings = Settings::first();
+        $settings->bipolar_counts = $request->input('bipolar_counts');
+        $settings->save();
+
+        flash()->success('Guardado con éxito');
+
+        return redirect()->back();
+    }
+
     public function seeSizes()
     {
         $sizes = Size::orderBy('name')->get();
