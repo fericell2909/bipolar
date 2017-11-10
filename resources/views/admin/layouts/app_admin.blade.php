@@ -136,7 +136,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
+@stack('before_scripts')
 <script src="{{ mix('js/app-admin-scripts.js') }}"></script>
+<script src="{{ mix('js/bipolar-admin-app.js') }}"></script>
+@stack('after_scripts')
 </body>
 
 </html>

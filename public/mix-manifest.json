@@ -1,6 +1,7 @@
 {
-    "/js/app-admin-scripts.js": "/js/app-admin-scripts.js",
+    "/js/bipolar-admin-app.js": "/js/bipolar-admin-app.js",
     "/css/app-admin-styles.css": "/css/app-admin-styles.css",
     "/css/app-web-styles.css": "/css/app-web-styles.css",
+    "/js/app-admin-scripts.js": "/js/app-admin-scripts.js",
     "/js/app-web-scripts.js": "/js/app-web-scripts.js"
 }

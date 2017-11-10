@@ -28,6 +28,7 @@ Route::middleware('auth:admin')->group(function() {
         Route::post('photos/order', 'Admin\ProductController@orderAndSavePosition');
         Route::get('salient-and-home', 'Admin\ProductController@salientAndHome')->name('products.salient-home');
         Route::post('salient-and-home', 'Admin\ProductController@salientAndHomeSave');
+        Route::get('{slug}/recommended', 'Admin\ProductController@recommended')->name('products.recommended');
     });
 
     Route::prefix('settings')->group(function () {

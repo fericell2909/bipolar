@@ -73,6 +73,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommendeds
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Stock[] $stocks
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product findSimilarSlugs($attribute, $config, $slug)
@@ -193,10 +194,8 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
- * @property string $hexadecimal
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereHexadecimal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereName($value)
  */

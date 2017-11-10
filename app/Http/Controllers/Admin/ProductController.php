@@ -287,4 +287,12 @@ class ProductController extends Controller
 
         return redirect()->route('products.photos', $product->slug);
     }
+
+    public function recommended($productoId)
+    {
+        /** @var Product $product */
+        $product = Product::findBySlug($productoId);
+
+        return view('admin.products.recommended', compact('product'));
+    }
 }

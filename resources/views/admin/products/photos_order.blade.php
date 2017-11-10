@@ -2,22 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="white-box">
-                <div class="row line-steps">
-                    <div class="col-md-4 column-step start">
-                        <div class="step-number">1</div>
-                        <div class="step-title">Producto</div>
-                    </div>
-                    <div class="col-md-4 column-step upcoming">
-                        <div class="step-number">2</div>
-                        <div class="step-title">Fotos</div>
-                    </div>
-                    <div class="col-md-4 column-step finish active">
-                        <div class="step-number">3</div>
-                        <div class="step-title">Ordenar</div>
-                    </div>
-                </div>
-            </div>
+            @include('admin.partials.product_header_steps', ['active' => 3])
         </div>
         <div class="col-md-12">
             <div class="white-box">
@@ -35,8 +20,8 @@
                 </div>
                 <hr>
                 <p class="text-center">
-                    <a href="{{ route('products.index') }}" class="btn btn-rounded btn-success">
-                        Volver al listado de productos
+                    <a href="{{ route('products.recommended', $product->slug) }}" class="btn btn-rounded btn-dark">
+                        Seleccionar recomendados
                     </a>
                 </p>
             </div>

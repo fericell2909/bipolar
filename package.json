@@ -1,37 +1,39 @@
 {
-  "private": true,
-  "scripts": {
-    "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch-poll": "npm run watch -- --watch-poll",
-    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-  },
-  "devDependencies": {
-    "axios": "^0.16.2",
-    "block-ui": "^2.70.1",
-    "bootstrap": "4.0.0-beta",
-    "bootstrap-sass": "^3.3.7",
-    "cross-env": "^5.0.1",
-    "dropzone": "^5.2.0",
-    "icheck": "^1.0.2",
-    "jquery": "^3.1.1",
-    "jquery-slimscroll": "^1.3.8",
-    "laravel-mix": "^1.0",
-    "lodash": "^4.17.4",
-    "owl.carousel": "^2.2.0",
-    "popper.js": "^1.12.5",
-    "select2": "^4.0.4",
-    "sortablejs": "^1.6.1",
-    "sweetalert2": "^6.10.2",
-    "switchery": "^0.0.2",
-    "viewerjs": "^0.8.0",
-    "vue": "^2.1.10"
-  },
-  "dependencies": {
-    "browser-sync": "^2.18.13",
-    "browser-sync-webpack-plugin": "^1.2.0"
-  }
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "devDependencies": {
+        "axios": "^0.16.2",
+        "babel-preset-react": "^6.23.0",
+        "block-ui": "^2.70.1",
+        "bootstrap": "4.0.0-beta",
+        "bootstrap-sass": "^3.3.7",
+        "cross-env": "^5.0.1",
+        "dropzone": "^5.2.0",
+        "icheck": "^1.0.2",
+        "jquery": "^3.1.1",
+        "jquery-slimscroll": "^1.3.8",
+        "laravel-mix": "^1.0",
+        "lodash": "^4.17.4",
+        "owl.carousel": "^2.2.0",
+        "popper.js": "^1.12.5",
+        "react": "^15.4.2",
+        "react-dom": "^15.4.2",
+        "select2": "^4.0.4",
+        "sortablejs": "^1.6.1",
+        "sweetalert2": "^6.10.2",
+        "switchery": "^0.0.2",
+        "viewerjs": "^0.8.0"
+    },
+    "dependencies": {
+        "browser-sync": "^2.18.13",
+        "browser-sync-webpack-plugin": "^1.2.0"
+    }
 }
