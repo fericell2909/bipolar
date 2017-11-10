@@ -32,9 +32,19 @@
                             {!! Form::label('Precio') !!} <span class="text-danger">*</span>
                             {!! Form::number('price', $product->price, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
                         </div>
-                        <div>
-                            {!! Form::label('Activo') !!}<br>
-                            {!! Form::checkbox('active', 1, !is_null($product->active) ? true : false, ['class' => 'js-switch']) !!}
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div>
+                                    {!! Form::label('Activo') !!}<br>
+                                    {!! Form::checkbox('active', 1, !is_null($product->active) ? true : false, ['class' => 'js-switch']) !!}
+                                </div>    
+                            </div>
+                            <div class="col-md-2">
+                                <div>
+                                    {!! Form::label('Destacado') !!}<br>
+                                    {!! Form::checkbox('salient', 1, !is_null($product->is_salient) ? true : false, ['class' => 'js-switch-salient']) !!}
+                                </div>    
+                            </div>
                         </div>
                         <hr>
                         <button type="submit" class="btn btn-dark btn-rounded">

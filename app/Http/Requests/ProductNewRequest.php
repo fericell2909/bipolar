@@ -30,6 +30,7 @@ class ProductNewRequest extends FormRequest
             'colors'      => 'nullable|array',
             'price'       => 'required|numeric|min:1',
             'active'      => 'boolean',
+            'salient'     => 'boolean',
             'subtype'     => 'nullable|array',
             'sizes'       => 'nullable|array',
         ];

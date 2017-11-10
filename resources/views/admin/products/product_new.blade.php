@@ -50,9 +50,19 @@
                                 {!! Form::label('Precio') !!} <span class="text-danger">*</span>
                                 {!! Form::number('price', 1.0, ['class' => 'form-control', 'required' => true, 'step' => 'any']) !!}
                             </div>
-                            <div>
-                                {!! Form::label('Activo') !!}<br>
-                                {!! Form::checkbox('active', 1, null, ['class' => 'js-switch']) !!}
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div>
+                                        {!! Form::label('Activo') !!}<br>
+                                        {!! Form::checkbox('active', 1, null, ['class' => 'js-switch']) !!}
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div>
+                                        {!! Form::label('Destacado') !!}<br>
+                                        {!! Form::checkbox('salient', 1, null, ['class' => 'js-switch-salient']) !!}
+                                    </div>
+                                </div>
                             </div>
                             <hr>
                             <button type="submit" class="btn btn-dark btn-rounded">

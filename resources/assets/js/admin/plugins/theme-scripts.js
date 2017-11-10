@@ -21,8 +21,13 @@ $(document).ready(function () {
 
     // Switchery
     if ($('.js-switch').length) {
-        let elem = document.querySelector('.js-switch');
-        let init = new switcher(elem, {color: '#F9967B'});
+        const elem = document.querySelector('.js-switch');
+        const init = new switcher(elem, {color: '#F9967B'});
+    }
+
+    if ($('.js-switch-salient').length) {
+        const elem = document.querySelector('.js-switch-salient');
+        const init = new switcher(elem, {color: '#F9967B'});
     }
 
     // Icheck

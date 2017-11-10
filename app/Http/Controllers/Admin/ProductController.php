@@ -39,6 +39,7 @@ class ProductController extends Controller
         $product->description = $request->input('description');
         $product->price = number_format($request->input('price'), 2);
         $product->active = boolval($request->input('active')) ? now() : null;
+        $product->is_salient = boolval($request->input('salient')) ? now() : null;
         $product->save();
 
         if ($request->filled('colors')) {
@@ -231,6 +232,7 @@ class ProductController extends Controller
         $product->description = $request->input('description');
         $product->price = number_format($request->input('price'), 2, '.', '');
         $product->active = boolval($request->input('active')) ? now() : null;
+        $product->is_salient = boolval($request->input('salient')) ? now() : null;
         $product->save();
 
         if ($request->filled('colors')) {

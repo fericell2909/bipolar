@@ -6812,6 +6812,11 @@ $(document).ready(function () {
         var init = new switcher(elem, { color: '#F9967B' });
     }
 
+    if ($('.js-switch-salient').length) {
+        var _elem = document.querySelector('.js-switch-salient');
+        var _init = new switcher(_elem, { color: '#F9967B' });
+    }
+
     // Icheck
     $('.icheck').iCheck({
         checkboxClass: 'icheckbox_flat',
@@ -6819,8 +6824,8 @@ $(document).ready(function () {
     });
 
     if ($('#sortable-items').length) {
-        var _elem = document.querySelector('#sortable-items');
-        var sortable = new Sortable(_elem, {
+        var _elem2 = document.querySelector('#sortable-items');
+        var sortable = new Sortable(_elem2, {
             onEnd: function onEnd(event) {
                 $.blockUI({ message: "<i class='fa fa-refresh fa-spin'></i> Guardando, espere <i class='fa fa-refresh fa-spin'></i>" });
 
