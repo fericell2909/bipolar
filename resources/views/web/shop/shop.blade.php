@@ -71,40 +71,43 @@
                     @forelse($products as $product)
                         <div class="col-md-4 bipolar-product">
                             @if(count($product->photos))
-                                <a href="{{ route('shop.product', $product->slug) }}">
-                                    <div class="shop-discount-container">
-                                        <div class="shop-discount">
-                                            <span>30%</span>
-                                        </div>
+                                <a class="product-link" href="{{ route('shop.product', $product->slug) }}"></a>
+                                @if(false)
+                                <div class="shop-discount-container">
+                                    <div class="shop-discount">
+                                        <span>30%</span>
                                     </div>
-                                    <div class="overlay-shop-container">
-                                        <img src="{{ $product->photos->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
-                                        <div class="overlay-shop-image">
-                                            <div class="overlay-shop-text">{{ $product->name }}</div>
-                                            @if($product->colors->count() > 0)
-                                                <div class="overlay-shop-color-text">
-                                                    {{ $product->colors->first()->name }}
-                                                </div>
-                                            @endif
-                                            <div class="overlay-shop-buttons">
-                                                <button class="btn btn-dark overlay-radio-button" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                                    <i class="fa fa-heart"></i>
-                                                </button>
-                                                <a href="#"
-                                                    class="btn btn-dark overlay-radio-button button-see-details"
-                                                    data-hash-id="{{ $product->hash_id }}"
-                                                    data-toggle="tooltip" 
-                                                    data-placement="top" 
-                                                    title="Detalles">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
-                                                <button class="btn btn-dark overlay-radio-button" data-toggle="tooltip" data-placement="top" title="Agregar al carrito">
-                                                    <i class="fa fa-shopping-cart"></i>
-                                                </button>
+                                </div>
+                                @endif
+                                <div class="overlay-shop-container">
+                                    <img src="{{ $product->photos->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
+                                    <div class="overlay-shop-image">
+                                        <div class="overlay-shop-text">
+                                            <a href="{{ route('shop.product', $product->slug) }}" style="text-decoration:none;">{{ $product->name }}</a>
+                                        </div>
+                                        @if($product->colors->count() > 0)
+                                            <div class="overlay-shop-color-text">
+                                                {{ $product->colors->first()->name }}
                                             </div>
+                                        @endif
+                                        <div class="overlay-shop-buttons">
+                                            <button class="btn btn-dark overlay-radio-button" data-toggle="tooltip" data-placement="top" title="Wishlist">
+                                                <i class="fa fa-heart"></i>
+                                            </button>
+                                            <a href="#"
+                                                class="btn btn-dark overlay-radio-button button-see-details"
+                                                data-hash-id="{{ $product->hash_id }}"
+                                                data-toggle="tooltip" 
+                                                data-placement="top" 
+                                                title="Detalles">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <button class="btn btn-dark overlay-radio-button" data-toggle="tooltip" data-placement="top" title="Agregar al carrito">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </button>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
                             @else
                                 <a href="{{ route('shop.product', $salient->slug) }}">
                                     <img src="https://placehold.it/317x210" alt="{{ $salient->name }}" class="img-responsive">

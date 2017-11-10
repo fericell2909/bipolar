@@ -11,11 +11,13 @@
             <div class="col-md-6">
                 @if(count($product->photos))
                     <div>
+                        @if(false)
                         <div class="shop-discount-container">
                             <div class="shop-discount">
                                 <span>30%</span>
                             </div>
                         </div>
+                        @endif
                         <div id="viewer-images" class="owl-carousel-main owl-carousel owl-theme">
                             @foreach($product->photos as $photo)
                                 <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive">
@@ -75,16 +77,24 @@
                 </div>
             </div>
         </div>
+        @if($product->recommendeds)
         <h3>Te recomendamos</h3>
         <div class="row">
-            @foreach(range(1, 4) as $number)
+            @foreach($product->recommendeds as $recommended)
                 <div class="col-md-3">
-                    <img src="https://placehold.it/320x200" alt="{{ $number }}" class="img-responsive">
-                    <h5><a href="#">Product {{ $number }}</a></h5>
-                    <h6>99.99</h6>
+                    @if(count($recommended->photos))
+                        <a href="{{ route('shop.product', $recommended->slug) }}">
+                            <img src="{{ $recommended->photos->first()->url }}" alt="{{ $recommended->name }}" class="img-responsive">
+                        </a>
+                    @else
+                        <img src="https://placehold.it/320x200" alt="{{ $recommended->name }}" class="img-responsive">
+                    @endif
+                    <h4><a href="{{ route('shop.product', $recommended->slug) }}">{{ $recommended->name }}</a></h5>
+                    <h5>S/. {{ $recommended->price }}</h6>
                 </div>
             @endforeach
         </div>
+        @endif
     </div>
     <div class="modal fade" id="testingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
