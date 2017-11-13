@@ -93,7 +93,7 @@ class ProductController extends Controller
         $bucket = env('AWS_BUCKET');
 
         if ($image->isValid()) {
-            $imagePath = $image->storePubliclyAs('products', "{$product->slug}_{$now->timestamp}.{$image->extension()}", 's3');
+            $imagePath = $image->storePubliclyAs('products', "{$product->slug}_{$now->timestamp}.{$image->extension()}", ['CacheControl' => 'max-age=31536000', 'disk' => 's3']);
             $amazonPath = "https://s3.amazonaws.com/{$bucket}/{$imagePath}";
 
             $photo = new Photo;
