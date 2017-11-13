@@ -281,6 +281,30 @@ class ProductController extends Controller
         return redirect()->route('products.photos', $product->slug);
     }
 
+    public function delete($productHashId)
+    {
+        $product = Product::findByHash($productHashId);
+
+        $product->recommendeds()->sync([]);
+        $product->subtypes()->sync([]);
+        $product->stocks->each(function ($stock) {
+            /** @var Stock $stock */
+            $stock->delete();
+        });
+        $product->photos->each(function ($photo) {
+            /** @var Photo $photo */
+            if (\Storage::disk('s3')->exists($photo->relative_url)) {
+                \Storage::disk('s3')->delete($photo->relative_url);
+            }
+            $photo->delete();
+        });
+        $product->delete();
+
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
     public function recommended($productoId)
     {
         /** @var Product $product */

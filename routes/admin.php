@@ -39,24 +39,19 @@ Route::middleware('auth:admin')->group(function() {
         Route::post('sizes', 'Admin\SettingsController@saveSize')->name('settings.sizes.save');
         Route::get('sizes/{sizeHashId}', 'Admin\SettingsController@showSize')->name('settings.sizes.show');
         Route::post('sizes/{sizeHashId}', 'Admin\SettingsController@updateSize')->name('settings.sizes.update');
-        Route::delete('sizes/{sizeHashId}', 'Admin\SettingsController@deleteSize');
         // Colors
         Route::get('colors', 'Admin\ColorController@index')->name('settings.colors');
         Route::post('colors', 'Admin\ColorController@create')->name('settings.colors.save');
         Route::get('colors/{colorHashid}', 'Admin\ColorController@show')->name('settings.colors.show');
         Route::post('colors/{colorHashid}', 'Admin\ColorController@update');
-        Route::delete('colors/{colorHashid}', 'Admin\ColorController@delete');
         // Types
         Route::get('types', 'Admin\TypesController@index')->name('settings.types');
         Route::post('types', 'Admin\TypesController@store');
         Route::get('types/{typeHashId}', 'Admin\TypesController@edit')->name('settings.types.edit');
         Route::post('types/{typeHashId}', 'Admin\TypesController@update');
         Route::get('types/{typeHashId}/subtypes', 'Admin\TypesController@subtypes')->name('settings.types.subtypes');
-        Route::delete('types/{sizeHashId}', 'Admin\TypesController@delete');
         // Subtypes
         Route::get('subtypes/{subtypeHashId}', 'Admin\SubtypeController@edit')->name('settings.subtypes.edit');
         Route::post('subtypes/{subtypeHashId}', 'Admin\SubtypeController@update');
     });
-
-    Route::delete('photo/delete/{photoHashId}', 'Admin\ProductController@deletePhoto');
 });

@@ -10,11 +10,10 @@ $(function () {
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
         }).then(() => {
-            let sizeHashId = $(this).data('sizeId');
-
+            const sizeHashId = $(this).data('sizeId');
             $.ajax({
                 method: 'DELETE',
-                url: `/admin/settings/size/${sizeHashId}`
+                url: `/ajax-admin/size/${sizeHashId}`
             }).done(() => location.reload());
         })
     });
@@ -28,11 +27,10 @@ $(function () {
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
         }).then(() => {
-            let sizeHashId = $(this).data('colorId');
-
+            const colorHashId = $(this).data('colorId');
             $.ajax({
                 method: 'DELETE',
-                url: `/admin/settings/colors/${sizeHashId}`
+                url: `/ajax-admin/colors/${colorHashId}`
             }).done(() => location.reload());
         })
     });
@@ -46,11 +44,10 @@ $(function () {
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
         }).then(() => {
-            let typeHashId = $(this).data('typeId');
-
+            const typeHashId = $(this).data('typeId');
             $.ajax({
                 method: 'DELETE',
-                url: `/admin/settings/types/${typeHashId}`
+                url: `/ajax-admin/types/${typeHashId}`
             }).done(() => location.reload());
         })
     });
@@ -64,12 +61,28 @@ $(function () {
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
         }).then(() => {
-            let photoId = $(this).data('photoId');
-
+            const photoId = $(this).data('photoId');
             $.ajax({
                 method: 'DELETE',
-                url: `/admin/photo/delete/${photoId}`
+                url: `/ajax-admin/photo/${photoId}`
             }).done(() => location.reload());
-        })
+        });
+    });
+
+    $('.product-delete').click(function () {
+        swal({
+            title: 'Eliminar producto',
+            text: 'Se eliminarán todos los datos, stock y fotos del producto',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+        }).then(() => {
+            const productHashId = $(this).data('productId');
+            $.ajax({
+                method: 'DELETE',
+                url: `/ajax-admin/products/${productHashId}`
+            }).done(() => location.reload());
+        });
     });
 });
