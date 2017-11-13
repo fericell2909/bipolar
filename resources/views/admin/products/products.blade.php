@@ -55,8 +55,7 @@
                                 <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-dark btn-rounded">
                                     <i class="fa fa-pencil"></i> Editar
                                 </a>
-                                <button class="btn btn-sm btn-dark btn-rounded product-delete"
-                                        data-product-id="{{ $product->hash_id }}">
+                                <button class="btn btn-sm btn-dark btn-rounded product-delete" data-product-id="{{ $product->hash_id }}">
                                     <i class="fa fa-trash"></i>
                                     Eliminar
                                 </button>

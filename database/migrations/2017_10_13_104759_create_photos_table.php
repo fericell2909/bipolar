@@ -17,6 +17,7 @@ class CreatePhotosTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->string('url', 1000);
+            $table->string('relative_url', 1000)->nullable();
             $table->unsignedInteger('order');
             $table->timestamps();
         });

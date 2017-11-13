@@ -99,6 +99,7 @@ class ProductController extends Controller
             $photo = new Photo;
             $photo->product()->associate($product);
             $photo->url = $amazonPath;
+            $photo->relative_url = $imagePath;
             $photo->order = 0;
             $photo->save();
         }
@@ -109,22 +110,12 @@ class ProductController extends Controller
     public function deletePhoto($photoHashId)
     {
         $photo = Photo::findByHash($photoHashId);
-        $photoUrl = $photo->url;
+
+        if (\Storage::disk('s3')->exists($photo->relative_url)) {
+            \Storage::disk('s3')->delete($photo->relative_url);
+        }
+
         $photo->delete();
-
-        if (\Storage::disk('s3')->exists($photoUrl) === false) {
-            return response()->json([
-                'success' => true,
-                'message' => 'Foto eliminada, pero aún permanece en el repositorio de imágenes',
-            ]);
-        }
-
-        if (\Storage::disk('s3')->delete($photoUrl) === false) {
-            return response()->json([
-                'success' => true,
-                'message' => 'Foto eliminada, pero no se pudo eliminar del repositorio de imágenes',
-            ]);
-        }
 
         return response()->json([
             'success' => true,

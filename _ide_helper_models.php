@@ -31,6 +31,8 @@ namespace App\Models{
  *
  * @property int $id
  * @property float $dolar_change
+ * @property int $bipolar_counts
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBipolarCounts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDolarChange($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereId($value)
  */
@@ -173,6 +175,7 @@ namespace App\Models{
  * @property int $id
  * @property int $product_id
  * @property string $url
+ * @property string|null $relative_url
  * @property int $order
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
@@ -182,6 +185,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereRelativeUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereUrl($value)
  */
