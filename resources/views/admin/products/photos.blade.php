@@ -11,7 +11,9 @@
                 </form>
                 <hr>
                 <p class="text-center">
-                    <a href="{{ route('products.photos.order', $product->slug) }}" class="btn btn-success">Ir a ordenar fotos &raquo;</a>
+                    <a href="{{ route('products.photos.order', $product->slug) }}" class="btn btn-dark btn-rounded">
+                        Ir a ordenar fotos &raquo;
+                    </a>
                 </p>
             </div>
         </div>
