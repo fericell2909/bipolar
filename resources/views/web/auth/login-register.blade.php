@@ -1,16 +1,18 @@
 @extends('web.layouts.app_web')
 @section('content')
     <div class="container">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+        <div class="row" style="margin-top: 270px;">
+            @if ($errors->any())
+            <div class="col-md-12">
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
-        @endif
-        <div class="row">
+            @endif
             <div class="col-md-6">
                 @includeWhen($loginRegister === 'login', 'web.auth.login-form')
                 @includeWhen($loginRegister === 'register', 'web.auth.register-form')
