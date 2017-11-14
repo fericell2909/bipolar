@@ -19285,11 +19285,14 @@ $(function () {
             separator: '',
             decimal: '.'
         };
-        var firstCounter = new __WEBPACK_IMPORTED_MODULE_1_countup_js___default.a('bipolar-first-counter', 0, $firstCounter.data('number'), 0, 2.5, counterOptions);
-        var secondCounter = new __WEBPACK_IMPORTED_MODULE_1_countup_js___default.a('bipolar-second-counter', 0, $secondCounter.data('number'), 0, 2.5, counterOptions);
 
-        firstCounter.start();
-        secondCounter.start();
+        $.get('https://graph.facebook.com/bipolar.zapatos/?fields=fan_count&access_token=100210840716931|hxQGZTOgdjwE1zG8tDKwyN7Fvy0').done(function (response) {
+            var firstCounter = new __WEBPACK_IMPORTED_MODULE_1_countup_js___default.a('bipolar-first-counter', 0, $firstCounter.data('number'), 0, 2.5, counterOptions);
+            var secondCounter = new __WEBPACK_IMPORTED_MODULE_1_countup_js___default.a('bipolar-second-counter', 0, response['fan_count'], 0, 2.5, counterOptions);
+
+            firstCounter.start();
+            secondCounter.start();
+        });
     }
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/jquery/dist/jquery.js")))

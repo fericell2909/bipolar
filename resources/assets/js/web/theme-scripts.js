@@ -70,10 +70,14 @@ $(function () {
             separator: '',
             decimal: '.',
         };
-        const firstCounter = new CountUp('bipolar-first-counter', 0, $firstCounter.data('number'), 0, 2.5, counterOptions);
-        const secondCounter = new CountUp('bipolar-second-counter', 0, $secondCounter.data('number'), 0, 2.5, counterOptions);
-        
-        firstCounter.start();
-        secondCounter.start();
+
+        $.get('https://graph.facebook.com/bipolar.zapatos/?fields=fan_count&access_token=100210840716931|hxQGZTOgdjwE1zG8tDKwyN7Fvy0')
+            .done(response => {
+                const firstCounter = new CountUp('bipolar-first-counter', 0, $firstCounter.data('number'), 0, 2.5, counterOptions);
+                const secondCounter = new CountUp('bipolar-second-counter', 0, response['fan_count'], 0, 2.5, counterOptions);
+
+                firstCounter.start();
+                secondCounter.start();
+            });
     }
 });

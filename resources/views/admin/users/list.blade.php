@@ -9,6 +9,12 @@
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-search"></i></div>
                         {!! Form::text('searchfield', null, ['class' => 'form-control', 'placeholder' => 'Coloque un nombre o apellido y presione enter']) !!}
+                        <div class="input-group-button">
+                            <button class="btn btn-dark">
+                                <i class="fa fa-search"></i>
+                                Buscar
+                            </button>
+                        </div>
                     </div>
                 </div>
                 {!! Form::close() !!}
@@ -21,7 +27,7 @@
                         <h3 class="box-title">Lista de Usuarios</h3>
                     </div>
                     <div class="col-md-2">
-                        <a href="{{ route('users.download') }}" class="btn btn-sm btn-outline-success btn-rounded">
+                        <a href="{{ route('users.download') }}" class="btn btn-sm btn-outline-dark btn-rounded pull-right">
                             <i class="fa fa-file-excel-o"></i>
                             Descargar todos
                         </a>
@@ -58,7 +64,7 @@
                                 <td>{{ $user->getBirthdayOrNull() }}</td>
                                 <td>{!! $user->getActiveLabelAdmin() !!}</td>
                                 <td>
-                                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-rounded btn-primary">
+                                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-rounded btn-dark">
                                         <i class="fa fa-pencil"></i>
                                         Editar
                                     </a>
