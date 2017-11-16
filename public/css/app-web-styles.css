@@ -177,6 +177,26 @@
   width: 100%; }
 @charset "UTF-8";
 
+@font-face {
+  font-family: 'BauerBodoniStd';
+  src: url("/fonts/BauerBodoniStd Roman.otf?662a8dcc4d4ff7cad3314486a4a6e48c");
+}
+
+@font-face {
+  font-family: 'BauerBodoniStdBold';
+  src: url("/fonts/BauerBodoniStd Bold.otf?c1b9076e78272786ab97c345b403f48f");
+}
+
+@font-face {
+  font-family: 'SaharaBodoni';
+  src: url("/fonts/SaharaBodoni.otf?901458255631c72bb70d699810fb9d69");
+}
+
+@font-face {
+  font-family: 'GothamLight';
+  src: url(/fonts/Gotham-Light.otf?bceda3fae660177ae570735feec62811);
+}
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -9063,6 +9083,16 @@ fieldset[disabled] .btn-dark.active {
   background-color: white;
 }
 
+.btn-rounded {
+  border-radius: 15px;
+}
+
+body {
+  font-family: "GothamLight", Verdana;
+  font-size: 13px;
+  color: #706f6f;
+}
+
 .text-heading-mobile {
   margin-top: 12px;
 }
@@ -9096,6 +9126,7 @@ fieldset[disabled] .btn-dark.active {
 }
 
 .bipolar-alternate-grand-header li:not(:first-child) a {
+  font-family: "BauerBodoniStdBold", Arial;
   font-size: 15px;
   text-transform: uppercase;
   padding-bottom: 6px;
@@ -9121,13 +9152,19 @@ fieldset[disabled] .btn-dark.active {
 }
 
 .bipolar-counts-container .bipolar-counts .bipolar-counts-title {
+  font-family: "SaharaBodoni";
   font-size: 60px;
   line-height: 1.2;
+  color: black;
 }
 
 .bipolar-counts-container .bipolar-counts .bipolar-counts-subtitle {
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 15px;
+  color: black;
   line-height: 1.4;
   margin-top: 12px;
+  letter-spacing: 4px;
   text-transform: uppercase;
 }
 
@@ -9155,12 +9192,28 @@ a:hover {
 }
 
 .content-newsletter {
+  color: black;
   background: url(https://bipolar.com.pe/wp-content/uploads/2015/03/huevos.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
   padding: 30px;
+}
+
+.content-newsletter .newsletter-title {
+  font-family: "BauerBodoniStdBold", Arial;
+  text-transform: uppercase;
+  padding-top: 15px;
+  letter-spacing: 0.15em;
+  font-size: 30px;
+}
+
+.content-newsletter .newsletter-subtitle {
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .header-mobile {
@@ -9190,13 +9243,19 @@ a:hover {
 }
 
 .carousel-home {
-  height: 800px;
+  height: auto;
+  max-height: 800px;
   z-index: -10;
 }
 
 .header-worldwide-shipping {
+  font-family: "BauerBodoniStdBold", Arial;
+  text-transform: uppercase;
   text-align: center;
   line-height: 68px;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.2em;
 }
 
 .bipolar-navbar-styles {
@@ -9215,6 +9274,8 @@ a:hover {
 
 .bipolar-navigation div li a {
   font-size: 15px;
+  font-family: "BauerBodoniStdBold", Arial;
+  font-weight: bold;
   text-transform: uppercase;
   padding-bottom: 6px;
   letter-spacing: 4px;
@@ -9222,7 +9283,7 @@ a:hover {
 
 .bipolar-navigation div li a:hover {
   color: white;
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid white;
   text-decoration: none;
 }
 
@@ -9287,6 +9348,24 @@ a:hover {
   text-transform: uppercase;
 }
 
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"] {
+  border: none;
+  border-radius: 36px;
+  padding: 0 15px;
+  text-transform: uppercase;
+  color: #878787;
+  font-size: 11px;
+  text-align: center;
+  font-family: "GothamLight", Verdana;
+  background-color: #f5f5f5;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 /* No Gutter Column Trick
 ================================================== */
 
@@ -9303,11 +9382,20 @@ a:hover {
 
 .bipolar-filter-title {
   font-size: 15px;
+  font-family: "BauerBodoniStdBold", Arial;
+  color: black;
   text-transform: uppercase;
   padding-bottom: 10px;
   border-bottom: 1px solid black;
   letter-spacing: 2.3px;
   margin-top: 15px;
+}
+
+.bipolar-search-button {
+  border: none;
+  border-top-right-radius: 36px;
+  border-bottom-right-radius: 36px;
+  background-color: #f5f5f5;
 }
 
 .bipolar-shop-results-filter {
@@ -9326,9 +9414,21 @@ a:hover {
   margin-bottom: 40px;
 }
 
-.bipolar-filters li a:hover {
-  color: #fcbeb9;
-  text-decoration: none;
+.bipolar-filters .icheck {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.bipolar-relevants-title {
+  font-size: 17px;
+  color: black;
+  font-family: "BauerBodoniStdBold", Arial;
+}
+
+.bipolar-relevants-subtitle {
+  font-size: 12px;
+  color: black;
+  font-family: "BauerBodoniStdBold", Arial;
 }
 
 .pagination li a.page-number {
@@ -9456,7 +9556,9 @@ a:hover {
 
 .bipolar-footer .title-section span {
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 17px;
+  font-family: "BauerBodoniStdBold", Arial;
+  letter-spacing: 4px;
   padding-bottom: 4px;
   border-bottom: 2px solid white;
 }
@@ -9516,7 +9618,8 @@ a:hover {
 
 .overlay-text {
   color: black;
-  font-size: 100px;
+  font-family: "SaharaBodoni";
+  font-size: 122px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -9556,6 +9659,7 @@ a:hover {
 
 .overlay-shop-text {
   position: relative;
+  font-family: "SaharaBodoni";
   color: black;
   font-size: 40px;
   margin-top: 20px;
@@ -9564,9 +9668,11 @@ a:hover {
 
 .overlay-shop-color-text {
   position: relative;
+  font-family: "BauerBodoniStdBold", Arial;
   color: black;
   text-align: center;
   margin-top: -5px;
+  margin-bottom: 4px;
   letter-spacing: 0.75px;
 }
 
@@ -9579,5 +9685,37 @@ a:hover {
 .overlay-shop-buttons .overlay-radio-button {
   border-radius: 100%;
   min-height: 38px;
+}
+
+.form-control:focus {
+  border-color: transparent;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.bipolar-login-register-content {
+  margin-top: 270px;
+  margin-bottom: 25px;
+}
+
+.bipolar-login-register-content .bipolar-login-register-cols {
+  padding: 50px 40px;
+}
+
+.bipolar-login-register-content .bipolar-login-col {
+  border: 5px solid #eee;
+}
+
+.bipolar-login-register-content .bipolar-facebook-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.bipolar-login-register-content .bipolar-title-login-register {
+  font-size: 16px;
+  font-family: "BauerBodoniStdBold", Arial;
+  color: black;
+  letter-spacing: 0.2em;
 }
 

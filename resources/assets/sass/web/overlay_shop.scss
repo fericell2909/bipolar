@@ -32,6 +32,7 @@
 
 .overlay-shop-text {
   position: relative;
+  font-family: $sahari-bodoni-font;
   color: $bipolar-black;
   font-size: 40px;
   margin-top: 20px;
@@ -40,9 +41,11 @@
 
 .overlay-shop-color-text {
   position: relative;
+  font-family: $bodoni-bold-font;
   color: $bipolar-black;
   text-align: center;
   margin-top: -5px;
+  margin-bottom: 4px;
   letter-spacing: 0.75px;
 }
 

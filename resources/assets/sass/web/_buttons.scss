@@ -89,3 +89,9 @@ fieldset[disabled] .btn-dark.active {
   color: $bipolar-black;
   background-color: white;
 }
+
+.btn-rounded {
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}

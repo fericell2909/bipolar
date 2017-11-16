@@ -1,3 +1,9 @@
+body {
+  font-family: $gotham-light-font;
+  font-size: 13px;
+  color: $bipolar-text-gray;
+}
+
 .text-heading-mobile {
   margin-top: 12px;
 }
@@ -25,6 +31,7 @@
     padding-left: 20px;
     padding-right: 20px;
     a {
+      font-family: $bodoni-bold-font;
       font-size: 15px;
       text-transform: uppercase;
       padding-bottom: 6px;
@@ -49,13 +56,19 @@
     text-align: center;
 
     .bipolar-counts-title {
+      font-family: $sahari-bodoni-font;
       font-size: 60px;
       line-height: 1.2;
+      color: $bipolar-black;
     }
 
     .bipolar-counts-subtitle {
+      font-family: $bodoni-bold-font;
+      font-size: 15px;
+      color: $bipolar-black;
       line-height: 1.4;
       margin-top: 12px;
+      letter-spacing: 4px;
       text-transform: uppercase;
     }
   }
@@ -84,12 +97,28 @@ a {
 }
 
 .content-newsletter {
+  color: $bipolar-black;
   background: url(https://bipolar.com.pe/wp-content/uploads/2015/03/huevos.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
   padding: 30px;
+
+  .newsletter-title {
+    font-family: $bodoni-bold-font;
+    text-transform: uppercase;
+    padding-top: 15px;
+    letter-spacing: 0.15em;
+    font-size: 30px;
+  }
+
+  .newsletter-subtitle {
+    font-family: $bodoni-bold-font;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
 }
 
 .header-mobile {
@@ -118,14 +147,20 @@ a {
 }
 
 .carousel-home {
-  height: 800px;
+  height: auto;
+  max-height: 800px;
   z-index: $z-index-slider;
 }
 
 .header-worldwide-shipping {
   @extend .header-mobile-menu;
+  font-family: $bodoni-bold-font;
+  text-transform: uppercase;
   text-align: center;
   line-height: 68px;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.2em;
 }
 
 .bipolar-navbar-styles  {
@@ -141,12 +176,14 @@ a {
       padding-right: 15px;
       a {
         font-size: 15px;
+        font-family: $bodoni-bold-font;
+        font-weight: bold;
         text-transform: uppercase;
         padding-bottom: 6px;
         letter-spacing: 4px;
         &:hover {
           color: white;
-          border-bottom: 2px solid white;
+          border-bottom: 1px solid white;
           text-decoration: none;
         }
       }
@@ -215,6 +252,22 @@ a {
   padding-bottom: 20px;
   letter-spacing: 1.6px;
   text-transform: uppercase;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="date"] {
+  border: none;
+  border-radius: 36px;
+  padding: 0 15px;
+  text-transform: uppercase;
+  color: #878787;
+  font-size: 11px;
+  text-align: center;
+  font-family: $gotham-light-font;
+  background-color: $bipolar-gray;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 /* No Gutter Column Trick

@@ -1,5 +1,21 @@
 // Fonts
 //@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@font-face {
+  font-family: 'BauerBodoniStd';
+  src: url('../../fonts/Bodoni/BauerBodoniStd Roman.otf');
+}
+@font-face {
+  font-family: 'BauerBodoniStdBold';
+  src: url('../../fonts/Bodoni/BauerBodoniStd Bold.otf');
+}
+@font-face {
+  font-family: 'SaharaBodoni';
+  src: url('../../fonts/Sahara Bodoni/SaharaBodoni.otf');
+}
+@font-face {
+  font-family: 'GothamLight';
+  src: url('../../fonts/Gotham/Gotham-Light.otf');
+}
 
 // Variables
 @import "variables";
@@ -24,3 +40,4 @@
 @import "footer";
 @import "overlay";
 @import "overlay_shop";
+@import "login_and_register";

@@ -132,7 +132,12 @@
                 <a href="{{ route('shop.product', $product->slug) }}" class="col-md-3 overlay-container">
                     <img src="{{ $product->photos->first()->url }}" alt="{{ $product->name }}" class="img-responsive full-image">
                     <div class="overlay-image">
-                        <span class="overlay-text">{{ $product->name }}</span>
+                        <p class="overlay-text">
+                            {{ $product->name }}
+                        </p>
+                        <p class="overlay-text-description">
+                            {{ $product->colors->count() ? $product->colors->first()->name : null }}
+                        </p>
                     </div>
                 </a>
             @endif
@@ -147,7 +152,7 @@
                     <div class="bipolar-counts-subtitle">Bipolares</div>
                 </div>
                 <div class="col-md-6 bipolar-counts">
-                    <div id="bipolar-second-counter" class="bipolar-counts-title" data-number="888888"></div>
+                    <div id="bipolar-second-counter" class="bipolar-counts-title"></div>
                     <div class="bipolar-counts-subtitle">Facebook Fans</div>
                 </div>
             </div>
@@ -157,8 +162,11 @@
     <div class="row content-newsletter">
         <div class="col-md-offset-4 col-md-4">
             <div class="card-body">
-                <h4 class="card-title">Regístrate a nuestro Newsletter</h4>
-                <p class="card-text">Y disfruta de descuentos especiales.</p>
+                <p class="text-center">
+                    <i class="fa fa-2x fa-envelope-o"></i>
+                </p>
+                <h4 class="newsletter-title">Suscríbete</h4>
+                <p class="newsletter-subtitle">Y disfruta de descuentos especiales.</p>
                 {!! Form::open(['route' => 'register.newsletter']) !!}
                     <div class="form-group">
                         {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required' => true]) !!}
@@ -166,7 +174,7 @@
                     <div class="form-group">
                         {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Correo', 'required' => true]) !!}
                     </div>
-                    <button class="btn btn-default">Enviar</button>
+                    <button class="btn btn-dark btn-rounded">Enviar</button>
                 {!! Form::close() !!}
             </div>
         </div>

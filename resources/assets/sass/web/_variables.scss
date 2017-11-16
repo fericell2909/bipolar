@@ -1,9 +1,16 @@
 $bipolar-color: #fcbeb9;
 $bipolar-black: black;
 $bipolar-gray: #f5f5f5;
+$bipolar-text-gray: #706f6f;
 $z-index-slider:-10;
 $z-index-navbar:10;
 $z-index-shop-discount: 4;
 
 // Override the bootstrap primary
 $brand-primary: $bipolar-black;
+
+// Fonts
+$bodoni-font: 'BauerBodoniStd', Arial;
+$bodoni-bold-font: 'BauerBodoniStdBold', Arial;
+$sahari-bodoni-font: 'SaharaBodoni';
+$gotham-light-font: 'GothamLight', Verdana;

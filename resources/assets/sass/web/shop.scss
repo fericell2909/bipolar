@@ -1,10 +1,19 @@
 .bipolar-filter-title {
   font-size: 15px;
+  font-family: $bodoni-bold-font;
+  color: $bipolar-black;
   text-transform: uppercase;
   padding-bottom: 10px;
   border-bottom: 1px solid $bipolar-black;
   letter-spacing: 2.3px;
   margin-top: 15px;
+}
+
+.bipolar-search-button {
+  border: none;
+  border-top-right-radius: 36px;
+  border-bottom-right-radius: 36px;
+  background-color: #f5f5f5;
 }
 
 .bipolar-shop-results-filter {
@@ -21,12 +30,22 @@
 
 .bipolar-filters {
   margin-bottom: 40px;
-  li {
-    a:hover {
-      color: $bipolar-color;
-      text-decoration: none;
-    }
+  .icheck {
+    margin-top: 2px;
+    margin-bottom: 2px;
   }
+}
+
+.bipolar-relevants-title {
+  font-size: 17px;
+  color: black;
+  font-family: $bodoni-bold-font;
+}
+
+.bipolar-relevants-subtitle {
+  font-size: 12px;
+  color: black;
+  font-family: $bodoni-bold-font;
 }
 
 .pagination {

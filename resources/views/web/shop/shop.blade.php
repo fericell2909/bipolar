@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <div class="input-group">
                         {!! Form::text('search', null, ['class' => 'form-control', 'placeholder' => 'Buscar']) !!}
-                        <div class="input-group-addon">
+                        <div class="input-group-addon bipolar-search-button">
                             <i class="fa fa-search"></i>
                         </div>
                     </div>
@@ -42,20 +42,22 @@
                 @endif
                 <h4 class="bipolar-filter-title">Destacados</h4>
                 @foreach($productsSalient as $salient)
-                    <? /** @var \App\Models\Product $salient */ ?>
-                    <div class="row bipolar-product-showed">
-                        <div class="col-md-6 ">
+                    <?php /** @var \App\Models\Product $salient */ ?>
+                    <div class="row no-gutters bipolar-product-showed">
+                        <div class="col-md-5 ">
                             @if(count($salient->photos))
                                 <a href="{{ route('shop.product', $salient->slug) }}">
-                                    <img src="{{ $salient->photos->first()->url }}" alt="{{ $salient->name }}" class="img-responsive">
+                                    <img src="{{ $salient->photos->first()->url }}" alt="{{ $salient->name }}" width="90">
                                 </a>
                             @else
-                                <img src="https://placehold.it/212x141" alt="Shop" class="img-responsive">
+                                <img src="https://placehold.it/212x141" alt="Shop">
                             @endif
                         </div>
-                        <div class="col-md-6">
-                            <strong>{{ $salient->name }}</strong><br>
-                            <strong>{{ $salient->price }}</strong>
+                        <div class="col-md-7 text-left">
+                            <a href="{{ route('shop.product', $salient->slug) }}">
+                                <span class="bipolar-relevants-title">{{ $salient->name }}</span>
+                            </a><br>
+                            <span class="bipolar-relevants-subtitle">{{ $salient->price }}</span>
                         </div>
                     </div>
                 @endforeach
@@ -90,6 +92,7 @@
                                                 {{ $product->colors->first()->name }}
                                             </div>
                                         @endif
+                                        <div class="overlay-shop-color-text">{{ $product->price }}</div>
                                         <div class="overlay-shop-buttons">
                                             <button class="btn btn-dark overlay-radio-button" data-toggle="tooltip" data-placement="top" title="Wishlist">
                                                 <i class="fa fa-heart"></i>

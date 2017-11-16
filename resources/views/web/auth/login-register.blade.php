@@ -1,7 +1,7 @@
 @extends('web.layouts.app_web')
 @section('content')
     <div class="container">
-        <div class="row" style="margin-top: 270px;">
+        <div class="row bipolar-login-register-content">
             @if ($errors->any())
             <div class="col-md-12">
                 <div class="alert alert-danger">
@@ -13,11 +13,11 @@
                 </div>
             </div>
             @endif
-            <div class="col-md-6">
+            <div class="col-md-6 bipolar-login-register-cols bipolar-login-col">
                 @includeWhen($loginRegister === 'login', 'web.auth.login-form')
                 @includeWhen($loginRegister === 'register', 'web.auth.register-form')
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 bipolar-login-register-cols">
                 @includeWhen($loginRegister === 'login', 'web.auth.register-form')
                 @includeWhen($loginRegister === 'register', 'web.auth.login-form')
             </div>
