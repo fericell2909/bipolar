@@ -8,7 +8,7 @@
     </div>
     <div class="bipolar-container">
         <div class="row product-content">
-            <div class="col-md-6">
+            <div class="col-sm-6 col-md-6">
                 @if(count($product->photos))
                     <div>
                         @if(false)
@@ -31,8 +31,11 @@
                     </div>
                 @endif
             </div>
-            <div class="col-md-6">
-                <h1 class="product-title">{{ $product->name }}</h1>
+            <div class="col-sm-6 col-md-6">
+                <div class="product-title">{{ $product->name }}</div>
+                @if($product->colors->count() > 0)
+                    <div class="product-subtitle">{{ $product->colors->first()->name }}</div>
+                @endif
                 <div class="product-colors">{{ $product->subtitle }}</div>
                 <p class="product-price">
                     <span class="product-amount">S/. {{ $product->price }}</span>
@@ -45,17 +48,17 @@
                 {!! Form::open() !!}
                     @if(count($stockWithSizes))
                         <div class="row" style="margin-bottom: 20px;">
-                            <div class="col-md-1">TALLA</div>
-                            <div class="col-md-3">
+                            <div class="col-sm-2 col-md-1 text-uppercase" style="margin-top: 10px">Talla</div>
+                            <div class="col-sm-7 col-md-3">
                                 {!! Form::select('sizes', $stockWithSizes, null, ['class' => 'product-size-select']) !!}
                             </div>
-                            <div class="col-md-2">
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#testingModal">Ver guía de tallas</button>
+                            <div class="col-sm-3 col-md-2">
+                                <button type="button" class="btn btn-default btn-sizes-modal" data-toggle="modal" data-target="#testingModal">Ver guía de tallas</button>
                             </div>
                         </div>
                         <div class="row" style="margin-bottom: 20px">
-                            <div class="col-md-4">CAMBIA DE MONEDA</div>
-                            <div class="col-md-4">
+                            <div class="col-sm-6 col-md-4 text-uppercase" style="margin-top: 10px;">Cambia de moneda</div>
+                            <div class="col-sm-6 col-md-4">
                                 {!! Form::select('sizes', $stockWithSizes, null, ['class' => 'product-size-select']) !!}
                             </div>
                         </div>
@@ -65,10 +68,10 @@
                     STATUS: EN STOCK
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        COMPÁRTELO
+                    <div class="col-sm-4 col-md-3 text-uppercase" style="margin-top: 10px;">
+                        Compártelo:
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm-4 col-md-4">
                         <div class="bipolar-action-button-container">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-envelope-o"></i></a>
@@ -77,7 +80,7 @@
                 </div>
             </div>
         </div>
-        @if($product->recommendeds)
+        @if($product->recommendeds->count() > 0)
         <h3>Te recomendamos</h3>
         <div class="row">
             @foreach($product->recommendeds as $recommended)
@@ -89,8 +92,8 @@
                     @else
                         <img src="https://placehold.it/320x200" alt="{{ $recommended->name }}" class="img-responsive">
                     @endif
-                    <h4><a href="{{ route('shop.product', $recommended->slug) }}">{{ $recommended->name }}</a></h5>
-                    <h5>S/. {{ $recommended->price }}</h6>
+                    <h4><a href="{{ route('shop.product', $recommended->slug) }}">{{ $recommended->name }}</a></h4>
+                    <h5>S/. {{ $recommended->price }}</h5>
                 </div>
             @endforeach
         </div>

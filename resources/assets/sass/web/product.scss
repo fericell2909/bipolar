@@ -1,8 +1,18 @@
 .product-content {
-  margin-top: 50px;
+  margin-top: 33px;
 
   .product-title {
+    font-family: $sahari-bodoni-font;
     font-size: 75px;
+    color: $bipolar-black;
+  }
+
+  .product-subtitle {
+    text-transform: uppercase;
+    font-family: $bodoni-bold-font;
+    font-size: 15px;
+    color: $bipolar-black;
+    letter-spacing: 0.2em;
   }
 
   .product-colors {
@@ -15,7 +25,10 @@
   .product-price {
     margin-bottom: 30px;
     .product-amount {
+      color: $bipolar-black;
+      font-family: $bodoni-bold-font;
       font-size: 36px;
+      letter-spacing: 5px;
     }
   }
 
@@ -45,6 +58,21 @@
     background-position: calc(100% - 10px);
   }
 
+  .btn-sizes-modal {
+    background-color: #f5f5f5;
+    text-transform: uppercase;
+    border-radius: 42px;
+    font-size: 10px;
+    padding: 10px 0;
+    color: $bipolar-text-gray;
+    min-width: 150px;
+    border: none;
+    &:hover {
+      background-color: $bipolar-color;
+      color: white;
+    }
+  }
+
   .bipolar-action-button-container {
     > a {
       display: inline-block;
@@ -72,7 +100,7 @@
     margin-bottom: 20px;
     border-bottom: 1px solid #eee;
     padding-bottom: 6px;
-    color: #eee;
+    color: $bipolar-text-gray;
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 2px;
