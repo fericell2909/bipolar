@@ -57,6 +57,11 @@
                             <a href="{{ route('shop.product', $salient->slug) }}">
                                 <span class="bipolar-relevants-title">{{ $salient->name }}</span>
                             </a><br>
+                            @if($salient->colors->count() > 0)
+                                <div class="bipolar-relevants-subtitle">
+                                    {{ $salient->colors->first()->name }}
+                                </div>
+                            @endif
                             <span class="bipolar-relevants-subtitle">{{ $salient->price }}</span>
                         </div>
                     </div>
