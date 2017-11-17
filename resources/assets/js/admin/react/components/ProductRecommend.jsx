@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {isEnterKey} from '../helpers';
+import {isEnterKey, isLeftClick} from '../helpers';
 import {get} from 'lodash';
 import axios from 'axios';
 
@@ -9,6 +9,7 @@ export default class BipolarProductRecommended extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            searchText: '',
             findedProducts: [],
             recommendedProducts: [],
             showSuccessMessage: false,
@@ -16,14 +17,15 @@ export default class BipolarProductRecommended extends Component {
 
         this.searchProduct = this.searchProduct.bind(this);
         this.getRecommendeds = this.getRecommendeds.bind(this);
+        this.setSearchTextValue = this.setSearchTextValue.bind(this);
     }
 
     searchProduct(event) {
-        if (isEnterKey(event) === false) {
+        if (isEnterKey(event) === false && isLeftClick(event) === false) {
             return;
         }
 
-        const searchText = event.target.value;
+        const searchText = this.state.searchText;
 
         axios.get(`/ajax-admin/products/search?search=${searchText}`)
             .then(({data}) => {
@@ -33,6 +35,10 @@ export default class BipolarProductRecommended extends Component {
                 });
             })
             .catch(error => console.error(error));
+    }
+
+    setSearchTextValue(event) {
+        return this.setState({ searchText: event.target.value })
     }
 
     getRecommendeds() {
@@ -133,10 +139,10 @@ export default class BipolarProductRecommended extends Component {
           <div className="white-box">
             <h3 className="box-title">Seleccionar recomendados</h3>
             <div className="input-group">
-              <input className="form-control" type="text" placeholder="Buscar otros productos" onKeyPress={this.searchProduct} />
+              <input className="form-control" type="text" value={this.state.searchText} placeholder="Buscar otros productos" onChange={this.setSearchTextValue} onKeyPress={this.searchProduct}/>
               <span className="input-group-btn">
-                <button className="btn btn-sm btn-dark btn-rounded">
-                  Limpiar
+                <button className="btn btn-sm btn-dark btn-rounded" onClick={this.searchProduct}>
+                  Buscar
                 </button>
               </span>
             </div>

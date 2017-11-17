@@ -16,4 +16,7 @@ if (mix.inProduction()) {
     mix.version();
 }
 
-mix.browserSync('bipolar.dev');
+mix.browserSync({
+    proxy: 'bipolar.dev',
+    open: false,
+});

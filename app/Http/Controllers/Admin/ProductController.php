@@ -312,4 +312,9 @@ class ProductController extends Controller
 
         return view('admin.products.recommended', compact('product'));
     }
+
+    public function activations()
+    {
+        return view('admin.products.activations');
+    }
 }

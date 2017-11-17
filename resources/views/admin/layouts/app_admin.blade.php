@@ -92,6 +92,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li><a href="{{ route('products.create') }}">Nuevo producto</a></li>
                         <li><a href="{{ route('products.index') }}">Listar productos</a></li>
                         <li><a href="{{ route('products.salient-home') }}">Destacados & Home</a></li>
+                        <li><a href="{{ route('products.activations') }}">Activaciones</a></li>
                     </ul>
                 </li>
                 <li>

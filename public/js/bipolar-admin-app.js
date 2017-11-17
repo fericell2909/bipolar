@@ -40983,6 +40983,7 @@ var BipolarProductRecommended = function (_Component) {
         var _this = _possibleConstructorReturn(this, (BipolarProductRecommended.__proto__ || Object.getPrototypeOf(BipolarProductRecommended)).call(this, props));
 
         _this.state = {
+            searchText: '',
             findedProducts: [],
             recommendedProducts: [],
             showSuccessMessage: false
@@ -40990,6 +40991,7 @@ var BipolarProductRecommended = function (_Component) {
 
         _this.searchProduct = _this.searchProduct.bind(_this);
         _this.getRecommendeds = _this.getRecommendeds.bind(_this);
+        _this.setSearchTextValue = _this.setSearchTextValue.bind(_this);
         return _this;
     }
 
@@ -40998,11 +41000,11 @@ var BipolarProductRecommended = function (_Component) {
         value: function searchProduct(event) {
             var _this2 = this;
 
-            if (Object(__WEBPACK_IMPORTED_MODULE_2__helpers__["a" /* isEnterKey */])(event) === false) {
+            if (Object(__WEBPACK_IMPORTED_MODULE_2__helpers__["a" /* isEnterKey */])(event) === false && Object(__WEBPACK_IMPORTED_MODULE_2__helpers__["b" /* isLeftClick */])(event) === false) {
                 return;
             }
 
-            var searchText = event.target.value;
+            var searchText = this.state.searchText;
 
             __WEBPACK_IMPORTED_MODULE_4_axios___default.a.get('/ajax-admin/products/search?search=' + searchText).then(function (_ref) {
                 var data = _ref.data;
@@ -41014,6 +41016,11 @@ var BipolarProductRecommended = function (_Component) {
             }).catch(function (error) {
                 return console.error(error);
             });
+        }
+    }, {
+        key: 'setSearchTextValue',
+        value: function setSearchTextValue(event) {
+            return this.setState({ searchText: event.target.value });
         }
     }, {
         key: 'getRecommendeds',
@@ -41190,14 +41197,14 @@ var BipolarProductRecommended = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'input-group' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-control', type: 'text', placeholder: 'Buscar otros productos', onKeyPress: this.searchProduct }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { className: 'form-control', type: 'text', value: this.state.searchText, placeholder: 'Buscar otros productos', onChange: this.setSearchTextValue, onKeyPress: this.searchProduct }),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'span',
                                 { className: 'input-group-btn' },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'button',
-                                    { className: 'btn btn-sm btn-dark btn-rounded' },
-                                    'Limpiar'
+                                    { className: 'btn btn-sm btn-dark btn-rounded', onClick: this.searchProduct },
+                                    'Buscar'
                                 )
                             )
                         ),
@@ -41345,9 +41352,14 @@ if (document.getElementById('bipolar-product-recommended')) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = isEnterKey;
+/* harmony export (immutable) */ __webpack_exports__["b"] = isLeftClick;
 function isEnterKey(event) {
     var keyCode = event.which || event.keyCode;
     return keyCode === 13;
+}
+
+function isLeftClick(event) {
+    return event.button === 0;
 }
 
 /***/ }),
