@@ -12,39 +12,6 @@ body {
   background-color: $bipolar-color;
 }
 
-.bipolar-grand-header {
-  position: fixed;
-  width: 100%;
-  z-index: $z-index-navbar;
-}
-
-.bipolar-alternate-grand-header {
-  @extend .bipolar-grand-header;
-  box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
-  li:first-child {
-    margin-top: 10px;
-    margin-right: 10px;
-  }
-  li:not(:first-child) {
-    margin-top: 24px;
-    margin-bottom: 14px;
-    padding-left: 20px;
-    padding-right: 20px;
-    a {
-      font-family: $bodoni-bold-font;
-      font-size: 15px;
-      text-transform: uppercase;
-      padding-bottom: 6px;
-      letter-spacing: 4px;
-      &:hover {
-        color: white;
-        border-bottom: 2px solid white;
-        text-decoration: none;
-      }
-    }
-  }
-}
-
 .bipolar-counts-container {
   background-image: url(https://bipolar-peru.s3.amazonaws.com/assets/jeringas_close.jpg);
   background-position: center;
@@ -72,12 +39,6 @@ body {
       text-transform: uppercase;
     }
   }
-}
-
-.bipolar-header-desktop {
-  position: absolute;
-  z-index: 30;
-  width: 100%;
 }
 
 .color-transparent {
@@ -121,31 +82,6 @@ a {
   }
 }
 
-.header-mobile {
-  background: $bipolar-color url('../../img/linea.png') repeat-x 0 55px;
-  padding: 30px;
-  text-align: center;
-}
-
-.header-desktop {
-  background: $bipolar-color url('../../img/linea.png') repeat-x 0 25px;
-  text-align: center;
-  z-index: 3;
-  margin-top: -25px;
-}
-
-.header-desktop-transparent {
-  @extend .header-desktop;
-  background: transparent url('../../img/linea.png') repeat-x 0 25px;
-}
-
-.header-mobile-menu {
-  background: $bipolar-black;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-}
-
 .carousel-home {
   height: auto;
   max-height: 800px;
@@ -163,87 +99,18 @@ a {
   letter-spacing: 0.2em;
 }
 
-.bipolar-navbar-styles  {
-  margin-bottom: 0;
-  border-radius: 0;
-}
-
-.bipolar-navigation {
-  padding: 30px;
-  div {
-    li {
-      padding-left: 15px;
-      padding-right: 15px;
-      a {
-        font-size: 15px;
-        font-family: $bodoni-bold-font;
-        font-weight: bold;
-        text-transform: uppercase;
-        padding-bottom: 6px;
-        letter-spacing: 4px;
-        &:hover {
-          color: white;
-          border-bottom: 1px solid white;
-          text-decoration: none;
-        }
-      }
-    }
-  }
-}
-
-.nav .open > a {
-  background-color: transparent;
-  border-color: transparent;
-  &:hover, &:focus {
-    background-color: transparent;
-    border-color: transparent;
-  }
-}
-
-.nav > li > a {
-  &:hover, &:focus {
-    text-decoration: none;
-    background-color: transparent;
-  }
-}
-
-.navbar-brand {
-  font-size: 14px;
-}
-
-.navbar-nav {
-  i {
-    font-size: 1.2em;
-  }
-}
-
-.full-image {
-  width: 100%;
-}
-
-.cart-number-count {
-  position: absolute;
-  background-color: black;
-  color: white;
-  font-size: 12px;
-  padding: 2px;
-  border-radius: 100%;
-  top: 13px;
-  right: 7px;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  line-height: 18px;
-}
-
 .bipolar-container {
   @extend .container;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
+.breadcrumb-without-padding {
+  background-color: #F5F5F5;
+}
+
 .breadcrumb {
-  padding-top: 250px;
+  @extend .breadcrumb-without-padding;
   background-color: #F5F5F5;
 }
 

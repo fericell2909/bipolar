@@ -9101,44 +9101,6 @@ body {
   background-color: #fcbeb9;
 }
 
-.bipolar-grand-header,
-.bipolar-alternate-grand-header {
-  position: fixed;
-  width: 100%;
-  z-index: 10;
-}
-
-.bipolar-alternate-grand-header {
-  -webkit-box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
-          box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
-}
-
-.bipolar-alternate-grand-header li:first-child {
-  margin-top: 10px;
-  margin-right: 10px;
-}
-
-.bipolar-alternate-grand-header li:not(:first-child) {
-  margin-top: 24px;
-  margin-bottom: 14px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.bipolar-alternate-grand-header li:not(:first-child) a {
-  font-family: "BauerBodoniStdBold", Arial;
-  font-size: 15px;
-  text-transform: uppercase;
-  padding-bottom: 6px;
-  letter-spacing: 4px;
-}
-
-.bipolar-alternate-grand-header li:not(:first-child) a:hover {
-  color: white;
-  border-bottom: 2px solid white;
-  text-decoration: none;
-}
-
 .bipolar-counts-container {
   background-image: url(https://bipolar-peru.s3.amazonaws.com/assets/jeringas_close.jpg);
   background-position: center;
@@ -9166,12 +9128,6 @@ body {
   margin-top: 12px;
   letter-spacing: 4px;
   text-transform: uppercase;
-}
-
-.bipolar-header-desktop {
-  position: absolute;
-  z-index: 30;
-  width: 100%;
 }
 
 .color-transparent {
@@ -9216,6 +9172,119 @@ a:hover {
   text-transform: uppercase;
 }
 
+.carousel-home {
+  height: auto;
+  max-height: 800px;
+  z-index: -10;
+}
+
+.header-worldwide-shipping {
+  font-family: "BauerBodoniStdBold", Arial;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 68px;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+}
+
+.bipolar-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.breadcrumb-without-padding,
+.breadcrumb {
+  background-color: #F5F5F5;
+}
+
+.breadcrumb {
+  background-color: #F5F5F5;
+}
+
+.breadcrumb-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"] {
+  border: none;
+  border-radius: 36px;
+  padding: 0 15px;
+  text-transform: uppercase;
+  color: #878787;
+  font-size: 11px;
+  text-align: center;
+  font-family: "GothamLight", Verdana;
+  background-color: #f5f5f5;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/* No Gutter Column Trick
+================================================== */
+
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.row.no-gutters [class^="col-"],
+.row.no-gutters [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.bipolar-grand-header,
+.bipolar-alternate-grand-header {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+.bipolar-alternate-grand-header {
+  -webkit-box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
+}
+
+.bipolar-alternate-grand-header li:first-child {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.bipolar-alternate-grand-header li:not(:first-child) {
+  margin-top: 24px;
+  margin-bottom: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.bipolar-alternate-grand-header li:not(:first-child) a {
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 15px;
+  text-transform: uppercase;
+  padding-bottom: 6px;
+  letter-spacing: 4px;
+}
+
+.bipolar-alternate-grand-header li:not(:first-child) a:hover {
+  color: white;
+  border-bottom: 2px solid white;
+  text-decoration: none;
+}
+
+.bipolar-header-desktop {
+  position: absolute;
+  z-index: 30;
+  width: 100%;
+}
+
 .header-mobile {
   background: #fcbeb9 url(/images/linea.png?5b723fca197b8da1ba59bb91e81e95e4) repeat-x 0 55px;
   padding: 30px;
@@ -9240,22 +9309,8 @@ a:hover {
   color: white;
   font-size: 15px;
   font-weight: 600;
-}
-
-.carousel-home {
-  height: auto;
-  max-height: 800px;
-  z-index: -10;
-}
-
-.header-worldwide-shipping {
-  font-family: "BauerBodoniStdBold", Arial;
+  padding: 10px 15px;
   text-transform: uppercase;
-  text-align: center;
-  line-height: 68px;
-  font-weight: 400;
-  font-size: 15px;
-  letter-spacing: 0.2em;
 }
 
 .bipolar-navbar-styles {
@@ -9331,53 +9386,19 @@ a:hover {
   line-height: 18px;
 }
 
-.bipolar-container {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.breadcrumb {
-  padding-top: 250px;
-  background-color: #F5F5F5;
-}
-
-.breadcrumb-content {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="date"] {
-  border: none;
-  border-radius: 36px;
-  padding: 0 15px;
-  text-transform: uppercase;
-  color: #878787;
-  font-size: 11px;
+.cart-number-count-inverse {
+  position: relative;
+  background-color: #fcbeb9;
+  color: black;
+  font-size: 12px;
+  padding: 2px;
+  border-radius: 100%;
+  top: 13px;
+  right: 7px;
+  width: 20px;
+  height: 20px;
   text-align: center;
-  font-family: "GothamLight", Verdana;
-  background-color: #f5f5f5;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/* No Gutter Column Trick
-================================================== */
-
-.row.no-gutters {
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.row.no-gutters [class^="col-"],
-.row.no-gutters [class*=" col-"] {
-  padding-right: 0;
-  padding-left: 0;
+  line-height: 18px;
 }
 
 .bipolar-filter-title {

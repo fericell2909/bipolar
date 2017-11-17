@@ -13,7 +13,7 @@
     @stack('css_plus')
 </head>
 <body>
-    <div class="bipolar-grand-header hidden-xs">
+    <div class="bipolar-grand-header hidden-sm">
         <nav class="navbar bipolar-background bipolar-navbar-styles">
             <div class="container">
                 <div class="navbar-header">
@@ -80,7 +80,7 @@
         </section>
     </div>
     @include('web.partials.alternate_bar')
-    <section class="container visible-xs-block">
+    <section class="container visible-sm-block">
         <p class="text-center text-heading-mobile">¡Bienvenido invitado! Ingresa o regístrate</p>
         <div class="dropdown show">
             <a class="btn btn-link btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -100,8 +100,23 @@
             </div>
         </div>
     </section>
-    <section class="header-mobile-menu visible-xs-block">
-        MENU
+    <section class="header-mobile visible-sm-block">
+        <div class="row">
+            <div class="col-md-offset-4 col-md-4">
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('images/logo-linea.png') }}">
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="header-mobile-menu visible-sm-block">
+        <div class="row">
+            <div class="col-sm-2"><i class="fa fa-bars"></i> Menu</div>
+            <div class="col-sm-offset-8 col-sm-2">
+                <img src="{{ asset('images/cart.svg') }}" width="35">
+                <span class="cart-number-count-inverse">0</span>
+            </div>
+        </div>
     </section>
     @yield('content')
     @include('web.partials.footer')

@@ -129,7 +129,7 @@
     <div class="row no-gutters">
         @foreach($productsInHome as $product)
             @if($product->photos->count() > 0)
-                <a href="{{ route('shop.product', $product->slug) }}" class="col-md-3 overlay-container">
+                <a href="{{ route('shop.product', $product->slug) }}" class="col-sm-6 col-md-3 overlay-container">
                     <img src="{{ $product->photos->first()->url }}" alt="{{ $product->name }}" class="img-responsive full-image">
                     <div class="overlay-image">
                         <p class="overlay-text">
