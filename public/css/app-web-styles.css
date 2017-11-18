@@ -9199,7 +9199,7 @@ a:hover {
 }
 
 .breadcrumb {
-  background-color: #F5F5F5;
+  padding-top: 250px;
 }
 
 .breadcrumb-content {
@@ -9275,7 +9275,7 @@ input[type="date"] {
 
 .bipolar-alternate-grand-header li:not(:first-child) a:hover {
   color: white;
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid white;
   text-decoration: none;
 }
 

@@ -40913,6 +40913,7 @@ __webpack_require__("./resources/assets/js/admin/react/bootstrap.js");
  */
 
 __webpack_require__("./resources/assets/js/admin/react/components/ProductRecommend.jsx");
+__webpack_require__("./resources/assets/js/admin/react/components/ProductActivations.jsx");
 
 /***/ }),
 
@@ -40942,6 +40943,424 @@ if (token) {
   window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/admin/react/components/ProductActivations.jsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/react.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__("./node_modules/react-dom/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__("./node_modules/lodash/lodash.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__("./node_modules/axios/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+var BipolarProductActivations = function (_Component) {
+    _inherits(BipolarProductActivations, _Component);
+
+    function BipolarProductActivations() {
+        _classCallCheck(this, BipolarProductActivations);
+
+        var _this = _possibleConstructorReturn(this, (BipolarProductActivations.__proto__ || Object.getPrototypeOf(BipolarProductActivations)).call(this));
+
+        _this.state = {
+            actives: [],
+            activesFiltered: [],
+            inactives: [],
+            inactivesFiltered: [],
+            textActiveSearch: '',
+            textInactiveSearch: '',
+            waitingAjax: false
+        };
+
+        _this.searchActives = _this.searchActives.bind(_this);
+        _this.searchInactives = _this.searchInactives.bind(_this);
+        return _this;
+    }
+
+    _createClass(BipolarProductActivations, [{
+        key: 'searchActives',
+        value: function searchActives(event) {
+            var activesOriginals = this.state.actives;
+            var text = event.target.value;
+
+            if (activesOriginals.length === 0) {
+                return false;
+            }
+
+            if (text === '') {
+                return this.setState({
+                    activesFiltered: [],
+                    textActiveSearch: ''
+                });
+            }
+
+            var filtered = activesOriginals.filter(function (item) {
+                return item.name.search(text) !== -1;
+            });
+
+            return this.setState({
+                activesFiltered: filtered,
+                textActiveSearch: text
+            });
+        }
+    }, {
+        key: 'searchInactives',
+        value: function searchInactives(event) {
+            var inactivesOriginals = this.state.inactives;
+            var text = event.target.value;
+
+            if (inactivesOriginals.length === 0) {
+                return false;
+            }
+
+            if (text === '') {
+                return this.setState({
+                    inactivesFiltered: [],
+                    textInactiveSearch: ''
+                });
+            }
+
+            var filtered = inactivesOriginals.filter(function (item) {
+                return item.name.search(text) !== -1;
+            });
+
+            return this.setState({
+                inactivesFiltered: filtered,
+                textInactiveSearch: text
+            });
+        }
+    }, {
+        key: 'toggleActive',
+        value: function toggleActive(productHashId, active) {
+            var _this2 = this;
+
+            this.setState({ waitingAjax: true });
+            __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('/ajax-admin/products/' + productHashId, { active: !active }).then(function () {
+                _this2.getActivesAndInactives();
+            }).catch(function (error) {
+                return console.log(error);
+            }).then(function () {
+                return _this2.setState({ waitingAjax: false });
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this3 = this;
+
+            var botonSincronizando = this.state.waitingAjax === true ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'span',
+                { className: 'label label-pill label-inverse' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-spin fa-refresh' }),
+                ' Sincronizando'
+            ) : null;
+
+            var activesForFilter = this.state.activesFiltered.length === 0 && this.state.textActiveSearch.length === 0 ? [].concat(_toConsumableArray(this.state.actives)) : [].concat(_toConsumableArray(this.state.activesFiltered));
+            var activesRendered = activesForFilter.map(function (activeItem) {
+                var firstPhotoUrl = Object(__WEBPACK_IMPORTED_MODULE_2_lodash__["get"])(activeItem, 'photos[0].url', 'https://placehold.it/317x210');
+
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'tr',
+                    { key: activeItem['hash_id'] },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        activeItem['id']
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: firstPhotoUrl, width: '100' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        activeItem['name']
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        activeItem['price']
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'span',
+                            { className: 'label label-pill label-success' },
+                            'Activo'
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        { className: 'text-center' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'button',
+                            { onClick: function onClick() {
+                                    return _this3.toggleActive(activeItem['hash_id'], activeItem['active']);
+                                },
+                                className: 'btn btn-dark btn-rounded',
+                                disabled: _this3.state.waitingAjax },
+                            'Desactivar ',
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-arrow-right' })
+                        )
+                    )
+                );
+            });
+
+            var inactivesForFilter = this.state.inactivesFiltered.length === 0 && this.state.textInactiveSearch.length === 0 ? [].concat(_toConsumableArray(this.state.inactives)) : [].concat(_toConsumableArray(this.state.inactivesFiltered));
+            var inactivesRendered = inactivesForFilter.map(function (inactiveItem) {
+                var firstPhotoUrl = Object(__WEBPACK_IMPORTED_MODULE_2_lodash__["get"])(inactiveItem, 'photos[0].url', 'https://placehold.it/317x210');
+
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'tr',
+                    { key: inactiveItem['hash_id'] },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        inactiveItem['id']
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: firstPhotoUrl, width: '100' })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        inactiveItem['name']
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        inactiveItem['price']
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'span',
+                            { className: 'label label-pill label-danger' },
+                            'Inactivo'
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'td',
+                        { className: 'text-center' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'button',
+                            { onClick: function onClick() {
+                                    return _this3.toggleActive(inactiveItem['hash_id'], inactiveItem['active']);
+                                },
+                                className: 'btn btn-dark btn-rounded',
+                                disabled: _this3.state.waitingAjax },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-arrow-left' }),
+                            ' Activar'
+                        )
+                    )
+                );
+            });
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'row' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'col-md-6' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'white-box' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Buscar en activos', onKeyUp: this.searchActives })
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'white-box' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'box-title' },
+                            'Productos activos ',
+                            botonSincronizando
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'table',
+                            { className: 'table table-responsive' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'thead',
+                                null,
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'tr',
+                                    null,
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        '#'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-photo' })
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Nombre'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Precio'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Estado'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        { className: 'text-center' },
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-cog' })
+                                    )
+                                )
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'tbody',
+                                null,
+                                activesRendered.length > 0 ? activesRendered : null
+                            )
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'col-md-6' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'white-box' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'input-group' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Buscar en inactivos', onKeyUp: this.searchInactives })
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'white-box' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'box-title' },
+                            'Productos inactivos ',
+                            botonSincronizando
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'table',
+                            { className: 'table table-responsive' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'thead',
+                                null,
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'tr',
+                                    null,
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        '#'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-photo' })
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Nombre'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Precio'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        null,
+                                        'Estado'
+                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'th',
+                                        { className: 'text-center' },
+                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-cog' })
+                                    )
+                                )
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'tbody',
+                                null,
+                                inactivesRendered.length > 0 ? inactivesRendered : null
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }, {
+        key: 'getActivesAndInactives',
+        value: function getActivesAndInactives() {
+            var _this4 = this;
+
+            this.setState({ waitingAjax: true });
+
+            return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.all([__WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/products', { params: { active: 1 } }), __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/products', { params: { active: 0 } })]).then(__WEBPACK_IMPORTED_MODULE_3_axios___default.a.spread(function (responseActive, responseInactive) {
+                _this4.setState({
+                    actives: responseActive['data'],
+                    activesFiltered: [],
+                    inactives: responseInactive['data'],
+                    inactivesFiltered: [],
+                    waitingAjax: false
+                });
+            })).catch(function (error) {
+                return console.log(error);
+            });
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.getActivesAndInactives();
+        }
+    }]);
+
+    return BipolarProductActivations;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (BipolarProductActivations);
+
+
+if (document.getElementById('bipolar-product-activations')) {
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(BipolarProductActivations, null), document.getElementById('bipolar-product-activations'));
 }
 
 /***/ }),

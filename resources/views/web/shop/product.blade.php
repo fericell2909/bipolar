@@ -1,12 +1,12 @@
 @extends('web.layouts.app_web')
 @section('content')
     <?php /** @var \App\Models\Product $product */ ?>
-    <div class="breadcrumb visible-md-block">
+    <div class="breadcrumb visible-md-block visible-lg-block">
         <div class="breadcrumb-content container">
             <i class="fa fa-home"></i> &raquo; <a href="#">Shop</a> &raquo; {{ $product->name }}
         </div>
     </div>
-    <div class="breadcrumb-without-padding hidden-md">
+    <div class="breadcrumb-without-padding visible-sm-block">
         <div class="breadcrumb-content container">
             <i class="fa fa-home"></i> &raquo; <a href="#">Shop</a> &raquo; {{ $product->name }}
         </div>
