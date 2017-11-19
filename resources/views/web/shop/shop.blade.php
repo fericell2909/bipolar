@@ -50,7 +50,7 @@
                                     <img src="{{ $salient->photos->first()->url }}" alt="{{ $salient->name }}" width="90">
                                 </a>
                             @else
-                                <img src="https://placehold.it/212x141" alt="Shop">
+                                <img src="https://placehold.it/212x141" alt="Shop" width="90">
                             @endif
                         </div>
                         <div class="col-md-7 text-left">

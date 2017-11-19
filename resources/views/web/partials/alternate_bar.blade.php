@@ -1,4 +1,4 @@
-<div class="bipolar-alternate-grand-header hidden bipolar-background visible-md-block">
+<div class="bipolar-alternate-grand-header hidden bipolar-background hidden-xs hidden-sm">
     <div class="container">
         <ul class="list-inline">
             <li><a href="#"><img src="{{ asset('images/logo-linea.png') }}" width="160"></a></li>

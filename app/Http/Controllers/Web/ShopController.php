@@ -33,7 +33,8 @@ class ShopController extends Controller
             ->with([
                 'photos' => function ($withPhotos) {
                     $withPhotos->orderBy('order');
-                }
+                },
+                'colors',
             ])
             ->orderBy('name')
             ->get();

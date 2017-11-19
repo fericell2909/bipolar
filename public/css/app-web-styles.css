@@ -9101,6 +9101,15 @@ body {
   background-color: #fcbeb9;
 }
 
+.title-text-content {
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 26px;
+  font-weight: 400;
+  color: black;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .bipolar-counts-container {
   background-image: url(https://bipolar-peru.s3.amazonaws.com/assets/jeringas_close.jpg);
   background-position: center;
@@ -9248,6 +9257,86 @@ input[type="date"] {
   z-index: 10;
 }
 
+.bipolar-first-navbar {
+  max-height: 42px;
+  min-height: 42px;
+}
+
+.bipolar-second-navbar {
+  position: relative;
+  padding: 10px 0 40px;
+}
+
+.bipolar-second-navbar .bipolar-navbar-social-links {
+  width: 30%;
+  padding: 0;
+  margin: -10px 0 0;
+  list-style: none;
+  display: inline-block;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.bipolar-second-navbar .bipolar-navbar-social-links > li + li {
+  padding-left: 15px;
+}
+
+.bipolar-second-navbar .bipolar-navbar-social-links > li {
+  display: inline-block;
+  padding: 5px 0;
+}
+
+.bipolar-second-navbar .bipolar-navbar-social-links > li > a {
+  font-size: 17px;
+}
+
+.bipolar-second-navbar .bipolar-header-logo {
+  width: 40%;
+  padding: 20px 0 0;
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 15px;
+  text-align: center;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper {
+  position: relative;
+  width: 29%;
+  font-size: 14px;
+  margin: -10px 0 0;
+  padding: 0 15px 0 0;
+  text-align: right;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content {
+  display: inline-block;
+  text-align: left;
+  cursor: pointer;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-number-count {
+  position: absolute;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  font-size: 12px;
+  padding: 2px;
+  border-radius: 100%;
+  top: 0;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 16px;
+}
+
+.background-line-image {
+  background: url(/images/linea.png?5b723fca197b8da1ba59bb91e81e95e4) repeat-x 0 55px;
+}
+
 .bipolar-alternate-grand-header {
   -webkit-box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
           box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
@@ -9319,7 +9408,7 @@ input[type="date"] {
 }
 
 .bipolar-navigation {
-  padding: 30px;
+  padding: 22px 20px 14px;
 }
 
 .bipolar-navigation div li {
@@ -9369,21 +9458,6 @@ input[type="date"] {
 
 .full-image {
   width: 100%;
-}
-
-.cart-number-count {
-  position: absolute;
-  background-color: black;
-  color: white;
-  font-size: 12px;
-  padding: 2px;
-  border-radius: 100%;
-  top: 13px;
-  right: 7px;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  line-height: 18px;
 }
 
 .cart-number-count-inverse {

@@ -12,6 +12,15 @@ body {
   background-color: $bipolar-color;
 }
 
+.title-text-content {
+  font-family: $bodoni-bold-font;
+  font-size: 26px;
+  font-weight: 400;
+  color: $bipolar-black;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .bipolar-counts-container {
   background-image: url(https://bipolar-peru.s3.amazonaws.com/assets/jeringas_close.jpg);
   background-position: center;

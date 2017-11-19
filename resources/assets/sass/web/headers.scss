@@ -4,6 +4,83 @@
   z-index: $z-index-navbar;
 }
 
+.bipolar-first-navbar {
+  max-height: 42px;
+  min-height: 42px;
+}
+
+.bipolar-second-navbar {
+  position: relative;
+  padding: 10px 0 40px;
+
+  .bipolar-navbar-social-links {
+    width: 30%;
+    padding: 0;
+    margin: -10px 0 0;
+    list-style: none;
+    display: inline-block;
+    font-size: 14px;
+    vertical-align: top;
+    > li + li {
+      padding-left: 15px;
+    }
+    > li {
+      display: inline-block;
+      padding: 5px 0;
+      > a {
+        font-size: 17px;
+      }
+    }
+  }
+
+  .bipolar-header-logo {
+    width: 40%;
+    padding: 20px 0 0;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .bipolar-shopping-cart-wrapper {
+    position: relative;
+    width: 29%;
+    font-size: 14px;
+    margin: -10px 0 0;
+    padding: 0 15px 0 0;
+    text-align: right;
+    display: inline-block;
+    vertical-align: top;
+
+    .bipolar-shopping-cart-content {
+      display: inline-block;
+      text-align: left;
+      cursor: pointer;
+
+      .cart-number-count {
+        position: absolute;
+        font-weight: bold;
+        background-color: $bipolar-black;
+        color: white;
+        font-size: 12px;
+        padding: 2px;
+        border-radius: 100%;
+        top: 0;
+        right: 5px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 16px;
+      }
+    }
+  }
+}
+
+.background-line-image {
+  background: url('../../img/linea.png') repeat-x 0 55px;
+}
+
 .bipolar-alternate-grand-header {
   @extend .bipolar-grand-header;
   box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
@@ -70,7 +147,7 @@
 }
 
 .bipolar-navigation {
-  padding: 30px;
+  padding: 22px 20px 14px;
   div {
     li {
       padding-left: 15px;
@@ -120,21 +197,6 @@
 
 .full-image {
   width: 100%;
-}
-
-.cart-number-count {
-  position: absolute;
-  background-color: $bipolar-black;
-  color: white;
-  font-size: 12px;
-  padding: 2px;
-  border-radius: 100%;
-  top: 13px;
-  right: 7px;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  line-height: 18px;
 }
 
 .cart-number-count-inverse {

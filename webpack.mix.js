@@ -9,6 +9,7 @@ mix.autoload({
     .js('resources/assets/js/web/app-web-scripts.js', 'public/js')
     .sass('resources/assets/sass/admin/app-admin-styles.scss', 'public/css')
     .sass('resources/assets/sass/web/app-web-styles.scss', 'public/css')
+    .copyDirectory('resources/assets/img', 'public/images')
     //todo: remover esto cuando se pase a produccion
     .mix.version();
 

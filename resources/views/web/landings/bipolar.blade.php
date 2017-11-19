@@ -2,7 +2,7 @@
 @section('content')
     <img src="https://bipolar-peru.s3.amazonaws.com/assets/jeringas-rosado.jpg" class="img-responsive" alt="Bipolar">
     <div class="bipolar-container">
-        <h1>BIPOLAR</h1>
+        <p class="title-text-content">BIPOLAR</p>
         <p>
             Nos encanta la dualidad y que no todo sea lo que parece. <br>
             Nos gusta la línea que divide lo femenino y dulce, de lo secreto y provocador. <br>
