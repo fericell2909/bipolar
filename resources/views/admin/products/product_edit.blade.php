@@ -1,10 +1,8 @@
 @extends('admin.layouts.app_admin')
 <?php /** @var \App\Models\Product $product */ ?>
 @section('content')
+    @include('admin.partials.product_header_steps', ['active' => 1])
     <div class="row">
-        <div class="col-md-12">
-            @include('admin.partials.product_header_steps', ['active' => 1])
-        </div>
         <div class="col-md-12">
             <div class="">
                 {!! Form::open() !!}

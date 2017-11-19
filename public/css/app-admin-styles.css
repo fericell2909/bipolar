@@ -16712,10 +16712,6 @@ button.close {
 
 /******************* Global Styles *******************/
 
-* * * * * * * * * * {
-  outline: none !important;
-}
-
 body {
   background: #4F5467;
   font-family: "Poppins", sans-serif;
@@ -25883,14 +25879,24 @@ ul.pro-amenities li span i {
   background: #edf1f5;
 }
 
+.thin-steps .column-step:hover {
+  background: #FBBEBA;
+  color: #ffffff;
+}
+
+.thin-steps .column-step:hover > .step-number {
+  background: #ffffff;
+  color: #686868;
+}
+
 .thin-steps .column-step.active {
-  background: #FF5C5C;
+  background: #FBBEBA;
 }
 
 .thin-steps .step-number,
 .thin-steps .column-step.active .step-number {
   font-size: 20px;
-  background: #FF5C5C;
+  background: #FBBEBA;
   color: #ffffff;
   border-radius: 50%;
   float: left;
@@ -25913,6 +25919,7 @@ ul.pro-amenities li span i {
   font-weight: 100;
   padding-left: 60px;
   margin-top: -2px;
+  color: #2b2b2b;
 }
 
 .thin-steps .column-step.active .step-title,
