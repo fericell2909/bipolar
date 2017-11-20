@@ -3,7 +3,7 @@ const select2 = require('select2/dist/js/select2.full');
 require('dropzone/dist/dropzone-amd-module');
 const Sortable = require('sortablejs');
 require('block-ui');
-require('icheck');
+//require('icheck');
 
 $(document).ready(function () {
 
@@ -31,10 +31,10 @@ $(document).ready(function () {
     }
 
     // Icheck
-    $('.icheck').iCheck({
+    /*$('.icheck').iCheck({
         checkboxClass: 'icheckbox_flat',
         radioClass: 'iradio_flat',
-    });
+    });*/
 
     if ($('#sortable-items').length) {
         let elem = document.querySelector('#sortable-items');

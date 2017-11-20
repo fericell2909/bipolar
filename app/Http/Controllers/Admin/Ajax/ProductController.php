@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Admin\Ajax;
 
 use App\Http\Controllers\Controller;
-use App\Models\Photo;
-use App\Models\Product;
+use App\Http\Requests\ProductNewRequest;
+use App\Models\{
+    Color, Photo, Product, Size, Stock, Subtype
+};
+use App\Http\Resources\Product as ProductResource;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
@@ -71,6 +75,43 @@ class ProductController extends Controller
             ->all();
 
         return response()->json($products);
+    }
+
+    public function store(ProductNewRequest $request)
+    {
+        $product = new Product;
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = number_format($request->input('price'), 2);
+        $product->is_salient = boolval($request->input('salient')) ? now() : null;
+        $product->save();
+
+        if ($request->filled('colors')) {
+            $requestColors = $request->input('colors');
+            $colors = Color::findByManyHash($requestColors)->pluck('id')->toArray();
+            $product->colors()->sync($colors);
+        }
+
+        if ($request->filled('subtypes')) {
+            $requestSubtypes = $request->input('subtypes');
+            $subtypes = Subtype::findByManyHash($requestSubtypes)->pluck('id')->toArray();
+            $product->subtypes()->sync($subtypes);
+        }
+
+        if ($request->filled('sizes')) {
+            $requestSizes = $request->input('sizes');
+            foreach ($requestSizes as $sizeHashId) {
+                $size = Size::findByHash($sizeHashId);
+                $stock = new Stock;
+                $stock->product()->associate($product);
+                $stock->size()->associate($size);
+                $stock->incoming_date = now()->toDateString();
+                $stock->active = now();
+                $stock->save();
+            }
+        }
+
+        return response()->json(new ProductResource($product), Response::HTTP_CREATED);
     }
 
     public function update(Request $request, $productHashId)

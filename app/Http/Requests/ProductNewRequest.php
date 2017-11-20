@@ -25,11 +25,9 @@ class ProductNewRequest extends FormRequest
     {
         return [
             'name'        => 'required|between:1,255|string',
-            'subtitle'    => 'nullable|between:1,255',
             'description' => 'nullable|max:4000',
             'colors'      => 'nullable|array',
             'price'       => 'required|numeric|min:1',
-            'active'      => 'boolean',
             'salient'     => 'boolean',
             'subtype'     => 'nullable|array',
             'sizes'       => 'nullable|array',

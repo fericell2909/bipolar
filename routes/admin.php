@@ -19,7 +19,6 @@ Route::middleware('auth:admin')->group(function() {
     Route::prefix('products')->group(function () {
         Route::get('/', 'Admin\ProductController@index')->name('products.index');
         Route::get('new', 'Admin\ProductController@create')->name('products.create');
-        Route::post('new', 'Admin\ProductController@store');
         Route::get('{productId}/edit', 'Admin\ProductController@edit')->name('products.edit');
         Route::post('{productId}/edit', 'Admin\ProductController@update');
         Route::get('{slug}/photos', 'Admin\ProductController@photos')->name('products.photos');

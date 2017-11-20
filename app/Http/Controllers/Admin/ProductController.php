@@ -21,59 +21,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $colors = Color::orderBy('name')->get();
-        $types = Type::orderBy('name')->get();
-        $sizes = Size::orderBy('name')->get();
-
-        return view('admin.products.product_new', compact('colors', 'types', 'sizes'));
-    }
-
-    public function store(ProductNewRequest $request)
-    {
-        $colors = [];
-        $subtypes = [];
-
-        $product = new Product;
-        $product->name = $request->input('name');
-        $product->subtitle = $request->input('subtitle');
-        $product->description = $request->input('description');
-        $product->price = number_format($request->input('price'), 2);
-        $product->active = boolval($request->input('active')) ? now() : null;
-        $product->is_salient = boolval($request->input('salient')) ? now() : null;
-        $product->save();
-
-        if ($request->filled('colors')) {
-            $requestColors = $request->input('colors');
-
-            foreach ($requestColors as $color) {
-                $colors[] = array_first(\Hashids::decode($color));
-            }
-
-            $product->colors()->sync($colors);
-        }
-
-        if ($request->filled('subtypes')) {
-            $requestSubtypes = $request->input('subtypes');
-            foreach ($requestSubtypes as $subtypeHashId) {
-                $subtypes[] = array_first(\Hashids::decode($subtypeHashId));
-            }
-            $product->subtypes()->sync($subtypes);
-        }
-
-        if ($request->filled('sizes')) {
-            $requestSizes = $request->input('sizes');
-            foreach ($requestSizes as $sizeHashId) {
-                $size = Size::findByHash($sizeHashId);
-                $stock = new Stock;
-                $stock->product()->associate($product);
-                $stock->size()->associate($size);
-                $stock->incoming_date = now()->toDateString();
-                $stock->active = now();
-                $stock->save();
-            }
-        }
-
-        return redirect()->route('products.photos', $product->slug);
+        return view('admin.products.product_new');
     }
 
     public function photos($productSlug)
