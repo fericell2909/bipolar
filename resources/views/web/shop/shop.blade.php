@@ -162,7 +162,6 @@
                             </div>
                             <div class="col-md-6">
                                 <h1 class="product-title">{{ $product->name }}</h1>
-                                <div class="product-colors">{{ $product->subtitle }}</div>
                                 <p class="product-price">
                                     <span class="product-amount">S/. {{ $product->price }}</span>
                                 </p>

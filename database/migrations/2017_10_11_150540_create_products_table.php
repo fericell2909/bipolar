@@ -17,7 +17,6 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug', 300)->nullable();
-            $table->string('subtitle')->nullable();
             $table->text('description')->nullable();
             $table->decimal('price', 7, 2);
             $table->timestamp('active')->nullable();

@@ -31,7 +31,7 @@
                         <?php /** @var \App\Models\Product $product */ ?>
                         <tr>
                             <td>{{ $product->id }}</td>
-                            <td>{{ $product->name }} - {!! $product->subtitle ?? "<i>Sin subtítulo</i>" !!}</td>
+                            <td>{{ $product->name }}</td>
                             <td>
                                 @foreach($product->subtypes as $subtype)
                                     <span class="badge badge-dark">{{ $subtype->name }}</span>

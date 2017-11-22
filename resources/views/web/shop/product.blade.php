@@ -41,7 +41,6 @@
                 @if($product->colors->count() > 0)
                     <div class="product-subtitle">{{ $product->colors->first()->name }}</div>
                 @endif
-                <div class="product-colors">{{ $product->subtitle }}</div>
                 <p class="product-price">
                     <span class="product-amount">S/. {{ $product->price }}</span>
                 </p>
