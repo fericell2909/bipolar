@@ -39130,6 +39130,7 @@ var BipolarProductList = function (_React$Component) {
 
     _this.handleSearch = _this.handleSearch.bind(_this);
     _this.handleProductSelect = _this.handleProductSelect.bind(_this);
+    _this.handleSelectAllProducts = _this.handleSelectAllProducts.bind(_this);
     return _this;
   }
 
@@ -39184,6 +39185,19 @@ var BipolarProductList = function (_React$Component) {
       }
 
       return this.setState({ selectedProducts: selected });
+    }
+  }, {
+    key: "handleSelectAllProducts",
+    value: function handleSelectAllProducts(event) {
+      var allProductsIds = [];
+
+      if (event.target.checked) {
+        allProductsIds = this.state.products.map(function (product) {
+          return product['hash_id'];
+        });
+      }
+
+      this.setState({ selectedProducts: [].concat(_toConsumableArray(allProductsIds)) });
     }
   }, {
     key: "render",
@@ -39356,7 +39370,7 @@ var BipolarProductList = function (_React$Component) {
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "th",
                     null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox" })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox", onChange: this.handleSelectAllProducts })
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "th",

@@ -18,6 +18,7 @@ export default class BipolarProductList extends React.Component {
 
     this.handleSearch = this.handleSearch.bind(this);
     this.handleProductSelect = this.handleProductSelect.bind(this);
+    this.handleSelectAllProducts = this.handleSelectAllProducts.bind(this);
   }
 
   handleDelete(productHashId) {
@@ -66,6 +67,16 @@ export default class BipolarProductList extends React.Component {
     }
 
     return this.setState({ selectedProducts: selected });
+  }
+
+  handleSelectAllProducts(event) {
+    let allProductsIds = [];
+    
+    if (event.target.checked) { 
+      allProductsIds = this.state.products.map(product => product['hash_id']);
+    }
+
+    this.setState({ selectedProducts: [...allProductsIds] });
   }
 
   render() {
@@ -136,7 +147,7 @@ export default class BipolarProductList extends React.Component {
             <table className="table">
               <thead>
                 <tr>
-                  <th><input type="checkbox" /></th>
+                  <th><input type="checkbox" onChange={this.handleSelectAllProducts} /></th>
                   <th>#</th>
                   <th><i className="fa fa-photo" /></th>
                   <th>Nombre</th>
