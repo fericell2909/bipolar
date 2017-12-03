@@ -39093,6 +39093,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_sweetalert2__ = __webpack_require__("./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_sweetalert2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers__ = __webpack_require__("./resources/assets/js/admin/react/helpers.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -39111,6 +39112,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var BipolarProductList = function (_React$Component) {
   _inherits(BipolarProductList, _React$Component);
 
@@ -39122,10 +39124,12 @@ var BipolarProductList = function (_React$Component) {
     _this.state = {
       products: [],
       filteredProducts: [],
-      searchText: ''
+      searchText: '',
+      selectedProducts: []
     };
 
     _this.handleSearch = _this.handleSearch.bind(_this);
+    _this.handleProductSelect = _this.handleProductSelect.bind(_this);
     return _this;
   }
 
@@ -39168,6 +39172,20 @@ var BipolarProductList = function (_React$Component) {
       this.setState({ searchText: searchText, filteredProducts: filteredProducts });
     }
   }, {
+    key: "handleProductSelect",
+    value: function handleProductSelect(event) {
+      var productHashId = event.target.value;
+      var selected = this.state.selectedProducts;
+
+      if (event.target.checked) {
+        selected.push(productHashId);
+      } else {
+        selected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["d" /* removeFromSimpleArray */])(selected, productHashId);
+      }
+
+      return this.setState({ selectedProducts: selected });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -39184,6 +39202,7 @@ var BipolarProductList = function (_React$Component) {
           );
         });
         var firstImage = product['firstImageUrl'] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: product['firstImageUrl'], width: "100" }) : '--';
+        var isSelected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["a" /* existInArray */])(_this3.state.selectedProducts, product['hash_id']);
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "tr",
@@ -39191,7 +39210,7 @@ var BipolarProductList = function (_React$Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",
             null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox" })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox", checked: isSelected, value: product['hash_id'], onChange: _this3.handleProductSelect })
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",

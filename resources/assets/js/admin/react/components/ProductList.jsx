@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from "axios";
 import { get } from 'lodash';
 import swal from 'sweetalert2';
+import { existInArray, removeFromSimpleArray } from '../helpers';
 
 export default class BipolarProductList extends React.Component {
 
@@ -12,9 +13,11 @@ export default class BipolarProductList extends React.Component {
       products: [],
       filteredProducts: [],
       searchText: '',
+      selectedProducts: [],
     };
 
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleProductSelect = this.handleProductSelect.bind(this);
   }
 
   handleDelete(productHashId) {
@@ -52,6 +55,19 @@ export default class BipolarProductList extends React.Component {
     this.setState({ searchText, filteredProducts });
   }
 
+  handleProductSelect(event) {
+    const productHashId = event.target.value;
+    let selected = this.state.selectedProducts;
+
+    if (event.target.checked) {
+        selected.push(productHashId);
+    } else {
+        selected = removeFromSimpleArray(selected, productHashId);
+    }
+
+    return this.setState({ selectedProducts: selected });
+  }
+
   render() {
 
     let productsRender = [];
@@ -63,10 +79,11 @@ export default class BipolarProductList extends React.Component {
       });
       const firstImage = (product['firstImageUrl'] !== null) ? 
         <img src={product['firstImageUrl']} width="100" /> : '--';
+      const isSelected = existInArray(this.state.selectedProducts, product['hash_id']);
 
       return (
         <tr key={product['hash_id']}>
-          <td><input type="checkbox" /></td>
+          <td><input type="checkbox" checked={isSelected} value={product['hash_id']} onChange={this.handleProductSelect} /></td>
           <td>#</td>
           <td>{firstImage}</td>
           <td>{product['name']}</td>
