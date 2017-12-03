@@ -39097,6 +39097,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -39118,8 +39120,12 @@ var BipolarProductList = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (BipolarProductList.__proto__ || Object.getPrototypeOf(BipolarProductList)).call(this));
 
     _this.state = {
-      products: []
+      products: [],
+      filteredProducts: [],
+      searchText: ''
     };
+
+    _this.handleSearch = _this.handleSearch.bind(_this);
     return _this;
   }
 
@@ -39152,85 +39158,95 @@ var BipolarProductList = function (_React$Component) {
       });
     }
   }, {
+    key: "handleSearch",
+    value: function handleSearch(event) {
+      var searchText = event.target.value;
+      var filteredProducts = this.state.products.filter(function (product) {
+        return product.name.search(searchText) !== -1;
+      });
+
+      this.setState({ searchText: searchText, filteredProducts: filteredProducts });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
 
       var productsRender = [];
-      if (this.state.products.length) {
-        productsRender = this.state.products.map(function (product) {
-          var badgesSubtypes = product['subtypes'].map(function (subtype) {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "span",
-              { key: subtype['hash_id'], className: "badge badge-dark" },
-              subtype['name']
-            );
-          });
-          var firstImage = product['firstImageUrl'] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: product['firstImageUrl'], width: "100" }) : '--';
+      var productsSource = this.state.searchText.length > 0 ? [].concat(_toConsumableArray(this.state.filteredProducts)) : [].concat(_toConsumableArray(this.state.products));
 
+      productsRender = productsSource.map(function (product) {
+        var badgesSubtypes = product['subtypes'].map(function (subtype) {
           return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "tr",
-            { key: product['hash_id'] },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "td",
-              null,
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox" })
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "td",
-              null,
-              "#"
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "td",
-              null,
-              firstImage
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "td",
-              null,
-              product['name']
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "td",
-              null,
-              badgesSubtypes
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "td",
-              { className: "text-right" },
-              product['price']
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "td",
-              null,
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "i",
-                null,
-                "Por cambiar"
-              )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "td",
-              null,
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "a",
-                { href: "/admin/products/" + product['hash_id'] + "/edit", className: "btn btn-sm btn-dark btn-rounded" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-pencil" }),
-                " Editar"
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "button",
-                { onClick: function onClick() {
-                    return _this3.handleDelete(product['hash_id']);
-                  }, className: "btn btn-sm btn-dark btn-rounded" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-close" }),
-                " Eliminar"
-              )
-            )
+            "span",
+            { key: subtype['hash_id'], className: "badge badge-dark" },
+            subtype['name']
           );
         });
-      }
+        var firstImage = product['firstImageUrl'] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: product['firstImageUrl'], width: "100" }) : '--';
+
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "tr",
+          { key: product['hash_id'] },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "td",
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox" })
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "td",
+            null,
+            "#"
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "td",
+            null,
+            firstImage
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "td",
+            null,
+            product['name']
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "td",
+            null,
+            badgesSubtypes
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "td",
+            { className: "text-right" },
+            product['price']
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "td",
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "i",
+              null,
+              "Por cambiar"
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "td",
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "a",
+              { href: "/admin/products/" + product['hash_id'] + "/edit", className: "btn btn-sm btn-dark btn-rounded" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-pencil" }),
+              " Editar"
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "button",
+              { onClick: function onClick() {
+                  return _this3.handleDelete(product['hash_id']);
+                }, className: "btn btn-sm btn-dark btn-rounded" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-close" }),
+              " Eliminar"
+            )
+          )
+        );
+      });
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
@@ -39278,7 +39294,7 @@ var BipolarProductList = function (_React$Component) {
                     null,
                     "Buscar producto"
                   ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", className: "form-control" })
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { value: this.state.searchText, onChange: this.handleSearch, type: "text", className: "form-control" })
                 )
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

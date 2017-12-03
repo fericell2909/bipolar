@@ -10,7 +10,11 @@ export default class BipolarProductList extends React.Component {
     super();
     this.state = {
       products: [],
+      filteredProducts: [],
+      searchText: '',
     };
+
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleDelete(productHashId) {
@@ -39,38 +43,47 @@ export default class BipolarProductList extends React.Component {
     });
   }
 
+  handleSearch(event) {
+    const searchText = event.target.value;
+    const filteredProducts = this.state.products.filter(product => {
+      return product.name.search(searchText) !== -1;
+    });
+
+    this.setState({ searchText, filteredProducts });
+  }
+
   render() {
 
     let productsRender = [];
-    if (this.state.products.length) {
-      productsRender = this.state.products.map(product => {
-        const badgesSubtypes = product['subtypes'].map(subtype => {
-          return <span key={subtype['hash_id']} className="badge badge-dark">{subtype['name']}</span>
-        });
-        const firstImage = (product['firstImageUrl'] !== null) ? 
-          <img src={product['firstImageUrl']} width="100" /> : '--';
+    const productsSource = (this.state.searchText.length > 0) ? [...this.state.filteredProducts] : [...this.state.products];
 
-        return (
-          <tr key={product['hash_id']}>
-            <td><input type="checkbox" /></td>
-            <td>#</td>
-            <td>{firstImage}</td>
-            <td>{product['name']}</td>
-            <td>{badgesSubtypes}</td>
-            <td className="text-right">{product['price']}</td>
-            <td><i>Por cambiar</i></td>
-            <td>
-              <a href={`/admin/products/${product['hash_id']}/edit`} className="btn btn-sm btn-dark btn-rounded">
-                <i className="fa fa-pencil"/> Editar
-              </a>
-              <button onClick={() => this.handleDelete(product['hash_id'])} className="btn btn-sm btn-dark btn-rounded">
-                <i className="fa fa-close"/> Eliminar
-              </button>
-            </td>
-          </tr>
-        );
+    productsRender = productsSource.map(product => {
+      const badgesSubtypes = product['subtypes'].map(subtype => {
+        return <span key={subtype['hash_id']} className="badge badge-dark">{subtype['name']}</span>
       });
-    }
+      const firstImage = (product['firstImageUrl'] !== null) ? 
+        <img src={product['firstImageUrl']} width="100" /> : '--';
+
+      return (
+        <tr key={product['hash_id']}>
+          <td><input type="checkbox" /></td>
+          <td>#</td>
+          <td>{firstImage}</td>
+          <td>{product['name']}</td>
+          <td>{badgesSubtypes}</td>
+          <td className="text-right">{product['price']}</td>
+          <td><i>Por cambiar</i></td>
+          <td>
+            <a href={`/admin/products/${product['hash_id']}/edit`} className="btn btn-sm btn-dark btn-rounded">
+              <i className="fa fa-pencil"/> Editar
+            </a>
+            <button onClick={() => this.handleDelete(product['hash_id'])} className="btn btn-sm btn-dark btn-rounded">
+              <i className="fa fa-close"/> Eliminar
+            </button>
+          </td>
+        </tr>
+      );
+    });
 
     return (
       <div className="row">
@@ -90,7 +103,7 @@ export default class BipolarProductList extends React.Component {
               <div className="col-md-9">
                 <div className="form-group">
                   <label>Buscar producto</label>
-                  <input type="text" className="form-control" />
+                  <input value={this.state.searchText} onChange={this.handleSearch} type="text" className="form-control" />
                 </div>
               </div>
               <div className="col-md-3">
