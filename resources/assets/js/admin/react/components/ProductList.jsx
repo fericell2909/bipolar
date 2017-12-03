@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import axios from "axios";
 import { get } from 'lodash';
+import swal from 'sweetalert2';
 
 export default class BipolarProductList extends React.Component {
 
@@ -10,6 +11,32 @@ export default class BipolarProductList extends React.Component {
     this.state = {
       products: [],
     };
+  }
+
+  handleDelete(productHashId) {
+    swal({
+      type: 'warning',
+      title: '¿Desea eliminar el producto?',
+      confirmButtonText: 'Sí, eliminar',
+      showCancelButton: true,
+      cancelButtonText: 'No hacer nada',
+    }).then(result => {
+      if (result.value) {
+        swal.showLoading();
+        axios.delete(`/ajax-admin/products/${productHashId}`)
+          .then(() => {
+            swal({
+              title: 'Eliminado',
+              type: 'success',
+              toast: true,
+              position: 'top-right',
+              showConfirmButton: false,
+              timer: 3000,
+            });
+            this.getAllProducts();
+          });
+      }
+    });
   }
 
   render() {
@@ -36,7 +63,7 @@ export default class BipolarProductList extends React.Component {
               <a href={`/admin/products/${product['hash_id']}/edit`} className="btn btn-sm btn-dark btn-rounded">
                 <i className="fa fa-pencil"/> Editar
               </a>
-              <button href="#" className="btn btn-sm btn-dark btn-rounded">
+              <button onClick={() => this.handleDelete(product['hash_id'])} className="btn btn-sm btn-dark btn-rounded">
                 <i className="fa fa-close"/> Eliminar
               </button>
             </td>

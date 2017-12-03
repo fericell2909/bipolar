@@ -4,7 +4,7 @@ Route::delete('sizes/{sizeId}', 'Admin\SettingsController@deleteSize');
 Route::delete('colors/{colorId}', 'Admin\ColorController@delete');
 Route::delete('types/{sizeId}', 'Admin\TypesController@delete');
 Route::delete('photo/{photoId}', 'Admin\ProductController@deletePhoto');
-Route::delete('products/{productId}', 'Admin\ProductController@delete');
+Route::delete('products/{productId}', 'Admin\Ajax\ProductController@deletesoft');
 // Colors
 Route::get('colors', 'Admin\Ajax\ColorController@index');
 Route::get('sizes', 'Admin\Ajax\SizeController@index');

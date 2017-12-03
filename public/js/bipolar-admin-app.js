@@ -39091,6 +39091,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash__ = __webpack_require__("./node_modules/lodash/lodash.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_sweetalert2__ = __webpack_require__("./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_sweetalert2__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -39100,6 +39102,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -39121,8 +39124,37 @@ var BipolarProductList = function (_React$Component) {
   }
 
   _createClass(BipolarProductList, [{
+    key: "handleDelete",
+    value: function handleDelete(productHashId) {
+      var _this2 = this;
+
+      __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()({
+        type: 'warning',
+        title: '¿Desea eliminar el producto?',
+        confirmButtonText: 'Sí, eliminar',
+        showCancelButton: true,
+        cancelButtonText: 'No hacer nada'
+      }).then(function (result) {
+        if (result.value) {
+          __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default.a.showLoading();
+          __WEBPACK_IMPORTED_MODULE_2_axios___default.a.delete("/ajax-admin/products/" + productHashId).then(function () {
+            __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()({
+              title: 'Eliminado',
+              type: 'success',
+              toast: true,
+              position: 'top-right',
+              showConfirmButton: false,
+              timer: 3000
+            });
+            _this2.getAllProducts();
+          });
+        }
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
 
       var productsRender = [];
       if (this.state.products.length) {
@@ -39189,7 +39221,9 @@ var BipolarProductList = function (_React$Component) {
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "button",
-                { href: "#", className: "btn btn-sm btn-dark btn-rounded" },
+                { onClick: function onClick() {
+                    return _this3.handleDelete(product['hash_id']);
+                  }, className: "btn btn-sm btn-dark btn-rounded" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-close" }),
                 " Eliminar"
               )
@@ -39339,7 +39373,7 @@ var BipolarProductList = function (_React$Component) {
   }, {
     key: "getAllProducts",
     value: function getAllProducts() {
-      var _this2 = this;
+      var _this4 = this;
 
       __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/products').then(function (response) {
         var products = response.data['data'];
@@ -39348,7 +39382,7 @@ var BipolarProductList = function (_React$Component) {
             firstImageUrl: Object(__WEBPACK_IMPORTED_MODULE_3_lodash__["get"])(product, 'photos.0.url', null)
           });
         });
-        _this2.setState({ products: formattedProducts });
+        _this4.setState({ products: formattedProducts });
       });
     }
   }, {

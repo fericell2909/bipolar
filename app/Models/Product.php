@@ -6,10 +6,11 @@ use App\Traits\Hashable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use Hashable, Sluggable, SluggableScopeHelpers;
+    use Hashable, Sluggable, SluggableScopeHelpers, SoftDeletes;
 
     protected $table = 'products';
     protected $dates = ['deleted_at'];
