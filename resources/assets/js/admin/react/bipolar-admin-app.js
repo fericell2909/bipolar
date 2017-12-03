@@ -16,3 +16,4 @@ require('./bootstrap');
 require('./components/ProductRecommend');
 require('./components/ProductActivations');
 require('./components/ProductNew');
+require('./components/ProductList');

@@ -14,8 +14,6 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::orderByDesc('id')->with('colors', 'stocks.size', 'subtypes')->get();
-
         return view('admin.products.products', compact('products'));
     }
 
@@ -128,10 +126,10 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function edit($productId)
+    public function edit($productHashId)
     {
         /** @var Product $product */
-        $product = Product::findOrFail($productId);
+        $product = Product::findByHash($productHashId);
         $colors = Color::orderBy('name')->get();
         $types = Type::orderBy('name')->get();
         $sizes = Size::orderBy('name')->get();

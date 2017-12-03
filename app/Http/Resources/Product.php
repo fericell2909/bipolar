@@ -20,6 +20,8 @@ class Product extends Resource
             'name'       => $this->name,
             'price'      => $this->price,
             'edit_route' => route('products.photos', $this->slug),
+            'photos'     => Photo::collection($this->whenLoaded('photos')),
+            'subtypes'   => Subtype::collection($this->whenLoaded('subtypes')),
         ];
     }
 }

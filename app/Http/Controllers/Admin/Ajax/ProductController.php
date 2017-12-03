@@ -8,6 +8,7 @@ use App\Models\{
     Color, Photo, Product, Size, Stock, Subtype
 };
 use App\Http\Resources\Product as ProductResource;
+use App\Http\Resources\ProductCollection;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -61,20 +62,10 @@ class ProductController extends Controller
         $products = Product::orderByDesc('id')
             ->with(['photos' => function ($withPhotos) {
                 $withPhotos->orderBy('order');
-            }])
-            ->get()
-            ->when($request->filled('active'), function ($products) use ($request) {
-                $active = boolval($request->input('active'));
+            }, 'subtypes'])
+            ->get();
 
-                return $products->filter(function ($product) use ($active) {
-                    return boolval($product->active) === $active;
-                });
-            })
-            ->transform($this->formatProduct())
-            ->values()
-            ->all();
-
-        return response()->json($products);
+        return response()->json(new ProductCollection($products));
     }
 
     public function store(ProductNewRequest $request)
