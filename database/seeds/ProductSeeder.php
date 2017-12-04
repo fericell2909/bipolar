@@ -11,8 +11,8 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Product::class, 20)->create(['active' => null]);
-        factory(\App\Models\Product::class, 20)->create(['active' => now()])->each(function ($p) {
+        factory(\App\Models\Product::class, 20)->create();
+        factory(\App\Models\Product::class, 20)->create()->each(function ($p) {
             /** @var \App\Models\Product $p */
             $p->subtypes()->sync([array_random(range(1, 5))]);
             $p->stocks()->saveMany(factory(\App\Models\Stock::class, 3)->make(['product_id' => $p->id]));

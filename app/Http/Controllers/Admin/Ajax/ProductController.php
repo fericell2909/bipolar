@@ -113,11 +113,6 @@ class ProductController extends Controller
         $this->validate($request, ['update' => 'sometimes|boolean']);
 
         $product = Product::findByHash($productHashId);
-
-        if ($request->filled('active')) {
-            $product->active = boolval($request->input('active')) === true ? now() : null;
-        }
-
         $product->save();
 
         return response()->json($product);
@@ -163,7 +158,6 @@ class ProductController extends Controller
                 'hash_id' => $product->hash_id,
                 'name'    => $product->name,
                 'price'   => $product->price,
-                'active'  => $product->active,
                 'photos'  => $product->photos->transform(function ($photo) {
                     /** @var Photo $photo */
                     return [

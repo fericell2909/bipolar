@@ -26,10 +26,7 @@ class ShopController extends Controller
 
     public function shop(ShopFilterRequest $request)
     {
-        \Debugbar::info($request->all());
-
         $productsSalient = Product::whereNotNull('is_salient')
-            ->whereNotNull('active')
             ->with([
                 'photos' => function ($withPhotos) {
                     $withPhotos->orderBy('order');
@@ -42,7 +39,7 @@ class ShopController extends Controller
         $types = Type::with([
             'subtypes',
             'subtypes.products' => function ($withProducts) {
-                $withProducts->whereNotNull('active');
+                $withProducts->where('state_id', config('constants.STATE_ACTIVE_ID'));
             }
         ])->get();
 
@@ -50,7 +47,7 @@ class ShopController extends Controller
             /** @var Builder $withStocks */
             $withStocks->whereHas('product', function ($whereHasProduct) {
                 /** @var Builder $whereHasProduct */
-                $whereHasProduct->whereNotNull('active');
+                $whereHasProduct->where('state_id', config('constants.STATE_ACTIVE_ID'));
             })
                 ->whereNotNull('active');
         }, 'stocks.product'])
@@ -76,7 +73,7 @@ class ShopController extends Controller
         ];
         $selectedOrderOption = $request->filled('orderBy') ? $request->input('orderBy') : null;
 
-        $products = Product::whereNotNull('active')
+        $products = Product::whereStateId(config('constants.STATE_ACTIVE_ID'))
             ->with([
                 'photos' => function ($withPhotos) {
                     $withPhotos->orderBy('order');
