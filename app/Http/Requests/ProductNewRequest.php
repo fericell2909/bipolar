@@ -31,6 +31,7 @@ class ProductNewRequest extends FormRequest
             'salient'     => 'boolean',
             'subtype'     => 'nullable|array',
             'sizes'       => 'nullable|array',
+            'state'       => 'required|string',
         ];
     }
 }

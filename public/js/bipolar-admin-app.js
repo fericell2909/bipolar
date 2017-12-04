@@ -39217,6 +39217,7 @@ var BipolarProductList = function (_React$Component) {
         });
         var firstImage = product['firstImageUrl'] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: product['firstImageUrl'], width: "100" }) : '--';
         var isSelected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["a" /* existInArray */])(_this3.state.selectedProducts, product['hash_id']);
+        var state = product['state'] ? product['state']['name'] : '--';
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "tr",
@@ -39253,12 +39254,8 @@ var BipolarProductList = function (_React$Component) {
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "i",
-              null,
-              "Por cambiar"
-            )
+            { className: "text-center" },
+            state
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",
@@ -39486,360 +39483,410 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var BipolarProductNew = function (_React$Component) {
-    _inherits(BipolarProductNew, _React$Component);
+  _inherits(BipolarProductNew, _React$Component);
 
-    function BipolarProductNew() {
-        _classCallCheck(this, BipolarProductNew);
+  function BipolarProductNew() {
+    _classCallCheck(this, BipolarProductNew);
 
-        var _this = _possibleConstructorReturn(this, (BipolarProductNew.__proto__ || Object.getPrototypeOf(BipolarProductNew)).call(this));
+    var _this = _possibleConstructorReturn(this, (BipolarProductNew.__proto__ || Object.getPrototypeOf(BipolarProductNew)).call(this));
 
-        _this.state = {
-            name: '',
-            price: 1,
-            description: '',
-            salient: false,
-            // Colors info
-            colors: [],
-            selectedColors: [],
-            searchedColors: [],
-            textSearchColors: '',
-            // Other info
-            sizes: [],
-            selectedSizes: [],
-            types: [],
-            selectedSubtypes: []
-        };
+    _this.state = {
+      name: '',
+      price: 1,
+      description: '',
+      salient: false,
+      // Colors info
+      colors: [],
+      selectedColors: [],
+      searchedColors: [],
+      textSearchColors: '',
+      // Other info
+      sizes: [],
+      selectedSizes: [],
+      types: [],
+      selectedSubtypes: [],
+      productStates: [],
+      selectedState: ''
+    };
 
-        _this.handleInputChange = _this.handleInputChange.bind(_this);
-        _this.handleSalientChange = _this.handleSalientChange.bind(_this);
-        _this.handleColorChange = _this.handleColorChange.bind(_this);
-        _this.handleSizeChange = _this.handleSizeChange.bind(_this);
-        _this.handleSearchColors = _this.handleSearchColors.bind(_this);
-        _this.handleSaveProduct = _this.handleSaveProduct.bind(_this);
-        _this.handleSubtypeChange = _this.handleSubtypeChange.bind(_this);
-        return _this;
+    _this.handleInputChange = _this.handleInputChange.bind(_this);
+    _this.handleSalientChange = _this.handleSalientChange.bind(_this);
+    _this.handleColorChange = _this.handleColorChange.bind(_this);
+    _this.handleSizeChange = _this.handleSizeChange.bind(_this);
+    _this.handleSearchColors = _this.handleSearchColors.bind(_this);
+    _this.handleSaveProduct = _this.handleSaveProduct.bind(_this);
+    _this.handleSubtypeChange = _this.handleSubtypeChange.bind(_this);
+    _this.handleProductStateChange = _this.handleProductStateChange.bind(_this);
+    return _this;
+  }
+
+  _createClass(BipolarProductNew, [{
+    key: 'handleInputChange',
+    value: function handleInputChange(event) {
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
     }
+  }, {
+    key: 'handleSalientChange',
+    value: function handleSalientChange(event) {
+      this.setState({ salient: event.target.checked });
+    }
+  }, {
+    key: 'handleSearchColors',
+    value: function handleSearchColors(event) {
+      var search = event.target.value.toLowerCase();
 
-    _createClass(BipolarProductNew, [{
-        key: 'handleInputChange',
-        value: function handleInputChange(event) {
-            this.setState(_defineProperty({}, event.target.name, event.target.value));
-        }
-    }, {
-        key: 'handleSalientChange',
-        value: function handleSalientChange(event) {
-            this.setState({ salient: event.target.checked });
-        }
-    }, {
-        key: 'handleSearchColors',
-        value: function handleSearchColors(event) {
-            var search = event.target.value.toLowerCase();
+      if (search.length === 0) {
+        return this.setState({
+          searchedColors: [],
+          textSearchColors: ''
+        });
+      }
 
-            if (search.length === 0) {
-                return this.setState({
-                    searchedColors: [],
-                    textSearchColors: ''
-                });
-            }
+      var filtered = this.state.colors.filter(function (color) {
+        return color.name.toLowerCase().search(search) !== -1;
+      });
 
-            var filtered = this.state.colors.filter(function (color) {
-                return color.name.toLowerCase().search(search) !== -1;
-            });
+      return this.setState({
+        searchedColors: filtered,
+        textSearchColors: search
+      });
+    }
+  }, {
+    key: 'handleColorChange',
+    value: function handleColorChange(event) {
+      var colorHashId = event.target.value;
+      var selected = this.state.selectedColors;
 
-            return this.setState({
-                searchedColors: filtered,
-                textSearchColors: search
-            });
-        }
-    }, {
-        key: 'handleColorChange',
-        value: function handleColorChange(event) {
-            var colorHashId = event.target.value;
-            var selected = this.state.selectedColors;
+      if (event.target.checked) {
+        selected.push(colorHashId);
+      } else {
+        selected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["d" /* removeFromSimpleArray */])(selected, colorHashId);
+      }
 
-            if (event.target.checked) {
-                selected.push(colorHashId);
-            } else {
-                selected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["d" /* removeFromSimpleArray */])(selected, colorHashId);
-            }
+      return this.setState({ selectedColors: selected });
+    }
+  }, {
+    key: 'handleSizeChange',
+    value: function handleSizeChange(event) {
+      var sizeHashId = event.target.value;
+      var selected = this.state.selectedSizes;
 
-            return this.setState({ selectedColors: selected });
-        }
-    }, {
-        key: 'handleSizeChange',
-        value: function handleSizeChange(event) {
-            var sizeHashId = event.target.value;
-            var selected = this.state.selectedSizes;
+      if (event.target.checked) {
+        selected.push(sizeHashId);
+      } else {
+        selected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["d" /* removeFromSimpleArray */])(selected, sizeHashId);
+      }
 
-            if (event.target.checked) {
-                selected.push(sizeHashId);
-            } else {
-                selected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["d" /* removeFromSimpleArray */])(selected, sizeHashId);
-            }
+      return this.setState({ selectedSizes: selected });
+    }
+  }, {
+    key: 'handleSubtypeChange',
+    value: function handleSubtypeChange(event) {
+      var subtypeHashId = event.target.value;
+      var selected = this.state.selectedSubtypes;
 
-            return this.setState({ selectedSizes: selected });
-        }
-    }, {
-        key: 'handleSubtypeChange',
-        value: function handleSubtypeChange(event) {
-            var subtypeHashId = event.target.value;
-            var selected = this.state.selectedSubtypes;
+      if (event.target.checked) {
+        selected.push(subtypeHashId);
+      } else {
+        selected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["d" /* removeFromSimpleArray */])(selected, subtypeHashId);
+      }
 
-            if (event.target.checked) {
-                selected.push(subtypeHashId);
-            } else {
-                selected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["d" /* removeFromSimpleArray */])(selected, subtypeHashId);
-            }
+      return this.setState({ selectedSubtypes: selected });
+    }
+  }, {
+    key: 'handleProductStateChange',
+    value: function handleProductStateChange(event) {
+      this.setState({ selectedState: event.target.value });
+    }
+  }, {
+    key: 'handleSaveProduct',
+    value: function handleSaveProduct() {
+      if (this.state.name.length === 0) {
+        return __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()('Faltan campos', 'El campo nombre es obligatorio', 'error');
+      }
 
-            return this.setState({ selectedSubtypes: selected });
-        }
-    }, {
-        key: 'handleSaveProduct',
-        value: function handleSaveProduct() {
-            if (this.state.name.length === 0) {
-                return __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()('Faltan campos', 'El campo nombre es obligatorio', 'error');
-            }
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products', {
+        name: this.state.name,
+        price: this.state.price,
+        description: this.state.description,
+        salient: this.state.salient,
+        colors: this.state.selectedColors,
+        sizes: this.state.selectedSizes,
+        subtypes: this.state.selectedSubtypes,
+        state: this.state.selectedState
+      }).then(function (response) {
+        var data = response.data;
+        return response.status === 201 ? window.location.href = data['edit_route'] : alert('algo malo paso');
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products', {
-                name: this.state.name,
-                price: this.state.price,
-                description: this.state.description,
-                salient: this.state.salient,
-                colors: this.state.selectedColors,
-                sizes: this.state.selectedSizes,
-                subtypes: this.state.selectedSubtypes
-            }).then(function (response) {
-                var data = response.data;
-                return response.status === 201 ? window.location.href = data['edit_route'] : alert('algo malo paso');
-            });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
+      var colors = this.state.searchedColors.length === 0 && this.state.textSearchColors.length === 0 ? [].concat(_toConsumableArray(this.state.colors)) : [].concat(_toConsumableArray(this.state.searchedColors));
 
-            var colors = this.state.searchedColors.length === 0 && this.state.textSearchColors.length === 0 ? [].concat(_toConsumableArray(this.state.colors)) : [].concat(_toConsumableArray(this.state.searchedColors));
+      var colorsRender = colors.map(function (color) {
+        var isSelected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["a" /* existInArray */])(_this2.state.selectedColors, color['hash_id']);
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { key: color['hash_id'], className: 'checkbox' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'label',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'checkbox', checked: isSelected, value: color['hash_id'],
+              onChange: _this2.handleColorChange }),
+            color['name']
+          )
+        );
+      });
 
-            var colorsRender = colors.map(function (color) {
-                var isSelected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["a" /* existInArray */])(_this2.state.selectedColors, color['hash_id']);
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { key: color['hash_id'], className: 'checkbox' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'label',
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'checkbox', checked: isSelected, value: color['hash_id'], onChange: _this2.handleColorChange }),
-                        color['name']
-                    )
-                );
-            });
+      var sizesRender = this.state.sizes.map(function (size) {
+        var isSelected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["a" /* existInArray */])(_this2.state.selectedSizes, size['hash_id']);
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { key: size['hash_id'], className: 'checkbox' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'label',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'checkbox', checked: isSelected, value: size['hash_id'],
+              onChange: _this2.handleSizeChange }),
+            size['name']
+          )
+        );
+      });
 
-            var sizesRender = this.state.sizes.map(function (size) {
-                var isSelected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["a" /* existInArray */])(_this2.state.selectedSizes, size['hash_id']);
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { key: size['hash_id'], className: 'checkbox' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'label',
-                        null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'checkbox', checked: isSelected, value: size['hash_id'], onChange: _this2.handleSizeChange }),
-                        size['name']
-                    )
-                );
-            });
-
-            var typesRender = this.state.types.map(function (type) {
-                var subtypes = [];
-                if (type['subtypes']) {
-                    subtypes = type['subtypes'].map(function (subtype) {
-                        var isSelected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["a" /* existInArray */])(_this2.state.selectedSubtypes, subtype['hash_id']);
-                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { key: subtype['hash_id'], className: 'checkbox' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                null,
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'checkbox', checked: isSelected, value: subtype['hash_id'], onChange: _this2.handleSubtypeChange }),
-                                subtype['name']
-                            )
-                        );
-                    });
-                }
-
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { key: type['hash_id'] },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'panel panel-inverse' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'panel-heading' },
-                            'Tipo de ',
-                            type['name']
-                        )
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'panel-wrapper collapse in' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'panel-body' },
-                            subtypes.length ? subtypes : 'No hay subtipos'
-                        )
-                    )
-                );
-            });
-
+      var typesRender = this.state.types.map(function (type) {
+        var subtypes = [];
+        if (type['subtypes']) {
+          subtypes = type['subtypes'].map(function (subtype) {
+            var isSelected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["a" /* existInArray */])(_this2.state.selectedSubtypes, subtype['hash_id']);
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'row' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'col-md-9' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'white-box' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'form-row' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'col-md-6' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'div',
-                                    { className: 'form-group' },
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        'label',
-                                        null,
-                                        'Nombre'
-                                    ),
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.name, onChange: this.handleInputChange, name: 'name', type: 'text', className: 'form-control', required: true })
-                                )
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'col-md-6' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'div',
-                                    { className: 'form-group' },
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        'label',
-                                        null,
-                                        'Precio'
-                                    ),
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.price, onChange: this.handleInputChange, name: 'price', type: 'number', className: 'form-control' })
-                                )
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'form-group' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'label',
-                                null,
-                                'Descripci\xF3n (Opcional)'
-                            ),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { value: this.state.description, onChange: this.handleInputChange, name: 'description', className: 'form-control', rows: '7' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'row' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'col-md-5' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                    'label',
-                                    { className: 'checkbox-inline', checked: this.state.salient, onChange: this.handleSalientChange },
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'checkbox' }),
-                                    'Destacado'
-                                )
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'button',
-                            { onClick: this.handleSaveProduct, className: 'btn btn-dark btn-rounded' },
-                            'Guardar e ir a subir fotos'
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'col-md-3' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'white-box' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'panel panel-inverse' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'panel-heading' },
-                                'Colores'
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'panel-wrapper collapse in' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'panel-body' },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.textSearchColors, onChange: this.handleSearchColors, type: 'text', className: 'form-control', placeholder: 'Buscar color' }),
-                                colorsRender.length ? colorsRender : 'No hay colores'
-                            )
-                        ),
-                        typesRender.length ? typesRender : 'No hay tipos',
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'panel panel-inverse' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'panel-heading' },
-                                'Tallas'
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'panel-wrapper collapse in' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'panel-body' },
-                                sizesRender.length ? sizesRender : 'No hay tallas'
-                            )
-                        )
-                    )
-                )
+              'div',
+              { key: subtype['hash_id'], className: 'checkbox' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'label',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'checkbox', checked: isSelected, value: subtype['hash_id'],
+                  onChange: _this2.handleSubtypeChange }),
+                subtype['name']
+              )
             );
+          });
         }
-    }, {
-        key: 'getAllInformation',
-        value: function getAllInformation() {
-            var _this3 = this;
 
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.all([__WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/colors'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/sizes'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/types')]).then(__WEBPACK_IMPORTED_MODULE_2_axios___default.a.spread(function (responseColors, responseSizes, responseTypes) {
-                _this3.setState({
-                    colors: responseColors.data['data'],
-                    sizes: responseSizes.data['data'],
-                    types: responseTypes.data['data']
-                });
-            }));
-        }
-    }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            this.getAllInformation();
-        }
-    }]);
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { key: type['hash_id'] },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'panel panel-inverse' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'panel-heading' },
+              'Tipo de ',
+              type['name']
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'panel-wrapper collapse in' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'panel-body' },
+              subtypes.length ? subtypes : 'No hay subtipos'
+            )
+          )
+        );
+      });
 
-    return BipolarProductNew;
+      var productStatesRender = this.state.productStates.map(function (state) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'option',
+          { key: state['hash_id'], value: state['hash_id'] },
+          state['name']
+        );
+      });
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'row' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'col-md-9' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'white-box' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'form-row' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'col-md-6' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'form-group' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'label',
+                    null,
+                    'Nombre'
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.name, onChange: this.handleInputChange, name: 'name', type: 'text',
+                    className: 'form-control', required: true })
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'col-md-6' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'form-group' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'label',
+                    null,
+                    'Precio'
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.price, onChange: this.handleInputChange, name: 'price', type: 'number',
+                    className: 'form-control' })
+                )
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'form-group' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'label',
+                null,
+                'Descripci\xF3n (Opcional)'
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { value: this.state.description, onChange: this.handleInputChange, name: 'description',
+                className: 'form-control', rows: '7' })
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'row' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'col-md-6' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'form-group' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'label',
+                    null,
+                    'Estado'
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'select',
+                    { className: 'form-control', value: this.state.selectedState, onChange: this.handleProductStateChange },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      'option',
+                      { value: '', disabled: true },
+                      'Seleccione un estado'
+                    ),
+                    productStatesRender.length ? productStatesRender : null
+                  )
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'col-md-5' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'label',
+                  { className: 'checkbox-inline',
+                    checked: this.state.salient,
+                    onChange: this.handleSalientChange },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'checkbox' }),
+                  'Destacado'
+                )
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'button',
+              { onClick: this.handleSaveProduct, className: 'btn btn-dark btn-rounded' },
+              'Guardar e ir a subir fotos'
+            )
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'col-md-3' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'white-box' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'panel panel-inverse' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'panel-heading' },
+                'Colores'
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'panel-wrapper collapse in' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'panel-body' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.textSearchColors, onChange: this.handleSearchColors, type: 'text',
+                  className: 'form-control', placeholder: 'Buscar color' }),
+                colorsRender.length ? colorsRender : 'No hay colores'
+              )
+            ),
+            typesRender.length ? typesRender : 'No hay tipos',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'panel panel-inverse' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'panel-heading' },
+                'Tallas'
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'panel-wrapper collapse in' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'panel-body' },
+                sizesRender.length ? sizesRender : 'No hay tallas'
+              )
+            )
+          )
+        )
+      );
+    }
+  }, {
+    key: 'getAllInformation',
+    value: function getAllInformation() {
+      var _this3 = this;
+
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.all([__WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/colors'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/sizes'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/types'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/states')]).then(__WEBPACK_IMPORTED_MODULE_2_axios___default.a.spread(function (responseColors, responseSizes, responseTypes, responseStates) {
+        _this3.setState({
+          colors: responseColors.data['data'],
+          sizes: responseSizes.data['data'],
+          types: responseTypes.data['data'],
+          productStates: responseStates.data['data']
+        });
+      }));
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.getAllInformation();
+    }
+  }]);
+
+  return BipolarProductNew;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (BipolarProductNew);
 
 
 if (document.getElementById('bipolar-product-new')) {
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(BipolarProductNew, null), document.getElementById('bipolar-product-new'));
+  __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(BipolarProductNew, null), document.getElementById('bipolar-product-new'));
 }
 
 /***/ }),

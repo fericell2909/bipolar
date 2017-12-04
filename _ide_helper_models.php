@@ -61,9 +61,9 @@ namespace App\Models{
  * App\Models\Product
  *
  * @property int $id
+ * @property int|null $state_id
  * @property string $name
  * @property string|null $slug
- * @property string|null $subtitle
  * @property string|null $description
  * @property float $price
  * @property string|null $active
@@ -79,6 +79,9 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Stock[] $stocks
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product findSimilarSlugs($attribute, $config, $slug)
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product onlyTrashed()
+ * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDeletedAt($value)
@@ -89,8 +92,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSubtitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Product withoutTrashed()
  */
 	class Product extends \Eloquent {}
 }
@@ -190,6 +195,19 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereUrl($value)
  */
 	class Photo extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\State
+ *
+ * @property int $id
+ * @property string $name
+ * @property-read string $hash_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereName($value)
+ */
+	class State extends \Eloquent {}
 }
 
 namespace App\Models{

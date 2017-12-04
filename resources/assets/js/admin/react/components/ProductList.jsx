@@ -91,6 +91,7 @@ export default class BipolarProductList extends React.Component {
       const firstImage = (product['firstImageUrl'] !== null) ? 
         <img src={product['firstImageUrl']} width="100" /> : '--';
       const isSelected = existInArray(this.state.selectedProducts, product['hash_id']);
+      const state = product['state'] ? product['state']['name'] : '--';
 
       return (
         <tr key={product['hash_id']}>
@@ -100,7 +101,7 @@ export default class BipolarProductList extends React.Component {
           <td>{product['name']}</td>
           <td>{badgesSubtypes}</td>
           <td className="text-right">{product['price']}</td>
-          <td><i>Por cambiar</i></td>
+          <td className="text-center">{state}</td>
           <td>
             <a href={`/admin/products/${product['hash_id']}/edit`} className="btn btn-sm btn-dark btn-rounded">
               <i className="fa fa-pencil"/> Editar

@@ -5,11 +5,10 @@ Route::delete('colors/{colorId}', 'Admin\ColorController@delete');
 Route::delete('types/{sizeId}', 'Admin\TypesController@delete');
 Route::delete('photo/{photoId}', 'Admin\ProductController@deletePhoto');
 Route::delete('products/{productId}', 'Admin\Ajax\ProductController@deletesoft');
-// Colors
 Route::get('colors', 'Admin\Ajax\ColorController@index');
 Route::get('sizes', 'Admin\Ajax\SizeController@index');
 Route::get('types', 'Admin\Ajax\TypeController@index');
-// Products
+Route::get('states', 'Admin\Ajax\StateController@index');
 Route::get('products', 'Admin\Ajax\ProductController@get');
 Route::post('products', 'Admin\Ajax\ProductController@store');
 Route::get('products/search', 'Admin\Ajax\ProductController@search');

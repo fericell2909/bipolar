@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Ajax;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductNewRequest;
 use App\Models\{
-    Color, Photo, Product, Size, Stock, Subtype
+    Color, Photo, Product, Size, State, Stock, Subtype
 };
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Resources\ProductCollection;
@@ -62,7 +62,7 @@ class ProductController extends Controller
         $products = Product::orderByDesc('id')
             ->with(['photos' => function ($withPhotos) {
                 $withPhotos->orderBy('order');
-            }, 'subtypes'])
+            }, 'subtypes', 'state'])
             ->get();
 
         return response()->json(new ProductCollection($products));
@@ -70,11 +70,14 @@ class ProductController extends Controller
 
     public function store(ProductNewRequest $request)
     {
+        $state = State::findByHash($request->input('state'));
+
         $product = new Product;
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = number_format($request->input('price'), 2);
         $product->is_salient = boolval($request->input('salient')) ? now() : null;
+        $product->state()->associate($state);
         $product->save();
 
         if ($request->filled('colors')) {

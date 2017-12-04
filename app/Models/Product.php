@@ -30,6 +30,11 @@ class Product extends Model
         return $this->belongsToMany(Product::class, 'recommendeds', 'parent_product_id', 'recommended_product_id');
     }
 
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'state_id');
+    }
+
     public function stocks()
     {
         return $this->hasMany(Stock::class, 'product_id');
