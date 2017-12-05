@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import {existInArray, removeFromSimpleArray} from '../helpers';
 import swal from 'sweetalert2';
+import ProductColors from "./partials/ProductColors";
+import ProductSizes from "./partials/ProductSizes";
+import ProductTypes from "./partials/ProductTypes";
 
 export default class BipolarProductNew extends React.Component {
 
@@ -16,8 +19,6 @@ export default class BipolarProductNew extends React.Component {
       // Colors info
       colors: [],
       selectedColors: [],
-      searchedColors: [],
-      textSearchColors: '',
       // Other info
       sizes: [],
       selectedSizes: [],
@@ -31,7 +32,6 @@ export default class BipolarProductNew extends React.Component {
     this.handleSalientChange = this.handleSalientChange.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
     this.handleSizeChange = this.handleSizeChange.bind(this);
-    this.handleSearchColors = this.handleSearchColors.bind(this);
     this.handleSaveProduct = this.handleSaveProduct.bind(this);
     this.handleSubtypeChange = this.handleSubtypeChange.bind(this);
     this.handleProductStateChange = this.handleProductStateChange.bind(this);
@@ -43,24 +43,6 @@ export default class BipolarProductNew extends React.Component {
 
   handleSalientChange(event) {
     this.setState({salient: event.target.checked});
-  }
-
-  handleSearchColors(event) {
-    const search = event.target.value.toLowerCase();
-
-    if (search.length === 0) {
-      return this.setState({
-        searchedColors: [],
-        textSearchColors: '',
-      });
-    }
-
-    const filtered = this.state.colors.filter(color => color.name.toLowerCase().search(search) !== -1);
-
-    return this.setState({
-      searchedColors: filtered,
-      textSearchColors: search,
-    })
   }
 
   handleColorChange(event) {
@@ -128,58 +110,6 @@ export default class BipolarProductNew extends React.Component {
   }
 
   render() {
-    let colors = (this.state.searchedColors.length === 0 && this.state.textSearchColors.length === 0)
-      ? [...this.state.colors]
-      : [...this.state.searchedColors];
-
-    const colorsRender = colors.map(color => {
-      const isSelected = existInArray(this.state.selectedColors, color['hash_id']);
-      return (
-        <div key={color['hash_id']} className="checkbox">
-          <label><input type="checkbox" checked={isSelected} value={color['hash_id']}
-                        onChange={this.handleColorChange}/>{color['name']}</label>
-        </div>
-      );
-    });
-
-    const sizesRender = this.state.sizes.map(size => {
-      const isSelected = existInArray(this.state.selectedSizes, size['hash_id']);
-      return (
-        <div key={size['hash_id']} className="checkbox">
-          <label><input type="checkbox" checked={isSelected} value={size['hash_id']}
-                        onChange={this.handleSizeChange}/>{size['name']}</label>
-        </div>
-      );
-    });
-
-    const typesRender = this.state.types.map(type => {
-      let subtypes = [];
-      if (type['subtypes']) {
-        subtypes = type['subtypes'].map(subtype => {
-          const isSelected = existInArray(this.state.selectedSubtypes, subtype['hash_id']);
-          return (
-            <div key={subtype['hash_id']} className="checkbox">
-              <label><input type="checkbox" checked={isSelected} value={subtype['hash_id']}
-                            onChange={this.handleSubtypeChange}/>{subtype['name']}</label>
-            </div>
-          );
-        });
-      }
-
-      return (
-        <div key={type['hash_id']}>
-          <div className="panel panel-inverse">
-            <div className="panel-heading">Tipo de {type['name']}</div>
-          </div>
-          <div className="panel-wrapper collapse in">
-            <div className="panel-body">
-              {subtypes.length ? subtypes : 'No hay subtipos'}
-            </div>
-          </div>
-        </div>
-      );
-    });
-
     const productStatesRender = this.state.productStates.map(state => {
       return <option key={state['hash_id']} value={state['hash_id']}>{state['name']}</option>
     });
@@ -234,27 +164,15 @@ export default class BipolarProductNew extends React.Component {
           </div>
         </div>
         <div className="col-md-3">
-          <div className="white-box">
-            <div className="panel panel-inverse">
-              <div className="panel-heading">Colores</div>
-            </div>
-            <div className="panel-wrapper collapse in">
-              <div className="panel-body">
-                <input value={this.state.textSearchColors} onChange={this.handleSearchColors} type="text"
-                       className="form-control" placeholder="Buscar color"/>
-                {colorsRender.length ? colorsRender : 'No hay colores'}
-              </div>
-            </div>
-            {typesRender.length ? typesRender : 'No hay tipos'}
-            <div className="panel panel-inverse">
-              <div className="panel-heading">Tallas</div>
-            </div>
-            <div className="panel-wrapper collapse in">
-              <div className="panel-body">
-                {sizesRender.length ? sizesRender : 'No hay tallas'}
-              </div>
-            </div>
-          </div>
+          <ProductColors colors={this.state.colors}
+                         selected={this.state.selectedColors}
+                         toggleCheck={this.handleColorChange}/>
+          <ProductSizes sizes={this.state.sizes}
+                        selected={this.state.selectedSizes}
+                        toggleCheck={this.handleSizeChange}/>
+          <ProductTypes types={this.state.types}
+                        selected={this.state.selectedSubtypes}
+                        toggleCheck={this.handleSubtypeChange}/>
         </div>
       </div>
     );
