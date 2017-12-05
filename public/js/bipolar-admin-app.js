@@ -38626,6 +38626,7 @@ __webpack_require__("./resources/assets/js/admin/react/bootstrap.js");
 __webpack_require__("./resources/assets/js/admin/react/components/ProductRecommend.jsx");
 __webpack_require__("./resources/assets/js/admin/react/components/ProductActivations.jsx");
 __webpack_require__("./resources/assets/js/admin/react/components/ProductNew.jsx");
+__webpack_require__("./resources/assets/js/admin/react/components/ProductEdit.jsx");
 __webpack_require__("./resources/assets/js/admin/react/components/ProductList.jsx");
 
 /***/ }),
@@ -39074,6 +39075,226 @@ var BipolarProductActivations = function (_Component) {
 
 if (document.getElementById('bipolar-product-activations')) {
     __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(BipolarProductActivations, null), document.getElementById('bipolar-product-activations'));
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/admin/react/components/ProductEdit.jsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_dom__ = __webpack_require__("./node_modules/react-dom/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__("./node_modules/axios/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers__ = __webpack_require__("./resources/assets/js/admin/react/helpers.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__partials_ProductColors__ = __webpack_require__("./resources/assets/js/admin/react/components/partials/ProductColors.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__partials_ProductSizes__ = __webpack_require__("./resources/assets/js/admin/react/components/partials/ProductSizes.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__partials_ProductTypes__ = __webpack_require__("./resources/assets/js/admin/react/components/partials/ProductTypes.jsx");
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+
+var BipolarProductEdit = function (_React$Component) {
+  _inherits(BipolarProductEdit, _React$Component);
+
+  function BipolarProductEdit() {
+    _classCallCheck(this, BipolarProductEdit);
+
+    var _this = _possibleConstructorReturn(this, (BipolarProductEdit.__proto__ || Object.getPrototypeOf(BipolarProductEdit)).call(this));
+
+    _this.state = {
+      product: {
+        name: "",
+        price: 0,
+        selectedColors: [],
+        selectedSizes: [],
+        selectedSubtypes: []
+      },
+      // data for info
+      colors: [],
+      sizes: [],
+      types: [],
+      productStates: []
+    };
+
+    _this.handleColorChange = _this.handleColorChange.bind(_this);
+    _this.handleSizeChange = _this.handleSizeChange.bind(_this);
+    _this.handleSubtypeChange = _this.handleSubtypeChange.bind(_this);
+    return _this;
+  }
+
+  _createClass(BipolarProductEdit, [{
+    key: "handleInputChange",
+    value: function handleInputChange(event) {
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
+    }
+  }, {
+    key: "handleColorChange",
+    value: function handleColorChange(event) {
+      var colorHashId = event.target.value;
+      var selected = this.state.product.selectedColors;
+
+      if (event.target.checked) {
+        selected.push(colorHashId);
+      } else {
+        selected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["d" /* removeFromSimpleArray */])(selected, colorHashId);
+      }
+
+      return this.setState({
+        product: _extends({}, this.state.product, {
+          selectedColors: selected
+        })
+      });
+    }
+  }, {
+    key: "handleSizeChange",
+    value: function handleSizeChange(event) {
+      var sizeHashId = event.target.value;
+      var selected = this.state.product.selectedSizes;
+
+      if (event.target.checked) {
+        selected.push(sizeHashId);
+      } else {
+        selected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["d" /* removeFromSimpleArray */])(selected, sizeHashId);
+      }
+
+      return this.setState({
+        product: _extends({}, this.state.product, {
+          selectedSizes: selected
+        })
+      });
+    }
+  }, {
+    key: "handleSubtypeChange",
+    value: function handleSubtypeChange(event) {
+      var subtypeHashId = event.target.value;
+      var selected = this.state.product.selectedSubtypes;
+
+      if (event.target.checked) {
+        selected.push(subtypeHashId);
+      } else {
+        selected = Object(__WEBPACK_IMPORTED_MODULE_3__helpers__["d" /* removeFromSimpleArray */])(selected, subtypeHashId);
+      }
+
+      return this.setState({
+        product: _extends({}, this.state.product, {
+          selectedSubtypes: selected
+        })
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+        "div",
+        { className: "row" },
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+          "div",
+          { className: "col-md-9" },
+          __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+            "div",
+            { className: "white-box" },
+            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+              "div",
+              { className: "form-row" },
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                "div",
+                { className: "col-md-6" },
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                  "div",
+                  { className: "form-group" },
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                    "label",
+                    null,
+                    "Nombre"
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.name, onChange: this.handleInputChange, name: "name", type: "text",
+                    className: "form-control", required: true })
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                "div",
+                { className: "col-md-6" },
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                  "div",
+                  { className: "form-group" },
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                    "label",
+                    null,
+                    "Precio"
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.price, onChange: this.handleInputChange, name: "price", type: "number",
+                    className: "form-control" })
+                )
+              )
+            )
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+          "div",
+          { className: "col-md-3" },
+          __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__partials_ProductColors__["a" /* default */], { colors: this.state.colors,
+            selected: this.state.product.selectedColors,
+            toggleCheck: this.handleColorChange }),
+          __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__partials_ProductSizes__["a" /* default */], { sizes: this.state.sizes,
+            selected: this.state.product.selectedSizes,
+            toggleCheck: this.handleSizeChange }),
+          __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__partials_ProductTypes__["a" /* default */], { types: this.state.types,
+            selected: this.state.product.selectedSubtypes,
+            toggleCheck: this.handleSubtypeChange })
+        )
+      );
+    }
+  }, {
+    key: "getAllInformation",
+    value: function getAllInformation() {
+      var _this2 = this;
+
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.all([__WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/colors'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/sizes'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/types'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/states')]).then(__WEBPACK_IMPORTED_MODULE_2_axios___default.a.spread(function (responseColors, responseSizes, responseTypes, responseStates) {
+        _this2.setState({
+          colors: responseColors.data['data'],
+          sizes: responseSizes.data['data'],
+          types: responseTypes.data['data'],
+          productStates: responseStates.data['data']
+        });
+      }));
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getAllInformation();
+    }
+  }]);
+
+  return BipolarProductEdit;
+}(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (BipolarProductEdit);
+
+
+if (document.getElementById('bipolar-product-edit')) {
+  var ProductHashId = window.BipolarProductId;
+  __WEBPACK_IMPORTED_MODULE_0_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(BipolarProductEdit, { productHashId: ProductHashId }), document.getElementById('bipolar-product-edit'));
 }
 
 /***/ }),
@@ -40289,6 +40510,239 @@ if (document.getElementById('bipolar-product-recommended')) {
     var ProductHashId = window.BipolarProductId;
     __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(BipolarProductRecommended, { productHashId: ProductHashId }), document.getElementById('bipolar-product-recommended'));
 }
+
+/***/ }),
+
+/***/ "./resources/assets/js/admin/react/components/partials/ProductColors.jsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers__ = __webpack_require__("./resources/assets/js/admin/react/helpers.js");
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var ProductColors = function (_React$Component) {
+  _inherits(ProductColors, _React$Component);
+
+  function ProductColors(props) {
+    _classCallCheck(this, ProductColors);
+
+    var _this = _possibleConstructorReturn(this, (ProductColors.__proto__ || Object.getPrototypeOf(ProductColors)).call(this, props));
+
+    _this.state = {
+      searchedColors: [],
+      textSearchColors: ""
+    };
+
+    _this.handleSearchColors = _this.handleSearchColors.bind(_this);
+    return _this;
+  }
+
+  _createClass(ProductColors, [{
+    key: "handleSearchColors",
+    value: function handleSearchColors(event) {
+      var search = event.target.value.toLowerCase();
+
+      if (search.length === 0) {
+        return this.setState({
+          searchedColors: [],
+          textSearchColors: ''
+        });
+      }
+
+      var filtered = this.props.colors.filter(function (color) {
+        return color.name.toLowerCase().search(search) !== -1;
+      });
+
+      return this.setState({
+        searchedColors: filtered,
+        textSearchColors: search
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var colors = this.state.searchedColors.length === 0 && this.state.textSearchColors.length === 0 ? [].concat(_toConsumableArray(this.props.colors)) : [].concat(_toConsumableArray(this.state.searchedColors));
+
+      var colorsRender = colors.map(function (color) {
+        var isSelected = Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["a" /* existInArray */])(_this2.props.selected, color['hash_id']);
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { key: color['hash_id'], className: "checkbox" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "label",
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox", checked: isSelected, value: color['hash_id'], onChange: _this2.props.toggleCheck }),
+            color['name']
+          )
+        );
+      });
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "div",
+        { className: "white-box" },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: "panel panel-inverse" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "panel-heading" },
+            "Colores"
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: "panel-wrapper collapse in" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "panel-body" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { value: this.state.textSearchColors, onChange: this.handleSearchColors, type: "text",
+              className: "form-control", placeholder: "Buscar color" }),
+            colorsRender.length ? colorsRender : 'No hay colores'
+          )
+        )
+      );
+    }
+  }]);
+
+  return ProductColors;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (ProductColors);
+
+/***/ }),
+
+/***/ "./resources/assets/js/admin/react/components/partials/ProductSizes.jsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers__ = __webpack_require__("./resources/assets/js/admin/react/helpers.js");
+
+
+
+var ProductSizes = function ProductSizes(props) {
+  var sizesRender = props.sizes.map(function (size) {
+    var isSelected = Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["a" /* existInArray */])(props.selected, size['hash_id']);
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'div',
+      { key: size['hash_id'], className: 'checkbox' },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'label',
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'checkbox',
+          checked: isSelected,
+          value: size['hash_id'],
+          onChange: props.toggleCheck }),
+        size['name']
+      )
+    );
+  });
+
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+    'div',
+    { className: 'white-box' },
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'div',
+      { className: 'panel panel-inverse' },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'panel-heading' },
+        'Tallas'
+      )
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'div',
+      { className: 'panel-wrapper collapse in' },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'panel-body' },
+        sizesRender.length ? sizesRender : 'No hay tallas'
+      )
+    )
+  );
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (ProductSizes);
+
+/***/ }),
+
+/***/ "./resources/assets/js/admin/react/components/partials/ProductTypes.jsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers__ = __webpack_require__("./resources/assets/js/admin/react/helpers.js");
+
+
+
+var ProductTypes = function ProductTypes(props) {
+  var typesRender = props.types.map(function (type) {
+    var subtypes = [];
+    if (type['subtypes']) {
+      subtypes = type['subtypes'].map(function (subtype) {
+        var isSelected = Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["a" /* existInArray */])(props.selected, subtype['hash_id']);
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { key: subtype['hash_id'], className: "checkbox" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "label",
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox",
+              checked: isSelected,
+              value: subtype['hash_id'],
+              onChange: props.toggleCheck }),
+            subtype['name']
+          )
+        );
+      });
+    }
+
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "div",
+      { className: "white-box", key: type['hash_id'] },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "div",
+        { className: "panel panel-inverse" },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: "panel-heading" },
+          "Tipo de ",
+          type['name']
+        )
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "div",
+        { className: "panel-wrapper collapse in" },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: "panel-body" },
+          subtypes.length ? subtypes : 'No hay subtipos'
+        )
+      )
+    );
+  });
+
+  return typesRender.length ? typesRender : 'No hay tipos';
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (ProductTypes);
 
 /***/ }),
 

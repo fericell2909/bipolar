@@ -146,15 +146,7 @@ class ProductController extends Controller
             })
             ->toArray();
 
-        return view('admin.products.product_edit', compact(
-            'product',
-            'colors',
-            'types',
-            'sizes',
-            'selectedColors',
-            'selectedSubtypes',
-            'selectedSizes'
-        ));
+        return view('admin.products.product_edit', compact('product'));
     }
 
     public function update(ProductNewRequest $request, $productId)
