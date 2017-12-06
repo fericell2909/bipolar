@@ -16,6 +16,7 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
             $table->decimal('dolar_change', 7, 2);
+            $table->boolean('free_shipping')->default(false);
             $table->unsignedInteger('bipolar_counts')->default(0);
         });
 

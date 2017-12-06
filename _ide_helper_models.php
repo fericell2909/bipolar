@@ -31,9 +31,11 @@ namespace App\Models{
  *
  * @property int $id
  * @property float $dolar_change
+ * @property int $free_shipping
  * @property int $bipolar_counts
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBipolarCounts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDolarChange($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFreeShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereId($value)
  */
 	class Settings extends \Eloquent {}

@@ -18,10 +18,16 @@ class SettingsController extends Controller
 
     public function saveGeneral(Request $request)
     {
-        $this->validate($request, ['bipolar_counts' => 'required|integer|min:0']);
+        $this->validate($request, [
+            'bipolar_counts' => 'required|integer|min:0',
+            'dolar_price'    => 'required|numeric|min:0',
+            'free_shipping'  => 'nullable|boolean',
+        ]);
 
         $settings = Settings::first();
         $settings->bipolar_counts = $request->input('bipolar_counts');
+        $settings->dolar_change = $request->input('dolar_price');
+        $settings->free_shipping = $request->input('free_shipping', false);
         $settings->save();
 
         flash()->success('Guardado con éxito');
@@ -74,7 +80,9 @@ class SettingsController extends Controller
     {
         $size = Size::findByHash($sizeHashId);
 
-        // todo: validate size has stocks
+        if ($size->stocks->count()) {
+            flash()->error('La talla tiene productos asociados');
+        }
 
         $size->delete();
 
