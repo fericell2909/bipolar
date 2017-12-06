@@ -19,7 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('slug', 300)->nullable();
             $table->text('description')->nullable();
             $table->decimal('price', 7, 2);
-            $table->timestamp('active')->nullable();
+            $table->decimal('weight', 7, 2)->nullable();
+            $table->boolean('free_shipping')->default(false);
             $table->timestamp('is_salient')->nullable();
             $table->timestamps();
             $table->softDeletes();
