@@ -39094,6 +39094,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__partials_ProductColors__ = __webpack_require__("./resources/assets/js/admin/react/components/partials/ProductColors.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__partials_ProductSizes__ = __webpack_require__("./resources/assets/js/admin/react/components/partials/ProductSizes.jsx");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__partials_ProductTypes__ = __webpack_require__("./resources/assets/js/admin/react/components/partials/ProductTypes.jsx");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_lodash__ = __webpack_require__("./node_modules/lodash/lodash.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_sweetalert2__ = __webpack_require__("./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_sweetalert2__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -39114,18 +39118,23 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
+
 var BipolarProductEdit = function (_React$Component) {
   _inherits(BipolarProductEdit, _React$Component);
 
-  function BipolarProductEdit() {
+  function BipolarProductEdit(props) {
     _classCallCheck(this, BipolarProductEdit);
 
-    var _this = _possibleConstructorReturn(this, (BipolarProductEdit.__proto__ || Object.getPrototypeOf(BipolarProductEdit)).call(this));
+    var _this = _possibleConstructorReturn(this, (BipolarProductEdit.__proto__ || Object.getPrototypeOf(BipolarProductEdit)).call(this, props));
 
     _this.state = {
       product: {
         name: "",
         price: 0,
+        description: "",
+        salient: false,
+        selectedState: "",
         selectedColors: [],
         selectedSizes: [],
         selectedSubtypes: []
@@ -39137,16 +39146,31 @@ var BipolarProductEdit = function (_React$Component) {
       productStates: []
     };
 
+    _this.handleInputChange = _this.handleInputChange.bind(_this);
     _this.handleColorChange = _this.handleColorChange.bind(_this);
     _this.handleSizeChange = _this.handleSizeChange.bind(_this);
     _this.handleSubtypeChange = _this.handleSubtypeChange.bind(_this);
+    _this.handleUpdateProduct = _this.handleUpdateProduct.bind(_this);
+    _this.handleProductStateChange = _this.handleProductStateChange.bind(_this);
+    _this.handleSalientChange = _this.handleSalientChange.bind(_this);
     return _this;
   }
 
   _createClass(BipolarProductEdit, [{
     key: "handleInputChange",
     value: function handleInputChange(event) {
-      this.setState(_defineProperty({}, event.target.name, event.target.value));
+      this.setState({
+        product: _extends({}, this.state.product, _defineProperty({}, event.target.name, event.target.value))
+      });
+    }
+  }, {
+    key: "handleSalientChange",
+    value: function handleSalientChange(event) {
+      this.setState({
+        product: _extends({}, this.state.product, {
+          salient: event.target.checked
+        })
+      });
     }
   }, {
     key: "handleColorChange",
@@ -39203,8 +39227,57 @@ var BipolarProductEdit = function (_React$Component) {
       });
     }
   }, {
+    key: "handleUpdateProduct",
+    value: function handleUpdateProduct() {
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.put("/ajax-admin/products/" + this.props.productHashId, {
+        name: this.state.product.name,
+        price: this.state.product.price,
+        description: this.state.product.description,
+        salient: this.state.product.salient,
+        colors: this.state.product.selectedColors,
+        sizes: this.state.product.selectedSizes,
+        subtypes: this.state.product.selectedSubtypes,
+        state: this.state.product.selectedState
+      }).then(function (response) {
+        var data = response.data;
+
+        if (response.status === 200) {
+          __WEBPACK_IMPORTED_MODULE_8_sweetalert2___default()({
+            title: 'Actualizado',
+            type: 'success',
+            toast: true,
+            position: 'top-right',
+            showConfirmButton: false,
+            timer: 3000
+          });
+          return setTimeout(function () {
+            return window.location.href = data['edit_route'];
+          }, 3000);
+        }
+
+        return alert('algo malo paso');
+      });
+    }
+  }, {
+    key: "handleProductStateChange",
+    value: function handleProductStateChange(event) {
+      this.setState({
+        product: _extends({}, this.state.product, {
+          selectedState: event.target.value
+        })
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var productStatesRender = this.state.productStates.map(function (state) {
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+          "option",
+          { key: state['hash_id'], value: state['hash_id'] },
+          state['name']
+        );
+      });
+
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
         "div",
         { className: "row" },
@@ -39247,6 +39320,60 @@ var BipolarProductEdit = function (_React$Component) {
                     className: "form-control" })
                 )
               )
+            ),
+            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+              "div",
+              { className: "form-group" },
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                "label",
+                null,
+                "Descripci\xF3n (Opcional)"
+              ),
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("textarea", { value: this.state.product.description, onChange: this.handleInputChange, name: "description",
+                className: "form-control", rows: "7" })
+            ),
+            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+              "div",
+              { className: "row" },
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                "div",
+                { className: "col-md-6" },
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                  "div",
+                  { className: "form-group" },
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                    "label",
+                    null,
+                    "Estado"
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                    "select",
+                    { className: "form-control", value: this.state.product.selectedState, onChange: this.handleProductStateChange },
+                    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                      "option",
+                      { value: "", disabled: true },
+                      "Seleccione un estado"
+                    ),
+                    productStatesRender.length ? productStatesRender : null
+                  )
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                "div",
+                { className: "col-md-5" },
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                  "label",
+                  { className: "checkbox-inline" },
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.salient, onChange: this.handleSalientChange, type: "checkbox" }),
+                  "Destacado"
+                )
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("hr", null),
+            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+              "button",
+              { onClick: this.handleUpdateProduct, className: "btn btn-dark btn-rounded" },
+              "Actualizar e ir a subir fotos"
             )
           )
         ),
@@ -39270,8 +39397,27 @@ var BipolarProductEdit = function (_React$Component) {
     value: function getAllInformation() {
       var _this2 = this;
 
-      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.all([__WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/colors'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/sizes'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/types'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/states')]).then(__WEBPACK_IMPORTED_MODULE_2_axios___default.a.spread(function (responseColors, responseSizes, responseTypes, responseStates) {
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.all([__WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/colors'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/sizes'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/types'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/states'), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get("/ajax-admin/products/" + this.props.productHashId)]).then(__WEBPACK_IMPORTED_MODULE_2_axios___default.a.spread(function (responseColors, responseSizes, responseTypes, responseStates, responseProduct) {
+        var product = responseProduct.data['data'];
+        var productInState = _extends({}, _this2.state.product);
+
+        productInState.name = product.name;
+        productInState.price = product.price;
+        productInState.description = product.description !== null ? product.description : "";
+        productInState.salient = product['is_salient'] !== null;
+        productInState.selectedState = Object(__WEBPACK_IMPORTED_MODULE_7_lodash__["get"])(product, 'state.hash_id', "");
+        productInState.selectedColors = product.colors.map(function (color) {
+          return color['hash_id'];
+        });
+        productInState.selectedSubtypes = product.subtypes.map(function (subtype) {
+          return subtype['hash_id'];
+        });
+        productInState.selectedSizes = product.sizes.map(function (size) {
+          return size['hash_id'];
+        });
+
         _this2.setState({
+          product: _extends({}, productInState),
           colors: responseColors.data['data'],
           sizes: responseSizes.data['data'],
           types: responseTypes.data['data'],
@@ -39425,10 +39571,9 @@ var BipolarProductList = function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var productsRender = [];
       var productsSource = this.state.searchText.length > 0 ? [].concat(_toConsumableArray(this.state.filteredProducts)) : [].concat(_toConsumableArray(this.state.products));
 
-      productsRender = productsSource.map(function (product) {
+      var productsRender = productsSource.map(function (product) {
         var badgesSubtypes = product['subtypes'].map(function (subtype) {
           return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "span",
@@ -39451,7 +39596,7 @@ var BipolarProductList = function (_React$Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",
             null,
-            "#"
+            product['id']
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",
@@ -39477,6 +39622,11 @@ var BipolarProductList = function (_React$Component) {
             "td",
             { className: "text-center" },
             state
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "td",
+            { className: "text-center" },
+            product['is_salient'] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-check" }) : null
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",
@@ -39619,6 +39769,11 @@ var BipolarProductList = function (_React$Component) {
                     "th",
                     { className: "text-center" },
                     "Estado"
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "th",
+                    { className: "text-center" },
+                    "Destacado"
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "th",
@@ -39916,10 +40071,8 @@ var BipolarProductNew = function (_React$Component) {
                 { className: 'col-md-5' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'label',
-                  { className: 'checkbox-inline',
-                    checked: this.state.salient,
-                    onChange: this.handleSalientChange },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'checkbox' }),
+                  { className: 'checkbox-inline' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { checked: this.state.salient, onChange: this.handleSalientChange, type: 'checkbox' }),
                   'Destacado'
                 )
               )

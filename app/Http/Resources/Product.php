@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Stock;
 use Illuminate\Http\Resources\Json\Resource;
 
 class Product extends Resource
@@ -16,13 +17,18 @@ class Product extends Resource
     {
         /** @var \App\Models\Product|Resource $this */
         return [
-            'hash_id'    => $this->hash_id,
-            'name'       => $this->name,
-            'price'      => $this->price,
-            'edit_route' => route('products.photos', $this->slug),
-            'photos'     => Photo::collection($this->whenLoaded('photos')),
-            'subtypes'   => Subtype::collection($this->whenLoaded('subtypes')),
-            'state'      => new State($this->whenLoaded('state')),
+            'id'          => $this->when(\Auth::guard('admin')->check(), $this->id),
+            'hash_id'     => $this->hash_id,
+            'name'        => $this->name,
+            'price'       => $this->price,
+            'description' => $this->description,
+            'is_salient'  => $this->is_salient,
+            'edit_route'  => route('products.photos', $this->slug),
+            'photos'      => Photo::collection($this->whenLoaded('photos')),
+            'subtypes'    => Subtype::collection($this->whenLoaded('subtypes')),
+            'state'       => new State($this->whenLoaded('state')),
+            'colors'      => Color::collection($this->whenLoaded('colors')),
+            'sizes'       => Size::collection($this->sizes()),
         ];
     }
 }

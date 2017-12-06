@@ -150,9 +150,8 @@ export default class BipolarProductNew extends React.Component {
                 </div>
               </div>
               <div className="col-md-5">
-                <label className="checkbox-inline"
-                       checked={this.state.salient}
-                       onChange={this.handleSalientChange}><input type="checkbox"/>
+                <label className="checkbox-inline">
+                  <input checked={this.state.salient} onChange={this.handleSalientChange} type="checkbox"/>
                   Destacado
                 </label>
               </div>

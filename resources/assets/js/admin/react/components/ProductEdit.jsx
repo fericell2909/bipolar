@@ -5,15 +5,20 @@ import {removeFromSimpleArray} from "../helpers";
 import ProductColors from "./partials/ProductColors";
 import ProductSizes from "./partials/ProductSizes";
 import ProductTypes from "./partials/ProductTypes";
+import {get} from 'lodash';
+import swal from "sweetalert2";
 
 export default class BipolarProductEdit extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       product: {
         name: "",
         price: 0,
+        description: "",
+        salient: false,
+        selectedState: "",
         selectedColors: [],
         selectedSizes: [],
         selectedSubtypes: [],
@@ -25,13 +30,31 @@ export default class BipolarProductEdit extends React.Component {
       productStates: [],
     };
 
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
     this.handleSizeChange = this.handleSizeChange.bind(this);
     this.handleSubtypeChange = this.handleSubtypeChange.bind(this);
+    this.handleUpdateProduct = this.handleUpdateProduct.bind(this);
+    this.handleProductStateChange = this.handleProductStateChange.bind(this);
+    this.handleSalientChange = this.handleSalientChange.bind(this);
   }
 
   handleInputChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({
+      product: {
+        ...this.state.product,
+        [event.target.name]: event.target.value,
+      }
+    });
+  }
+
+  handleSalientChange(event) {
+    this.setState({
+      product: {
+        ...this.state.product,
+        salient: event.target.checked,
+      }
+    });
   }
 
   handleColorChange(event) {
@@ -88,7 +111,50 @@ export default class BipolarProductEdit extends React.Component {
     });
   }
 
+  handleUpdateProduct() {
+    axios.put(`/ajax-admin/products/${this.props.productHashId}`, {
+      name: this.state.product.name,
+      price: this.state.product.price,
+      description: this.state.product.description,
+      salient: this.state.product.salient,
+      colors: this.state.product.selectedColors,
+      sizes: this.state.product.selectedSizes,
+      subtypes: this.state.product.selectedSubtypes,
+      state: this.state.product.selectedState,
+    })
+      .then(response => {
+        const data = response.data;
+
+        if (response.status === 200) {
+          swal({
+            title: 'Actualizado',
+            type: 'success',
+            toast: true,
+            position: 'top-right',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          return setTimeout(() => window.location.href = data['edit_route'], 3000);
+        }
+
+        return alert('algo malo paso');
+      });
+  }
+
+  handleProductStateChange(event) {
+    this.setState({
+      product: {
+        ...this.state.product,
+        selectedState: event.target.value,
+      }
+    });
+  }
+
   render() {
+    const productStatesRender = this.state.productStates.map(state => {
+      return <option key={state['hash_id']} value={state['hash_id']}>{state['name']}</option>
+    });
+
     return (
       <div className="row">
         <div className="col-md-9">
@@ -109,6 +175,32 @@ export default class BipolarProductEdit extends React.Component {
                 </div>
               </div>
             </div>
+            <div className="form-group">
+              <label>Descripción (Opcional)</label>
+              <textarea value={this.state.product.description} onChange={this.handleInputChange} name="description"
+                        className="form-control" rows="7"/>
+            </div>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Estado</label>
+                  <select className="form-control" value={this.state.product.selectedState} onChange={this.handleProductStateChange}>
+                    <option value="" disabled>Seleccione un estado</option>
+                    {productStatesRender.length ? productStatesRender : null}
+                  </select>
+                </div>
+              </div>
+              <div className="col-md-5">
+                <label className="checkbox-inline">
+                  <input checked={this.state.product.salient} onChange={this.handleSalientChange} type="checkbox"/>
+                  Destacado
+                </label>
+              </div>
+            </div>
+            <hr/>
+            <button onClick={this.handleUpdateProduct} className="btn btn-dark btn-rounded">
+              Actualizar e ir a subir fotos
+            </button>
           </div>
         </div>
         <div className="col-md-3">
@@ -132,9 +224,23 @@ export default class BipolarProductEdit extends React.Component {
       axios.get('/ajax-admin/sizes'),
       axios.get('/ajax-admin/types'),
       axios.get('/ajax-admin/states'),
+      axios.get(`/ajax-admin/products/${this.props.productHashId}`),
     ])
-      .then(axios.spread((responseColors, responseSizes, responseTypes, responseStates) => {
+      .then(axios.spread((responseColors, responseSizes, responseTypes, responseStates, responseProduct) => {
+        const product = responseProduct.data['data'];
+        const productInState = {...this.state.product};
+
+        productInState.name = product.name;
+        productInState.price = product.price;
+        productInState.description = product.description !== null ? product.description : "";
+        productInState.salient = product['is_salient'] !== null;
+        productInState.selectedState = get(product, 'state.hash_id', "");
+        productInState.selectedColors = product.colors.map(color => color['hash_id']);
+        productInState.selectedSubtypes = product.subtypes.map(subtype => subtype['hash_id']);
+        productInState.selectedSizes = product.sizes.map(size => size['hash_id']);
+
         this.setState({
+          product: {...productInState},
           colors: responseColors.data['data'],
           sizes: responseSizes.data['data'],
           types: responseTypes.data['data'],

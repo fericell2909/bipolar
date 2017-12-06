@@ -15,13 +15,7 @@ class ColorCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => $this->collection->transform(function ($color) {
-                /** @var \App\Models\Color $color */
-                return [
-                    'hash_id' => $color->hash_id,
-                    'name' => $color->name,
-                ];
-            }),
+            'data' => $this->collection,
         ];
     }
 }

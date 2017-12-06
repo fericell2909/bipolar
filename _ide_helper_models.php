@@ -66,7 +66,6 @@ namespace App\Models{
  * @property string|null $slug
  * @property string|null $description
  * @property float $price
- * @property string|null $active
  * @property string|null $is_salient
  * @property string|null $is_home
  * @property \Carbon\Carbon|null $created_at
@@ -76,13 +75,13 @@ namespace App\Models{
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommendeds
+ * @property-read \App\Models\State|null $state
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Stock[] $stocks
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product findSimilarSlugs($attribute, $config, $slug)
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Product onlyTrashed()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDescription($value)
@@ -204,6 +203,7 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property-read string $hash_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereName($value)
  */

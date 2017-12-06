@@ -1,5 +1,5 @@
 <div class="row thin-steps">
-    <a href="{{ route('products.edit', $product->id) }}" class="col-md-3 column-step start {{ $active === 1 ? 'active' : null }}">
+    <a href="{{ route('products.edit', $product->hash_id) }}" class="col-md-3 column-step start {{ $active === 1 ? 'active' : null }}">
         <div class="step-number">1</div>
         <div class="step-title">Producto</div>
     </a>

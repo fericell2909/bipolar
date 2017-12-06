@@ -14,14 +14,6 @@ class SizeCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [
-            'data' => $this->collection->transform(function ($size) {
-                /** @var \App\Models\Size $size */
-                return [
-                    'hash_id' => $size->hash_id,
-                    'name'    => $size->name,
-                ];
-            }),
-        ];
+        return ['data' => $this->collection];
     }
 }

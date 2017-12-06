@@ -68,6 +68,15 @@ class ProductController extends Controller
         return response()->json(new ProductCollection($products));
     }
 
+    public function show($productHashId)
+    {
+        $product = Product::findByHash($productHashId);
+
+        $product->load('state', 'colors', 'subtypes', 'stocks');
+
+        return new ProductResource($product);
+    }
+
     public function store(ProductNewRequest $request)
     {
         $state = State::findByHash($request->input('state'));
@@ -108,14 +117,57 @@ class ProductController extends Controller
         return response()->json(new ProductResource($product), Response::HTTP_CREATED);
     }
 
-    public function update(Request $request, $productHashId)
+    public function update(ProductNewRequest $request, $productHashId)
     {
-        $this->validate($request, ['update' => 'sometimes|boolean']);
+        $state = State::findByHash($request->input('state'));
 
         $product = Product::findByHash($productHashId);
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = number_format($request->input('price'), 2);
+        $product->is_salient = boolval($request->input('salient')) ? now() : null;
+        $product->state()->associate($state);
         $product->save();
 
-        return response()->json($product);
+        if ($request->filled('colors')) {
+            $requestColors = $request->input('colors');
+            $colors = Color::findByManyHash($requestColors)->pluck('id')->toArray();
+            $product->colors()->sync($colors);
+        }
+
+        if ($request->filled('subtypes')) {
+            $requestSubtypes = $request->input('subtypes');
+            $subtypes = Subtype::findByManyHash($requestSubtypes)->pluck('id')->toArray();
+            $product->subtypes()->sync($subtypes);
+        }
+
+        if ($request->filled('sizes')) {
+            $requestSizes = Size::findByManyHash($request->input('sizes'))->pluck('id')->toArray();
+            $currentSizes = $product->sizes()->pluck('id')->toArray();
+
+            // Remove the unused products
+            $unusedSizes = array_diff($currentSizes, $requestSizes);
+
+            if (count($unusedSizes)) {
+                $stocks = $product->stocks()->whereIn('size_id', $unusedSizes)->get();
+                $stocks->each(function ($stock) { $stock->delete(); });
+            }
+
+            // Add new products
+            $newSizes = array_diff($requestSizes, $currentSizes);
+
+            foreach ($newSizes as $sizeId) {
+                $size = Size::find($sizeId);
+                $stock = new Stock;
+                $stock->product()->associate($product);
+                $stock->size()->associate($size);
+                $stock->incoming_date = now()->toDateString();
+                $stock->active = now();
+                $stock->save();
+            }
+        }
+
+        return response()->json(new ProductResource($product));
     }
 
     public function deletehard($productHashId)

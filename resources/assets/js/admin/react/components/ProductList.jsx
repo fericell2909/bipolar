@@ -81,10 +81,9 @@ export default class BipolarProductList extends React.Component {
 
   render() {
 
-    let productsRender = [];
     const productsSource = (this.state.searchText.length > 0) ? [...this.state.filteredProducts] : [...this.state.products];
 
-    productsRender = productsSource.map(product => {
+    const productsRender = productsSource.map(product => {
       const badgesSubtypes = product['subtypes'].map(subtype => {
         return <span key={subtype['hash_id']} className="badge badge-dark">{subtype['name']}</span>
       });
@@ -96,12 +95,13 @@ export default class BipolarProductList extends React.Component {
       return (
         <tr key={product['hash_id']}>
           <td><input type="checkbox" checked={isSelected} value={product['hash_id']} onChange={this.handleProductSelect} /></td>
-          <td>#</td>
+          <td>{product['id']}</td>
           <td>{firstImage}</td>
           <td>{product['name']}</td>
           <td>{badgesSubtypes}</td>
           <td className="text-right">{product['price']}</td>
           <td className="text-center">{state}</td>
+          <td className="text-center">{product['is_salient'] !== null ? <i className="fa fa-check"/> : null}</td>
           <td>
             <a href={`/admin/products/${product['hash_id']}/edit`} className="btn btn-sm btn-dark btn-rounded">
               <i className="fa fa-pencil"/> Editar
@@ -155,6 +155,7 @@ export default class BipolarProductList extends React.Component {
                   <th>Tipos</th>
                   <th className="text-right">Precio</th>
                   <th className="text-center">Estado</th>
+                  <th className="text-center">Destacado</th>
                   <th>Acciones</th>
                 </tr>
               </thead>

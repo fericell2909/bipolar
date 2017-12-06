@@ -7,6 +7,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 
 class Product extends Model
 {
@@ -57,5 +58,22 @@ class Product extends Model
                 'source' => 'name',
             ]
         ];
+    }
+
+    /**
+     * Pseudo Relationship
+     * This function get all the sizes finded in stocks, always return a collection
+     * @return Collection
+     */
+    public function sizes() : Collection
+    {
+        $sizes = $this->stocks->filter(function ($stock) {
+            return $stock->size !== null;
+        })->map(function ($stock) {
+            /** @var Stock $stock */
+            return $stock->size;
+        })->uniqueStrict();
+
+        return $sizes;
     }
 }
