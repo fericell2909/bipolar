@@ -21,7 +21,6 @@ class CreateProductsTable extends Migration
             $table->decimal('price', 7, 2);
             $table->timestamp('active')->nullable();
             $table->timestamp('is_salient')->nullable();
-            $table->timestamp('is_home')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

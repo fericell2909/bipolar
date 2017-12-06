@@ -67,7 +67,6 @@ namespace App\Models{
  * @property string|null $description
  * @property float $price
  * @property string|null $is_salient
- * @property string|null $is_home
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $deleted_at
@@ -86,7 +85,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsHome($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSalient($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePrice($value)

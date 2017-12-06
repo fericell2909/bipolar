@@ -20,14 +20,11 @@ Route::middleware('auth:admin')->group(function() {
         Route::get('/', 'Admin\ProductController@index')->name('products.index');
         Route::get('new', 'Admin\ProductController@create')->name('products.create');
         Route::get('{productId}/edit', 'Admin\ProductController@edit')->name('products.edit');
-        Route::post('{productId}/edit', 'Admin\ProductController@update');
         Route::get('{slug}/photos', 'Admin\ProductController@photos')->name('products.photos');
         Route::post('{productHashId}/photo/upload', 'Admin\ProductController@uploadPhoto')->name('products.photo.upload');
         Route::get('activations', 'Admin\ProductController@activations')->name('products.activations');
         Route::get('photos/{slug}/order', 'Admin\ProductController@seePhotos')->name('products.photos.order');
         Route::post('photos/order', 'Admin\ProductController@orderAndSavePosition');
-        Route::get('salient-and-home', 'Admin\ProductController@salientAndHome')->name('products.salient-home');
-        Route::post('salient-and-home', 'Admin\ProductController@salientAndHomeSave');
         Route::get('{slug}/recommended', 'Admin\ProductController@recommended')->name('products.recommended');
     });
 
