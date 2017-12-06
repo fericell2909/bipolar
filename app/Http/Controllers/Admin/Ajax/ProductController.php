@@ -84,8 +84,9 @@ class ProductController extends Controller
         $product = new Product;
         $product->name = $request->input('name');
         $product->description = $request->input('description');
-        $product->price = number_format($request->input('price'), 2);
+        $product->price = number_format($request->input('price'), 2, '.', '');
         $product->weight = $request->filled('weight') ? $request->input('weight') : null;
+        $product->free_shipping = boolval($request->input('free_shipping'));
         $product->is_salient = boolval($request->input('salient')) ? now() : null;
         $product->state()->associate($state);
         $product->save();
@@ -125,8 +126,9 @@ class ProductController extends Controller
         $product = Product::findByHash($productHashId);
         $product->name = $request->input('name');
         $product->description = $request->input('description');
-        $product->price = number_format($request->input('price'), 2);
+        $product->price = number_format($request->input('price'), 2, '.', '');
         $product->weight = $request->filled('weight') ? $request->input('weight') : null;
+        $product->free_shipping = boolval($request->input('free_shipping'));
         $product->is_salient = boolval($request->input('salient')) ? now() : null;
         $product->state()->associate($state);
         $product->save();

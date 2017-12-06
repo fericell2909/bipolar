@@ -16,6 +16,7 @@ export default class BipolarProductNew extends React.Component {
       price: 1,
       description: '',
       weight: '',
+      free_shipping: false,
       salient: false,
       // Colors info
       colors: [],
@@ -36,6 +37,7 @@ export default class BipolarProductNew extends React.Component {
     this.handleSaveProduct = this.handleSaveProduct.bind(this);
     this.handleSubtypeChange = this.handleSubtypeChange.bind(this);
     this.handleProductStateChange = this.handleProductStateChange.bind(this);
+    this.handleChangeFreeShipping = this.handleChangeFreeShipping.bind(this);
   }
 
   handleInputChange(event) {
@@ -89,6 +91,10 @@ export default class BipolarProductNew extends React.Component {
     this.setState({selectedState: event.target.value});
   }
 
+  handleChangeFreeShipping(event) {
+    this.setState({free_shipping: event.target.checked});
+  }
+
   handleSaveProduct() {
     if (this.state.name.length === 0) {
       return swal('Faltan campos', 'El campo nombre es obligatorio', 'error');
@@ -99,6 +105,7 @@ export default class BipolarProductNew extends React.Component {
       price: this.state.price,
       weight: this.state.weight,
       description: this.state.description,
+      free_shipping: this.state.free_shipping,
       salient: this.state.salient,
       colors: this.state.selectedColors,
       sizes: this.state.selectedSizes,
@@ -145,7 +152,7 @@ export default class BipolarProductNew extends React.Component {
               <div className="col-md-6">
                 <div className="form-group">
                   <label>Estado</label>
-                  <select className="form-control" value={this.state.selectedState} onChange={this.handleProductStateChange}>
+                  <select className="custom-select col-12" value={this.state.selectedState} onChange={this.handleProductStateChange}>
                     <option value="" disabled>Seleccione un estado</option>
                     {productStatesRender.length ? productStatesRender : null}
                   </select>
@@ -159,10 +166,20 @@ export default class BipolarProductNew extends React.Component {
                 </div>
               </div>
             </div>
-            <label className="checkbox-inline">
-              <input checked={this.state.salient} onChange={this.handleSalientChange} type="checkbox"/>
-              Destacado
-            </label>
+            <div className="form-row">
+              <div className="col-md-3">
+                <label className="checkbox-inline">
+                  <input checked={this.state.free_shipping} onChange={this.handleChangeFreeShipping} type="checkbox"/>
+                  Envío gratuito
+                </label>
+              </div>
+              <div className="col-md-3">
+                <label className="checkbox-inline">
+                  <input checked={this.state.salient} onChange={this.handleSalientChange} type="checkbox"/>
+                  Destacado
+                </label>
+              </div>
+            </div>
             <hr/>
             <button onClick={this.handleSaveProduct} className="btn btn-dark btn-rounded">
               Guardar e ir a subir fotos

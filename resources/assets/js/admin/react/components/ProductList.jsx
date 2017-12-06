@@ -101,6 +101,7 @@ export default class BipolarProductList extends React.Component {
           <td>{badgesSubtypes}</td>
           <td className="text-right">{product['price']}</td>
           <td className="text-center">{state}</td>
+          <td className="text-center">{product['free_shipping'] ? <i className="fa fa-check"/> : null}</td>
           <td className="text-center">{product['is_salient'] !== null ? <i className="fa fa-check"/> : null}</td>
           <td>
             <a href={`/admin/products/${product['hash_id']}/edit`} className="btn btn-sm btn-dark btn-rounded">
@@ -137,10 +138,15 @@ export default class BipolarProductList extends React.Component {
               </div>
               <div className="col-md-3">
                 <div className="form-group">
-                  <label>Acciones</label>
+                  <label>Acciones (pendiente)</label>
                   <select className="custom-select col-12">
-                    <option value="1">Activar todos</option>
-                    <option value="2">Desactivar todos</option>
+                    <option value="1">Cambiar a activo (Publicado)</option>
+                    <option value="2">Cambiar a Borrador</option>
+                    <option value="3">Cambiar a pendiente de revisión</option>
+                    <option value="4">Activar destacado</option>
+                    <option value="5">Desactivar destacado</option>
+                    <option value="6">Activar envío gratutio</option>
+                    <option value="7">Desactivar envío gratutio</option>
                   </select>
                 </div>
               </div>
@@ -155,6 +161,7 @@ export default class BipolarProductList extends React.Component {
                   <th>Tipos</th>
                   <th className="text-right">Precio</th>
                   <th className="text-center">Estado</th>
+                  <th className="text-center">Envío gratis</th>
                   <th className="text-center">Destacado</th>
                   <th>Acciones</th>
                 </tr>

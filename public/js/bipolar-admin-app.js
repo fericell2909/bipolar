@@ -39134,6 +39134,7 @@ var BipolarProductEdit = function (_React$Component) {
         price: 0,
         weight: "",
         description: "",
+        free_shipping: false,
         salient: false,
         selectedState: "",
         selectedColors: [],
@@ -39154,6 +39155,7 @@ var BipolarProductEdit = function (_React$Component) {
     _this.handleUpdateProduct = _this.handleUpdateProduct.bind(_this);
     _this.handleProductStateChange = _this.handleProductStateChange.bind(_this);
     _this.handleSalientChange = _this.handleSalientChange.bind(_this);
+    _this.handleChangeFreeShipping = _this.handleChangeFreeShipping.bind(_this);
     return _this;
   }
 
@@ -39235,6 +39237,7 @@ var BipolarProductEdit = function (_React$Component) {
         price: this.state.product.price,
         weight: this.state.product.weight,
         description: this.state.product.description,
+        free_shipping: this.state.product.free_shipping,
         salient: this.state.product.salient,
         colors: this.state.product.selectedColors,
         sizes: this.state.product.selectedSizes,
@@ -39258,6 +39261,15 @@ var BipolarProductEdit = function (_React$Component) {
         }
 
         return alert('algo malo paso');
+      });
+    }
+  }, {
+    key: "handleChangeFreeShipping",
+    value: function handleChangeFreeShipping(event) {
+      this.setState({
+        product: _extends({}, this.state.product, {
+          free_shipping: event.target.checked
+        })
       });
     }
   }, {
@@ -39350,7 +39362,7 @@ var BipolarProductEdit = function (_React$Component) {
                   ),
                   __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                     "select",
-                    { className: "form-control", value: this.state.product.selectedState, onChange: this.handleProductStateChange },
+                    { className: "custom-select col-12", value: this.state.product.selectedState, onChange: this.handleProductStateChange },
                     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                       "option",
                       { value: "", disabled: true },
@@ -39377,10 +39389,28 @@ var BipolarProductEdit = function (_React$Component) {
               )
             ),
             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-              "label",
-              { className: "checkbox-inline" },
-              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.salient, onChange: this.handleSalientChange, type: "checkbox" }),
-              "Destacado"
+              "div",
+              { className: "form-row" },
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                "div",
+                { className: "col-md-3" },
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                  "label",
+                  { className: "checkbox-inline" },
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.free_shipping, onChange: this.handleChangeFreeShipping, type: "checkbox" }),
+                  "Env\xEDo gratuito"
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                "div",
+                { className: "col-md-3" },
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                  "label",
+                  { className: "checkbox-inline" },
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.salient, onChange: this.handleSalientChange, type: "checkbox" }),
+                  "Destacado"
+                )
+              )
             ),
             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("hr", null),
             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
@@ -39418,6 +39448,7 @@ var BipolarProductEdit = function (_React$Component) {
         productInState.price = product.price;
         productInState.weight = product.weight !== null ? product.weight : "";
         productInState.description = product.description !== null ? product.description : "";
+        productInState.free_shipping = product['free_shipping'];
         productInState.salient = product['is_salient'] !== null;
         productInState.selectedState = Object(__WEBPACK_IMPORTED_MODULE_7_lodash__["get"])(product, 'state.hash_id', "");
         productInState.selectedColors = product.colors.map(function (color) {
@@ -39640,6 +39671,11 @@ var BipolarProductList = function (_React$Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",
             { className: "text-center" },
+            product['free_shipping'] ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-check" }) : null
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "td",
+            { className: "text-center" },
             product['is_salient'] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-check" }) : null
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -39721,7 +39757,7 @@ var BipolarProductList = function (_React$Component) {
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "label",
                     null,
-                    "Acciones"
+                    "Acciones (pendiente)"
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "select",
@@ -39729,12 +39765,37 @@ var BipolarProductList = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
                       { value: "1" },
-                      "Activar todos"
+                      "Cambiar a activo (Publicado)"
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
                       { value: "2" },
-                      "Desactivar todos"
+                      "Cambiar a Borrador"
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "option",
+                      { value: "3" },
+                      "Cambiar a pendiente de revisi\xF3n"
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "option",
+                      { value: "4" },
+                      "Activar destacado"
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "option",
+                      { value: "5" },
+                      "Desactivar destacado"
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "option",
+                      { value: "6" },
+                      "Activar env\xEDo gratutio"
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "option",
+                      { value: "7" },
+                      "Desactivar env\xEDo gratutio"
                     )
                   )
                 )
@@ -39783,6 +39844,11 @@ var BipolarProductList = function (_React$Component) {
                     "th",
                     { className: "text-center" },
                     "Estado"
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "th",
+                    { className: "text-center" },
+                    "Env\xEDo gratis"
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "th",
@@ -39889,6 +39955,7 @@ var BipolarProductNew = function (_React$Component) {
       price: 1,
       description: '',
       weight: '',
+      free_shipping: false,
       salient: false,
       // Colors info
       colors: [],
@@ -39909,6 +39976,7 @@ var BipolarProductNew = function (_React$Component) {
     _this.handleSaveProduct = _this.handleSaveProduct.bind(_this);
     _this.handleSubtypeChange = _this.handleSubtypeChange.bind(_this);
     _this.handleProductStateChange = _this.handleProductStateChange.bind(_this);
+    _this.handleChangeFreeShipping = _this.handleChangeFreeShipping.bind(_this);
     return _this;
   }
 
@@ -39970,6 +40038,11 @@ var BipolarProductNew = function (_React$Component) {
       this.setState({ selectedState: event.target.value });
     }
   }, {
+    key: 'handleChangeFreeShipping',
+    value: function handleChangeFreeShipping(event) {
+      this.setState({ free_shipping: event.target.checked });
+    }
+  }, {
     key: 'handleSaveProduct',
     value: function handleSaveProduct() {
       if (this.state.name.length === 0) {
@@ -39981,6 +40054,7 @@ var BipolarProductNew = function (_React$Component) {
         price: this.state.price,
         weight: this.state.weight,
         description: this.state.description,
+        free_shipping: this.state.free_shipping,
         salient: this.state.salient,
         colors: this.state.selectedColors,
         sizes: this.state.selectedSizes,
@@ -40072,7 +40146,7 @@ var BipolarProductNew = function (_React$Component) {
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'select',
-                    { className: 'form-control', value: this.state.selectedState, onChange: this.handleProductStateChange },
+                    { className: 'custom-select col-12', value: this.state.selectedState, onChange: this.handleProductStateChange },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       'option',
                       { value: '', disabled: true },
@@ -40099,10 +40173,28 @@ var BipolarProductNew = function (_React$Component) {
               )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'label',
-              { className: 'checkbox-inline' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { checked: this.state.salient, onChange: this.handleSalientChange, type: 'checkbox' }),
-              'Destacado'
+              'div',
+              { className: 'form-row' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'col-md-3' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'label',
+                  { className: 'checkbox-inline' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { checked: this.state.free_shipping, onChange: this.handleChangeFreeShipping, type: 'checkbox' }),
+                  'Env\xEDo gratuito'
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'col-md-3' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'label',
+                  { className: 'checkbox-inline' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { checked: this.state.salient, onChange: this.handleSalientChange, type: 'checkbox' }),
+                  'Destacado'
+                )
+              )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
