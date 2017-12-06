@@ -15,6 +15,7 @@ export default class BipolarProductNew extends React.Component {
       name: '',
       price: 1,
       description: '',
+      weight: '',
       salient: false,
       // Colors info
       colors: [],
@@ -96,6 +97,7 @@ export default class BipolarProductNew extends React.Component {
     axios.post('/ajax-admin/products', {
       name: this.state.name,
       price: this.state.price,
+      weight: this.state.weight,
       description: this.state.description,
       salient: this.state.salient,
       colors: this.state.selectedColors,
@@ -129,7 +131,7 @@ export default class BipolarProductNew extends React.Component {
               <div className="col-md-6">
                 <div className="form-group">
                   <label>Precio</label>
-                  <input value={this.state.price} onChange={this.handleInputChange} name="price" type="number"
+                  <input value={this.state.price} onChange={this.handleInputChange} name="price" type="number" step="any"
                          className="form-control"/>
                 </div>
               </div>
@@ -139,7 +141,7 @@ export default class BipolarProductNew extends React.Component {
               <textarea value={this.state.description} onChange={this.handleInputChange} name="description"
                         className="form-control" rows="7"/>
             </div>
-            <div className="row">
+            <div className="form-row">
               <div className="col-md-6">
                 <div className="form-group">
                   <label>Estado</label>
@@ -149,13 +151,18 @@ export default class BipolarProductNew extends React.Component {
                   </select>
                 </div>
               </div>
-              <div className="col-md-5">
-                <label className="checkbox-inline">
-                  <input checked={this.state.salient} onChange={this.handleSalientChange} type="checkbox"/>
-                  Destacado
-                </label>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Peso (kg)</label>
+                  <input value={this.state.weight} onChange={this.handleInputChange} name="weight" type="number" step="any"
+                         className="form-control" placeholder="Opcional"/>
+                </div>
               </div>
             </div>
+            <label className="checkbox-inline">
+              <input checked={this.state.salient} onChange={this.handleSalientChange} type="checkbox"/>
+              Destacado
+            </label>
             <hr/>
             <button onClick={this.handleSaveProduct} className="btn btn-dark btn-rounded">
               Guardar e ir a subir fotos

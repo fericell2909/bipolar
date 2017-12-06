@@ -28,6 +28,7 @@ class ProductNewRequest extends FormRequest
             'description' => 'nullable|max:4000',
             'colors'      => 'nullable|array',
             'price'       => 'required|numeric|min:1',
+            'weight'      => 'nullable|numeric|min:1',
             'salient'     => 'boolean',
             'subtype'     => 'nullable|array',
             'sizes'       => 'nullable|array',

@@ -85,6 +85,7 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = number_format($request->input('price'), 2);
+        $product->weight = $request->filled('weight') ? $request->input('weight') : null;
         $product->is_salient = boolval($request->input('salient')) ? now() : null;
         $product->state()->associate($state);
         $product->save();
@@ -125,6 +126,7 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = number_format($request->input('price'), 2);
+        $product->weight = $request->filled('weight') ? $request->input('weight') : null;
         $product->is_salient = boolval($request->input('salient')) ? now() : null;
         $product->state()->associate($state);
         $product->save();

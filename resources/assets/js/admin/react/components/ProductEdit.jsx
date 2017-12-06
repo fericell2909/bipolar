@@ -16,6 +16,7 @@ export default class BipolarProductEdit extends React.Component {
       product: {
         name: "",
         price: 0,
+        weight: "",
         description: "",
         salient: false,
         selectedState: "",
@@ -115,6 +116,7 @@ export default class BipolarProductEdit extends React.Component {
     axios.put(`/ajax-admin/products/${this.props.productHashId}`, {
       name: this.state.product.name,
       price: this.state.product.price,
+      weight: this.state.product.weight,
       description: this.state.product.description,
       salient: this.state.product.salient,
       colors: this.state.product.selectedColors,
@@ -180,7 +182,7 @@ export default class BipolarProductEdit extends React.Component {
               <textarea value={this.state.product.description} onChange={this.handleInputChange} name="description"
                         className="form-control" rows="7"/>
             </div>
-            <div className="row">
+            <div className="form-row">
               <div className="col-md-6">
                 <div className="form-group">
                   <label>Estado</label>
@@ -190,13 +192,18 @@ export default class BipolarProductEdit extends React.Component {
                   </select>
                 </div>
               </div>
-              <div className="col-md-5">
-                <label className="checkbox-inline">
-                  <input checked={this.state.product.salient} onChange={this.handleSalientChange} type="checkbox"/>
-                  Destacado
-                </label>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Peso (kg)</label>
+                  <input value={this.state.product.weight} onChange={this.handleInputChange} name="weight" type="number" step="any"
+                         className="form-control" placeholder="Opcional"/>
+                </div>
               </div>
             </div>
+            <label className="checkbox-inline">
+              <input checked={this.state.product.salient} onChange={this.handleSalientChange} type="checkbox"/>
+              Destacado
+            </label>
             <hr/>
             <button onClick={this.handleUpdateProduct} className="btn btn-dark btn-rounded">
               Actualizar e ir a subir fotos
@@ -232,6 +239,7 @@ export default class BipolarProductEdit extends React.Component {
 
         productInState.name = product.name;
         productInState.price = product.price;
+        productInState.weight = product.weight !== null ? product.weight : "";
         productInState.description = product.description !== null ? product.description : "";
         productInState.salient = product['is_salient'] !== null;
         productInState.selectedState = get(product, 'state.hash_id', "");

@@ -8,5 +8,6 @@ $factory->define(\App\Models\Product::class, function (Faker $faker) {
         'name'       => $faker->unique()->numberBetween(100, 300),
         'price'      => $faker->randomFloat(2, 10, 3000),
         'is_salient' => $faker->optional()->dateTime(),
+        'weight'     => $faker->optional()->randomFloat(2, 10, 3000),
     ];
 });

@@ -39132,6 +39132,7 @@ var BipolarProductEdit = function (_React$Component) {
       product: {
         name: "",
         price: 0,
+        weight: "",
         description: "",
         salient: false,
         selectedState: "",
@@ -39232,6 +39233,7 @@ var BipolarProductEdit = function (_React$Component) {
       __WEBPACK_IMPORTED_MODULE_2_axios___default.a.put("/ajax-admin/products/" + this.props.productHashId, {
         name: this.state.product.name,
         price: this.state.product.price,
+        weight: this.state.product.weight,
         description: this.state.product.description,
         salient: this.state.product.salient,
         colors: this.state.product.selectedColors,
@@ -39334,7 +39336,7 @@ var BipolarProductEdit = function (_React$Component) {
             ),
             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
               "div",
-              { className: "row" },
+              { className: "form-row" },
               __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                 "div",
                 { className: "col-md-6" },
@@ -39360,14 +39362,25 @@ var BipolarProductEdit = function (_React$Component) {
               ),
               __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                 "div",
-                { className: "col-md-5" },
+                { className: "col-md-6" },
                 __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                  "label",
-                  { className: "checkbox-inline" },
-                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.salient, onChange: this.handleSalientChange, type: "checkbox" }),
-                  "Destacado"
+                  "div",
+                  { className: "form-group" },
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                    "label",
+                    null,
+                    "Peso (kg)"
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.weight, onChange: this.handleInputChange, name: "weight", type: "number", step: "any",
+                    className: "form-control", placeholder: "Opcional" })
                 )
               )
+            ),
+            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+              "label",
+              { className: "checkbox-inline" },
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.salient, onChange: this.handleSalientChange, type: "checkbox" }),
+              "Destacado"
             ),
             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("hr", null),
             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
@@ -39403,6 +39416,7 @@ var BipolarProductEdit = function (_React$Component) {
 
         productInState.name = product.name;
         productInState.price = product.price;
+        productInState.weight = product.weight !== null ? product.weight : "";
         productInState.description = product.description !== null ? product.description : "";
         productInState.salient = product['is_salient'] !== null;
         productInState.selectedState = Object(__WEBPACK_IMPORTED_MODULE_7_lodash__["get"])(product, 'state.hash_id', "");
@@ -39874,6 +39888,7 @@ var BipolarProductNew = function (_React$Component) {
       name: '',
       price: 1,
       description: '',
+      weight: '',
       salient: false,
       // Colors info
       colors: [],
@@ -39964,6 +39979,7 @@ var BipolarProductNew = function (_React$Component) {
       __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products', {
         name: this.state.name,
         price: this.state.price,
+        weight: this.state.weight,
         description: this.state.description,
         salient: this.state.salient,
         colors: this.state.selectedColors,
@@ -40024,7 +40040,7 @@ var BipolarProductNew = function (_React$Component) {
                     null,
                     'Precio'
                   ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.price, onChange: this.handleInputChange, name: 'price', type: 'number',
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.price, onChange: this.handleInputChange, name: 'price', type: 'number', step: 'any',
                     className: 'form-control' })
                 )
               )
@@ -40042,7 +40058,7 @@ var BipolarProductNew = function (_React$Component) {
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
-              { className: 'row' },
+              { className: 'form-row' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'col-md-6' },
@@ -40068,14 +40084,25 @@ var BipolarProductNew = function (_React$Component) {
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'col-md-5' },
+                { className: 'col-md-6' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'label',
-                  { className: 'checkbox-inline' },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { checked: this.state.salient, onChange: this.handleSalientChange, type: 'checkbox' }),
-                  'Destacado'
+                  'div',
+                  { className: 'form-group' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'label',
+                    null,
+                    'Peso (kg)'
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.weight, onChange: this.handleInputChange, name: 'weight', type: 'number', step: 'any',
+                    className: 'form-control', placeholder: 'Opcional' })
                 )
               )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'label',
+              { className: 'checkbox-inline' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { checked: this.state.salient, onChange: this.handleSalientChange, type: 'checkbox' }),
+              'Destacado'
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
