@@ -39637,6 +39637,21 @@ var BipolarProductList = function (_React$Component) {
           var products = _this3.state.selectedProducts;
 
           switch (optionSelected) {
+            case "change_published":
+              {
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/state/published', { products: products }).then(_this3.getAllProducts);
+                break;
+              }
+            case "change_draft":
+              {
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/state/draft', { products: products }).then(_this3.getAllProducts);
+                break;
+              }
+            case "change_pending":
+              {
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/state/pending', { products: products }).then(_this3.getAllProducts);
+                break;
+              }
             case "activate_salient":
               {
                 __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/salient/1', { products: products }).then(_this3.getAllProducts);

@@ -101,6 +101,18 @@ export default class BipolarProductList extends React.Component {
         const products = this.state.selectedProducts;
 
         switch (optionSelected) {
+          case "change_published": {
+            axios.post('/ajax-admin/products/state/published', {products}).then(this.getAllProducts);
+            break;
+          }
+          case "change_draft": {
+            axios.post('/ajax-admin/products/state/draft', {products}).then(this.getAllProducts);
+            break;
+          }
+          case "change_pending": {
+            axios.post('/ajax-admin/products/state/pending', {products}).then(this.getAllProducts);
+            break;
+          }
           case "activate_salient": {
             axios.post('/ajax-admin/products/salient/1', {products}).then(this.getAllProducts);
             break;

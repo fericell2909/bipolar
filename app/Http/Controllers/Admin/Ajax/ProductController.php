@@ -237,6 +237,28 @@ class ProductController extends Controller
         return response()->json(['message' => 'Hecho']);
     }
 
+    public function stateToggle(Request $request, $stateOption)
+    {
+        $this->validate($request, ['products' => 'required|array']);
+
+        $products = Product::findByManyHash($request->input('products'));
+
+        switch ($stateOption) {
+            case "draft": $state = State::find(1); break;
+            case "pending": $state = State::find(2); break;
+            case "published": $state = State::find(3); break;
+            default: $state = State::first(); break;
+        }
+
+        $products->each(function ($product) use ($state) {
+            /** @var Product $product */
+            $product->state()->associate($state);
+            $product->save();
+        });
+
+        return response()->json(['message' => 'Hecho']);
+    }
+
     private function formatProduct()
     {
         $product = function ($product) {
