@@ -39537,12 +39537,15 @@ var BipolarProductList = function (_React$Component) {
       products: [],
       filteredProducts: [],
       searchText: '',
-      selectedProducts: []
+      selectedProducts: [],
+      selectedMassiveAction: ""
     };
 
     _this.handleSearch = _this.handleSearch.bind(_this);
     _this.handleProductSelect = _this.handleProductSelect.bind(_this);
     _this.handleSelectAllProducts = _this.handleSelectAllProducts.bind(_this);
+    _this.handleMassiveSelection = _this.handleMassiveSelection.bind(_this);
+    _this.getAllProducts = _this.getAllProducts.bind(_this);
     return _this;
   }
 
@@ -39612,9 +39615,57 @@ var BipolarProductList = function (_React$Component) {
       this.setState({ selectedProducts: [].concat(_toConsumableArray(allProductsIds)) });
     }
   }, {
+    key: "handleMassiveSelection",
+    value: function handleMassiveSelection(event) {
+      var _this3 = this;
+
+      var optionSelected = event.target.value;
+
+      if (this.state.selectedProducts.length === 0) {
+        return __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()('Error', 'Seleccione un producto o más para continuar', 'error');
+      }
+
+      return __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()({
+        title: "Atención",
+        text: "Se cambiar\xE1 el estado de todos los " + this.state.selectedProducts.length + " productos seleccionados",
+        type: "warning",
+        confirmButtonText: 'Sí, cambiar',
+        showCancelButton: true,
+        cancelButtonText: 'No hacer nada'
+      }).then(function (result) {
+        if (result.value) {
+          //todo: call the switch and ajax
+          var products = _this3.state.selectedProducts;
+
+          switch (optionSelected) {
+            case "activate_free":
+              {
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/freeshipping/1', { products: products }).then(_this3.getAllProducts);
+                break;
+              }
+            case "deactivate_free":
+              {
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/freeshipping/0', { products: products }).then(_this3.getAllProducts);
+                break;
+              }
+          }
+
+          __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()({
+            title: 'Hecho',
+            type: 'success',
+            toast: true,
+            position: 'top-right',
+            showConfirmButton: false,
+            timer: 5000
+          });
+          _this3.setState({ selectedProducts: [] });
+        }
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var productsSource = this.state.searchText.length > 0 ? [].concat(_toConsumableArray(this.state.filteredProducts)) : [].concat(_toConsumableArray(this.state.products));
 
@@ -39627,7 +39678,7 @@ var BipolarProductList = function (_React$Component) {
           );
         });
         var firstImage = product['firstImageUrl'] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: product['firstImageUrl'], width: "100" }) : '--';
-        var isSelected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["a" /* existInArray */])(_this3.state.selectedProducts, product['hash_id']);
+        var isSelected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["a" /* existInArray */])(_this4.state.selectedProducts, product['hash_id']);
         var state = product['state'] ? product['state']['name'] : '--';
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -39636,7 +39687,7 @@ var BipolarProductList = function (_React$Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",
             null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox", checked: isSelected, value: product['hash_id'], onChange: _this3.handleProductSelect })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox", checked: isSelected, value: product['hash_id'], onChange: _this4.handleProductSelect })
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",
@@ -39690,7 +39741,7 @@ var BipolarProductList = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "button",
               { onClick: function onClick() {
-                  return _this3.handleDelete(product['hash_id']);
+                  return _this4.handleDelete(product['hash_id']);
                 }, className: "btn btn-sm btn-dark btn-rounded" },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-close" }),
               " Eliminar"
@@ -39761,41 +39812,46 @@ var BipolarProductList = function (_React$Component) {
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "select",
-                    { className: "custom-select col-12" },
+                    { value: this.state.selectedMassiveAction, onChange: this.handleMassiveSelection, className: "custom-select col-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
-                      { value: "1" },
+                      { value: "", disabled: true },
+                      "Seleccione"
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "option",
+                      { value: "change_published" },
                       "Cambiar a activo (Publicado)"
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
-                      { value: "2" },
-                      "Cambiar a Borrador"
+                      { value: "change_draft" },
+                      "Cambiar a borrador"
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
-                      { value: "3" },
+                      { value: "change_pending" },
                       "Cambiar a pendiente de revisi\xF3n"
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
-                      { value: "4" },
+                      { value: "activate_salient" },
                       "Activar destacado"
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
-                      { value: "5" },
+                      { value: "deactivate_salient" },
                       "Desactivar destacado"
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
-                      { value: "6" },
-                      "Activar env\xEDo gratutio"
+                      { value: "activate_free" },
+                      "Activar env\xEDo gratuito"
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
-                      { value: "7" },
-                      "Desactivar env\xEDo gratutio"
+                      { value: "deactivate_free" },
+                      "Desactivar env\xEDo gratuito"
                     )
                   )
                 )
@@ -39875,7 +39931,7 @@ var BipolarProductList = function (_React$Component) {
   }, {
     key: "getAllProducts",
     value: function getAllProducts() {
-      var _this4 = this;
+      var _this5 = this;
 
       __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/products').then(function (response) {
         var products = response.data['data'];
@@ -39884,7 +39940,7 @@ var BipolarProductList = function (_React$Component) {
             firstImageUrl: Object(__WEBPACK_IMPORTED_MODULE_3_lodash__["get"])(product, 'photos.0.url', null)
           });
         });
-        _this4.setState({ products: formattedProducts });
+        _this5.setState({ products: formattedProducts });
       });
     }
   }, {

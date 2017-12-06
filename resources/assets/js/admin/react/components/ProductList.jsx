@@ -14,11 +14,14 @@ export default class BipolarProductList extends React.Component {
       filteredProducts: [],
       searchText: '',
       selectedProducts: [],
+      selectedMassiveAction: "",
     };
 
     this.handleSearch = this.handleSearch.bind(this);
     this.handleProductSelect = this.handleProductSelect.bind(this);
     this.handleSelectAllProducts = this.handleSelectAllProducts.bind(this);
+    this.handleMassiveSelection = this.handleMassiveSelection.bind(this);
+    this.getAllProducts = this.getAllProducts.bind(this);
   }
 
   handleDelete(productHashId) {
@@ -77,6 +80,52 @@ export default class BipolarProductList extends React.Component {
     }
 
     this.setState({ selectedProducts: [...allProductsIds] });
+  }
+
+  handleMassiveSelection(event) {
+    const optionSelected = event.target.value;
+
+    if (this.state.selectedProducts.length === 0) {
+      return swal('Error', 'Seleccione un producto o más para continuar', 'error');
+    }
+
+    return swal({
+      title: "Atención",
+      text: `Se cambiará el estado de todos los ${this.state.selectedProducts.length} productos seleccionados`,
+      type: "warning",
+      confirmButtonText: 'Sí, cambiar',
+      showCancelButton: true,
+      cancelButtonText: 'No hacer nada',
+    }).then(result => {
+      if (result.value) {
+        //todo: call the switch and ajax
+        const products = this.state.selectedProducts;
+
+        switch (optionSelected) {
+          case "activate_free": {
+            axios.post('/ajax-admin/products/freeshipping/1', {products})
+              .then(this.getAllProducts);
+            break;
+          }
+          case "deactivate_free": {
+            axios.post('/ajax-admin/products/freeshipping/0', {products})
+              .then(this.getAllProducts);
+            break;
+          }
+        }
+
+        swal({
+          title: 'Hecho',
+          type: 'success',
+          toast: true,
+          position: 'top-right',
+          showConfirmButton: false,
+          timer: 5000,
+        });
+        this.setState({ selectedProducts: [] });
+      }
+    });
+
   }
 
   render() {
@@ -139,14 +188,15 @@ export default class BipolarProductList extends React.Component {
               <div className="col-md-3">
                 <div className="form-group">
                   <label>Acciones (pendiente)</label>
-                  <select className="custom-select col-12">
-                    <option value="1">Cambiar a activo (Publicado)</option>
-                    <option value="2">Cambiar a Borrador</option>
-                    <option value="3">Cambiar a pendiente de revisión</option>
-                    <option value="4">Activar destacado</option>
-                    <option value="5">Desactivar destacado</option>
-                    <option value="6">Activar envío gratutio</option>
-                    <option value="7">Desactivar envío gratutio</option>
+                  <select value={this.state.selectedMassiveAction} onChange={this.handleMassiveSelection} className="custom-select col-12">
+                    <option value="" disabled>Seleccione</option>
+                    <option value="change_published">Cambiar a activo (Publicado)</option>
+                    <option value="change_draft">Cambiar a borrador</option>
+                    <option value="change_pending">Cambiar a pendiente de revisión</option>
+                    <option value="activate_salient">Activar destacado</option>
+                    <option value="deactivate_salient">Desactivar destacado</option>
+                    <option value="activate_free">Activar envío gratuito</option>
+                    <option value="deactivate_free">Desactivar envío gratuito</option>
                   </select>
                 </div>
               </div>

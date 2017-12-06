@@ -62,7 +62,7 @@ class ProductController extends Controller
         $products = Product::orderByDesc('id')
             ->with(['photos' => function ($withPhotos) {
                 $withPhotos->orderBy('order');
-            }, 'subtypes', 'state'])
+            }, 'subtypes', 'state', 'stocks.size'])
             ->get();
 
         return response()->json(new ProductCollection($products));
@@ -203,6 +203,22 @@ class ProductController extends Controller
         $product->delete();
 
         return response()->json(['success' => true]);
+    }
+
+    public function freeShippingToggle(Request $request, $activate)
+    {
+        $this->validate($request, ['products' => 'required|array']);
+
+        $activate = boolval($activate);
+        $products = Product::findByManyHash($request->input('products'));
+
+        $products->each(function ($product) use ($activate) {
+            /** @var Product $product */
+            $product->free_shipping = $activate;
+            $product->save();
+        });
+
+        return response()->json(['message' => 'Hecho']);
     }
 
     private function formatProduct()
