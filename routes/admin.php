@@ -20,6 +20,7 @@ Route::middleware('auth:admin')->group(function() {
         Route::get('/', 'Admin\ProductController@index')->name('products.index');
         Route::get('new', 'Admin\ProductController@create')->name('products.create');
         Route::get('{productId}/edit', 'Admin\ProductController@edit')->name('products.edit');
+        Route::get('{productSlug}/preview', 'Admin\ProductController@preview')->name('products.preview');
         Route::get('{slug}/photos', 'Admin\ProductController@photos')->name('products.photos');
         Route::post('{productHashId}/photo/upload', 'Admin\ProductController@uploadPhoto')->name('products.photo.upload');
         Route::get('photos/{slug}/order', 'Admin\ProductController@seePhotos')->name('products.photos.order');

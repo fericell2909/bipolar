@@ -17,11 +17,11 @@
                 @if(count($product->photos))
                     <div>
                         @if(false)
-                        <div class="shop-discount-container">
-                            <div class="shop-discount">
-                                <span>30%</span>
+                            <div class="shop-discount-container">
+                                <div class="shop-discount">
+                                    <span>30%</span>
+                                </div>
                             </div>
-                        </div>
                         @endif
                         <div id="viewer-images" class="owl-carousel-main owl-carousel owl-theme">
                             @foreach($product->photos as $photo)
@@ -48,23 +48,23 @@
                     {{ $product->description }}
                 </p>
                 {!! Form::open() !!}
-                    @if(count($stockWithSizes))
-                        <div class="row" style="margin-bottom: 20px;">
-                            <div class="col-sm-2 col-md-1 text-uppercase" style="margin-top: 10px">Talla</div>
-                            <div class="col-sm-7 col-md-3">
-                                {!! Form::select('sizes', $stockWithSizes, null, ['class' => 'product-size-select']) !!}
-                            </div>
-                            <div class="col-sm-3 col-md-2">
-                                <button type="button" class="btn btn-default btn-sizes-modal" data-toggle="modal" data-target="#testingModal">Ver guía de tallas</button>
-                            </div>
+                @if(count($stockWithSizes))
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-sm-2 col-md-1 text-uppercase" style="margin-top: 10px">Talla</div>
+                        <div class="col-sm-7 col-md-3">
+                            {!! Form::select('sizes', $stockWithSizes, null, ['class' => 'product-size-select']) !!}
                         </div>
-                        <div class="row" style="margin-bottom: 20px">
-                            <div class="col-sm-6 col-md-4 text-uppercase" style="margin-top: 10px;">Cambia de moneda</div>
-                            <div class="col-sm-6 col-md-4">
-                                {!! Form::select('sizes', $stockWithSizes, null, ['class' => 'product-size-select']) !!}
-                            </div>
+                        <div class="col-sm-3 col-md-2">
+                            <button type="button" class="btn btn-default btn-sizes-modal" data-toggle="modal" data-target="#testingModal">Ver guía de tallas</button>
                         </div>
-                    @endif
+                    </div>
+                    <div class="row" style="margin-bottom: 20px">
+                        <div class="col-sm-6 col-md-4 text-uppercase" style="margin-top: 10px;">Cambia de moneda</div>
+                        <div class="col-sm-6 col-md-4">
+                            {!! Form::select('sizes', $stockWithSizes, null, ['class' => 'product-size-select']) !!}
+                        </div>
+                    </div>
+                @endif
                 {!! Form::close() !!}
                 <div class="bipolar-stock-status">
                     STATUS: EN STOCK
@@ -83,22 +83,22 @@
             </div>
         </div>
         @if($product->recommendeds->count() > 0)
-        <h3>Te recomendamos</h3>
-        <div class="row">
-            @foreach($product->recommendeds as $recommended)
-                <div class="col-md-3">
-                    @if(count($recommended->photos))
-                        <a href="{{ route('shop.product', $recommended->slug) }}">
-                            <img src="{{ $recommended->photos->first()->url }}" alt="{{ $recommended->name }}" class="img-responsive">
-                        </a>
-                    @else
-                        <img src="https://placehold.it/320x200" alt="{{ $recommended->name }}" class="img-responsive">
-                    @endif
-                    <h4><a href="{{ route('shop.product', $recommended->slug) }}">{{ $recommended->name }}</a></h4>
-                    <h5>S/. {{ $recommended->price }}</h5>
-                </div>
-            @endforeach
-        </div>
+            <h3>Te recomendamos</h3>
+            <div class="row">
+                @foreach($product->recommendeds as $recommended)
+                    <div class="col-md-3">
+                        @if(count($recommended->photos))
+                            <a href="{{ route('shop.product', $recommended->slug) }}">
+                                <img src="{{ $recommended->photos->first()->url }}" alt="{{ $recommended->name }}" class="img-responsive">
+                            </a>
+                        @else
+                            <img src="https://placehold.it/320x200" alt="{{ $recommended->name }}" class="img-responsive">
+                        @endif
+                        <h4><a href="{{ route('shop.product', $recommended->slug) }}">{{ $recommended->name }}</a></h4>
+                        <h5>S/. {{ $recommended->price }}</h5>
+                    </div>
+                @endforeach
+            </div>
         @endif
     </div>
     <div class="modal fade" id="testingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

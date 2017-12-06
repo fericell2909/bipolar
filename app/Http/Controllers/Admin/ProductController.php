@@ -139,4 +139,22 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
+
+    public function preview($productSlug)
+    {
+        /** @var Product $product */
+        $product = Product::findBySlugOrFail($productSlug);
+
+        $product->load('stocks');
+
+        $stockWithSizes = $product->stocks
+            ->filter(function ($stock) {
+                /** @var Stock $stock */
+                return !is_null($stock->size_id);
+            })
+            ->pluck('size.name', 'hash_id')
+            ->toArray();
+
+        return view('web.shop.preview', compact('product', 'stockWithSizes'));
+    }
 }

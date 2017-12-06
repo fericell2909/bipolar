@@ -170,6 +170,9 @@ export default class BipolarProductList extends React.Component {
           <td className="text-center">{product['free_shipping'] ? <i className="fa fa-check"/> : null}</td>
           <td className="text-center">{product['is_salient'] !== null ? <i className="fa fa-check"/> : null}</td>
           <td>
+            <a href={product['preview_route']} target="_blank" className="btn btn-sm btn-dark btn-rounded">
+              <i className="fa fa-eye"/> Vista previa
+            </a>
             <a href={`/admin/products/${product['hash_id']}/edit`} className="btn btn-sm btn-dark btn-rounded">
               <i className="fa fa-pencil"/> Editar
             </a>

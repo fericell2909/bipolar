@@ -39759,6 +39759,12 @@ var BipolarProductList = function (_React$Component) {
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "a",
+              { href: product['preview_route'], target: "_blank", className: "btn btn-sm btn-dark btn-rounded" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-eye" }),
+              " Vista previa"
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "a",
               { href: "/admin/products/" + product['hash_id'] + "/edit", className: "btn btn-sm btn-dark btn-rounded" },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-pencil" }),
               " Editar"
