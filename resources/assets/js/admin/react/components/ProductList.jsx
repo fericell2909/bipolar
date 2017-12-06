@@ -27,8 +27,9 @@ export default class BipolarProductList extends React.Component {
   handleDelete(productHashId) {
     swal({
       type: 'warning',
-      title: '¿Desea eliminar el producto?',
-      confirmButtonText: 'Sí, eliminar',
+      title: '¿Desea descartar el producto?',
+      text: 'El producto se pondrá en la lista de descartados',
+      confirmButtonText: 'Sí, descartar',
       showCancelButton: true,
       cancelButtonText: 'No hacer nada',
     }).then(result => {
@@ -37,7 +38,7 @@ export default class BipolarProductList extends React.Component {
         axios.delete(`/ajax-admin/products/${productHashId}`)
           .then(() => {
             swal({
-              title: 'Eliminado',
+              title: 'Descartado',
               type: 'success',
               toast: true,
               position: 'top-right',
@@ -173,7 +174,7 @@ export default class BipolarProductList extends React.Component {
               <i className="fa fa-pencil"/> Editar
             </a>
             <button onClick={() => this.handleDelete(product['hash_id'])} className="btn btn-sm btn-dark btn-rounded">
-              <i className="fa fa-close"/> Eliminar
+              <i className="fa fa-trash"/> Descartar
             </button>
           </td>
         </tr>

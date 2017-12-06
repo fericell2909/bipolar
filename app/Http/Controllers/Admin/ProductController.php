@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('admin.products.products', compact('products'));
+        return view('admin.products.products');
     }
 
     public function create()
@@ -108,8 +108,35 @@ class ProductController extends Controller
         return view('admin.products.recommended', compact('product'));
     }
 
-    public function activations()
+    public function trashed()
     {
-        return view('admin.products.activations');
+        $products = Product::onlyTrashed()->get();
+
+        return view('admin.products.trashed', compact('products'));
+    }
+
+    public function deletehard($productHashId)
+    {
+        $product = Product::findByHashTrashed($productHashId);
+
+        $product->recommendeds()->sync([]);
+        $product->subtypes()->sync([]);
+        $product->stocks->each(function ($stock) {
+            /** @var Stock $stock */
+            $stock->delete();
+        });
+        $product->photos->each(function ($photo) {
+            /** @var Photo $photo */
+            if (\Storage::disk('s3')->exists($photo->relative_url)) {
+                \Storage::disk('s3')->delete($photo->relative_url);
+            }
+            $photo->delete();
+        });
+
+        $product->forceDelete();
+
+        flash()->success("Se eliminaron todos los datos del producto correctamente");
+
+        return redirect()->back();
     }
 }

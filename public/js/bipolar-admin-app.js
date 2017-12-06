@@ -39556,8 +39556,9 @@ var BipolarProductList = function (_React$Component) {
 
       __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()({
         type: 'warning',
-        title: '¿Desea eliminar el producto?',
-        confirmButtonText: 'Sí, eliminar',
+        title: '¿Desea descartar el producto?',
+        text: 'El producto se pondrá en la lista de descartados',
+        confirmButtonText: 'Sí, descartar',
         showCancelButton: true,
         cancelButtonText: 'No hacer nada'
       }).then(function (result) {
@@ -39565,7 +39566,7 @@ var BipolarProductList = function (_React$Component) {
           __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default.a.showLoading();
           __WEBPACK_IMPORTED_MODULE_2_axios___default.a.delete("/ajax-admin/products/" + productHashId).then(function () {
             __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()({
-              title: 'Eliminado',
+              title: 'Descartado',
               type: 'success',
               toast: true,
               position: 'top-right',
@@ -39767,8 +39768,8 @@ var BipolarProductList = function (_React$Component) {
               { onClick: function onClick() {
                   return _this4.handleDelete(product['hash_id']);
                 }, className: "btn btn-sm btn-dark btn-rounded" },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-close" }),
-              " Eliminar"
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-trash" }),
+              " Descartar"
             )
           )
         );

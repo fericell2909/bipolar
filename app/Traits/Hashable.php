@@ -32,6 +32,16 @@ trait Hashable
     }
 
     /**
+     * @param $hashedId
+     * @param array $columns
+     * @return \Illuminate\Database\Eloquent\Model|$this
+     */
+    public static function findByHashTrashed($hashedId, array $columns = ['*'])
+    {
+        return static::whereId(\Hashids::decode($hashedId))->withTrashed()->firstOrFail($columns);
+    }
+
+    /**
      * @return string
      */
     public function getHashIdAttribute()
