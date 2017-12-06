@@ -221,6 +221,22 @@ class ProductController extends Controller
         return response()->json(['message' => 'Hecho']);
     }
 
+    public function salientToggle(Request $request, $activate)
+    {
+        $this->validate($request, ['products' => 'required|array']);
+
+        $activate = boolval($activate);
+        $products = Product::findByManyHash($request->input('products'));
+
+        $products->each(function ($product) use ($activate) {
+            /** @var Product $product */
+            $product->is_salient = ($activate ? now() : null);
+            $product->save();
+        });
+
+        return response()->json(['message' => 'Hecho']);
+    }
+
     private function formatProduct()
     {
         $product = function ($product) {

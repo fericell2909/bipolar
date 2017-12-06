@@ -39634,10 +39634,19 @@ var BipolarProductList = function (_React$Component) {
         cancelButtonText: 'No hacer nada'
       }).then(function (result) {
         if (result.value) {
-          //todo: call the switch and ajax
           var products = _this3.state.selectedProducts;
 
           switch (optionSelected) {
+            case "activate_salient":
+              {
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/salient/1', { products: products }).then(_this3.getAllProducts);
+                break;
+              }
+            case "deactivate_salient":
+              {
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/salient/0', { products: products }).then(_this3.getAllProducts);
+                break;
+              }
             case "activate_free":
               {
                 __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/freeshipping/1', { products: products }).then(_this3.getAllProducts);

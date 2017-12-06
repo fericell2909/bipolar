@@ -98,18 +98,23 @@ export default class BipolarProductList extends React.Component {
       cancelButtonText: 'No hacer nada',
     }).then(result => {
       if (result.value) {
-        //todo: call the switch and ajax
         const products = this.state.selectedProducts;
 
         switch (optionSelected) {
+          case "activate_salient": {
+            axios.post('/ajax-admin/products/salient/1', {products}).then(this.getAllProducts);
+            break;
+          }
+          case "deactivate_salient": {
+            axios.post('/ajax-admin/products/salient/0', {products}).then(this.getAllProducts);
+            break;
+          }
           case "activate_free": {
-            axios.post('/ajax-admin/products/freeshipping/1', {products})
-              .then(this.getAllProducts);
+            axios.post('/ajax-admin/products/freeshipping/1', {products}).then(this.getAllProducts);
             break;
           }
           case "deactivate_free": {
-            axios.post('/ajax-admin/products/freeshipping/0', {products})
-              .then(this.getAllProducts);
+            axios.post('/ajax-admin/products/freeshipping/0', {products}).then(this.getAllProducts);
             break;
           }
         }
@@ -122,10 +127,9 @@ export default class BipolarProductList extends React.Component {
           showConfirmButton: false,
           timer: 5000,
         });
-        this.setState({ selectedProducts: [] });
+        this.setState({selectedProducts: []});
       }
     });
-
   }
 
   render() {
