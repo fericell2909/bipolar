@@ -39681,6 +39681,11 @@ var BipolarProductList = function (_React$Component) {
                 __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/freeshipping/0', { products: products }).then(_this3.getAllProducts);
                 break;
               }
+            case "dolar_price":
+              {
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/dolar-price', { products: products }).then(_this3.getAllProducts);
+                break;
+              }
           }
 
           __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()({
@@ -39746,6 +39751,11 @@ var BipolarProductList = function (_React$Component) {
             "td",
             { className: "text-right" },
             product['price']
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "td",
+            { className: "text-right" },
+            product['price_dolar']
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",
@@ -39903,6 +39913,15 @@ var BipolarProductList = function (_React$Component) {
                         { value: "deactivate_free" },
                         "Desactivar env\xEDo gratuito"
                       )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "optgroup",
+                      { label: "Precio" },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "option",
+                        { value: "dolar_price" },
+                        "Asignar precio en d\xF3lares"
+                      )
                     )
                   )
                 )
@@ -39920,7 +39939,7 @@ var BipolarProductList = function (_React$Component) {
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "th",
                     null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox", onChange: this.handleSelectAllProducts })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox", checked: this.state.products.length === this.state.selectedProducts.length, onChange: this.handleSelectAllProducts })
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "th",
@@ -39945,7 +39964,12 @@ var BipolarProductList = function (_React$Component) {
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "th",
                     { className: "text-right" },
-                    "Precio"
+                    "Precio (S/)"
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "th",
+                    { className: "text-right" },
+                    "Precio ($)"
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "th",

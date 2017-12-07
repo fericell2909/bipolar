@@ -23,6 +23,7 @@ class Product extends Resource
             'description'   => $this->description,
             'weight'        => $this->weight,
             'price'         => $this->price,
+            'price_dolar'   => $this->price_dolar,
             'free_shipping' => boolval($this->free_shipping),
             'is_salient'    => $this->is_salient,
             'preview_route' => $this->when(\Auth::guard('admin')->check(), route('products.preview', $this->slug)),

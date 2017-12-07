@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Ajax;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductNewRequest;
 use App\Models\{
-    Color, Photo, Product, Size, State, Stock, Subtype
+    Color, Photo, Product, Settings, Size, State, Stock, Subtype
 };
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Resources\ProductCollection;
@@ -231,6 +231,25 @@ class ProductController extends Controller
         $products->each(function ($product) use ($state) {
             /** @var Product $product */
             $product->state()->associate($state);
+            $product->save();
+        });
+
+        return response()->json(['message' => 'Hecho']);
+    }
+
+    public function changeDolarPrice(Request $request)
+    {
+        $this->validate($request, ['products' => 'required|array']);
+
+        $products = Product::findByManyHash($request->input('products'));
+        /** @var Settings $settings */
+        $settings = Settings::first();
+
+        $dolarPrice = $settings->dolar_change === 0 ? 1 : $settings->dolar_change;
+
+        $products->each(function ($product) use ($dolarPrice) {
+            /** @var Product $product */
+            $product->price_dolar = round($product->price / $dolarPrice);
             $product->save();
         });
 

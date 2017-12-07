@@ -130,6 +130,10 @@ export default class BipolarProductList extends React.Component {
             axios.post('/ajax-admin/products/freeshipping/0', {products}).then(this.getAllProducts);
             break;
           }
+          case "dolar_price": {
+            axios.post('/ajax-admin/products/dolar-price', {products}).then(this.getAllProducts);
+            break;
+          }
         }
 
         swal({
@@ -166,6 +170,7 @@ export default class BipolarProductList extends React.Component {
           <td>{product['name']}</td>
           <td>{badgesSubtypes}</td>
           <td className="text-right">{product['price']}</td>
+          <td className="text-right">{product['price_dolar']}</td>
           <td className="text-center">{state}</td>
           <td className="text-center">{product['free_shipping'] ? <i className="fa fa-check"/> : null}</td>
           <td className="text-center">{product['is_salient'] !== null ? <i className="fa fa-check"/> : null}</td>
@@ -223,6 +228,9 @@ export default class BipolarProductList extends React.Component {
                       <option value="activate_free">Activar envío gratuito</option>
                       <option value="deactivate_free">Desactivar envío gratuito</option>
                     </optgroup>
+                    <optgroup label="Precio">
+                      <option value="dolar_price">Asignar precio en dólares</option>
+                    </optgroup>
                   </select>
                 </div>
               </div>
@@ -230,12 +238,13 @@ export default class BipolarProductList extends React.Component {
             <table className="table">
               <thead>
                 <tr>
-                  <th><input type="checkbox" onChange={this.handleSelectAllProducts} /></th>
+                  <th><input type="checkbox" checked={this.state.products.length === this.state.selectedProducts.length} onChange={this.handleSelectAllProducts} /></th>
                   <th>#</th>
                   <th><i className="fa fa-photo" /></th>
                   <th>Nombre</th>
                   <th>Tipos</th>
-                  <th className="text-right">Precio</th>
+                  <th className="text-right">Precio (S/)</th>
+                  <th className="text-right">Precio ($)</th>
                   <th className="text-center">Estado</th>
                   <th className="text-center">Envío gratis</th>
                   <th className="text-center">Destacado</th>
