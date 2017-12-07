@@ -27,7 +27,7 @@ export default class BipolarProductRecommended extends Component {
 
         const searchText = this.state.searchText;
 
-        axios.get(`/ajax-admin/products/search?search=${searchText}`)
+        axios.get(`/ajax-admin/search/products?search=${searchText}`)
             .then(({data}) => {
                 const products = data['products'];
                 this.setState({

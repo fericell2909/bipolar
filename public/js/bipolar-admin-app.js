@@ -40399,7 +40399,7 @@ var BipolarProductRecommended = function (_Component) {
 
             var searchText = this.state.searchText;
 
-            __WEBPACK_IMPORTED_MODULE_4_axios___default.a.get('/ajax-admin/products/search?search=' + searchText).then(function (_ref) {
+            __WEBPACK_IMPORTED_MODULE_4_axios___default.a.get('/ajax-admin/search/products?search=' + searchText).then(function (_ref) {
                 var data = _ref.data;
 
                 var products = data['products'];
