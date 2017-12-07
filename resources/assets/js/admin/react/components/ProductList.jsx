@@ -210,13 +210,19 @@ export default class BipolarProductList extends React.Component {
                   <label>Acciones (pendiente)</label>
                   <select value={this.state.selectedMassiveAction} onChange={this.handleMassiveSelection} className="custom-select col-12">
                     <option value="" disabled>Seleccione</option>
-                    <option value="change_published">Cambiar a activo (Publicado)</option>
-                    <option value="change_draft">Cambiar a borrador</option>
-                    <option value="change_pending">Cambiar a pendiente de revisión</option>
-                    <option value="activate_salient">Activar destacado</option>
-                    <option value="deactivate_salient">Desactivar destacado</option>
-                    <option value="activate_free">Activar envío gratuito</option>
-                    <option value="deactivate_free">Desactivar envío gratuito</option>
+                    <optgroup label="Estado publicación">
+                      <option value="change_published">Cambiar a activo (Publicado)</option>
+                      <option value="change_draft">Cambiar a borrador</option>
+                      <option value="change_pending">Cambiar a pendiente de revisión</option>
+                    </optgroup>
+                    <optgroup label="Destacado">
+                      <option value="activate_salient">Activar destacado</option>
+                      <option value="deactivate_salient">Desactivar destacado</option>
+                    </optgroup>
+                    <optgroup label="Envío gratuito">
+                      <option value="activate_free">Activar envío gratuito</option>
+                      <option value="deactivate_free">Desactivar envío gratuito</option>
+                    </optgroup>
                   </select>
                 </div>
               </div>

@@ -39858,39 +39858,51 @@ var BipolarProductList = function (_React$Component) {
                       "Seleccione"
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      "option",
-                      { value: "change_published" },
-                      "Cambiar a activo (Publicado)"
+                      "optgroup",
+                      { label: "Estado publicaci\xF3n" },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "option",
+                        { value: "change_published" },
+                        "Cambiar a activo (Publicado)"
+                      ),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "option",
+                        { value: "change_draft" },
+                        "Cambiar a borrador"
+                      ),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "option",
+                        { value: "change_pending" },
+                        "Cambiar a pendiente de revisi\xF3n"
+                      )
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      "option",
-                      { value: "change_draft" },
-                      "Cambiar a borrador"
+                      "optgroup",
+                      { label: "Destacado" },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "option",
+                        { value: "activate_salient" },
+                        "Activar destacado"
+                      ),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "option",
+                        { value: "deactivate_salient" },
+                        "Desactivar destacado"
+                      )
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      "option",
-                      { value: "change_pending" },
-                      "Cambiar a pendiente de revisi\xF3n"
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      "option",
-                      { value: "activate_salient" },
-                      "Activar destacado"
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      "option",
-                      { value: "deactivate_salient" },
-                      "Desactivar destacado"
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      "option",
-                      { value: "activate_free" },
-                      "Activar env\xEDo gratuito"
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      "option",
-                      { value: "deactivate_free" },
-                      "Desactivar env\xEDo gratuito"
+                      "optgroup",
+                      { label: "Env\xEDo gratuito" },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "option",
+                        { value: "activate_free" },
+                        "Activar env\xEDo gratuito"
+                      ),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "option",
+                        { value: "deactivate_free" },
+                        "Desactivar env\xEDo gratuito"
+                      )
                     )
                   )
                 )
