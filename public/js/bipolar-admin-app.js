@@ -39231,7 +39231,9 @@ var BipolarProductEdit = function (_React$Component) {
     }
   }, {
     key: "handleUpdateProduct",
-    value: function handleUpdateProduct() {
+    value: function handleUpdateProduct(event) {
+      event.preventDefault();
+
       __WEBPACK_IMPORTED_MODULE_2_axios___default.a.put("/ajax-admin/products/" + this.props.productHashId, {
         name: this.state.product.name,
         price: this.state.product.price,
@@ -39284,6 +39286,8 @@ var BipolarProductEdit = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var isInvalidForm = this.state.product.name.length === 0 || this.state.product.price <= 0 || this.state.product.selectedState.length === 0;
+
       var productStatesRender = this.state.productStates.map(function (state) {
         return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
           "option",
@@ -39302,121 +39306,125 @@ var BipolarProductEdit = function (_React$Component) {
             "div",
             { className: "white-box" },
             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-              "div",
-              { className: "form-row" },
+              "form",
+              { onSubmit: this.handleUpdateProduct },
               __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                 "div",
-                { className: "col-md-6" },
+                { className: "form-row" },
                 __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                   "div",
-                  { className: "form-group" },
+                  { className: "col-md-6" },
                   __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                    "label",
-                    null,
-                    "Nombre"
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.name, onChange: this.handleInputChange, name: "name", type: "text",
-                    className: "form-control", required: true })
-                )
-              ),
-              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                "div",
-                { className: "col-md-6" },
-                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                  "div",
-                  { className: "form-group" },
-                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                    "label",
-                    null,
-                    "Precio"
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.price, onChange: this.handleInputChange, name: "price", type: "number",
-                    className: "form-control" })
-                )
-              )
-            ),
-            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-              "div",
-              { className: "form-group" },
-              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                "label",
-                null,
-                "Descripci\xF3n (Opcional)"
-              ),
-              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("textarea", { value: this.state.product.description, onChange: this.handleInputChange, name: "description",
-                className: "form-control", rows: "7" })
-            ),
-            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-              "div",
-              { className: "form-row" },
-              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                "div",
-                { className: "col-md-6" },
-                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                  "div",
-                  { className: "form-group" },
-                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                    "label",
-                    null,
-                    "Estado"
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                    "select",
-                    { className: "custom-select col-12", value: this.state.product.selectedState, onChange: this.handleProductStateChange },
+                    "div",
+                    { className: "form-group" },
                     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                      "option",
-                      { value: "", disabled: true },
-                      "Seleccione un estado"
+                      "label",
+                      null,
+                      "Nombre"
                     ),
-                    productStatesRender.length ? productStatesRender : null
+                    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.name, onChange: this.handleInputChange, name: "name", type: "text",
+                      className: "form-control", required: true })
+                  )
+                ),
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                  "div",
+                  { className: "col-md-6" },
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                    "div",
+                    { className: "form-group" },
+                    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                      "label",
+                      null,
+                      "Precio"
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.price, onChange: this.handleInputChange, name: "price", type: "number",
+                      className: "form-control", required: true })
                   )
                 )
               ),
               __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                 "div",
-                { className: "col-md-6" },
-                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                  "div",
-                  { className: "form-group" },
-                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                    "label",
-                    null,
-                    "Peso (kg)"
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.weight, onChange: this.handleInputChange, name: "weight", type: "number", step: "any",
-                    className: "form-control", placeholder: "Opcional" })
-                )
-              )
-            ),
-            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-              "div",
-              { className: "form-row" },
-              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                "div",
-                { className: "col-md-3" },
+                { className: "form-group" },
                 __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                   "label",
-                  { className: "checkbox-inline" },
-                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.free_shipping, onChange: this.handleChangeFreeShipping, type: "checkbox" }),
-                  "Env\xEDo gratuito"
+                  null,
+                  "Descripci\xF3n (Opcional)"
+                ),
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("textarea", { value: this.state.product.description, onChange: this.handleInputChange, name: "description",
+                  className: "form-control", rows: "7" })
+              ),
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                "div",
+                { className: "form-row" },
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                  "div",
+                  { className: "col-md-6" },
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                    "div",
+                    { className: "form-group" },
+                    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                      "label",
+                      null,
+                      "Estado"
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                      "select",
+                      { className: "custom-select col-12", value: this.state.product.selectedState, onChange: this.handleProductStateChange, required: true },
+                      __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                        "option",
+                        { value: "", disabled: true },
+                        "Seleccione un estado"
+                      ),
+                      productStatesRender.length ? productStatesRender : null
+                    )
+                  )
+                ),
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                  "div",
+                  { className: "col-md-6" },
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                    "div",
+                    { className: "form-group" },
+                    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                      "label",
+                      null,
+                      "Peso (kg)"
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.weight, onChange: this.handleInputChange, name: "weight", type: "number", step: "any",
+                      className: "form-control", placeholder: "Opcional" })
+                  )
                 )
               ),
               __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                 "div",
-                { className: "col-md-3" },
+                { className: "form-row" },
                 __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                  "label",
-                  { className: "checkbox-inline" },
-                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.salient, onChange: this.handleSalientChange, type: "checkbox" }),
-                  "Destacado"
+                  "div",
+                  { className: "col-md-3" },
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                    "label",
+                    { className: "checkbox-inline" },
+                    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.free_shipping, onChange: this.handleChangeFreeShipping, type: "checkbox" }),
+                    "Env\xEDo gratuito"
+                  )
+                ),
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                  "div",
+                  { className: "col-md-3" },
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                    "label",
+                    { className: "checkbox-inline" },
+                    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.salient, onChange: this.handleSalientChange, type: "checkbox" }),
+                    "Destacado"
+                  )
                 )
+              ),
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("hr", null),
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                "button",
+                { disabled: isInvalidForm, type: "submit", className: "btn btn-dark btn-rounded" },
+                "Actualizar e ir a subir fotos"
               )
-            ),
-            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("hr", null),
-            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-              "button",
-              { onClick: this.handleUpdateProduct, className: "btn btn-dark btn-rounded" },
-              "Actualizar e ir a subir fotos"
             )
           )
         ),
@@ -40131,10 +40139,8 @@ var BipolarProductNew = function (_React$Component) {
     }
   }, {
     key: 'handleSaveProduct',
-    value: function handleSaveProduct() {
-      if (this.state.name.length === 0) {
-        return __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()('Faltan campos', 'El campo nombre es obligatorio', 'error');
-      }
+    value: function handleSaveProduct(event) {
+      event.preventDefault();
 
       __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products', {
         name: this.state.name,
@@ -40155,6 +40161,8 @@ var BipolarProductNew = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var isInvalidForm = this.state.name.length === 0 || this.state.price <= 0 || this.state.selectedState.length === 0;
+
       var productStatesRender = this.state.productStates.map(function (state) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'option',
@@ -40173,121 +40181,125 @@ var BipolarProductNew = function (_React$Component) {
             'div',
             { className: 'white-box' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'form-row' },
+              'form',
+              { onSubmit: this.handleSaveProduct },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'col-md-6' },
+                { className: 'form-row' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'div',
-                  { className: 'form-group' },
+                  { className: 'col-md-6' },
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'label',
-                    null,
-                    'Nombre'
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.name, onChange: this.handleInputChange, name: 'name', type: 'text',
-                    className: 'form-control', required: true })
-                )
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'col-md-6' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'div',
-                  { className: 'form-group' },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'label',
-                    null,
-                    'Precio'
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.price, onChange: this.handleInputChange, name: 'price', type: 'number', step: 'any',
-                    className: 'form-control' })
-                )
-              )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'form-group' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'label',
-                null,
-                'Descripci\xF3n (Opcional)'
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { value: this.state.description, onChange: this.handleInputChange, name: 'description',
-                className: 'form-control', rows: '7' })
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'form-row' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'col-md-6' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'div',
-                  { className: 'form-group' },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'label',
-                    null,
-                    'Estado'
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'select',
-                    { className: 'custom-select col-12', value: this.state.selectedState, onChange: this.handleProductStateChange },
+                    'div',
+                    { className: 'form-group' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      'option',
-                      { value: '', disabled: true },
-                      'Seleccione un estado'
+                      'label',
+                      null,
+                      'Nombre'
                     ),
-                    productStatesRender.length ? productStatesRender : null
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.name, onChange: this.handleInputChange, name: 'name', type: 'text',
+                      className: 'form-control', required: true })
+                  )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'col-md-6' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'form-group' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      'label',
+                      null,
+                      'Precio'
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.price, onChange: this.handleInputChange, name: 'price', type: 'number', step: 'any',
+                      className: 'form-control', required: true })
                   )
                 )
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'col-md-6' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'div',
-                  { className: 'form-group' },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'label',
-                    null,
-                    'Peso (kg)'
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.weight, onChange: this.handleInputChange, name: 'weight', type: 'number', step: 'any',
-                    className: 'form-control', placeholder: 'Opcional' })
-                )
-              )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'form-row' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'col-md-3' },
+                { className: 'form-group' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'label',
-                  { className: 'checkbox-inline' },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { checked: this.state.free_shipping, onChange: this.handleChangeFreeShipping, type: 'checkbox' }),
-                  'Env\xEDo gratuito'
+                  null,
+                  'Descripci\xF3n (Opcional)'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { value: this.state.description, onChange: this.handleInputChange, name: 'description',
+                  className: 'form-control', rows: '7' })
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'form-row' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'col-md-6' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'form-group' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      'label',
+                      null,
+                      'Estado'
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      'select',
+                      { className: 'custom-select col-12', value: this.state.selectedState, onChange: this.handleProductStateChange, required: true },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'option',
+                        { value: '', disabled: true },
+                        'Seleccione un estado'
+                      ),
+                      productStatesRender.length ? productStatesRender : null
+                    )
+                  )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'col-md-6' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'form-group' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      'label',
+                      null,
+                      'Peso (kg)'
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.weight, onChange: this.handleInputChange, name: 'weight', type: 'number', step: 'any',
+                      className: 'form-control', placeholder: 'Opcional' })
+                  )
                 )
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'col-md-3' },
+                { className: 'form-row' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  'label',
-                  { className: 'checkbox-inline' },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { checked: this.state.salient, onChange: this.handleSalientChange, type: 'checkbox' }),
-                  'Destacado'
+                  'div',
+                  { className: 'col-md-3' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'label',
+                    { className: 'checkbox-inline' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { checked: this.state.free_shipping, onChange: this.handleChangeFreeShipping, type: 'checkbox' }),
+                    'Env\xEDo gratuito'
+                  )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'col-md-3' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'label',
+                    { className: 'checkbox-inline' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { checked: this.state.salient, onChange: this.handleSalientChange, type: 'checkbox' }),
+                    'Destacado'
+                  )
                 )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'button',
+                { disabled: isInvalidForm, type: 'submit', className: 'btn btn-dark btn-rounded' },
+                'Guardar e ir a subir fotos'
               )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'button',
-              { onClick: this.handleSaveProduct, className: 'btn btn-dark btn-rounded' },
-              'Guardar e ir a subir fotos'
             )
           )
         ),

@@ -95,10 +95,8 @@ export default class BipolarProductNew extends React.Component {
     this.setState({free_shipping: event.target.checked});
   }
 
-  handleSaveProduct() {
-    if (this.state.name.length === 0) {
-      return swal('Faltan campos', 'El campo nombre es obligatorio', 'error');
-    }
+  handleSaveProduct(event) {
+    event.preventDefault();
 
     axios.post('/ajax-admin/products', {
       name: this.state.name,
@@ -119,6 +117,8 @@ export default class BipolarProductNew extends React.Component {
   }
 
   render() {
+    const isInvalidForm = this.state.name.length === 0 || this.state.price <= 0 || this.state.selectedState.length === 0;
+
     const productStatesRender = this.state.productStates.map(state => {
       return <option key={state['hash_id']} value={state['hash_id']}>{state['name']}</option>
     });
@@ -127,63 +127,65 @@ export default class BipolarProductNew extends React.Component {
       <div className="row">
         <div className="col-md-9">
           <div className="white-box">
-            <div className="form-row">
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label>Nombre</label>
-                  <input value={this.state.name} onChange={this.handleInputChange} name="name" type="text"
-                         className="form-control" required/>
+            <form onSubmit={this.handleSaveProduct}>
+              <div className="form-row">
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>Nombre</label>
+                    <input value={this.state.name} onChange={this.handleInputChange} name="name" type="text"
+                           className="form-control" required/>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>Precio</label>
+                    <input value={this.state.price} onChange={this.handleInputChange} name="price" type="number" step="any"
+                           className="form-control" required/>
+                  </div>
                 </div>
               </div>
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label>Precio</label>
-                  <input value={this.state.price} onChange={this.handleInputChange} name="price" type="number" step="any"
-                         className="form-control"/>
+              <div className="form-group">
+                <label>Descripción (Opcional)</label>
+                <textarea value={this.state.description} onChange={this.handleInputChange} name="description"
+                          className="form-control" rows="7"/>
+              </div>
+              <div className="form-row">
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>Estado</label>
+                    <select className="custom-select col-12" value={this.state.selectedState} onChange={this.handleProductStateChange} required>
+                      <option value="" disabled>Seleccione un estado</option>
+                      {productStatesRender.length ? productStatesRender : null}
+                    </select>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label>Peso (kg)</label>
+                    <input value={this.state.weight} onChange={this.handleInputChange} name="weight" type="number" step="any"
+                           className="form-control" placeholder="Opcional"/>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="form-group">
-              <label>Descripción (Opcional)</label>
-              <textarea value={this.state.description} onChange={this.handleInputChange} name="description"
-                        className="form-control" rows="7"/>
-            </div>
-            <div className="form-row">
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label>Estado</label>
-                  <select className="custom-select col-12" value={this.state.selectedState} onChange={this.handleProductStateChange}>
-                    <option value="" disabled>Seleccione un estado</option>
-                    {productStatesRender.length ? productStatesRender : null}
-                  </select>
+              <div className="form-row">
+                <div className="col-md-3">
+                  <label className="checkbox-inline">
+                    <input checked={this.state.free_shipping} onChange={this.handleChangeFreeShipping} type="checkbox"/>
+                    Envío gratuito
+                  </label>
+                </div>
+                <div className="col-md-3">
+                  <label className="checkbox-inline">
+                    <input checked={this.state.salient} onChange={this.handleSalientChange} type="checkbox"/>
+                    Destacado
+                  </label>
                 </div>
               </div>
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label>Peso (kg)</label>
-                  <input value={this.state.weight} onChange={this.handleInputChange} name="weight" type="number" step="any"
-                         className="form-control" placeholder="Opcional"/>
-                </div>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="col-md-3">
-                <label className="checkbox-inline">
-                  <input checked={this.state.free_shipping} onChange={this.handleChangeFreeShipping} type="checkbox"/>
-                  Envío gratuito
-                </label>
-              </div>
-              <div className="col-md-3">
-                <label className="checkbox-inline">
-                  <input checked={this.state.salient} onChange={this.handleSalientChange} type="checkbox"/>
-                  Destacado
-                </label>
-              </div>
-            </div>
-            <hr/>
-            <button onClick={this.handleSaveProduct} className="btn btn-dark btn-rounded">
-              Guardar e ir a subir fotos
-            </button>
+              <hr/>
+              <button disabled={isInvalidForm} type="submit" className="btn btn-dark btn-rounded">
+                Guardar e ir a subir fotos
+              </button>
+            </form>
           </div>
         </div>
         <div className="col-md-3">
