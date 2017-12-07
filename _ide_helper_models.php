@@ -208,8 +208,10 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
+ * @property string $color
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereName($value)
  */

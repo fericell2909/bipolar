@@ -18,6 +18,7 @@ class State extends Resource
         return [
             'hash_id' => $this->hash_id,
             'name'    => $this->name,
+            'color'   => $this->color,
         ];
     }
 }

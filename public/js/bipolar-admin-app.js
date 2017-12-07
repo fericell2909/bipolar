@@ -39717,7 +39717,11 @@ var BipolarProductList = function (_React$Component) {
         });
         var firstImage = product['firstImageUrl'] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: product['firstImageUrl'], width: "100" }) : '--';
         var isSelected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["a" /* existInArray */])(_this4.state.selectedProducts, product['hash_id']);
-        var state = product['state'] ? product['state']['name'] : '--';
+        var state = product['state'] ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "span",
+          { className: "badge badge-" + product['state']['color'] },
+          product['state']['name']
+        ) : '--';
 
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "tr",

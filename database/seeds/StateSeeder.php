@@ -11,8 +11,8 @@ class StateSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\State::class)->create(['name' => 'Borrador']);
-        factory(\App\Models\State::class)->create(['name' => 'Pendiente de revisión']);
-        factory(\App\Models\State::class)->create(['name' => 'Activo']);
+        factory(\App\Models\State::class)->create(['name' => 'Borrador', 'color' => 'secondary']);
+        factory(\App\Models\State::class)->create(['name' => 'Pendiente de revisión', 'color' => 'danger']);
+        factory(\App\Models\State::class)->create(['name' => 'Activo', 'color' => 'success']);
     }
 }

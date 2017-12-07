@@ -160,7 +160,9 @@ export default class BipolarProductList extends React.Component {
       const firstImage = (product['firstImageUrl'] !== null) ? 
         <img src={product['firstImageUrl']} width="100" /> : '--';
       const isSelected = existInArray(this.state.selectedProducts, product['hash_id']);
-      const state = product['state'] ? product['state']['name'] : '--';
+      const state = product['state']
+        ? <span className={`badge badge-${product['state']['color']}`}>{product['state']['name']}</span>
+        : '--';
 
       return (
         <tr key={product['hash_id']}>
