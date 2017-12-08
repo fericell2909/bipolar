@@ -80,11 +80,13 @@ class ProductController extends Controller
     public function store(ProductNewRequest $request)
     {
         $state = State::findByHash($request->input('state'));
+        $settings = Settings::first();
 
         $product = new Product;
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = number_format($request->input('price'), 2, '.', '');
+        $product->price_dolar = !is_null($settings) ? round($request->input('price') / $settings->dolar_change) : 0;
         $product->weight = $request->filled('weight') ? $request->input('weight') : null;
         $product->free_shipping = boolval($request->input('free_shipping'));
         $product->is_salient = boolval($request->input('salient')) ? now() : null;
@@ -122,11 +124,13 @@ class ProductController extends Controller
     public function update(ProductNewRequest $request, $productHashId)
     {
         $state = State::findByHash($request->input('state'));
+        $settings = Settings::first();
 
         $product = Product::findByHash($productHashId);
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = number_format($request->input('price'), 2, '.', '');
+        $product->price_dolar = !is_null($settings) ? round($request->input('price') / $settings->dolar_change) : 0;
         $product->weight = $request->filled('weight') ? $request->input('weight') : null;
         $product->free_shipping = boolval($request->input('free_shipping'));
         $product->is_salient = boolval($request->input('salient')) ? now() : null;
