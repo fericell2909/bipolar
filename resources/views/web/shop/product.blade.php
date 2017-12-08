@@ -59,9 +59,20 @@
                             </div>
                         </div>
                         <div class="row" style="margin-bottom: 20px">
-                            <div class="col-sm-6 col-md-4 text-uppercase" style="margin-top: 10px;">Cambia de moneda</div>
+                            <div class="col-sm-6 col-md-4"></div>
                             <div class="col-sm-6 col-md-4">
-                                {!! Form::select('sizes', $stockWithSizes, null, ['class' => 'product-size-select']) !!}
+                                <button class="btn btn-add-cart">
+                                    Añadir al carrito
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px">
+                            <div class="col-sm-6 col-md-4 text-uppercase" style="margin-top: 10px;">Cambia de moneda</div>
+                            <div class="col-sm-6 col-md-6">
+                                <select name="currency_change" class="product-size-select">
+                                    <option value="pen">Soles peruanos (PEN)</option>
+                                    <option value="usd">Dólar americano (USD)</option>
+                                </select>
                             </div>
                         </div>
                     @endif

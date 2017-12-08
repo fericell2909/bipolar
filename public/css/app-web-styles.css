@@ -197,6 +197,11 @@
   src: url(/fonts/Gotham-Light.otf?bceda3fae660177ae570735feec62811);
 }
 
+@font-face {
+  font-family: 'GothamBold';
+  src: url(/fonts/Gotham-Bold.otf?722c5f898bbca8b2eb3fce0287688326);
+}
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -9022,94 +9027,136 @@ button.close {
   }
 }
 
-.btn-dark {
+.btn-dark,
+.btn-add-cart {
   color: white;
   background-color: black;
   border-color: black;
 }
 
 .btn-dark:hover,
+.btn-add-cart:hover,
 .btn-dark:focus,
+.btn-add-cart:focus,
 .btn-dark:active,
-.btn-dark.active {
+.btn-add-cart:active,
+.btn-dark.active,
+.active.btn-add-cart {
   color: white;
   background-color: #312E36;
   border-color: black;
 }
 
-.open .dropdown-toggle.btn-dark {
+.open .dropdown-toggle.btn-dark,
+.open .dropdown-toggle.btn-add-cart {
   color: white;
   background-color: #312E36;
   border-color: black;
 }
 
 .btn-dark:active,
-.btn-dark.active {
+.btn-add-cart:active,
+.btn-dark.active,
+.active.btn-add-cart {
   background-image: none;
 }
 
-.open .dropdown-toggle.btn-dark {
+.open .dropdown-toggle.btn-dark,
+.open .dropdown-toggle.btn-add-cart {
   background-image: none;
 }
 
 .btn-dark.disabled,
-.btn-dark[disabled] {
+.disabled.btn-add-cart,
+.btn-dark[disabled],
+[disabled].btn-add-cart {
   background-color: black;
   border-color: black;
 }
 
-fieldset[disabled] .btn-dark {
+fieldset[disabled] .btn-dark,
+fieldset[disabled] .btn-add-cart {
   background-color: black;
   border-color: black;
 }
 
 .btn-dark.disabled:hover,
-.btn-dark[disabled]:hover {
+.disabled.btn-add-cart:hover,
+.btn-dark[disabled]:hover,
+[disabled].btn-add-cart:hover {
   background-color: black;
   border-color: black;
 }
 
-fieldset[disabled] .btn-dark:hover {
+fieldset[disabled] .btn-dark:hover,
+fieldset[disabled] .btn-add-cart:hover {
   background-color: black;
   border-color: black;
 }
 
 .btn-dark.disabled:focus,
-.btn-dark[disabled]:focus {
+.disabled.btn-add-cart:focus,
+.btn-dark[disabled]:focus,
+[disabled].btn-add-cart:focus {
   background-color: black;
   border-color: black;
 }
 
-fieldset[disabled] .btn-dark:focus {
+fieldset[disabled] .btn-dark:focus,
+fieldset[disabled] .btn-add-cart:focus {
   background-color: black;
   border-color: black;
 }
 
 .btn-dark.disabled:active,
-.btn-dark[disabled]:active {
+.disabled.btn-add-cart:active,
+.btn-dark[disabled]:active,
+[disabled].btn-add-cart:active {
   background-color: black;
   border-color: black;
 }
 
-fieldset[disabled] .btn-dark:active {
+fieldset[disabled] .btn-dark:active,
+fieldset[disabled] .btn-add-cart:active {
   background-color: black;
   border-color: black;
 }
 
 .btn-dark.disabled.active,
-.btn-dark[disabled].active {
+.disabled.active.btn-add-cart,
+.btn-dark[disabled].active,
+[disabled].active.btn-add-cart {
   background-color: black;
   border-color: black;
 }
 
-fieldset[disabled] .btn-dark.active {
+fieldset[disabled] .btn-dark.active,
+fieldset[disabled] .active.btn-add-cart {
   background-color: black;
   border-color: black;
 }
 
-.btn-dark .badge {
+.btn-dark .badge,
+.btn-add-cart .badge {
   color: black;
   background-color: white;
+}
+
+.btn-add-cart {
+  text-transform: uppercase;
+  text-align: center;
+  padding: 9px 25px;
+  font-family: "GothamBold", Verdana;
+  font-size: 11px;
+  font-weight: 400;
+  border-radius: 42px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-add-cart:hover {
+  color: black;
+  background: white;
+  border: 1px solid black;
 }
 
 .btn-rounded {

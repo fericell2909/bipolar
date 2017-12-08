@@ -26,14 +26,15 @@ class ShopController extends Controller
 
     public function shop(ShopFilterRequest $request)
     {
-        $productsSalient = Product::whereNotNull('is_salient')
+        $productsSalient = Product::whereStateId(config('constants.STATE_ACTIVE_ID'))
+            ->whereNotNull('is_salient')
             ->with([
                 'photos' => function ($withPhotos) {
                     $withPhotos->orderBy('order');
                 },
                 'colors',
             ])
-            ->orderBy('name')
+            ->orderBy('order')
             ->get();
 
         $types = Type::with([
@@ -83,6 +84,7 @@ class ShopController extends Controller
                 'stocks.size',
                 'colors',
             ])
+            ->orderBy('order')
             ->get()
             ->when($request->filled('search'), function ($products) use ($request) {
                 /** @var Collection $products */

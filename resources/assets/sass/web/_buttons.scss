@@ -90,6 +90,23 @@ fieldset[disabled] .btn-dark.active {
   background-color: white;
 }
 
+.btn-add-cart {
+  @extend .btn-dark;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 9px 25px;
+  font-family: $gotham-bold-font;
+  font-size: 11px;
+  font-weight: 400;
+  border-radius: 42px;
+  -webkit-font-smoothing: antialiased;
+  &:hover {
+    color: $bipolar-black;
+    background: white;
+    border: 1px solid $bipolar-black;
+  }
+}
+
 .btn-rounded {
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
