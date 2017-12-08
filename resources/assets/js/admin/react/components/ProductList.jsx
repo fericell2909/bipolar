@@ -171,8 +171,8 @@ export default class BipolarProductList extends React.Component {
           <td>{firstImage}</td>
           <td>{product['name']}</td>
           <td>{badgesSubtypes}</td>
-          <td className="text-right">{product['price']}</td>
-          <td className="text-right">{product['price_dolar']}</td>
+          <td className="text-right">{parseInt(product['price'])}</td>
+          <td className="text-right">{parseInt(product['price_dolar'])}</td>
           <td className="text-center">{state}</td>
           <td className="text-center">{product['free_shipping'] ? <i className="fa fa-check"/> : null}</td>
           <td className="text-center">{product['is_salient'] !== null ? <i className="fa fa-check"/> : null}</td>

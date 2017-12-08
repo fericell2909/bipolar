@@ -39754,12 +39754,12 @@ var BipolarProductList = function (_React$Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",
             { className: "text-right" },
-            product['price']
+            parseInt(product['price'])
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",
             { className: "text-right" },
-            product['price_dolar']
+            parseInt(product['price_dolar'])
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "td",
