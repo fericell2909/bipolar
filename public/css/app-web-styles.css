@@ -202,6 +202,15 @@
   src: url(/fonts/Gotham-Bold.otf?722c5f898bbca8b2eb3fce0287688326);
 }
 
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -9142,6 +9151,10 @@ fieldset[disabled] .active.btn-add-cart {
   background-color: white;
 }
 
+.btn-rounded {
+  border-radius: 15px;
+}
+
 .btn-add-cart {
   text-transform: uppercase;
   text-align: center;
@@ -9159,8 +9172,47 @@ fieldset[disabled] .active.btn-add-cart {
   border: 1px solid black;
 }
 
-.btn-rounded {
-  border-radius: 15px;
+.quantity-content {
+  display: inline-block;
+  width: 120px;
+  position: relative;
+  margin-right: 4px;
+}
+
+.quantity-content button[data-type="minus"] {
+  left: 7px;
+}
+
+.quantity-content button[data-type="plus"] {
+  right: 7px;
+}
+
+.quantity-content > .btn-number {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  font-size: 10px;
+  border-radius: 100%;
+  background: white;
+  padding: 0;
+  color: #878787;
+  border: 1px solid #878787;
+  letter-spacing: -1px;
+  top: 11px;
+  z-index: 30;
+}
+
+.quantity-content .quantity-number {
+  width: 120px;
+  height: 36px;
+  border-radius: 42px;
+  color: #878787;
+  background-color: #f5f5f5;
+  font-size: 14px;
+  border: none;
+  text-align: center;
+  outline: none;
+  z-index: 10;
 }
 
 body {
@@ -9682,8 +9734,9 @@ input[type="date"] {
   margin-bottom: 35px;
 }
 
-.product-content .product-size-select {
-  width: 100%;
+.product-content .select-styles,
+.product-content .product-size-select,
+.product-content .product-currency-select {
   border: none;
   background-color: #f5f5f5;
   color: #878787;
@@ -9699,6 +9752,10 @@ input[type="date"] {
   background-image: url(/images/arrow_down.png?321c26753bb0f9825710a27f813910d5);
   background-repeat: no-repeat;
   background-position: calc(100% - 10px);
+}
+
+.product-content .product-size-select {
+  width: 100%;
 }
 
 .product-content .btn-sizes-modal {

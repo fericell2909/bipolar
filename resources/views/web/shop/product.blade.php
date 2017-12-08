@@ -59,17 +59,24 @@
                             </div>
                         </div>
                         <div class="row" style="margin-bottom: 20px">
-                            <div class="col-sm-6 col-md-4"></div>
-                            <div class="col-sm-6 col-md-4">
+                            <div class="col-sm-6 col-md-12">
+                                <div class="quantity-content">
+                                    <button class="btn-number" data-type="minus"><i class="fa fa-minus"></i></button>
+                                    <input type="number" value="1" class="quantity-number" size="4" min="1">
+                                    <button class="btn-number" data-type="plus"><i class="fa fa-plus"></i></button>
+                                </div>
                                 <button class="btn btn-add-cart">
                                     Añadir al carrito
                                 </button>
                             </div>
+                            <div class="col-sm-6 col-md-4">
+
+                            </div>
                         </div>
                         <div class="row" style="margin-bottom: 20px">
-                            <div class="col-sm-6 col-md-4 text-uppercase" style="margin-top: 10px;">Cambia de moneda</div>
-                            <div class="col-sm-6 col-md-6">
-                                <select name="currency_change" class="product-size-select">
+                            <div class="col-sm-6 col-md-12 text-uppercase" style="margin-top: 10px;">
+                                <span class="text-uppercase">Cambia de moneda</span>
+                                <select name="currency_change" class="product-currency-select">
                                     <option value="pen">Soles peruanos (PEN)</option>
                                     <option value="usd">Dólar americano (USD)</option>
                                 </select>

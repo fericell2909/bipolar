@@ -21,6 +21,17 @@
   src: url('../../fonts/Gotham/Gotham-Bold.otf');
 }
 
+// Important general styles
+// Remove arrows from input['number']
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 // Variables
 @import "variables";
 

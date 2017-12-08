@@ -37,8 +37,7 @@
     margin-bottom: 35px;
   }
 
-  .product-size-select {
-    width: 100%;
+  .select-styles {
     border: none;
     background-color: $bipolar-gray;
     color: #878787;
@@ -56,6 +55,15 @@
     background-image: url(../../img/arrow_down.png);
     background-repeat: no-repeat;
     background-position: calc(100% - 10px);
+  }
+
+  .product-size-select {
+    @extend .select-styles;
+    width: 100%;
+  }
+
+  .product-currency-select {
+    @extend .select-styles;
   }
 
   .btn-sizes-modal {
