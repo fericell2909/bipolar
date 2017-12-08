@@ -256,6 +256,21 @@ class ProductController extends Controller
         return response()->json(['message' => 'Hecho']);
     }
 
+    public function orderProductsAndSave(Request $request)
+    {
+        $this->validate($request, ['newOrder' => 'required|array']);
+
+        $newOrder = $request->input('newOrder');
+
+        foreach ($newOrder as $orderKey => $photoHashId) {
+            $photo = Product::findByHash($photoHashId);
+            $photo->order = $orderKey;
+            $photo->save();
+        }
+
+        return response()->json(['success' => true]);
+    }
+
     private function formatProduct()
     {
         $product = function ($product) {

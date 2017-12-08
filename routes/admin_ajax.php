@@ -21,3 +21,4 @@ Route::post('products/state/{action}', 'Admin\Ajax\ProductController@stateToggle
 Route::post('products/freeshipping/{activate}', 'Admin\Ajax\ProductController@freeShippingToggle');
 Route::post('products/salient/{activate}', 'Admin\Ajax\ProductController@salientToggle');
 Route::post('products/dolar-price', 'Admin\Ajax\ProductController@changeDolarPrice');
+Route::post('products/order', 'Admin\Ajax\ProductController@orderProductsAndSave');

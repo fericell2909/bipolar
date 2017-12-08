@@ -140,6 +140,16 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
+    public function order()
+    {
+        $products = Product::whereStateId(config('constants.STATE_ACTIVE_ID'))
+            ->orderBy('order')
+            ->with('photos')
+            ->get();
+
+        return view('admin.products.products_order', compact('products'));
+    }
+
     public function preview($productSlug)
     {
         /** @var Product $product */

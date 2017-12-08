@@ -70,6 +70,7 @@ namespace App\Models{
  * @property float $price
  * @property float $price_dolar
  * @property float|null $weight
+ * @property int $order
  * @property int $free_shipping
  * @property string|null $is_salient
  * @property \Carbon\Carbon|null $created_at
@@ -93,6 +94,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSalient($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePriceDolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSlug($value)

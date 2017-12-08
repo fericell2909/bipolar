@@ -31842,8 +31842,6 @@ __webpack_require__("./node_modules/block-ui/jquery.blockUI.js");
 
 $(document).ready(function () {
 
-    "use strict";
-
     var body = $("body");
 
     $(function () {
@@ -31876,8 +31874,19 @@ $(document).ready(function () {
         var sortable = new Sortable(_elem2, {
             onEnd: function onEnd(event) {
                 $.blockUI({ message: "<i class='fa fa-refresh fa-spin'></i> Guardando, espere <i class='fa fa-refresh fa-spin'></i>" });
-
                 $.post('/admin/products/photos/order', { newOrder: sortable.toArray() }).done(function () {
+                    return $.unblockUI();
+                });
+            }
+        });
+    }
+
+    if ($('#sortable-products').length) {
+        var _elem3 = document.querySelector('#sortable-products');
+        var _sortable = new Sortable(_elem3, {
+            onEnd: function onEnd(event) {
+                $.blockUI({ message: "<i class='fa fa-refresh fa-spin'></i> Guardando, espere <i class='fa fa-refresh fa-spin'></i>" });
+                $.post('/ajax-admin/products/order', { newOrder: _sortable.toArray() }).done(function () {
                     return $.unblockUI();
                 });
             }

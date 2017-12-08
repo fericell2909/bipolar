@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price', 7, 2);
             $table->decimal('price_dolar', 7, 2);
             $table->decimal('weight', 7, 2)->nullable();
+            $table->unsignedInteger('order')->default(0);
             $table->boolean('free_shipping')->default(false);
             $table->timestamp('is_salient')->nullable();
             $table->timestamps();

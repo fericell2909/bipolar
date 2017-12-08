@@ -7,8 +7,6 @@ require('block-ui');
 
 $(document).ready(function () {
 
-    "use strict";
-
     const body = $("body");
 
     $(function () {
@@ -37,15 +35,25 @@ $(document).ready(function () {
     });*/
 
     if ($('#sortable-items').length) {
-        let elem = document.querySelector('#sortable-items');
+        const elem = document.querySelector('#sortable-items');
         const sortable = new Sortable(elem, {
             onEnd(event) {
                 $.blockUI({ message: "<i class='fa fa-refresh fa-spin'></i> Guardando, espere <i class='fa fa-refresh fa-spin'></i>" });
-
                 $.post(`/admin/products/photos/order`, { newOrder: sortable.toArray() })
                     .done(() => $.unblockUI());
             }
         });
+    }
+
+    if ($('#sortable-products').length) {
+      const elem = document.querySelector('#sortable-products');
+      const sortable = new Sortable(elem, {
+        onEnd(event) {
+          $.blockUI({ message: "<i class='fa fa-refresh fa-spin'></i> Guardando, espere <i class='fa fa-refresh fa-spin'></i>" });
+          $.post(`/ajax-admin/products/order`, { newOrder: sortable.toArray() })
+            .done(() => $.unblockUI());
+        }
+      });
     }
 
     /* ===== Open-Close Right Sidebar ===== */
