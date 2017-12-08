@@ -10,13 +10,11 @@ class LandingsController extends Controller
 {
     public function home()
     {
-        $productsInHome = Product::whereNotNull('is_home')
-            ->whereNotNull('active')
-            ->with([
-                'photos' => function ($withPhotos) {
-                    $withPhotos->orderBy('order');
-                }
-            ])
+        $productsInHome = Product::with([
+            'photos' => function ($withPhotos) {
+                $withPhotos->orderBy('order');
+            }, 'colors'
+        ])
             ->orderBy('name')
             ->get();
 
