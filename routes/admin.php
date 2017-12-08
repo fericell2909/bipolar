@@ -7,6 +7,7 @@ Route::middleware('auth:admin')->group(function() {
     Route::get('/', function () {
         return view('admin.home');
     })->name('admin.dashboard');
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('admin.logs');
 
     Route::prefix('users')->group(function () {
         Route::get('/', 'Admin\UserController@index')->name('users.index');
