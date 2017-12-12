@@ -10,6 +10,23 @@
 
 namespace App\Models{
 /**
+ * App\Models\PostType
+ *
+ * @property int $id
+ * @property string $name
+ * @property string|null $slug
+ * @property-read string $hash_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\HomePost[] $home_posts
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType whereSlug($value)
+ */
+	class PostType extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Size
  *
  * @property int $id
@@ -23,6 +40,36 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereSlug($value)
  */
 	class Size extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\HomePost
+ *
+ * @property int $id
+ * @property int $post_type_id
+ * @property int|null $state_id
+ * @property string $name
+ * @property string|null $slug
+ * @property string $redirection_link
+ * @property int $order
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read string $hash_id
+ * @property-read \App\Models\PostType $post_type
+ * @property-read \App\Models\State|null $state
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost wherePostTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereRedirectionLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereUpdatedAt($value)
+ */
+	class HomePost extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -185,15 +232,17 @@ namespace App\Models{
  * App\Models\Photo
  *
  * @property int $id
- * @property int $product_id
+ * @property int|null $product_id
+ * @property int|null $home_post_id
  * @property string $url
  * @property string|null $relative_url
  * @property int $order
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read string $hash_id
- * @property-read \App\Models\Product $product
+ * @property-read \App\Models\Product|null $product
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereHomePostId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereProductId($value)

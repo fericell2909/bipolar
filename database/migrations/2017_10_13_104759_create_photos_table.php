@@ -15,7 +15,8 @@ class CreatePhotosTable extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('product_id')->nullable();
+            $table->unsignedInteger('home_post_id')->nullable();
             $table->string('url', 1000);
             $table->string('relative_url', 1000)->nullable();
             $table->unsignedInteger('order');
