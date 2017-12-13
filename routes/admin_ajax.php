@@ -22,6 +22,8 @@ Route::post('products/freeshipping/{activate}', 'Admin\Ajax\ProductController@fr
 Route::post('products/salient/{activate}', 'Admin\Ajax\ProductController@salientToggle');
 Route::post('products/dolar-price', 'Admin\Ajax\ProductController@changeDolarPrice');
 Route::post('products/order', 'Admin\Ajax\ProductController@orderProductsAndSave');
+Route::post('products/{productHashId}/photo/upload', 'Admin\Ajax\PhotoController@productUpload')->name('products.photo.upload');
+Route::post('products/photos/order', 'Admin\Ajax\PhotoController@orderPhotos');
 Route::post('home-posts/order', 'Admin\Ajax\HomePostController@order');
 Route::post('home-posts/{hashId}/photos', 'Admin\Ajax\PhotoController@homePostUpload')->name('homepost.photo.upload');
-Route::post('home-posts/photos/order', 'Admin\Ajax\PhotoController@homePostOrderPhotos');
+Route::post('home-posts/photos/order', 'Admin\Ajax\PhotoController@orderPhotos');

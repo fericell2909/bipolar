@@ -24,9 +24,7 @@ Route::middleware('auth:admin')->group(function() {
         Route::get('{productId}/edit', 'Admin\ProductController@edit')->name('products.edit');
         Route::get('{productSlug}/preview', 'Admin\ProductController@preview')->name('products.preview');
         Route::get('{slug}/photos', 'Admin\ProductController@photos')->name('products.photos');
-        Route::post('{productHashId}/photo/upload', 'Admin\ProductController@uploadPhoto')->name('products.photo.upload');
         Route::get('photos/{slug}/order', 'Admin\ProductController@seePhotos')->name('products.photos.order');
-        Route::post('photos/order', 'Admin\ProductController@orderAndSavePosition');
         Route::get('{slug}/recommended', 'Admin\ProductController@recommended')->name('products.recommended');
         Route::get('trashed', 'Admin\ProductController@trashed')->name('products.trashed');
         Route::post('{productHashId}/hard-delete', 'Admin\ProductController@deletehard')->name('products.harddelete');

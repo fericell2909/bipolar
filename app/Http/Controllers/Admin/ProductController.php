@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductNewRequest;
 use App\Models\{
-    Color, Photo, Product, Size, Stock, Type
+    Photo, Product, Stock
 };
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -27,30 +24,6 @@ class ProductController extends Controller
         $product = Product::findBySlugOrFail($productSlug);
 
         return view('admin.products.photos', compact('product'));
-    }
-
-    public function uploadPhoto(Request $request, $productHashId)
-    {
-        $this->validate($request, ['file' => 'required|image']);
-
-        $product = Product::findByHash($productHashId);
-        $image = $request->file('file');
-        $now = Carbon::now();
-        $bucket = env('AWS_BUCKET');
-
-        if ($image->isValid()) {
-            $imagePath = $image->storePubliclyAs('products', "{$product->slug}_{$now->timestamp}.{$image->extension()}", ['CacheControl' => 'max-age=31536000', 'disk' => 's3']);
-            $amazonPath = "https://s3.amazonaws.com/{$bucket}/{$imagePath}";
-
-            $photo = new Photo;
-            $photo->product()->associate($product);
-            $photo->url = $amazonPath;
-            $photo->relative_url = $imagePath;
-            $photo->order = 0;
-            $photo->save();
-        }
-
-        return response()->json(compact('path'));
     }
 
     public function deletePhoto($photoHashId)
@@ -78,19 +51,6 @@ class ProductController extends Controller
         }]);
 
         return view('admin.products.photos_order', compact('product'));
-    }
-
-    public function orderAndSavePosition(Request $request)
-    {
-        $newOrder = $request->input('newOrder');
-
-        foreach ($newOrder as $orderKey => $photoHashId) {
-            $photo = Photo::findByHash($photoHashId);
-            $photo->order = $orderKey;
-            $photo->save();
-        }
-
-        return response()->json(['success' => true]);
     }
 
     public function edit($productHashId)
