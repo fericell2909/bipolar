@@ -16,4 +16,9 @@ class State extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function getAdminHtml()
+    {
+        return "<span class='label label-pill label-{$this->color}'>{$this->name}</span>";
+    }
 }

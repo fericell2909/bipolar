@@ -30936,6 +30936,37 @@ __webpack_require__("./resources/assets/js/admin/plugins/waves.js");
 __webpack_require__("./resources/assets/js/admin/plugins/theme-scripts.js");
 __webpack_require__("./resources/assets/js/admin/plugins/jscolor.min.js");
 __webpack_require__("./resources/assets/js/admin/settings-scripts.js");
+__webpack_require__("./resources/assets/js/admin/order-scripts.js");
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/jquery/dist/jquery.js")))
+
+/***/ }),
+
+/***/ "./resources/assets/js/admin/order-scripts.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {var Sortable = __webpack_require__("./node_modules/sortablejs/Sortable.js");
+
+var createSortable = function createSortable(elementId, urlToSave) {
+  if ($(elementId).length) {
+    var elem = document.querySelector(elementId);
+    var sortable = new Sortable(elem, {
+      onEnd: function onEnd() {
+        $.blockUI({
+          message: '<i class=\'fa fa-refresh fa-spin\'></i> \n              Guardando \n            <i class=\'fa fa-refresh fa-spin\'></i>'
+        });
+        $.post(urlToSave, { newOrder: sortable.toArray() }).done(function () {
+          return $.unblockUI();
+        });
+      }
+    });
+  }
+};
+
+$(function () {
+  createSortable('#sortable-items', '/admin/products/photos/order');
+  createSortable('#sortable-products', '/ajax-admin/products/order');
+  createSortable('#sortable-home-posts', '/ajax-admin/home-posts/order');
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
@@ -31836,7 +31867,6 @@ window.jscolor || (window.jscolor = function () {
 /* WEBPACK VAR INJECTION */(function($, jQuery) {var switcher = __webpack_require__("./node_modules/switchery/switchery.js");
 var select2 = __webpack_require__("./node_modules/select2/dist/js/select2.full.js");
 __webpack_require__("./node_modules/dropzone/dist/dropzone-amd-module.js");
-var Sortable = __webpack_require__("./node_modules/sortablejs/Sortable.js");
 __webpack_require__("./node_modules/block-ui/jquery.blockUI.js");
 //require('icheck');
 
@@ -31868,30 +31898,6 @@ $(document).ready(function () {
         checkboxClass: 'icheckbox_flat',
         radioClass: 'iradio_flat',
     });*/
-
-    if ($('#sortable-items').length) {
-        var _elem2 = document.querySelector('#sortable-items');
-        var sortable = new Sortable(_elem2, {
-            onEnd: function onEnd(event) {
-                $.blockUI({ message: "<i class='fa fa-refresh fa-spin'></i> Guardando, espere <i class='fa fa-refresh fa-spin'></i>" });
-                $.post('/admin/products/photos/order', { newOrder: sortable.toArray() }).done(function () {
-                    return $.unblockUI();
-                });
-            }
-        });
-    }
-
-    if ($('#sortable-products').length) {
-        var _elem3 = document.querySelector('#sortable-products');
-        var _sortable = new Sortable(_elem3, {
-            onEnd: function onEnd(event) {
-                $.blockUI({ message: "<i class='fa fa-refresh fa-spin'></i> Guardando, espere <i class='fa fa-refresh fa-spin'></i>" });
-                $.post('/ajax-admin/products/order', { newOrder: _sortable.toArray() }).done(function () {
-                    return $.unblockUI();
-                });
-            }
-        });
-    }
 
     /* ===== Open-Close Right Sidebar ===== */
 

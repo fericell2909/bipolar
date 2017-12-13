@@ -22,3 +22,4 @@ require('./plugins/waves');
 require('./plugins/theme-scripts');
 require('./plugins/jscolor.min');
 require('./settings-scripts');
+require('./order-scripts');

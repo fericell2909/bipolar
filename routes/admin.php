@@ -32,6 +32,12 @@ Route::middleware('auth:admin')->group(function() {
         Route::post('{productHashId}/hard-delete', 'Admin\ProductController@deletehard')->name('products.harddelete');
     });
 
+    Route::prefix('home-posts')->group(function () {
+        Route::get('new', 'Admin\HomePostController@create')->name('homepost.create');
+        Route::post('new', 'Admin\HomePostController@store');
+        Route::get('order', 'Admin\HomePostController@order')->name('homepost.order');
+    });
+
     Route::prefix('settings')->group(function () {
         Route::get('general', 'Admin\SettingsController@general')->name('settings.general');
         Route::post('general', 'Admin\SettingsController@saveGeneral');

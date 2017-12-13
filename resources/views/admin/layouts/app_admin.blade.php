@@ -17,6 +17,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Custom CSS -->
     <link href="{{ mix('css/app-admin-styles.css') }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ asset('public/favicon-bipolar.jpg') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('public/favicon-bipolar.jpg') }}" type="image/x-icon">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -93,6 +95,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li><a href="{{ route('products.index') }}">Listar productos</a></li>
                         <li><a href="{{ route('products.trashed') }}">Descartados</a></li>
                         <li><a href="{{ route('products.order') }}">Ordenar</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="waves-effect">
+                        <i class="fa fa-h-square"></i>
+                        <span class="hide-menu"> Publicaciones Home <span class="fa arrow"></span></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="{{ route('homepost.create') }}">Nueva publicación</a></li>
+                        <li><a href="#">Listar publicaciones</a></li>
+                        <li><a href="{{ route('homepost.order') }}">Ordenar</a></li>
                     </ul>
                 </li>
                 <li>
