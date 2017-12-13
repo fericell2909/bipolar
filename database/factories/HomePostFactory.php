@@ -8,7 +8,7 @@ $factory->define(\App\Models\HomePost::class, function (Faker $faker) {
             return factory(\App\Models\PostType::class)->create()->id;
         },
         'state_id'         => $faker->numberBetween(1, 3),
-        'name'             => $faker->word,
+        'name'             => $faker->numberBetween(100, 200),
         'redirection_link' => $faker->optional()->url,
     ];
 });

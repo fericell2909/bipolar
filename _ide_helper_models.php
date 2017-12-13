@@ -51,11 +51,12 @@ namespace App\Models{
  * @property int|null $state_id
  * @property string $name
  * @property string|null $slug
- * @property string $redirection_link
+ * @property string|null $redirection_link
  * @property int $order
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read string $hash_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read \App\Models\PostType $post_type
  * @property-read \App\Models\State|null $state
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost findSimilarSlugs($attribute, $config, $slug)

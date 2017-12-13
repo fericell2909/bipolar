@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\HomePost;
 use App\Models\Product;
 use App\Models\Settings;
 
@@ -10,17 +11,16 @@ class LandingsController extends Controller
 {
     public function home()
     {
-        $productsInHome = Product::with([
-            'photos' => function ($withPhotos) {
+        $homePosts = HomePost::whereStateId(config('constants.STATE_ACTIVE_ID'))
+            ->with(['photos' => function ($withPhotos) {
                 $withPhotos->orderBy('order');
-            }, 'colors'
-        ])
-            ->orderBy('name')
+            }])
+            ->orderBy('order')
             ->get();
 
         $settings = Settings::first();
 
-        return view('welcome', compact('productsInHome', 'settings'));
+        return view('welcome', compact('homePosts', 'settings'));
     }
 
     public function bipolar()

@@ -1,9 +1,6 @@
 .overlay-image {
   position: absolute;
   top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   height: 100%;
   width: 100%;
   opacity: 0;
@@ -13,6 +10,7 @@
   -o-transition: ease .5s;
   transition: ease .5s;
   background-color: $bipolar-color;
+  text-align: center;
 }
 
 .overlay-container:hover .overlay-image {
@@ -23,9 +21,14 @@
   color: $bipolar-black;
   font-family: $sahari-bodoni-font;
   font-size: 122px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+  margin: 13px 0 -16px 0;
+}
+
+.overlay-text-description {
+  font-family: $bodoni-font;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  color: $bipolar-black;
+  text-transform: uppercase;
 }

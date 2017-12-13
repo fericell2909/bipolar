@@ -13,6 +13,11 @@ class HomePost extends Model
 
     protected $table = 'home_posts';
 
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
     public function post_type()
     {
         return $this->belongsTo(PostType::class);

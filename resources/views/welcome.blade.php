@@ -62,16 +62,17 @@
         Envío a todo el mundo
     </section>
     <div class="row no-gutters">
-        @foreach($productsInHome as $product)
-            @if($product->photos->count() > 0)
-                <a href="{{ route('shop.product', $product->slug) }}" class="col-sm-6 col-md-3 overlay-container">
-                    <img src="{{ $product->photos->first()->url }}" alt="{{ $product->name }}" class="img-responsive full-image">
+        @foreach($homePosts as $homePost)
+            <?php /** @var \App\Models\HomePost $homePost */ ?>
+            @if($homePost->photos->count() > 0)
+                <a href="{{ $homePost->redirection_link }}" class="col-sm-6 col-md-3 overlay-container">
+                    <img src="{{ $homePost->photos->first()->url }}" alt="{{ $homePost->name }}" class="img-responsive full-image">
                     <div class="overlay-image">
                         <p class="overlay-text">
-                            {{ $product->name }}
+                            {{ $homePost->name }}
                         </p>
                         <p class="overlay-text-description">
-                            {{ $product->colors->count() ? $product->colors->first()->name : null }}
+                            {{ $homePost->post_type->name }}
                         </p>
                     </div>
                 </a>
