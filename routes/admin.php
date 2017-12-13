@@ -36,6 +36,7 @@ Route::middleware('auth:admin')->group(function() {
         Route::get('new', 'Admin\HomePostController@create')->name('homepost.create');
         Route::post('new', 'Admin\HomePostController@store');
         Route::get('order', 'Admin\HomePostController@order')->name('homepost.order');
+        Route::get('{slug}/photos', 'Admin\HomePostController@photoUpload')->name('homepost.photos');
     });
 
     Route::prefix('settings')->group(function () {

@@ -1,7 +1,6 @@
 const switcher = require('switchery/switchery');
 const select2 = require('select2/dist/js/select2.full');
 require('dropzone/dist/dropzone-amd-module');
-require('block-ui');
 //require('icheck');
 
 $(document).ready(function () {

@@ -30945,6 +30945,7 @@ __webpack_require__("./resources/assets/js/admin/order-scripts.js");
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var Sortable = __webpack_require__("./node_modules/sortablejs/Sortable.js");
+__webpack_require__("./node_modules/block-ui/jquery.blockUI.js");
 
 var createSortable = function createSortable(elementId, urlToSave) {
   if ($(elementId).length) {
@@ -31867,7 +31868,6 @@ window.jscolor || (window.jscolor = function () {
 /* WEBPACK VAR INJECTION */(function($, jQuery) {var switcher = __webpack_require__("./node_modules/switchery/switchery.js");
 var select2 = __webpack_require__("./node_modules/select2/dist/js/select2.full.js");
 __webpack_require__("./node_modules/dropzone/dist/dropzone-amd-module.js");
-__webpack_require__("./node_modules/block-ui/jquery.blockUI.js");
 //require('icheck');
 
 $(document).ready(function () {

@@ -1,4 +1,5 @@
 const Sortable = require('sortablejs');
+require('block-ui');
 
 const createSortable = (elementId, urlToSave) => {
   if ($(elementId).length) {

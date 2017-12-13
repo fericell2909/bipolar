@@ -241,6 +241,7 @@ namespace App\Models{
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read string $hash_id
+ * @property-read \App\Models\HomePost|null $home_post
  * @property-read \App\Models\Product|null $product
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereHomePostId($value)

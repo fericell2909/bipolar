@@ -32,8 +32,7 @@ class HomePostController extends Controller
 
         flash('Creado con éxito')->success();
 
-        // todo: redirigir a subir fotos
-        return redirect()->back();
+        return redirect()->route('homepost.photos', $homePost->slug);
     }
 
     public function order()
@@ -43,5 +42,12 @@ class HomePostController extends Controller
             ->get();
 
         return view('admin.home_posts.order', compact('homePosts'));
+    }
+
+    public function photoUpload($homePostSlug)
+    {
+        $homePost = HomePost::findBySlugOrFail($homePostSlug);
+
+        return view('admin.home_posts.photos_upload', compact('homePost'));
     }
 }
