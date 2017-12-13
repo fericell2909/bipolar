@@ -35,6 +35,33 @@ class HomePostController extends Controller
         return redirect()->route('homepost.photos', $homePost->slug);
     }
 
+    public function show($homePostSlug)
+    {
+        $homePost = HomePost::findBySlugOrFail($homePostSlug);
+        $postTypes = PostType::orderBy('name')->get()->pluck('name', 'id')->toArray();
+        $states = State::orderBy('name')->get()->pluck('name', 'id')->toArray();
+
+        return view('admin.home_posts.edit', compact('homePost', 'postTypes', 'states'));
+    }
+
+    public function update(HomePostNewRequest $request, $homePostSlug)
+    {
+        /** @var HomePost $homePost */
+        $homePost = HomePost::findBySlugOrFail($homePostSlug);
+        $state = State::findOrFail($request->input('state'));
+        $postType = PostType::findOrFail($request->input('post_type'));
+
+        $homePost->name = $request->input('name');
+        $homePost->redirection_link = $request->input('link');
+        $homePost->state()->associate($state);
+        $homePost->post_type()->associate($postType);
+        $homePost->save();
+
+        flash('Actualizado con éxito')->success();
+
+        return redirect()->back();
+    }
+
     public function order()
     {
         $homePosts = HomePost::whereStateId(config('constants.STATE_ACTIVE_ID'))
