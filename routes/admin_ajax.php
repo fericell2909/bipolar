@@ -24,3 +24,4 @@ Route::post('products/dolar-price', 'Admin\Ajax\ProductController@changeDolarPri
 Route::post('products/order', 'Admin\Ajax\ProductController@orderProductsAndSave');
 Route::post('home-posts/order', 'Admin\Ajax\HomePostController@order');
 Route::post('home-posts/{hashId}/photos', 'Admin\Ajax\PhotoController@homePostUpload')->name('homepost.photo.upload');
+Route::post('home-posts/photos/order', 'Admin\Ajax\PhotoController@homePostOrderPhotos');

@@ -37,6 +37,7 @@ Route::middleware('auth:admin')->group(function() {
         Route::post('new', 'Admin\HomePostController@store');
         Route::get('order', 'Admin\HomePostController@order')->name('homepost.order');
         Route::get('{slug}/photos', 'Admin\HomePostController@photoUpload')->name('homepost.photos');
+        Route::get('{slug}/photos/order', 'Admin\HomePostController@orderPhotos')->name('homepost.photos.order');
         Route::get('edit/{slug}', 'Admin\HomePostController@show')->name('homepost.edit');
         Route::post('edit/{slug}', 'Admin\HomePostController@update');
     });

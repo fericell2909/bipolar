@@ -77,4 +77,11 @@ class HomePostController extends Controller
 
         return view('admin.home_posts.photos_upload', compact('homePost'));
     }
+
+    public function orderPhotos($homePostSlug)
+    {
+        $homePost = HomePost::findBySlugOrFail($homePostSlug);
+
+        return view('admin.home_posts.photos_order', compact('homePost'));
+    }
 }

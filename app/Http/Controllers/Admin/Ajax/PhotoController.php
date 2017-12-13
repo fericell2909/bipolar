@@ -32,6 +32,21 @@ class PhotoController extends Controller
         return response()->json(compact('amazonPath'));
     }
 
+    public function homePostOrderPhotos(Request $request)
+    {
+        $this->validate($request, ['newOrder' => 'required|array']);
+
+        $newOrder = $request->input('newOrder');
+
+        foreach ($newOrder as $orderKey => $photoHashId) {
+            $photo = Photo::findByHash($photoHashId);
+            $photo->order = $orderKey;
+            $photo->save();
+        }
+
+        return response()->json(['success' => true]);
+    }
+
     private function uploadPhoto(UploadedFile $image, string $folder, string $imageName): string
     {
         $now = now();

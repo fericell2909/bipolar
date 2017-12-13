@@ -23,4 +23,5 @@ $(function () {
   createSortable('#sortable-items', '/admin/products/photos/order');
   createSortable('#sortable-products', '/ajax-admin/products/order');
   createSortable('#sortable-home-posts', '/ajax-admin/home-posts/order');
+  createSortable('#sortable-home-posts-photos', '/ajax-admin/home-posts/photos/order');
 });
