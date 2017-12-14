@@ -13,23 +13,38 @@ class SubtypeSeeder extends Seeder
     {
         factory(\App\Models\Subtype::class)->create([
             'type_id' => 1,
-            'name'    => 'Sandalia',
+            'name'    => [
+                'es' => 'Sandalia',
+                'en' => 'Sandalia',
+            ],
         ]);
         factory(\App\Models\Subtype::class)->create([
             'type_id' => 1,
-            'name'    => 'Ballerina',
+            'name'    => [
+                'es' => 'Ballerina',
+                'en' => 'Ballerina',
+            ],
         ]);
         factory(\App\Models\Subtype::class)->create([
             'type_id' => 1,
-            'name'    => 'Botín',
+            'name'    => [
+                'es' => 'Botín',
+                'en' => 'Botín',
+            ],
         ]);
         factory(\App\Models\Subtype::class)->create([
             'type_id' => 2,
-            'name'    => 'Bolso',
+            'name'    => [
+                'es' => 'Bolso',
+                'en' => 'Bolso',
+            ],
         ]);
         factory(\App\Models\Subtype::class)->create([
             'type_id' => 2,
-            'name'    => 'Llavero',
+            'name'    => [
+                'es' => 'Llavero',
+                'en' => 'Llavero',
+            ],
         ]);
     }
 }

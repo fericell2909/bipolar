@@ -16,7 +16,7 @@ class CreateSubtypesTable extends Migration
         Schema::create('subtypes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('type_id');
-            $table->string('name');
+            $table->text('name');
             $table->string('slug', 300)->nullable();
         });
     }

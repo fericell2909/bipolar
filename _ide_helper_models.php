@@ -291,7 +291,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $type_id
- * @property string $name
+ * @property array $name
  * @property string|null $slug
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products

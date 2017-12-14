@@ -60,6 +60,7 @@ Route::middleware('auth:admin')->group(function() {
         Route::get('types/{typeHashId}', 'Admin\TypesController@edit')->name('settings.types.edit');
         Route::post('types/{typeHashId}', 'Admin\TypesController@update');
         Route::get('types/{typeHashId}/subtypes', 'Admin\TypesController@subtypes')->name('settings.types.subtypes');
+        Route::post('types/{typeHashId}/subtypes', 'Admin\SubtypeController@create');
         // Subtypes
         Route::get('subtypes/{subtypeHashId}', 'Admin\SubtypeController@edit')->name('settings.subtypes.edit');
         Route::post('subtypes/{subtypeHashId}', 'Admin\SubtypeController@update');

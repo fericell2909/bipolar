@@ -6,13 +6,15 @@ use App\Traits\Hashable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Subtype extends Model
 {
-    use Hashable, Sluggable, SluggableScopeHelpers;
+    use Hashable, Sluggable, SluggableScopeHelpers, HasTranslations;
 
     protected $table = 'subtypes';
     public $timestamps = false;
+    public $translatable = ['name'];
 
     public function products()
     {
