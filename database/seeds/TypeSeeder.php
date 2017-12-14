@@ -11,7 +11,7 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Type::class)->create(['name' => 'Zapatos']);
-        factory(\App\Models\Type::class)->create(['name' => 'Accesorios']);
+        factory(\App\Models\Type::class)->create(['name' => ['es' => 'Zapatos', 'en' => 'Zapatos']]);
+        factory(\App\Models\Type::class)->create(['name' => ['es' => 'Accesorios', 'en' => 'Accesorios']]);
     }
 }

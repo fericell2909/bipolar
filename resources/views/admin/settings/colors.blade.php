@@ -6,20 +6,23 @@
                 <h3 class="box-title">Nuevo color</h3>
                 {!! Form::open() !!}
                 <div class="form-row">
-                    <div class="col-md-10">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            {!! Form::text('name', null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Nombre']) !!}
+                            {!! Form::label('Nombre') !!}
+                            {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
                         </div>
                     </div>
-                    <div class="col-md-1 text-center">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <button class="btn btn-sm btn-dark btn-rounded">
-                                <i class="fa fa-floppy-o"></i>
-                                Guardar
-                            </button>
+                            {!! Form::label('Nombre (Inglés)') !!}
+                            {!! Form::text('name_english', null, ['class' => 'form-control', 'required' => true]) !!}
                         </div>
                     </div>
                 </div>
+                <button type="submit" class="btn btn-sm btn-dark btn-rounded">
+                    <i class="fa fa-floppy-o"></i>
+                    Guardar
+                </button>
                 {!! Form::close() !!}
             </div>
         </div>
@@ -32,7 +35,7 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nombre</th>
+                        <th>Nombre (ES/EN)</th>
                         <th>Acciones</th>
                     </tr>
                     </thead>
@@ -41,10 +44,10 @@
                         <?php /** @var \App\Models\Color $color */ ?>
                         <tr>
                             <td>{{ $color->id }}</td>
-                            <td>{{ $color->name }}</td>
+                            <td>{{ $color->getTranslation('name', 'es') }} / {{ $color->getTranslation('name', 'en') }}</td>
                             <td>
                                 <a href="{{ route('settings.colors.show', $color->hash_id) }}" class="btn btn-sm btn-dark btn-rounded">
-                                    <i class="fa fa-pencil"></i> Actualizar
+                                    <i class="fa fa-pencil"></i> Editar
                                 </a>
                                 <button class="btn btn-sm btn-dark btn-rounded color-delete" data-color-id="{{ $color->hash_id }}">
                                     <i class="fa fa-trash"></i>

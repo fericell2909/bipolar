@@ -17,10 +17,16 @@ class TypesController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required|between:1,255']);
+        $this->validate($request, [
+            'name'         => 'required|between:1,255',
+            'name_english' => 'required|between:1,255',
+        ]);
 
         $type = new Type;
-        $type->name = $request->input('name');
+        $type->setTranslations('name', [
+            'es' => $request->input('name'),
+            'en' => $request->input('name_english'),
+        ]);
         $type->save();
 
         flash()->success('Tipo creado correctamente');
@@ -37,10 +43,16 @@ class TypesController extends Controller
 
     public function update(Request $request, $typeHashId)
     {
-        $this->validate($request, ['name' => 'required|between:1,255']);
+        $this->validate($request, [
+            'name'         => 'required|between:1,255',
+            'name_english' => 'required|between:1,255',
+        ]);
 
         $type = Type::findByHash($typeHashId);
-        $type->name = $request->input('name');
+        $type->setTranslations('name', [
+            'es' => $request->input('name'),
+            'en' => $request->input('name_english'),
+        ]);
         $type->save();
 
         flash()->success('Tipo actualizado correctamente');

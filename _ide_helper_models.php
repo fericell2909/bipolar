@@ -94,7 +94,7 @@ namespace App\Models{
  * App\Models\Type
  *
  * @property int $id
- * @property string $name
+ * @property array $name
  * @property string|null $slug
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
@@ -276,7 +276,7 @@ namespace App\Models{
  * App\Models\Color
  *
  * @property int $id
- * @property string $name
+ * @property array $name
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereId($value)

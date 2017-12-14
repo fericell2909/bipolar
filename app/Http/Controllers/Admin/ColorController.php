@@ -18,13 +18,15 @@ class ColorController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name'        => 'required|string|max:255',
-            'hexadecimal' => 'required|string|max:10',
+            'name'         => 'required|string|max:255',
+            'name_english' => 'required|string|max:255',
         ]);
 
         $color = new Color;
-        $color->name = $request->input('name');
-        $color->hexadecimal = $request->input('hexadecimal');
+        $color->setTranslations('name', [
+            'es' => $request->input('name'),
+            'en' => $request->input('name_english'),
+        ]);
         $color->save();
 
         flash()->success('Registrado con éxito');
@@ -42,13 +44,15 @@ class ColorController extends Controller
     public function update(Request $request, $colorHashId)
     {
         $this->validate($request, [
-            'name'        => 'required|string|max:255',
-            'hexadecimal' => 'required|string|max:10',
+            'name'         => 'required|string|max:255',
+            'name_english' => 'required|string|max:255',
         ]);
 
         $color = Color::findByHash($colorHashId);
-        $color->name = $request->input('name');
-        $color->hexadecimal = $request->input('hexadecimal');
+        $color->setTranslations('name', [
+            'es' => $request->input('name'),
+            'en' => $request->input('name_english'),
+        ]);
         $color->save();
 
         flash()->success('Se actualizó con éxito');

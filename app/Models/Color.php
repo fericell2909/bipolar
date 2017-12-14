@@ -4,13 +4,15 @@ namespace App\Models;
 
 use App\Traits\Hashable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Color extends Model
 {
-    use Hashable;
+    use Hashable, HasTranslations;
 
     protected $table = 'colors';
     public $timestamps = false;
+    public $translatable = ['name'];
 
     public function products()
     {
