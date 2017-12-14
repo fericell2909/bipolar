@@ -104,7 +104,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </a>
                     <ul class="nav nav-second-level">
                         <li><a href="{{ route('homepost.create') }}">Nueva publicación</a></li>
-                        <li><a href="#">Listar publicaciones</a></li>
+                        <li><a href="{{ route('homepost.index') }}">Listar publicaciones</a></li>
                         <li><a href="{{ route('homepost.order') }}">Ordenar</a></li>
                     </ul>
                 </li>

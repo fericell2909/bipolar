@@ -31,6 +31,7 @@ Route::middleware('auth:admin')->group(function() {
     });
 
     Route::prefix('home-posts')->group(function () {
+        Route::get('/', 'Admin\HomePostController@index')->name('homepost.index');
         Route::get('new', 'Admin\HomePostController@create')->name('homepost.create');
         Route::post('new', 'Admin\HomePostController@store');
         Route::get('order', 'Admin\HomePostController@order')->name('homepost.order');

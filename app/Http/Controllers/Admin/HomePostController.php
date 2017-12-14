@@ -10,6 +10,13 @@ use App\Http\Controllers\Controller;
 
 class HomePostController extends Controller
 {
+    public function index()
+    {
+        $homePosts = HomePost::orderByDesc('id')->with('photos', 'state')->get();
+
+        return view('admin.home_posts.list', compact('homePosts'));
+    }
+
     public function create()
     {
         $postTypes = PostType::orderBy('name')->get()->pluck('name', 'id')->toArray();
