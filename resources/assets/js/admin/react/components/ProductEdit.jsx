@@ -15,9 +15,11 @@ export default class BipolarProductEdit extends React.Component {
     this.state = {
       product: {
         name: "",
+        name_english: "",
         price: 0,
         weight: "",
         description: "",
+        description_english: "",
         free_shipping: false,
         salient: false,
         selectedState: "",
@@ -119,9 +121,11 @@ export default class BipolarProductEdit extends React.Component {
 
     axios.put(`/ajax-admin/products/${this.props.productHashId}`, {
       name: this.state.product.name,
+      name_english: this.state.product.name_english,
       price: this.state.product.price,
       weight: this.state.product.weight,
       description: this.state.product.description,
+      description_english: this.state.product.description_english,
       free_shipping: this.state.product.free_shipping,
       salient: this.state.product.salient,
       colors: this.state.product.selectedColors,
@@ -179,14 +183,20 @@ export default class BipolarProductEdit extends React.Component {
           <div className="white-box">
             <form onSubmit={this.handleUpdateProduct}>
               <div className="form-row">
-                <div className="col-md-6">
+                <div className="col-md-4">
                   <div className="form-group">
                     <label>Nombre</label>
                     <input value={this.state.product.name} onChange={this.handleInputChange} name="name" type="text"
                            className="form-control" required/>
                   </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-4">
+                  <div className="form-group">
+                    <label>Nombre (Inglés)</label>
+                    <input value={this.state.product.name_english} onChange={this.handleInputChange} name="name_english" className="form-control" type="text" required/>
+                  </div>
+                </div>
+                <div className="col-md-4">
                   <div className="form-group">
                     <label>Precio</label>
                     <input value={this.state.product.price} onChange={this.handleInputChange} name="price" type="number"
@@ -196,8 +206,11 @@ export default class BipolarProductEdit extends React.Component {
               </div>
               <div className="form-group">
                 <label>Descripción (Opcional)</label>
-                <textarea value={this.state.product.description} onChange={this.handleInputChange} name="description"
-                          className="form-control" rows="7"/>
+                <textarea value={this.state.product.description} onChange={this.handleInputChange} maxLength="4000" name="description" className="form-control" rows="7"/>
+              </div>
+              <div className="form-group">
+                <label>Descripción en inglés (Opcional)</label>
+                <textarea value={this.state.product.description_english} onChange={this.handleInputChange} maxLength="4000" name="description_english" className="form-control" rows="7"/>
               </div>
               <div className="form-row">
                 <div className="col-md-6">
@@ -266,9 +279,11 @@ export default class BipolarProductEdit extends React.Component {
         const productInState = {...this.state.product};
 
         productInState.name = product.name;
+        productInState.name_english = product.name_english;
         productInState.price = product.price;
         productInState.weight = product.weight !== null ? product.weight : "";
         productInState.description = product.description !== null ? product.description : "";
+        productInState.description_english = product.description_english !== null ? product.description_english : "";
         productInState.free_shipping = product['free_shipping'];
         productInState.salient = product['is_salient'] !== null;
         productInState.selectedState = get(product, 'state.hash_id', "");

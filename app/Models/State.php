@@ -19,6 +19,6 @@ class State extends Model
 
     public function getAdminHtml()
     {
-        return "<span class='label label-pill label-{$this->color}'>{$this->name}</span>";
+        return "<span class='badge badge-{$this->color}'>{$this->name}</span>";
     }
 }

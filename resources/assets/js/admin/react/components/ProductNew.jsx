@@ -13,8 +13,10 @@ export default class BipolarProductNew extends React.Component {
     super();
     this.state = {
       name: '',
+      name_english: '',
       price: 1,
       description: '',
+      description_english: '',
       weight: '',
       free_shipping: false,
       salient: false,
@@ -100,9 +102,11 @@ export default class BipolarProductNew extends React.Component {
 
     axios.post('/ajax-admin/products', {
       name: this.state.name,
+      name_english: this.state.name_english,
       price: this.state.price,
       weight: this.state.weight,
       description: this.state.description,
+      description_english: this.state.description_english,
       free_shipping: this.state.free_shipping,
       salient: this.state.salient,
       colors: this.state.selectedColors,
@@ -129,14 +133,21 @@ export default class BipolarProductNew extends React.Component {
           <div className="white-box">
             <form onSubmit={this.handleSaveProduct}>
               <div className="form-row">
-                <div className="col-md-6">
+                <div className="col-md-4">
                   <div className="form-group">
                     <label>Nombre</label>
                     <input value={this.state.name} onChange={this.handleInputChange} name="name" type="text"
                            className="form-control" required/>
                   </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-4">
+                  <div className="form-group">
+                    <label>Nombre (Inglés)</label>
+                    <input value={this.state.name_english} onChange={this.handleInputChange} name="name_english" type="text"
+                           className="form-control" required/>
+                  </div>
+                </div>
+                <div className="col-md-4">
                   <div className="form-group">
                     <label>Precio</label>
                     <input value={this.state.price} onChange={this.handleInputChange} name="price" type="number" step="any"
@@ -146,7 +157,12 @@ export default class BipolarProductNew extends React.Component {
               </div>
               <div className="form-group">
                 <label>Descripción (Opcional)</label>
-                <textarea value={this.state.description} onChange={this.handleInputChange} name="description"
+                <textarea value={this.state.description} onChange={this.handleInputChange} maxLength="4000" name="description"
+                          className="form-control" rows="7"/>
+              </div>
+              <div className="form-group">
+                <label>Descripción en inglés (Opcional)</label>
+                <textarea value={this.state.description_english} onChange={this.handleInputChange} maxLength="4000" name="description_english"
                           className="form-control" rows="7"/>
               </div>
               <div className="form-row">

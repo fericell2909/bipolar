@@ -24,16 +24,18 @@ class ProductNewRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => 'required|between:1,255|string',
-            'description'   => 'nullable|max:4000',
-            'colors'        => 'nullable|array',
-            'price'         => 'required|numeric|min:1',
-            'weight'        => 'nullable|numeric|min:1',
-            'free_shipping' => 'boolean',
-            'salient'       => 'boolean',
-            'subtype'       => 'nullable|array',
-            'sizes'         => 'nullable|array',
-            'state'         => 'required|string',
+            'name'                => 'required|between:1,255|string',
+            'name_english'        => 'required|between:1,255|string',
+            'description'         => 'nullable|max:4000',
+            'description_english' => 'nullable|max:4000',
+            'colors'              => 'nullable|array',
+            'price'               => 'required|numeric|min:1',
+            'weight'              => 'nullable|numeric|min:1',
+            'free_shipping'       => 'boolean',
+            'salient'             => 'boolean',
+            'subtype'             => 'nullable|array',
+            'sizes'               => 'nullable|array',
+            'state'               => 'required|string',
         ];
     }
 }

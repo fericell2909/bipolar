@@ -112,9 +112,9 @@ namespace App\Models{
  *
  * @property int $id
  * @property int|null $state_id
- * @property string $name
+ * @property array $name
  * @property string|null $slug
- * @property string|null $description
+ * @property array $description
  * @property float $price
  * @property float $price_dolar
  * @property float|null $weight

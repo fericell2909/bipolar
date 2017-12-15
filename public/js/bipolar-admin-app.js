@@ -39131,9 +39131,11 @@ var BipolarProductEdit = function (_React$Component) {
     _this.state = {
       product: {
         name: "",
+        name_english: "",
         price: 0,
         weight: "",
         description: "",
+        description_english: "",
         free_shipping: false,
         salient: false,
         selectedState: "",
@@ -39236,9 +39238,11 @@ var BipolarProductEdit = function (_React$Component) {
 
       __WEBPACK_IMPORTED_MODULE_2_axios___default.a.put("/ajax-admin/products/" + this.props.productHashId, {
         name: this.state.product.name,
+        name_english: this.state.product.name_english,
         price: this.state.product.price,
         weight: this.state.product.weight,
         description: this.state.product.description,
+        description_english: this.state.product.description_english,
         free_shipping: this.state.product.free_shipping,
         salient: this.state.product.salient,
         colors: this.state.product.selectedColors,
@@ -39313,7 +39317,7 @@ var BipolarProductEdit = function (_React$Component) {
                 { className: "form-row" },
                 __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                   "div",
-                  { className: "col-md-6" },
+                  { className: "col-md-4" },
                   __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                     "div",
                     { className: "form-group" },
@@ -39328,7 +39332,21 @@ var BipolarProductEdit = function (_React$Component) {
                 ),
                 __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                   "div",
-                  { className: "col-md-6" },
+                  { className: "col-md-4" },
+                  __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                    "div",
+                    { className: "form-group" },
+                    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                      "label",
+                      null,
+                      "Nombre (Ingl\xE9s)"
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.name_english, onChange: this.handleInputChange, name: "name_english", className: "form-control", type: "text", required: true })
+                  )
+                ),
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                  "div",
+                  { className: "col-md-4" },
                   __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                     "div",
                     { className: "form-group" },
@@ -39350,8 +39368,17 @@ var BipolarProductEdit = function (_React$Component) {
                   null,
                   "Descripci\xF3n (Opcional)"
                 ),
-                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("textarea", { value: this.state.product.description, onChange: this.handleInputChange, name: "description",
-                  className: "form-control", rows: "7" })
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("textarea", { value: this.state.product.description, onChange: this.handleInputChange, maxLength: "4000", name: "description", className: "form-control", rows: "7" })
+              ),
+              __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                "div",
+                { className: "form-group" },
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                  "label",
+                  null,
+                  "Descripci\xF3n en ingl\xE9s (Opcional)"
+                ),
+                __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("textarea", { value: this.state.product.description_english, onChange: this.handleInputChange, maxLength: "4000", name: "description_english", className: "form-control", rows: "7" })
               ),
               __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                 "div",
@@ -39453,9 +39480,11 @@ var BipolarProductEdit = function (_React$Component) {
         var productInState = _extends({}, _this2.state.product);
 
         productInState.name = product.name;
+        productInState.name_english = product.name_english;
         productInState.price = product.price;
         productInState.weight = product.weight !== null ? product.weight : "";
         productInState.description = product.description !== null ? product.description : "";
+        productInState.description_english = product.description_english !== null ? product.description_english : "";
         productInState.free_shipping = product['free_shipping'];
         productInState.salient = product['is_salient'] !== null;
         productInState.selectedState = Object(__WEBPACK_IMPORTED_MODULE_7_lodash__["get"])(product, 'state.hash_id', "");
@@ -40087,8 +40116,10 @@ var BipolarProductNew = function (_React$Component) {
 
     _this.state = {
       name: '',
+      name_english: '',
       price: 1,
       description: '',
+      description_english: '',
       weight: '',
       free_shipping: false,
       salient: false,
@@ -40184,9 +40215,11 @@ var BipolarProductNew = function (_React$Component) {
 
       __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products', {
         name: this.state.name,
+        name_english: this.state.name_english,
         price: this.state.price,
         weight: this.state.weight,
         description: this.state.description,
+        description_english: this.state.description_english,
         free_shipping: this.state.free_shipping,
         salient: this.state.salient,
         colors: this.state.selectedColors,
@@ -40228,7 +40261,7 @@ var BipolarProductNew = function (_React$Component) {
                 { className: 'form-row' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'div',
-                  { className: 'col-md-6' },
+                  { className: 'col-md-4' },
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'form-group' },
@@ -40243,7 +40276,22 @@ var BipolarProductNew = function (_React$Component) {
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'div',
-                  { className: 'col-md-6' },
+                  { className: 'col-md-4' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'form-group' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      'label',
+                      null,
+                      'Nombre (Ingl\xE9s)'
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { value: this.state.name_english, onChange: this.handleInputChange, name: 'name_english', type: 'text',
+                      className: 'form-control', required: true })
+                  )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'div',
+                  { className: 'col-md-4' },
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'form-group' },
@@ -40265,7 +40313,18 @@ var BipolarProductNew = function (_React$Component) {
                   null,
                   'Descripci\xF3n (Opcional)'
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { value: this.state.description, onChange: this.handleInputChange, name: 'description',
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { value: this.state.description, onChange: this.handleInputChange, maxLength: '4000', name: 'description',
+                  className: 'form-control', rows: '7' })
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'form-group' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'label',
+                  null,
+                  'Descripci\xF3n en ingl\xE9s (Opcional)'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { value: this.state.description_english, onChange: this.handleInputChange, maxLength: '4000', name: 'description_english',
                   className: 'form-control', rows: '7' })
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

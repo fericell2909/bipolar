@@ -83,7 +83,14 @@ class ProductController extends Controller
         $settings = Settings::first();
 
         $product = new Product;
-        $product->name = $request->input('name');
+        $product->setTranslations('name', [
+            'es' => $request->input('name'),
+            'en' => $request->input('name_english'),
+        ]);
+        $product->setTranslations('description', [
+            'es' => $request->input('description'),
+            'en' => $request->input('description_english'),
+        ]);
         $product->description = $request->input('description');
         $product->price = number_format($request->input('price'), 2, '.', '');
         $product->price_dolar = !is_null($settings) ? round($request->input('price') / $settings->dolar_change) : 0;
@@ -127,8 +134,14 @@ class ProductController extends Controller
         $settings = Settings::first();
 
         $product = Product::findByHash($productHashId);
-        $product->name = $request->input('name');
-        $product->description = $request->input('description');
+        $product->setTranslations('name', [
+            'es' => $request->input('name'),
+            'en' => $request->input('name_english'),
+        ]);
+        $product->setTranslations('description', [
+            'es' => $request->input('description'),
+            'en' => $request->input('description_english'),
+        ]);
         $product->price = number_format($request->input('price'), 2, '.', '');
         $product->price_dolar = !is_null($settings) ? round($request->input('price') / $settings->dolar_change) : 0;
         $product->weight = $request->filled('weight') ? $request->input('weight') : null;

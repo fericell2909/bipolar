@@ -8,13 +8,15 @@ use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
-    use Hashable, Sluggable, SluggableScopeHelpers, SoftDeletes;
+    use Hashable, Sluggable, SluggableScopeHelpers, SoftDeletes, HasTranslations;
 
     protected $table = 'products';
     protected $dates = ['deleted_at'];
+    protected $translatable = ['name', 'description'];
 
     public function colors()
     {
