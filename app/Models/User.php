@@ -34,10 +34,10 @@ class User extends Authenticatable
     public function getActiveLabelAdmin()
     {
         if ($this->active) {
-            return "<span class='label label-table label-danger'>Inactivo</span>";
+            return "<span class='badge badge-danger'>Inactivo</span>";
         }
 
-        return "<span class='label label-table label-success'>Activo</span>";
+        return "<span class='badge badge-success'>Activo</span>";
     }
 
     public function getBirthdayOrNull($format = 'Y-m-d')
