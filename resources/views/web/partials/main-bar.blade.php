@@ -14,8 +14,13 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Mi cuenta</a></li>
                         <li><a href="#">Checkout</a></li>
-                        <li><a href="{{ route('change.language', 'es') }}" class="dropdown-item">Español</a><li>
-                        <li><a href="{{ route('change.language', 'en') }}" class="dropdown-item">Inglés</a></li>
+                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <li>
+                                <a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                    {{ ucfirst($properties['native']) }}
+                                </a>
+                            </li>
+                        @endforeach
                         @auth
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Cerrar sesión</a></li>
@@ -50,7 +55,7 @@
     <section class="bipolar-navigation text-center">
         <div class="container">
             <ul class="list-inline">
-                <li><a href="#">Home</a></li>
+                <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('landings.bipolar') }}">Bipolar</a></li>
                 <li><a href="{{ route('landings.showroom') }}">Showroom</a></li>
                 <li><a href="{{ route('shop') }}">Shop</a></li>

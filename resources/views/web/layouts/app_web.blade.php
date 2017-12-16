@@ -29,8 +29,11 @@
                 @endauth
                 @guest
                     <h6 class="dropdown-header">Idioma</h6>
-                    <a href="{{ route('change.language', 'es') }}" class="dropdown-item">Español</a>
-                    <a href="{{ route('change.language', 'en') }}" class="dropdown-item">Inglés</a>
+                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                        <a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                            {{ $properties['native'] }}
+                        </a>
+                    @endforeach
                 @endguest
             </div>
         </div>
