@@ -41899,6 +41899,78 @@ var BipolarProductList = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (BipolarProductList.__proto__ || Object.getPrototypeOf(BipolarProductList)).call(this));
 
+    _this.handleSearch = function (event) {
+      _this.setState({ searchText: event.target.value }, _this.filterProducts);
+    };
+
+    _this.handleStateChange = function (event) {
+      _this.setState({ stateSelected: event.target.value }, _this.filterProducts);
+    };
+
+    _this.handleSubtypeChange = function (event) {
+      _this.setState({ subtypeSelected: event.target.value }, _this.filterProducts);
+    };
+
+    _this.handleCreationDateChange = function (event) {
+      _this.setState({ creationDateSelected: event.target.value });
+      _this.filterProducts();
+    };
+
+    _this.handleProductSelect = function (event) {
+      var productHashId = event.target.value;
+      var selected = _this.state.selectedProducts;
+
+      if (event.target.checked) {
+        selected.push(productHashId);
+      } else {
+        selected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["b" /* removeFromSimpleArray */])(selected, productHashId);
+      }
+
+      return _this.setState({ selectedProducts: selected });
+    };
+
+    _this.handleSelectAllProducts = function (event) {
+      var allProductsIds = [];
+
+      if (event.target.checked) {
+        var productSource = _this.state.filteredProducts.length ? _this.state.filteredProducts : _this.state.products;
+        allProductsIds = productSource.map(function (product) {
+          return product["hash_id"];
+        });
+      }
+
+      _this.setState({ selectedProducts: [].concat(_toConsumableArray(allProductsIds)) });
+    };
+
+    _this.filterProducts = function () {
+      var products = _this.state.products;
+
+      if (_this.state.searchText.length > 0) {
+        products = products.filter(function (product) {
+          return product.name.search(_this.state.searchText) !== -1;
+        });
+      }
+
+      if (_this.state.stateSelected.length > 0) {
+        products = products.filter(function (product) {
+          return __WEBPACK_IMPORTED_MODULE_3_lodash_get___default()(product, "state.hash_id", null) === _this.state.stateSelected;
+        });
+      }
+
+      if (_this.state.subtypeSelected.length > 0) {
+        products = products.filter(function (product) {
+          var hasSubtypes = [];
+          hasSubtypes = product.subtypes.filter(function (subtype) {
+            return subtype["hash_id"] === _this.state.subtypeSelected;
+          });
+
+          return hasSubtypes.length > 0;
+        });
+      }
+
+      _this.setState({ filteredProducts: products });
+    };
+
     _this.copyProductsToState = function (responseProducts) {
       var products = responseProducts.data["data"];
       var formattedProducts = products.map(function (product) {
@@ -41910,6 +41982,10 @@ var BipolarProductList = function (_React$Component) {
       return _this.setState({ products: formattedProducts });
     };
 
+    _this.getAllProducts = function () {
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get("/ajax-admin/products").then(_this.copyProductsToState).then(_this.filterProducts);
+    };
+
     _this.state = {
       products: [],
       filteredProducts: [],
@@ -41919,17 +41995,14 @@ var BipolarProductList = function (_React$Component) {
       // Filter selects
       statesForSelect: [],
       stateSelected: "",
-      typesForSelect: [],
-      typeSelected: "",
+      subtypesForSelect: [],
+      subtypeSelected: "",
       creationDates: [],
       creationDateSelected: "",
       months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"],
       years: ["2016", "2017"]
     };
 
-    _this.handleSearch = _this.handleSearch.bind(_this);
-    _this.handleProductSelect = _this.handleProductSelect.bind(_this);
-    _this.handleSelectAllProducts = _this.handleSelectAllProducts.bind(_this);
     _this.handleMassiveSelection = _this.handleMassiveSelection.bind(_this);
     return _this;
   }
@@ -41962,43 +42035,6 @@ var BipolarProductList = function (_React$Component) {
           });
         }
       });
-    }
-  }, {
-    key: "handleSearch",
-    value: function handleSearch(event) {
-      var searchText = event.target.value;
-      var filteredProducts = this.state.products.filter(function (product) {
-        return product.name.search(searchText) !== -1;
-      });
-
-      this.setState({ searchText: searchText, filteredProducts: filteredProducts });
-    }
-  }, {
-    key: "handleProductSelect",
-    value: function handleProductSelect(event) {
-      var productHashId = event.target.value;
-      var selected = this.state.selectedProducts;
-
-      if (event.target.checked) {
-        selected.push(productHashId);
-      } else {
-        selected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["b" /* removeFromSimpleArray */])(selected, productHashId);
-      }
-
-      return this.setState({ selectedProducts: selected });
-    }
-  }, {
-    key: "handleSelectAllProducts",
-    value: function handleSelectAllProducts(event) {
-      var allProductsIds = [];
-
-      if (event.target.checked) {
-        allProductsIds = this.state.products.map(function (product) {
-          return product["hash_id"];
-        });
-      }
-
-      this.setState({ selectedProducts: [].concat(_toConsumableArray(allProductsIds)) });
     }
   }, {
     key: "handleMassiveSelection",
@@ -42082,9 +42118,9 @@ var BipolarProductList = function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      var productsSource = this.state.searchText.length > 0 ? [].concat(_toConsumableArray(this.state.filteredProducts)) : [].concat(_toConsumableArray(this.state.products));
+      var productsSource = this.state.filteredProducts.length > 0 ? [].concat(_toConsumableArray(this.state.filteredProducts)) : [].concat(_toConsumableArray(this.state.products));
 
-      var subtypes = this.state.typesForSelect.map(function (type) {
+      var subtypes = this.state.subtypesForSelect.map(function (type) {
         return type.subtypes.map(function (subtype) {
           return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "option",
@@ -42269,11 +42305,11 @@ var BipolarProductList = function (_React$Component) {
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "select",
-                    { value: this.state.stateSelected, className: "custom-select col-12" },
+                    { value: this.state.stateSelected, onChange: this.handleStateChange, className: "custom-select col-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
-                      { value: "", disabled: true },
-                      "Seleccione"
+                      { value: "" },
+                      "Todos"
                     ),
                     this.state.statesForSelect.map(function (state) {
                       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -42298,11 +42334,11 @@ var BipolarProductList = function (_React$Component) {
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "select",
-                    { value: this.state.typeSelected, className: "custom-select col-12" },
+                    { value: this.state.subtypeSelected, onChange: this.handleSubtypeChange, className: "custom-select col-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
-                      { value: "", disabled: true },
-                      "Seleccione"
+                      { value: "" },
+                      "Todos"
                     ),
                     subtypes
                   )
@@ -42321,7 +42357,7 @@ var BipolarProductList = function (_React$Component) {
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "select",
-                    { value: this.state.creationDateSelected, className: "custom-select col-12" },
+                    { value: this.state.creationDateSelected, onChange: this.handleCreationDateChange, className: "custom-select col-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
                       { value: "", disabled: true },
@@ -42352,7 +42388,7 @@ var BipolarProductList = function (_React$Component) {
                     null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
                       type: "checkbox",
-                      checked: this.state.products.length === this.state.selectedProducts.length,
+                      checked: productsSource.length === this.state.selectedProducts.length,
                       onChange: this.handleSelectAllProducts
                     })
                   ),
@@ -42419,11 +42455,6 @@ var BipolarProductList = function (_React$Component) {
       );
     }
   }, {
-    key: "getAllProducts",
-    value: function getAllProducts() {
-      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get("/ajax-admin/products").then(this.copyProductsToState);
-    }
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this5 = this;
@@ -42442,7 +42473,7 @@ var BipolarProductList = function (_React$Component) {
         _this5.copyProductsToState(responseProducts);
         _this5.setState({
           statesForSelect: responseStates.data["data"],
-          typesForSelect: responseTypes.data["data"],
+          subtypesForSelect: responseTypes.data["data"],
           creationDates: creationDates
         });
       }));

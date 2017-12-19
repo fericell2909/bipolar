@@ -18,17 +18,14 @@ export default class BipolarProductList extends React.Component {
       // Filter selects
       statesForSelect: [],
       stateSelected: "",
-      typesForSelect: [],
-      typeSelected: "",
+      subtypesForSelect: [],
+      subtypeSelected: "",
       creationDates: [],
       creationDateSelected: "",
       months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"],
       years: ["2016", "2017"],
     };
 
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleProductSelect = this.handleProductSelect.bind(this);
-    this.handleSelectAllProducts = this.handleSelectAllProducts.bind(this);
     this.handleMassiveSelection = this.handleMassiveSelection.bind(this);
   }
 
@@ -58,16 +55,24 @@ export default class BipolarProductList extends React.Component {
     });
   }
 
-  handleSearch(event) {
-    const searchText = event.target.value;
-    const filteredProducts = this.state.products.filter(product => {
-      return product.name.search(searchText) !== -1;
-    });
-
-    this.setState({ searchText, filteredProducts });
+  handleSearch = event => {
+    this.setState({ searchText: event.target.value }, this.filterProducts);
   }
 
-  handleProductSelect(event) {
+  handleStateChange = event => {
+    this.setState({ stateSelected: event.target.value }, this.filterProducts);
+  }
+
+  handleSubtypeChange = event => {
+    this.setState({ subtypeSelected: event.target.value }, this.filterProducts);
+  }
+
+  handleCreationDateChange = event => {
+    this.setState({ creationDateSelected: event.target.value });
+    this.filterProducts();
+  }
+
+  handleProductSelect = event => {
     const productHashId = event.target.value;
     let selected = this.state.selectedProducts;
 
@@ -80,11 +85,12 @@ export default class BipolarProductList extends React.Component {
     return this.setState({ selectedProducts: selected });
   }
 
-  handleSelectAllProducts(event) {
+  handleSelectAllProducts = event => {
     let allProductsIds = [];
 
     if (event.target.checked) {
-      allProductsIds = this.state.products.map(product => product["hash_id"]);
+      const productSource = this.state.filteredProducts.length ? this.state.filteredProducts : this.state.products;
+      allProductsIds = productSource.map(product => product["hash_id"]);
     }
 
     this.setState({ selectedProducts: [...allProductsIds] });
@@ -178,13 +184,42 @@ export default class BipolarProductList extends React.Component {
     });
   }
 
+  filterProducts = () => {
+    let products = this.state.products;
+    
+    if (this.state.searchText.length > 0) {
+      products = products.filter(product => {
+        return product.name.search(this.state.searchText) !== -1;
+      })
+    }
+
+    if (this.state.stateSelected.length > 0) {
+      products = products.filter(product => {
+        return get(product, "state.hash_id", null) === this.state.stateSelected;
+      });
+    }
+
+    if (this.state.subtypeSelected.length > 0) {
+      products = products.filter(product => {
+        let hasSubtypes = [];
+        hasSubtypes = product.subtypes.filter(subtype => {
+          return subtype["hash_id"] === this.state.subtypeSelected;
+        });
+
+        return hasSubtypes.length > 0;
+      });
+    }
+
+    this.setState({filteredProducts: products});
+  }
+
   render() {
     const productsSource =
-      this.state.searchText.length > 0
+      this.state.filteredProducts.length > 0
         ? [...this.state.filteredProducts]
         : [...this.state.products];
 
-    const subtypes = this.state.typesForSelect.map(type => {
+    const subtypes = this.state.subtypesForSelect.map(type => {
       return type.subtypes.map(subtype => {
         return (
           <option key={subtype["hash_id"]} value={subtype["hash_id"]}>
@@ -293,8 +328,8 @@ export default class BipolarProductList extends React.Component {
               <div className="col-md-3">
                 <div className="form-group">
                   <label>Filtrar por estado publicación</label>
-                  <select value={this.state.stateSelected} className="custom-select col-12">
-                    <option value="" disabled>Seleccione</option>
+                  <select value={this.state.stateSelected} onChange={this.handleStateChange} className="custom-select col-12">
+                    <option value="">Todos</option>
                     {this.state.statesForSelect.map(state => {
                       return <option key={state.hash_id} value={state.hash_id}>{state.name}</option>
                     })}
@@ -304,8 +339,8 @@ export default class BipolarProductList extends React.Component {
               <div className="col-md-3">
                 <div className="form-group">
                   <label>Filtrar por tipo</label>
-                  <select value={this.state.typeSelected} className="custom-select col-12">
-                    <option value="" disabled>Seleccione</option>
+                  <select value={this.state.subtypeSelected} onChange={this.handleSubtypeChange} className="custom-select col-12">
+                    <option value="">Todos</option>
                     {subtypes}
                   </select>
                 </div>
@@ -313,7 +348,7 @@ export default class BipolarProductList extends React.Component {
               <div className="col-md-3">
                 <div className="form-group">
                   <label>Filtrar por fecha de creación</label>
-                  <select value={this.state.creationDateSelected} className="custom-select col-12">
+                  <select value={this.state.creationDateSelected} onChange={this.handleCreationDateChange} className="custom-select col-12">
                     <option value="" disabled>Seleccione</option>
                     {this.state.creationDates.map(creationDate => {
                       return (
@@ -333,7 +368,7 @@ export default class BipolarProductList extends React.Component {
                     <input
                       type="checkbox"
                       checked={
-                        this.state.products.length ===
+                        productsSource.length ===
                         this.state.selectedProducts.length
                       }
                       onChange={this.handleSelectAllProducts}
@@ -373,8 +408,8 @@ export default class BipolarProductList extends React.Component {
     return this.setState({ products: formattedProducts });
   }
 
-  getAllProducts() {
-    axios.get("/ajax-admin/products").then(this.copyProductsToState);
+  getAllProducts = () => {
+    axios.get("/ajax-admin/products").then(this.copyProductsToState).then(this.filterProducts);
   }
 
   componentDidMount() {
@@ -396,7 +431,7 @@ export default class BipolarProductList extends React.Component {
       this.copyProductsToState(responseProducts);
       this.setState({ 
         statesForSelect: responseStates.data["data"],
-        typesForSelect: responseTypes.data["data"],
+        subtypesForSelect: responseTypes.data["data"],
         creationDates,
       });
     }));
