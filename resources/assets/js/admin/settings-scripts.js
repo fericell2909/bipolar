@@ -9,12 +9,14 @@ $(function () {
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
-        }).then(() => {
-            const sizeHashId = $(this).data('sizeId');
-            $.ajax({
-                method: 'DELETE',
-                url: `/ajax-admin/size/${sizeHashId}`
-            }).done(() => location.reload());
+        }).then(result => {
+            if (result.value) {
+                const sizeHashId = $(this).data('sizeId');
+                $.ajax({
+                    method: 'DELETE',
+                    url: `/ajax-admin/sizes/${sizeHashId}`
+                }).done(() => location.reload());
+            }
         })
     });
 
@@ -26,12 +28,14 @@ $(function () {
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
-        }).then(() => {
-            const colorHashId = $(this).data('colorId');
-            $.ajax({
-                method: 'DELETE',
-                url: `/ajax-admin/colors/${colorHashId}`
-            }).done(() => location.reload());
+        }).then(result => {
+            if (result.value) {
+                const colorHashId = $(this).data('colorId');
+                $.ajax({
+                    method: 'DELETE',
+                    url: `/ajax-admin/colors/${colorHashId}`
+                }).done(() => location.reload());
+            }
         })
     });
 
@@ -43,12 +47,14 @@ $(function () {
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
-        }).then(() => {
-            const typeHashId = $(this).data('typeId');
-            $.ajax({
-                method: 'DELETE',
-                url: `/ajax-admin/types/${typeHashId}`
-            }).done(() => location.reload());
+        }).then(result => {
+            if (result.value) {
+                const typeHashId = $(this).data('typeId');
+                $.ajax({
+                    method: 'DELETE',
+                    url: `/ajax-admin/types/${typeHashId}`
+                }).done(() => location.reload());
+            }
         })
     });
 
@@ -60,12 +66,14 @@ $(function () {
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
-        }).then(() => {
-            const photoId = $(this).data('photoId');
-            $.ajax({
-                method: 'DELETE',
-                url: `/ajax-admin/photo/${photoId}`
-            }).done(() => location.reload());
+        }).then(result => {
+            if (result) {
+                const photoId = $(this).data('photoId');
+                $.ajax({
+                    method: 'DELETE',
+                    url: `/ajax-admin/photo/${photoId}`
+                }).done(() => location.reload());
+            }
         });
     });
 
@@ -77,12 +85,14 @@ $(function () {
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
-        }).then(() => {
-            const productHashId = $(this).data('productId');
-            $.ajax({
-                method: 'DELETE',
-                url: `/ajax-admin/products/${productHashId}`
-            }).done(() => location.reload());
+        }).then(result => {
+            if (result.value) {
+                const productHashId = $(this).data('productId');
+                $.ajax({
+                    method: 'DELETE',
+                    url: `/ajax-admin/products/${productHashId}`
+                }).done(() => location.reload());
+            }
         });
     });
 });
