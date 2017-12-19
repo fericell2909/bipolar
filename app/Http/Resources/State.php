@@ -19,6 +19,7 @@ class State extends Resource
             'hash_id' => $this->hash_id,
             'name'    => $this->name,
             'color'   => $this->color,
+            'html'    => $this->getAdminHtml(),
         ];
     }
 }

@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Admin\Ajax;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductNewRequest;
-use App\Models\{
-    Color, Photo, Product, Settings, Size, State, Stock, Subtype
-};
+use App\Models\Color;
+use App\Models\Photo;
+use App\Models\Product;
+use App\Models\Settings;
+use App\Models\Size;
+use App\Models\State;
+use App\Models\Stock;
+use App\Models\Subtype;
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Resources\ProductCollection;
 use Illuminate\Http\Request;
@@ -19,12 +24,12 @@ class ProductController extends Controller
         $searchText = $request->input('search');
 
         $products = Product::where('name', 'LIKE', "%{$searchText}%")
-            ->with(['photos' => function ($withPhotos) { $withPhotos->orderBy('order'); }])
-            ->get()
-            ->transform($this->formatProduct())
-            ->toArray();
+            ->with(['photos' => function ($withPhotos) {
+                $withPhotos->orderBy('order');
+            }])
+            ->get();
 
-        return response()->json(compact('products'));
+        return new ProductCollection($products);
     }
 
     public function recommendeds($productHashId)
@@ -32,9 +37,10 @@ class ProductController extends Controller
         $product = Product::findByHash($productHashId);
         $product->load('photos');
 
-        $recommendeds = $product->recommendeds->transform($this->formatProduct())->toArray();
+        $recommendeds = $product->recommendeds;
+        $recommendeds->load('photos', 'state');
 
-        return response()->json(compact('recommendeds'));
+        return new ProductCollection($recommendeds);
     }
 
     public function recommend($productParentHashId, $productRecommendedHashId)
@@ -42,7 +48,7 @@ class ProductController extends Controller
         $product = Product::findByHash($productParentHashId);
         $recommended = Product::findByHash($productRecommendedHashId);
 
-        $product->recommendeds()->attach($recommended->id);
+        $product->recommendeds()->syncWithoutDetaching($recommended->id);
 
         return response()->json(['success' => true]);
     }
@@ -171,7 +177,9 @@ class ProductController extends Controller
 
             if (count($unusedSizes)) {
                 $stocks = $product->stocks()->whereIn('size_id', $unusedSizes)->get();
-                $stocks->each(function ($stock) { $stock->delete(); });
+                $stocks->each(function ($stock) {
+                    $stock->delete();
+                });
             }
 
             // Add new products
@@ -286,28 +294,5 @@ class ProductController extends Controller
         }
 
         return response()->json(['success' => true]);
-    }
-
-    private function formatProduct()
-    {
-        $product = function ($product) {
-            /** @var Product $product */
-            return [
-                'id'      => $product->id,
-                'hash_id' => $product->hash_id,
-                'name'    => $product->name,
-                'price'   => $product->price,
-                'photos'  => $product->photos->transform(function ($photo) {
-                    /** @var Photo $photo */
-                    return [
-                        'hash_id' => $photo->hash_id,
-                        'url'     => $photo->url,
-                        'order'   => $photo->order,
-                    ];
-                })->toArray(),
-            ];
-        };
-
-        return $product;
     }
 }
