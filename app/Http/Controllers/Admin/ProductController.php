@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\{
-    Photo, Product, Stock
-};
+use App\Models\Photo;
+use App\Models\Product;
+use App\Models\Stock;
 
 class ProductController extends Controller
 {
@@ -102,9 +102,12 @@ class ProductController extends Controller
 
     public function order()
     {
-        $products = Product::whereStateId(config('constants.STATE_ACTIVE_ID'))
+        $products = Product::whereIn('state_id', [
+            config('constants.STATE_ACTIVE_ID'),
+            config('constants.STATE_PREVIEW_ID'),
+        ])
             ->orderBy('order')
-            ->with('photos')
+            ->with('photos', 'state')
             ->get();
 
         return view('admin.products.products_order', compact('products'));

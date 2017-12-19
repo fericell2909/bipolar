@@ -16,7 +16,7 @@
                                 @endif
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading">{{ $product->name }}</h4>
+                                <h4 class="media-heading">{{ $product->name }} {!! $product->state->getAdminHtml() !!}</h4>
                                 <p>
                                     {{ $product->description }}
                                 </p>
