@@ -93,7 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="nav nav-second-level">
                         <li><a href="{{ route('products.create') }}">Nuevo producto</a></li>
                         <li><a href="{{ route('products.index') }}">Listar productos</a></li>
-                        <li><a href="{{ route('products.trashed') }}">Descartados</a></li>
+                        <li><a href="{{ route('products.trashed') }}">Papelera</a></li>
                         <li><a href="{{ route('products.order') }}">Ordenar</a></li>
                     </ul>
                 </li>
