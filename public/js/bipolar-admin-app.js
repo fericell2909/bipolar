@@ -41870,6 +41870,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_sweetalert2__ = __webpack_require__("./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_sweetalert2__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers__ = __webpack_require__("./resources/assets/js/admin/react/helpers.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__partials_ProductRow__ = __webpack_require__("./resources/assets/js/admin/react/components/partials/ProductRow.jsx");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -41889,6 +41890,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var BipolarProductList = function (_React$Component) {
   _inherits(BipolarProductList, _React$Component);
 
@@ -41900,7 +41902,7 @@ var BipolarProductList = function (_React$Component) {
     _this.state = {
       products: [],
       filteredProducts: [],
-      searchText: '',
+      searchText: "",
       selectedProducts: [],
       selectedMassiveAction: ""
     };
@@ -41919,21 +41921,21 @@ var BipolarProductList = function (_React$Component) {
       var _this2 = this;
 
       __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()({
-        type: 'warning',
-        title: '¿Desea descartar el producto?',
-        text: 'El producto se pondrá en la lista de descartados',
-        confirmButtonText: 'Sí, descartar',
+        type: "warning",
+        title: "¿Desea descartar el producto?",
+        text: "El producto se pondrá en la lista de descartados",
+        confirmButtonText: "Sí, descartar",
         showCancelButton: true,
-        cancelButtonText: 'No hacer nada'
+        cancelButtonText: "No hacer nada"
       }).then(function (result) {
         if (result.value) {
           __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default.a.showLoading();
           __WEBPACK_IMPORTED_MODULE_2_axios___default.a.delete("/ajax-admin/products/" + productHashId).then(function () {
             __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()({
-              title: 'Descartado',
-              type: 'success',
+              title: "Descartado",
+              type: "success",
               toast: true,
-              position: 'top-right',
+              position: "top-right",
               showConfirmButton: false,
               timer: 3000
             });
@@ -41973,7 +41975,7 @@ var BipolarProductList = function (_React$Component) {
 
       if (event.target.checked) {
         allProductsIds = this.state.products.map(function (product) {
-          return product['hash_id'];
+          return product["hash_id"];
         });
       }
 
@@ -41987,16 +41989,16 @@ var BipolarProductList = function (_React$Component) {
       var optionSelected = event.target.value;
 
       if (this.state.selectedProducts.length === 0) {
-        return __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()('Error', 'Seleccione un producto o más para continuar', 'error');
+        return __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()("Error", "Seleccione un producto o más para continuar", "error");
       }
 
       return __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()({
         title: "Atención",
         text: "Se cambiar\xE1 el estado de todos los " + this.state.selectedProducts.length + " productos seleccionados",
         type: "warning",
-        confirmButtonText: 'Sí, cambiar',
+        confirmButtonText: "Sí, cambiar",
         showCancelButton: true,
-        cancelButtonText: 'No hacer nada'
+        cancelButtonText: "No hacer nada"
       }).then(function (result) {
         if (result.value) {
           var products = _this3.state.selectedProducts;
@@ -42004,51 +42006,51 @@ var BipolarProductList = function (_React$Component) {
           switch (optionSelected) {
             case "change_published":
               {
-                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/state/published', { products: products }).then(_this3.getAllProducts);
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post("/ajax-admin/products/state/published", { products: products }).then(_this3.getAllProducts);
                 break;
               }
             case "change_draft":
               {
-                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/state/draft', { products: products }).then(_this3.getAllProducts);
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post("/ajax-admin/products/state/draft", { products: products }).then(_this3.getAllProducts);
                 break;
               }
             case "change_pending":
               {
-                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/state/pending', { products: products }).then(_this3.getAllProducts);
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post("/ajax-admin/products/state/pending", { products: products }).then(_this3.getAllProducts);
                 break;
               }
             case "activate_salient":
               {
-                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/salient/1', { products: products }).then(_this3.getAllProducts);
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post("/ajax-admin/products/salient/1", { products: products }).then(_this3.getAllProducts);
                 break;
               }
             case "deactivate_salient":
               {
-                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/salient/0', { products: products }).then(_this3.getAllProducts);
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post("/ajax-admin/products/salient/0", { products: products }).then(_this3.getAllProducts);
                 break;
               }
             case "activate_free":
               {
-                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/freeshipping/1', { products: products }).then(_this3.getAllProducts);
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post("/ajax-admin/products/freeshipping/1", { products: products }).then(_this3.getAllProducts);
                 break;
               }
             case "deactivate_free":
               {
-                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/freeshipping/0', { products: products }).then(_this3.getAllProducts);
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post("/ajax-admin/products/freeshipping/0", { products: products }).then(_this3.getAllProducts);
                 break;
               }
             case "dolar_price":
               {
-                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/products/dolar-price', { products: products }).then(_this3.getAllProducts);
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post("/ajax-admin/products/dolar-price", { products: products }).then(_this3.getAllProducts);
                 break;
               }
           }
 
           __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()({
-            title: 'Hecho',
-            type: 'success',
+            title: "Hecho",
+            type: "success",
             toast: true,
-            position: 'top-right',
+            position: "top-right",
             showConfirmButton: false,
             timer: 5000
           });
@@ -42064,99 +42066,22 @@ var BipolarProductList = function (_React$Component) {
       var productsSource = this.state.searchText.length > 0 ? [].concat(_toConsumableArray(this.state.filteredProducts)) : [].concat(_toConsumableArray(this.state.products));
 
       var productsRender = productsSource.map(function (product) {
-        var badgesSubtypes = product['subtypes'].map(function (subtype) {
-          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "span",
-            { key: subtype['hash_id'], className: "badge badge-dark" },
-            subtype['name']
-          );
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__partials_ProductRow__["a" /* default */], {
+          key: product["hash_id"],
+          selectedProducts: _this4.state.selectedProducts,
+          hashId: product["hash_id"],
+          imageUrl: product["firstImageUrl"],
+          name: product["name"],
+          subtypes: product["subtypes"],
+          price: product["price"],
+          priceDolar: product["price_dolar"],
+          state: product["state"],
+          freeShipping: product["free_shipping"],
+          isSalient: product["is_salient"],
+          previewUrl: product["preview_route"],
+          clickDelete: _this4.handleDelete,
+          clickProductSelect: _this4.handleProductSelect
         });
-        var firstImage = product['firstImageUrl'] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: product['firstImageUrl'], width: "100" }) : '--';
-        var isSelected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["a" /* existInArray */])(_this4.state.selectedProducts, product['hash_id']);
-        var state = product['state'] ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "span",
-          { className: "badge badge-" + product['state']['color'] },
-          product['state']['name']
-        ) : '--';
-
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "tr",
-          { key: product['hash_id'] },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "td",
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox", checked: isSelected, value: product['hash_id'], onChange: _this4.handleProductSelect })
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "td",
-            null,
-            product['id']
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "td",
-            null,
-            firstImage
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "td",
-            null,
-            product['name']
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "td",
-            null,
-            badgesSubtypes
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "td",
-            { className: "text-right" },
-            parseInt(product['price'])
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "td",
-            { className: "text-right" },
-            parseInt(product['price_dolar'])
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "td",
-            { className: "text-center" },
-            state
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "td",
-            { className: "text-center" },
-            product['free_shipping'] ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-check" }) : null
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "td",
-            { className: "text-center" },
-            product['is_salient'] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-check" }) : null
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "td",
-            null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "a",
-              { href: product['preview_route'], target: "_blank", className: "btn btn-sm btn-dark btn-rounded" },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-eye" }),
-              " Vista previa"
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "a",
-              { href: "/admin/products/" + product['hash_id'] + "/edit", className: "btn btn-sm btn-dark btn-rounded" },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-pencil" }),
-              " Editar"
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "button",
-              { onClick: function onClick() {
-                  return _this4.handleDelete(product['hash_id']);
-                }, className: "btn btn-sm btn-dark btn-rounded" },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-trash" }),
-              " Descartar"
-            )
-          )
-        );
       });
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -42185,7 +42110,10 @@ var BipolarProductList = function (_React$Component) {
                 { className: "col-md-1" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   "a",
-                  { href: "/admin/products/new", className: "btn btn-dark btn-rounded" },
+                  {
+                    href: "/admin/products/new",
+                    className: "btn btn-dark btn-rounded"
+                  },
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-plus" }),
                   " Nuevo"
                 )
@@ -42205,7 +42133,12 @@ var BipolarProductList = function (_React$Component) {
                     null,
                     "Buscar producto"
                   ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { value: this.state.searchText, onChange: this.handleSearch, type: "text", className: "form-control" })
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                    value: this.state.searchText,
+                    onChange: this.handleSearch,
+                    type: "text",
+                    className: "form-control"
+                  })
                 )
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -42221,7 +42154,11 @@ var BipolarProductList = function (_React$Component) {
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "select",
-                    { value: this.state.selectedMassiveAction, onChange: this.handleMassiveSelection, className: "custom-select col-12" },
+                    {
+                      value: this.state.selectedMassiveAction,
+                      onChange: this.handleMassiveSelection,
+                      className: "custom-select col-12"
+                    },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
                       { value: "", disabled: true },
@@ -42288,6 +42225,76 @@ var BipolarProductList = function (_React$Component) {
               )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "div",
+              { className: "row" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "col-md-3" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "div",
+                  { className: "form-group" },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "label",
+                    null,
+                    "Filtrar por estado publicaci\xF3n"
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "select",
+                    { className: "custom-select col-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "option",
+                      { value: "", disabled: true },
+                      "Seleccione"
+                    )
+                  )
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "col-md-3" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "div",
+                  { className: "form-group" },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "label",
+                    null,
+                    "Filtrar por tipo"
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "select",
+                    { className: "custom-select col-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "option",
+                      { value: "", disabled: true },
+                      "Seleccione"
+                    )
+                  )
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "col-md-3" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "div",
+                  { className: "form-group" },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "label",
+                    null,
+                    "Filtrar por fecha de creaci\xF3n"
+                  ),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "select",
+                    { className: "custom-select col-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "option",
+                      { value: "", disabled: true },
+                      "Seleccione"
+                    )
+                  )
+                )
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "table",
               { className: "table" },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -42299,7 +42306,11 @@ var BipolarProductList = function (_React$Component) {
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "th",
                     null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox", checked: this.state.products.length === this.state.selectedProducts.length, onChange: this.handleSelectAllProducts })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                      type: "checkbox",
+                      checked: this.state.products.length === this.state.selectedProducts.length,
+                      onChange: this.handleSelectAllProducts
+                    })
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "th",
@@ -42368,11 +42379,11 @@ var BipolarProductList = function (_React$Component) {
     value: function getAllProducts() {
       var _this5 = this;
 
-      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/products').then(function (response) {
-        var products = response.data['data'];
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get("/ajax-admin/products").then(function (response) {
+        var products = response.data["data"];
         var formattedProducts = products.map(function (product) {
           return _extends({}, product, {
-            firstImageUrl: Object(__WEBPACK_IMPORTED_MODULE_3_lodash__["get"])(product, 'photos.0.url', null)
+            firstImageUrl: Object(__WEBPACK_IMPORTED_MODULE_3_lodash__["get"])(product, "photos.0.url", null)
           });
         });
         _this5.setState({ products: formattedProducts });
@@ -42391,8 +42402,8 @@ var BipolarProductList = function (_React$Component) {
 /* harmony default export */ __webpack_exports__["default"] = (BipolarProductList);
 
 
-if (document.getElementById('bipolar-product-list')) {
-  __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(BipolarProductList, null), document.getElementById('bipolar-product-list'));
+if (document.getElementById("bipolar-product-list")) {
+  __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(BipolarProductList, null), document.getElementById("bipolar-product-list"));
 }
 
 /***/ }),
@@ -43330,6 +43341,130 @@ var ProductColors = function (_React$Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["a"] = (ProductColors);
+
+/***/ }),
+
+/***/ "./resources/assets/js/admin/react/components/partials/ProductRow.jsx":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers__ = __webpack_require__("./resources/assets/js/admin/react/helpers.js");
+
+
+
+var ProductRow = function ProductRow(props) {
+  var isSelected = Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["a" /* existInArray */])(props.selectedProducts, props.hashId);
+  var badgesSubtypes = props.subtypes.map(function (subtype) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "span",
+      { key: subtype["hash_id"], className: "badge badge-dark" },
+      subtype["name"]
+    );
+  });
+  var state = props.state ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+    "span",
+    { className: "badge badge-" + props.state.color },
+    props.state.name
+  ) : "--";
+
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+    "tr",
+    null,
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "td",
+      null,
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+        type: "checkbox",
+        checked: isSelected,
+        value: props.hashId,
+        onChange: props.clickProductSelect
+      })
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "td",
+      null,
+      props.id
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "td",
+      null,
+      props.imageUrl ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: props.imageUrl, width: "100" }) : "--"
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "td",
+      null,
+      props.name
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "td",
+      null,
+      badgesSubtypes
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "td",
+      { className: "text-right" },
+      parseInt(props.price)
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "td",
+      { className: "text-right" },
+      parseInt(props.priceDolar)
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "td",
+      { className: "text-center" },
+      state
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "td",
+      { className: "text-center" },
+      props.freeShipping ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-check" }) : null
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "td",
+      { className: "text-center" },
+      props.isSalient !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-check" }) : null
+    ),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      "td",
+      null,
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "a",
+        {
+          href: props.previewUrl,
+          target: "_blank",
+          className: "btn btn-sm btn-dark btn-rounded"
+        },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-eye" }),
+        " Vista previa"
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "a",
+        {
+          href: "/admin/products/" + props.hashId + "/edit",
+          className: "btn btn-sm btn-dark btn-rounded"
+        },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-pencil" }),
+        " Editar"
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "button",
+        {
+          onClick: function onClick() {
+            return props.clickDelete(props.hashId);
+          },
+          className: "btn btn-sm btn-dark btn-rounded"
+        },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-trash" }),
+        " Descartar"
+      )
+    )
+  );
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (ProductRow);
 
 /***/ }),
 
