@@ -41865,8 +41865,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__("./node_modules/axios/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash__ = __webpack_require__("./node_modules/lodash/lodash.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash_get__ = __webpack_require__("./node_modules/lodash/get.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash_get___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash_get__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_sweetalert2__ = __webpack_require__("./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_sweetalert2__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers__ = __webpack_require__("./resources/assets/js/admin/react/helpers.js");
@@ -41899,19 +41899,38 @@ var BipolarProductList = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (BipolarProductList.__proto__ || Object.getPrototypeOf(BipolarProductList)).call(this));
 
+    _this.copyProductsToState = function (responseProducts) {
+      var products = responseProducts.data["data"];
+      var formattedProducts = products.map(function (product) {
+        return _extends({}, product, {
+          firstImageUrl: __WEBPACK_IMPORTED_MODULE_3_lodash_get___default()(product, "photos.0.url", null)
+        });
+      });
+
+      return _this.setState({ products: formattedProducts });
+    };
+
     _this.state = {
       products: [],
       filteredProducts: [],
       searchText: "",
       selectedProducts: [],
-      selectedMassiveAction: ""
+      selectedMassiveAction: "",
+      // Filter selects
+      statesForSelect: [],
+      stateSelected: "",
+      typesForSelect: [],
+      typeSelected: "",
+      creationDates: [],
+      creationDateSelected: "",
+      months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"],
+      years: ["2016", "2017"]
     };
 
     _this.handleSearch = _this.handleSearch.bind(_this);
     _this.handleProductSelect = _this.handleProductSelect.bind(_this);
     _this.handleSelectAllProducts = _this.handleSelectAllProducts.bind(_this);
     _this.handleMassiveSelection = _this.handleMassiveSelection.bind(_this);
-    _this.getAllProducts = _this.getAllProducts.bind(_this);
     return _this;
   }
 
@@ -42064,6 +42083,16 @@ var BipolarProductList = function (_React$Component) {
       var _this4 = this;
 
       var productsSource = this.state.searchText.length > 0 ? [].concat(_toConsumableArray(this.state.filteredProducts)) : [].concat(_toConsumableArray(this.state.products));
+
+      var subtypes = this.state.typesForSelect.map(function (type) {
+        return type.subtypes.map(function (subtype) {
+          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "option",
+            { key: subtype["hash_id"], value: subtype["hash_id"] },
+            subtype["name"]
+          );
+        });
+      });
 
       var productsRender = productsSource.map(function (product) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__partials_ProductRow__["a" /* default */], {
@@ -42240,12 +42269,19 @@ var BipolarProductList = function (_React$Component) {
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "select",
-                    { className: "custom-select col-12" },
+                    { value: this.state.stateSelected, className: "custom-select col-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
                       { value: "", disabled: true },
                       "Seleccione"
-                    )
+                    ),
+                    this.state.statesForSelect.map(function (state) {
+                      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "option",
+                        { key: state.hash_id, value: state.hash_id },
+                        state.name
+                      );
+                    })
                   )
                 )
               ),
@@ -42262,12 +42298,13 @@ var BipolarProductList = function (_React$Component) {
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "select",
-                    { className: "custom-select col-12" },
+                    { value: this.state.typeSelected, className: "custom-select col-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
                       { value: "", disabled: true },
                       "Seleccione"
-                    )
+                    ),
+                    subtypes
                   )
                 )
               ),
@@ -42284,12 +42321,19 @@ var BipolarProductList = function (_React$Component) {
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "select",
-                    { className: "custom-select col-12" },
+                    { value: this.state.creationDateSelected, className: "custom-select col-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
                       { value: "", disabled: true },
                       "Seleccione"
-                    )
+                    ),
+                    this.state.creationDates.map(function (creationDate) {
+                      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "option",
+                        { key: creationDate.value, value: creationDate.value },
+                        creationDate.name
+                      );
+                    })
                   )
                 )
               )
@@ -42377,22 +42421,31 @@ var BipolarProductList = function (_React$Component) {
   }, {
     key: "getAllProducts",
     value: function getAllProducts() {
-      var _this5 = this;
-
-      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get("/ajax-admin/products").then(function (response) {
-        var products = response.data["data"];
-        var formattedProducts = products.map(function (product) {
-          return _extends({}, product, {
-            firstImageUrl: Object(__WEBPACK_IMPORTED_MODULE_3_lodash__["get"])(product, "photos.0.url", null)
-          });
-        });
-        _this5.setState({ products: formattedProducts });
-      });
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get("/ajax-admin/products").then(this.copyProductsToState);
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.getAllProducts();
+      var _this5 = this;
+
+      var creationDates = [];
+      for (var indexYear = 0; indexYear < this.state.years.length; indexYear++) {
+        for (var indexMonth = 0; indexMonth < this.state.months.length; indexMonth++) {
+          creationDates.push({
+            value: indexMonth + 1 + "-" + this.state.years[indexYear],
+            name: this.state.months[indexMonth] + " " + this.state.years[indexYear]
+          });
+        }
+      }
+
+      return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.all([__WEBPACK_IMPORTED_MODULE_2_axios___default.a.get("/ajax-admin/products"), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get("/ajax-admin/states"), __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get("/ajax-admin/types")]).then(__WEBPACK_IMPORTED_MODULE_2_axios___default.a.spread(function (responseProducts, responseStates, responseTypes) {
+        _this5.copyProductsToState(responseProducts);
+        _this5.setState({
+          statesForSelect: responseStates.data["data"],
+          typesForSelect: responseTypes.data["data"],
+          creationDates: creationDates
+        });
+      }));
     }
   }]);
 
