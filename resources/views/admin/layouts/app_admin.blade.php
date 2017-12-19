@@ -36,7 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                       data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
             <!-- Logo -->
             <div class="top-left-part">
-                <a class="logo" href="#">
+                <a class="logo" href="{{ route('admin.dashboard') }}">
                     <span class="hidden-xs">
                         <img src="{{ asset('images/logo-linea.png') }}" class="image-logo" alt="home"/>
                     </span>
@@ -72,7 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav" id="side-menu">
                 <li class="nav-small-cap m-t-10">--- Menú</li>
                 <li>
-                    <a href="#" class="waves-effect">
+                    <a href="{{ route('admin.dashboard') }}" class="waves-effect">
                         <i class="fa fa-dashboard"></i> <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
