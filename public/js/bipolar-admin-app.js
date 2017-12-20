@@ -41941,6 +41941,10 @@ var BipolarProductList = function (_React$Component) {
       _this.setState({ selectedProducts: [].concat(_toConsumableArray(allProductsIds)) });
     };
 
+    _this.toggleFilters = function () {
+      _this.setState({ showFilters: !_this.state.showFilters });
+    };
+
     _this.filterProducts = function () {
       var products = _this.state.products;
 
@@ -41998,6 +42002,7 @@ var BipolarProductList = function (_React$Component) {
       selectedProducts: [],
       selectedMassiveAction: "",
       // Filter selects
+      showFilters: false,
       statesForSelect: [],
       stateSelected: "",
       subtypesForSelect: [],
@@ -42128,6 +42133,92 @@ var BipolarProductList = function (_React$Component) {
               ? [...this.state.filteredProducts]
               : [...this.state.products]; */
 
+      var filters = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "div",
+        { className: "row" },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: "col-md-3" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "form-group" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "label",
+              null,
+              "Filtrar por estado publicaci\xF3n"
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "select",
+              { value: this.state.stateSelected, onChange: this.handleStateChange, className: "custom-select col-12" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "option",
+                { value: "" },
+                "Todos"
+              ),
+              this.state.statesForSelect.map(function (state) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "option",
+                  { key: state.hash_id, value: state.hash_id },
+                  state.name
+                );
+              })
+            )
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: "col-md-3" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "form-group" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "label",
+              null,
+              "Filtrar por tipo"
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "select",
+              { value: this.state.subtypeSelected, onChange: this.handleSubtypeChange, className: "custom-select col-12" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "option",
+                { value: "" },
+                "Todos"
+              ),
+              subtypes
+            )
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: "col-md-3" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "form-group" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "label",
+              null,
+              "Filtrar por fecha de creaci\xF3n"
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "select",
+              { value: this.state.creationDateSelected, onChange: this.handleCreationDateChange, className: "custom-select col-12" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "option",
+                { value: "" },
+                "Todos"
+              ),
+              this.state.creationDates.map(function (creationDate) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "option",
+                  { key: creationDate.value, value: creationDate.value },
+                  creationDate.name
+                );
+              })
+            )
+          )
+        )
+      );
+
       var subtypes = this.state.subtypesForSelect.map(function (type) {
         return type.subtypes.map(function (subtype) {
           return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -42199,12 +42290,22 @@ var BipolarProductList = function (_React$Component) {
                 "div",
                 { className: "col-md-9" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "label",
+                  { className: "control-label" },
+                  "Buscar producto"
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   "div",
-                  { className: "form-group" },
+                  { className: "input-group" },
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "label",
-                    null,
-                    "Buscar producto"
+                    "span",
+                    { className: "input-group-btn" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                      "button",
+                      { className: "btn btn-dark btn-sm", onClick: this.toggleFilters },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-filter" }),
+                      " Filtros"
+                    )
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
                     value: this.state.searchText,
@@ -42297,91 +42398,7 @@ var BipolarProductList = function (_React$Component) {
                 )
               )
             ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "div",
-              { className: "row" },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "col-md-3" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  "div",
-                  { className: "form-group" },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "label",
-                    null,
-                    "Filtrar por estado publicaci\xF3n"
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "select",
-                    { value: this.state.stateSelected, onChange: this.handleStateChange, className: "custom-select col-12" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      "option",
-                      { value: "" },
-                      "Todos"
-                    ),
-                    this.state.statesForSelect.map(function (state) {
-                      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "option",
-                        { key: state.hash_id, value: state.hash_id },
-                        state.name
-                      );
-                    })
-                  )
-                )
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "col-md-3" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  "div",
-                  { className: "form-group" },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "label",
-                    null,
-                    "Filtrar por tipo"
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "select",
-                    { value: this.state.subtypeSelected, onChange: this.handleSubtypeChange, className: "custom-select col-12" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      "option",
-                      { value: "" },
-                      "Todos"
-                    ),
-                    subtypes
-                  )
-                )
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "col-md-3" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  "div",
-                  { className: "form-group" },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "label",
-                    null,
-                    "Filtrar por fecha de creaci\xF3n"
-                  ),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "select",
-                    { value: this.state.creationDateSelected, onChange: this.handleCreationDateChange, className: "custom-select col-12" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      "option",
-                      { value: "" },
-                      "Todos"
-                    ),
-                    this.state.creationDates.map(function (creationDate) {
-                      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "option",
-                        { key: creationDate.value, value: creationDate.value },
-                        creationDate.name
-                      );
-                    })
-                  )
-                )
-              )
-            ),
+            this.state.showFilters ? filters : null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "table",
               { className: "table" },

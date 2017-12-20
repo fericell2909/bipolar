@@ -16,6 +16,7 @@ export default class BipolarProductList extends React.Component {
       selectedProducts: [],
       selectedMassiveAction: "",
       // Filter selects
+      showFilters: false,
       statesForSelect: [],
       stateSelected: "",
       subtypesForSelect: [],
@@ -183,6 +184,10 @@ export default class BipolarProductList extends React.Component {
     });
   }
 
+  toggleFilters = () => {
+    this.setState({ showFilters: !this.state.showFilters });
+  }
+
   filterProducts = () => {
     let products = this.state.products;
     
@@ -223,6 +228,46 @@ export default class BipolarProductList extends React.Component {
 /*       this.state.filteredProducts.length > 0
         ? [...this.state.filteredProducts]
         : [...this.state.products]; */
+
+    const filters = (
+      <div className="row">
+        <div className="col-md-3">
+          <div className="form-group">
+            <label>Filtrar por estado publicación</label>
+            <select value={this.state.stateSelected} onChange={this.handleStateChange} className="custom-select col-12">
+              <option value="">Todos</option>
+              {this.state.statesForSelect.map(state => {
+                return <option key={state.hash_id} value={state.hash_id}>{state.name}</option>
+              })}
+            </select>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="form-group">
+            <label>Filtrar por tipo</label>
+            <select value={this.state.subtypeSelected} onChange={this.handleSubtypeChange} className="custom-select col-12">
+              <option value="">Todos</option>
+              {subtypes}
+            </select>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="form-group">
+            <label>Filtrar por fecha de creación</label>
+            <select value={this.state.creationDateSelected} onChange={this.handleCreationDateChange} className="custom-select col-12">
+              <option value="">Todos</option>
+              {this.state.creationDates.map(creationDate => {
+                return (
+                  <option key={creationDate.value} value={creationDate.value}>
+                    {creationDate.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        </div>
+      </div>
+    );
 
     const subtypes = this.state.subtypesForSelect.map(type => {
       return type.subtypes.map(subtype => {
@@ -274,8 +319,13 @@ export default class BipolarProductList extends React.Component {
             </div>
             <div className="row">
               <div className="col-md-9">
-                <div className="form-group">
-                  <label>Buscar producto</label>
+                <label className="control-label">Buscar producto</label>
+                <div className="input-group">
+                  <span className="input-group-btn">
+                    <button className="btn btn-dark btn-sm" onClick={this.toggleFilters}>
+                      <i className="fa fa-filter"/> Filtros
+                    </button>
+                  </span>
                   <input
                     value={this.state.searchText}
                     onChange={this.handleSearch}
@@ -329,43 +379,7 @@ export default class BipolarProductList extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="row">
-              <div className="col-md-3">
-                <div className="form-group">
-                  <label>Filtrar por estado publicación</label>
-                  <select value={this.state.stateSelected} onChange={this.handleStateChange} className="custom-select col-12">
-                    <option value="">Todos</option>
-                    {this.state.statesForSelect.map(state => {
-                      return <option key={state.hash_id} value={state.hash_id}>{state.name}</option>
-                    })}
-                  </select>
-                </div>
-              </div>
-              <div className="col-md-3">
-                <div className="form-group">
-                  <label>Filtrar por tipo</label>
-                  <select value={this.state.subtypeSelected} onChange={this.handleSubtypeChange} className="custom-select col-12">
-                    <option value="">Todos</option>
-                    {subtypes}
-                  </select>
-                </div>
-              </div>
-              <div className="col-md-3">
-                <div className="form-group">
-                  <label>Filtrar por fecha de creación</label>
-                  <select value={this.state.creationDateSelected} onChange={this.handleCreationDateChange} className="custom-select col-12">
-                    <option value="">Todos</option>
-                    {this.state.creationDates.map(creationDate => {
-                      return (
-                        <option key={creationDate.value} value={creationDate.value}>
-                          {creationDate.name}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </div>
-              </div>
-            </div>
+            {this.state.showFilters ? filters : null}
             <table className="table">
               <thead>
                 <tr>
