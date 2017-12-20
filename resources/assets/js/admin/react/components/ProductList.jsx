@@ -68,8 +68,7 @@ export default class BipolarProductList extends React.Component {
   }
 
   handleCreationDateChange = event => {
-    this.setState({ creationDateSelected: event.target.value });
-    this.filterProducts();
+    this.setState({ creationDateSelected: event.target.value }, this.filterProducts);
   }
 
   handleProductSelect = event => {
@@ -210,14 +209,20 @@ export default class BipolarProductList extends React.Component {
       });
     }
 
+    if (this.state.creationDateSelected.length > 0) {
+      products = products.filter(product => {
+        return product["created_at_month_year"] === this.state.creationDateSelected;
+      });
+    }
+
     this.setState({filteredProducts: products});
   }
 
   render() {
-    const productsSource =
-      this.state.filteredProducts.length > 0
+    const productsSource = this.state.filteredProducts;
+/*       this.state.filteredProducts.length > 0
         ? [...this.state.filteredProducts]
-        : [...this.state.products];
+        : [...this.state.products]; */
 
     const subtypes = this.state.subtypesForSelect.map(type => {
       return type.subtypes.map(subtype => {
@@ -349,7 +354,7 @@ export default class BipolarProductList extends React.Component {
                 <div className="form-group">
                   <label>Filtrar por fecha de creación</label>
                   <select value={this.state.creationDateSelected} onChange={this.handleCreationDateChange} className="custom-select col-12">
-                    <option value="" disabled>Seleccione</option>
+                    <option value="">Todos</option>
                     {this.state.creationDates.map(creationDate => {
                       return (
                         <option key={creationDate.value} value={creationDate.value}>
@@ -405,7 +410,7 @@ export default class BipolarProductList extends React.Component {
       };
     });
     
-    return this.setState({ products: formattedProducts });
+    return this.setState({ products: formattedProducts, filteredProducts: formattedProducts });
   }
 
   getAllProducts = () => {

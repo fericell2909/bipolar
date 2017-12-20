@@ -41912,8 +41912,7 @@ var BipolarProductList = function (_React$Component) {
     };
 
     _this.handleCreationDateChange = function (event) {
-      _this.setState({ creationDateSelected: event.target.value });
-      _this.filterProducts();
+      _this.setState({ creationDateSelected: event.target.value }, _this.filterProducts);
     };
 
     _this.handleProductSelect = function (event) {
@@ -41968,6 +41967,12 @@ var BipolarProductList = function (_React$Component) {
         });
       }
 
+      if (_this.state.creationDateSelected.length > 0) {
+        products = products.filter(function (product) {
+          return product["created_at_month_year"] === _this.state.creationDateSelected;
+        });
+      }
+
       _this.setState({ filteredProducts: products });
     };
 
@@ -41979,7 +41984,7 @@ var BipolarProductList = function (_React$Component) {
         });
       });
 
-      return _this.setState({ products: formattedProducts });
+      return _this.setState({ products: formattedProducts, filteredProducts: formattedProducts });
     };
 
     _this.getAllProducts = function () {
@@ -42118,7 +42123,10 @@ var BipolarProductList = function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      var productsSource = this.state.filteredProducts.length > 0 ? [].concat(_toConsumableArray(this.state.filteredProducts)) : [].concat(_toConsumableArray(this.state.products));
+      var productsSource = this.state.filteredProducts;
+      /*       this.state.filteredProducts.length > 0
+              ? [...this.state.filteredProducts]
+              : [...this.state.products]; */
 
       var subtypes = this.state.subtypesForSelect.map(function (type) {
         return type.subtypes.map(function (subtype) {
@@ -42360,8 +42368,8 @@ var BipolarProductList = function (_React$Component) {
                     { value: this.state.creationDateSelected, onChange: this.handleCreationDateChange, className: "custom-select col-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       "option",
-                      { value: "", disabled: true },
-                      "Seleccione"
+                      { value: "" },
+                      "Todos"
                     ),
                     this.state.creationDates.map(function (creationDate) {
                       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
