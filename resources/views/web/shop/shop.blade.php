@@ -138,8 +138,8 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="container-fluid">
-                        <div class="row product-content">
-                            <div class="col-md-6">
+                        <div class="row bipolar-product-in-modal">
+                            <div class="col-md-12">
                                 @if(count($product->photos))
                                     <div>
                                         <div class="shop-discount-container">
@@ -147,7 +147,7 @@
                                                 <span>30%</span>
                                             </div>
                                         </div>
-                                        <div id="viewer-images" class="owl-carousel-main owl-carousel owl-theme">
+                                        <div class="owl-carousel-main owl-carousel owl-theme">
                                             @foreach($product->photos as $photo)
                                                 <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive">
                                             @endforeach
@@ -159,31 +159,6 @@
                                         </div>
                                     </div>
                                 @endif
-                            </div>
-                            <div class="col-md-6">
-                                <h1 class="product-title">{{ $product->name }}</h1>
-                                <p class="product-price">
-                                    <span class="product-amount">S/. {{ $product->price }}</span>
-                                </p>
-                                <p class="product-description">
-                                    Zapato de cuero hecho a mano en Perú.
-                                    Charol malva. Gamuza negra. Cuero dorado. Lazo de metal bañado en oro.
-                                    Taco 9cms. + 2cms. de plataforma.
-                                </p>
-                                <div class="bipolar-stock-status">
-                                    STATUS: EN STOCK
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        COMPÁRTELO
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="bipolar-action-button-container">
-                                            <a href="#"><i class="fa fa-facebook"></i></a>
-                                            <a href="#"><i class="fa fa-envelope-o"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

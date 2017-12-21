@@ -21,3 +21,4 @@ window.$('#logoutLink').click(event => {
 require('owl.carousel/dist/owl.carousel');
 require('./theme-scripts');
 require('./shop-scripts');
+require('./product-scripts');

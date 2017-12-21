@@ -35,8 +35,8 @@ input::-webkit-inner-spin-button {
 // Variables
 @import "variables";
 
-// Bootstrap 3
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+// Bootstrap 3 Custom
+@import "bootstrap";
 
 // Bootstrap 4
 //@import "~bootstrap/scss/bootstrap";
@@ -44,7 +44,7 @@ input::-webkit-inner-spin-button {
 // Owl Carousel
 @import "~owl.carousel/dist/assets/owl.carousel.css";
 // Viewer JS
-@import "~viewerjs/dist/viewer";
+//@import "~viewerjs/dist/viewer";
 // Flat skins
 @import "~icheck/skins/flat/flat";
 

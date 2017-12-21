@@ -42,21 +42,28 @@
                     <div class="product-subtitle">{{ $product->colors->first()->name }}</div>
                 @endif
                 <p class="product-price">
-                    <span class="product-amount">S/. {{ $product->price }}</span>
+                    <span class="product-amount">S/. {{ intval($product->price) }}</span>
                 </p>
                 <p class="product-description">
                     {{ $product->description }}
                 </p>
                 {!! Form::open() !!}
                     @if(count($stockWithSizes))
-                        <div class="row" style="margin-bottom: 20px;">
-                            <div class="col-sm-2 col-md-1 text-uppercase" style="margin-top: 10px">Talla</div>
-                            <div class="col-sm-7 col-md-3">
-                                {!! Form::select('sizes', $stockWithSizes, null, ['class' => 'product-size-select']) !!}
-                            </div>
-                            <div class="col-sm-3 col-md-2">
-                                <button type="button" class="btn btn-default btn-sizes-modal" data-toggle="modal" data-target="#testingModal">Ver guía de tallas</button>
-                            </div>
+                        <div class="product-sizes">
+                            <h6 class="text-uppercase">Selecciona tu talla</h6>
+                            @foreach($stockWithSizes as $stockHashId => $size)
+                                <button class="product-size tooltip-container" title="FALTA 1 EN STOCK" data-stock-hash-id={{ $stockHashId }}>
+                                    <span class="product-size-text">{{ $size }}</span>
+                                </button>
+                            @endforeach
+                            <button class="product-size">
+                                <span class="product-size-text">98</span>
+                            </button>
+                            <button class="product-size-disabled">
+                                <span class="product-size-text">99</span>
+                            </button>
+                            <button type="button" class="btn btn-default btn-sizes-modal" data-toggle="modal" data-target="#testingModal">Ver guía de tallas</button>
+                            {!! Form::hidden('sizes', null, ['id' => 'size-selected']) !!}
                         </div>
                         <div class="row" style="margin-bottom: 20px">
                             <div class="col-sm-6 col-md-12">
@@ -104,7 +111,7 @@
         <h3>Te recomendamos</h3>
         <div class="row">
             @foreach($product->recommendeds as $recommended)
-                <div class="col-md-3">
+                <div class="col-md-2">
                     @if(count($recommended->photos))
                         <a href="{{ route('shop.product', $recommended->slug) }}">
                             <img src="{{ $recommended->photos->first()->url }}" alt="{{ $recommended->name }}" class="img-responsive">
@@ -112,8 +119,6 @@
                     @else
                         <img src="https://placehold.it/320x200" alt="{{ $recommended->name }}" class="img-responsive">
                     @endif
-                    <h4><a href="{{ route('shop.product', $recommended->slug) }}">{{ $recommended->name }}</a></h4>
-                    <h5>S/. {{ $recommended->price }}</h5>
                 </div>
             @endforeach
         </div>
