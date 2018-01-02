@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HomePost;
 use App\Models\Product;
 use App\Models\Settings;
+use App\Models\Banner;
 
 class LandingsController extends Controller
 {
@@ -19,8 +20,9 @@ class LandingsController extends Controller
             ->get();
 
         $settings = Settings::first();
+        $banners = Banner::orderBy('order')->get();
 
-        return view('welcome', compact('homePosts', 'settings'));
+        return view('welcome', compact('banners', 'homePosts', 'settings'));
     }
 
     public function bipolar()
