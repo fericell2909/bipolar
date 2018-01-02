@@ -3,7 +3,7 @@
 Route::get('login', 'Admin\Auth\LoginController@showLoginForm')->name('login.admin');
 Route::post('login', 'Admin\Auth\LoginController@login')->name('login.admin.post');
 
-Route::middleware('auth:admin')->group(function() {
+Route::middleware('auth:admin')->group(function () {
     Route::get('/', function () {
         return view('admin.home');
     })->name('admin.dashboard');
@@ -39,6 +39,10 @@ Route::middleware('auth:admin')->group(function() {
         Route::get('{slug}/photos/order', 'Admin\HomePostController@orderPhotos')->name('homepost.photos.order');
         Route::get('edit/{slug}', 'Admin\HomePostController@show')->name('homepost.edit');
         Route::post('edit/{slug}', 'Admin\HomePostController@update');
+    });
+
+    Route::prefix('banners')->group(function () {
+        Route::get('/', 'Admin\BannersController@index')->name('banners.index');
     });
 
     Route::prefix('settings')->group(function () {

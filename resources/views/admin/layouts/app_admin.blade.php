@@ -110,6 +110,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
                 <li>
                     <a href="javascript:void(0);" class="waves-effect">
+                        <i class="fa fa-picture-o"></i>
+                        <span class="hide-menu"> Banners <span class="fa arrow"></span></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="{{ route('homepost.create') }}">Nuevo banner</a></li>
+                        <li><a href="{{ route('banners.index') }}">Listar banners</a></li>
+                        <li><a href="{{ route('homepost.order') }}">Ordenar</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="waves-effect">
                         <i class="fa fa-cog"></i>
                         <span class="hide-menu"> Configuraciones<span class="fa arrow"></span></span>
                     </a>
