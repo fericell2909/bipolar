@@ -43,6 +43,8 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::prefix('banners')->group(function () {
         Route::get('/', 'Admin\BannersController@index')->name('banners.index');
+        Route::get('new', 'Admin\BannersController@create')->name('banners.create');
+        Route::post('new', 'Admin\BannersController@store');
     });
 
     Route::prefix('settings')->group(function () {
