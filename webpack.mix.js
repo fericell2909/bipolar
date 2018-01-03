@@ -11,7 +11,7 @@ mix.autoload({
     .sass('resources/assets/sass/web/app-web-styles.scss', 'public/css')
     .copyDirectory('resources/assets/img', 'public/images')
     //todo: remover esto cuando se pase a produccion
-    .mix.version();
+    .version();
 
 if (mix.inProduction()) {
     mix.version();
