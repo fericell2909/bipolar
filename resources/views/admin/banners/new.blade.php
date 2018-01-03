@@ -3,15 +3,15 @@
 <div class="row">
   <div class="col-md-12 white-box">
       <h3 class="box-title">Nuevo banner</h3>
-      {!! Form::open(['file' => true]) !!}
+      {!! Form::open(['files' => true]) !!}
         <div class="form-row">
             <div class="col-md-6 form-group">
               <label>Fecha de inicio</label>
-              {!! Form::text('begin', null, ['class' => 'form-control']) !!}
+              {!! Form::text('begin', null, ['class' => 'form-control singledatepicker']) !!}
             </div>
             <div class="col-md-6 form-group">
               <label>Fecha de fin</label>
-              {!! Form::text('end', null, ['class' => 'form-control']) !!}
+              {!! Form::text('end', null, ['class' => 'form-control singledatepicker']) !!}
             </div>
             <div class="col-md-6 form-group">
               <label>Imagen</label>

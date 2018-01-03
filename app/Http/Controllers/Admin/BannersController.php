@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Http\Services\UploadFileS3;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\State;
+use App\Http\Requests\Admin\BannerNewRequest;
+use Carbon\Carbon;
 
 class BannersController extends Controller
 {
@@ -23,8 +25,25 @@ class BannersController extends Controller
         return view('admin.banners.new', compact('states'));
     }
 
-    public function store(Request $request)
+    public function store(BannerNewRequest $request)
     {
-        dd($request->all());
+        $amazonPath = null;
+        if ($request->file('photo')->isValid()) {
+            $s3 = new UploadFileS3;
+            $imagePath = $s3->uploadPhoto($request->file('photo'), "banners", "banner");
+            $amazonPath = $s3->getAmazonPath($imagePath);
+        }
+
+        /** @var State $state */
+        $state = State::findOrFail($request->input('state'));
+
+        $banner = new Banner;
+        $banner->url = $amazonPath;
+        $banner->begin_date = Carbon::createFromFormat('Y-m-d H:i', $request->input('begin'));
+        $banner->end_date = Carbon::createFromFormat('Y-m-d H:i', $request->input('end'));
+        $banner->state()->associate($state);
+        $banner->save();
+
+        return redirect()->route('banners.index');
     }
 }

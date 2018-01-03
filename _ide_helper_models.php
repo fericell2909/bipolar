@@ -27,6 +27,24 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\CartDetail
+ *
+ * @property int $id
+ * @property int $cart_id
+ * @property int $product_id
+ * @property int $quantity
+ * @property-read \App\Models\Cart $cart
+ * @property-read \App\Models\Product $product
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereCartId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereQuantity($value)
+ */
+	class CartDetail extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Size
  *
  * @property int $id
@@ -108,6 +126,28 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Cart
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property float $subtotal
+ * @property float $total
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CartDetail[] $details
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSubtotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereUserId($value)
+ */
+	class Cart extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Product
  *
  * @property int $id
@@ -157,6 +197,31 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Banner
+ *
+ * @property int $id
+ * @property int $state_id
+ * @property int $order
+ * @property string $url
+ * @property \Carbon\Carbon $begin_date
+ * @property \Carbon\Carbon $end_date
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\State $state
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereBeginDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereUrl($value)
+ */
+	class Banner extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Stock
  *
  * @property int $id
@@ -199,6 +264,7 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Cart[] $carts
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereBirthdayDate($value)
