@@ -49253,7 +49253,49 @@ __webpack_require__("./resources/assets/js/admin/plugins/jscolor.min.js");
 __webpack_require__("./resources/assets/js/admin/common-scripts.js");
 __webpack_require__("./resources/assets/js/admin/settings-scripts.js");
 __webpack_require__("./resources/assets/js/admin/order-scripts.js");
+__webpack_require__("./resources/assets/js/admin/banner-scripts.js");
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/jquery/dist/jquery.js")))
+
+/***/ }),
+
+/***/ "./resources/assets/js/admin/banner-scripts.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2__ = __webpack_require__("./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert2__);
+
+
+$(function () {
+  var $deleteBanner = $(".delete-banner");
+
+  if ($deleteBanner.length) {
+    $deleteBanner.on('click', function () {
+      var _this = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
+        title: 'Eliminar banner',
+        text: 'Seguro que desea eliminar',
+        type: 'question',
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        showLoaderOnConfirm: true
+      }).then(function (result) {
+        if (result.value) {
+          var bannerId = $(_this).data('bannerId');
+          $.ajax({
+            method: 'DELETE',
+            url: "/ajax-admin/banners/" + bannerId
+          }).done(function () {
+            return location.reload();
+          });
+        }
+      });
+    });
+  }
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
 

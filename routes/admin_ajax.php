@@ -33,3 +33,5 @@ Route::prefix('home-posts')->group(function () {
     Route::post('{hashId}/photos', 'Admin\Ajax\PhotoController@homePostUpload')->name('homepost.photo.upload');
     Route::post('photos/order', 'Admin\Ajax\PhotoController@orderPhotos');
 });
+
+Route::delete('banners/{banner}', 'Admin\Ajax\BannersController@destroy');

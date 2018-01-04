@@ -28,7 +28,7 @@ class BannersController extends Controller
 
     public function store(BannerNewRequest $request)
     {
-        $amazonPath = null;
+        $amazonPath = $imagePath = null;
         if ($request->file('photo')->isValid()) {
             $s3 = new UploadFileS3;
             $imagePath = $s3->uploadPhoto($request->file('photo'), "banners", "banner");
@@ -40,6 +40,7 @@ class BannersController extends Controller
 
         $banner = new Banner;
         $banner->url = $amazonPath;
+        $banner->relative_url = $imagePath;
         $banner->begin_date = Carbon::createFromFormat('Y-m-d H:i', $request->input('begin'));
         $banner->end_date = Carbon::createFromFormat('Y-m-d H:i', $request->input('end'));
         $banner->state()->associate($state);
@@ -74,6 +75,7 @@ class BannersController extends Controller
             $imagePath = $s3->uploadPhoto($request->file('photo'), "banners", "banner");
             $amazonPath = $s3->getAmazonPath($imagePath);
             $banner->url = $amazonPath;
+            $banner->relative_url = $imagePath;
         }
 
         $banner->save();

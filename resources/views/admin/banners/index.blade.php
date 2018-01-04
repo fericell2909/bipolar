@@ -34,7 +34,7 @@
                           <a href="{{ route('banners.edit', $banner->id) }}" class="btn btn-dark btn-rounded btn-sm">
                               <i class="fa fa-pencil"></i> Editar
                           </a>
-                          <button class="btn btn-dark btn-rounded btn-sm">
+                          <button class="btn btn-dark btn-rounded btn-sm delete-banner" data-banner-id="{{ $banner->id }}">
                               <i class="fa fa-close"></i> Eliminar
                           </button>
                         </td>

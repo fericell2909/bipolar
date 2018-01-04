@@ -203,6 +203,7 @@ namespace App\Models{
  * @property int $state_id
  * @property int $order
  * @property string $url
+ * @property string|null $relative_url
  * @property \Carbon\Carbon $begin_date
  * @property \Carbon\Carbon $end_date
  * @property \Carbon\Carbon|null $created_at
@@ -213,6 +214,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereEndDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereRelativeUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereUrl($value)

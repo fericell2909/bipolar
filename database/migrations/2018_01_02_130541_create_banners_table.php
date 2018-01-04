@@ -18,6 +18,7 @@ class CreateBannersTable extends Migration
             $table->unsignedInteger('state_id');
             $table->unsignedInteger('order')->default(0);
             $table->text('url');
+            $table->text('relative_url')->nullable();
             $table->dateTime('begin_date');
             $table->dateTime('end_date');
             $table->timestamps();

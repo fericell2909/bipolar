@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Http\Controllers\Admin\Ajax;
+
+use App\Models\Banner;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class BannersController extends Controller
+{
+    public function destroy($bannerId)
+    {
+        /** @var Banner $banner */
+        $banner = Banner::findOrFail($bannerId);
+
+        if (\Storage::disk('s3')->exists($banner->relative_url)) {
+            \Storage::disk('s3')->delete($banner->relative_url);
+        }
+
+        try {
+            $banner->delete();
+        } catch (\Exception $e) {
+            return response()->json(['success' => false]);
+        }
+
+        return response()->json(['success' => true]);
+    }
+}
