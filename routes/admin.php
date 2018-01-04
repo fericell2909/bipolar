@@ -47,6 +47,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('new', 'Admin\BannersController@store');
         Route::get('/{banner}/edit', 'Admin\BannersController@edit')->name('banners.edit');
         Route::post('/{banner}/edit', 'Admin\BannersController@update');
+        Route::get('order', 'Admin\BannersController@order')->name('banners.order');
     });
 
     Route::prefix('settings')->group(function () {

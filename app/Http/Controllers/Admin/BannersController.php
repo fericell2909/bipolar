@@ -83,4 +83,11 @@ class BannersController extends Controller
         flash()->success('Se actualizó con éxito');
         return redirect()->route('banners.index');
     }
+
+    public function order()
+    {
+        $banners = Banner::whereStateId(config('constants.STATE_ACTIVE_ID'))->get();
+
+        return view('admin.banners.order', compact('banners'));
+    }
 }

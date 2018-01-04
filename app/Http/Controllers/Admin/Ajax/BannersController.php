@@ -8,6 +8,21 @@ use App\Http\Controllers\Controller;
 
 class BannersController extends Controller
 {
+    public function order(Request $request)
+    {
+        $this->validate($request, ['newOrder' => 'required|array']);
+
+        $newOrder = $request->input('newOrder');
+
+        foreach ($newOrder as $orderKey => $bannerId) {
+            $banner = Banner::find($bannerId);
+            $banner->order = $orderKey;
+            $banner->save();
+        }
+
+        return response()->json(['success' => true]);
+    }
+
     public function destroy($bannerId)
     {
         /** @var Banner $banner */

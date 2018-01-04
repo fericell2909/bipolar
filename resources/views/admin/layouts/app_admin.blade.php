@@ -116,7 +116,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="nav nav-second-level">
                         <li><a href="{{ route('banners.create') }}">Nuevo banner</a></li>
                         <li><a href="{{ route('banners.index') }}">Listar banners</a></li>
-                        <li><a href="{{ route('homepost.order') }}">Ordenar</a></li>
+                        <li><a href="{{ route('banners.order') }}">Ordenar</a></li>
                     </ul>
                 </li>
                 <li>
