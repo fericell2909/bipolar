@@ -23,8 +23,7 @@
                         <td>{{ $banner->id }}</td>
                         <td>
                           <button class="btn btn-dark btn-rounded btn-sm" data-target="#banner_preview_{{ $banner->id }}" data-toggle="modal">
-                            <i class="fa fa-eye"></i>
-                            Ver imagen
+                              <i class="fa fa-eye"></i> Ver imagen
                           </button>
                         </td>
                         <td>{{ $banner->order }}</td>
@@ -32,11 +31,11 @@
                         <td>{{ $banner->end_date->format('d-m-Y H:i') }}</td>
                         <td>{!! $banner->state->getAdminHtml() !!}</td>
                         <td>
+                          <a href="{{ route('banners.edit', $banner->id) }}" class="btn btn-dark btn-rounded btn-sm">
+                              <i class="fa fa-pencil"></i> Editar
+                          </a>
                           <button class="btn btn-dark btn-rounded btn-sm">
-                            <i class="fa fa-pencil"></i> Editar
-                          </button>
-                          <button class="btn btn-dark btn-rounded btn-sm">
-                            <i class="fa fa-close"></i> Eliminar
+                              <i class="fa fa-close"></i> Eliminar
                           </button>
                         </td>
                     </tr>
