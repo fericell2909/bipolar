@@ -15,12 +15,15 @@ class LandingsController extends Controller
         $homePosts = HomePost::whereStateId(config('constants.STATE_ACTIVE_ID'))
             ->with(['photos' => function ($withPhotos) {
                 $withPhotos->orderBy('order');
-            }])
+            }, 'post_type'])
             ->orderBy('order')
             ->get();
 
         $settings = Settings::first();
-        $banners = Banner::orderBy('order')->get();
+        $banners = Banner::orderBy('order')
+            ->where('begin_date', '<=', now())
+            ->where('end_date', '>=', now())
+            ->get();
 
         return view('welcome', compact('banners', 'homePosts', 'settings'));
     }
