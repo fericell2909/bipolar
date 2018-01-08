@@ -41,7 +41,7 @@ class ShopController extends Controller
             'subtypes',
             'subtypes.products' => function ($withProducts) {
                 $withProducts->where('state_id', config('constants.STATE_ACTIVE_ID'));
-            }
+            },
         ])->get();
 
         $sizes = Size::with(['stocks' => function ($withStocks) {
@@ -107,8 +107,12 @@ class ShopController extends Controller
             ->when($request->filled('orderBy'), function ($products) use ($request) {
                 /** @var Collection $products */
                 switch ($request->input('orderBy')) {
-                    case 'priceup'; $products = $products->sortBy('price'); break;
-                    case 'pricedown'; $products = $products->sortByDesc('price'); break;
+                    case 'priceup';
+                        $products = $products->sortBy('price');
+                        break;
+                    case 'pricedown';
+                        $products = $products->sortByDesc('price');
+                        break;
                 }
 
                 return $products;
@@ -132,14 +136,23 @@ class ShopController extends Controller
         /** @var Product $product */
         $product = Product::findBySlugOrFail($slugProduct);
 
-        $product->load('stocks');
+        $product->load('stocks.size');
 
         $stockWithSizes = $product->stocks
             ->filter(function ($stock) {
                 /** @var Stock $stock */
                 return !is_null($stock->size_id);
             })
-            ->pluck('size.name', 'hash_id')
+            //->pluck('size.name', 'hash_id')
+            ->transform(function ($stock) {
+                /** @var Stock $stock */
+                return [
+                    'hash_id'  => $stock->hash_id,
+                    'size'     => $stock->size->name,
+                    'quantity' => $stock->quantity,
+                    'one_left' => $stock->quantity === 1 ? true : false,
+                ];
+            })
             ->toArray();
 
         return view('web.shop.product', compact('product', 'stockWithSizes'));

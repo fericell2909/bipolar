@@ -51,17 +51,21 @@
                     @if(count($stockWithSizes))
                         <div class="product-sizes">
                             <h6 class="text-uppercase">Selecciona tu talla</h6>
-                            @foreach($stockWithSizes as $stockHashId => $size)
-                                <button class="product-size tooltip-container" title="FALTA 1 EN STOCK" data-stock-hash-id={{ $stockHashId }}>
-                                    <span class="product-size-text">{{ $size }}</span>
-                                </button>
+                            @foreach($stockWithSizes as $stock)
+                                @if($stock['quantity'] === 0)
+                                    <button class="product-size-disabled">
+                                        <span class="product-size-text">{{ $stock['size'] }}</span>
+                                    </button>
+                                @elseif($stock['quantity'] === 1)
+                                    <button class="product-size tooltip-container" title="FALTA 1 EN STOCK" data-stock-hash-id={{ $stock['hash_id'] }}>
+                                        <span class="product-size-text">{{ $stock['size'] }}</span>
+                                    </button>
+                                @else
+                                    <button class="product-size">
+                                        <span class="product-size-text">{{ $stock['size'] }}</span>
+                                    </button>
+                                @endif
                             @endforeach
-                            <button class="product-size">
-                                <span class="product-size-text">98</span>
-                            </button>
-                            <button class="product-size-disabled">
-                                <span class="product-size-text">99</span>
-                            </button>
                             <button type="button" class="btn btn-default btn-sizes-modal" data-toggle="modal" data-target="#testingModal">Ver guía de tallas</button>
                             {!! Form::hidden('sizes', null, ['id' => 'size-selected']) !!}
                         </div>
