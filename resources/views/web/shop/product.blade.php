@@ -51,35 +51,35 @@
                 <p class="product-description">
                     {{ $product->description }}
                 </p>
-                {!! Form::open() !!}
+                {!! Form::open(['id' => 'product-add-cart']) !!}
                     @if(count($stockWithSizes))
                         <div class="product-sizes">
                             <h6 class="text-uppercase">Selecciona tu talla</h6>
                             @foreach($stockWithSizes as $stock)
                                 @if($stock['quantity'] === 0)
-                                    <button class="product-size-disabled">
+                                    <button type="button" class="product-size-disabled">
                                         <span class="product-size-text">{{ $stock['size'] }}</span>
                                     </button>
                                 @elseif($stock['quantity'] === 1)
-                                    <button class="product-size tooltip-container" title="FALTA 1 EN STOCK" data-stock-hash-id={{ $stock['hash_id'] }}>
+                                    <button type="button" class="product-size tooltip-container" title="FALTA 1 EN STOCK" data-stock-hash-id={{ $stock['hash_id'] }}>
                                         <span class="product-size-text">{{ $stock['size'] }}</span>
                                     </button>
                                 @else
-                                    <button class="product-size">
+                                    <button type="button" class="product-size" data-stock-hash-id={{ $stock['hash_id'] }}>
                                         <span class="product-size-text">{{ $stock['size'] }}</span>
                                     </button>
                                 @endif
                             @endforeach
                             <button type="button" class="btn btn-default btn-sizes-modal" data-toggle="modal" data-target="#testingModal">Ver guía de tallas</button>
-                            {!! Form::hidden('sizes', null, ['id' => 'size-selected']) !!}
+                            {!! Form::hidden('size', null, ['id' => 'size-selected']) !!}
                         </div>
                     @endif
                         <div class="row" style="margin-bottom: 20px">
                             <div class="col-sm-6 col-md-12">
                                 <div class="quantity-content">
-                                    <button class="btn-number" data-type="minus"><i class="fa fa-minus"></i></button>
-                                    <input type="number" value="1" class="quantity-number" size="4" min="1">
-                                    <button class="btn-number" data-type="plus"><i class="fa fa-plus"></i></button>
+                                    <button type="button" class="btn-number" data-type="minus"><i class="fa fa-minus"></i></button>
+                                    <input type="number" name="quantity" value="1" class="quantity-number" size="4" min="1" readonly>
+                                    <button type="button" class="btn-number" data-type="plus"><i class="fa fa-plus"></i></button>
                                 </div>
                                 <button class="btn btn-add-cart">
                                     Añadir al carrito
