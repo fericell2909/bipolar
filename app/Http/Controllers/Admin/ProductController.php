@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Stock;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -129,5 +130,29 @@ class ProductController extends Controller
             ->toArray();
 
         return view('web.shop.preview', compact('product', 'stockWithSizes'));
+    }
+
+    public function stock($productSlug)
+    {
+        $product = Product::findBySlugOrFail($productSlug);
+
+        $product->load('stocks.size');
+
+        return view('admin.products.stocks', compact('product'));
+    }
+
+    public function stockSave(Request $request, $stockId)
+    {
+        $this->validate($request, ['quantity' => 'required|numeric|between:1,1000']);
+
+        /** @var Stock $stock */
+        $stock = Stock::findOrFail($stockId);
+
+        $stock->quantity = $request->input('quantity');
+        $stock->save();
+
+        flash()->success('Se guardó con éxito');
+
+        return redirect()->back();
     }
 }
