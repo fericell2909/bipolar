@@ -42,7 +42,11 @@
                     <div class="product-subtitle">{{ $product->colors->first()->name }}</div>
                 @endif
                 <p class="product-price">
-                    <span class="product-amount">S/. {{ intval($product->price) }}</span>
+                    @if (Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN')
+                        <span class="product-amount">S/. {{ intval($product->price) }}</span>
+                    @elseif (Session::get('BIPOLAR_CURRENCY') === 'USD')
+                        <span class="product-amount">$ {{ intval($product->price_dolar) }}</span>
+                    @endif
                 </p>
                 <p class="product-description">
                     {{ $product->description }}
@@ -69,6 +73,7 @@
                             <button type="button" class="btn btn-default btn-sizes-modal" data-toggle="modal" data-target="#testingModal">Ver guía de tallas</button>
                             {!! Form::hidden('sizes', null, ['id' => 'size-selected']) !!}
                         </div>
+                    @endif
                         <div class="row" style="margin-bottom: 20px">
                             <div class="col-sm-6 col-md-12">
                                 <div class="quantity-content">
@@ -80,21 +85,17 @@
                                     Añadir al carrito
                                 </button>
                             </div>
-                            <div class="col-sm-6 col-md-4">
-
-                            </div>
                         </div>
-                        <div class="row" style="margin-bottom: 20px">
-                            <div class="col-sm-6 col-md-12 text-uppercase" style="margin-top: 10px;">
-                                <span class="text-uppercase">Cambia de moneda</span>
-                                <select name="currency_change" class="product-currency-select">
-                                    <option value="pen">Soles peruanos (PEN)</option>
-                                    <option value="usd">Dólar americano (USD)</option>
-                                </select>
-                            </div>
-                        </div>
-                    @endif
                 {!! Form::close() !!}
+                <div class="row" style="margin-bottom: 20px">
+                    <div class="col-sm-6 col-md-12 text-uppercase" style="margin-top: 10px;">
+                        <span class="text-uppercase">Cambia de moneda</span>
+                        {!! Form::select('currency_change',
+                            ['PEN' => 'Soles peruanos (PEN)', 'USD' => 'Dólar americano (USD)'],
+                            Session::get('BIPOLAR_CURRENCY'),
+                            ['id' => 'product-currency-select', 'class' => 'product-currency-select']) !!}
+                    </div>
+                </div>
                 <div class="bipolar-stock-status">
                     STATUS: EN STOCK
                 </div>

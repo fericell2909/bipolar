@@ -18,4 +18,10 @@ $(function () {
       arrow: true,
     });
   }
+
+  $('#product-currency-select').change(function (event) {
+    event.preventDefault();
+    const currency = $(this).val();
+    window.location.href = `/change-currency?currency=${currency}`;
+  });
 });

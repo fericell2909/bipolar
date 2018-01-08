@@ -5,6 +5,7 @@ Route::prefix(LaravelLocalization::setLocale())
     ->group(function () {
         Route::get('/', 'Web\LandingsController@home')->name('home');
         Route::get('account-management/{loginRegister?}', 'Web\Auth\LoginController@showLoginForm')->name('login-with-register');
+        Route::get('/change-currency', 'Web\LandingsController@changeCurrency')->name('change-currency');
 
         Route::post('login', 'Web\Auth\LoginController@login')->name('login.post');
         Route::post('register', 'Web\Auth\RegisterController@register')->name('register.post');

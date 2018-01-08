@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\HomePost;
-use App\Models\Product;
 use App\Models\Settings;
 use App\Models\Banner;
+use Illuminate\Http\Request;
 
 class LandingsController extends Controller
 {
@@ -26,6 +26,15 @@ class LandingsController extends Controller
             ->get();
 
         return view('welcome', compact('banners', 'homePosts', 'settings'));
+    }
+
+    public function changeCurrency(Request $request)
+    {
+        $this->validate($request, ['currency' => 'required|in:PEN,USD']);
+
+        \Session::put('BIPOLAR_CURRENCY', $request->input('currency'));
+
+        return redirect()->back();
     }
 
     public function bipolar()

@@ -14,6 +14,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Mi cuenta</a></li>
                         <li><a href="#">Checkout</a></li>
+                        <li class="dropdown-header">Idioma</li>
                         @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                             <li>
                                 <a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
@@ -21,6 +22,9 @@
                                 </a>
                             </li>
                         @endforeach
+                        <li class="dropdown-header">Moneda</li>
+                        <li><a href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a></li>
+                        <li><a href="{{ route('change-currency', ['currency' => 'USD']) }}">Dólares (USD)</a></li>
                         @auth
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Cerrar sesión</a></li>

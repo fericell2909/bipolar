@@ -23406,6 +23406,12 @@ $(function () {
       arrow: true
     });
   }
+
+  $('#product-currency-select').change(function (event) {
+    event.preventDefault();
+    var currency = $(this).val();
+    window.location.href = '/change-currency?currency=' + currency;
+  });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/jquery/dist/jquery.js")))
 
