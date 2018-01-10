@@ -15,9 +15,10 @@ class CreateCartTable extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->decimal('subtotal', 7, 2);
-            $table->decimal('total', 7, 2);
+            $table->unsignedInteger('user_id')->nullable();
+            $table->string('session_id', 300)->nullable();
+            $table->decimal('subtotal', 7, 2)->default(0.00);
+            $table->decimal('total', 7, 2)->default(0.00);
             $table->timestamps();
         });
     }

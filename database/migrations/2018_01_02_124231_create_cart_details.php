@@ -17,7 +17,9 @@ class CreateCartDetails extends Migration
             $table->increments('id');
             $table->unsignedInteger('cart_id');
             $table->unsignedInteger('product_id');
+            $table->unsignedInteger('stock_id')->nullable();
             $table->unsignedInteger('quantity')->default(1);
+            $table->unsignedDecimal('total', 7, 2)->default(0);
         });
 
         Schema::table('cart_details', function (Blueprint $table) {

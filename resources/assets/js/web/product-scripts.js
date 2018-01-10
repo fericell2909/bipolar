@@ -43,13 +43,21 @@ $(function () {
 
   $('#product-add-cart').submit(function (event) {
     event.preventDefault();
-    console.log($(this).serializeArray());
-    // Check if product has sizes
+    
+    const formFields = $(this).serializeArray();
+    
     if ($('.product-sizes').length) {
       const $sizeSelected = $('#size-selected');
       if ($sizeSelected.val().trim().length === 0) {
-        swal('Atención', 'Necesitas seleccionar una talla para continuar', 'warning');
+        return swal('Atención', 'Necesitas seleccionar una talla para continuar', 'warning');
       }
     }
+
+    const fields = {};
+    $(this).serializeArray().map(field => {
+      fields[field['name']] = field['value'];
+    });    
+
+    return $.post('/ajax/cart/product', fields).done(() => location.reload());
   });
 });

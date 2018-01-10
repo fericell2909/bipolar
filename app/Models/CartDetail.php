@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class CartDetail extends Model
 {
+    protected $fillable = ['cart_id', 'product_id'];
+    public $timestamps = false;
+
     public function cart()
     {
         return $this->belongsTo(Cart::class);
@@ -14,5 +17,10 @@ class CartDetail extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function stock()
+    {
+        return $this->belongsTo(Stock::class);
     }
 }

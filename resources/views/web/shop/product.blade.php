@@ -52,6 +52,7 @@
                     {{ $product->description }}
                 </p>
                 {!! Form::open(['id' => 'product-add-cart']) !!}
+                    {!! Form::hidden('product_id', $product->hash_id) !!}
                     @if(count($stockWithSizes))
                         <div class="product-sizes">
                             <h6 class="text-uppercase">Selecciona tu talla</h6>

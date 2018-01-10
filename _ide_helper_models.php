@@ -32,13 +32,18 @@ namespace App\Models{
  * @property int $id
  * @property int $cart_id
  * @property int $product_id
+ * @property int|null $stock_id
  * @property int $quantity
+ * @property float $total
  * @property-read \App\Models\Cart $cart
  * @property-read \App\Models\Product $product
+ * @property-read \App\Models\Stock|null $stock
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereCartId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereStockId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereTotal($value)
  */
 	class CartDetail extends \Eloquent {}
 }
@@ -129,15 +134,17 @@ namespace App\Models{
  * App\Models\Cart
  *
  * @property int $id
- * @property int $user_id
+ * @property int|null $user_id
+ * @property string|null $session_id
  * @property float $subtotal
  * @property float $total
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CartDetail[] $details
- * @property-read \App\Models\User $user
+ * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSessionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSubtotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereTotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereUpdatedAt($value)

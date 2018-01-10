@@ -27,3 +27,4 @@ Route::prefix(LaravelLocalization::setLocale())
     });
 
 Route::post('ajax/oauth/facebook', 'Web\Auth\LoginController@facebookAuth');
+Route::post('ajax/cart/product', 'Web\Ajax\CartController@add');
