@@ -50,7 +50,7 @@
                 <div class="bipolar-shopping-cart-wrapper">
                     <div class="bipolar-shopping-cart-content">
                         <img src="{{ asset('images/cart.svg') }}" width="35">
-                        <span class="cart-number-count">0</span>
+                        <span class="cart-number-count">{{ CartBipolar::count() }}</span>
                     </div>
                 </div>
             </div>

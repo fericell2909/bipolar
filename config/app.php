@@ -239,6 +239,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
+        'CartBipolar' => Facades\App\Instances\CartBipolar::class,
     ],
 
 ];
