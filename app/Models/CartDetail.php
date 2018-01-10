@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CartDetail extends Model
 {
-    protected $fillable = ['cart_id', 'product_id'];
+    protected $fillable = ['cart_id', 'product_id', 'stock_id'];
     public $timestamps = false;
 
     public function cart()

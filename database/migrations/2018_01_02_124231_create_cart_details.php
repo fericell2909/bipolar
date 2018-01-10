@@ -18,7 +18,7 @@ class CreateCartDetails extends Migration
             $table->unsignedInteger('cart_id');
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('stock_id')->nullable();
-            $table->unsignedInteger('quantity')->default(1);
+            $table->unsignedInteger('quantity')->default(0);
             $table->unsignedDecimal('total', 7, 2)->default(0);
         });
 
