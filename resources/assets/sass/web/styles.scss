@@ -2,6 +2,8 @@ body {
   font-family: $gotham-light-font;
   font-size: 13px;
   color: $bipolar-text-gray;
+  padding-top: 231px;
+  padding-bottom: 363px;
 }
 
 .text-heading-mobile {
@@ -10,6 +12,10 @@ body {
 
 .bipolar-background {
   background-color: $bipolar-color;
+}
+
+.bipolar-the-content {
+  background-color: white;
 }
 
 .title-text-content {
@@ -120,7 +126,6 @@ a {
 
 .breadcrumb {
   @extend .breadcrumb-without-padding;
-  padding-top: 250px;
 }
 
 .breadcrumb-content {

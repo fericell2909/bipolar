@@ -33,4 +33,18 @@ class CartBipolar
 
         return $cart->details->count();
     }
+
+    public function content()
+    {
+        if ($this->count() === 0) {
+            return [];
+        }
+
+        return $this->last()->details;
+    }
+
+    public function totalCurrency()
+    {
+        return $this->last()->total_currency;
+    }
 }

@@ -1,12 +1,4 @@
 @extends('web.layouts.app_web')
-@push('css_plus')
-    <style>
-        .bipolar-container {
-            padding-top: 250px;
-            margin-top: 0;
-        }
-    </style>
-@endpush
 @section('content')
     {!! Form::open(['id' => 'shopForm', 'method' => 'GET']) !!}
     <div class="bipolar-container">

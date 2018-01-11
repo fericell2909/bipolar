@@ -42,11 +42,7 @@
                     <div class="product-subtitle">{{ $product->colors->first()->name }}</div>
                 @endif
                 <p class="product-price">
-                    @if (Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN')
-                        <span class="product-amount">S/. {{ intval($product->price) }}</span>
-                    @elseif (Session::get('BIPOLAR_CURRENCY') === 'USD')
-                        <span class="product-amount">$ {{ intval($product->price_dolar) }}</span>
-                    @endif
+                    <span class="product-amount">{{ $product->price_currency }}</span>
                 </p>
                 <p class="product-description">
                     {{ $product->description }}

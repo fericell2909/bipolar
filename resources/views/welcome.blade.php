@@ -11,7 +11,7 @@
     {{-- Script de Font Awesome --}}
     <script src="https://use.fontawesome.com/d71cf672b2.js"></script>
 </head>
-<body>
+<body style="padding-top: 0;">
     @include('web.partials.main-bar', ['background' => false])
     @include('web.partials.alternate_bar')
     <section class="container visible-xs-block">

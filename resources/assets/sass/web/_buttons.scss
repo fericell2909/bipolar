@@ -113,6 +113,10 @@ fieldset[disabled] .btn-dark.active {
   }
 }
 
+.btn-dark-rounded {
+  @extend .btn-add-cart;
+}
+
 .quantity-content {
   display: inline-block;
   width: 120px;

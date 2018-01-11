@@ -56,7 +56,9 @@
             </div>
         </div>
     </section>
-    @yield('content')
+    <div class="bipolar-the-content">
+        @yield('content')
+    </div>
     @include('web.partials.footer')
     <script src="{{ mix('js/app-web-scripts.js') }}"></script>
     @stack('js_plus')

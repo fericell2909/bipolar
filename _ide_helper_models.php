@@ -35,7 +35,9 @@ namespace App\Models{
  * @property int|null $stock_id
  * @property int $quantity
  * @property float $total
+ * @property float $total_dolar
  * @property-read \App\Models\Cart $cart
+ * @property-read mixed $total_currency
  * @property-read \App\Models\Product $product
  * @property-read \App\Models\Stock|null $stock
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereCartId($value)
@@ -44,6 +46,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereStockId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereTotalDolar($value)
  */
 	class CartDetail extends \Eloquent {}
 }
@@ -138,6 +141,7 @@ namespace App\Models{
  * @property string|null $session_id
  * @property float $subtotal
  * @property float $total
+ * @property float $total_dolar
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CartDetail[] $details
@@ -147,6 +151,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSessionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSubtotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereTotalDolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereUserId($value)
  */
@@ -173,6 +178,7 @@ namespace App\Models{
  * @property \Carbon\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
  * @property-read string $hash_id
+ * @property-read mixed $price_currency
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommendeds
  * @property-read \App\Models\State|null $state

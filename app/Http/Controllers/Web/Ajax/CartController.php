@@ -44,7 +44,11 @@ class CartController extends Controller
         }
 
         $cartDetail->quantity = $cartDetail->quantity + $request->input('quantity');
+        $cartDetail->total = $cartDetail->product->price * $cartDetail->quantity;
+        $cartDetail->total_dolar = $cartDetail->product->price_dolar * $cartDetail->quantity;
         $cartDetail->save();
+
+        $cart->load('details');
 
         $cart = $this->calculateTotal($cart);
 
@@ -56,9 +60,13 @@ class CartController extends Controller
         $total = $cart->details->sum(function ($detail) {
             return $detail->total;
         });
+        $totalDolar = $cart->details->sum(function ($detail) {
+            return $detail->total_dolar;
+        });
 
         $cart->subtotal = $total;
         $cart->total = $total;
+        $cart->total_dolar = $totalDolar;
         $cart->save();
 
         return $cart;

@@ -8359,7 +8359,8 @@ button.close {
 }
 
 .btn-dark,
-.btn-add-cart {
+.btn-add-cart,
+.btn-dark-rounded {
   color: white;
   background-color: black;
   border-color: black;
@@ -8367,19 +8368,24 @@ button.close {
 
 .btn-dark:hover,
 .btn-add-cart:hover,
+.btn-dark-rounded:hover,
 .btn-dark:focus,
 .btn-add-cart:focus,
+.btn-dark-rounded:focus,
 .btn-dark:active,
 .btn-add-cart:active,
+.btn-dark-rounded:active,
 .btn-dark.active,
-.active.btn-add-cart {
+.active.btn-add-cart,
+.active.btn-dark-rounded {
   color: white;
   background-color: #312E36;
   border-color: black;
 }
 
 .open .dropdown-toggle.btn-dark,
-.open .dropdown-toggle.btn-add-cart {
+.open .dropdown-toggle.btn-add-cart,
+.open .dropdown-toggle.btn-dark-rounded {
   color: white;
   background-color: #312E36;
   border-color: black;
@@ -8387,88 +8393,107 @@ button.close {
 
 .btn-dark:active,
 .btn-add-cart:active,
+.btn-dark-rounded:active,
 .btn-dark.active,
-.active.btn-add-cart {
+.active.btn-add-cart,
+.active.btn-dark-rounded {
   background-image: none;
 }
 
 .open .dropdown-toggle.btn-dark,
-.open .dropdown-toggle.btn-add-cart {
+.open .dropdown-toggle.btn-add-cart,
+.open .dropdown-toggle.btn-dark-rounded {
   background-image: none;
 }
 
 .btn-dark.disabled,
 .disabled.btn-add-cart,
+.disabled.btn-dark-rounded,
 .btn-dark[disabled],
-[disabled].btn-add-cart {
+[disabled].btn-add-cart,
+[disabled].btn-dark-rounded {
   background-color: black;
   border-color: black;
 }
 
 fieldset[disabled] .btn-dark,
-fieldset[disabled] .btn-add-cart {
+fieldset[disabled] .btn-add-cart,
+fieldset[disabled] .btn-dark-rounded {
   background-color: black;
   border-color: black;
 }
 
 .btn-dark.disabled:hover,
 .disabled.btn-add-cart:hover,
+.disabled.btn-dark-rounded:hover,
 .btn-dark[disabled]:hover,
-[disabled].btn-add-cart:hover {
+[disabled].btn-add-cart:hover,
+[disabled].btn-dark-rounded:hover {
   background-color: black;
   border-color: black;
 }
 
 fieldset[disabled] .btn-dark:hover,
-fieldset[disabled] .btn-add-cart:hover {
+fieldset[disabled] .btn-add-cart:hover,
+fieldset[disabled] .btn-dark-rounded:hover {
   background-color: black;
   border-color: black;
 }
 
 .btn-dark.disabled:focus,
 .disabled.btn-add-cart:focus,
+.disabled.btn-dark-rounded:focus,
 .btn-dark[disabled]:focus,
-[disabled].btn-add-cart:focus {
+[disabled].btn-add-cart:focus,
+[disabled].btn-dark-rounded:focus {
   background-color: black;
   border-color: black;
 }
 
 fieldset[disabled] .btn-dark:focus,
-fieldset[disabled] .btn-add-cart:focus {
+fieldset[disabled] .btn-add-cart:focus,
+fieldset[disabled] .btn-dark-rounded:focus {
   background-color: black;
   border-color: black;
 }
 
 .btn-dark.disabled:active,
 .disabled.btn-add-cart:active,
+.disabled.btn-dark-rounded:active,
 .btn-dark[disabled]:active,
-[disabled].btn-add-cart:active {
+[disabled].btn-add-cart:active,
+[disabled].btn-dark-rounded:active {
   background-color: black;
   border-color: black;
 }
 
 fieldset[disabled] .btn-dark:active,
-fieldset[disabled] .btn-add-cart:active {
+fieldset[disabled] .btn-add-cart:active,
+fieldset[disabled] .btn-dark-rounded:active {
   background-color: black;
   border-color: black;
 }
 
 .btn-dark.disabled.active,
 .disabled.active.btn-add-cart,
+.disabled.active.btn-dark-rounded,
 .btn-dark[disabled].active,
-[disabled].active.btn-add-cart {
+[disabled].active.btn-add-cart,
+[disabled].active.btn-dark-rounded {
   background-color: black;
   border-color: black;
 }
 
 fieldset[disabled] .btn-dark.active,
-fieldset[disabled] .active.btn-add-cart {
+fieldset[disabled] .active.btn-add-cart,
+fieldset[disabled] .active.btn-dark-rounded {
   background-color: black;
   border-color: black;
 }
 
 .btn-dark .badge,
-.btn-add-cart .badge {
+.btn-add-cart .badge,
+.btn-dark-rounded .badge {
   color: black;
   background-color: white;
 }
@@ -8477,7 +8502,8 @@ fieldset[disabled] .active.btn-add-cart {
   border-radius: 15px;
 }
 
-.btn-add-cart {
+.btn-add-cart,
+.btn-dark-rounded {
   text-transform: uppercase;
   text-align: center;
   padding: 9px 25px;
@@ -8488,7 +8514,8 @@ fieldset[disabled] .active.btn-add-cart {
   -webkit-font-smoothing: antialiased;
 }
 
-.btn-add-cart:hover {
+.btn-add-cart:hover,
+.btn-dark-rounded:hover {
   color: black;
   background: white;
   border: 1px solid black;
@@ -8541,6 +8568,8 @@ body {
   font-family: "GothamLight", Verdana;
   font-size: 13px;
   color: #706f6f;
+  padding-top: 231px;
+  padding-bottom: 363px;
 }
 
 .text-heading-mobile {
@@ -8549,6 +8578,10 @@ body {
 
 .bipolar-background {
   background-color: #fcbeb9;
+}
+
+.bipolar-the-content {
+  background-color: white;
 }
 
 .title-text-content {
@@ -8657,10 +8690,6 @@ a:hover {
   background-color: #F5F5F5;
 }
 
-.breadcrumb {
-  padding-top: 250px;
-}
-
 .breadcrumb-content {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -8705,6 +8734,7 @@ input[type="date"] {
   position: fixed;
   width: 100%;
   z-index: 10;
+  top: 0;
 }
 
 .bipolar-first-navbar {
@@ -9217,6 +9247,10 @@ input[type="date"] {
   background: black;
   color: white;
   padding: 70px 30px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: -30;
 }
 
 .bipolar-footer .title-section span {
@@ -9384,5 +9418,112 @@ input[type="date"] {
   font-family: "BauerBodoniStdBold", Arial;
   color: black;
   letter-spacing: 0.2em;
+}
+
+.table-cart {
+  width: 100%;
+}
+
+.table-cart thead th {
+  text-transform: uppercase;
+  padding: 10px 15px;
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 17px;
+  color: black;
+  font-weight: normal;
+  letter-spacing: 2.55px;
+}
+
+.table-cart tbody td {
+  padding: 10px 15px;
+  vertical-align: middle;
+}
+
+.table-cart tbody td.product-name > a {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 17px;
+  color: black;
+  font-weight: normal;
+}
+
+.table-cart tbody td.product-name .product-variation {
+  font-family: "GothamLight", Verdana;
+  font-weight: normal;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.table-cart tbody td.product-price > .amount {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 17px;
+  color: black;
+  font-weight: normal;
+}
+
+.background-title-image {
+  background-image: url("https://bipolar-peru.s3.amazonaws.com/assets/fondo-rayas-web-con-negro.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 50px;
+  height: 300px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.background-title-image h1 {
+  font-family: "BauerBodoniStdBold", Arial;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 40px;
+  color: white;
+}
+
+.cart-total-inner {
+  float: right;
+  width: 50%;
+  padding: 0 15px;
+  margin-bottom: 50px;
+}
+
+.cart-total-inner > h2 {
+  font-family: "BauerBodoniStdBold", Arial;
+  text-transform: uppercase;
+  color: black;
+  font-size: 17px;
+  letter-spacing: 2.55px;
+  font-weight: normal;
+  line-height: 17px;
+  margin-bottom: 40px;
+}
+
+.cart-total-inner td .concept {
+  font-family: "GothamLight", Verdana;
+  font-weight: normal;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.cart-total-inner td .amount {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 17px;
+  color: black;
+  font-weight: normal;
 }
 

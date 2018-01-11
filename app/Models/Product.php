@@ -78,4 +78,13 @@ class Product extends Model
 
         return $sizes;
     }
+
+    public function getPriceCurrencyAttribute()
+    {
+        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
+            return "S/ " . intval($this->price);
+        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
+            return "$ " . intval($this->price_dolar);
+        }
+    }
 }

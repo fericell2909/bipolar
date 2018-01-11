@@ -19,6 +19,7 @@ class CreateCartTable extends Migration
             $table->string('session_id', 300)->nullable();
             $table->decimal('subtotal', 7, 2)->default(0.00);
             $table->decimal('total', 7, 2)->default(0.00);
+            $table->decimal('total_dolar', 7, 2)->default(0.00);
             $table->timestamps();
         });
     }
