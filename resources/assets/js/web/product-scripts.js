@@ -26,9 +26,9 @@ $(function () {
     window.location.href = `/change-currency?currency=${currency}`;
   });
 
-  $('.btn-number').click(function () {
+  $('.btn-number').on('click', function () {
     const operation = $(this).data('type');
-    const $quantity = $("input[name='quantity']");
+    const $quantity = $(this).siblings(".quantity-number");
     let quantity = parseInt($quantity.val());
     if (operation === 'minus') {
       let newValue = quantity - 1;

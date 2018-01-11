@@ -25334,9 +25334,9 @@ $(function () {
     window.location.href = '/change-currency?currency=' + currency;
   });
 
-  $('.btn-number').click(function () {
+  $('.btn-number').on('click', function () {
     var operation = $(this).data('type');
-    var $quantity = $("input[name='quantity']");
+    var $quantity = $(this).siblings(".quantity-number");
     var quantity = parseInt($quantity.val());
     if (operation === 'minus') {
       var newValue = quantity - 1;

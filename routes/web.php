@@ -25,6 +25,7 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::get('shipping', 'Web\LandingsController@shipping')->name('landings.shipping');
         Route::get('showroom', 'Web\LandingsController@showroom')->name('landings.showroom');
         Route::get('cart', 'Web\CartController@cart')->name('cart');
+        Route::post('cart', 'Web\CartController@update')->name('cart.update');
     });
 
 Route::post('ajax/oauth/facebook', 'Web\Auth\LoginController@facebookAuth');

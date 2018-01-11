@@ -47,4 +47,21 @@ class CartBipolar
     {
         return $this->last()->total_currency;
     }
+
+    public function recalculate()
+    {
+        $cart = $this->last();
+
+        $total = $cart->details->sum(function ($detail) {
+            return $detail->total;
+        });
+        $totalDolar = $cart->details->sum(function ($detail) {
+            return $detail->total_dolar;
+        });
+
+        $cart->subtotal = $total;
+        $cart->total = $total;
+        $cart->total_dolar = $totalDolar;
+        $cart->save();
+    }
 }

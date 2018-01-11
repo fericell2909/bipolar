@@ -3,6 +3,7 @@
 	<h1>Shopping cart</h1>
 </div>
 <div class="container">
+  {!! Form::open() !!}
 	<table class="table-cart">
 		<thead>
 			<tr>
@@ -31,7 +32,7 @@
 				<td>
           <div class="quantity-content">
             <button type="button" class="btn-number" data-type="minus"><i class="fa fa-minus"></i></button>
-            <input type="number" name="quantity" value="{{ $cartDetail->quantity }}" class="quantity-number" size="4" min="1" readonly>
+            <input type="number" name="quantity[{{ $cartDetail->hash_id }}]" value="{{ $cartDetail->quantity }}" class="quantity-number" size="4" min="1" readonly>
             <button type="button" class="btn-number" data-type="plus"><i class="fa fa-plus"></i></button>
           </div>
         </td>
@@ -44,14 +45,15 @@
   </table>
   <div class="row">
     <div class="col-md-offset-8 col-md-4">
-      <button class="btn btn-dark-rounded">
+      <button type="submit" class="btn btn-dark-rounded">
         Actualizar carrito
       </button>
-      <button class="btn btn-dark-rounded">
+      <a class="btn btn-dark-rounded">
         Ir a la caja
-      </button>
+      </a>
     </div>
   </div>
+  {!! Form::close() !!}
   <div class="cart-total-inner">
     <h2>Total</h2>
     <table class="table">
