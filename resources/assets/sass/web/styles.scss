@@ -101,6 +101,31 @@ a {
   }
 }
 
+.page-404 {
+  height: 352px;
+  width: 100%;
+  text-align: center;
+
+  > h1 {
+    font-family: $bodoni-bold-font;
+    color: $bipolar-black;
+    letter-spacing: 12px;
+    display: inline-block;
+    border: 5px solid #eee;
+    padding: 21px 34px;
+    font-size: 80px;
+    line-height: 1.2;
+  }
+
+  p {
+    font-family: $bodoni-bold-font;
+    font-size: 15px;
+    letter-spacing: 0.2em;
+    color: $bipolar-black;
+    font-style: normal;
+  }
+}
+
 .carousel-home {
   height: auto;
   max-height: 800px;

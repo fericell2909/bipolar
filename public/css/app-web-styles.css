@@ -8673,6 +8673,31 @@ a:hover {
   text-transform: uppercase;
 }
 
+.page-404 {
+  height: 352px;
+  width: 100%;
+  text-align: center;
+}
+
+.page-404 > h1 {
+  font-family: "BauerBodoniStdBold", Arial;
+  color: black;
+  letter-spacing: 12px;
+  display: inline-block;
+  border: 5px solid #eee;
+  padding: 21px 34px;
+  font-size: 80px;
+  line-height: 1.2;
+}
+
+.page-404 p {
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  color: black;
+  font-style: normal;
+}
+
 .carousel-home {
   height: auto;
   max-height: 800px;
