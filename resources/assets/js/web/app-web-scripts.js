@@ -27,6 +27,15 @@ $('.cart-white-mobile').click(function () {
     }
 });
 
+$('.bipolar-shopping-cart-content').click(function () {
+    const $cart = $('.cart-inside');
+    if ($cart.css('visibility') === 'hidden') {
+        $cart.css('visibility', 'visible');
+    } else if ($cart.css('visibility') === 'visible') {
+        $cart.css('visibility', 'hidden');
+    }
+});
+
 require('owl.carousel/dist/owl.carousel');
 require('./theme-scripts');
 require('./shop-scripts');

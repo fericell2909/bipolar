@@ -25300,6 +25300,15 @@ $('.cart-white-mobile').click(function () {
     }
 });
 
+$('.bipolar-shopping-cart-content').click(function () {
+    var $cart = $('.cart-inside');
+    if ($cart.css('visibility') === 'hidden') {
+        $cart.css('visibility', 'visible');
+    } else if ($cart.css('visibility') === 'visible') {
+        $cart.css('visibility', 'hidden');
+    }
+});
+
 __webpack_require__("./node_modules/owl.carousel/dist/owl.carousel.js");
 __webpack_require__("./resources/assets/js/web/theme-scripts.js");
 __webpack_require__("./resources/assets/js/web/shop-scripts.js");

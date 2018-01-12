@@ -8814,7 +8814,8 @@ input[type="date"] {
   font-weight: bold;
   background-color: black;
   color: white;
-  font-size: 12px;
+  font-size: 11px;
+  font-family: "GothamBold", Verdana;
   padding: 2px;
   border-radius: 100%;
   top: 0;
@@ -8822,7 +8823,92 @@ input[type="date"] {
   width: 20px;
   height: 20px;
   text-align: center;
-  line-height: 16px;
+  line-height: 17px;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside {
+  visibility: hidden;
+  position: absolute;
+  display: block;
+  background: white;
+  -webkit-box-shadow: 0 3px 10px -2px #777;
+          box-shadow: 0 3px 10px -2px #777;
+  padding: 0 22px;
+  top: 40px;
+  right: -8px;
+  width: 370px;
+  z-index: 10;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside ul.cart-list {
+  list-style: none;
+  line-height: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside ul.cart-list li {
+  padding: 10px 0;
+  border-bottom: solid 1px #ddd;
+  position: relative;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside ul.cart-list li > a.product-link-cart {
+  display: block;
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 17px;
+  color: black;
+  font-weight: normal;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside ul.cart-list li > a.product-link-cart > img {
+  float: left;
+  width: 70px;
+  height: 40px;
+  padding-right: 10px;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside ul.cart-list li .quantity {
+  font-family: "BauerBodoniStdBold", Arial;
+  color: black;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside ul.cart-list li .product-delete-cart {
+  position: absolute;
+  right: 0;
+  top: 20px;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside .total {
+  border-bottom: solid 1px #ddd;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #706f6f;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside .total strong {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside .total .amount {
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 17px;
+  color: black;
+  font-weight: normal;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside .buttons {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside .buttons .btn:nth-child(2) {
+  margin-left: 10px;
 }
 
 .background-line-image {
