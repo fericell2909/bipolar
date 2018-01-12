@@ -1,4 +1,4 @@
-<div class="bipolar-grand-header hidden-sm {{ $background === true ? 'bipolar-background' : null  }}">
+<div class="bipolar-grand-header hidden-sm hidden-xs {{ $background === true ? 'bipolar-background' : null  }}">
     <nav class="navbar bipolar-navbar-styles bipolar-first-navbar">
         <div class="container">
             <div class="navbar-header">

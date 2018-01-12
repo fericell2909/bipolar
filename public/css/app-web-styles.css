@@ -8570,10 +8570,13 @@ body {
   color: #706f6f;
   padding-top: 231px;
   padding-bottom: 363px;
+  -webkit-font-smoothing: antialiased;
 }
 
-.text-heading-mobile {
-  margin-top: 12px;
+@media screen and (max-width: 991px) {
+  body {
+    padding-bottom: 0;
+  }
 }
 
 .bipolar-background {
@@ -8672,8 +8675,11 @@ a:hover {
 
 .header-worldwide-shipping {
   font-family: "BauerBodoniStdBold", Arial;
+  color: white;
+  background: black;
   text-transform: uppercase;
   text-align: center;
+  vertical-align: middle;
   line-height: 68px;
   font-weight: 400;
   font-size: 15px;
@@ -8872,16 +8878,6 @@ input[type="date"] {
   background: transparent url(/images/linea.png?5b723fca197b8da1ba59bb91e81e95e4) repeat-x 0 25px;
 }
 
-.header-mobile-menu,
-.header-worldwide-shipping {
-  background: black;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 10px 15px;
-  text-transform: uppercase;
-}
-
 .bipolar-navbar-styles {
   margin-bottom: 0;
   border-radius: 0;
@@ -8940,19 +8936,66 @@ input[type="date"] {
   width: 100%;
 }
 
-.cart-number-count-inverse {
-  position: relative;
-  background-color: #fcbeb9;
-  color: black;
+.text-heading-mobile {
+  font-family: "GothamBold", Verdana;
   font-size: 12px;
-  padding: 2px;
-  border-radius: 100%;
-  top: 13px;
-  right: 7px;
-  width: 20px;
-  height: 20px;
+  padding-top: 17px;
+  color: black;
+}
+
+.text-heading-account {
+  font-family: "GothamBold", Verdana;
   text-align: center;
-  line-height: 18px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: black;
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width: 991px) {
+  .header-mobile-menu {
+    display: block;
+    background: black;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 24px;
+    padding: 15px;
+  }
+
+  .header-mobile-menu .menu-button {
+    font-family: "BauerBodoniStdBold", Arial;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  .header-mobile-menu .cart-white {
+    position: relative;
+    display: block;
+    float: right;
+    font-size: 22px;
+    top: -5px;
+    left: -15px;
+  }
+
+  .header-mobile-menu .cart-white .cart-number-count-inverse {
+    position: absolute;
+    background-color: #fcbeb9;
+    color: black;
+    font-family: "GothamBold", Verdana;
+    font-size: 11px;
+    border-radius: 100%;
+    top: 0;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+  }
 }
 
 .bipolar-filter-title {
@@ -9253,7 +9296,11 @@ input[type="date"] {
   z-index: -30;
 }
 
-.bipolar-footer .title-section span {
+.bipolar-footer .item-content {
+  padding-bottom: 20px;
+}
+
+.bipolar-footer .item-content .title-section span {
   text-transform: uppercase;
   font-size: 17px;
   font-family: "BauerBodoniStdBold", Arial;
@@ -9262,39 +9309,53 @@ input[type="date"] {
   border-bottom: 1px solid white;
 }
 
-.bipolar-footer ul {
+.bipolar-footer .item-content ul {
   padding: 0;
   margin-top: 17px;
   list-style-type: none;
 }
 
-.bipolar-footer ul > li {
+.bipolar-footer .item-content ul > li {
+  font-family: "GothamLight", Verdana;
+  font-weight: 400;
+  padding-top: 5px;
   margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 11px;
   list-style: none;
-}
-
-.bipolar-footer ul > li > a {
+  line-height: 13px;
   color: white;
 }
 
-.bipolar-footer ul > li > a:hover {
+.bipolar-footer .item-content ul > li > a {
+  color: white;
+  text-transform: uppercase;
+}
+
+.bipolar-footer .item-content ul > li > a:hover {
   color: #fcbeb9;
   text-decoration: none;
 }
 
-.bipolar-footer .footer-icons {
+.bipolar-footer .item-content .footer-icons {
   margin-top: 17px;
 }
 
-.bipolar-footer .footer-icons a {
+.bipolar-footer .item-content .footer-icons a {
   color: white;
   margin-right: 15px;
   font-size: 1.4em;
 }
 
-.bipolar-footer .footer-icons a:hover {
+.bipolar-footer .item-content .footer-icons a:hover {
   color: #fcbeb9;
   text-decoration: none;
+}
+
+@media screen and (max-width: 991px) {
+  .bipolar-footer {
+    position: static;
+  }
 }
 
 .overlay-image {

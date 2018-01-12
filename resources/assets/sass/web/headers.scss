@@ -133,15 +133,6 @@
   background: transparent url('../../img/linea.png') repeat-x 0 25px;
 }
 
-.header-mobile-menu {
-  background: $bipolar-black;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 10px 15px;
-  text-transform: uppercase;
-}
-
 .bipolar-navbar-styles  {
   margin-bottom: 0;
   border-radius: 0;
@@ -198,19 +189,4 @@
 
 .full-image {
   width: 100%;
-}
-
-.cart-number-count-inverse {
-  position: relative;
-  background-color: $bipolar-color;
-  color: $bipolar-black;
-  font-size: 12px;
-  padding: 2px;
-  border-radius: 100%;
-  top: 13px;
-  right: 7px;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  line-height: 18px;
 }

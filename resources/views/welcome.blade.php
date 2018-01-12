@@ -14,25 +14,7 @@
 <body style="padding-top: 0;">
     @include('web.partials.main-bar', ['background' => false])
     @include('web.partials.alternate_bar')
-    <section class="container visible-xs-block">
-        <p class="text-center text-heading-mobile">¡Bienvenido invitado! Ingresa o regístrate</p>
-        <div class="dropdown show">
-            <a class="btn btn-link btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }}
-            </a>
-            @auth
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="{{ route('profile') }}">Mis datos</a>
-                    <a class="dropdown-item" href="#" id="logoutLink">Cerrar sesión</a>
-                </div>
-            @endauth
-        </div>
-    </section>
-    <section class="header-mobile visible-xs-block">
-        <a href="#">
-            <img src="{{ asset('images/logo-linea.png') }}">
-        </a>
-    </section>
+    @include('web.partials.mobile-bar')
     <div>
         <div class="carousel slide carousel-home" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
@@ -44,9 +26,6 @@
             </div>
         </div>
     </div>
-    <section class="header-mobile-menu visible-xs-block">
-        MENU
-    </section>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

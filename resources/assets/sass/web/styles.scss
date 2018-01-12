@@ -4,10 +4,13 @@ body {
   color: $bipolar-text-gray;
   padding-top: 231px;
   padding-bottom: 363px;
+  -webkit-font-smoothing: antialiased;
 }
 
-.text-heading-mobile {
-  margin-top: 12px;
+@media screen and (max-width: 991px) {
+  body {
+    padding-bottom: 0;
+  }
 }
 
 .bipolar-background {
@@ -15,7 +18,7 @@ body {
 }
 
 .bipolar-the-content {
-  background-color: white;
+  background-color: $bipolar-white;
 }
 
 .title-text-content {
@@ -104,10 +107,12 @@ a {
 }
 
 .header-worldwide-shipping {
-  @extend .header-mobile-menu;
   font-family: $bodoni-bold-font;
+  color: $bipolar-white;
+  background: $bipolar-black;
   text-transform: uppercase;
   text-align: center;
+  vertical-align: middle;
   line-height: 68px;
   font-weight: 400;
   font-size: 15px;

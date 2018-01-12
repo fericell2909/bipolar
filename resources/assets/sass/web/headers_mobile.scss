@@ -1,0 +1,61 @@
+.text-heading-mobile {
+  font-family: $gotham-bold-font;
+  font-size: 12px;
+  padding-top: 17px;
+  color: $bipolar-black;
+}
+
+.text-heading-account {
+  font-family: $gotham-bold-font;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: $bipolar-black;
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width: 991px) {
+  .header-mobile-menu {
+    display: block;
+    background: $bipolar-black;
+    color: $bipolar-white;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 24px;
+    padding: 15px;
+
+    .menu-button {
+      font-family: $bodoni-bold-font;
+      display: inline-block;
+      vertical-align: middle;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .cart-white {
+      position: relative;
+      display: block;
+      float: right;
+      font-size: 22px;
+      top: -5px;
+      left: -15px;
+
+      .cart-number-count-inverse {
+        position: absolute;
+        background-color: $bipolar-color;
+        color: $bipolar-black;
+        font-family: $gotham-bold-font;
+        font-size: 11px;
+        border-radius: 100%;
+        top: 0;
+        right: -10px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+      }
+    }
+  }
+}
