@@ -18,6 +18,6 @@ if (mix.inProduction()) {
 }
 
 mix.browserSync({
-    proxy: 'bipolar.dev',
+    proxy: 'bipolar.wtf',
     open: false,
 });
