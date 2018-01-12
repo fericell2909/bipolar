@@ -79,7 +79,7 @@
                                 </div>
                                 @endif
                                 <div class="overlay-shop-container">
-                                    <img src="{{ $product->photos->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
+                                    <img src="{{ optional($product->photos)->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
                                     <div class="overlay-shop-image">
                                         <div class="overlay-shop-text">
                                             <a href="{{ route('shop.product', $product->slug) }}" style="text-decoration:none;">{{ $product->name }}</a>

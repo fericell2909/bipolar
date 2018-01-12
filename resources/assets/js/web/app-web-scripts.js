@@ -18,6 +18,15 @@ window.$('#logoutLink').click(event => {
     window.$.post('/logout', {}).done(() => location.reload());
 });
 
+$('.cart-white-mobile').click(function () {
+    const $cartMobile = $('.cart-inside-mobile');
+    if ($cartMobile.css('visibility') === 'hidden') {
+        $cartMobile.css('visibility', 'visible');
+    } else if ($cartMobile.css('visibility') === 'visible') {
+        $cartMobile.css('visibility', 'hidden');
+    }
+});
+
 require('owl.carousel/dist/owl.carousel');
 require('./theme-scripts');
 require('./shop-scripts');

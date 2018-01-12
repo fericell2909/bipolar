@@ -8364,6 +8364,9 @@ button.close {
   color: white;
   background-color: black;
   border-color: black;
+  font-family: "GothamBold", Verdana;
+  font-size: 11px;
+  text-transform: uppercase;
 }
 
 .btn-dark:hover,
@@ -8381,6 +8384,7 @@ button.close {
   color: white;
   background-color: #312E36;
   border-color: black;
+  outline: none;
 }
 
 .open .dropdown-toggle.btn-dark,
@@ -8499,7 +8503,8 @@ fieldset[disabled] .active.btn-dark-rounded {
 }
 
 .btn-rounded {
-  border-radius: 15px;
+  border-radius: 50px;
+  padding: 11px 22px;
 }
 
 .btn-add-cart,
@@ -8575,6 +8580,7 @@ body {
 
 @media screen and (max-width: 991px) {
   body {
+    padding-top: 0;
     padding-bottom: 0;
   }
 }
@@ -8973,7 +8979,7 @@ input[type="date"] {
     letter-spacing: 3px;
   }
 
-  .header-mobile-menu .cart-white {
+  .header-mobile-menu .cart-white-mobile {
     position: relative;
     display: block;
     float: right;
@@ -8982,7 +8988,7 @@ input[type="date"] {
     left: -15px;
   }
 
-  .header-mobile-menu .cart-white .cart-number-count-inverse {
+  .header-mobile-menu .cart-white-mobile .cart-number-count-inverse {
     position: absolute;
     background-color: #fcbeb9;
     color: black;
@@ -8995,6 +9001,87 @@ input[type="date"] {
     height: 20px;
     text-align: center;
     line-height: 20px;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile {
+    visibility: hidden;
+    position: absolute;
+    display: block;
+    background: white;
+    -webkit-box-shadow: 0 3px 10px -2px #777;
+            box-shadow: 0 3px 10px -2px #777;
+    padding: 0 22px;
+    top: 40px;
+    right: -30px;
+    width: 293px;
+    z-index: 10;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile ul.cart-list {
+    list-style: none;
+    line-height: 20px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile ul.cart-list li {
+    padding: 10px 0;
+    border-bottom: solid 1px #ddd;
+    position: relative;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile ul.cart-list li > a.product-link-cart {
+    display: block;
+    font-family: "BauerBodoniStdBold", Arial;
+    font-size: 17px;
+    color: black;
+    font-weight: normal;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile ul.cart-list li > a.product-link-cart > img {
+    float: left;
+    width: 70px;
+    height: 40px;
+    padding-right: 10px;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile ul.cart-list li .quantity {
+    font-family: "BauerBodoniStdBold", Arial;
+    color: black;
+    font-size: 12px;
+    font-weight: normal;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile ul.cart-list li .product-delete-cart {
+    position: absolute;
+    right: 0;
+    top: 20px;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile .total {
+    border-bottom: solid 1px #ddd;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #706f6f;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile .total strong {
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile .total .amount {
+    font-family: "BauerBodoniStdBold", Arial;
+    font-size: 17px;
+    color: black;
+    font-weight: normal;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile .buttons {
+    text-align: center;
+    margin-bottom: 20px;
   }
 }
 

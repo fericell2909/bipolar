@@ -25269,7 +25269,7 @@ module.exports = g;
 /***/ "./resources/assets/js/web/app-web-scripts.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {try {
+/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery, $) {try {
     window.$ = __webpack_provided_window_dot_jQuery = __webpack_require__("./node_modules/jquery/dist/jquery.js");
     __webpack_require__("./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js");
 } catch (e) {}
@@ -25291,11 +25291,20 @@ window.$('#logoutLink').click(function (event) {
     });
 });
 
+$('.cart-white-mobile').click(function () {
+    var $cartMobile = $('.cart-inside-mobile');
+    if ($cartMobile.css('visibility') === 'hidden') {
+        $cartMobile.css('visibility', 'visible');
+    } else if ($cartMobile.css('visibility') === 'visible') {
+        $cartMobile.css('visibility', 'hidden');
+    }
+});
+
 __webpack_require__("./node_modules/owl.carousel/dist/owl.carousel.js");
 __webpack_require__("./resources/assets/js/web/theme-scripts.js");
 __webpack_require__("./resources/assets/js/web/shop-scripts.js");
 __webpack_require__("./resources/assets/js/web/product-scripts.js");
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/jquery/dist/jquery.js")))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
 

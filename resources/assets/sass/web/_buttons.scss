@@ -2,10 +2,14 @@
   color: white;
   background-color: $bipolar-black;
   border-color: $bipolar-black;
+  font-family: $gotham-bold-font;
+  font-size: 11px;
+  text-transform: uppercase;
   &:hover, &:focus, &:active, &.active {
     color: white;
     background-color: #312E36;
     border-color: $bipolar-black;
+    outline: none;
   }
 }
 
@@ -91,9 +95,10 @@ fieldset[disabled] .btn-dark.active {
 }
 
 .btn-rounded {
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  padding: 11px 22px;
 }
 
 .btn-add-cart {

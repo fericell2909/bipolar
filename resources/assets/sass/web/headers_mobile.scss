@@ -34,7 +34,7 @@
       letter-spacing: 3px;
     }
 
-    .cart-white {
+    .cart-white-mobile {
       position: relative;
       display: block;
       float: right;
@@ -55,6 +55,86 @@
         height: 20px;
         text-align: center;
         line-height: 20px;
+      }
+
+      .cart-inside-mobile {
+        visibility: hidden;
+        position: absolute;
+        display: block;
+        background: $bipolar-white;
+        box-shadow: 0 3px 10px -2px #777;
+        padding: 0 22px;
+        top: 40px;
+        right: -30px;
+        width: 293px;
+        z-index: 10;
+
+        ul.cart-list {
+          list-style: none;
+          line-height: 20px;
+          padding: 0;
+          margin: 0;
+
+          li {
+            padding: 10px 0;
+            border-bottom: solid 1px #ddd;
+            position: relative;
+
+            > a.product-link-cart {
+              display: block;
+              font-family: $bodoni-bold-font;
+              font-size: 17px;
+              color: $bipolar-black;
+              font-weight: normal;
+
+              > img {
+                float: left;
+                width: 70px;
+                height: 40px;
+                padding-right: 10px;
+              }
+            }
+
+            .quantity {
+              font-family: $bodoni-bold-font;
+              color: $bipolar-black;
+              font-size: 12px;
+              font-weight: normal;
+            }
+
+            .product-delete-cart {
+              position: absolute;
+              right: 0;
+              top: 20px;
+            }
+          }
+        }
+
+        .total {
+          border-bottom: solid 1px #ddd;
+          padding: 10px 0;
+          font-size: 16px;
+          color: $bipolar-text-gray;
+          font-weight: 400;
+          margin-bottom: 20px;
+
+          strong {
+            text-transform: uppercase;
+            font-size: 12px;
+          }
+        
+          .amount {
+            font-family: $bodoni-bold-font;
+            font-size: 17px;
+            color: $bipolar-black;
+            font-weight: normal;
+          }
+        }
+
+        .buttons {
+          text-align: center;
+          margin-bottom: 20px;
+        }
       }
     }
   }
