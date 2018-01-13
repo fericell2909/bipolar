@@ -6,6 +6,17 @@ use App\Models\Cart;
 
 class CartBipolar
 {
+    private $cart;
+
+    public function __construct()
+    {
+        if (\Auth::check()) {
+            $this->cart = Cart::firstOrCreate(['user_id' => \Auth::id()]);
+        } else {
+            $this->cart = Cart::firstOrCreate(['session_id' => \Session::getId()]);
+        }
+    }
+
     /**
      * Return the last cart
      *
@@ -25,13 +36,11 @@ class CartBipolar
 
     public function count()
     {
-        $cart = $this->last();
-
-        if (is_null($cart)) {
+        if (is_null($this->cart)) {
             return 0;
         }
 
-        return $cart->details->count();
+        return $this->cart->details->count();
     }
 
     public function content()
@@ -40,28 +49,30 @@ class CartBipolar
             return [];
         }
 
-        return $this->last()->details;
+        return $this->cart->details;
     }
 
     public function totalCurrency()
     {
-        return $this->last()->total_currency;
+        return $this->cart->total_currency;
     }
 
     public function recalculate()
     {
-        $cart = $this->last();
-
-        $total = $cart->details->sum(function ($detail) {
+        $total = $this->cart->details->sum(function ($detail) {
             return $detail->total;
         });
-        $totalDolar = $cart->details->sum(function ($detail) {
+        $totalDolar = $this->cart->details->sum(function ($detail) {
             return $detail->total_dolar;
         });
+
+        $cart = $this->cart;
 
         $cart->subtotal = $total;
         $cart->total = $total;
         $cart->total_dolar = $totalDolar;
         $cart->save();
+
+        $this->cart = $cart;
     }
 }
