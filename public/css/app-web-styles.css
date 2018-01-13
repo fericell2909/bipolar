@@ -9786,3 +9786,130 @@ input[type="date"] {
   font-weight: normal;
 }
 
+.bipolar-checkout .panel-default {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.bipolar-checkout .panel-default:nth-last-child {
+  margin-bottom: 40px;
+}
+
+.bipolar-checkout .panel-default .panel-heading {
+  background: none;
+  text-align: center;
+  border-radius: 0;
+  border: none;
+}
+
+.bipolar-checkout .panel-default .panel-heading a {
+  display: block;
+  text-transform: uppercase;
+  border-bottom: 1px solid #eee;
+  padding: 10px 15px;
+  color: black;
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 17px;
+  letter-spacing: 2.5px;
+}
+
+.bipolar-checkout .panel-default .panel-heading + .panel-collapse > .panel-body {
+  border: 1px solid #eee;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.bipolar-checkout .table-review-order {
+  border: none;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.bipolar-checkout .table-review-order thead th {
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 17px;
+  color: black;
+  letter-spacing: 2.55px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #222;
+  padding: 10px 15px;
+}
+
+.bipolar-checkout .table-review-order tbody tr {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bipolar-checkout .table-review-order tbody tr td {
+  padding: 10px 15px;
+  vertical-align: middle;
+  color: black;
+}
+
+.bipolar-checkout .table-review-order tbody tr td.product-name {
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 17px;
+  font-weight: normal;
+}
+
+.bipolar-checkout .table-review-order tbody tr td.product-name .stock-variation {
+  font-family: "GothamLight", Verdana;
+  font-weight: normal;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.bipolar-checkout .table-review-order tbody tr td.total {
+  font-family: "GothamLight", Verdana;
+  font-weight: normal;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.bipolar-checkout .table-review-order tbody tr .amount {
+  font-family: "BauerBodoniStdBold", Arial;
+  font-size: 17px;
+  color: black;
+}
+
+.bipolar-checkout .payment-method {
+  border: 1px solid #eee;
+  border-radius: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.bipolar-checkout .payment-method .checkbox-content {
+  font-family: "GothamBold", Verdana;
+  text-transform: uppercase;
+  color: black;
+  padding-left: 10px;
+  font-size: 11px;
+}
+
+.bipolar-checkout .submit-payment {
+  padding: 13px;
+}
+
+.bipolar-checkout .submit-payment p {
+  padding: 0 13px;
+  margin-top: 22px;
+}
+
+.bipolar-checkout .submit-payment p label {
+  font-family: "GothamBold", Verdana;
+  font-size: 11px;
+  color: black;
+  text-transform: uppercase;
+  padding-left: 10px;
+  font-weight: normal;
+}
+
+.bipolar-checkout .submit-payment p a {
+  color: #fcbeb9;
+}
+

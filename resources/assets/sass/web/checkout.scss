@@ -1,0 +1,132 @@
+.bipolar-checkout {
+  .panel-default {
+    border: none;
+    box-shadow: none;
+    &:nth-last-child() {
+      margin-bottom: 40px;
+    }
+
+    .panel-heading {
+      background: none;
+      text-align: center;
+      border-radius: 0;
+      border: none;
+
+      a {
+        display: block;
+        text-transform: uppercase;
+        border-bottom: 1px solid #eee;
+        padding: 10px 15px;
+        color: $bipolar-black;
+        font-family: $bodoni-bold-font;
+        font-size: 17px;
+        letter-spacing: 2.5px;
+      }
+
+      & + .panel-collapse {
+        > .panel-body {
+          border: 1px solid #eee;
+          border-radius: 20px;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .table-review-order {
+    border: none;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 40px;
+
+    thead {
+      th {
+        font-family: $bodoni-bold-font;
+        font-size: 17px;
+        color: $bipolar-black;
+        letter-spacing: 2.55px;
+        text-transform: uppercase;
+        border-bottom: 1px solid #222;
+        padding: 10px 15px;
+      }
+    }
+
+    tbody {
+      tr {
+        border-top: 1px solid rgba(0,0,0,.1);
+
+        td {
+          padding: 10px 15px;
+          vertical-align: middle;
+          color: $bipolar-black;
+  
+          &.product-name {
+            font-family: $bodoni-bold-font;
+            font-size: 17px;
+            font-weight: normal;
+  
+            .stock-variation {
+              font-family: $gotham-light-font;
+              font-weight: normal;
+              font-size: 12px;
+              text-transform: uppercase;
+              letter-spacing: 0;
+            }
+          }
+          
+          &.total {
+            font-family: $gotham-light-font;
+            font-weight: normal;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0;
+          }
+        }
+
+        .amount {
+          font-family: $bodoni-bold-font;
+          font-size: 17px;
+          color: $bipolar-black;
+        }
+      }
+    }
+  }
+
+  .payment-method {
+    border: 1px solid #eee;
+    border-radius: 40px;
+    height: 40px;
+    line-height: 40px;
+
+    .checkbox-content {
+      font-family: $gotham-bold-font;
+      text-transform: uppercase;
+      color: $bipolar-black;
+      padding-left: 10px;
+      font-size: 11px;
+    }
+  }
+
+  .submit-payment {
+    padding: 13px;
+
+    p {
+      padding: 0 13px;
+      margin-top: 22px;
+      
+      label {
+        font-family: $gotham-bold-font;
+        font-size: 11px;
+        color: $bipolar-black;
+        text-transform: uppercase;
+        padding-left: 10px;
+        font-weight: normal;
+      }
+
+      a {
+        color: $bipolar-color;
+      }
+    }
+  }
+}

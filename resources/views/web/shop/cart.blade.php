@@ -1,4 +1,5 @@
-@extends('web.layouts.app_web') @section('content')
+@extends('web.layouts.app_web') 
+@section('content')
 <div class="background-title-image">
 	<h1>Shopping cart</h1>
 </div>
