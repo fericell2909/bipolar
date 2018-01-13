@@ -15,7 +15,7 @@
     @include('web.partials.main-bar', ['background' => false])
     @include('web.partials.alternate_bar')
     @include('web.partials.mobile-bar')
-    <div>
+    <div style="margin-top: -232px;">
         <div class="carousel slide carousel-home" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 @foreach($banners as $banner)
