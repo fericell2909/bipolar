@@ -25399,9 +25399,14 @@ $(function () {
 /* WEBPACK VAR INJECTION */(function($) {$(function () {
     // Icheck
     var shopIcheck = $('.icheck').iCheck({
-        checkboxClass: 'icheckbox_flat',
-        radioClass: 'iradio_flat'
+        checkboxClass: 'iradio_square',
+        radioClass: 'iradio_square',
+        increaseArea: '20%'
     });
+
+    if ($('.bipolar-filters').length) {
+        $('.bipolar-filters').show('slow');
+    }
 
     if ($('#shopForm').length) {
         shopIcheck.on('ifClicked', function () {

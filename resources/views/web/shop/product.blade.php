@@ -58,7 +58,7 @@
                                         <span class="product-size-text">{{ $stock['size'] }}</span>
                                     </button>
                                 @elseif($stock['quantity'] === 1)
-                                    <button type="button" class="product-size tooltip-container" title="FALTA 1 EN STOCK" data-stock-hash-id={{ $stock['hash_id'] }}>
+                                    <button type="button" class="product-size tooltip-container" title="QUEDA 1 EN STOCK" data-stock-hash-id={{ $stock['hash_id'] }}>
                                         <span class="product-size-text">{{ $stock['size'] }}</span>
                                     </button>
                                 @else
@@ -88,13 +88,10 @@
                     <div class="col-sm-6 col-md-12 text-uppercase" style="margin-top: 10px;">
                         <span class="text-uppercase">Cambia de moneda</span>
                         {!! Form::select('currency_change',
-                            ['PEN' => 'Soles peruanos (PEN)', 'USD' => 'Dólar americano (USD)'],
+                            ['PEN' => 'SOLES PERUANOS (PEN)', 'USD' => 'DÓLAR AMERICANO (USD)'],
                             Session::get('BIPOLAR_CURRENCY'),
                             ['id' => 'product-currency-select', 'class' => 'product-currency-select']) !!}
                     </div>
-                </div>
-                <div class="bipolar-stock-status">
-                    STATUS: EN STOCK
                 </div>
                 <div class="row">
                     <div class="col-sm-4 col-md-3 text-uppercase" style="margin-top: 10px;">
@@ -111,15 +108,15 @@
         </div>
         @if($product->recommendeds->count() > 0)
         <h3>Te recomendamos</h3>
-        <div class="row">
+        <div class="row" style="padding-left: 10px; margin-bottom: 25px;">
             @foreach($product->recommendeds as $recommended)
-                <div class="col-md-2">
+                <div class="col-md-2" style="padding-left:5px; padding-right: 5px;">
                     @if(count($recommended->photos))
                         <a href="{{ route('shop.product', $recommended->slug) }}">
-                            <img src="{{ $recommended->photos->first()->url }}" alt="{{ $recommended->name }}" class="img-responsive">
+                            <img src="{{ $recommended->photos->first()->url }}" class="img-responsive" alt="{{ $recommended->name }}">
                         </a>
                     @else
-                        <img src="https://placehold.it/320x200" alt="{{ $recommended->name }}" class="img-responsive">
+                        <img src="https://placehold.it/320x200" class="img-responsive" alt="{{ $recommended->name }}">
                     @endif
                 </div>
             @endforeach

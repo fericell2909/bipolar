@@ -8297,64 +8297,72 @@ button.close {
   }
 }
 
-/* iCheck plugin flat skin, black
+/* iCheck plugin Square skin, black
 ----------------------------------- */
 
-.icheckbox_flat,
-.iradio_flat {
+.icheckbox_square,
+.iradio_square {
   display: inline-block;
   *display: inline;
   vertical-align: middle;
   margin: 0;
   padding: 0;
-  width: 20px;
-  height: 20px;
-  background: url(/images/vendor/icheck/skins/flat/flat.png?2176d6d6e814b0da1c71b73ca7a675e8) no-repeat;
+  width: 22px;
+  height: 22px;
+  background: url(/images/vendor/icheck/skins/square/square.png?abfa7281034dbc808973388559af1bc3) no-repeat;
   border: none;
   cursor: pointer;
 }
 
-.icheckbox_flat {
+.icheckbox_square {
   background-position: 0 0;
 }
 
-.icheckbox_flat.checked {
-  background-position: -22px 0;
+.icheckbox_square.hover {
+  background-position: -24px 0;
 }
 
-.icheckbox_flat.disabled {
-  background-position: -44px 0;
+.icheckbox_square.checked {
+  background-position: -48px 0;
+}
+
+.icheckbox_square.disabled {
+  background-position: -72px 0;
   cursor: default;
 }
 
-.icheckbox_flat.checked.disabled {
-  background-position: -66px 0;
+.icheckbox_square.checked.disabled {
+  background-position: -96px 0;
 }
 
-.iradio_flat {
-  background-position: -88px 0;
+.iradio_square {
+  background-position: -120px 0;
 }
 
-.iradio_flat.checked {
-  background-position: -110px 0;
+.iradio_square.hover {
+  background-position: -144px 0;
 }
 
-.iradio_flat.disabled {
-  background-position: -132px 0;
+.iradio_square.checked {
+  background-position: -168px 0;
+}
+
+.iradio_square.disabled {
+  background-position: -192px 0;
   cursor: default;
 }
 
-.iradio_flat.checked.disabled {
-  background-position: -154px 0;
+.iradio_square.checked.disabled {
+  background-position: -216px 0;
 }
 
 /* HiDPI support */
 
 @media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-  .icheckbox_flat,
-  .iradio_flat {
-    background-image: url(/images/vendor/icheck/skins/flat/flat@2x.png?0fd2837df39867a90c7a6fca9ca6fe6e);
-    background-size: 176px 22px;
+  .icheckbox_square,
+  .iradio_square {
+    background-image: url(/images/vendor/icheck/skins/square/square@2x.png?4870ebc337eedadcc2d062e7894e5eb5);
+    background-size: 240px 24px;
   }
 }
 
@@ -8575,7 +8583,9 @@ body {
   color: #706f6f;
   padding-top: 231px;
   padding-bottom: 363px;
+  font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media screen and (max-width: 991px) {
@@ -8583,6 +8593,12 @@ body {
     padding-top: 0;
     padding-bottom: 0;
   }
+}
+
+button:hover,
+button:focus,
+button:active {
+  outline: none;
 }
 
 .bipolar-background {
@@ -8594,7 +8610,7 @@ body {
 }
 
 .title-text-content {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 26px;
   font-weight: 400;
   color: black;
@@ -8622,7 +8638,7 @@ body {
 }
 
 .bipolar-counts-container .bipolar-counts .bipolar-counts-subtitle {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 15px;
   color: black;
   line-height: 1.4;
@@ -8659,7 +8675,7 @@ a:hover {
 }
 
 .content-newsletter .newsletter-title {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   text-transform: uppercase;
   padding-top: 15px;
   letter-spacing: 0.15em;
@@ -8667,7 +8683,7 @@ a:hover {
 }
 
 .content-newsletter .newsletter-subtitle {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 13px;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -8680,7 +8696,7 @@ a:hover {
 }
 
 .page-404 > h1 {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   color: black;
   letter-spacing: 12px;
   display: inline-block;
@@ -8691,7 +8707,7 @@ a:hover {
 }
 
 .page-404 p {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 15px;
   letter-spacing: 0.2em;
   color: black;
@@ -8705,7 +8721,7 @@ a:hover {
 }
 
 .header-worldwide-shipping {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   color: white;
   background: black;
   text-transform: uppercase;
@@ -8720,6 +8736,7 @@ a:hover {
 .bipolar-container {
   margin-top: 20px;
   margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .breadcrumb-without-padding,
@@ -8880,7 +8897,7 @@ input[type="date"] {
 
 .bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside ul.cart-list li > a.product-link-cart {
   display: block;
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
   color: black;
   font-weight: normal;
@@ -8894,7 +8911,7 @@ input[type="date"] {
 }
 
 .bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside ul.cart-list li .quantity {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   color: black;
   font-size: 12px;
   font-weight: normal;
@@ -8917,11 +8934,12 @@ input[type="date"] {
 
 .bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside .total strong {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 400;
 }
 
 .bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside .total .amount {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
   color: black;
   font-weight: normal;
@@ -8958,7 +8976,7 @@ input[type="date"] {
 }
 
 .bipolar-alternate-grand-header li:not(:first-child) a {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 15px;
   text-transform: uppercase;
   padding-bottom: 6px;
@@ -9011,17 +9029,20 @@ input[type="date"] {
 
 .bipolar-navigation div li a {
   font-size: 15px;
-  font-family: "BauerBodoniStdBold", Arial;
-  font-weight: bold;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  font-style: normal;
+  font-weight: 400;
   text-transform: uppercase;
   padding-bottom: 6px;
   letter-spacing: 4px;
 }
 
-.bipolar-navigation div li a:hover {
+.bipolar-navigation div li a:hover,
+.bipolar-navigation div li a:focus {
   color: white;
   border-bottom: 1px solid white;
   text-decoration: none;
+  outline: none;
 }
 
 .nav .open > a {
@@ -9082,7 +9103,7 @@ input[type="date"] {
   }
 
   .header-mobile-menu .menu-button {
-    font-family: "BauerBodoniStdBold", Arial;
+    font-family: "BauerBodoniStdBold", "Times New Roman Bold";
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
@@ -9143,7 +9164,7 @@ input[type="date"] {
 
   .header-mobile-menu .cart-white-mobile .cart-inside-mobile ul.cart-list li > a.product-link-cart {
     display: block;
-    font-family: "BauerBodoniStdBold", Arial;
+    font-family: "BauerBodoniStdBold", "Times New Roman Bold";
     font-size: 17px;
     color: black;
     font-weight: normal;
@@ -9157,7 +9178,7 @@ input[type="date"] {
   }
 
   .header-mobile-menu .cart-white-mobile .cart-inside-mobile ul.cart-list li .quantity {
-    font-family: "BauerBodoniStdBold", Arial;
+    font-family: "BauerBodoniStdBold", "Times New Roman Bold";
     color: black;
     font-size: 12px;
     font-weight: normal;
@@ -9184,7 +9205,7 @@ input[type="date"] {
   }
 
   .header-mobile-menu .cart-white-mobile .cart-inside-mobile .total .amount {
-    font-family: "BauerBodoniStdBold", Arial;
+    font-family: "BauerBodoniStdBold", "Times New Roman Bold";
     font-size: 17px;
     color: black;
     font-weight: normal;
@@ -9198,7 +9219,7 @@ input[type="date"] {
 
 .bipolar-filter-title {
   font-size: 15px;
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   color: black;
   text-transform: uppercase;
   padding-bottom: 10px;
@@ -9227,6 +9248,7 @@ input[type="date"] {
 }
 
 .bipolar-filters {
+  display: none;
   margin-bottom: 40px;
 }
 
@@ -9238,17 +9260,17 @@ input[type="date"] {
 .bipolar-relevants-title {
   font-size: 17px;
   color: black;
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
 }
 
 .bipolar-relevants-subtitle {
   font-size: 12px;
   color: black;
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
 }
 
 .bipolar-product-in-modal {
-  margin: 20px 0;
+  margin: 14px 0;
 }
 
 .pagination li a.page-number {
@@ -9306,7 +9328,7 @@ input[type="date"] {
 
 .product-content .product-subtitle {
   text-transform: uppercase;
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 15px;
   color: black;
   letter-spacing: 0.2em;
@@ -9326,7 +9348,7 @@ input[type="date"] {
 
 .product-content .product-price .product-amount {
   color: black;
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 36px;
   letter-spacing: 5px;
 }
@@ -9347,7 +9369,7 @@ input[type="date"] {
   height: 38px;
   border-radius: 50%;
   border: 2px solid #c7c6c6;
-  color: #c7c6c6;
+  color: #706f6f;
   background-color: white;
   margin: 0 2px;
   text-align: center;
@@ -9376,41 +9398,40 @@ input[type="date"] {
   line-height: 0;
   position: relative;
   vertical-align: middle;
-  margin-top: 3.5px;
+  font-size: 15px;
 }
 
 .product-content .product-sizes .product-size-selected {
-  background-color: #fcbeb9;
-  border-color: #fcbeb9;
+  background-color: black;
+  border-color: black;
   color: white;
 }
 
 .product-content .product-sizes .product-size-selected:hover {
-  background-color: #fcbeb9;
-  border-color: #fcbeb9;
+  background-color: black;
+  border-color: black;
   color: white;
 }
 
 .product-content .product-sizes .product-size-disabled {
+  cursor: default;
   opacity: 0.6;
 }
 
 .product-content .product-sizes .product-size-disabled:hover {
-  border-color: #c7c6c6;
-  color: #c7c6c6;
+  border: 2px solid #c7c6c6;
+  color: #706f6f;
 }
 
 .product-content .product-sizes .product-size-disabled .product-size-text::after {
   content: '\A0';
   position: absolute;
   left: -7px;
-  top: 50%;
-  margin-top: -1px;
-  width: 175%;
-  height: 2px;
+  width: 36px;
+  height: 1.8px;
   background: rgba(170, 170, 170, 0.7);
-  -webkit-transform: rotate(-26deg);
-  transform: rotate(-26deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .product-content .select-styles,
@@ -9430,6 +9451,11 @@ input[type="date"] {
   background-image: url(/images/arrow_down.png?321c26753bb0f9825710a27f813910d5);
   background-repeat: no-repeat;
   background-position: calc(100% - 10px);
+}
+
+.product-content .product-currency-select {
+  background-color: #fcbeb9;
+  color: white;
 }
 
 .product-content .btn-sizes-modal {
@@ -9480,8 +9506,9 @@ input[type="date"] {
 }
 
 .tippy-tooltip.bipolar-theme {
-  font-size: 13px;
-  padding: 10px;
+  font-size: 11px;
+  padding: 7px;
+  background-color: black;
 }
 
 .bipolar-footer {
@@ -9501,7 +9528,7 @@ input[type="date"] {
 .bipolar-footer .item-content .title-section span {
   text-transform: uppercase;
   font-size: 17px;
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   letter-spacing: 4px;
   padding-bottom: 4px;
   border-bottom: 1px solid white;
@@ -9580,7 +9607,7 @@ input[type="date"] {
 }
 
 .overlay-text-description {
-  font-family: "BauerBodoniStd", Arial;
+  font-family: "BauerBodoniStd", "Times New Roman";
   font-size: 15px;
   font-weight: bold;
   letter-spacing: 0.2em;
@@ -9595,7 +9622,7 @@ input[type="date"] {
   left: 14px;
   right: 0;
   height: 100%;
-  width: 90%;
+  width: 91%;
   opacity: 0;
   -webkit-transition: ease .5s;
   transition: ease .5s;
@@ -9628,12 +9655,16 @@ input[type="date"] {
 
 .overlay-shop-color-text {
   position: relative;
-  font-family: "BauerBodoniStdBold", Arial;
+  text-transform: uppercase;
+  letter-spacing: 1.65px;
+  font-size: 11px;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   color: black;
   text-align: center;
   margin-top: -5px;
   margin-bottom: 4px;
-  letter-spacing: 0.75px;
 }
 
 .overlay-shop-buttons {
@@ -9643,8 +9674,12 @@ input[type="date"] {
 }
 
 .overlay-shop-buttons .overlay-radio-button {
-  border-radius: 100%;
-  min-height: 38px;
+  border-radius: 50%;
+  padding: 6px;
+}
+
+.overlay-shop-buttons .overlay-radio-button:hover {
+  background: black;
 }
 
 .form-control:focus {
@@ -9674,19 +9709,20 @@ input[type="date"] {
 
 .bipolar-login-register-content .bipolar-title-login-register {
   font-size: 16px;
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   color: black;
   letter-spacing: 0.2em;
 }
 
 .table-cart {
   width: 100%;
+  margin-bottom: 25px;
 }
 
 .table-cart thead th {
   text-transform: uppercase;
   padding: 10px 15px;
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
   color: black;
   font-weight: normal;
@@ -9701,7 +9737,7 @@ input[type="date"] {
 .table-cart tbody td.product-name > a {
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
   color: black;
   font-weight: normal;
@@ -9718,7 +9754,7 @@ input[type="date"] {
 .table-cart tbody td.product-price > .amount {
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
   color: black;
   font-weight: normal;
@@ -9744,7 +9780,7 @@ input[type="date"] {
 }
 
 .background-title-image h1 {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-size: 40px;
@@ -9753,13 +9789,14 @@ input[type="date"] {
 
 .cart-total-inner {
   float: right;
-  width: 50%;
+  width: 38%;
   padding: 0 15px;
+  margin-top: 20px;
   margin-bottom: 50px;
 }
 
 .cart-total-inner > h2 {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   text-transform: uppercase;
   color: black;
   font-size: 17px;
@@ -9767,6 +9804,12 @@ input[type="date"] {
   font-weight: normal;
   line-height: 17px;
   margin-bottom: 40px;
+}
+
+.cart-total-inner tr > td:first-child {
+  width: 63%;
+  padding-left: 0;
+  vertical-align: middle;
 }
 
 .cart-total-inner td .concept {
@@ -9780,7 +9823,7 @@ input[type="date"] {
 .cart-total-inner td .amount {
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
   color: black;
   font-weight: normal;
@@ -9809,7 +9852,7 @@ input[type="date"] {
   border-bottom: 1px solid #eee;
   padding: 10px 15px;
   color: black;
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
   letter-spacing: 2.5px;
 }
@@ -9829,7 +9872,7 @@ input[type="date"] {
 }
 
 .bipolar-checkout .table-review-order thead th {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
   color: black;
   letter-spacing: 2.55px;
@@ -9849,7 +9892,7 @@ input[type="date"] {
 }
 
 .bipolar-checkout .table-review-order tbody tr td.product-name {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
   font-weight: normal;
 }
@@ -9871,7 +9914,7 @@ input[type="date"] {
 }
 
 .bipolar-checkout .table-review-order tbody tr .amount {
-  font-family: "BauerBodoniStdBold", Arial;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
   color: black;
 }

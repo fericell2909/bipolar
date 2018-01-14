@@ -46,7 +46,7 @@
       height: 38px;
       border-radius: 50%;
       border: 2px solid #c7c6c6;
-      color: #c7c6c6;
+      color: $bipolar-text-gray;
       background-color: white;
       margin: 0 2px;
       text-align: center;
@@ -66,28 +66,29 @@
         line-height: 0;
         position: relative;
         vertical-align: middle;
-        margin-top: 3.5px;
+        font-size: 15px;
       }
     }
   
     .product-size-selected {
       @extend .product-size;
-      background-color: $bipolar-color;
-      border-color: $bipolar-color;
+      background-color: $bipolar-black;
+      border-color: $bipolar-black;
       color: white;
       &:hover {
-        background-color: $bipolar-color;
-        border-color: $bipolar-color;
+        background-color: $bipolar-black;
+        border-color: $bipolar-black;
         color: white;
       }
     }
 
     .product-size-disabled {
       @extend .product-size;
+      cursor: default;
       opacity: 0.6;
       &:hover {
-        border-color: #c7c6c6;
-        color: #c7c6c6;
+        border: 2px solid #c7c6c6;
+        color: $bipolar-text-gray;
       }
 
       .product-size-text {
@@ -95,13 +96,12 @@
           content: '\00A0';
           position: absolute;
           left: -7px;
-          top: 50%;
-          margin-top: -1px;
-          width: 175%;
-          height: 2px;
+          width: 36px;
+          height: 1.8px;
           background: rgba(170,170,170,0.7);
-          -webkit-transform: rotate(-26deg);
-          transform: rotate(-26deg);
+          -webkit-transform: rotate(-45deg);
+          -moz-transform: rotate(-45deg);
+          transform: rotate(-45deg);
         }
       }
     }
@@ -134,6 +134,8 @@
 
   .product-currency-select {
     @extend .select-styles;
+    background-color: $bipolar-color;
+    color: white;
   }
 
   .btn-sizes-modal {
@@ -187,6 +189,7 @@
 
 // This is for the tooltip
 .tippy-tooltip.bipolar-theme {
-  font-size: 13px;
-  padding: 10px;
+  font-size: 11px;
+  padding: 7px;
+  background-color: $bipolar-black;
 }

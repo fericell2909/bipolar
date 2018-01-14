@@ -8,7 +8,7 @@
 	<table class="table-cart">
 		<thead>
 			<tr>
-				<th></th>
+        <th colspan="2"></th>
 				<th>Producto</th>
 				<th>Precio</th>
 				<th>Cantidad</th>
@@ -18,6 +18,7 @@
 		<tbody>
 			@foreach(CartBipolar::content() as $cartDetail)
 			<tr>
+        <td><img src="{{ asset('images/close.svg') }}" width="20"></td>
 				<td>
 					<img src="{{ optional($cartDetail->product->photos)->first()->url }}" width="70">
 				</td>

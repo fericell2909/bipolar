@@ -1,5 +1,6 @@
 .table-cart {
   width: 100%;
+  margin-bottom: 25px;
 
   thead th {
     text-transform: uppercase;
@@ -70,8 +71,9 @@
 
 .cart-total-inner {
   float: right;
-  width: 50%;
+  width: 38%;
   padding: 0 15px;
+  margin-top: 20px;
   margin-bottom: 50px;
 
   > h2 {
@@ -83,6 +85,14 @@
     font-weight: normal;
     line-height: 17px;
     margin-bottom: 40px;
+  }
+
+  tr {
+    > td:first-child {
+      width: 63%;
+      padding-left: 0;
+      vertical-align: middle;
+    }
   }
 
   td {

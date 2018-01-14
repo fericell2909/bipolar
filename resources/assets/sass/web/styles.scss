@@ -4,13 +4,21 @@ body {
   color: $bipolar-text-gray;
   padding-top: 231px;
   padding-bottom: 363px;
+  font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media screen and (max-width: 991px) {
   body {
     padding-top: 0;
     padding-bottom: 0;
+  }
+}
+
+button {
+  &:hover, &:focus, &:active {
+    outline: none;
   }
 }
 
@@ -149,6 +157,7 @@ a {
   @extend .container;
   margin-top: 20px;
   margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .breadcrumb-without-padding {

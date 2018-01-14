@@ -5,7 +5,7 @@
   left: 14px;
   right: 0;
   height: 100%;
-  width: 90%;
+  width: 91%;
   opacity: 0;
   -webkit-transition: ease .5s;
   -moz-transition: ease .5s;
@@ -41,12 +41,16 @@
 
 .overlay-shop-color-text {
   position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1.65px;
+  font-size: 11px;
+  font-weight: 400;
+  font-style: normal;
   font-family: $bodoni-bold-font;
   color: $bipolar-black;
   text-align: center;
   margin-top: -5px;
   margin-bottom: 4px;
-  letter-spacing: 0.75px;
 }
 
 .overlay-shop-buttons {
@@ -54,9 +58,12 @@
   margin-top: 5px;
   text-align: center;
   .overlay-radio-button {
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
-    border-radius: 100%;
-    min-height: 38px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    padding: 6px;
+    &:hover {
+      background: $bipolar-black;
+    }
   }
 }
