@@ -9219,6 +9219,30 @@ input[type="date"] {
     text-align: center;
     margin-bottom: 20px;
   }
+
+  .responsive-menu-black {
+    display: none;
+    padding: 0 15px;
+    margin: 0;
+    background: #222;
+    list-style: none;
+  }
+
+  .responsive-menu-black li > a {
+    color: white;
+    padding: 10px 0;
+    display: block;
+    position: relative;
+    outline: none;
+    border-bottom: 1px solid #333;
+  }
+
+  .responsive-menu-black li > a > span {
+    font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
 }
 
 .bipolar-filter-title {
@@ -9973,5 +9997,49 @@ input[type="date"] {
 
 .bipolar-checkout .submit-payment p a {
   color: #fcbeb9;
+}
+
+.bipolar-navbar-toggle {
+  float: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bipolar-navbar-toggle span.icon-bar {
+  background: white;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.bipolar-navbar-toggle .top-bar {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transform-origin: 10% 10%;
+          transform-origin: 10% 10%;
+}
+
+.bipolar-navbar-toggle .middle-bar {
+  opacity: 0;
+}
+
+.bipolar-navbar-toggle .bottom-bar {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transform-origin: 10% 90%;
+          transform-origin: 10% 90%;
+}
+
+.bipolar-navbar-toggle.collapsed .top-bar {
+  -webkit-transform: rotate(0);
+          transform: rotate(0);
+}
+
+.bipolar-navbar-toggle.collapsed .middle-bar {
+  opacity: 1;
+}
+
+.bipolar-navbar-toggle.collapsed .bottom-bar {
+  -webkit-transform: rotate(0);
+          transform: rotate(0);
 }
 

@@ -138,4 +138,29 @@
       }
     }
   }
+
+  .responsive-menu-black {
+    display: none;
+    padding: 0 15px;
+    margin: 0;
+    background: #222;
+    list-style: none;
+
+    li {
+      > a {
+        color: $bipolar-white;
+        padding: 10px 0;
+        display: block;
+        position: relative;
+        outline: none;
+        border-bottom: 1px solid #333;
+        > span {
+          font-family: $bodoni-bold-font;
+          font-size: 15px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
 }

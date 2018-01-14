@@ -17,7 +17,15 @@
   </div>
 </section>
 <section class="header-mobile-menu visible-xs-block visible-sm-block">
-  <div class="menu-button"><i class="fa fa-bars"></i> Menu</div>
+  <div class="menu-button">
+    <button type="button" class="navbar-toggle bipolar-navbar-toggle collapsed" data-toggle="collapse" data-target="#responsive-menu-black" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar top-bar"></span>
+      <span class="icon-bar middle-bar"></span>
+      <span class="icon-bar bottom-bar"></span>
+    </button>
+     <span>MENU</span>
+  </div>
   <div class="cart-white-mobile">
     <img src="{{ asset('images/cart-white.svg') }}" width="35">
     <span class="cart-number-count-inverse">{{ CartBipolar::count() }}</span>
@@ -45,3 +53,12 @@
     </div>
   </div>
 </section>
+<ul id="responsive-menu-black" class="responsive-menu-black collapse">
+  <li><a href="{{ route('home') }}"><span>Home</span></a></li>
+  <li><a href="{{ route('landings.bipolar') }}"><span>Bipolar</span></a></li>
+  <li><a href="{{ route('landings.showroom') }}"><span>Showroom</span></a></li>
+  <li><a href="{{ route('shop') }}"><span>Shop</span></a></li>
+  <li><a href="#"><span>Newsletter</span></a></li>
+  <li><a href="#"><span>Blog</span></a></li>
+  <li><a href="#"><span>Contact us</span></a></li>
+</ul>
