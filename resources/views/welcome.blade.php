@@ -46,12 +46,12 @@
                 <a href="{{ $homePost->redirection_link }}" class="col-sm-6 col-md-3 overlay-container">
                     <img src="{{ $homePost->photos->first()->url }}" alt="{{ $homePost->name }}" class="img-responsive full-image">
                     <div class="overlay-image">
-                        <p class="overlay-text">
+                        <div class="overlay-text">
                             {{ $homePost->name }}
-                        </p>
-                        <p class="overlay-text-description">
+                        </div>
+                        <div class="overlay-text-description">
                             {{ $homePost->post_type->name }}
-                        </p>
+                        </div>
                     </div>
                 </a>
             @endif

@@ -9583,6 +9583,14 @@ input[type="date"] {
   }
 }
 
+.overlay-container {
+  position: relative;
+}
+
+.overlay-container:hover .overlay-image {
+  opacity: 0.9;
+}
+
 .overlay-image {
   position: absolute;
   top: 0;
@@ -9592,18 +9600,25 @@ input[type="date"] {
   -webkit-transition: ease .5s;
   transition: ease .5s;
   background-color: #fcbeb9;
-  text-align: center;
-}
-
-.overlay-container:hover .overlay-image {
-  opacity: 0.9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .overlay-text {
   color: black;
   font-family: "SaharaBodoni";
   font-size: 122px;
-  margin: 13px 0 -16px 0;
 }
 
 .overlay-text-description {
