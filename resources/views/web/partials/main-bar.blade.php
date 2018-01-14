@@ -3,14 +3,15 @@
 		<div class="container">
 			<div class="navbar-header">
 				<div class="navbar-brand">
-					Hola
-					<a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">Ingresa</a> o
+					<span>Hola</span>
+					<a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">Ingresa</a>
+					<span>Ó</span>
 					<a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">regístrate</a>
 				</div>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					<a class="navbar-right-text" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						{{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }}
 						<span class="caret"></span>
 					</a>

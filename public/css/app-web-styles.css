@@ -9067,7 +9067,20 @@ input[type="date"] {
 }
 
 .navbar-brand {
-  font-size: 14px;
+  font-size: 12px;
+  word-spacing: 1px;
+  font-family: "GothamLight", Verdana;
+}
+
+.navbar-brand span {
+  font-family: "GothamBold", Verdana;
+  color: black;
+}
+
+.navbar-right-text {
+  font-family: "GothamBold", Verdana;
+  color: black;
+  font-size: 12px;
 }
 
 .navbar-nav i {
@@ -9717,6 +9730,7 @@ input[type="date"] {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   color: black;
   margin-bottom: 4px;
+  text-align: center;
 }
 
 .overlay-shop-buttons {

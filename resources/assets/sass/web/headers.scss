@@ -266,7 +266,19 @@
 }
 
 .navbar-brand {
-  font-size: 14px;
+  font-size: 12px;
+  word-spacing: 1px;
+  font-family: $gotham-light-font;
+  span {
+    font-family: $gotham-bold-font;
+    color: $bipolar-black;
+  }
+}
+
+.navbar-right-text {
+  font-family: $gotham-bold-font;
+  color: $bipolar-black;
+  font-size: 12px;
 }
 
 .navbar-nav {
