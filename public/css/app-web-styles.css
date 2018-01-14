@@ -9670,6 +9670,19 @@ input[type="date"] {
   -webkit-transition: ease .5s;
   transition: ease .5s;
   background-color: #fcbeb9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .product-link {
@@ -9692,8 +9705,6 @@ input[type="date"] {
   font-family: "SaharaBodoni";
   color: black;
   font-size: 40px;
-  margin-top: 20px;
-  text-align: center;
 }
 
 .overlay-shop-color-text {
@@ -9705,15 +9716,12 @@ input[type="date"] {
   font-style: normal;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   color: black;
-  text-align: center;
-  margin-top: -5px;
   margin-bottom: 4px;
 }
 
 .overlay-shop-buttons {
   position: relative;
   margin-top: 5px;
-  text-align: center;
 }
 
 .overlay-shop-buttons .overlay-radio-button {
