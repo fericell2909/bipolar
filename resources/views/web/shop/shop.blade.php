@@ -102,9 +102,9 @@
                                                 title="Detalles">
                                                 <img src="{{ asset('images/search.svg') }}" width="18">
                                             </a>
-                                            <button class="btn btn-dark overlay-radio-button" title="Agregar al carrito">
+                                            <a href="{{ route('shop.product', $salient->slug) }}" class="btn btn-dark overlay-radio-button" title="Agregar al carrito">
                                                 <img src="{{ asset('images/shopping-cart.svg') }}" width="18">
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -133,11 +133,11 @@
                         <div class="bipolar-product-in-modal">
                             @if(count($product->photos))
                                 <div>
-                                    <div class="shop-discount-container">
+                                    {{--  <div class="shop-discount-container">
                                         <div class="shop-discount">
                                             <span>30%</span>
                                         </div>
-                                    </div>
+                                    </div>  --}}
                                     <div class="owl-carousel-main owl-carousel owl-theme">
                                         @foreach($product->photos as $photo)
                                             <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive">
