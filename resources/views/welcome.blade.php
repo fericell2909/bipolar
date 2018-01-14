@@ -11,11 +11,11 @@
     {{-- Script de Font Awesome --}}
     <script src="https://use.fontawesome.com/d71cf672b2.js"></script>
 </head>
-<body>
+<body class="no-top">
     @include('web.partials.main-bar', ['background' => false])
     @include('web.partials.alternate_bar')
     @include('web.partials.mobile-bar')
-    <div style="margin-top: -232px;">
+    <div>
         <div class="carousel slide carousel-home" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 @foreach($banners as $banner)
