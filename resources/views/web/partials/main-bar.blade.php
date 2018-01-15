@@ -87,8 +87,8 @@
 								<span class="amount">{{ CartBipolar::totalCurrency() }}</span>
 							</div>
 							<div class="buttons">
-								<a href="{{ route('cart') }}" class="btn btn-dark btn-rounded">Ver carrito</a>
-								<a href="{{ route('checkout') }}" class="btn btn-dark btn-rounded">Checkout</a>
+								<a href="{{ route('cart') }}" class="btn btn-dark-rounded">Ver carrito</a>
+								<a href="{{ route('checkout') }}" class="btn btn-dark-rounded">Checkout</a>
 							</div>
 						</div>
 					</div>
