@@ -155,6 +155,11 @@ class ShopController extends Controller
             })
             ->toArray();
 
-        return view('web.shop.product', compact('product', 'stockWithSizes'));
+        $quantities = [];
+        foreach (range(1, 10) as $number) {
+            $quantities[$number] = $number;
+        }
+
+        return view('web.shop.product', compact('product', 'stockWithSizes', 'quantities'));
     }
 }

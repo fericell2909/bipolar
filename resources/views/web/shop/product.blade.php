@@ -72,36 +72,40 @@
                         </div>
                     @endif
                         <div class="row" style="margin-bottom: 20px">
-                            <div class="col-sm-6 col-md-12">
-                                <div class="quantity-content">
-                                    <button type="button" class="btn-number" data-type="minus"><i class="fa fa-minus"></i></button>
-                                    <input type="number" name="quantity" value="1" class="quantity-number" size="4" min="1" readonly>
-                                    <button type="button" class="btn-number" data-type="plus"><i class="fa fa-plus"></i></button>
-                                </div>
+                            <div class="col-sm-6 col-md-6">
+                                {!! Form::select('quantity', $quantities, null, ['class' => 'quantity-select']) !!}
                                 <button class="btn btn-add-cart">
                                     Añadir al carrito
                                 </button>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="bipolar-button-description-container">
+                                    <a href="{{ route('wishlist.add', $product->slug) }}">
+                                        <i class="fa fa-heart-o"></i>
+                                        <span>Wishlist</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="text-uppercase">Cambia de moneda</span>
+                                {!! Form::select('currency_change',
+                                    ['PEN' => 'SOLES PERUANOS (PEN)', 'USD' => 'DÓLAR AMERICANO (USD)'],
+                                    Session::get('BIPOLAR_CURRENCY'),
+                                    ['id' => 'product-currency-select', 'class' => 'product-currency-select']) !!}
                             </div>
                         </div>
                 {!! Form::close() !!}
             </div>
         </div>
         <div class="row product-below-content">
-            <div class="col-sm-4 col-md-1 text-uppercase">
-                Compártelo:
-            </div>
             <div class="col-sm-6 col-md-5">
                 <div class="bipolar-action-button-container">
+                    <span class="text-uppercase">Compártelo:</span>
                     <a href="#"><i class="fa fa-facebook"></i></a>
                     <a href="#"><i class="fa fa-envelope-o"></i></a>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-6">
-                <span class="text-uppercase">Cambia de moneda</span>
-                {!! Form::select('currency_change',
-                    ['PEN' => 'SOLES PERUANOS (PEN)', 'USD' => 'DÓLAR AMERICANO (USD)'],
-                    Session::get('BIPOLAR_CURRENCY'),
-                    ['id' => 'product-currency-select', 'class' => 'product-currency-select']) !!}
             </div>
         </div>
         @if($product->recommendeds->count() > 0)
