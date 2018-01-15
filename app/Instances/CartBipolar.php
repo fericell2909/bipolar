@@ -15,6 +15,8 @@ class CartBipolar
         } else {
             $this->cart = Cart::firstOrCreate(['session_id' => \Session::getId()]);
         }
+
+        $this->cart->load(['details']);
     }
 
     /**
@@ -59,6 +61,8 @@ class CartBipolar
 
     public function recalculate()
     {
+        $this->cart = $this->cart->fresh();
+
         $total = $this->cart->details->sum(function ($detail) {
             return $detail->total;
         });
@@ -66,13 +70,20 @@ class CartBipolar
             return $detail->total_dolar;
         });
 
-        $cart = $this->cart;
+        $this->cart->subtotal = $total;
+        $this->cart->total = $total;
+        $this->cart->total_dolar = $totalDolar;
+        $this->cart->save();
+    }
 
-        $cart->subtotal = $total;
-        $cart->total = $total;
-        $cart->total_dolar = $totalDolar;
-        $cart->save();
+    public function remove($productSlug)
+    {
+        $this->cart->details->each(function ($detail) use ($productSlug) {
+            return $detail->product->slug === $productSlug ? $detail->delete() : false;
+        });
 
-        $this->cart = $cart;
+        $this->recalculate();
+
+        return true;
     }
 }

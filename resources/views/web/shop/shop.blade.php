@@ -102,7 +102,7 @@
                                                 title="Detalles">
                                                 <img src="{{ asset('images/search.svg') }}" width="18">
                                             </a>
-                                            <a href="{{ route('shop.product', $salient->slug) }}" class="btn btn-dark overlay-radio-button" title="Agregar al carrito">
+                                            <a href="{{ route('shop.product', $product->slug) }}" class="btn btn-dark overlay-radio-button" title="Agregar al carrito">
                                                 <img src="{{ asset('images/shopping-cart.svg') }}" width="18">
                                             </a>
                                         </div>

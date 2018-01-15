@@ -16,9 +16,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach(CartBipolar::content() as $cartDetail)
+			@forelse(CartBipolar::content() as $cartDetail)
 			<tr>
-        <td><img src="{{ asset('images/close.svg') }}" width="20"></td>
+        <td><a href="{{ route('cart.remove', $cartDetail->product->slug) }}"><img src="{{ asset('images/close.svg') }}" width="20"></a></td>
 				<td>
 					<img src="{{ optional($cartDetail->product->photos)->first()->url }}" width="70">
 				</td>
@@ -41,10 +41,13 @@
 				<td class="product-price">
           <span class="amount">{{ $cartDetail->total_currency }}</span>
         </td>
-			</tr>
-			@endforeach
+      </tr>
+      @empty
+        <tr><td colspan="6" class="text-center">Actualmente su carrito se encuentra vacío</td></tr>
+			@endforelse
 		</tbody>
   </table>
+  @if(CartBipolar::count() > 0)
   <div class="row">
     <div class="col-md-offset-8 col-md-4">
       <button type="submit" class="btn btn-dark-rounded">
@@ -55,6 +58,7 @@
       </a>
     </div>
   </div>
+  @endif
   {!! Form::close() !!}
   <div class="cart-total-inner">
     <h2>Total</h2>
