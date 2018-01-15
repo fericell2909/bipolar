@@ -93,9 +93,9 @@
                                         @endif
                                         <div class="overlay-shop-color-text">{{ $product->price }}</div>
                                         <div class="overlay-shop-buttons">
-                                            <button class="btn btn-dark overlay-radio-button" title="Wishlist">
+                                            <a href="{{ route('wishlist.add', $product->slug) }}" class="btn btn-dark overlay-radio-button" title="Wishlist">
                                                 <img src="{{ asset('images/heart.svg') }}" width="18">
-                                            </button>
+                                            </a>
                                             <a href="#"
                                                 class="btn btn-dark overlay-radio-button button-see-details"
                                                 data-hash-id="{{ $product->hash_id }}"

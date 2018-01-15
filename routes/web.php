@@ -22,6 +22,10 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::post('shop', 'Web\ShopController@shop')->name('shop.post');
         Route::get('shop/{productSlug}', 'Web\ShopController@product')->name('shop.product');
 
+        Route::get('wishlist/add/{productSlug}', 'Web\WishlistController@add')->name('wishlist.add');
+        Route::get('wishlist/remove/{productSlug}', 'Web\WishlistController@remove')->name('wishlist.remove');
+        Route::get('wishlist', 'Web\WishlistController@view')->name('wishlist');
+
         Route::get('bipolar', 'Web\LandingsController@bipolar')->name('landings.bipolar');
         Route::get('shipping', 'Web\LandingsController@shipping')->name('landings.shipping');
         Route::get('showroom', 'Web\LandingsController@showroom')->name('landings.showroom');
