@@ -9,6 +9,7 @@
 
 		</div>
 		<div class="col-md-9">
+			{!! Form::open() !!}
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-default">
 					<div class="panel-heading" role="tab" id="headingOne">
@@ -95,7 +96,7 @@
                 {!! Form::radio('payment', '1') !!} <span class="checkbox-content">Tarjeta de crédito o débito</span>
               </div>
               <div class="submit-payment">
-                <button class="btn btn-rounded btn-dark">Pagar</button>
+                <button type="submit" class="btn btn-rounded btn-dark">Pagar</button>
                 <p>
                   {!! Form::checkbox('terms', '1') !!}
                   <label for="terms">He leído y acepto los <a href="#">términos y condiciones</a></label>
@@ -105,6 +106,7 @@
 					</div>
 				</div>
 			</div>
+			{!! Form::close() !!}
 		</div>
 	</div>
 </div>
