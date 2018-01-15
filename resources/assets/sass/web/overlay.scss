@@ -1,0 +1,40 @@
+.overlay-container {
+  position: relative;
+
+  &:hover .overlay-image {
+    opacity: 0.9;
+  }
+}
+
+.overlay-image {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  -webkit-transition: ease .5s;
+  -moz-transition: ease .5s;
+  -ms-transition: ease .5s;
+  -o-transition: ease .5s;
+  transition: ease .5s;
+  background-color: $bipolar-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.overlay-text {
+  color: $bipolar-black;
+  font-family: $sahari-bodoni-font;
+  font-size: 122px;
+}
+
+.overlay-text-description {
+  font-family: $bodoni-font;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  color: $bipolar-black;
+  text-transform: uppercase;
+}

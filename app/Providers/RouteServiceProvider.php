@@ -15,8 +15,8 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
-    protected $namespaceWeb = 'App\Http\Controllers\Web';
-    protected $namespaceAdmin = 'App\Http\Controllers\Admin';
+    //protected $namespaceWeb = 'App\Http\Controllers\Web';
+    //protected $namespaceAdmin = 'App\Http\Controllers\Admin';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapWebRoutes();
         $this->mapAdminRoutes();
-
+        $this->mapAdminAjaxRoutes();
         //
     }
 
@@ -53,7 +53,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespaceWeb)
+             ->namespace($this->namespace)
              ->group(base_path('routes/web.php'));
     }
 
@@ -68,7 +68,15 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('admin')
              ->middleware('web')
-             ->namespace($this->namespaceAdmin)
+             ->namespace($this->namespace)
              ->group(base_path('routes/admin.php'));
+    }
+
+    protected function mapAdminAjaxRoutes()
+    {
+        Route::prefix('ajax-admin')
+            ->middleware('web', 'auth:admin')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admin_ajax.php'));
     }
 }

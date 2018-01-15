@@ -1,60 +1,63 @@
 // Fonts
 //@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@font-face {
+  font-family: 'BauerBodoniStd';
+  src: url('../../fonts/Bodoni/BauerBodoniStd Roman.otf');
+}
+@font-face {
+  font-family: 'BauerBodoniStdBold';
+  src: url('../../fonts/Bodoni/BauerBodoniStd Bold.otf');
+}
+@font-face {
+  font-family: 'SaharaBodoni';
+  src: url('../../fonts/Sahara Bodoni/SaharaBodoni.otf');
+}
+@font-face {
+  font-family: 'GothamLight';
+  src: url('../../fonts/Gotham/Gotham-Light.otf');
+}
+@font-face {
+  font-family: 'GothamBold';
+  src: url('../../fonts/Gotham/Gotham-Bold.otf');
+}
+
+// Important general styles
+// Remove arrows from input['number']
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 
 // Variables
-//@import "variables";
+@import "variables";
 
-// Bootstrap 3
-//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+// Bootstrap 3 Custom
+@import "bootstrap";
 
 // Bootstrap 4
-@import "~bootstrap/scss/bootstrap";
+//@import "~bootstrap/scss/bootstrap";
 
-$bipolar-color: #fcbeb9;
-$bipolar-black: black;
+// Owl Carousel
+@import "~owl.carousel/dist/assets/owl.carousel.css";
+// Viewer JS
+//@import "~viewerjs/dist/viewer";
+// Flat skins
+@import "~icheck/skins/square/square";
 
-.text-heading-mobile {
-  margin-top: 12px;
-}
-
-.bipolar-background {
-  background-color: $bipolar-color;
-}
-
-a, .btn-link {
-  color: $bipolar-black;
-}
-
-.header-mobile {
-  background: $bipolar-color url('../../img/linea.png') repeat-x 0 55px;
-  padding: 30px;
-  text-align: center;
-}
-
-.header-desktop {
-  background: transparent url('../../img/linea.png') repeat-x 0 55px;
-  padding: 30px;
-  text-align: center;
-  position: absolute;
-  z-index: 3;
-  width: 100%;
-}
-
-.header-mobile-menu {
-  background: $bipolar-black;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.header-worldwide-shipping {
-  @extend .header-mobile-menu;
-  text-align: center;
-  line-height: 68px;
-}
-
-.bipolar-footer {
-  background: $bipolar-black;
-  color: white;
-  padding: 30px;
-}
+@import "buttons";
+@import "styles";
+@import "headers";
+@import "headers_mobile";
+@import "shop";
+@import "product";
+@import "footer";
+@import "overlay";
+@import "overlay_shop";
+@import "login_and_register";
+@import "cart";
+@import "checkout";
+@import "burger_icon";

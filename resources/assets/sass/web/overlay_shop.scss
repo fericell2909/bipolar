@@ -1,0 +1,69 @@
+.overlay-shop-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 14px;
+  right: 0;
+  height: 100%;
+  width: 91%;
+  opacity: 0;
+  -webkit-transition: ease .5s;
+  -moz-transition: ease .5s;
+  -ms-transition: ease .5s;
+  -o-transition: ease .5s;
+  transition: ease .5s;
+  background-color: $bipolar-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.product-link {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  text-decoration: none;
+  color: transparent;
+  background-color: transparent;
+}
+
+.overlay-shop-container:hover .overlay-shop-image {
+  opacity: 1;
+}
+
+.overlay-shop-text {
+  position: relative;
+  font-family: $sahari-bodoni-font;
+  color: $bipolar-black;
+  font-size: 40px;
+}
+
+.overlay-shop-color-text {
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1.65px;
+  font-size: 11px;
+  font-weight: 400;
+  font-style: normal;
+  font-family: $bodoni-bold-font;
+  color: $bipolar-black;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.overlay-shop-buttons {
+  position: relative;
+  margin-top: 5px;
+  .overlay-radio-button {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    padding: 6px;
+    &:hover {
+      background: $bipolar-black;
+    }
+  }
+}

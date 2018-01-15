@@ -14,12 +14,12 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        \Illuminate\Auth\AuthenticationException::class,
-        \Illuminate\Auth\Access\AuthorizationException::class,
-        \Symfony\Component\HttpKernel\Exception\HttpException::class,
-        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
-        \Illuminate\Session\TokenMismatchException::class,
-        \Illuminate\Validation\ValidationException::class,
+    ];
+
+
+    protected $dontFlash = [
+        'password',
+        'password_confirmation',
     ];
 
     /**
@@ -47,19 +47,35 @@ class Handler extends ExceptionHandler
         return parent::render($request, $exception);
     }
 
+    private function getRouteForGuard(AuthenticationException $exception)
+    {
+        if (empty($exception->guards())) {
+            return false;
+        }
+        
+        $guard = array_first($exception->guards());
+        
+        $routeForAuth = '';
+        
+        switch ($guard) {
+            case 'web': $routeForAuth = route('login-with-register'); break;
+            case 'admin': $routeForAuth = route('login.admin'); break;
+        }
+        
+        return $routeForAuth;
+    }
+
     /**
-     * Convert an authentication exception into an unauthenticated response.
+     * Override for special auth
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Auth\AuthenticationException  $exception
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param AuthenticationException $exception
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        if ($request->expectsJson()) {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
-        }
-
-        return redirect()->guest(route('login'));
+        return $request->expectsJson()
+            ? response()->json(['message' => 'Unauthenticated.'], 401)
+            : redirect()->guest($this->getRouteForGuard($exception));
     }
 }

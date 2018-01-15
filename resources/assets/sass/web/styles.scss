@@ -1,0 +1,209 @@
+body {
+  font-family: $gotham-light-font;
+  font-size: 13px;
+  color: $bipolar-text-gray;
+  padding-top: 231px;
+  padding-bottom: 363px;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &.no-top {
+    padding-top: 0;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  body {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+button {
+  &:hover, &:focus, &:active {
+    outline: none;
+  }
+}
+
+.bipolar-background {
+  background-color: $bipolar-color;
+}
+
+.bipolar-the-content {
+  background-color: $bipolar-white;
+}
+
+.title-text-content {
+  font-family: $bodoni-bold-font;
+  font-size: 26px;
+  font-weight: 400;
+  color: $bipolar-black;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.bipolar-counts-container {
+  background-image: url(https://bipolar-peru.s3.amazonaws.com/assets/jeringas_close.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .bipolar-counts {
+    padding: 172px 0;
+    text-align: center;
+
+    .bipolar-counts-title {
+      font-family: $sahari-bodoni-font;
+      font-size: 60px;
+      line-height: 1.2;
+      color: $bipolar-black;
+    }
+
+    .bipolar-counts-subtitle {
+      font-family: $bodoni-bold-font;
+      font-size: 15px;
+      color: $bipolar-black;
+      line-height: 1.4;
+      margin-top: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.color-transparent {
+  background: transparent;
+  margin-bottom: 0;
+}
+
+a {
+  color: $bipolar-black;
+  &:hover {
+    color: $bipolar-black;
+  }
+}
+
+.btn-link {
+  color: $bipolar-black;
+}
+
+.content-newsletter {
+  color: $bipolar-black;
+  background: url(https://bipolar.com.pe/wp-content/uploads/2015/03/huevos.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  padding: 30px;
+
+  .newsletter-title {
+    font-family: $bodoni-bold-font;
+    text-transform: uppercase;
+    padding-top: 15px;
+    letter-spacing: 0.15em;
+    font-size: 30px;
+  }
+
+  .newsletter-subtitle {
+    font-family: $bodoni-bold-font;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+}
+
+.page-404 {
+  height: 352px;
+  width: 100%;
+  text-align: center;
+
+  > h1 {
+    font-family: $bodoni-bold-font;
+    color: $bipolar-black;
+    letter-spacing: 12px;
+    display: inline-block;
+    border: 5px solid #eee;
+    padding: 21px 34px;
+    font-size: 80px;
+    line-height: 1.2;
+  }
+
+  p {
+    font-family: $bodoni-bold-font;
+    font-size: 15px;
+    letter-spacing: 0.2em;
+    color: $bipolar-black;
+    font-style: normal;
+  }
+}
+
+.carousel-home {
+  height: auto;
+  max-height: 800px;
+  z-index: $z-index-slider;
+}
+
+.header-worldwide-shipping {
+  font-family: $bodoni-bold-font;
+  color: $bipolar-white;
+  background: $bipolar-black;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 68px;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+}
+
+.bipolar-container {
+  @extend .container;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.breadcrumb-without-padding {
+  background-color: #F5F5F5;
+}
+
+.breadcrumb {
+  @extend .breadcrumb-without-padding;
+}
+
+.breadcrumb-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="date"] {
+  border: none;
+  border-radius: 36px;
+  padding: 0 15px;
+  text-transform: uppercase;
+  color: #878787;
+  font-size: 11px;
+  text-align: center;
+  font-family: $gotham-light-font;
+  background-color: $bipolar-gray;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* No Gutter Column Trick
+================================================== */
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.row.no-gutters [class^="col-"],
+.row.no-gutters [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}

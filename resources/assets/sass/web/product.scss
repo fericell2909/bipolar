@@ -1,0 +1,204 @@
+.product-content {
+  margin-top: 33px;
+
+  .product-title {
+    font-family: $sahari-bodoni-font;
+    font-size: 75px;
+    color: $bipolar-black;
+  }
+
+  .product-subtitle {
+    text-transform: uppercase;
+    font-family: $bodoni-bold-font;
+    font-size: 15px;
+    color: $bipolar-black;
+    letter-spacing: 0.2em;
+    margin-bottom: 50px;
+  }
+
+  .product-colors {
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+  }
+
+  .product-price {
+    margin-bottom: 30px;
+    .product-amount {
+      color: $bipolar-black;
+      font-family: $bodoni-bold-font;
+      font-size: 36px;
+      letter-spacing: 5px;
+    }
+  }
+
+  .product-description {
+    line-height: 1.8;
+    margin-bottom: 35px;
+  }
+
+  .product-sizes {
+    margin-bottom: 20px;
+
+    .product-size {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid #c7c6c6;
+      color: $bipolar-text-gray;
+      background-color: white;
+      margin: 0 2px;
+      text-align: center;
+      transition: border-color 0.15s ease-out,background-color 0.15s ease-out,color 0.15s ease-out,transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 2.7),-webkit-transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 2.7);
+      &:hover {
+        border-color: $bipolar-color;
+        color: $bipolar-color;  
+      }
+      &:focus {
+        outline: none;
+      }
+
+      .product-size-text {
+        width: 100%;
+        height: 0;
+        display: inline-block;
+        line-height: 0;
+        position: relative;
+        vertical-align: middle;
+        font-size: 15px;
+      }
+    }
+  
+    .product-size-selected {
+      @extend .product-size;
+      background-color: $bipolar-black;
+      border-color: $bipolar-black;
+      color: white;
+      &:hover {
+        background-color: $bipolar-black;
+        border-color: $bipolar-black;
+        color: white;
+      }
+    }
+
+    .product-size-disabled {
+      @extend .product-size;
+      cursor: default;
+      opacity: 0.6;
+      &:hover {
+        border: 2px solid #c7c6c6;
+        color: $bipolar-text-gray;
+      }
+
+      .product-size-text {
+        &::after {
+          content: '\00A0';
+          position: absolute;
+          left: -7px;
+          width: 36px;
+          height: 1.8px;
+          background: rgba(170,170,170,0.7);
+          -webkit-transform: rotate(-45deg);
+          -moz-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+
+  .select-styles {
+    border: none;
+    background-color: $bipolar-gray;
+    color: #878787;
+    line-height: 1;
+    -webkit-border-radius: 42px;
+    -moz-border-radius: 42px;
+    border-radius: 42px;
+    outline: none;
+    padding: 0 25px;
+    font-size: 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 35px;
+    background-image: url(../../img/arrow_down.png);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px);
+  }
+
+  /* .product-size-select {
+    @extend .select-styles;
+    width: 100%;
+  } */
+
+  .product-currency-select {
+    @extend .select-styles;
+    display: block;
+    margin-top: 10px;
+    background-color: $bipolar-color;
+    color: white;
+    font-size: 11px;
+    font-family: $gotham-bold-font;
+  }
+
+  .btn-sizes-modal {
+    background-color: #f5f5f5;
+    text-transform: uppercase;
+    border-radius: 42px;
+    font-size: 10px;
+    padding: 10px 0;
+    color: $bipolar-text-gray;
+    min-width: 150px;
+    border: none;
+    &:hover {
+      background-color: $bipolar-color;
+      color: white;
+    }
+  }
+
+  .bipolar-action-button-container {
+    > a {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      background-color: $bipolar-gray;
+      text-align: center;
+      border-radius: 100%;
+      line-height: 35px;
+      color: #999999;
+      margin-right: 5px;
+
+      &:hover {
+        background-color: $bipolar-color;
+        color: white;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .bipolar-stock-status {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+    color: $bipolar-text-gray;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+  }
+}
+
+.product-below-content {
+  margin-top: 20px;
+  vertical-align: middle;
+}
+
+// This is for the tooltip
+.tippy-tooltip.bipolar-theme {
+  font-size: 11px;
+  padding: 7px;
+  background-color: $bipolar-black;
+}

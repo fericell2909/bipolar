@@ -1,11 +1,6 @@
 @import "variables";
 
 /******************* Global Styles *******************/
-
-* * * * * * * * * * {
-  outline: none !important;
-}
-
 body {
   background: $sidebar;
   font-family: $basefont1;
@@ -420,7 +415,6 @@ hr {
   padding: 4px 5px 2px;
   font-size: 12px;
   margin-top: 1px;
-  background-color: $warning;
 }
 
 .badge-xs {
@@ -1106,6 +1100,12 @@ pre {
 
 .logo i {
   color: $white;
+}
+
+.image-logo {
+  width: 220px;
+  height: 60px;
+  padding: 10px 22px 10px 22px;
 }
 
 .top-left-part {
@@ -2314,7 +2314,7 @@ table.dataTable thead .sorting:after {
    Checkbox and Radios
 ============= **********/
 
-.checkbox {
+/*.checkbox {
   padding-left: 20px;
   label {
     display: inline-block;
@@ -2378,7 +2378,7 @@ table.dataTable thead .sorting:after {
       cursor: not-allowed;
     }
   }
-}
+}*/
 
 .checkbox.checkbox-circle {
   label {

@@ -1,0 +1,116 @@
+.table-cart {
+  width: 100%;
+  margin-bottom: 25px;
+
+  thead th {
+    text-transform: uppercase;
+    padding: 10px 15px;
+    font-family: $bodoni-bold-font;
+    font-size: 17px;
+    color: $bipolar-black;
+    font-weight: normal;
+    letter-spacing: 2.55px;
+  }
+
+  tbody td {
+    padding: 10px 15px;
+    vertical-align: middle;
+
+    &.product-name {
+      > a {
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-family: $bodoni-bold-font;
+        font-size: 17px;
+        color: $bipolar-black;
+        font-weight: normal;
+      }
+
+      .product-variation {
+        font-family: $gotham-light-font;
+        font-weight: normal;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0;
+      }
+    }
+
+    &.product-price {
+      > .amount {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: $bodoni-bold-font;
+        font-size: 17px;
+        color: $bipolar-black;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.background-title-image {
+  background-image: url('https://bipolar-peru.s3.amazonaws.com/assets/fondo-rayas-web-con-negro.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 50px;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-family: $bodoni-bold-font;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 40px;
+    color: $bipolar-white;
+  }
+}
+
+.cart-total-inner {
+  float: right;
+  width: 38%;
+  padding: 0 15px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+
+  > h2 {
+    font-family: $bodoni-bold-font;
+    text-transform: uppercase;
+    color: $bipolar-black;
+    font-size: 17px;
+    letter-spacing: 2.55px;
+    font-weight: normal;
+    line-height: 17px;
+    margin-bottom: 40px;
+  }
+
+  tr {
+    > td:first-child {
+      width: 63%;
+      padding-left: 0;
+      vertical-align: middle;
+    }
+  }
+
+  td {
+    .concept {
+      font-family: $gotham-light-font;
+      font-weight: normal;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+  
+    .amount {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: $bodoni-bold-font;
+      font-size: 17px;
+      color: $bipolar-black;
+      font-weight: normal;
+    }
+  }
+}

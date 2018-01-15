@@ -1,0 +1,32 @@
+.form-control {
+  &:focus {
+    border-color: transparent;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.bipolar-login-register-content {
+  margin-top: 270px;
+  margin-bottom: 25px;
+
+  .bipolar-login-register-cols {
+    padding: 50px 40px;
+  }
+
+  .bipolar-login-col {
+    border: 5px solid #eee;
+  }
+
+  .bipolar-facebook-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .bipolar-title-login-register {
+    font-size: 16px;
+    font-family: $bodoni-bold-font;
+    color: $bipolar-black;
+    letter-spacing: 0.2em;
+  }
+}

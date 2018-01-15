@@ -12,3 +12,13 @@
 @import "material";
 @import "spinners.css";
 @import "bootstrap-fix";
+// Plugins
+@import "~sweetalert2/src/sweetalert2";
+@import "~select2/dist/css/select2";
+@import "~switchery/switchery.css";
+@import "~dropzone/dist/min/dropzone.min";
+@import "~daterangepicker/daterangepicker.css";
+
+.custom-select {
+  height: calc(4.25rem);
+}
