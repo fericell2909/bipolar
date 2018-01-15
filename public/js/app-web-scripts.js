@@ -25309,6 +25309,14 @@ $('.bipolar-shopping-cart-content').click(function () {
     }
 });
 
+// This is for my account menu
+$('.navbar-right-text').click(function () {
+    $('.bipolar-dropdown-menu.in-desktop').toggle();
+});
+$('.text-heading-account').click(function () {
+    $('.bipolar-dropdown-menu.in-mobile').toggle();
+});
+
 __webpack_require__("./node_modules/owl.carousel/dist/owl.carousel.js");
 __webpack_require__("./resources/assets/js/web/theme-scripts.js");
 __webpack_require__("./resources/assets/js/web/shop-scripts.js");

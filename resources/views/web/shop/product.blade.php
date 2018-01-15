@@ -11,8 +11,8 @@
             <i class="fa fa-home"></i> &raquo; <a href="#">Shop</a> &raquo; {{ $product->name }}
         </div>
     </div>
-    <div class="bipolar-container">
-        <div class="row product-content">
+    <div class="bipolar-container product-content">
+        <div class="row">
             <div class="col-sm-6 col-md-6">
                 @if(count($product->photos))
                     <div>
@@ -84,26 +84,24 @@
                             </div>
                         </div>
                 {!! Form::close() !!}
-                <div class="row" style="margin-bottom: 20px">
-                    <div class="col-sm-6 col-md-12 text-uppercase" style="margin-top: 10px;">
-                        <span class="text-uppercase">Cambia de moneda</span>
-                        {!! Form::select('currency_change',
-                            ['PEN' => 'SOLES PERUANOS (PEN)', 'USD' => 'DÓLAR AMERICANO (USD)'],
-                            Session::get('BIPOLAR_CURRENCY'),
-                            ['id' => 'product-currency-select', 'class' => 'product-currency-select']) !!}
-                    </div>
+            </div>
+        </div>
+        <div class="row product-below-content">
+            <div class="col-sm-4 col-md-1 text-uppercase">
+                Compártelo:
+            </div>
+            <div class="col-sm-6 col-md-5">
+                <div class="bipolar-action-button-container">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-envelope-o"></i></a>
                 </div>
-                <div class="row">
-                    <div class="col-sm-4 col-md-3 text-uppercase" style="margin-top: 10px;">
-                        Compártelo:
-                    </div>
-                    <div class="col-sm-4 col-md-4">
-                        <div class="bipolar-action-button-container">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-envelope-o"></i></a>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <span class="text-uppercase">Cambia de moneda</span>
+                {!! Form::select('currency_change',
+                    ['PEN' => 'SOLES PERUANOS (PEN)', 'USD' => 'DÓLAR AMERICANO (USD)'],
+                    Session::get('BIPOLAR_CURRENCY'),
+                    ['id' => 'product-currency-select', 'class' => 'product-currency-select']) !!}
             </div>
         </div>
         @if($product->recommendeds->count() > 0)

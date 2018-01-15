@@ -134,8 +134,12 @@
 
   .product-currency-select {
     @extend .select-styles;
+    display: block;
+    margin-top: 10px;
     background-color: $bipolar-color;
     color: white;
+    font-size: 11px;
+    font-family: $gotham-bold-font;
   }
 
   .btn-sizes-modal {
@@ -185,6 +189,11 @@
     font-weight: 400;
     letter-spacing: 2px;
   }
+}
+
+.product-below-content {
+  margin-top: 20px;
+  vertical-align: middle;
 }
 
 // This is for the tooltip

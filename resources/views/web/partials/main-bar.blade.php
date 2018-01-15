@@ -11,18 +11,19 @@
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-					<a class="navbar-right-text" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					<a class="navbar-right-text" href="#">
 						{{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }}
-						<span class="caret"></span>
+						<i class="fa fa-chevron-down"></i>
 					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="#">Mi cuenta</a>
-						</li>
-						<li>
-							<a href="#">Checkout</a>
-						</li>
-						<li class="dropdown-header">Idioma</li>
+					<ul class="bipolar-dropdown-menu in-desktop hidden-xs hidden-sm">
+						<li><a href="#"><i class="fa fa-user"></i> Mi cuenta</a></li>
+						<li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
+						<li><a href="#"><i class="fa fa-shopping-cart"></i> Shopping cart</a></li>
+						<li><a href="#"><i class="fa fa-share"></i> Checkout</a></li>
+						<li><a><i class="fa fa-usd"></i> Change currency</a></li>
+						<li><a href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a></li>
+						<li><a href="{{ route('change-currency', ['currency' => 'USD']) }}">Dólares (USD)</a></li>
+						<li><a><i class="fa fa-language"></i> Idioma</a></li>
 						@foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
 						<li>
 							<a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
@@ -30,18 +31,8 @@
 							</a>
 						</li>
 						@endforeach
-						<li class="dropdown-header">Moneda</li>
-						<li>
-							<a href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a>
-						</li>
-						<li>
-							<a href="{{ route('change-currency', ['currency' => 'USD']) }}">Dólares (USD)</a>
-						</li>
 						@auth
-						<li role="separator" class="divider"></li>
-						<li>
-							<a href="#">Cerrar sesión</a>
-						</li>
+						<li><a href="#">Cerrar sesión</a></li>
 						@endauth
 					</ul>
 				</li>

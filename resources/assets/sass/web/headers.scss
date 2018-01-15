@@ -279,6 +279,10 @@
   font-family: $gotham-bold-font;
   color: $bipolar-black;
   font-size: 12px;
+
+  > .fa {
+    font-size: 10px;
+  }
 }
 
 .navbar-nav {
@@ -289,4 +293,55 @@
 
 .full-image {
   width: 100%;
+}
+
+.bipolar-dropdown-menu {
+  display: none;
+  position: absolute;
+  list-style: none;
+  top: 84%;
+  right: 15%;
+  padding: 0;
+  margin: 0;
+  background: $bipolar-white;
+  -webkit-box-shadow: 0 3px 10px -2px #777;
+  -moz-box-shadow: 0 3px 10px -2px #777;
+  box-shadow: 0 3px 10px -2px #777;
+  min-width: 180px;
+  z-index: 10;
+
+  &.in-mobile {
+    top: 10%;
+  }
+
+  li {
+    padding: 10px;
+    white-space: nowrap;
+    cursor: pointer;
+    vertical-align: middle;
+
+    & + li {
+      border-top: solid 1px #f5f5f5;
+    }
+
+    &:hover {
+      background: #f5f5f5;
+    }
+
+    a {
+      text-transform: uppercase;
+      vertical-align: middle;
+      font-size: 12px;
+      color: $bipolar-black;
+      word-spacing: 1px;
+      &:hover, &:focus, &:active {
+        text-decoration: none;
+        outline: none;
+      }
+
+      > .fa {
+        font-size: 12px;
+      }
+    }
+  }
 }

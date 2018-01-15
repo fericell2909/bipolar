@@ -36,6 +36,14 @@ $('.bipolar-shopping-cart-content').click(function () {
     }
 });
 
+// This is for my account menu
+$('.navbar-right-text').click(function () {
+    $('.bipolar-dropdown-menu.in-desktop').toggle();
+});
+$('.text-heading-account').click(function () {
+  $('.bipolar-dropdown-menu.in-mobile').toggle();
+});
+
 require('owl.carousel/dist/owl.carousel');
 require('./theme-scripts');
 require('./shop-scripts');

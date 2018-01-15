@@ -5,7 +5,28 @@
   </p>
   <div class="text-heading-account">
     {{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }}
+    <i class="fa fa-chevron-down"></i>
   </div>
+  <ul class="bipolar-dropdown-menu in-mobile hidden-md hidden-lg">
+    <li><a href="#"><i class="fa fa-user"></i> Mi cuenta</a></li>
+    <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
+    <li><a href="#"><i class="fa fa-shopping-cart"></i> Shopping cart</a></li>
+    <li><a href="#"><i class="fa fa-share"></i> Checkout</a></li>
+    <li><a><i class="fa fa-usd"></i> Change currency</a></li>
+    <li><a href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a></li>
+    <li><a href="{{ route('change-currency', ['currency' => 'USD']) }}">Dólares (USD)</a></li>
+    <li><a><i class="fa fa-language"></i> Idioma</a></li>
+    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+      <li>
+        <a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+          {{ ucfirst($properties['native']) }}
+        </a>
+      </li>
+    @endforeach
+    @auth
+      <li><a href="#">Cerrar sesión</a></li>
+    @endauth
+  </ul>
 </section>
 <section class="header-mobile visible-xs-block">
   <div class="row">
