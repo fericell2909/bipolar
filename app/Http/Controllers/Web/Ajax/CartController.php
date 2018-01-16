@@ -52,6 +52,8 @@ class CartController extends Controller
 
         $cart = $this->calculateTotal($cart);
 
+        \Session::flash('success_add_product', $product->name);
+
         return response()->json(['success' => true]);
     }
 
