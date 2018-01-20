@@ -10087,7 +10087,20 @@ input[type="date"] {
 .bipolar-checkout .panel-default .panel-heading + .panel-collapse > .panel-body {
   border: 1px solid #eee;
   border-radius: 20px;
+}
+
+.bipolar-checkout .panel-default .panel-heading + .panel-collapse > .panel-body.centered {
   text-align: center;
+}
+
+.bipolar-checkout .panel-default .panel-heading + .panel-collapse > .panel-body .form-group > label {
+  font-weight: normal;
+  text-align: left;
+  text-transform: uppercase;
+  padding-left: 10px;
+  font-size: 11px;
+  font-family: "GothamBold", Verdana;
+  color: black;
 }
 
 .bipolar-checkout .table-review-order {

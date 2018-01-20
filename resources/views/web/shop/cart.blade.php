@@ -53,7 +53,7 @@
       <button type="submit" class="btn btn-dark-rounded">
         Actualizar carrito
       </button>
-      <a class="btn btn-dark-rounded">
+      <a href="{{ route('checkout') }}" class="btn btn-dark-rounded">
         Ir a la caja
       </a>
     </div>

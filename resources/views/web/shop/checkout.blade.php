@@ -21,12 +21,36 @@
 					</div>
 					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-							non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-							aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-							beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-							craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable
-							VHS.
+							<div class="row">
+								<div class="form-group col-md-6">
+									{!! Form::label('Nombre') !!}
+									{!! Form::text('name', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Apellidos') !!}
+									{!! Form::text('lastname', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Correo') !!}
+									{!! Form::text('email', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Teléfono') !!}
+									{!! Form::text('phone', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('País') !!}
+									{!! Form::text('country', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Estado') !!}
+									{!! Form::text('state', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-12">
+									{!! Form::label('Address') !!}
+									{!! Form::text('address', null, ['class' => 'form-control']) !!}
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -41,12 +65,36 @@
 					</div>
 					<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 						<div class="panel-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-							non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-							aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-							beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-							craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable
-							VHS.
+							<div class="row">
+								<div class="form-group col-md-6">
+									{!! Form::label('Nombre') !!}
+									{!! Form::text('name', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Apellidos') !!}
+									{!! Form::text('lastname', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Correo') !!}
+									{!! Form::text('email', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Teléfono') !!}
+									{!! Form::text('phone', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('País') !!}
+									{!! Form::text('country', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Estado') !!}
+									{!! Form::text('state', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-12">
+									{!! Form::label('Address') !!}
+									{!! Form::text('address', null, ['class' => 'form-control']) !!}
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -60,7 +108,7 @@
 						</h4>
 					</div>
 					<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-						<div class="panel-body">
+						<div class="panel-body centered">
 							<table class="table-review-order">
                 <thead>
                   <tr>
