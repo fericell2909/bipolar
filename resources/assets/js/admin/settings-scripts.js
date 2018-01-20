@@ -90,7 +90,7 @@ $(function () {
                 const productHashId = $(this).data('productId');
                 $.ajax({
                     method: 'DELETE',
-                    url: `/ajax-admin/products/${productHashId}`
+                    url: `/ajax-admin/products/remove/${productHashId}`
                 }).done(() => location.reload());
             }
         });

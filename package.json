@@ -14,14 +14,14 @@
         "babel-plugin-transform-class-properties": "^6.24.1",
         "babel-preset-react": "^6.23.0",
         "block-ui": "^2.70.1",
-        "bootstrap": "4.0.0-beta",
+        "bootstrap": "4.0.0",
         "bootstrap-sass": "^3.3.7",
         "countup.js": "^1.9.3",
         "cross-env": "^5.1.3",
         "daterangepicker": "^2.1.27",
         "dropzone": "^5.2.0",
         "icheck": "^1.0.2",
-        "jquery": "^3.1.1",
+        "jquery": "^3.3.0",
         "jquery-slimscroll": "^1.3.8",
         "laravel-mix": "^1.7.2",
         "lodash": "^4.17.4",
@@ -37,7 +37,7 @@
         "viewerjs": "^0.10.0"
     },
     "dependencies": {
-        "browser-sync": "^2.23.3",
+        "browser-sync": "^2.23.5",
         "browser-sync-webpack-plugin": "^1.2.0"
     }
 }

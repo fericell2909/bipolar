@@ -93,16 +93,16 @@
                                         @endif
                                         <div class="overlay-shop-color-text">{{ $product->price }}</div>
                                         <div class="overlay-shop-buttons">
-                                            <button class="btn btn-dark overlay-radio-button" title="Wishlist">
+                                            <a href="{{ route('wishlist.add', $product->slug) }}" class="btn btn-dark overlay-radio-button" title="Wishlist">
                                                 <img src="{{ asset('images/heart.svg') }}" width="18">
-                                            </button>
+                                            </a>
                                             <a href="#"
                                                 class="btn btn-dark overlay-radio-button button-see-details"
                                                 data-hash-id="{{ $product->hash_id }}"
                                                 title="Detalles">
                                                 <img src="{{ asset('images/search.svg') }}" width="18">
                                             </a>
-                                            <a href="{{ route('shop.product', $salient->slug) }}" class="btn btn-dark overlay-radio-button" title="Agregar al carrito">
+                                            <a href="{{ route('shop.product', $product->slug) }}" class="btn btn-dark overlay-radio-button" title="Agregar al carrito">
                                                 <img src="{{ asset('images/shopping-cart.svg') }}" width="18">
                                             </a>
                                         </div>

@@ -9,9 +9,9 @@
   </div>
   <ul class="bipolar-dropdown-menu in-mobile hidden-md hidden-lg">
     <li><a href="#"><i class="fa fa-user"></i> Mi cuenta</a></li>
-    <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-    <li><a href="#"><i class="fa fa-shopping-cart"></i> Shopping cart</a></li>
-    <li><a href="#"><i class="fa fa-share"></i> Checkout</a></li>
+    <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
+    <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Shopping cart</a></li>
+    <li><a href="{{ route('checkout') }}"><i class="fa fa-share"></i> Checkout</a></li>
     <li><a><i class="fa fa-usd"></i> Change currency</a></li>
     <li><a href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a></li>
     <li><a href="{{ route('change-currency', ['currency' => 'USD']) }}">Dólares (USD)</a></li>

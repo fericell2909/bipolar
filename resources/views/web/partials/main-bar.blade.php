@@ -17,9 +17,9 @@
 					</a>
 					<ul class="bipolar-dropdown-menu in-desktop hidden-xs hidden-sm">
 						<li><a href="#"><i class="fa fa-user"></i> Mi cuenta</a></li>
-						<li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
+						<li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
 						<li><a href="#"><i class="fa fa-shopping-cart"></i> Shopping cart</a></li>
-						<li><a href="#"><i class="fa fa-share"></i> Checkout</a></li>
+						<li><a href="{{ route('checkout') }}"><i class="fa fa-share"></i> Checkout</a></li>
 						<li><a><i class="fa fa-usd"></i> Change currency</a></li>
 						<li><a href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a></li>
 						<li><a href="{{ route('change-currency', ['currency' => 'USD']) }}">Dólares (USD)</a></li>
@@ -87,8 +87,8 @@
 								<span class="amount">{{ CartBipolar::totalCurrency() }}</span>
 							</div>
 							<div class="buttons">
-								<a href="{{ route('cart') }}" class="btn btn-dark btn-rounded">Ver carrito</a>
-								<a href="#" class="btn btn-dark btn-rounded">Checkout</a>
+								<a href="{{ route('cart') }}" class="btn btn-dark-rounded">Ver carrito</a>
+								<a href="{{ route('checkout') }}" class="btn btn-dark-rounded">Checkout</a>
 							</div>
 						</div>
 					</div>

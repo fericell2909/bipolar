@@ -9,6 +9,10 @@ class CheckoutController extends Controller
 {
     public function checkout()
     {
+        if (\CartBipolar::count() === 0) {
+            return redirect(route('shop'));
+        }
+
         return view('web.shop.checkout');
     }
 }

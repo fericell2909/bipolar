@@ -119,17 +119,31 @@ class ProductController extends Controller
         /** @var Product $product */
         $product = Product::findBySlugOrFail($productSlug);
 
-        $product->load('stocks');
+        $product->load('stocks.size');
 
         $stockWithSizes = $product->stocks
             ->filter(function ($stock) {
                 /** @var Stock $stock */
                 return !is_null($stock->size_id);
             })
-            ->pluck('size.name', 'hash_id')
+            //->pluck('size.name', 'hash_id')
+            ->transform(function ($stock) {
+                /** @var Stock $stock */
+                return [
+                    'hash_id'  => $stock->hash_id,
+                    'size'     => $stock->size->name,
+                    'quantity' => $stock->quantity,
+                    'one_left' => $stock->quantity === 1 ? true : false,
+                ];
+            })
             ->toArray();
 
-        return view('web.shop.preview', compact('product', 'stockWithSizes'));
+        $quantities = [];
+        foreach (range(1, 10) as $number) {
+            $quantities[$number] = $number;
+        }
+
+        return view('web.shop.preview', compact('product', 'stockWithSizes', 'quantities'));
     }
 
     public function stock($productSlug)

@@ -9,23 +9,58 @@
 
 		</div>
 		<div class="col-md-9">
+			{!! Form::open() !!}
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-default">
 					<div class="panel-heading" role="tab" id="headingOne">
 						<h4 class="panel-title">
 							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-								Collapsible Group Item #1
+								Dirección de facturación
 							</a>
 						</h4>
 					</div>
 					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-							non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-							aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-							beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-							craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable
-							VHS.
+							{!! Form::open() !!}
+							<div class="row">
+								<div class="form-group col-md-6">
+									{!! Form::label('Nombre') !!}
+									{!! Form::text('name', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Apellidos') !!}
+									{!! Form::text('lastname', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Correo') !!}
+									{!! Form::text('email', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Teléfono') !!}
+									{!! Form::text('phone', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('País') !!}
+									{!! Form::text('country', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Estado') !!}
+									{!! Form::text('state', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Address') !!}
+									{!! Form::text('address', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Código zip') !!}
+									{!! Form::text('zip', null, ['class' => 'form-control']) !!}
+								</div>
+							</div>
+							<div class="text-center">
+								{!! Form::submit('Guardar', ['class' => 'btn btn-dark-rounded']) !!}
+								<button type="button" class="btn btn-dark-rounded">Continuar</button>
+							</div>
+							{!! Form::close() !!}
 						</div>
 					</div>
 				</div>
@@ -40,12 +75,41 @@
 					</div>
 					<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 						<div class="panel-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-							non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-							aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-							beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-							craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable
-							VHS.
+							<div id="bipolar-directions"></div>
+							<div class="row">
+								<div class="form-group col-md-6">
+									{!! Form::label('Nombre') !!}
+									{!! Form::text('name', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Apellidos') !!}
+									{!! Form::text('lastname', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Correo') !!}
+									{!! Form::text('email', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Teléfono') !!}
+									{!! Form::text('phone', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('País') !!}
+									{!! Form::text('country', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Estado') !!}
+									{!! Form::text('state', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Address') !!}
+									{!! Form::text('address', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Código zip') !!}
+									{!! Form::text('zip', null, ['class' => 'form-control']) !!}
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -59,7 +123,7 @@
 						</h4>
 					</div>
 					<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-						<div class="panel-body">
+						<div class="panel-body centered">
 							<table class="table-review-order">
                 <thead>
                   <tr>
@@ -95,7 +159,7 @@
                 {!! Form::radio('payment', '1') !!} <span class="checkbox-content">Tarjeta de crédito o débito</span>
               </div>
               <div class="submit-payment">
-                <button class="btn btn-rounded btn-dark">Pagar</button>
+                <button type="submit" class="btn btn-rounded btn-dark">Pagar</button>
                 <p>
                   {!! Form::checkbox('terms', '1') !!}
                   <label for="terms">He leído y acepto los <a href="#">términos y condiciones</a></label>
@@ -105,6 +169,7 @@
 					</div>
 				</div>
 			</div>
+			{!! Form::close() !!}
 		</div>
 	</div>
 </div>

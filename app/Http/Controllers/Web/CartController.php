@@ -31,4 +31,11 @@ class CartController extends Controller
 
         return redirect()->back();
     }
+
+    public function remove($productSlug)
+    {
+        \CartBipolar::remove($productSlug);
+
+        return redirect()->back();
+    }
 }

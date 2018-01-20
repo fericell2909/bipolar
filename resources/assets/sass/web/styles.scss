@@ -164,6 +164,31 @@ a {
   padding-bottom: 20px;
 }
 
+.bipolar-success-message {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-top: 3px solid #8fae1b;
+  background-color: #f7f6f7;
+  color: #515151;
+  padding: 13px 26px;
+  list-style: none;
+  width: auto;
+  word-wrap: break-word;
+
+  i.fa {
+    color: #8fae1b;
+    margin-right: 10px;
+  }
+
+  >.success-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
 .breadcrumb-without-padding {
   background-color: #F5F5F5;
 }

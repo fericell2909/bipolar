@@ -11,17 +11,18 @@
             <i class="fa fa-home"></i> &raquo; <a href="#">Shop</a> &raquo; {{ $product->name }}
         </div>
     </div>
-    <div class="bipolar-container">
-        <div class="row product-content">
+    @includeWhen(\Session::has('success_add_product'), 'web.partials.success', ['product' => \Session::has('success_add_product')])
+    <div class="bipolar-container product-content">
+        <div class="row">
             <div class="col-sm-6 col-md-6">
                 @if(count($product->photos))
                     <div>
                         @if(false)
-                            <div class="shop-discount-container">
-                                <div class="shop-discount">
-                                    <span>30%</span>
-                                </div>
+                        <div class="shop-discount-container">
+                            <div class="shop-discount">
+                                <span>30%</span>
                             </div>
+                        </div>
                         @endif
                         <div id="viewer-images" class="owl-carousel-main owl-carousel owl-theme">
                             @foreach($product->photos as $photo)
@@ -42,63 +43,87 @@
                     <div class="product-subtitle">{{ $product->colors->first()->name }}</div>
                 @endif
                 <p class="product-price">
-                    <span class="product-amount">S/. {{ $product->price }}</span>
+                    <span class="product-amount">{{ $product->price_currency }}</span>
                 </p>
                 <p class="product-description">
                     {{ $product->description }}
                 </p>
-                {!! Form::open() !!}
-                @if(count($stockWithSizes))
-                    <div class="row" style="margin-bottom: 20px;">
-                        <div class="col-sm-2 col-md-1 text-uppercase" style="margin-top: 10px">Talla</div>
-                        <div class="col-sm-7 col-md-3">
-                            {!! Form::select('sizes', $stockWithSizes, null, ['class' => 'product-size-select']) !!}
-                        </div>
-                        <div class="col-sm-3 col-md-2">
+                {!! Form::open(['id' => 'product-add-cart']) !!}
+                    {!! Form::hidden('product_id', $product->hash_id) !!}
+                    @if(count($stockWithSizes))
+                        <div class="product-sizes">
+                            <h6 class="text-uppercase">Selecciona tu talla</h6>
+                            @foreach($stockWithSizes as $stock)
+                                @if($stock['quantity'] === 0)
+                                    <button type="button" class="product-size-disabled">
+                                        <span class="product-size-text">{{ $stock['size'] }}</span>
+                                    </button>
+                                @elseif($stock['quantity'] === 1)
+                                    <button type="button" class="product-size tooltip-container" title="QUEDA 1 EN STOCK" data-stock-hash-id={{ $stock['hash_id'] }}>
+                                        <span class="product-size-text">{{ $stock['size'] }}</span>
+                                    </button>
+                                @else
+                                    <button type="button" class="product-size" data-stock-hash-id={{ $stock['hash_id'] }}>
+                                        <span class="product-size-text">{{ $stock['size'] }}</span>
+                                    </button>
+                                @endif
+                            @endforeach
                             <button type="button" class="btn btn-default btn-sizes-modal" data-toggle="modal" data-target="#testingModal">Ver guía de tallas</button>
+                            {!! Form::hidden('size', null, ['id' => 'size-selected']) !!}
                         </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 20px">
-                        <div class="col-sm-6 col-md-4 text-uppercase" style="margin-top: 10px;">Cambia de moneda</div>
-                        <div class="col-sm-6 col-md-4">
-                            {!! Form::select('sizes', $stockWithSizes, null, ['class' => 'product-size-select']) !!}
+                    @endif
+                        <div class="row" style="margin-bottom: 20px">
+                            <div class="col-sm-6 col-md-6">
+                                {!! Form::select('quantity', $quantities, null, ['class' => 'quantity-select']) !!}
+                                <button class="btn btn-add-cart">
+                                    Añadir al carrito
+                                </button>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="bipolar-button-description-container">
+                                    <a href="{{ route('wishlist.add', $product->slug) }}">
+                                        <i class="fa fa-heart-o"></i>
+                                        <span>Wishlist</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                @endif
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="text-uppercase">Cambia de moneda</span>
+                                {!! Form::select('currency_change',
+                                    ['PEN' => 'SOLES PERUANOS (PEN)', 'USD' => 'DÓLAR AMERICANO (USD)'],
+                                    Session::get('BIPOLAR_CURRENCY'),
+                                    ['id' => 'product-currency-select', 'class' => 'product-currency-select']) !!}
+                            </div>
+                        </div>
                 {!! Form::close() !!}
-                <div class="bipolar-stock-status">
-                    STATUS: EN STOCK
-                </div>
-                <div class="row">
-                    <div class="col-sm-4 col-md-3 text-uppercase" style="margin-top: 10px;">
-                        Compártelo:
-                    </div>
-                    <div class="col-sm-4 col-md-4">
-                        <div class="bipolar-action-button-container">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-envelope-o"></i></a>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="row product-below-content">
+            <div class="col-sm-6 col-md-5">
+                <div class="bipolar-action-button-container">
+                    <span class="text-uppercase">Compártelo:</span>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-envelope-o"></i></a>
                 </div>
             </div>
         </div>
         @if($product->recommendeds->count() > 0)
-            <h3>Te recomendamos</h3>
-            <div class="row">
-                @foreach($product->recommendeds as $recommended)
-                    <div class="col-md-3">
-                        @if(count($recommended->photos))
-                            <a href="{{ route('shop.product', $recommended->slug) }}">
-                                <img src="{{ $recommended->photos->first()->url }}" alt="{{ $recommended->name }}" class="img-responsive">
-                            </a>
-                        @else
-                            <img src="https://placehold.it/320x200" alt="{{ $recommended->name }}" class="img-responsive">
-                        @endif
-                        <h4><a href="{{ route('shop.product', $recommended->slug) }}">{{ $recommended->name }}</a></h4>
-                        <h5>S/. {{ $recommended->price }}</h5>
-                    </div>
-                @endforeach
-            </div>
+        <h3>Te recomendamos</h3>
+        <div class="row" style="padding-left: 10px; margin-bottom: 25px;">
+            @foreach($product->recommendeds as $recommended)
+                <div class="col-md-2" style="padding-left:5px; padding-right: 5px;">
+                    @if(count($recommended->photos))
+                        <a href="{{ route('shop.product', $recommended->slug) }}">
+                            <img src="{{ $recommended->photos->first()->url }}" class="img-responsive" alt="{{ $recommended->name }}">
+                        </a>
+                    @else
+                        <img src="https://placehold.it/320x200" class="img-responsive" alt="{{ $recommended->name }}">
+                    @endif
+                </div>
+            @endforeach
+        </div>
         @endif
     </div>
     <div class="modal fade" id="testingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

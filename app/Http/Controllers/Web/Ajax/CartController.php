@@ -15,7 +15,7 @@ class CartController extends Controller
     {
         $this->validate($request, [
             'product_id' => 'required|string',
-            'quantity'   => 'required|numeric',
+            'quantity'   => 'required|numeric|between:1,10',
             'size'       => 'nullable|string',
         ]);
 
@@ -51,6 +51,8 @@ class CartController extends Controller
         $cart->load('details');
 
         $cart = $this->calculateTotal($cart);
+
+        \Session::flash('success_add_product', $product->name);
 
         return response()->json(['success' => true]);
     }

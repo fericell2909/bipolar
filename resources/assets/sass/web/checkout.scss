@@ -27,7 +27,19 @@
         > .panel-body {
           border: 1px solid #eee;
           border-radius: 20px;
-          text-align: center;
+          &.centered {
+            text-align: center;
+          }
+          
+          .form-group > label {
+            font-weight: normal;
+            text-align: left;
+            text-transform: uppercase;
+            padding-left: 10px;
+            font-size: 11px;
+            font-family: $gotham-bold-font;
+            color: $bipolar-black;
+          }
         }
       }
     }

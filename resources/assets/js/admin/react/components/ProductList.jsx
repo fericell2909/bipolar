@@ -30,7 +30,7 @@ export default class BipolarProductList extends React.Component {
     this.handleMassiveSelection = this.handleMassiveSelection.bind(this);
   }
 
-  handleDelete(productHashId) {
+  handleDelete = productHashId => {
     swal({
       type: "warning",
       title: "¿Desea descartar el producto?",
@@ -41,7 +41,7 @@ export default class BipolarProductList extends React.Component {
     }).then(result => {
       if (result.value) {
         swal.showLoading();
-        axios.delete(`/ajax-admin/products/${productHashId}`).then(() => {
+        axios.delete(`/ajax-admin/products/remove/${productHashId}`).then(() => {
           swal({
             title: "Descartado",
             type: "success",

@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-01-09.
+    * Generated on 2018-01-20.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -56,6 +56,8 @@ namespace PHPSTORM_META {
         'hashids.connection' => \Hashids\Hashids::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
+        'iseed' => \Orangehill\Iseed\Iseed::class,
+        'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
@@ -206,6 +208,8 @@ namespace PHPSTORM_META {
         'hashids.connection' => \Hashids\Hashids::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
+        'iseed' => \Orangehill\Iseed\Iseed::class,
+        'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
@@ -356,6 +360,8 @@ namespace PHPSTORM_META {
         'hashids.connection' => \Hashids\Hashids::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
+        'iseed' => \Orangehill\Iseed\Iseed::class,
+        'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
@@ -506,6 +512,8 @@ namespace PHPSTORM_META {
         'hashids.connection' => \Hashids\Hashids::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
+        'iseed' => \Orangehill\Iseed\Iseed::class,
+        'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
@@ -656,6 +664,8 @@ namespace PHPSTORM_META {
         'hashids.connection' => \Hashids\Hashids::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
+        'iseed' => \Orangehill\Iseed\Iseed::class,
+        'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
@@ -806,6 +816,8 @@ namespace PHPSTORM_META {
         'hashids.connection' => \Hashids\Hashids::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
+        'iseed' => \Orangehill\Iseed\Iseed::class,
+        'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
@@ -956,6 +968,8 @@ namespace PHPSTORM_META {
         'hashids.connection' => \Hashids\Hashids::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
+        'iseed' => \Orangehill\Iseed\Iseed::class,
+        'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'command.ide-helper.generate' => \Barryvdh\LaravelIdeHelper\Console\GeneratorCommand::class,
