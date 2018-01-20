@@ -21,6 +21,7 @@
 					</div>
 					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
+							{!! Form::open() !!}
 							<div class="row">
 								<div class="form-group col-md-6">
 									{!! Form::label('Nombre') !!}
@@ -46,11 +47,20 @@
 									{!! Form::label('Estado') !!}
 									{!! Form::text('state', null, ['class' => 'form-control']) !!}
 								</div>
-								<div class="form-group col-md-12">
+								<div class="form-group col-md-6">
 									{!! Form::label('Address') !!}
 									{!! Form::text('address', null, ['class' => 'form-control']) !!}
 								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Código zip') !!}
+									{!! Form::text('zip', null, ['class' => 'form-control']) !!}
+								</div>
 							</div>
+							<div class="text-center">
+								{!! Form::submit('Guardar', ['class' => 'btn btn-dark-rounded']) !!}
+								<button type="button" class="btn btn-dark-rounded">Continuar</button>
+							</div>
+							{!! Form::close() !!}
 						</div>
 					</div>
 				</div>
@@ -65,6 +75,7 @@
 					</div>
 					<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 						<div class="panel-body">
+							<div id="bipolar-directions"></div>
 							<div class="row">
 								<div class="form-group col-md-6">
 									{!! Form::label('Nombre') !!}
@@ -90,9 +101,13 @@
 									{!! Form::label('Estado') !!}
 									{!! Form::text('state', null, ['class' => 'form-control']) !!}
 								</div>
-								<div class="form-group col-md-12">
+								<div class="form-group col-md-6">
 									{!! Form::label('Address') !!}
 									{!! Form::text('address', null, ['class' => 'form-control']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Código zip') !!}
+									{!! Form::text('zip', null, ['class' => 'form-control']) !!}
 								</div>
 							</div>
 						</div>

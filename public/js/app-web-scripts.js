@@ -35715,6 +35715,7 @@ __webpack_require__("./node_modules/owl.carousel/dist/owl.carousel.js");
 __webpack_require__("./resources/assets/js/web/theme-scripts.js");
 __webpack_require__("./resources/assets/js/web/shop-scripts.js");
 __webpack_require__("./resources/assets/js/web/product-scripts.js");
+//require('./react/app-react-scripts');
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/jquery/dist/jquery.js"), __webpack_require__("./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),

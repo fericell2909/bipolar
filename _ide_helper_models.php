@@ -37,6 +37,7 @@ namespace App\Models{
  * @property float $total
  * @property float $total_dolar
  * @property-read \App\Models\Cart $cart
+ * @property-read string $hash_id
  * @property-read mixed $total_currency
  * @property-read \App\Models\Product $product
  * @property-read \App\Models\Stock|null $stock
@@ -145,6 +146,7 @@ namespace App\Models{
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CartDetail[] $details
+ * @property-read mixed $total_currency
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereId($value)
@@ -237,6 +239,23 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Country
+ *
+ * @property int $id
+ * @property string $sortname
+ * @property string $name
+ * @property int $phonecode
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $states
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country wherePhonecode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country whereSortname($value)
+ */
+	class Country extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Stock
  *
  * @property int $id
@@ -307,6 +326,20 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereName($value)
  */
 	class Role extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\CountryState
+ *
+ * @property int $id
+ * @property string $name
+ * @property int $country_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereName($value)
+ */
+	class CountryState extends \Eloquent {}
 }
 
 namespace App\Models{
