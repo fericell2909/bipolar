@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 
 class CheckoutController extends Controller
 {
@@ -13,6 +14,8 @@ class CheckoutController extends Controller
             return redirect(route('shop'));
         }
 
-        return view('web.shop.checkout');
+        $countries = Country::orderBy('name')->get()->pluck('name', 'id')->toArray();
+
+        return view('web.shop.checkout', compact('countries'));
     }
 }

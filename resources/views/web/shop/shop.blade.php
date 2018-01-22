@@ -109,8 +109,8 @@
                                     </div>
                                 </div>
                             @else
-                                <a href="{{ route('shop.product', $salient->slug) }}">
-                                    <img src="https://placehold.it/317x210" alt="{{ $salient->name }}" class="img-responsive">
+                                <a href="{{ route('shop.product', $product->slug) }}">
+                                    <img src="https://placehold.it/317x210" alt="{{ $product->name }}" class="img-responsive">
                                 </a>
                             @endif
                         </div>
