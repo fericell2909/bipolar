@@ -1,4 +1,3 @@
-import Viewer from 'viewerjs/dist/viewer.esm';
 import CountUp from 'countup.js';
 require('icheck');
 
@@ -45,18 +44,6 @@ $(function () {
             }
         });
     });
-
-    // Viewer function
-    if (document.querySelector('#viewer-images')) {
-        const viewerImages = document.querySelector('#viewer-images');
-        const viewer = new Viewer(viewerImages, {
-            rotatable: false,
-            movable: false,
-            interval: 9999999,
-            title: false,
-            minZoomRatio: 1,
-        });
-    }
 
     // Bootstrap tooltip
     $('[data-toggle="tooltip"]').tooltip();

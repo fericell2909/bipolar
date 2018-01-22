@@ -141,4 +141,43 @@
       }
     }
   }
+
+  .select2 {
+    &:focus {
+      outline: none;
+    }
+  }
+  
+  .select2-container--default .select2-selection--single {
+    background-color: #f5f5f5;
+    color: #878787;
+    border: 1px solid #f5f5f5;
+    border-radius: 50px;
+    min-height: 34px;
+    padding: 3px 15px;
+
+    .select2-selection__arrow b {
+      left: 0;
+      margin-top: 0;
+    }
+  }
+
+  .select-2-countries, .select-2-country-states {
+    border: none;
+    background-color: $bipolar-gray;
+    color: #878787;
+    line-height: 1;
+    -webkit-border-radius: 42px;
+    -moz-border-radius: 42px;
+    border-radius: 42px;
+    outline: none;
+    padding: 0 25px;
+    font-size: 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 35px;
+    background-image: url(../../img/arrow_down.png);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px);
+  }
 }

@@ -16,6 +16,7 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::get('my-account', 'Web\UserController@profile')->name('profile');
             Route::post('my-account', 'Web\UserController@updateProfile')->name('profile.update');
             Route::get('checkout', 'Web\CheckoutController@checkout')->name('checkout');
+            Route::get('ajax/country/{countryId}/country-states', 'Web\Ajax\CountryStatesController@get');
         });
 
         Route::get('shop', 'Web\ShopController@shop')->name('shop');

@@ -41,11 +41,11 @@
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('País') !!}
-									{!! Form::text('country', null, ['class' => 'form-control']) !!}
+									{!! Form::select('country', $countries, null, ['class' => 'form-control select-2-countries']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Estado') !!}
-									{!! Form::text('state', null, ['class' => 'form-control']) !!}
+									{!! Form::select('state', [], null, ['class' => 'form-control select-2-country-states']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Address') !!}
@@ -95,11 +95,11 @@
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('País') !!}
-									{!! Form::text('country', null, ['class' => 'form-control']) !!}
+									{!! Form::select('country', $countries, null, ['class' => 'form-control']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Estado') !!}
-									{!! Form::text('state', null, ['class' => 'form-control']) !!}
+									{!! Form::select('state', [], null, ['class' => 'form-control']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Address') !!}
