@@ -39,6 +39,7 @@ class PhotoController extends Controller
 
         $product = Product::findByHash($productHashId);
         $image = $request->file('file');
+        debug($request->file());
 
         if ($image->isValid()) {
             $imagePath = $this->uploadPhoto($image, 'products', $product->slug);
@@ -73,7 +74,8 @@ class PhotoController extends Controller
     private function uploadPhoto(UploadedFile $image, string $folder, string $imageName): string
     {
         $now = now();
-        $fullNameImage = "{$imageName}_{$now->timestamp}.{$image->extension()}";
+        $randomString = str_random(3);
+        $fullNameImage = "{$imageName}_{$now->timestamp}_{$randomString}.{$image->extension()}";
 
         return $image->storePubliclyAs($folder, $fullNameImage, [
             'CacheControl' => 'max-age=31536000',
