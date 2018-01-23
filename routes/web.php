@@ -12,13 +12,6 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::post('logout', 'Web\Auth\LoginController@logout')->name('logout');
         Route::post('register/newsletter', 'Web\NewsletterController@register')->name('register.newsletter');
 
-        Route::middleware('auth:web')->group(function () {
-            Route::get('my-account', 'Web\UserController@profile')->name('profile');
-            Route::post('my-account', 'Web\UserController@updateProfile')->name('profile.update');
-            Route::get('checkout', 'Web\CheckoutController@checkout')->name('checkout');
-            Route::get('ajax/country/{countryId}/country-states', 'Web\Ajax\CountryStatesController@get');
-        });
-
         Route::get('shop', 'Web\ShopController@shop')->name('shop');
         Route::post('shop', 'Web\ShopController@shop')->name('shop.post');
         Route::get('shop/{productSlug}', 'Web\ShopController@product')->name('shop.product');
@@ -34,6 +27,14 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::get('cart', 'Web\CartController@cart')->name('cart');
         Route::get('cart/remove/{productSlug}', 'Web\CartController@remove')->name('cart.remove');
         Route::post('cart', 'Web\CartController@update')->name('cart.update');
+
+        Route::middleware('auth:web')->group(function () {
+            Route::get('my-account', 'Web\UserController@profile')->name('profile');
+            Route::post('my-account', 'Web\UserController@updateProfile')->name('profile.update');
+            Route::get('checkout', 'Web\CheckoutController@checkout')->name('checkout');
+            Route::post('address/{addressType}/register', 'Web\AddressesController@add')->name('address.add');
+            Route::get('ajax/country/{countryId}/country-states', 'Web\Ajax\CountryStatesController@get');
+        });
     });
 
 Route::post('ajax/oauth/facebook', 'Web\Auth\LoginController@facebookAuth');

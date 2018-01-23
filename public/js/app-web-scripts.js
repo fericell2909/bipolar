@@ -28588,6 +28588,11 @@ $(function () {
       countryStateSelect.trigger('change');
     });
   });
+
+  countryStateSelect.on('select2:select', function (event) {
+    var selected = $(event.currentTarget).val();
+    $('#country_state_billing_hidden').val(selected);
+  });
 });
 
 /***/ }),

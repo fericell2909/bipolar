@@ -9,7 +9,15 @@
 
 		</div>
 		<div class="col-md-9">
-			{!! Form::open() !!}
+			@if($errors->any())
+				<div class="alert alert-danger">
+					<ul>
+						@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+						@endforeach
+					</ul>
+				</div>
+			@endif
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-default">
 					<div class="panel-heading" role="tab" id="headingOne">
@@ -21,39 +29,40 @@
 					</div>
 					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
-							{!! Form::open() !!}
+							{!! Form::open(['url' => route('address.add', 'billing')]) !!}
 							<div class="row">
 								<div class="form-group col-md-6">
 									{!! Form::label('Nombre') !!}
-									{!! Form::text('name', null, ['class' => 'form-control']) !!}
+									{!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Apellidos') !!}
-									{!! Form::text('lastname', null, ['class' => 'form-control']) !!}
+									{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Correo') !!}
-									{!! Form::text('email', null, ['class' => 'form-control']) !!}
+									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Teléfono') !!}
-									{!! Form::text('phone', null, ['class' => 'form-control']) !!}
+									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('País') !!}
-									{!! Form::select('country', $countries, null, ['class' => 'form-control select-2-countries']) !!}
+									{!! Form::select('country', $countries, null, ['class' => 'form-control select-2-countries', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Estado') !!}
-									{!! Form::select('state', [], null, ['class' => 'form-control select-2-country-states']) !!}
+									{!! Form::select('state', [], null, ['class' => 'form-control select-2-country-states', 'required' => true]) !!}
+									{!! Form::hidden('country_state_billing_hidden', null, ['id' => 'country_state_billing_hidden']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Address') !!}
-									{!! Form::text('address', null, ['class' => 'form-control']) !!}
+									{!! Form::text('address', null, ['class' => 'form-control', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Código zip') !!}
-									{!! Form::text('zip', null, ['class' => 'form-control']) !!}
+									{!! Form::text('zip', null, ['class' => 'form-control', 'required' => true]) !!}
 								</div>
 							</div>
 							<div class="text-center">
@@ -169,7 +178,6 @@
 					</div>
 				</div>
 			</div>
-			{!! Form::close() !!}
 		</div>
 	</div>
 </div>

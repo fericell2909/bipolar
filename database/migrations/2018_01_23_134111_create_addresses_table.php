@@ -22,7 +22,7 @@ class CreateAddressesTable extends Migration
             $table->string('lastname');
             $table->string('email');
             $table->string('phone');
-            $table->string('address');
+            $table->string('address', 500);
             $table->string('zip');
             $table->boolean('main')->default(0);
             $table->timestamps();

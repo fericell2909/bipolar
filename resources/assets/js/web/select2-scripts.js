@@ -19,4 +19,9 @@ $(function() {
         countryStateSelect.trigger('change');
       });
   });
+
+  countryStateSelect.on('select2:select', event => {
+    const selected = $(event.currentTarget).val();
+    $('#country_state_billing_hidden').val(selected);
+  });
 });
