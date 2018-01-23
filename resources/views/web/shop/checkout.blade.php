@@ -22,12 +22,12 @@
 				<div class="panel panel-default">
 					<div class="panel-heading" role="tab" id="headingOne">
 						<h4 class="panel-title">
-							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseOne" aria-expanded="true" aria-controls="sectionCollapseOne">
 								Dirección de facturación
 							</a>
 						</h4>
 					</div>
-					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+					<div id="sectionCollapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
 							{!! Form::open(['url' => route('address.add', 'billing')]) !!}
 							<div class="row">
@@ -70,6 +70,22 @@
 								<button type="button" class="btn btn-dark-rounded">Continuar</button>
 							</div>
 							{!! Form::close() !!}
+							@foreach($billingAddresses as $billingAddress)
+								<div class="address-list">
+									<input type="radio" class="address-list-checkbox" name="address_billing"> <span class="address-list-title">{{ $billingAddress->name }} {{ $billingAddress->lastname }}</span>
+									<div class="address-list-content">
+										<ul class="address-list-of-lists">
+											<li>{{ $billingAddress->address }}</li>
+											<li>{{ $billingAddress->country_state->name }}</li>
+											<li>{{ $billingAddress->country_state->country->name }}</li>
+											<li>{{ $billingAddress->phone }}</li>
+										</ul>
+										<div class="trash-icon">
+											<a href="#"><img src="{{ asset('images/trash.svg') }}" width="20" alt="Eliminar"></a>
+										</div>
+									</div>
+								</div>
+							@endforeach
 						</div>
 					</div>
 				</div>

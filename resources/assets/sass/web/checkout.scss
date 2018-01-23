@@ -180,4 +180,45 @@
     background-repeat: no-repeat;
     background-position: calc(100% - 10px);
   }
+
+  .address-list {
+    border: 1px solid #eee;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 15px;
+
+    .address-list-checkbox {
+      margin-right: 10px;
+    }
+
+    .address-list-title {
+      text-transform: uppercase;
+      font-family: $bodoni-bold-font;
+      color: $bipolar-black;
+      font-size: 17px;
+      letter-spacing: 2.5px;
+    }
+
+    .address-list-content {
+      display: flex;
+      justify-content: space-between;
+
+      .address-list-of-lists {
+        list-style: none;
+        padding-left: 28px;
+  
+        > li {
+          text-transform: uppercase;
+          font-size: 11px;
+          color: $bipolar-black;
+          font-family: $gotham-bold-font;
+        }
+      }
+
+      .trash-icon {
+        display: flex;
+        align-items: flex-end;
+      }
+    }
+  }
 }
