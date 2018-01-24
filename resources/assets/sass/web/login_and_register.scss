@@ -7,7 +7,7 @@
 }
 
 .bipolar-login-register-content {
-  margin-top: 270px;
+  margin-top: 100px;
   margin-bottom: 25px;
 
   .bipolar-login-register-cols {
@@ -20,7 +20,7 @@
 
   .bipolar-facebook-button {
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
 
   .bipolar-title-login-register {
@@ -28,5 +28,9 @@
     font-family: $bodoni-bold-font;
     color: $bipolar-black;
     letter-spacing: 0.2em;
+  }
+
+  .forgot-password {
+    margin-top: 20px;
   }
 }

@@ -7,34 +7,19 @@
 </div>
 {!! Form::open(['route' => 'register.post']) !!}
     <div class="form-group">
-        <p class="text-center">
-            <label>Nombre <span class="text-danger">*</span></label>
-        </p>
-        {!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
+        {!! Form::text('name', null, ['placeholder' => 'Nombre', 'class' => 'form-control', 'required' => true]) !!}
     </div>
     <div class="form-group">
-        <p class="text-center">
-            <label>Dirección de correo electrónico <span class="text-danger">*</span></label>
-        </p>
-        {!! Form::email('email', null, ['class' => 'form-control', 'required' => true]) !!}
+        {!! Form::email('email', null, ['placeholder' => 'Correo electrónico', 'class' => 'form-control', 'required' => true]) !!}
     </div>
     <div class="form-group">
-        <p class="text-center">
-            <label>Fecha de cumpleaños (Opcional)</label>
-        </p>
-        {!! Form::date('birthday', null, ['class' => 'form-control']) !!}
+        {!! Form::date('birthday', null, ['placeholder' => 'Fecha de cumpleaños', 'class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-        <p class="text-center">
-            <label>Contraseña <span class="text-danger">*</span></label>
-        </p>
-        {!! Form::password('password', ['class' => 'form-control', 'required' => true]) !!}
+        {!! Form::password('password', ['placeholder' => 'Contraseña', 'class' => 'form-control', 'required' => true]) !!}
     </div>
     <div class="form-group">
-        <p class="text-center">
-            <label>Repetir contraseña <span class="text-danger">*</span></label>
-        </p>
-        {!! Form::password('password_confirmation', ['class' => 'form-control', 'required' => true]) !!}
+        {!! Form::password('password_confirmation', ['placeholder' => 'Repetir contraseña', 'class' => 'form-control', 'required' => true]) !!}
     </div>
     <div class="text-center">
         {!! Form::submit('Identificarse', ['class' => 'btn btn-dark btn-rounded text-uppercase']) !!}

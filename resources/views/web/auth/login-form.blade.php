@@ -7,21 +7,15 @@
 </div>
 {!! Form::open(['route' => 'login.post']) !!}
     <div class="form-group">
-        <p class="text-center">
-            <label>Correo electrónico <span class="text-danger">*</span></label>
-        </p>
-        {!! Form::email('email', null, ['class' => 'form-control', 'required' => true]) !!}
+        {!! Form::email('email', null, ['placeholder' => 'Correo electrónico', 'class' => 'form-control', 'required' => true]) !!}
     </div>
     <div class="form-group">
-        <p class="text-center">
-            <label>Contraseña <span class="text-danger">*</span></label>
-        </p>
-        {!! Form::password('password', ['class' => 'form-control', 'required' => true]) !!}
+        {!! Form::password('password', ['placeholder' => 'Contraseña', 'class' => 'form-control', 'required' => true]) !!}
     </div>
     <div class="text-center">
         {!! Form::submit('Identificarse', ['class' => 'btn btn-dark btn-rounded text-uppercase']) !!}
     </div>
 {!! Form::close() !!}
-<div class="text-center">
+<div class="text-center forgot-password">
     <a href="#">¿OLVIDASTE LA CONTRASEÑA?</a>
 </div>
