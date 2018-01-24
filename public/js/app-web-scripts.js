@@ -28593,6 +28593,30 @@ $(function () {
     var selected = $(event.currentTarget).val();
     $('#country_state_billing_hidden').val(selected);
   });
+
+  var countrySelectShipping = $('.select-2-countries-shipping').select2({ width: '100%' });
+  var countryStateSelectShipping = $('.select-2-country-states-shipping').select2({ width: '100%' });
+  var countryStatesShippingData = [];
+
+  countrySelectShipping.on('select2:select', function (event) {
+    var selected = $(event.currentTarget).val();
+
+    $.get('/ajax/country/' + selected + '/country-states').done(function (response) {
+      return countryStatesShippingData = response;
+    }).then(function () {
+      countryStateSelectShipping.val(null).empty();
+      countryStatesShippingData.map(function (element) {
+        var newOption = new Option(element.text, element.id, false, false);
+        countryStateSelectShipping.append(newOption);
+      });
+      countryStateSelectShipping.trigger('change');
+    });
+  });
+
+  countryStateSelectShipping.on('select2:select', function (event) {
+    var selected = $(event.currentTarget).val();
+    $('#country_state_shipping_hidden').val(selected);
+  });
 });
 
 /***/ }),

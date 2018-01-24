@@ -24,13 +24,14 @@ class AddressNewRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                         => 'required|between:1,255',
-            'lastname'                     => 'required|between:1,255',
-            'email'                        => 'required|email|between:1,255',
-            'phone'                        => 'required|between:1,255',
-            'country_state_billing_hidden' => 'required',
-            'address'                      => 'required|between:1,255',
-            'zip'                          => 'required|between:1,255',
+            'name'     => 'required|between:1,255',
+            'lastname' => 'required|between:1,255',
+            'email'    => 'required|email|between:1,255',
+            'phone'    => 'required|between:1,255',
+            'country'  => 'required',
+            'state'    => 'required',
+            'address'  => 'required|between:1,255',
+            'zip'      => 'required|between:1,255',
         ];
     }
 }

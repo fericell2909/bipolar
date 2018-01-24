@@ -66,13 +66,13 @@
 								</div>
 							</div>
 							<div class="text-center">
-								{!! Form::submit('Guardar', ['class' => 'btn btn-dark-rounded']) !!}
+								{!! Form::submit('Agregar otra dirección', ['class' => 'btn btn-bipolar-rounded']) !!}
 								<button type="button" class="btn btn-dark-rounded">Continuar</button>
 							</div>
 							{!! Form::close() !!}
 							@foreach($billingAddresses as $billingAddress)
 								<div class="address-list">
-									<input type="radio" class="address-list-checkbox" name="address_billing"> <span class="address-list-title">{{ $billingAddress->name }} {{ $billingAddress->lastname }}</span>
+									{!! Form::radio('address_billing', null, null, ['class' => 'address-list-option']) !!} <span class="address-list-title">{{ $billingAddress->name }} {{ $billingAddress->lastname }}</span>
 									<div class="address-list-content">
 										<ul class="address-list-of-lists">
 											<li>{{ $billingAddress->address }}</li>
@@ -101,40 +101,63 @@
 					<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 						<div class="panel-body">
 							<div id="bipolar-directions"></div>
+							{!! Form::open(['url' => route('address.add', 'shipping')]) !!}
 							<div class="row">
 								<div class="form-group col-md-6">
 									{!! Form::label('Nombre') !!}
-									{!! Form::text('name', null, ['class' => 'form-control']) !!}
+									{!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Apellidos') !!}
-									{!! Form::text('lastname', null, ['class' => 'form-control']) !!}
+									{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Correo') !!}
-									{!! Form::text('email', null, ['class' => 'form-control']) !!}
+									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Teléfono') !!}
-									{!! Form::text('phone', null, ['class' => 'form-control']) !!}
+									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('País') !!}
-									{!! Form::select('country', $countries, null, ['class' => 'form-control']) !!}
+									{!! Form::select('country', $countries, null, ['class' => 'select-2-countries-shipping form-control', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Estado') !!}
-									{!! Form::select('state', [], null, ['class' => 'form-control']) !!}
+									{!! Form::select('state', [], null, ['class' => 'select-2-country-states-shipping form-control', 'required' => true]) !!}
+									{!! Form::hidden('country_state_shipping_hidden', null, ['id' => 'country_state_shipping_hidden']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Address') !!}
-									{!! Form::text('address', null, ['class' => 'form-control']) !!}
+									{!! Form::text('address', null, ['class' => 'form-control', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Código zip') !!}
-									{!! Form::text('zip', null, ['class' => 'form-control']) !!}
+									{!! Form::text('zip', null, ['class' => 'form-control', 'required' => true]) !!}
 								</div>
 							</div>
+							<div class="text-center">
+								{!! Form::submit('Agregar otra dirección', ['class' => 'btn btn-bipolar-rounded']) !!}
+								<button type="button" class="btn btn-dark-rounded">Continuar</button>
+							</div>
+							{!! Form::close() !!}
+							@foreach($shippingAddresses as $shippingAddress)
+								<div class="address-list">
+									{!! Form::radio('address_shipping', null, null, ['class' => 'address-list-option']) !!} <span class="address-list-title">{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</span>
+									<div class="address-list-content">
+										<ul class="address-list-of-lists">
+											<li>{{ $shippingAddress->address }}</li>
+											<li>{{ $shippingAddress->country_state->name }}</li>
+											<li>{{ $shippingAddress->country_state->country->name }}</li>
+											<li>{{ $shippingAddress->phone }}</li>
+										</ul>
+										<div class="trash-icon">
+											<a href="#"><img src="{{ asset('images/trash.svg') }}" width="20" alt="Eliminar"></a>
+										</div>
+									</div>
+								</div>
+							@endforeach
 						</div>
 					</div>
 				</div>
