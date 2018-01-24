@@ -72,7 +72,7 @@
 							{!! Form::close() !!}
 							@foreach($billingAddresses as $billingAddress)
 								<div class="address-list">
-									{!! Form::radio('address_billing', null, null, ['class' => 'address-list-option']) !!} <span class="address-list-title">{{ $billingAddress->name }} {{ $billingAddress->lastname }}</span>
+									{!! Form::radio('address_billing', $billingAddress->hash_id, $billingAddress->main, ['class' => 'address-list-option address-billing-option']) !!} <span class="address-list-title">{{ $billingAddress->name }} {{ $billingAddress->lastname }}</span>
 									<div class="address-list-content">
 										<ul class="address-list-of-lists">
 											<li>{{ $billingAddress->address }}</li>
@@ -144,7 +144,7 @@
 							{!! Form::close() !!}
 							@foreach($shippingAddresses as $shippingAddress)
 								<div class="address-list">
-									{!! Form::radio('address_shipping', null, null, ['class' => 'address-list-option']) !!} <span class="address-list-title">{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</span>
+									{!! Form::radio('address_shipping', $shippingAddress->hash_id, $shippingAddress->main, ['class' => 'address-list-option']) !!} <span class="address-list-title">{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</span>
 									<div class="address-list-content">
 										<ul class="address-list-of-lists">
 											<li>{{ $shippingAddress->address }}</li>

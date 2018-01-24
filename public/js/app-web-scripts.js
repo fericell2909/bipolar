@@ -28440,7 +28440,23 @@ __webpack_require__("./resources/assets/js/web/theme-scripts.js");
 __webpack_require__("./resources/assets/js/web/shop-scripts.js");
 __webpack_require__("./resources/assets/js/web/product-scripts.js");
 __webpack_require__("./resources/assets/js/web/select2-scripts.js");
+__webpack_require__("./resources/assets/js/web/checkout-scripts.js");
 //require('./react/app-react-scripts');
+
+/***/ }),
+
+/***/ "./resources/assets/js/web/checkout-scripts.js":
+/***/ (function(module, exports) {
+
+$(function () {
+  $('.address-billing-option').click(function () {
+    var addressId = $(this).val();
+
+    $.post('ajax/address/' + addressId + '/main').done(function () {
+      return console.log('guardado');
+    });
+  });
+});
 
 /***/ }),
 
