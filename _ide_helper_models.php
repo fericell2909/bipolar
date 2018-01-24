@@ -256,6 +256,43 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Address
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $address_type_id
+ * @property int $country_state_id
+ * @property string $name
+ * @property string $lastname
+ * @property string $email
+ * @property string $phone
+ * @property string $address
+ * @property string $zip
+ * @property int $main
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\AddressType $address_type
+ * @property-read \App\Models\CountryState $country_state
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddressTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereCountryStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereLastname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereMain($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereZip($value)
+ */
+	class Address extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Stock
  *
  * @property int $id
@@ -438,5 +475,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereRoleId($value)
  */
 	class Manager extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\AddressType
+ *
+ */
+	class AddressType extends \Eloquent {}
 }
 

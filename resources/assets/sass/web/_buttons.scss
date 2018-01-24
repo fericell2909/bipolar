@@ -122,6 +122,17 @@ fieldset[disabled] .btn-dark.active {
   @extend .btn-add-cart;
 }
 
+.btn-bipolar-rounded {
+  @extend .btn-add-cart;
+  background-color: $bipolar-color;
+  border: 1px solid $bipolar-color;
+  &:hover {
+    color: $bipolar-white;
+    background: $bipolar-color;
+    border: 1px solid $bipolar-color;
+  }
+}
+
 .quantity-content {
   display: inline-block;
   width: 120px;

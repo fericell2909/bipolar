@@ -9018,7 +9018,8 @@ button.close {
 
 .btn-dark,
 .btn-add-cart,
-.btn-dark-rounded {
+.btn-dark-rounded,
+.btn-bipolar-rounded {
   color: white;
   background-color: black;
   border-color: black;
@@ -9030,15 +9031,19 @@ button.close {
 .btn-dark:hover,
 .btn-add-cart:hover,
 .btn-dark-rounded:hover,
+.btn-bipolar-rounded:hover,
 .btn-dark:focus,
 .btn-add-cart:focus,
 .btn-dark-rounded:focus,
+.btn-bipolar-rounded:focus,
 .btn-dark:active,
 .btn-add-cart:active,
 .btn-dark-rounded:active,
+.btn-bipolar-rounded:active,
 .btn-dark.active,
 .active.btn-add-cart,
-.active.btn-dark-rounded {
+.active.btn-dark-rounded,
+.active.btn-bipolar-rounded {
   color: white;
   background-color: #312E36;
   border-color: black;
@@ -9047,7 +9052,8 @@ button.close {
 
 .open .dropdown-toggle.btn-dark,
 .open .dropdown-toggle.btn-add-cart,
-.open .dropdown-toggle.btn-dark-rounded {
+.open .dropdown-toggle.btn-dark-rounded,
+.open .dropdown-toggle.btn-bipolar-rounded {
   color: white;
   background-color: #312E36;
   border-color: black;
@@ -9056,31 +9062,37 @@ button.close {
 .btn-dark:active,
 .btn-add-cart:active,
 .btn-dark-rounded:active,
+.btn-bipolar-rounded:active,
 .btn-dark.active,
 .active.btn-add-cart,
-.active.btn-dark-rounded {
+.active.btn-dark-rounded,
+.active.btn-bipolar-rounded {
   background-image: none;
 }
 
 .open .dropdown-toggle.btn-dark,
 .open .dropdown-toggle.btn-add-cart,
-.open .dropdown-toggle.btn-dark-rounded {
+.open .dropdown-toggle.btn-dark-rounded,
+.open .dropdown-toggle.btn-bipolar-rounded {
   background-image: none;
 }
 
 .btn-dark.disabled,
 .disabled.btn-add-cart,
 .disabled.btn-dark-rounded,
+.disabled.btn-bipolar-rounded,
 .btn-dark[disabled],
 [disabled].btn-add-cart,
-[disabled].btn-dark-rounded {
+[disabled].btn-dark-rounded,
+[disabled].btn-bipolar-rounded {
   background-color: black;
   border-color: black;
 }
 
 fieldset[disabled] .btn-dark,
 fieldset[disabled] .btn-add-cart,
-fieldset[disabled] .btn-dark-rounded {
+fieldset[disabled] .btn-dark-rounded,
+fieldset[disabled] .btn-bipolar-rounded {
   background-color: black;
   border-color: black;
 }
@@ -9088,16 +9100,19 @@ fieldset[disabled] .btn-dark-rounded {
 .btn-dark.disabled:hover,
 .disabled.btn-add-cart:hover,
 .disabled.btn-dark-rounded:hover,
+.disabled.btn-bipolar-rounded:hover,
 .btn-dark[disabled]:hover,
 [disabled].btn-add-cart:hover,
-[disabled].btn-dark-rounded:hover {
+[disabled].btn-dark-rounded:hover,
+[disabled].btn-bipolar-rounded:hover {
   background-color: black;
   border-color: black;
 }
 
 fieldset[disabled] .btn-dark:hover,
 fieldset[disabled] .btn-add-cart:hover,
-fieldset[disabled] .btn-dark-rounded:hover {
+fieldset[disabled] .btn-dark-rounded:hover,
+fieldset[disabled] .btn-bipolar-rounded:hover {
   background-color: black;
   border-color: black;
 }
@@ -9105,16 +9120,19 @@ fieldset[disabled] .btn-dark-rounded:hover {
 .btn-dark.disabled:focus,
 .disabled.btn-add-cart:focus,
 .disabled.btn-dark-rounded:focus,
+.disabled.btn-bipolar-rounded:focus,
 .btn-dark[disabled]:focus,
 [disabled].btn-add-cart:focus,
-[disabled].btn-dark-rounded:focus {
+[disabled].btn-dark-rounded:focus,
+[disabled].btn-bipolar-rounded:focus {
   background-color: black;
   border-color: black;
 }
 
 fieldset[disabled] .btn-dark:focus,
 fieldset[disabled] .btn-add-cart:focus,
-fieldset[disabled] .btn-dark-rounded:focus {
+fieldset[disabled] .btn-dark-rounded:focus,
+fieldset[disabled] .btn-bipolar-rounded:focus {
   background-color: black;
   border-color: black;
 }
@@ -9122,16 +9140,19 @@ fieldset[disabled] .btn-dark-rounded:focus {
 .btn-dark.disabled:active,
 .disabled.btn-add-cart:active,
 .disabled.btn-dark-rounded:active,
+.disabled.btn-bipolar-rounded:active,
 .btn-dark[disabled]:active,
 [disabled].btn-add-cart:active,
-[disabled].btn-dark-rounded:active {
+[disabled].btn-dark-rounded:active,
+[disabled].btn-bipolar-rounded:active {
   background-color: black;
   border-color: black;
 }
 
 fieldset[disabled] .btn-dark:active,
 fieldset[disabled] .btn-add-cart:active,
-fieldset[disabled] .btn-dark-rounded:active {
+fieldset[disabled] .btn-dark-rounded:active,
+fieldset[disabled] .btn-bipolar-rounded:active {
   background-color: black;
   border-color: black;
 }
@@ -9139,23 +9160,27 @@ fieldset[disabled] .btn-dark-rounded:active {
 .btn-dark.disabled.active,
 .disabled.active.btn-add-cart,
 .disabled.active.btn-dark-rounded,
+.disabled.active.btn-bipolar-rounded,
 .btn-dark[disabled].active,
 [disabled].active.btn-add-cart,
-[disabled].active.btn-dark-rounded {
+[disabled].active.btn-dark-rounded,
+[disabled].active.btn-bipolar-rounded {
   background-color: black;
   border-color: black;
 }
 
 fieldset[disabled] .btn-dark.active,
 fieldset[disabled] .active.btn-add-cart,
-fieldset[disabled] .active.btn-dark-rounded {
+fieldset[disabled] .active.btn-dark-rounded,
+fieldset[disabled] .active.btn-bipolar-rounded {
   background-color: black;
   border-color: black;
 }
 
 .btn-dark .badge,
 .btn-add-cart .badge,
-.btn-dark-rounded .badge {
+.btn-dark-rounded .badge,
+.btn-bipolar-rounded .badge {
   color: black;
   background-color: white;
 }
@@ -9166,7 +9191,8 @@ fieldset[disabled] .active.btn-dark-rounded {
 }
 
 .btn-add-cart,
-.btn-dark-rounded {
+.btn-dark-rounded,
+.btn-bipolar-rounded {
   text-transform: uppercase;
   text-align: center;
   padding: 9px 25px;
@@ -9178,10 +9204,22 @@ fieldset[disabled] .active.btn-dark-rounded {
 }
 
 .btn-add-cart:hover,
-.btn-dark-rounded:hover {
+.btn-dark-rounded:hover,
+.btn-bipolar-rounded:hover {
   color: black;
   background: white;
   border: 1px solid black;
+}
+
+.btn-bipolar-rounded {
+  background-color: #fcbeb9;
+  border: 1px solid #fcbeb9;
+}
+
+.btn-bipolar-rounded:hover {
+  color: white;
+  background: #fcbeb9;
+  border: 1px solid #fcbeb9;
 }
 
 .quantity-content {
@@ -9426,6 +9464,10 @@ a:hover {
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
+}
+
+.bipolar-success-message > .success-content a.btn:hover {
+  background-color: #f7f6f7;
 }
 
 .breadcrumb-without-padding,
@@ -10000,6 +10042,50 @@ input[type="date"] {
   }
 }
 
+.shop-container {
+  margin-top: 70px;
+}
+
+.shop-container .bipolar-shop-results-filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.shop-container .bipolar-shop-results-filter .select-orders {
+  border: none;
+  background-color: #f5f5f5;
+  color: #878787;
+  line-height: 1;
+  border-radius: 42px;
+  outline: none;
+  padding: 0 15px;
+  font-size: 12px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 35px;
+  background-image: url(/images/arrow_down.png?321c26753bb0f9825710a27f813910d5);
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px);
+  max-width: 100%;
+}
+
+.shop-container .icheck {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .bipolar-filter-title {
   font-size: 15px;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
@@ -10016,10 +10102,6 @@ input[type="date"] {
   border-top-right-radius: 36px;
   border-bottom-right-radius: 36px;
   background-color: #f5f5f5;
-}
-
-.bipolar-shop-results-filter {
-  margin-bottom: 17px;
 }
 
 .bipolar-product {
@@ -10567,7 +10649,7 @@ input[type="date"] {
 }
 
 .bipolar-login-register-content {
-  margin-top: 270px;
+  margin-top: 100px;
   margin-bottom: 25px;
 }
 
@@ -10581,7 +10663,7 @@ input[type="date"] {
 
 .bipolar-login-register-content .bipolar-facebook-button {
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 .bipolar-login-register-content .bipolar-title-login-register {
@@ -10589,6 +10671,10 @@ input[type="date"] {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   color: black;
   letter-spacing: 0.2em;
+}
+
+.bipolar-login-register-content .forgot-password {
+  margin-top: 20px;
 }
 
 .table-cart {
@@ -10637,6 +10723,34 @@ input[type="date"] {
   font-weight: normal;
 }
 
+@media (max-width: 768px) {
+  .table-cart thead {
+    display: none;
+  }
+
+  .table-cart tbody tr {
+    display: block;
+  }
+
+  .table-cart tbody tr td {
+    display: block;
+    border-top: 1px solid #eee;
+  }
+
+  .table-cart tbody tr td:nth-child(n+3)::before {
+    content: attr(data-title) ": ";
+    font-family: "GothamLight", Verdana;
+    font-weight: normal;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: black;
+  }
+
+  .table-cart tbody tr td.product-remove {
+    display: none;
+  }
+}
+
 .background-title-image {
   background-image: url("https://bipolar-peru.s3.amazonaws.com/assets/fondo-rayas-web-con-negro.jpg");
   background-position: center center;
@@ -10662,13 +10776,13 @@ input[type="date"] {
   letter-spacing: 0.15em;
   font-size: 40px;
   color: white;
+  text-align: center;
 }
 
 .cart-total-inner {
   float: right;
   width: 38%;
   padding: 0 15px;
-  margin-top: 20px;
   margin-bottom: 50px;
 }
 
@@ -10680,6 +10794,7 @@ input[type="date"] {
   letter-spacing: 2.55px;
   font-weight: normal;
   line-height: 17px;
+  margin-top: 45px;
   margin-bottom: 40px;
 }
 
@@ -10704,6 +10819,12 @@ input[type="date"] {
   font-size: 17px;
   color: black;
   font-weight: normal;
+}
+
+@media (max-width: 768px) {
+  .cart-total-inner {
+    width: 100%;
+  }
 }
 
 .bipolar-checkout .panel-default {
@@ -10880,6 +11001,55 @@ input[type="date"] {
   background-image: url(/images/arrow_down.png?321c26753bb0f9825710a27f813910d5);
   background-repeat: no-repeat;
   background-position: calc(100% - 10px);
+}
+
+.bipolar-checkout .address-list {
+  border: 1px solid #eee;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.bipolar-checkout .address-list .address-list-option {
+  margin-right: 10px;
+}
+
+.bipolar-checkout .address-list .address-list-title {
+  text-transform: uppercase;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  color: black;
+  font-size: 17px;
+  letter-spacing: 2.5px;
+}
+
+.bipolar-checkout .address-list .address-list-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.bipolar-checkout .address-list .address-list-content .address-list-of-lists {
+  list-style: none;
+  padding-left: 28px;
+}
+
+.bipolar-checkout .address-list .address-list-content .address-list-of-lists > li {
+  text-transform: uppercase;
+  font-size: 11px;
+  color: black;
+  font-family: "GothamBold", Verdana;
+}
+
+.bipolar-checkout .address-list .address-list-content .trash-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 .bipolar-navbar-toggle {

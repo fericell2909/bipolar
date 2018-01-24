@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\ShopFilterRequest;
-use App\Models\{
-    Product, Size, Stock, Type
-};
+use App\Models\Product;
+use App\Models\Size;
+use App\Models\Stock;
+use App\Models\Type;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -68,9 +69,9 @@ class ShopController extends Controller
         });
 
         $orderOptions = [
-            'default'   => 'Orden predeterminado',
-            'priceup'   => 'Ordenar de precio bajo a precio alto',
-            'pricedown' => 'Ordenar de precio alto a precio bajo',
+            'default'   => 'ORDEN PREDETERMINADO',
+            'priceup'   => 'ORDENAR DE PRECIO BAJO A PRECIO ALTO',
+            'pricedown' => 'ORDENAR DE PRECIO ALTO A PRECIO BAJO',
         ];
         $selectedOrderOption = $request->filled('orderBy') ? $request->input('orderBy') : null;
 
@@ -107,10 +108,10 @@ class ShopController extends Controller
             ->when($request->filled('orderBy'), function ($products) use ($request) {
                 /** @var Collection $products */
                 switch ($request->input('orderBy')) {
-                    case 'priceup';
+                    case 'priceup':
                         $products = $products->sortBy('price');
                         break;
-                    case 'pricedown';
+                    case 'pricedown':
                         $products = $products->sortByDesc('price');
                         break;
                 }

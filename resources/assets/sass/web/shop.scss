@@ -1,3 +1,39 @@
+.shop-container {
+  margin-top: 70px;
+
+  .bipolar-shop-results-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    .select-orders {
+      border: none;
+      background-color: $bipolar-gray;
+      color: #878787;
+      line-height: 1;
+      -webkit-border-radius: 42px;
+      -moz-border-radius: 42px;
+      border-radius: 42px;
+      outline: none;
+      padding: 0 15px;
+      font-size: 12px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      height: 35px;
+      background-image: url(../../img/arrow_down.png);
+      background-repeat: no-repeat;
+      background-position: calc(100% - 10px);
+      max-width: 100%;
+    }
+  }
+
+  .icheck {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .bipolar-filter-title {
   font-size: 15px;
   font-family: $bodoni-bold-font;
@@ -14,10 +50,6 @@
   border-top-right-radius: 36px;
   border-bottom-right-radius: 36px;
   background-color: #f5f5f5;
-}
-
-.bipolar-shop-results-filter {
-  margin-bottom: 17px;
 }
 
 .bipolar-product {

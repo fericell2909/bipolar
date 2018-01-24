@@ -186,6 +186,12 @@ a {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+
+    a.btn {
+      &:hover {
+        background-color: #f7f6f7;
+      }
+    }
   }
 }
 

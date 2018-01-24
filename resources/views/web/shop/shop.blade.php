@@ -2,7 +2,7 @@
 @section('content')
     {!! Form::open(['id' => 'shopForm', 'method' => 'GET']) !!}
     <div class="bipolar-container">
-        <div class="row">
+        <div class="row shop-container">
             <div class="col-md-3">
                 <div class="form-group">
                     <div class="input-group">
@@ -62,11 +62,9 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="row bipolar-shop-results-filter">
-                    <div class="col-md-5">MOSTRANDO 1–12 DE {{ $products->total() }} RESULTADOS</div>
-                    <div class="col-md-offset-2 col-md-5">
-                        {!! Form::select('orderBy', $orderOptions, $selectedOrderOption, ['id' => 'shop-sort-by', 'class' => 'form-control']) !!}
-                    </div>
+                <div class="bipolar-shop-results-filter">
+                    <span>MOSTRANDO 1–12 DE {{ $products->total() }} RESULTADOS</span>
+                    {!! Form::select('orderBy', $orderOptions, $selectedOrderOption, ['id' => 'shop-sort-by', 'class' => 'select-orders']) !!}
                 </div>
                 <div class="row">
                     @forelse($products as $product)
