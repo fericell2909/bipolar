@@ -1,19 +1,30 @@
 const Sortable = require('sortablejs');
-require('block-ui');
+import swal from "sweetalert2";
 
 const createSortable = (elementId, urlToSave) => {
   if ($(elementId).length) {
     const elem = document.querySelector(elementId);
     const sortable = new Sortable(elem, {
       onEnd() {
-        $.blockUI({
-          message:
-            `<i class='fa fa-refresh fa-spin'></i> 
-              Guardando 
-            <i class='fa fa-refresh fa-spin'></i>`
+        swal({
+          text: 'Cargando.',
+          timer: 1000,
+          onOpen: () => {
+            swal.showLoading();
+          }
+        }).then(result => {
+          if (result.dismiss === 'timer') {
+            $.post(urlToSave, {newOrder: sortable.toArray()})
+              .done(() => swal({
+                title: "Hecho",
+                type: "success",
+                toast: true,
+                position: "top-right",
+                showConfirmButton: false,
+                timer: 3000
+              }));
+          }
         });
-        $.post(urlToSave, {newOrder: sortable.toArray()})
-          .done(() => $.unblockUI());
       }
     });
   }
