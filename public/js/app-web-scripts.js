@@ -28446,7 +28446,13 @@ __webpack_require__("./resources/assets/js/web/checkout-scripts.js");
 /***/ }),
 
 /***/ "./resources/assets/js/web/checkout-scripts.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2__ = __webpack_require__("./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert2__);
+
 
 $(function () {
   $('.address-billing-option').click(function () {
@@ -28454,6 +28460,31 @@ $(function () {
 
     $.post('ajax/address/' + addressId + '/main').done(function () {
       return console.log('guardado');
+    });
+  });
+
+  $('.trash-icon').click(function () {
+    var addressId = $(this).data('addressHashId');
+    __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
+      title: 'Eliminar dirección',
+      confirmButtonColor: '#000000',
+      showCancelButton: true,
+      cancelButtonText: 'No',
+      showLoaderOnConfirm: true,
+      preConfirm: function preConfirm(result) {
+        return new Promise(function (resolve) {
+          $.ajax({
+            method: 'DELETE',
+            url: 'ajax/address/' + addressId
+          }).done(function (response) {
+            return resolve(response);
+          });
+        });
+      }
+    }).then(function (result) {
+      if (result.value.success === true) {
+        location.reload();
+      }
     });
   });
 });
@@ -28518,7 +28549,11 @@ $(function () {
     if ($('.product-sizes').length) {
       var $sizeSelected = $('#size-selected');
       if ($sizeSelected.val().trim().length === 0) {
-        return __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()('Atención', 'Necesitas seleccionar una talla para continuar', 'warning');
+        return __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
+          title: 'Atención',
+          text: 'Necesitas seleccionar una talla para continuar',
+          confirmButtonColor: '#000000'
+        });
       }
     }
 

@@ -9293,6 +9293,10 @@ button:active {
   outline: none;
 }
 
+.swal2-popup {
+  font-size: 1.6rem !important;
+}
+
 .bipolar-background {
   background-color: #fcbeb9;
 }
@@ -11044,6 +11048,7 @@ input[type="date"] {
 }
 
 .bipolar-checkout .address-list .address-list-content .trash-icon {
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

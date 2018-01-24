@@ -31349,3 +31349,7 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
   height: calc(4.25rem);
 }
 
+.swal2-popup {
+  font-size: 1.6rem !important;
+}
+

@@ -35,6 +35,7 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::post('address/{addressType}/register', 'Web\AddressesController@add')->name('address.add');
             Route::get('ajax/country/{countryId}/country-states', 'Web\Ajax\CountryStatesController@get');
             Route::post('ajax/address/{addressId}/main', 'Web\Ajax\AddressesController@setMain');
+            Route::delete('ajax/address/{addressId}', 'Web\Ajax\AddressesController@remove');
         });
     });
 

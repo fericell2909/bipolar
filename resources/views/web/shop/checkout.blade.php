@@ -80,8 +80,8 @@
 											<li>{{ $billingAddress->country_state->country->name }}</li>
 											<li>{{ $billingAddress->phone }}</li>
 										</ul>
-										<div class="trash-icon">
-											<a href="#"><img src="{{ asset('images/trash.svg') }}" width="20" alt="Eliminar"></a>
+										<div class="trash-icon" data-address-hash-id="{{ $billingAddress->hash_id }}">
+											<a><img src="{{ asset('images/trash.svg') }}" width="20" alt="Eliminar"></a>
 										</div>
 									</div>
 								</div>

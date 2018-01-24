@@ -28,4 +28,15 @@ class AddressesController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function remove($addressHashId)
+    {
+        $address = Address::findByHash($addressHashId);
+
+        abort_if($address->user_id !== \Auth::id(), 403);
+
+        $address->delete();
+
+        return response()->json(['success' => true]);
+    }
 }
