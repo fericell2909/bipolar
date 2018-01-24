@@ -9466,6 +9466,10 @@ a:hover {
   width: 100%;
 }
 
+.bipolar-success-message > .success-content a.btn:hover {
+  background-color: #f7f6f7;
+}
+
 .breadcrumb-without-padding,
 .breadcrumb {
   background-color: #F5F5F5;
@@ -10038,6 +10042,50 @@ input[type="date"] {
   }
 }
 
+.shop-container {
+  margin-top: 70px;
+}
+
+.shop-container .bipolar-shop-results-filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.shop-container .bipolar-shop-results-filter .select-orders {
+  border: none;
+  background-color: #f5f5f5;
+  color: #878787;
+  line-height: 1;
+  border-radius: 42px;
+  outline: none;
+  padding: 0 15px;
+  font-size: 12px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 35px;
+  background-image: url(/images/arrow_down.png?321c26753bb0f9825710a27f813910d5);
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px);
+  max-width: 100%;
+}
+
+.shop-container .icheck {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .bipolar-filter-title {
   font-size: 15px;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
@@ -10054,10 +10102,6 @@ input[type="date"] {
   border-top-right-radius: 36px;
   border-bottom-right-radius: 36px;
   background-color: #f5f5f5;
-}
-
-.bipolar-shop-results-filter {
-  margin-bottom: 17px;
 }
 
 .bipolar-product {
@@ -10675,6 +10719,34 @@ input[type="date"] {
   font-weight: normal;
 }
 
+@media (max-width: 768px) {
+  .table-cart thead {
+    display: none;
+  }
+
+  .table-cart tbody tr {
+    display: block;
+  }
+
+  .table-cart tbody tr td {
+    display: block;
+    border-top: 1px solid #eee;
+  }
+
+  .table-cart tbody tr td:nth-child(n+3)::before {
+    content: attr(data-title) ": ";
+    font-family: "GothamLight", Verdana;
+    font-weight: normal;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: black;
+  }
+
+  .table-cart tbody tr td.product-remove {
+    display: none;
+  }
+}
+
 .background-title-image {
   background-image: url("https://bipolar-peru.s3.amazonaws.com/assets/fondo-rayas-web-con-negro.jpg");
   background-position: center center;
@@ -10700,13 +10772,13 @@ input[type="date"] {
   letter-spacing: 0.15em;
   font-size: 40px;
   color: white;
+  text-align: center;
 }
 
 .cart-total-inner {
   float: right;
   width: 38%;
   padding: 0 15px;
-  margin-top: 20px;
   margin-bottom: 50px;
 }
 
@@ -10718,6 +10790,7 @@ input[type="date"] {
   letter-spacing: 2.55px;
   font-weight: normal;
   line-height: 17px;
+  margin-top: 45px;
   margin-bottom: 40px;
 }
 
@@ -10742,6 +10815,12 @@ input[type="date"] {
   font-size: 17px;
   color: black;
   font-weight: normal;
+}
+
+@media (max-width: 768px) {
+  .cart-total-inner {
+    width: 100%;
+  }
 }
 
 .bipolar-checkout .panel-default {
