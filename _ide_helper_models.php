@@ -10,6 +10,36 @@
 
 namespace App\Models{
 /**
+ * App\Models\Buy
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $billing_address_id
+ * @property int $shipping_address_id
+ * @property float $subtotal
+ * @property float $total
+ * @property float $total_dolar
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\Address $billing_address
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $details
+ * @property-read \App\Models\Address $shipping_address
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereSubtotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereTotalDolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereUserId($value)
+ */
+	class Buy extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\PostType
  *
  * @property int $id
@@ -50,6 +80,29 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereTotalDolar($value)
  */
 	class CartDetail extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\BuyDetail
+ *
+ * @property int $id
+ * @property int $buy_id
+ * @property int $product_id
+ * @property int|null $stock_id
+ * @property int $quantity
+ * @property float $total
+ * @property float $total_dolar
+ * @property-read \App\Models\Buy $buy
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereBuyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereStockId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereTotalDolar($value)
+ */
+	class BuyDetail extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -273,6 +326,7 @@ namespace App\Models{
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\AddressType $address_type
  * @property-read \App\Models\CountryState $country_state
+ * @property-read string $hash_id
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddressTypeId($value)
@@ -335,6 +389,7 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Buy[] $buys
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Cart[] $carts
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereActive($value)
@@ -372,6 +427,7 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property int $country_id
+ * @property-read \App\Models\CountryState $country
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereCountryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereName($value)
@@ -481,6 +537,10 @@ namespace App\Models{
 /**
  * App\Models\AddressType
  *
+ * @property int $id
+ * @property string $name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereName($value)
  */
 	class AddressType extends \Eloquent {}
 }

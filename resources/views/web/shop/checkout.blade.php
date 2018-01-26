@@ -202,17 +202,19 @@
                     <td><span class="amount">{{ CartBipolar::totalCurrency() }}</span></td>
                   </tr>
                 </tbody>
-              </table>
-              <div class="payment-method">
-                {!! Form::radio('payment', '1') !!} <span class="checkbox-content">Tarjeta de crédito o débito</span>
-              </div>
-              <div class="submit-payment">
-                <button type="submit" class="btn btn-rounded btn-dark">Pagar</button>
-                <p>
-                  {!! Form::checkbox('terms', '1') !!}
-                  <label for="terms">He leído y acepto los <a href="#">términos y condiciones</a></label>
-                </p>
-              </div>
+							</table>
+							{!! Form::open() !!}
+								<div class="payment-method">
+									{!! Form::radio('payment', '1') !!} <span class="checkbox-content">Tarjeta de crédito o débito</span>
+								</div>
+								<div class="submit-payment">
+									<button type="submit" class="btn btn-rounded btn-dark">Pagar</button>
+									<p>
+										{!! Form::checkbox('terms', '1') !!}
+										<label for="terms">He leído y acepto los <a href="#">términos y condiciones</a></label>
+									</p>
+								</div>
+							{!! Form::close() !!}
 						</div>
 					</div>
 				</div>
