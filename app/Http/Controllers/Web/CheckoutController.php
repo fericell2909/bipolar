@@ -27,4 +27,8 @@ class CheckoutController extends Controller
 
         return view('web.shop.checkout', compact('countries', 'billingAddresses', 'shippingAddresses'));
     }
+
+    public function buy()
+    {
+    }
 }
