@@ -8,6 +8,8 @@
     <title>Bipolar</title>
     <link rel="stylesheet" href="{{ mix('css/app-web-styles.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ asset('public/favicon-bipolar.jpg') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('public/favicon-bipolar.jpg') }}" type="image/x-icon">
     {{-- Script de Font Awesome --}}
     <script src="https://use.fontawesome.com/d71cf672b2.js"></script>
     @stack('css_plus')

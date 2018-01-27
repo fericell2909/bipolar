@@ -6,8 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class BuyDetail extends Model
 {
+    public $timestamps = false;
+
     public function buy()
     {
         return $this->belongsTo(Buy::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function stock()
+    {
+        return $this->belongsTo(Stock::class);
     }
 }

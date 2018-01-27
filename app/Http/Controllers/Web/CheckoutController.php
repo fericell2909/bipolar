@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\Address;
 use App\Models\Buy;
+use App\Models\BuyDetail;
 
 class CheckoutController extends Controller
 {
@@ -50,9 +51,24 @@ class CheckoutController extends Controller
         $buy->total = \CartBipolar::last()->total;
         $buy->total_dolar = \CartBipolar::last()->total_dolar;
 
-        if ($buy->save()) {
-            \CartBipolar::destroy();
+        if (!$buy->save()) {
+            return abort(500);
         }
+
+        foreach (\CartBipolar::content() as $cartDetail) {
+            $buyDetail = new BuyDetail;
+            $buyDetail->buy()->associate($buy);
+            $buyDetail->product()->associate($cartDetail->product);
+            if ($cartDetail->stock) {
+                $buyDetail->stock()->associate($cartDetail->stock);
+            }
+            $buyDetail->quantity = $cartDetail->quantity;
+            $buyDetail->total = $cartDetail->total;
+            $buyDetail->total_dolar = $cartDetail->total_dolar;
+            $buyDetail->save();
+        }
+
+        \CartBipolar::destroy();
 
         return redirect()->route('confirmation', $buy->id);
     }

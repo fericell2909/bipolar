@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Buy;
 
 class UserController extends Controller
 {
@@ -48,5 +49,12 @@ class UserController extends Controller
         $request->session()->flash('message', 'Se actualizó el usuario con éxito');
 
         return redirect()->back();
+    }
+
+    public function myaccount()
+    {
+        $buys = Buy::whereUserId(\Auth::id())->orderByDesc('id')->get();
+
+        return view('web.auth.myaccount', compact('buys'));
     }
 }
