@@ -34,4 +34,13 @@ class Buy extends Model
             return "$ " . intval($this->total_dolar);
         }
     }
+
+    public function getTotalSessionAttribute()
+    {
+        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
+            return intval($this->total);
+        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
+            return intval($this->total_dolar);
+        }
+    }
 }
