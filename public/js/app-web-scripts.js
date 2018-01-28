@@ -28632,18 +28632,18 @@ $(function () {
 
 $(function () {
     // Icheck
-    var shopIcheck = $('.icheck').iCheck({
+    /* let shopIcheck = $('.icheck').iCheck({
         checkboxClass: 'iradio_square',
         radioClass: 'iradio_square',
-        increaseArea: '20%'
-    });
+        increaseArea: '20%',
+    }); */
 
     if ($('.bipolar-filters').length) {
         $('.bipolar-filters').show('slow');
     }
 
     if ($('#shopForm').length) {
-        shopIcheck.on('ifClicked', function () {
+        $('.bipolar-filter.pretty').click(function () {
             setTimeout(function () {
                 $('#shopForm').submit();
             }, 1000);

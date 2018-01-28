@@ -1,21 +1,21 @@
 $(function () {
     // Icheck
-    let shopIcheck = $('.icheck').iCheck({
+    /* let shopIcheck = $('.icheck').iCheck({
         checkboxClass: 'iradio_square',
         radioClass: 'iradio_square',
         increaseArea: '20%',
-    });
+    }); */
 
     if ($('.bipolar-filters').length) {
         $('.bipolar-filters').show('slow');
     }
 
     if ($('#shopForm').length) {
-        shopIcheck.on('ifClicked', () => {
+        $('.bipolar-filter.pretty').click(() => {
             setTimeout(function () {
                 $('#shopForm').submit();
             }, 1000);
-        });
+        })
 
         $('#shop-sort-by').change(function () {
             setTimeout(function () {

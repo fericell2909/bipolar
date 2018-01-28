@@ -72,7 +72,12 @@
 							{!! Form::close() !!}
 							@foreach($billingAddresses as $billingAddress)
 								<div class="address-list">
-									{!! Form::radio('address_billing', $billingAddress->hash_id, $billingAddress->main, ['class' => 'address-list-option address-billing-option']) !!} <span class="address-list-title">{{ $billingAddress->name }} {{ $billingAddress->lastname }}</span>
+									<div class="pretty p-default p-round p-thick">
+										{!! Form::radio('address_billing', $billingAddress->hash_id, $billingAddress->main, ['class' => 'address-list-option address-billing-option']) !!}
+										<div class="state p-primary-o">
+											<label class="address-list-title">{{ $billingAddress->name }} {{ $billingAddress->lastname }}</label>
+										</div>
+									</div>
 									<div class="address-list-content">
 										<ul class="address-list-of-lists">
 											<li>{{ $billingAddress->address }}</li>
@@ -144,7 +149,12 @@
 							{!! Form::close() !!}
 							@foreach($shippingAddresses as $shippingAddress)
 								<div class="address-list">
-									{!! Form::radio('address_shipping', $shippingAddress->hash_id, $shippingAddress->main, ['class' => 'address-list-option']) !!} <span class="address-list-title">{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</span>
+									<div class="pretty p-default p-round p-thick">
+										{!! Form::radio('address_shipping', $shippingAddress->hash_id, $shippingAddress->main, ['class' => 'address-list-option']) !!}
+										<div class="state p-primary-o">
+												<label class="address-list-title">{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</label>
+										</div>
+									</div>
 									<div class="address-list-content">
 										<ul class="address-list-of-lists">
 											<li>{{ $shippingAddress->address }}</li>

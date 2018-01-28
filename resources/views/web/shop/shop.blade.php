@@ -16,8 +16,12 @@
                     <h4 class="bipolar-filter-title">Filtrar {{ $type->name }}</h4>
                     <div class="list-unstyled bipolar-filters">
                         @foreach($type->subtypes as $subtype)
-                            <div class="icheck">
-                                {!! Form::checkbox("subtypes[]", $subtype->slug) !!} {{ $subtype->name }} ({{ count($subtype->products) }})
+                            <div class="pretty bipolar-filter p-icon p-round">
+                                {!! Form::checkbox("subtypes[]", $subtype->slug) !!} 
+                                <div class="state p-primary">
+                                    <i class="icon mdi mdi-check"></i>
+                                    <label>{{ $subtype->name }} ({{ count($subtype->products) }})</label>
+                                </div>
                             </div>
                         @endforeach
                     </div>
@@ -26,8 +30,12 @@
                     <h4 class="bipolar-filter-title">Tallas</h4>
                     <div class="list-unstyled bipolar-filters">
                         @foreach($sizes as $size)
-                            <div class="icheck">
-                                {!! Form::checkbox('sizes[]', $size->slug) !!} {{ $size->name }} ({{ $size->product_count }})
+                            <div class="pretty bipolar-filter p-icon p-round">
+                                {!! Form::checkbox('sizes[]', $size->slug) !!}
+                                <div class="state p-primary">
+                                    <i class="icon mdi mdi-check"></i>
+                                    <label>{{ $size->name }} ({{ $size->product_count }})</label>
+                                </div>
                             </div>
                         @endforeach
                     </div>
