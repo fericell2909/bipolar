@@ -78,6 +78,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
                 <li>
                     <a href="javascript:void(0);" class="waves-effect">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="hide-menu">Compras <span class="fa arrow"></span></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="{{ route('buys.index') }}">Listar compras</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="waves-effect">
                         <i class="fa fa-user"></i>
                         <span class="hide-menu"> Usuarios<span class="fa arrow"></span></span>
                     </a>

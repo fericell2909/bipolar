@@ -9,6 +9,10 @@ Route::middleware('auth:admin')->group(function () {
     })->name('admin.dashboard');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('admin.logs');
 
+    Route::prefix('buys')->group(function () {
+        Route::get('/', 'Admin\BuysController@index')->name('buys.index');
+    });
+
     Route::prefix('users')->group(function () {
         Route::get('/', 'Admin\UserController@index')->name('users.index');
         Route::get('/search', 'Admin\UserController@search')->name('users.search');
