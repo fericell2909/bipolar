@@ -51,4 +51,19 @@ class LandingsController extends Controller
     {
         return view('web.landings.showroom');
     }
+
+    public function historico()
+    {
+        $contents = [];
+        for ($number = 100; $number >= 1; $number--) {
+            array_push($contents, [
+                'number' => $number,
+                'image' => 'http://fakeimg.pl/794x526',
+            ]);
+        }
+
+        $inverse = false;
+
+        return view('web.landings.historico', compact('contents', 'inverse'));
+    }
 }
