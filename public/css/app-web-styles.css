@@ -19716,6 +19716,10 @@ input[type="date"] {
   margin-top: 70px;
 }
 
+.shop-container .see-filters-button {
+  margin-bottom: 20px;
+}
+
 .shop-container .bipolar-shop-results-filter {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -19754,6 +19758,16 @@ input[type="date"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media (max-width: 768px) {
+  .shop-container {
+    margin-top: 0;
+  }
+
+  .filters-container {
+    display: none;
+  }
 }
 
 .bipolar-filter-title {
@@ -20309,6 +20323,16 @@ input[type="date"] {
 
 .overlay-shop-buttons .overlay-radio-button:hover {
   background: black;
+}
+
+@media (max-width: 768px) {
+  .overlay-shop-container img.img-responsive {
+    width: 100%;
+  }
+
+  .overlay-shop-container .overlay-shop-image {
+    width: 93%;
+  }
 }
 
 .form-control:focus {

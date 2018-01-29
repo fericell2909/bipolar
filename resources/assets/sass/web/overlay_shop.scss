@@ -67,3 +67,15 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .overlay-shop-container {
+    img.img-responsive {
+      width: 100%;
+    }
+
+    .overlay-shop-image {
+      width: 93%;
+    }
+  }
+}

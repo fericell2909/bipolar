@@ -28642,6 +28642,12 @@ $(function () {
         $('.bipolar-filters').show('slow');
     }
 
+    if ($('.btn-see-filters').length) {
+        $('.btn-see-filters').click(function () {
+            $('.filters-container').toggle();
+        });
+    }
+
     if ($('#shopForm').length) {
         $('.bipolar-filter.pretty').click(function () {
             setTimeout(function () {

@@ -1,6 +1,10 @@
 .shop-container {
   margin-top: 70px;
 
+  .see-filters-button {
+    margin-bottom: 20px;
+  }
+
   .bipolar-shop-results-filter {
     display: flex;
     align-items: center;
@@ -31,6 +35,15 @@
   .icheck {
     display: flex;
     align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .shop-container {
+    margin-top: 0;
+  }
+  .filters-container {
+    display: none;
   }
 }
 

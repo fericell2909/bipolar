@@ -3,7 +3,10 @@
     {!! Form::open(['id' => 'shopForm', 'method' => 'GET']) !!}
     <div class="bipolar-container">
         <div class="row shop-container">
-            <div class="col-md-3">
+            <div class="col-md-3 see-filters-button visible-xs-block">
+                <button type="button" class="btn btn-dark-rounded btn-block btn-see-filters">Ver filtros</button>
+            </div>
+            <div class="col-md-3 filters-container">
                 <div class="form-group">
                     <div class="input-group">
                         {!! Form::text('search', null, ['class' => 'form-control', 'placeholder' => 'Buscar']) !!}
