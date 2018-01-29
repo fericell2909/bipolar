@@ -56,6 +56,10 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('order', 'Admin\BannersController@order')->name('banners.order');
     });
 
+    Route::prefix('historics')->group(function () {
+        Route::get('/', 'Admin\HistoricsController@index')->name('historics.index');
+    });
+
     Route::prefix('settings')->group(function () {
         Route::get('general', 'Admin\SettingsController@general')->name('settings.general');
         Route::post('general', 'Admin\SettingsController@saveGeneral');

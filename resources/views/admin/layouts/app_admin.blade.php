@@ -119,6 +119,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
                 <li>
                     <a href="javascript:void(0);" class="waves-effect">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="hide-menu"> Histórico <span class="fa arrow"></span></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="#">Nuevo histórico</a></li>
+                        <li><a href="{{ route('historics.index') }}">Listar históricos</a></li>
+                        <li><a href="#">Ordenar</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="waves-effect">
                         <i class="fa fa-picture-o"></i>
                         <span class="hide-menu"> Banners <span class="fa arrow"></span></span>
                     </a>

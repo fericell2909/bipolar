@@ -23,6 +23,8 @@ namespace App\Models{
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\Address $billing_address
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $details
+ * @property-read mixed $total_currency
+ * @property-read mixed $total_session
  * @property-read \App\Models\Address $shipping_address
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
@@ -94,6 +96,9 @@ namespace App\Models{
  * @property float $total
  * @property float $total_dolar
  * @property-read \App\Models\Buy $buy
+ * @property-read mixed $total_currency
+ * @property-read \App\Models\Product $product
+ * @property-read \App\Models\Stock|null $stock
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereBuyId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereProductId($value)
@@ -161,7 +166,9 @@ namespace App\Models{
  * @property float $dolar_change
  * @property int $free_shipping
  * @property int $bipolar_counts
+ * @property int $current_buy
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBipolarCounts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereCurrentBuy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDolarChange($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFreeShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereId($value)
@@ -543,5 +550,25 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereName($value)
  */
 	class AddressType extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Historic
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $photo
+ * @property int $order
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic wherePhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereUpdatedAt($value)
+ */
+	class Historic extends \Eloquent {}
 }
 

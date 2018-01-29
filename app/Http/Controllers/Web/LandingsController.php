@@ -7,6 +7,7 @@ use App\Models\HomePost;
 use App\Models\Settings;
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use App\Models\Historic;
 
 class LandingsController extends Controller
 {
@@ -54,16 +55,10 @@ class LandingsController extends Controller
 
     public function historico()
     {
-        $contents = [];
-        for ($number = 100; $number >= 1; $number--) {
-            array_push($contents, [
-                'number' => $number,
-                'image' => 'http://fakeimg.pl/794x526',
-            ]);
-        }
-
+        $historics = Historic::orderByDesc('order')->get();
+        
         $inverse = false;
 
-        return view('web.landings.historico', compact('contents', 'inverse'));
+        return view('web.landings.historico', compact('historics', 'inverse'));
     }
 }

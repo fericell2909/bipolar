@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             $this->call(BannerSeeder::class);
             $this->call(CountriesTableSeeder::class);
             $this->call(CountryStatesTableSeeder::class);
+            $this->call(HistoricSeeder::class);
         }
     }
 }
