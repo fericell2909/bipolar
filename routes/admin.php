@@ -58,6 +58,8 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::prefix('historics')->group(function () {
         Route::get('/', 'Admin\HistoricsController@index')->name('historics.index');
+        Route::get('new', 'Admin\HistoricsController@create')->name('historics.create');
+        Route::post('new', 'Admin\HistoricsController@store');
     });
 
     Route::prefix('settings')->group(function () {

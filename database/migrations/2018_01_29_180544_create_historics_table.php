@@ -17,6 +17,7 @@ class CreateHistoricsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('photo', 500);
+            $table->string('photo_relative', 500);
             $table->unsignedInteger('order')->default(0);
             $table->timestamps();
         });
