@@ -25,7 +25,7 @@
                         </td>
                         <td>{{ $historic->order }}</td>
                         <td>
-                          <a href="#" class="btn btn-dark btn-rounded btn-sm">
+                          <a href="{{ route('historics.edit', $historic->id) }}" class="btn btn-dark btn-rounded btn-sm">
                             <i class="fa fa-pencil"></i> Editar
                           </a>
                         </td>
