@@ -32,7 +32,7 @@ class HistoricsController extends Controller
 
         $historic = new Historic;
         $historic->name = $request->input('name');
-        $historic->order = Historic::count();
+        $historic->order = Historic::count() + 1;
         $historic->photo = $amazonPath;
         $historic->photo_relative = $imagePath;
         $historic->save();
