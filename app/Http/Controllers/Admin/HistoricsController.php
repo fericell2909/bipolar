@@ -67,4 +67,11 @@ class HistoricsController extends Controller
         flash()->success('Actualizado correctamente');
         return redirect()->back();
     }
+
+    public function order()
+    {
+        $historics = Historic::orderBy('order')->get();
+
+        return view('admin.historics.order', compact('historics'));
+    }
 }

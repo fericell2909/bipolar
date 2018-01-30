@@ -62,6 +62,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('new', 'Admin\HistoricsController@store');
         Route::get('{historicId}/edit', 'Admin\HistoricsController@edit')->name('historics.edit');
         Route::post('{historicId}/edit', 'Admin\HistoricsController@update');
+        Route::get('order', 'Admin\HistoricsController@order')->name('historics.order');
     });
 
     Route::prefix('settings')->group(function () {

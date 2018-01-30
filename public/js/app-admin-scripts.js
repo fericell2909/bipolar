@@ -56527,6 +56527,7 @@ $(function () {
   createSortable('#sortable-home-posts', '/ajax-admin/home-posts/order');
   createSortable('#sortable-home-posts-photos', '/ajax-admin/home-posts/photos/order');
   createSortable('#sortable-banners', '/ajax-admin/banners/order');
+  createSortable('#sortable-historics', '/ajax-admin/historics/order');
 });
 
 /***/ }),
