@@ -97,8 +97,7 @@ class ShippingController extends Controller
         $shipping->kg10 = $request->input('kg10');
         $shipping->save();
 
-        dd($shipping);
-        // return shipping lists
+        return redirect()->route('settings.shipping.index');
     }
 
     private function saveIncludedCountries(array $countriesIds, Shipping $shipping)

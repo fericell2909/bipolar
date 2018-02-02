@@ -94,5 +94,6 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('shipping/new', 'Admin\ShippingController@store');
         Route::get('shipping/{shippingId}/prices', 'Admin\ShippingController@editPriceShipping')->name('settings.shipping.edit.price');
         Route::post('shipping/{shippingId}/prices', 'Admin\ShippingController@updatePriceShipping');
+        Route::get('shipping/activate/{indicator}')->name('settings.shipping.activate');
     });
 });
