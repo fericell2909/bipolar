@@ -5,10 +5,12 @@
   </div>
   <div class="container">
     <p>
-      Hola {{ \Auth::user()->name }} (¿no eres bipolar? <a href="#">Cerrar sesión</a>). 
+      Hola {{ \Auth::user()->name }} (¿no eres bipolar? <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar sesión</a>). 
       Desde tu página de cuenta, puedes ver tus pedidos recientes, gestionar la dirección de envío, la dirección de facturación
       y <a href="#">cambiar la información de la cuenta y la contraseña</a>
     </p>
+    {!! Form::open(['route' => 'logout', 'style' => 'display:none', 'id' => 'logout-form']) !!}
+    {!! Form::close() !!}
     <table class="table-buys">
       <thead>
         <tr>

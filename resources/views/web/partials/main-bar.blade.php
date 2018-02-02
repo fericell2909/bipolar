@@ -32,7 +32,14 @@
 						</li>
 						@endforeach
 						@auth
-						<li><a href="#">Cerrar sesión</a></li>
+						<li>
+							<a href="{{ route('logout') }}" 
+								onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+								Cerrar sesión
+							</a>
+						</li>
+						{!! Form::open(['route' => 'logout', 'style' => 'display:none', 'id' => 'logout-form']) !!}
+						{!! Form::close() !!}
 						@endauth
 					</ul>
 				</li>
