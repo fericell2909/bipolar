@@ -1,11 +1,11 @@
 @extends('admin.layouts.app_admin')
 @section('content')
 <div class="row thin-steps">
-  <a href="#" class="col-md-6 column-step start">
+  <a href="{{ route('settings.shipping.edit', $shipping->id) }}" class="col-md-6 column-step start">
       <div class="step-number">1</div>
-      <div class="step-title">Nuevo shipping</div>
+      <div class="step-title">Editar shipping</div>
   </a>
-  <a href="#" class="col-md-6 column-step active">
+  <a href="{{ route('settings.shipping.edit.price', $shipping->id) }}" class="col-md-6 column-step active">
       <div class="step-number">2</div>
       <div class="step-title">Precios</div>
   </a>

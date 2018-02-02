@@ -54,7 +54,7 @@
                   @endif
                 </td>
                 <td>
-                  <a href="#" class="btn btn-sm btn-dark btn-rounded">
+                  <a href="{{ route('settings.shipping.edit', $shipping->id) }}" class="btn btn-sm btn-dark btn-rounded">
                     <i class="fa fa-pencil"></i> Editar
                   </a>
                   <a href="{{ route('settings.shipping.edit.price', $shipping->id) }}" class="btn btn-sm btn-dark btn-rounded">

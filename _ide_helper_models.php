@@ -304,34 +304,38 @@ namespace App\Models{
  * @property int $id
  * @property string $title
  * @property int $active
- * @property float|null $200g
- * @property float|null $500g
- * @property float|null $1kg
- * @property float|null $2kg
- * @property float|null $3kg
- * @property float|null $4kg
- * @property float|null $5kg
- * @property float|null $6kg
- * @property float|null $7kg
- * @property float|null $8kg
- * @property float|null $9kg
- * @property float|null $10kg
+ * @property float|null $g200
+ * @property float|null $g500
+ * @property float|null $kg1
+ * @property float|null $kg2
+ * @property float|null $kg3
+ * @property float|null $kg4
+ * @property float|null $kg5
+ * @property float|null $kg6
+ * @property float|null $kg7
+ * @property float|null $kg8
+ * @property float|null $kg9
+ * @property float|null $kg10
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Country[] $excluded_countries
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $excluded_states
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingExclude[] $excludes
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Country[] $included_countries
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $included_states
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingInclude[] $includes
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where10kg($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where1kg($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where200g($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where2kg($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where3kg($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where4kg($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where500g($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where5kg($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where6kg($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where7kg($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where8kg($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where9kg($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG200($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG500($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg10($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg4($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg5($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg6($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg7($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg8($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg9($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereTitle($value)
  */
 	class Shipping extends \Eloquent {}
