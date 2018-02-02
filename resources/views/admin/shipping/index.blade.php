@@ -61,11 +61,11 @@
                     <i class="fa fa-price"></i> Precios
                   </a>
                   @if($shipping->active)
-                    <a href="#" class="btn btn-sm btn-dark btn-rounded">
+                    <a href="{{ route('settings.shipping.activate', [$shipping->id, 0]) }}" class="btn btn-sm btn-dark btn-rounded">
                       <i class="fa fa-pause"></i> Desactivar
                     </a>
                   @else
-                    <a href="#" class="btn btn-sm btn-dark btn-rounded">
+                    <a href="{{ route('settings.shipping.activate', [$shipping->id, 1]) }}" class="btn btn-sm btn-dark btn-rounded">
                       <i class="fa fa-play"></i> Activar
                     </a>
                   @endif

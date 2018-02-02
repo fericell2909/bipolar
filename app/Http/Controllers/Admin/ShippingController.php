@@ -100,6 +100,17 @@ class ShippingController extends Controller
         return redirect()->route('settings.shipping.index');
     }
 
+    public function activate($shippingId, $activate)
+    {
+        $shipping = Shipping::findOrFail($shippingId);
+        $shipping->active = boolval($activate);
+        $shipping->save();
+
+        flash()->success('Se cambió el estado con éxito');
+
+        return redirect()->back();
+    }
+
     private function saveIncludedCountries(array $countriesIds, Shipping $shipping)
     {
         $countries = Country::findMany($countriesIds);
