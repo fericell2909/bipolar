@@ -6,8 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shipping extends Model
 {
-    public function country_or_states()
+    public $timestamps = false;
+
+    public function includes()
     {
-        return $this->hasMany(ShippingCountryState::class);
+        return $this->hasMany(ShippingInclude::class);
+    }
+
+    public function excludes()
+    {
+        return $this->hasMany(ShippingExclude::class);
     }
 }

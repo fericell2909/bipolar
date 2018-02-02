@@ -149,7 +149,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li><a href="{{ route('settings.sizes') }}">Tallas</a></li>
                         <li><a href="{{ route('settings.colors') }}">Colores</a></li>
                         <li><a href="{{ route('settings.types') }}">Tipos</a></li>
-                        <li><a href="{{ route('settings.shipping.new') }}">Shipping rates</a></li>
+                        <li><a href="{{ route('settings.shipping.index') }}">Shipping rates</a></li>
                         <li><a href="{{ route('admin.logs') }}">Logs (Desarrollador)</a></li>
                     </ul>
                 </li>

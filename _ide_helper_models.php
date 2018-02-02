@@ -299,6 +299,46 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Shipping
+ *
+ * @property int $id
+ * @property string $title
+ * @property int $active
+ * @property float|null $200g
+ * @property float|null $500g
+ * @property float|null $1kg
+ * @property float|null $2kg
+ * @property float|null $3kg
+ * @property float|null $4kg
+ * @property float|null $5kg
+ * @property float|null $6kg
+ * @property float|null $7kg
+ * @property float|null $8kg
+ * @property float|null $9kg
+ * @property float|null $10kg
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingExclude[] $excludes
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingInclude[] $includes
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where10kg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where1kg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where200g($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where2kg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where3kg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where4kg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where500g($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where5kg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where6kg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where7kg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where8kg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping where9kg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereTitle($value)
+ */
+	class Shipping extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Country
  *
  * @property int $id
@@ -429,12 +469,33 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\ShippingInclude
+ *
+ * @property int $id
+ * @property int $shipping_id
+ * @property int|null $country_id
+ * @property int|null $country_state_id
+ * @property int $all_countries
+ * @property-read \App\Models\Country|null $country
+ * @property-read \App\Models\CountryState|null $country_state
+ * @property-read \App\Models\Shipping $shipping
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereAllCountries($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereCountryStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereShippingId($value)
+ */
+	class ShippingInclude extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\CountryState
  *
  * @property int $id
  * @property string $name
  * @property int $country_id
- * @property-read \App\Models\CountryState $country
+ * @property-read \App\Models\Country $country
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereCountryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereName($value)
@@ -501,6 +562,25 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\ShippingExclude
+ *
+ * @property int $id
+ * @property int $shipping_id
+ * @property int|null $country_id
+ * @property int|null $country_state_id
+ * @property-read \App\Models\Country|null $country
+ * @property-read \App\Models\CountryState|null $country_state
+ * @property-read \App\Models\Shipping $shipping
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereCountryStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereShippingId($value)
+ */
+	class ShippingExclude extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Subtype
  *
  * @property int $id
@@ -559,6 +639,7 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property string $photo
+ * @property string $photo_relative
  * @property int $order
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
@@ -567,6 +648,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic wherePhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic wherePhotoRelative($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereUpdatedAt($value)
  */
 	class Historic extends \Eloquent {}

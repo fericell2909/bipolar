@@ -89,7 +89,10 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('subtypes/{subtypeHashId}', 'Admin\SubtypeController@edit')->name('settings.subtypes.edit');
         Route::post('subtypes/{subtypeHashId}', 'Admin\SubtypeController@update');
         // Shipping
+        Route::get('shipping', 'Admin\ShippingController@index')->name('settings.shipping.index');
         Route::get('shipping/new', 'Admin\ShippingController@create')->name('settings.shipping.new');
         Route::post('shipping/new', 'Admin\ShippingController@store');
+        Route::get('shipping/{shippingId}/prices', 'Admin\ShippingController@editPriceShipping')->name('settings.shipping.edit.price');
+        Route::post('shipping/{shippingId}/prices', 'Admin\ShippingController@updatePriceShipping');
     });
 });

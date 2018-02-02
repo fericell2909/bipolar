@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ShippingCountryState extends Model
+class ShippingExclude extends Model
 {
-    protected $table = 'shipping_country_states';
+    protected $table = 'shipping_excludes';
+    public $timestamps = false;
 
     public function shipping()
     {
