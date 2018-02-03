@@ -39,16 +39,16 @@
           </p>
           <ul>
             <li>
-              <a href="#">Home</a>
+              <a href="{{ route('home') }}">Home</a>
             </li>
             <li>
-              <a href="#">Bipolar</a>
+              <a href="{{ route('landings.bipolar') }}">Bipolar</a>
             </li>
             <li>
-              <a href="#">Showroom</a>
+              <a href="{{ route('landings.showroom') }}">Showroom</a>
             </li>
             <li>
-              <a href="#">Shop</a>
+              <a href="{{ route('shop') }}">Shop</a>
             </li>
             <li>
               <a href="#">Newsletter</a>
@@ -57,7 +57,7 @@
               <a href="#">Blog</a>
             </li>
             <li>
-              <a href="#">Contacto</a>
+              <a href="{{ route('landings.contacto') }}">Contacto</a>
             </li>
           </ul>
         </div>

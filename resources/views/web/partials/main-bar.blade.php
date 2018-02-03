@@ -121,7 +121,7 @@
 					<a href="#">Newsletter</a>
 				</li>
 				<li>
-					<a href="#">Contacto</a>
+					<a href="{{ route('landings.contacto') }}">Contacto</a>
 				</li>
 			</ul>
 		</div>

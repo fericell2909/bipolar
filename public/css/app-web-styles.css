@@ -20917,3 +20917,49 @@ table.table-buys tbody td.order-actions {
   margin: auto;
 }
 
+.bipolar-contact-form {
+  text-align: center;
+}
+
+.bipolar-contact-form .title-contact-form {
+  margin-top: 40px;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  text-transform: uppercase;
+  letter-spacing: 4.5px;
+  color: black;
+  font-size: 30px;
+  font-weight: normal;
+}
+
+.bipolar-contact-form .text-contact-form {
+  font-family: "GothamLight", Verdana;
+  font-size: 13px;
+  line-height: 20px;
+  width: 570px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 45px;
+}
+
+.bipolar-contact-form .contact-form label {
+  color: black;
+  line-height: 13px;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-family: "GothamBold", Verdana;
+  font-weight: normal;
+}
+
+.bipolar-contact-form .contact-form textarea {
+  border: none;
+  padding: 0 15px;
+  color: #878787;
+  background-color: #f5f5f5;
+  border-radius: 25px;
+  outline: none;
+}
+
+.bipolar-contact-form .contact-form .btn {
+  margin-bottom: 40px;
+}
+

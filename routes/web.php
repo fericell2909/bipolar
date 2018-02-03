@@ -24,6 +24,8 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::get('shipping', 'Web\LandingsController@shipping')->name('landings.shipping');
         Route::get('showroom', 'Web\LandingsController@showroom')->name('landings.showroom');
         Route::get('historico', 'Web\LandingsController@historico')->name('landings.historico');
+        Route::get('contacto', 'Web\LandingsController@contact')->name('landings.contacto');
+        Route::post('contacto', 'Web\LandingsController@contactProcess');
 
         Route::get('cart', 'Web\CartController@cart')->name('cart');
         Route::get('cart/remove/{productSlug}', 'Web\CartController@remove')->name('cart.remove');

@@ -61,4 +61,18 @@ class LandingsController extends Controller
 
         return view('web.landings.historico', compact('historics', 'inverse'));
     }
+
+    public function contact()
+    {
+        return view('web.landings.contact');
+    }
+
+    public function contactProcess(Request $request)
+    {
+        $request->session()->flash('sent_message', true);
+
+        // todo: sent email message
+
+        return redirect()->back();
+    }
 }
