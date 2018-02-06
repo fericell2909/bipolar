@@ -3285,6 +3285,10 @@ html-minifier@^3.0.1:
     relateurl "0.2.x"
     uglify-js "3.1.x"
 
+html-to-draftjs@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/html-to-draftjs/-/html-to-draftjs-1.1.2.tgz#33bb652df9e2dc24646a064c03b895628704cace"
+
 http-deceiver@^1.2.7:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/http-deceiver/-/http-deceiver-1.2.7.tgz#fa7168944ab9a519d337cb0bec7284dc3e723d87"
