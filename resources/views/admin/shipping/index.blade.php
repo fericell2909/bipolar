@@ -3,7 +3,14 @@
 <div class="row">
   <div class="col-md-12">
     <div class="white-box">
-      <h3 class="box-title">Lista de reglas de envío</h3>
+      <div class="col-md-11">
+        <h3 class="box-title">Lista de reglas de envío</h3>
+      </div>
+      <div class="col-md-1">
+        <a href="{{ route('settings.shipping.new') }}" class="pull-right btn btn-dark btn-rounded btn-sm">
+          <i class="fa fa-plus"></i> Nuevo
+        </a>
+      </div>
       <div class="table-responsive">
         <table class="table">
           <thead>
