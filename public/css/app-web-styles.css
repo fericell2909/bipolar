@@ -18690,6 +18690,18 @@ button.close {
   border-color: #5897fb;
 }
 
+.btn {
+  font-family: "GothamBold", Verdana;
+  font-size: 11px;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn.active {
+  outline: none;
+}
+
 .btn-dark,
 .btn-add-cart,
 .btn-dark-rounded,

@@ -4,9 +4,14 @@
 			<div class="navbar-header">
 				<div class="navbar-brand">
 					<span>Hola</span>
+					@guest
 					<a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">Ingresa</a>
 					<span>Ó</span>
 					<a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">regístrate</a>
+					@endguest
+					@auth
+						<span>{{ Auth::user()->name }}</span>
+					@endauth
 				</div>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
