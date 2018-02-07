@@ -10,7 +10,7 @@
               {!! Form::text('name', null, ['class' => 'form-control']) !!}
             </div>
             <div class="col-md-6 form-group">
-              {!! Form::label('Imagen (medidas: 794x526)') !!}
+              {!! Form::label('Imagen (medidas: 794x527)') !!}
               {!! Form::file('photo', ['class' => 'form-control']) !!}
             </div>
         </div>
