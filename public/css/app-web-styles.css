@@ -211,6 +211,14 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+input::-webkit-clear-button {
+  display: none;
+}
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
