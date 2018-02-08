@@ -18,7 +18,9 @@ class CheckoutController extends Controller
             return redirect(route('shop'));
         }
 
-        $countries = Country::orderBy('name')->get()->pluck('name', 'id')->toArray();
+        $countries = Country::orderBy('name')->get()->mapWithKeys(function ($country) {
+            return [$country->id => mb_strtoupper($country->name)];
+        })->toArray();
         $addresses = Address::whereUserId(\Auth::id())->with('address_type', 'country_state')->get();
 
         $billingAddresses = $addresses->filter(function ($address) {

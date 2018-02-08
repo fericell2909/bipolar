@@ -52,7 +52,7 @@
 									{!! Form::select('country', $countries, null, ['class' => 'form-control select-2-countries', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Estado') !!}
+									{!! Form::label('Estado / Ciudad') !!}
 									{!! Form::select('state', [], null, ['class' => 'form-control select-2-country-states', 'required' => true]) !!}
 									{!! Form::hidden('country_state_billing_hidden', null, ['id' => 'country_state_billing_hidden']) !!}
 								</div>
@@ -129,7 +129,7 @@
 									{!! Form::select('country', $countries, null, ['class' => 'select-2-countries-shipping form-control', 'required' => true]) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Estado') !!}
+									{!! Form::label('Estado / Ciudad') !!}
 									{!! Form::select('state', [], null, ['class' => 'select-2-country-states-shipping form-control', 'required' => true]) !!}
 									{!! Form::hidden('country_state_shipping_hidden', null, ['id' => 'country_state_shipping_hidden']) !!}
 								</div>
