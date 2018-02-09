@@ -18,8 +18,8 @@
       <input name="signature"       type="hidden"  value="{{ $payuSignatureCode }}"  >
       <input name="test"            type="hidden"  value="1">
       <input name="buyerEmail"      type="hidden"  value="{{ Auth::user()->email }}" >
-      <input name="responseUrl"     type="hidden"  value="https://bipolar.wtf/checkout/response" >
-      <input name="confirmationUrl" type="hidden"  value="https://bipolar.wtf/checkout/confirmation" >
+      <input name="responseUrl"     type="hidden"  value="{{ url('/checkout/response') }}" >
+      <input name="confirmationUrl" type="hidden"  value="{{ url('/checkout/confirmation') }}" >
       <input name="Submit"          type="submit" class="btn btn-dark-rounded" value="Pagar" >
     </form>
   </div>
