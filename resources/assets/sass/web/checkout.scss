@@ -2,7 +2,7 @@
   .panel-default {
     border: none;
     box-shadow: none;
-    &:nth-last-child() {
+    &:nth-last-child {
       margin-bottom: 40px;
     }
 
