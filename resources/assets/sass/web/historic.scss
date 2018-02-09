@@ -1,0 +1,34 @@
+.bipolar-historic {
+  img.img-product {
+    max-width: 100%;
+  }
+
+  .container-title-product {
+    max-width: 100%;
+    background-color: $bipolar-black;
+
+    .img-transparency {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+    }
+
+    .product-name {
+      display: block;
+      position: absolute;
+      color: $bipolar-color;
+      text-align: center;
+      letter-spacing: 0.25px;
+      height: 100px;
+      font-family: $sahari-bodoni-font;
+      font-size: 95px;
+      font-weight: normal;
+      line-height: 1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+    }
+  }
+}

@@ -46,7 +46,7 @@
                     <span class="product-amount">{{ $product->price_currency }}</span>
                 </p>
                 <p class="product-description">
-                    {{ $product->description }}
+                    {!! $product->description !!}
                 </p>
                 {!! Form::open(['id' => 'product-add-cart']) !!}
                     {!! Form::hidden('product_id', $product->hash_id) !!}

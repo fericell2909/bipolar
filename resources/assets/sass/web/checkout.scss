@@ -186,10 +186,7 @@
     border-radius: 20px;
     padding: 20px;
     margin-top: 15px;
-
-    .address-list-option {
-      margin-right: 10px;
-    }
+    margin-bottom: 15px;
 
     .address-list-title {
       text-transform: uppercase;
@@ -197,6 +194,8 @@
       color: $bipolar-black;
       font-size: 17px;
       letter-spacing: 2.5px;
+      margin-left: 10px;
+      margin-top: 1px;
     }
 
     .address-list-content {
@@ -205,7 +204,7 @@
 
       .address-list-of-lists {
         list-style: none;
-        padding-left: 28px;
+        padding-left: 38px;
   
         > li {
           text-transform: uppercase;
@@ -216,6 +215,7 @@
       }
 
       .trash-icon {
+        cursor: pointer;
         display: flex;
         align-items: flex-end;
       }

@@ -4,9 +4,14 @@
 			<div class="navbar-header">
 				<div class="navbar-brand">
 					<span>Hola</span>
+					@guest
 					<a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">Ingresa</a>
 					<span>Ó</span>
 					<a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">regístrate</a>
+					@endguest
+					@auth
+						<span>{{ Auth::user()->name }}</span>
+					@endauth
 				</div>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
@@ -16,7 +21,7 @@
 						<i class="fa fa-chevron-down"></i>
 					</a>
 					<ul class="bipolar-dropdown-menu in-desktop hidden-xs hidden-sm">
-						<li><a href="#"><i class="fa fa-user"></i> Mi cuenta</a></li>
+						<li><a href="{{ route('profile') }}"><i class="fa fa-user"></i> Mi cuenta</a></li>
 						<li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
 						<li><a href="#"><i class="fa fa-shopping-cart"></i> Shopping cart</a></li>
 						<li><a href="{{ route('checkout') }}"><i class="fa fa-share"></i> Checkout</a></li>
@@ -32,7 +37,14 @@
 						</li>
 						@endforeach
 						@auth
-						<li><a href="#">Cerrar sesión</a></li>
+						<li>
+							<a href="{{ route('logout') }}" 
+								onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+								Cerrar sesión
+							</a>
+						</li>
+						{!! Form::open(['route' => 'logout', 'style' => 'display:none', 'id' => 'logout-form']) !!}
+						{!! Form::close() !!}
 						@endauth
 					</ul>
 				</li>
@@ -114,7 +126,7 @@
 					<a href="#">Newsletter</a>
 				</li>
 				<li>
-					<a href="#">Contacto</a>
+					<a href="{{ route('landings.contacto') }}">Contacto</a>
 				</li>
 			</ul>
 		</div>

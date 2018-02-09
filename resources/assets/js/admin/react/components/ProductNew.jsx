@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import {existInArray, removeFromSimpleArray} from '../helpers';
-import swal from 'sweetalert2';
+import { removeFromSimpleArray } from '../helpers';
 import ProductColors from "./partials/ProductColors";
 import ProductSizes from "./partials/ProductSizes";
 import ProductTypes from "./partials/ProductTypes";
+import { EditorState, convertToRaw } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
 
-export default class BipolarProductNew extends React.Component {
+class BipolarProductNew extends React.Component {
 
   constructor() {
     super();
@@ -30,27 +32,20 @@ export default class BipolarProductNew extends React.Component {
       selectedSubtypes: [],
       productStates: [],
       selectedState: '',
+      editorState: EditorState.createEmpty(),
+      editorStateEnglish: EditorState.createEmpty(),
     };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSalientChange = this.handleSalientChange.bind(this);
-    this.handleColorChange = this.handleColorChange.bind(this);
-    this.handleSizeChange = this.handleSizeChange.bind(this);
-    this.handleSaveProduct = this.handleSaveProduct.bind(this);
-    this.handleSubtypeChange = this.handleSubtypeChange.bind(this);
-    this.handleProductStateChange = this.handleProductStateChange.bind(this);
-    this.handleChangeFreeShipping = this.handleChangeFreeShipping.bind(this);
   }
 
-  handleInputChange(event) {
+  handleInputChange = event => {
     this.setState({[event.target.name]: event.target.value});
-  }
+  };
 
-  handleSalientChange(event) {
+  handleSalientChange = event => {
     this.setState({salient: event.target.checked});
-  }
+  };
 
-  handleColorChange(event) {
+  handleColorChange = event => {
     const colorHashId = event.target.value;
     let selected = this.state.selectedColors;
 
@@ -61,9 +56,9 @@ export default class BipolarProductNew extends React.Component {
     }
 
     return this.setState({selectedColors: selected});
-  }
+  };
 
-  handleSizeChange(event) {
+  handleSizeChange = event => {
     const sizeHashId = event.target.value;
     let selected = this.state.selectedSizes;
 
@@ -74,9 +69,9 @@ export default class BipolarProductNew extends React.Component {
     }
 
     return this.setState({selectedSizes: selected});
-  }
+  };
 
-  handleSubtypeChange(event) {
+  handleSubtypeChange = event => {
     const subtypeHashId = event.target.value;
     let selected = this.state.selectedSubtypes;
 
@@ -87,17 +82,27 @@ export default class BipolarProductNew extends React.Component {
     }
 
     return this.setState({selectedSubtypes: selected});
-  }
+  };
 
-  handleProductStateChange(event) {
+  handleProductStateChange = event => {
     this.setState({selectedState: event.target.value});
-  }
+  };
 
-  handleChangeFreeShipping(event) {
+  handleChangeFreeShipping = event => {
     this.setState({free_shipping: event.target.checked});
-  }
+  };
 
-  handleSaveProduct(event) {
+  handleEditorDescription = editorState => {
+    const htmlText = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    this.setState({editorState, description: htmlText});
+  };
+
+  handleEditorDescriptionEnglish = editorState => {
+    const htmlText = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    this.setState({editorStateEnglish: editorState, description_english: htmlText});
+  };
+
+  handleSaveProduct = event => {
     event.preventDefault();
 
     axios.post('/ajax-admin/products', {
@@ -118,14 +123,14 @@ export default class BipolarProductNew extends React.Component {
         const data = response.data;
         return (response.status === 201) ? window.location.href = data['edit_route'] : alert('algo malo paso');
       });
-  }
+  };
 
   render() {
     const isInvalidForm = this.state.name.length === 0 || this.state.price <= 0 || this.state.selectedState.length === 0;
-
     const productStatesRender = this.state.productStates.map(state => {
       return <option key={state['hash_id']} value={state['hash_id']}>{state['name']}</option>
     });
+    const { editorState, editorStateEnglish } = this.state;
 
     return (
       <div className="row">
@@ -157,13 +162,11 @@ export default class BipolarProductNew extends React.Component {
               </div>
               <div className="form-group">
                 <label>Descripción (Opcional)</label>
-                <textarea value={this.state.description} onChange={this.handleInputChange} maxLength="4000" name="description"
-                          className="form-control" rows="7"/>
+                <Editor editorState={editorState} onEditorStateChange={this.handleEditorDescription} editorClassName="demo-editor-content"/>
               </div>
               <div className="form-group">
                 <label>Descripción en inglés (Opcional)</label>
-                <textarea value={this.state.description_english} onChange={this.handleInputChange} maxLength="4000" name="description_english"
-                          className="form-control" rows="7"/>
+                <Editor editorState={editorStateEnglish} onEditorStateChange={this.handleEditorDescriptionEnglish} editorClassName="demo-editor-content"/>
               </div>
               <div className="form-row">
                 <div className="col-md-6">

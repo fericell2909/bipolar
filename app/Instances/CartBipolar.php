@@ -22,18 +22,11 @@ class CartBipolar
     /**
      * Return the last cart
      *
-     * @return Cart|null
+     * @return Cart
      */
     public function last()
     {
-        $cart = null;
-        if (\Auth::check()) {
-            $cart = Cart::firstOrCreate(['user_id' => \Auth::id()]);
-        } else {
-            $cart = Cart::firstOrCreate(['session_id' => \Session::getId()]);
-        }
-
-        return $cart;
+        return $this->cart;
     }
 
     public function count()
@@ -63,6 +56,17 @@ class CartBipolar
     {
         $this->cart = $this->cart->fresh();
 
+        if (empty($this->cart)) {
+            return;
+        }
+
+        if ($this->cart->details->count() === 0) {
+            $this->cart->subtotal = 0;
+            $this->cart->total = 0;
+            $this->cart->total_dolar = 0;
+            return $this->cart->save();
+        }
+
         $total = $this->cart->details->sum(function ($detail) {
             return $detail->total;
         });
@@ -73,7 +77,7 @@ class CartBipolar
         $this->cart->subtotal = $total;
         $this->cart->total = $total;
         $this->cart->total_dolar = $totalDolar;
-        $this->cart->save();
+        return $this->cart->save();
     }
 
     public function remove($productSlug)
@@ -81,6 +85,19 @@ class CartBipolar
         $this->cart->details->each(function ($detail) use ($productSlug) {
             return $detail->product->slug === $productSlug ? $detail->delete() : false;
         });
+
+        $this->recalculate();
+
+        return true;
+    }
+
+    public function destroy()
+    {
+        $this->cart->details->each(function ($detail) {
+            return $detail->delete();
+        });
+
+        $this->cart->delete();
 
         $this->recalculate();
 

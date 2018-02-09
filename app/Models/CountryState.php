@@ -8,6 +8,6 @@ class CountryState extends Model
 {
     public function country()
     {
-        return $this->belongsTo(CountryState::class);
+        return $this->belongsTo(Country::class, 'country_id');
     }
 }

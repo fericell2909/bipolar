@@ -1,6 +1,10 @@
 .shop-container {
   margin-top: 70px;
 
+  .see-filters-button {
+    margin-bottom: 20px;
+  }
+
   .bipolar-shop-results-filter {
     display: flex;
     align-items: center;
@@ -34,6 +38,15 @@
   }
 }
 
+@media (max-width: 768px) {
+  .shop-container {
+    margin-top: 0;
+  }
+  .filters-container {
+    display: none;
+  }
+}
+
 .bipolar-filter-title {
   font-size: 15px;
   font-family: $bodoni-bold-font;
@@ -63,9 +76,9 @@
 .bipolar-filters {
   display: none;
   margin-bottom: 40px;
-  .icheck {
-    margin-top: 2px;
-    margin-bottom: 2px;
+  .pretty {
+    display: block;
+    margin: 8px 0;
   }
 }
 

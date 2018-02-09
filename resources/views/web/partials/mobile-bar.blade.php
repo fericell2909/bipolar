@@ -8,7 +8,7 @@
     <i class="fa fa-chevron-down"></i>
   </div>
   <ul class="bipolar-dropdown-menu in-mobile hidden-md hidden-lg">
-    <li><a href="#"><i class="fa fa-user"></i> Mi cuenta</a></li>
+    <li><a href="{{ route('profile') }}"><i class="fa fa-user"></i> Mi cuenta</a></li>
     <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
     <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Shopping cart</a></li>
     <li><a href="{{ route('checkout') }}"><i class="fa fa-share"></i> Checkout</a></li>

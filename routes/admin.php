@@ -9,6 +9,10 @@ Route::middleware('auth:admin')->group(function () {
     })->name('admin.dashboard');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('admin.logs');
 
+    Route::prefix('buys')->group(function () {
+        Route::get('/', 'Admin\BuysController@index')->name('buys.index');
+    });
+
     Route::prefix('users')->group(function () {
         Route::get('/', 'Admin\UserController@index')->name('users.index');
         Route::get('/search', 'Admin\UserController@search')->name('users.search');
@@ -52,6 +56,15 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('order', 'Admin\BannersController@order')->name('banners.order');
     });
 
+    Route::prefix('historics')->group(function () {
+        Route::get('/', 'Admin\HistoricsController@index')->name('historics.index');
+        Route::get('new', 'Admin\HistoricsController@create')->name('historics.create');
+        Route::post('new', 'Admin\HistoricsController@store');
+        Route::get('{historicId}/edit', 'Admin\HistoricsController@edit')->name('historics.edit');
+        Route::post('{historicId}/edit', 'Admin\HistoricsController@update');
+        Route::get('order', 'Admin\HistoricsController@order')->name('historics.order');
+    });
+
     Route::prefix('settings')->group(function () {
         Route::get('general', 'Admin\SettingsController@general')->name('settings.general');
         Route::post('general', 'Admin\SettingsController@saveGeneral');
@@ -75,5 +88,14 @@ Route::middleware('auth:admin')->group(function () {
         // Subtypes
         Route::get('subtypes/{subtypeHashId}', 'Admin\SubtypeController@edit')->name('settings.subtypes.edit');
         Route::post('subtypes/{subtypeHashId}', 'Admin\SubtypeController@update');
+        // Shipping
+        Route::get('shipping', 'Admin\ShippingController@index')->name('settings.shipping.index');
+        Route::get('shipping/new', 'Admin\ShippingController@create')->name('settings.shipping.new');
+        Route::post('shipping/new', 'Admin\ShippingController@store');
+        Route::get('shipping/{shippingId}', 'Admin\ShippingController@edit')->name('settings.shipping.edit');
+        Route::post('shipping/{shippingId}', 'Admin\ShippingController@update');
+        Route::get('shipping/{shippingId}/prices', 'Admin\ShippingController@editPriceShipping')->name('settings.shipping.edit.price');
+        Route::post('shipping/{shippingId}/prices', 'Admin\ShippingController@updatePriceShipping');
+        Route::get('shipping/{shippingId}/activate/{indicator}', 'Admin\ShippingController@activate')->name('settings.shipping.activate');
     });
 });

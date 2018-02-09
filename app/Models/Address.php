@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Hashable;
 
 class Address extends Model
 {
+    use Hashable;
+
     public function address_type()
     {
         return $this->belongsTo(AddressType::class);

@@ -49,7 +49,11 @@ $(function () {
     if ($('.product-sizes').length) {
       const $sizeSelected = $('#size-selected');
       if ($sizeSelected.val().trim().length === 0) {
-        return swal('Atención', 'Necesitas seleccionar una talla para continuar', 'warning');
+        return swal({
+          title: 'Atención',
+          text: 'Necesitas seleccionar una talla para continuar',
+          confirmButtonColor: '#000000',
+        });
       }
     }
 

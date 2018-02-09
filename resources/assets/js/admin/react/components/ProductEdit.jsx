@@ -1,14 +1,18 @@
 import ReactDOM from "react-dom";
 import React from 'react';
 import axios from "axios";
+import get from 'lodash/get';
+import swal from "sweetalert2";
 import {removeFromSimpleArray} from "../helpers";
+import {EditorState, ContentState, convertToRaw} from 'draft-js';
+import htmlToDraft from 'html-to-draftjs';
+import draftToHtml from "draftjs-to-html";
+import { Editor } from 'react-draft-wysiwyg';
 import ProductColors from "./partials/ProductColors";
 import ProductSizes from "./partials/ProductSizes";
 import ProductTypes from "./partials/ProductTypes";
-import {get} from 'lodash';
-import swal from "sweetalert2";
 
-export default class BipolarProductEdit extends React.Component {
+class BipolarProductEdit extends React.Component {
 
   constructor(props) {
     super(props);
@@ -32,6 +36,9 @@ export default class BipolarProductEdit extends React.Component {
       sizes: [],
       types: [],
       productStates: [],
+      // data for editors
+      editorState: EditorState.createEmpty(),
+      editorStateEnglish: EditorState.createEmpty(),
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -115,6 +122,22 @@ export default class BipolarProductEdit extends React.Component {
       }
     });
   }
+
+  handleEditorDescription = editorState => {
+    const htmlText = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    this.setState({editorState, product: {
+        ...this.state.product,
+        description: htmlText
+      }});
+  };
+
+  handleEditorDescriptionEnglish = editorState => {
+    const htmlText = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    this.setState({editorStateEnglish: editorState, product: {
+        ...this.state.product,
+        description_english: htmlText
+      }});
+  };
 
   handleUpdateProduct(event) {
     event.preventDefault();
@@ -206,11 +229,11 @@ export default class BipolarProductEdit extends React.Component {
               </div>
               <div className="form-group">
                 <label>Descripción (Opcional)</label>
-                <textarea value={this.state.product.description} onChange={this.handleInputChange} maxLength="4000" name="description" className="form-control" rows="7"/>
+                <Editor editorState={this.state.editorState} onEditorStateChange={this.handleEditorDescription} editorClassName="demo-editor-content"/>
               </div>
               <div className="form-group">
                 <label>Descripción en inglés (Opcional)</label>
-                <textarea value={this.state.product.description_english} onChange={this.handleInputChange} maxLength="4000" name="description_english" className="form-control" rows="7"/>
+                <Editor editorState={this.state.editorStateEnglish} onEditorStateChange={this.handleEditorDescriptionEnglish} editorClassName="demo-editor-content"/>
               </div>
               <div className="form-row">
                 <div className="col-md-6">
@@ -291,12 +314,27 @@ export default class BipolarProductEdit extends React.Component {
         productInState.selectedSubtypes = product.subtypes.map(subtype => subtype['hash_id']);
         productInState.selectedSizes = product.sizes.map(size => size['hash_id']);
 
+        let contentBlock, contentBlockEnglish = null;
+        let {editorState, editorStateEnglish} = this.state;
+        if (product.description !== null) {
+          contentBlock = htmlToDraft(product.description);
+          const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+          editorState = EditorState.createWithContent(contentState);
+        }
+        if (product.description_english !== null) {
+          contentBlockEnglish = htmlToDraft(product.description_english);
+          const contentStateEnglish = ContentState.createFromBlockArray(contentBlockEnglish.contentBlocks);
+          editorStateEnglish = EditorState.createWithContent(contentStateEnglish);
+        }
+
         this.setState({
           product: {...productInState},
           colors: responseColors.data['data'],
           sizes: responseSizes.data['data'],
           types: responseTypes.data['data'],
           productStates: responseStates.data['data'],
+          editorState,
+          editorStateEnglish,
         });
       }));
   }

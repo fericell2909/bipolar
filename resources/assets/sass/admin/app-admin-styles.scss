@@ -18,7 +18,19 @@
 @import "~switchery/switchery.css";
 @import "~dropzone/dist/min/dropzone.min";
 @import "~daterangepicker/daterangepicker.css";
+@import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
+.demo-editor-content {
+  border: 1px solid #f1f1f1;
+  height: 275px;
+  padding: 5px;
+  border-radius: 2px;
+}
 
 .custom-select {
   height: calc(4.25rem);
+}
+
+.swal2-popup {
+  font-size: 1.6rem !important;
 }

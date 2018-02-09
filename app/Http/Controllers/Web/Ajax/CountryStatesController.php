@@ -17,8 +17,8 @@ class CountryStatesController extends Controller
 
         $countryStates = $countryStates->transform(function ($countryState) {
             return [
-                'id' => $countryState->id,
-                'text' => $countryState->name,
+                'id'   => $countryState->id,
+                'text' => mb_strtoupper($countryState->name),
             ];
         })->toArray();
 

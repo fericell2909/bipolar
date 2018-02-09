@@ -10,6 +10,38 @@
 
 namespace App\Models{
 /**
+ * App\Models\Buy
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $billing_address_id
+ * @property int $shipping_address_id
+ * @property float $subtotal
+ * @property float $total
+ * @property float $total_dolar
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\Address $billing_address
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $details
+ * @property-read mixed $total_currency
+ * @property-read mixed $total_session
+ * @property-read \App\Models\Address $shipping_address
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereSubtotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereTotalDolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereUserId($value)
+ */
+	class Buy extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\PostType
  *
  * @property int $id
@@ -50,6 +82,32 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereTotalDolar($value)
  */
 	class CartDetail extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\BuyDetail
+ *
+ * @property int $id
+ * @property int $buy_id
+ * @property int $product_id
+ * @property int|null $stock_id
+ * @property int $quantity
+ * @property float $total
+ * @property float $total_dolar
+ * @property-read \App\Models\Buy $buy
+ * @property-read mixed $total_currency
+ * @property-read \App\Models\Product $product
+ * @property-read \App\Models\Stock|null $stock
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereBuyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereStockId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereTotalDolar($value)
+ */
+	class BuyDetail extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -108,7 +166,9 @@ namespace App\Models{
  * @property float $dolar_change
  * @property int $free_shipping
  * @property int $bipolar_counts
+ * @property int $current_buy
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBipolarCounts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereCurrentBuy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDolarChange($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFreeShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereId($value)
@@ -239,6 +299,50 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Shipping
+ *
+ * @property int $id
+ * @property string $title
+ * @property int $active
+ * @property float|null $g200
+ * @property float|null $g500
+ * @property float|null $kg1
+ * @property float|null $kg2
+ * @property float|null $kg3
+ * @property float|null $kg4
+ * @property float|null $kg5
+ * @property float|null $kg6
+ * @property float|null $kg7
+ * @property float|null $kg8
+ * @property float|null $kg9
+ * @property float|null $kg10
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Country[] $excluded_countries
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $excluded_states
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingExclude[] $excludes
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Country[] $included_countries
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $included_states
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingInclude[] $includes
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG200($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG500($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg10($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg4($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg5($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg6($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg7($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg8($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg9($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereTitle($value)
+ */
+	class Shipping extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Country
  *
  * @property int $id
@@ -273,6 +377,7 @@ namespace App\Models{
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\AddressType $address_type
  * @property-read \App\Models\CountryState $country_state
+ * @property-read string $hash_id
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddressTypeId($value)
@@ -335,6 +440,7 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Buy[] $buys
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Cart[] $carts
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereActive($value)
@@ -367,11 +473,33 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\ShippingInclude
+ *
+ * @property int $id
+ * @property int $shipping_id
+ * @property int|null $country_id
+ * @property int|null $country_state_id
+ * @property int $all_countries
+ * @property-read \App\Models\Country|null $country
+ * @property-read \App\Models\CountryState|null $country_state
+ * @property-read \App\Models\Shipping $shipping
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereAllCountries($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereCountryStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereShippingId($value)
+ */
+	class ShippingInclude extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\CountryState
  *
  * @property int $id
  * @property string $name
  * @property int $country_id
+ * @property-read \App\Models\Country $country
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereCountryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereName($value)
@@ -438,6 +566,25 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\ShippingExclude
+ *
+ * @property int $id
+ * @property int $shipping_id
+ * @property int|null $country_id
+ * @property int|null $country_state_id
+ * @property-read \App\Models\Country|null $country
+ * @property-read \App\Models\CountryState|null $country_state
+ * @property-read \App\Models\Shipping $shipping
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereCountryStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereShippingId($value)
+ */
+	class ShippingExclude extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Subtype
  *
  * @property int $id
@@ -481,7 +628,33 @@ namespace App\Models{
 /**
  * App\Models\AddressType
  *
+ * @property int $id
+ * @property string $name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereName($value)
  */
 	class AddressType extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Historic
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $photo
+ * @property string $photo_relative
+ * @property int $order
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic wherePhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic wherePhotoRelative($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereUpdatedAt($value)
+ */
+	class Historic extends \Eloquent {}
 }
 

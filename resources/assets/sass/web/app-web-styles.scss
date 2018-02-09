@@ -32,6 +32,14 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+input::-webkit-clear-button {
+  display: none;
+}
+
 // Variables
 @import "variables";
 
@@ -46,7 +54,13 @@ input::-webkit-inner-spin-button {
 // Viewer JS
 //@import "~viewerjs/dist/viewer";
 // Flat skins
-@import "~icheck/skins/square/square";
+// @import "~icheck/skins/square/square";
+// Pretty Checkbox
+$pretty--color-primary: $bipolar-black;
+@import '~pretty-checkbox/src/pretty-checkbox.scss';
+// Material Design Icons
+@import "~mdi/scss/materialdesignicons";
+// Select 2
 @import "~select2/dist/css/select2";
 
 @import "buttons";
@@ -62,3 +76,7 @@ input::-webkit-inner-spin-button {
 @import "cart";
 @import "checkout";
 @import "burger_icon";
+@import "myaccount";
+@import "confirmation";
+@import "historic";
+@import "contact_form";

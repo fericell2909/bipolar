@@ -7,6 +7,7 @@ use App\Models\HomePost;
 use App\Models\Settings;
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use App\Models\Historic;
 
 class LandingsController extends Controller
 {
@@ -50,5 +51,28 @@ class LandingsController extends Controller
     public function showroom()
     {
         return view('web.landings.showroom');
+    }
+
+    public function historico()
+    {
+        $historics = Historic::orderByDesc('order')->get();
+        
+        $inverse = false;
+
+        return view('web.landings.historico', compact('historics', 'inverse'));
+    }
+
+    public function contact()
+    {
+        return view('web.landings.contact');
+    }
+
+    public function contactProcess(Request $request)
+    {
+        $request->session()->flash('sent_message', true);
+
+        // todo: sent email message
+
+        return redirect()->back();
     }
 }

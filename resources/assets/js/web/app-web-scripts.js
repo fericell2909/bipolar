@@ -49,4 +49,5 @@ require('./theme-scripts');
 require('./shop-scripts');
 require('./product-scripts');
 require('./select2-scripts');
+require('./checkout-scripts');
 //require('./react/app-react-scripts');
