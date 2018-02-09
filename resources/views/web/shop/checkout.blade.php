@@ -66,8 +66,7 @@
 								</div>
 							</div>
 							<div class="text-center">
-								{!! Form::submit('Agregar otra dirección', ['class' => 'btn btn-bipolar-rounded']) !!}
-								<button type="button" class="btn btn-dark-rounded">Continuar</button>
+								{!! Form::submit('Guardar nueva dirección', ['class' => 'btn btn-bipolar-rounded']) !!}
 							</div>
 							{!! Form::close() !!}
 							@foreach($billingAddresses as $billingAddress)
@@ -91,19 +90,22 @@
 									</div>
 								</div>
 							@endforeach
+							<div class="text-center">
+								<button type="button" id="checkoutContinuePartTwo" class="btn btn-dark-rounded">Continuar</button>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading" role="tab" id="headingTwo">
 						<h4 class="panel-title">
-							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseTwo" aria-expanded="false"
 							 aria-controls="collapseTwo">
 								Dirección de envío
 							</a>
 						</h4>
 					</div>
-					<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+					<div id="sectionCollapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 						<div class="panel-body">
 							<div id="bipolar-directions"></div>
 							{!! Form::open(['url' => route('address.add', 'shipping')]) !!}
@@ -143,8 +145,7 @@
 								</div>
 							</div>
 							<div class="text-center">
-								{!! Form::submit('Agregar otra dirección', ['class' => 'btn btn-bipolar-rounded']) !!}
-								<button type="button" class="btn btn-dark-rounded">Continuar</button>
+								{!! Form::submit('Guardar nueva dirección', ['class' => 'btn btn-bipolar-rounded']) !!}
 							</div>
 							{!! Form::close() !!}
 							@foreach($shippingAddresses as $shippingAddress)
@@ -168,19 +169,22 @@
 									</div>
 								</div>
 							@endforeach
+							<div class="text-center">
+								<button type="button" id="checkoutContinuePartThree" class="btn btn-dark-rounded">Continuar</button>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading" role="tab" id="headingThree">
 						<h4 class="panel-title">
-							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseThree" aria-expanded="false"
 							 aria-controls="collapseThree">
 								Tu pedido
 							</a>
 						</h4>
 					</div>
-					<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+					<div id="sectionCollapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body centered">
 							<table class="table-review-order">
                 <thead>
@@ -220,7 +224,7 @@
 								<div class="submit-payment">
 									<button type="submit" class="btn btn-rounded btn-dark">Pagar</button>
 									<p>
-										{!! Form::checkbox('terms', '1') !!}
+										{!! Form::checkbox('terms', '1', ['required' => true]) !!}
 										<label for="terms">He leído y acepto los <a href="#">términos y condiciones</a></label>
 									</p>
 								</div>
@@ -232,4 +236,17 @@
 		</div>
 	</div>
 </div>
+	@push('js_plus')
+		<script>
+			$('#checkoutContinuePartTwo').click(function () {
+			  $('#sectionCollapseOne').collapse('hide');
+			  $('#sectionCollapseTwo').collapse('show');
+			});
+			$('#checkoutContinuePartThree').click(function () {
+			  $('#sectionCollapseOne').collapse('hide');
+			  $('#sectionCollapseTwo').collapse('hide');
+			  $('#sectionCollapseThree').collapse('show');
+			});
+		</script>
+	@endpush
 @endsection
