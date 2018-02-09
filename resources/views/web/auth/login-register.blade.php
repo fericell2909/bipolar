@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    @push('script_plus')
-        @include('web.partials.facebook')
+    @push('js_plus')
+        @includeWhen(Auth::guest(), 'web.partials.facebook')
     @endpush
 @endsection
