@@ -19034,6 +19034,10 @@ button:active {
   margin-bottom: 0;
 }
 
+.color-white {
+  color: white;
+}
+
 a {
   color: black;
 }

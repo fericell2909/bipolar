@@ -28679,6 +28679,21 @@ $(function () {
     $('#size-selected').val($sizeButton.data('stockHashId'));
   });
 
+  // Add to wishlist
+  $('.wishlist-add').on('click', function () {
+    var productHashId = $(this).data('productId');
+    $.post('/ajax/wishlist/add/' + productHashId).done(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
+        title: '<span class="color-white">' + response['message'] + '</span>',
+        background: 'black',
+        toast: true,
+        position: "top-right",
+        showConfirmButton: false,
+        timer: 3000
+      });
+    });
+  });
+
   if ($('.tooltip-container').length) {
     tippy('.tooltip-container', {
       theme: 'bipolar',

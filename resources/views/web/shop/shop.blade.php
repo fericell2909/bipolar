@@ -102,7 +102,7 @@
                                         @endif
                                         <div class="overlay-shop-color-text">{{ $product->price }}</div>
                                         <div class="overlay-shop-buttons">
-                                            <a href="{{ route('wishlist.add', $product->slug) }}" class="btn btn-dark overlay-radio-button" title="Wishlist">
+                                            <a class="btn btn-dark overlay-radio-button wishlist-add" data-product-id="{{ $product->hash_id }}" title="Wishlist">
                                                 <img src="{{ asset('images/heart.svg') }}" width="18">
                                             </a>
                                             <a href="#"

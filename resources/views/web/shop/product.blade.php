@@ -81,7 +81,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="bipolar-button-description-container">
-                                    <a href="{{ route('wishlist.add', $product->slug) }}">
+                                    <a class="wishlist-add" data-product-id="{{ $product->hash_id }}">
                                         <i class="fa fa-heart-o"></i>
                                         <span>Wishlist</span>
                                     </a>

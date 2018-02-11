@@ -16,7 +16,6 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::post('shop', 'Web\ShopController@shop')->name('shop.post');
         Route::get('shop/{productSlug}', 'Web\ShopController@product')->name('shop.product');
 
-        Route::get('wishlist/add/{productSlug}', 'Web\WishlistController@add')->name('wishlist.add');
         Route::get('wishlist/remove/{productSlug}', 'Web\WishlistController@remove')->name('wishlist.remove');
         Route::get('wishlist', 'Web\WishlistController@view')->name('wishlist');
 
@@ -47,3 +46,4 @@ Route::prefix(LaravelLocalization::setLocale())
 
 Route::post('ajax/oauth/facebook', 'Web\Auth\LoginController@facebookAuth');
 Route::post('ajax/cart/product', 'Web\Ajax\CartController@add');
+Route::post('ajax/wishlist/add/{productHashId}', 'Web\Ajax\WishlistController@add');
