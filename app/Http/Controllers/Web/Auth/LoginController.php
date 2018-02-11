@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Web\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\SocialNetworkService;
+use App\Models\Cart;
+use App\Models\CartDetail;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -13,14 +15,47 @@ class LoginController extends Controller
 
     protected $redirectTo = '/';
 
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
     public function showLoginForm($loginRegister = 'login')
     {
         return view('web.auth.login-register', compact('loginRegister'));
     }
 
-    public function __construct()
+    public function login(Request $request)
     {
-        $this->middleware('guest')->except('logout');
+        $this->validateLogin($request);
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if ($this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        $sessionCartId = null;
+        if (\CartBipolar::count() > 0) {
+            $sessionCartId = \CartBipolar::id();
+        }
+
+        if ($this->attemptLogin($request)) {
+            if (!is_null($sessionCartId)) {
+                $this->convertOrDestroyCart($sessionCartId);
+            }
+            return $this->sendLoginResponse($request);
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
     }
 
     /**
@@ -57,5 +92,41 @@ class LoginController extends Controller
             'success' => true,
             'message' => "Auth ok",
         ]);
+    }
+
+    private function convertOrDestroyCart($sessionCartId)
+    {
+        $userCartExists = Cart::has('details')->whereUserId(\Auth::id())->exists();
+
+        if ($userCartExists) {
+            /** @var Cart $sessionCart */
+           $sessionCart = Cart::findOrFail($sessionCartId);
+           return $sessionCart->destroyCart();
+        }
+
+        $userCartId = $this->convertSessionCartToUserCart($sessionCartId);
+
+        return $this->removeOtherCarts($userCartId);
+    }
+
+    private function convertSessionCartToUserCart($sessionCartId)
+    {
+        /** @var Cart $sessionCart */
+        $sessionCart = Cart::findOrFail($sessionCartId);
+        $sessionCart->user()->associate(\Auth::user());
+        $sessionCart->session_id = null;
+        $sessionCart->save();
+
+        return $sessionCart->id;
+    }
+
+    private function removeOtherCarts($userCartId)
+    {
+        $carts = Cart::whereKeyNot($userCartId)->get();
+
+        $carts->each(function ($cart) {
+            /** @var Cart $cart */
+            $cart->destroyCart();
+        });
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 Route::prefix(LaravelLocalization::setLocale())
-    ->middleware(['localeSessionRedirect', 'localizationRedirect', 'localize'])
+    ->middleware(['localeSessionRedirect', 'localizationRedirect', 'localize', 'removeEmptyCarts'])
     ->group(function () {
         Route::get('/', 'Web\LandingsController@home')->name('home');
         Route::get('account-management/{loginRegister?}', 'Web\Auth\LoginController@showLoginForm')->name('login-with-register');

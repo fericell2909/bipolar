@@ -26,4 +26,20 @@ class Cart extends Model
             return "$ " . intval($this->total_dolar);
         }
     }
+
+    public function destroyCart()
+    {
+        if ($this->details->count() === 0) {
+            return false;
+        }
+
+        $this->details->each(function ($detail) {
+            /** @var CartDetail $detail */
+            $detail->delete();
+        });
+
+        \DB::table('carts')->delete($this->id);
+
+        return true;
+    }
 }
