@@ -18040,6 +18040,10 @@ button.close {
   }
 }
 
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  text-transform: uppercase;
+}
+
 .select2-container {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

@@ -22,7 +22,8 @@ $(function () {
           toast: true,
           position: "top-right",
           showConfirmButton: false,
-          timer: 3000
+          timer: 3000,
+          animation: false,
         });
       });
   });
@@ -60,15 +61,16 @@ $(function () {
   $('#product-add-cart').submit(function (event) {
     event.preventDefault();
 
-    const formFields = $(this).serializeArray();
-
     if ($('.product-sizes').length) {
       const $sizeSelected = $('#size-selected');
       if ($sizeSelected.val().trim().length === 0) {
         return swal({
-          title: 'Atención',
-          text: 'Necesitas seleccionar una talla para continuar',
-          confirmButtonColor: '#000000',
+          title: '<span class="color-white">Necesitas seleccionar una talla para continuar</span>',
+          background: 'black',
+          toast: true,
+          showConfirmButton: false,
+          timer: 3000,
+          animation: false,
         });
       }
     }

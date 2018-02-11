@@ -231,7 +231,7 @@
 								<div class="submit-payment">
 									<button type="submit" class="btn btn-dark-rounded">Pagar</button>
 									<p>
-										{!! Form::checkbox('terms', '1', ['required' => true]) !!}
+										{!! Form::checkbox('terms', '1', null, ['required' => true]) !!}
 										<label for="terms">He leído y acepto los <a href="#">términos y condiciones</a></label>
 									</p>
 								</div>

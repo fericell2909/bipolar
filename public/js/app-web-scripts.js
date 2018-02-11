@@ -28689,7 +28689,8 @@ $(function () {
         toast: true,
         position: "top-right",
         showConfirmButton: false,
-        timer: 3000
+        timer: 3000,
+        animation: false
       });
     });
   });
@@ -28727,15 +28728,16 @@ $(function () {
   $('#product-add-cart').submit(function (event) {
     event.preventDefault();
 
-    var formFields = $(this).serializeArray();
-
     if ($('.product-sizes').length) {
       var $sizeSelected = $('#size-selected');
       if ($sizeSelected.val().trim().length === 0) {
         return __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
-          title: 'Atención',
-          text: 'Necesitas seleccionar una talla para continuar',
-          confirmButtonColor: '#000000'
+          title: '<span class="color-white">Necesitas seleccionar una talla para continuar</span>',
+          background: 'black',
+          toast: true,
+          showConfirmButton: false,
+          timer: 3000,
+          animation: false
         });
       }
     }
