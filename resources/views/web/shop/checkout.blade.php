@@ -91,7 +91,7 @@
 								</div>
 							@endforeach
 							<div class="text-center">
-								<button type="button" id="checkoutContinuePartTwo" class="btn btn-dark-rounded">Continuar</button>
+								<button type="button" id="checkoutContinuePartTwo" class="btn btn-rounded btn-dark">Continuar</button>
 							</div>
 						</div>
 					</div>
@@ -170,7 +170,7 @@
 								</div>
 							@endforeach
 							<div class="text-center">
-								<button type="button" id="checkoutContinuePartThree" class="btn btn-dark-rounded">Continuar</button>
+								<button type="button" id="checkoutContinuePartThree" class="btn btn-dark btn-rounded">Continuar</button>
 							</div>
 						</div>
 					</div>
@@ -218,9 +218,6 @@
                 </tbody>
 							</table>
 							{!! Form::open() !!}
-								<div class="payment-method">
-									{!! Form::radio('payment', '1') !!} <span class="checkbox-content">Tarjeta de crédito o débito</span>
-								</div>
 								<div class="submit-payment">
 									<button type="submit" class="btn btn-rounded btn-dark">Pagar</button>
 									<p>

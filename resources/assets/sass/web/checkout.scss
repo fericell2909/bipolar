@@ -21,6 +21,9 @@
         font-family: $bodoni-bold-font;
         font-size: 17px;
         letter-spacing: 2.5px;
+        &:hover {
+          text-decoration: none;
+        }
       }
 
       & + .panel-collapse {
@@ -61,6 +64,7 @@
         text-transform: uppercase;
         border-bottom: 1px solid #222;
         padding: 10px 15px;
+        font-weight: normal;
       }
     }
 

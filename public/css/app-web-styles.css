@@ -18731,7 +18731,7 @@ button.close {
 .active.btn-dark-rounded,
 .active.btn-bipolar-rounded {
   color: white;
-  background-color: #312E36;
+  background-color: black;
   border-color: black;
   outline: none;
 }
@@ -20570,6 +20570,10 @@ input[type="date"] {
   letter-spacing: 2.5px;
 }
 
+.bipolar-checkout .panel-default .panel-heading a:hover {
+  text-decoration: none;
+}
+
 .bipolar-checkout .panel-default .panel-heading + .panel-collapse > .panel-body {
   border: 1px solid #eee;
   border-radius: 20px;
@@ -20605,6 +20609,7 @@ input[type="date"] {
   text-transform: uppercase;
   border-bottom: 1px solid #222;
   padding: 10px 15px;
+  font-weight: normal;
 }
 
 .bipolar-checkout .table-review-order tbody tr {
