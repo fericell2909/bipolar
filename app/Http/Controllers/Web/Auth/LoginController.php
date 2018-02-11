@@ -86,11 +86,21 @@ class LoginController extends Controller
             ]);
         }
 
+        $sessionCartId = null;
+        if (\CartBipolar::count() > 0) {
+            $sessionCartId = \CartBipolar::id();
+        }
+
         \Auth::loginUsingId($user->id);
+
+        if (!is_null($sessionCartId)) {
+            $this->convertOrDestroyCart($sessionCartId);
+        }
 
         return response()->json([
             'success' => true,
             'message' => "Auth ok",
+            'url'     => route('checkout'),
         ]);
     }
 

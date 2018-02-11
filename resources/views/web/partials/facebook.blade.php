@@ -8,7 +8,7 @@
           image: image
         }, function (response) {
           if (response.success === true) {
-            location.reload();
+            window.location.href = response['url'];
           } else {
             alert(response.message)
           }
@@ -47,6 +47,5 @@
 
   $(document).on('click', '#authFacebook', function () {
     loginUser();
-    console.log('clicked');
   });
 </script>
