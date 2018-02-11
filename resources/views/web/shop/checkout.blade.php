@@ -49,7 +49,12 @@
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('País') !!}
-									{!! Form::select('country', $countries, null, ['class' => 'form-control select-2-countries', 'required' => true]) !!}
+									<select name="" id="" class="form-control select-2-countries">
+										<option disabled selected>SELECCIONAR</option>
+										@foreach($countries as $countryId => $countryName)
+											<option value="{{ $countryId }}">{{ $countryName }}</option>
+										@endforeach
+									</select>
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Estado / Ciudad') !!}
@@ -128,7 +133,12 @@
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('País') !!}
-									{!! Form::select('country', $countries, null, ['class' => 'select-2-countries-shipping form-control', 'required' => true]) !!}
+									<select name="" id="" class="select-2-countries-shipping form-control" required>
+										<option selected disabled>SELECCIONAR</option>
+										@foreach($countries as $countryId => $countryName)
+											<option value="{{ $countryId }}">{{ $countryName }}</option>
+										@endforeach
+									</select>
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Estado / Ciudad') !!}
