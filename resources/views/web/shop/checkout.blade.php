@@ -96,7 +96,7 @@
 								</div>
 							@endforeach
 							<div class="text-center">
-								<button type="button" id="checkoutContinuePartTwo" class="btn btn-rounded btn-dark">Continuar</button>
+								<button type="button" id="checkoutContinuePartTwo" class="btn btn-dark-rounded">Continuar</button>
 							</div>
 						</div>
 					</div>
@@ -180,7 +180,7 @@
 								</div>
 							@endforeach
 							<div class="text-center">
-								<button type="button" id="checkoutContinuePartThree" class="btn btn-dark btn-rounded">Continuar</button>
+								<button type="button" id="checkoutContinuePartThree" class="btn btn-dark-rounded">Continuar</button>
 							</div>
 						</div>
 					</div>
@@ -229,7 +229,7 @@
 							</table>
 							{!! Form::open() !!}
 								<div class="submit-payment">
-									<button type="submit" class="btn btn-rounded btn-dark">Pagar</button>
+									<button type="submit" class="btn btn-dark-rounded">Pagar</button>
 									<p>
 										{!! Form::checkbox('terms', '1', ['required' => true]) !!}
 										<label for="terms">He leído y acepto los <a href="#">términos y condiciones</a></label>
