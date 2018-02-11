@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendContactMessage;
 use App\Models\HomePost;
 use App\Models\Settings;
 use App\Models\Banner;
@@ -56,7 +57,7 @@ class LandingsController extends Controller
     public function historico()
     {
         $historics = Historic::orderByDesc('order')->get();
-        
+
         $inverse = false;
 
         return view('web.landings.historico', compact('historics', 'inverse'));
@@ -69,9 +70,20 @@ class LandingsController extends Controller
 
     public function contactProcess(Request $request)
     {
+        $this->validate($request, [
+            'name'    => 'required|between:1,255',
+            'email'   => 'required|email|between:1,255',
+            'message' => 'required',
+        ]);
+
         $request->session()->flash('sent_message', true);
 
-        // todo: sent email message
+        \Mail::to('shop@bipolar.com.pe')->send(
+            new SendContactMessage(
+                $request->input('name'),
+                $request->input('email'),
+                $request->input('message')
+            ));
 
         return redirect()->back();
     }
