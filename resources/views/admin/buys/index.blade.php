@@ -29,7 +29,7 @@
                 <td>{{ $buy->created_at->format('d/m/Y') }}</td>
                 <td>S/ {{ $buy->total }} / $ {{ $buy->total_dolar }}</td>
                 <td>
-                  <button href="#" class="btn btn-dark btn-rounded btn-sm" data-target="#buy_details_{{ $buy->id }}" data-toggle="modal">
+                  <button class="btn btn-dark btn-rounded btn-sm" data-target="#buy_details_{{ $buy->id }}" data-toggle="modal">
                     Ver
                   </button>
                 </td>

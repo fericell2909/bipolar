@@ -19,6 +19,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/edit/{userId}', 'Admin\UserController@edit')->name('user.edit');
         Route::post('/edit/{userId}', 'Admin\UserController@update');
         Route::get('download', 'Admin\UserController@download')->name('users.download');
+        Route::get('/with-carts', 'Admin\UserController@withCartFilled')->name('users.with-carts');
     });
 
     Route::prefix('products')->group(function () {
