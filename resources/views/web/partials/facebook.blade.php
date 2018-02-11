@@ -43,10 +43,9 @@
       js.src = "https://connect.facebook.net/es_ES/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-  });
 
-
-  $(document).on('click', '#authFacebook', function () {
-    loginUser();
+    $(document).on('click', '#authFacebook', function () {
+      loginUser();
+    });
   });
 </script>
