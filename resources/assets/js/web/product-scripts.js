@@ -64,14 +64,7 @@ $(function () {
     if ($('.product-sizes').length) {
       const $sizeSelected = $('#size-selected');
       if ($sizeSelected.val().trim().length === 0) {
-        return swal({
-          title: '<span class="color-white">Necesitas seleccionar una talla para continuar</span>',
-          background: 'black',
-          toast: true,
-          showConfirmButton: false,
-          timer: 3000,
-          animation: false,
-        });
+        return $('.bipolar-alert-message').show();
       }
     }
 

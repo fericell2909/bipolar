@@ -18955,6 +18955,84 @@ fieldset[disabled] .active.btn-bipolar-rounded {
   z-index: 10;
 }
 
+.bipolar-success-message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  border-top: 3px solid #8fae1b;
+  background-color: #f7f6f7;
+  color: #515151;
+  padding: 13px 26px;
+  list-style: none;
+  width: auto;
+  word-wrap: break-word;
+}
+
+.bipolar-success-message i.fa {
+  color: #8fae1b;
+  margin-right: 10px;
+}
+
+.bipolar-success-message > .success-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.bipolar-success-message > .success-content a.btn:hover {
+  background-color: #f7f6f7;
+}
+
+.bipolar-alert-message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  border-top: 3px solid #FF5C5C;
+  background-color: #f7f6f7;
+  color: #515151;
+  padding: 13px 26px;
+  list-style: none;
+  width: auto;
+  word-wrap: break-word;
+}
+
+.bipolar-alert-message i.fa {
+  color: #FF5C5C;
+  margin-right: 10px;
+}
+
+.bipolar-alert-message > .success-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.bipolar-alert-message > .success-content a.btn:hover {
+  background-color: #f7f6f7;
+}
+
 body {
   font-family: "GothamLight", Verdana;
   font-size: 13px;
@@ -19127,45 +19205,6 @@ a:hover {
   margin-top: 20px;
   margin-bottom: 20px;
   padding-bottom: 20px;
-}
-
-.bipolar-success-message {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: relative;
-  border-top: 3px solid #8fae1b;
-  background-color: #f7f6f7;
-  color: #515151;
-  padding: 13px 26px;
-  list-style: none;
-  width: auto;
-  word-wrap: break-word;
-}
-
-.bipolar-success-message i.fa {
-  color: #8fae1b;
-  margin-right: 10px;
-}
-
-.bipolar-success-message > .success-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 100%;
-}
-
-.bipolar-success-message > .success-content a.btn:hover {
-  background-color: #f7f6f7;
 }
 
 .breadcrumb-without-padding,

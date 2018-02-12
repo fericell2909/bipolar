@@ -28731,14 +28731,7 @@ $(function () {
     if ($('.product-sizes').length) {
       var $sizeSelected = $('#size-selected');
       if ($sizeSelected.val().trim().length === 0) {
-        return __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
-          title: '<span class="color-white">Necesitas seleccionar una talla para continuar</span>',
-          background: 'black',
-          toast: true,
-          showConfirmButton: false,
-          timer: 3000,
-          animation: false
-        });
+        return $('.bipolar-alert-message').show();
       }
     }
 
