@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="navbar-header">
 				<div class="navbar-brand">
-					<span>Hola</span>
+					<span>{{ Auth::check() ? 'Bienvenido' : 'Hola' }}</span>
 					@guest
 					<a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">Ingresa</a>
 					<span>Ó</span>
@@ -11,6 +11,9 @@
 					@endguest
 					@auth
 						<span>{{ Auth::user()->name }}</span>
+						<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+							<i class="fa fa-power-off"></i> Salir
+						</a>
 					@endauth
 				</div>
 			</div>
@@ -23,7 +26,7 @@
 					<ul class="bipolar-dropdown-menu in-desktop hidden-xs hidden-sm">
 						<li><a href="{{ route('profile') }}"><i class="fa fa-user"></i> Mi cuenta</a></li>
 						<li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
-						<li><a href="#"><i class="fa fa-shopping-cart"></i> Shopping cart</a></li>
+						<li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Shopping cart</a></li>
 						<li><a href="{{ route('checkout') }}"><i class="fa fa-share"></i> Checkout</a></li>
 						<li><a><i class="fa fa-usd"></i> Change currency</a></li>
 						<li><a href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a></li>
