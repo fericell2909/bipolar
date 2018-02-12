@@ -227,11 +227,17 @@
                   </tr>
                 </tbody>
 							</table>
-							{!! Form::open() !!}
+							<div class="bipolar-alert-message" id="terms-check" style="display: none;">
+								<i class="fa fa-times-circle-o"></i>
+								<div class="success-content">
+									<span>Necesita aceptar los términos y condiciones para continuar</span>
+								</div>
+							</div>
+							{!! Form::open(['id' => 'checkout-form']) !!}
 								<div class="submit-payment">
 									<button type="submit" class="btn btn-dark-rounded">Pagar</button>
 									<p>
-										{!! Form::checkbox('terms', '1', null, ['required' => true]) !!}
+										{!! Form::checkbox('terms', '1', null) !!}
 										<label for="terms">He leído y acepto los <a href="#">términos y condiciones</a></label>
 									</p>
 								</div>
@@ -243,17 +249,4 @@
 		</div>
 	</div>
 </div>
-	@push('js_plus')
-		<script>
-			$('#checkoutContinuePartTwo').click(function () {
-			  $('#sectionCollapseOne').collapse('hide');
-			  $('#sectionCollapseTwo').collapse('show');
-			});
-			$('#checkoutContinuePartThree').click(function () {
-			  $('#sectionCollapseOne').collapse('hide');
-			  $('#sectionCollapseTwo').collapse('hide');
-			  $('#sectionCollapseThree').collapse('show');
-			});
-		</script>
-	@endpush
 @endsection

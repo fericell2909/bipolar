@@ -30,4 +30,23 @@ $(function() {
       }
     });
   });
+
+  $('#checkoutContinuePartTwo').click(function () {
+    $('#sectionCollapseOne').collapse('hide');
+    $('#sectionCollapseTwo').collapse('show');
+  });
+
+  $('#checkoutContinuePartThree').click(function () {
+    $('#sectionCollapseOne').collapse('hide');
+    $('#sectionCollapseTwo').collapse('hide');
+    $('#sectionCollapseThree').collapse('show');
+  });
+
+  $('#checkout-form').submit(function (event) {
+    const terms = $('input[name="terms"]');
+    if (terms.is(':checked') === false) {
+      $('#terms-check').show();
+      return event.preventDefault();
+    }
+  });
 });
