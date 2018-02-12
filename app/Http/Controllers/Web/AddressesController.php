@@ -14,10 +14,14 @@ class AddressesController extends Controller
     public function add(AddressNewRequest $request, $addressTypeName)
     {
         $countryState = null;
+        $redirectToSecondPart = false;
+        $redirectToThirdPart = false;
         if ($request->filled('country_state_billing_hidden')) {
             $countryState = CountryState::findOrFail($request->input('country_state_billing_hidden'));
+            $redirectToSecondPart = true;
         } elseif ($request->filled('country_state_shipping_hidden')) {
             $countryState = CountryState::findOrFail($request->input('country_state_shipping_hidden'));
+            $redirectToThirdPart = true;
         }
         $addressType = AddressType::whereName($addressTypeName)->firstOrFail();
         
@@ -48,7 +52,13 @@ class AddressesController extends Controller
             });
         }
 
-        // todo: return 2nd section for the checkout form
-        return redirect()->back();
+        $query = [];
+        if ($redirectToSecondPart) {
+            $query['part'] = 2;
+        } elseif ($redirectToThirdPart) {
+            $query['part'] = 3;
+        }
+
+        return redirect()->route('checkout', $query);
     }
 }

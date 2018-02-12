@@ -50,6 +50,20 @@
     .form-control {
       text-align: left;
     }
+
+    .send-distinct-address {
+      text-align: center;
+      margin-bottom: 2em;
+
+      label {
+        font-family: $gotham-bold-font, Verdana;
+        font-size: 11px;
+        color: $bipolar-black;
+        text-transform: uppercase;
+        padding-left: 10px;
+        font-weight: normal;
+      }
+    }
   }
 
   .table-review-order {

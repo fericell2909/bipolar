@@ -20644,6 +20644,20 @@ input[type="date"] {
   text-align: left;
 }
 
+.bipolar-checkout .panel-default .send-distinct-address {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.bipolar-checkout .panel-default .send-distinct-address label {
+  font-family: "GothamBold", Verdana, Verdana;
+  font-size: 11px;
+  color: black;
+  text-transform: uppercase;
+  padding-left: 10px;
+  font-weight: normal;
+}
+
 .bipolar-checkout .table-review-order {
   border: none;
   border-bottom: 1px solid #eee;

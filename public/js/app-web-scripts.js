@@ -28627,8 +28627,23 @@ $(function () {
     var addressId = $(this).val();
 
     $.post('ajax/address/' + addressId + '/main').done(function () {
-      return console.log('guardado');
+      $('#sectionCollapseOne').collapse('hide');
+      $('#sectionCollapseTwo').collapse('show');
     });
+  });
+
+  $('.address-shipping-option').click(function () {
+    var addressId = $(this).val();
+
+    $.post('ajax/address/' + addressId + '/main').done(function () {
+      $('#sectionCollapseTwo').collapse('hide');
+      $('#sectionCollapseThree').collapse('show');
+    });
+  });
+
+  $('input[name="send-distinct-address"]').click(function () {
+    $('#form-new-shipping-address').toggle();
+    $('#checkoutContinuePartThree').toggle();
   });
 
   $('.trash-icon').click(function () {
@@ -28654,11 +28669,6 @@ $(function () {
         location.reload();
       }
     });
-  });
-
-  $('#checkoutContinuePartTwo').click(function () {
-    $('#sectionCollapseOne').collapse('hide');
-    $('#sectionCollapseTwo').collapse('show');
   });
 
   $('#checkoutContinuePartThree').click(function () {
