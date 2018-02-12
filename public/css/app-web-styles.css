@@ -20640,6 +20640,10 @@ input[type="date"] {
   color: black;
 }
 
+.bipolar-checkout .panel-default .form-control {
+  text-align: left;
+}
+
 .bipolar-checkout .table-review-order {
   border: none;
   border-bottom: 1px solid #eee;
