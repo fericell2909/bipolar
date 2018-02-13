@@ -647,13 +647,20 @@ namespace App\Models{
  * @property int $order
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property \Carbon\Carbon|null $deleted_at
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Historic onlyTrashed()
+ * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic wherePhoto($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic wherePhotoRelative($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Historic withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Historic withoutTrashed()
  */
 	class Historic extends \Eloquent {}
 }

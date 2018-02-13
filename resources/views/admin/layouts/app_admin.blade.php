@@ -127,6 +127,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li><a href="{{ route('historics.create') }}">Nuevo histórico</a></li>
                         <li><a href="{{ route('historics.index') }}">Listar históricos</a></li>
                         <li><a href="{{ route('historics.order') }}">Ordenar</a></li>
+                        <li><a href="{{ route('historics.trashed') }}">Eliminados</a></li>
                     </ul>
                 </li>
                 <li>

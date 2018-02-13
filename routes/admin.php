@@ -64,6 +64,10 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('{historicId}/edit', 'Admin\HistoricsController@edit')->name('historics.edit');
         Route::post('{historicId}/edit', 'Admin\HistoricsController@update');
         Route::get('order', 'Admin\HistoricsController@order')->name('historics.order');
+        Route::get('trashed', 'Admin\HistoricsController@trashed')->name('historics.trashed');
+        Route::get('{historicId}/trash', 'Admin\HistoricsController@trash')->name('historics.trash');
+        Route::get('{historicId}/restore', 'Admin\HistoricsController@restore')->name('historics.restore');
+        Route::get('{historicId}/destroy', 'Admin\HistoricsController@destroy')->name('historics.destroy');
     });
 
     Route::prefix('settings')->group(function () {
