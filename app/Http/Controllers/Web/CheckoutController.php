@@ -40,11 +40,27 @@ class CheckoutController extends Controller
         }
 
         $billingAddress = Address::whereAddressTypeId(config('constants.ADDRESS_TYPE_BILLING_ID'))
+            ->where('user_id', \Auth::id())
             ->where('main', true)
             ->first();
+
+        if (is_null($billingAddress)) {
+            flash()->error('No hay una dirección de pago registrada');
+            return redirect()->back();
+        }
+
         $shippingAddress = Address::whereAddressTypeId(config('constants.ADDRESS_TYPE_SHIPPING_ID'))
+            ->where('user_id', \Auth::id())
             ->where('main', true)
             ->first();
+
+        if (is_null($shippingAddress)) {
+            /** @var Address $shippingAddress */
+            $shippingAddress = $billingAddress->replicate();
+            $shippingAddress->user_id = \Auth::id();
+            $shippingAddress->address_type_id = config('constants.ADDRESS_TYPE_SHIPPING_ID');
+            $shippingAddress->push();
+        }
 
         $buy = new Buy;
         $buy->user()->associate(\Auth::user());
