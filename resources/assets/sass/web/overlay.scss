@@ -4,6 +4,23 @@
   &:hover .overlay-image {
     opacity: 0.9;
   }
+
+  .overlay-links {
+    a, button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: $bipolar-black;
+      color: $bipolar-color;
+      padding: 1.2em;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      img {
+        width: 20px;
+      }
+    }
+  }
 }
 
 .overlay-image {

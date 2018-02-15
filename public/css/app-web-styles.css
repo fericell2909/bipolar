@@ -20277,6 +20277,30 @@ input[type="date"] {
   opacity: 0.9;
 }
 
+.overlay-container .overlay-links a,
+.overlay-container .overlay-links button {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: black;
+  color: #fcbeb9;
+  padding: 1.2em;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+
+.overlay-container .overlay-links a img,
+.overlay-container .overlay-links button img {
+  width: 20px;
+}
+
 .overlay-image {
   position: absolute;
   top: 0;
