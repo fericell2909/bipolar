@@ -27,7 +27,7 @@
 							</a>
 						</h4>
 					</div>
-					<div id="sectionCollapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+					<div id="sectionCollapseOne" class="panel-collapse collapse {{ !Request::has('part') ? 'in' : null }}" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
 							{!! Form::open(['url' => route('address.add', 'billing')]) !!}
 							<div class="row">
@@ -49,7 +49,12 @@
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('País') !!}
-									{!! Form::select('country', $countries, null, ['class' => 'form-control select-2-countries', 'required' => true]) !!}
+									<select name="country" id="" class="form-control select-2-countries">
+										<option disabled selected>SELECCIONAR</option>
+										@foreach($countries as $countryId => $countryName)
+											<option value="{{ $countryId }}">{{ $countryName }}</option>
+										@endforeach
+									</select>
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Estado / Ciudad') !!}
@@ -66,7 +71,7 @@
 								</div>
 							</div>
 							<div class="text-center">
-								{!! Form::submit('Guardar nueva dirección', ['class' => 'btn btn-bipolar-rounded']) !!}
+								<button type="submit" id="checkoutContinuePartTwo" class="btn btn-dark-rounded">Continuar</button>
 							</div>
 							{!! Form::close() !!}
 							@foreach($billingAddresses as $billingAddress)
@@ -90,9 +95,6 @@
 									</div>
 								</div>
 							@endforeach
-							<div class="text-center">
-								<button type="button" id="checkoutContinuePartTwo" class="btn btn-dark-rounded">Continuar</button>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -105,10 +107,13 @@
 							</a>
 						</h4>
 					</div>
-					<div id="sectionCollapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+					<div id="sectionCollapseTwo" class="panel-collapse collapse {{ Request::input('part') === "2" ? 'in' : null }}" role="tabpanel" aria-labelledby="headingTwo">
 						<div class="panel-body">
 							<div id="bipolar-directions"></div>
-							{!! Form::open(['url' => route('address.add', 'shipping')]) !!}
+              <div class="send-distinct-address">
+                <label>¿Enviar a una dirección diferente?</label> {!! Form::checkbox('send-distinct-address', '1') !!}
+              </div>
+							{!! Form::open(['url' => route('address.add', 'shipping'), 'id' => 'form-new-shipping-address', 'style' => 'display:none']) !!}
 							<div class="row">
 								<div class="form-group col-md-6">
 									{!! Form::label('Nombre') !!}
@@ -128,7 +133,12 @@
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('País') !!}
-									{!! Form::select('country', $countries, null, ['class' => 'select-2-countries-shipping form-control', 'required' => true]) !!}
+									<select name="country" id="" class="select-2-countries-shipping form-control" required>
+										<option selected disabled>SELECCIONAR</option>
+										@foreach($countries as $countryId => $countryName)
+											<option value="{{ $countryId }}">{{ $countryName }}</option>
+										@endforeach
+									</select>
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Estado / Ciudad') !!}
@@ -144,14 +154,14 @@
 									{!! Form::text('zip', null, ['class' => 'form-control', 'required' => true]) !!}
 								</div>
 							</div>
-							<div class="text-center">
-								{!! Form::submit('Guardar nueva dirección', ['class' => 'btn btn-bipolar-rounded']) !!}
-							</div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-dark-rounded">Continuar</button>
+              </div>
 							{!! Form::close() !!}
 							@foreach($shippingAddresses as $shippingAddress)
 								<div class="address-list">
 									<div class="pretty p-default p-round p-thick">
-										{!! Form::radio('address_shipping', $shippingAddress->hash_id, $shippingAddress->main, ['class' => 'address-list-option']) !!}
+										{!! Form::radio('address_shipping', $shippingAddress->hash_id, $shippingAddress->main, ['class' => 'address-list-option address-shipping-option']) !!}
 										<div class="state p-primary-o">
 												<label class="address-list-title">{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</label>
 										</div>
@@ -169,9 +179,9 @@
 									</div>
 								</div>
 							@endforeach
-							<div class="text-center">
-								<button type="button" id="checkoutContinuePartThree" class="btn btn-dark-rounded">Continuar</button>
-							</div>
+              <div class="text-center">
+                <button type="button" class="btn btn-dark-rounded" id="checkoutContinuePartThree">Continuar</button>
+              </div>
 						</div>
 					</div>
 				</div>
@@ -184,7 +194,7 @@
 							</a>
 						</h4>
 					</div>
-					<div id="sectionCollapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+					<div id="sectionCollapseThree" class="panel-collapse collapse {{ Request::input('part') === '3' ? 'in' : null }}" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body centered">
 							<table class="table-review-order">
                 <thead>
@@ -217,14 +227,17 @@
                   </tr>
                 </tbody>
 							</table>
-							{!! Form::open() !!}
-								<div class="payment-method">
-									{!! Form::radio('payment', '1') !!} <span class="checkbox-content">Tarjeta de crédito o débito</span>
+							<div class="bipolar-alert-message" id="terms-check" style="display: none;">
+								<i class="fa fa-times-circle-o"></i>
+								<div class="success-content">
+									<span>Necesita aceptar los términos y condiciones para continuar</span>
 								</div>
+							</div>
+							{!! Form::open(['id' => 'checkout-form']) !!}
 								<div class="submit-payment">
-									<button type="submit" class="btn btn-rounded btn-dark">Pagar</button>
+									<button type="submit" class="btn btn-dark-rounded">Pagar</button>
 									<p>
-										{!! Form::checkbox('terms', '1', ['required' => true]) !!}
+										{!! Form::checkbox('terms', '1', null) !!}
 										<label for="terms">He leído y acepto los <a href="#">términos y condiciones</a></label>
 									</p>
 								</div>
@@ -236,17 +249,4 @@
 		</div>
 	</div>
 </div>
-	@push('js_plus')
-		<script>
-			$('#checkoutContinuePartTwo').click(function () {
-			  $('#sectionCollapseOne').collapse('hide');
-			  $('#sectionCollapseTwo').collapse('show');
-			});
-			$('#checkoutContinuePartThree').click(function () {
-			  $('#sectionCollapseOne').collapse('hide');
-			  $('#sectionCollapseTwo').collapse('hide');
-			  $('#sectionCollapseThree').collapse('show');
-			});
-		</script>
-	@endpush
 @endsection

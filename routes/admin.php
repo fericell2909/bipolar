@@ -19,6 +19,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/edit/{userId}', 'Admin\UserController@edit')->name('user.edit');
         Route::post('/edit/{userId}', 'Admin\UserController@update');
         Route::get('download', 'Admin\UserController@download')->name('users.download');
+        Route::get('/with-carts', 'Admin\UserController@withCartFilled')->name('users.with-carts');
     });
 
     Route::prefix('products')->group(function () {
@@ -63,6 +64,10 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('{historicId}/edit', 'Admin\HistoricsController@edit')->name('historics.edit');
         Route::post('{historicId}/edit', 'Admin\HistoricsController@update');
         Route::get('order', 'Admin\HistoricsController@order')->name('historics.order');
+        Route::get('trashed', 'Admin\HistoricsController@trashed')->name('historics.trashed');
+        Route::get('{historicId}/trash', 'Admin\HistoricsController@trash')->name('historics.trash');
+        Route::get('{historicId}/restore', 'Admin\HistoricsController@restore')->name('historics.restore');
+        Route::get('{historicId}/destroy', 'Admin\HistoricsController@destroy')->name('historics.destroy');
     });
 
     Route::prefix('settings')->group(function () {

@@ -17,5 +17,5 @@
     </div>
 {!! Form::close() !!}
 <div class="text-center forgot-password">
-    <a href="#">¿OLVIDASTE LA CONTRASEÑA?</a>
+    <a href="{{ route('password.request') }}">¿OLVIDASTE LA CONTRASEÑA?</a>
 </div>

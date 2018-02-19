@@ -74,4 +74,54 @@ class HistoricsController extends Controller
 
         return view('admin.historics.order', compact('historics'));
     }
+
+    public function trashed()
+    {
+        $historics = Historic::onlyTrashed()->get();
+
+        return view('admin.historics.trashed', compact('historics'));
+    }
+
+    public function restore($historicId)
+    {
+        $historic = Historic::onlyTrashed()->whereId($historicId)->firstOrFail();
+        $historic->restore();
+
+        flash()->success('Restaurado con éxito');
+        return redirect()->back();
+    }
+
+    public function trash($historicId)
+    {
+        $historic = Historic::findOrFail($historicId);
+
+        try {
+            $historic->delete();
+        } catch (\Exception $e) {
+            flash()->error('No se pudo eliminar');
+            return redirect()->back();
+        }
+
+        flash()->success('Eliminado con éxito');
+        return redirect()->back();
+    }
+
+    public function destroy($historicId)
+    {
+        /** @var Historic $historic */
+        $historic = Historic::onlyTrashed()->whereId($historicId)->firstOrFail();
+
+        try {
+            if (\Storage::disk('s3')->exists($historic->photo_relative)) {
+                \Storage::disk('s3')->delete($historic->photo_relative);
+            }
+            $historic->forceDelete();
+        } catch (\Exception $e) {
+            flash()->error('No se pudo eliminar');
+            return redirect()->back();
+        }
+
+        flash()->success('Destruido con éxito');
+        return redirect()->back();
+    }
 }

@@ -60,10 +60,15 @@ $pretty--color-primary: $bipolar-black;
 @import '~pretty-checkbox/src/pretty-checkbox.scss';
 // Material Design Icons
 @import "~mdi/scss/materialdesignicons";
+
 // Select 2
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  text-transform: uppercase;
+}
 @import "~select2/dist/css/select2";
 
 @import "buttons";
+@import "alerts";
 @import "styles";
 @import "headers";
 @import "headers_mobile";

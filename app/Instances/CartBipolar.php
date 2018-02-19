@@ -29,6 +29,11 @@ class CartBipolar
         return $this->cart;
     }
 
+    public function id()
+    {
+        return (is_null($this->cart)) ? null : $this->cart->id;
+    }
+
     public function count()
     {
         if (is_null($this->cart)) {
@@ -38,6 +43,9 @@ class CartBipolar
         return $this->cart->details->count();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|array
+     */
     public function content()
     {
         if ($this->count() === 0) {

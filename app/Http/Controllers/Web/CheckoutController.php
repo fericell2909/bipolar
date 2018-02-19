@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Mail\BuyConfirmation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
@@ -40,11 +41,27 @@ class CheckoutController extends Controller
         }
 
         $billingAddress = Address::whereAddressTypeId(config('constants.ADDRESS_TYPE_BILLING_ID'))
+            ->where('user_id', \Auth::id())
             ->where('main', true)
             ->first();
+
+        if (is_null($billingAddress)) {
+            flash()->error('No hay una dirección de pago registrada');
+            return redirect()->back();
+        }
+
         $shippingAddress = Address::whereAddressTypeId(config('constants.ADDRESS_TYPE_SHIPPING_ID'))
+            ->where('user_id', \Auth::id())
             ->where('main', true)
             ->first();
+
+        if (is_null($shippingAddress)) {
+            /** @var Address $shippingAddress */
+            $shippingAddress = $billingAddress->replicate();
+            $shippingAddress->user_id = \Auth::id();
+            $shippingAddress->address_type_id = config('constants.ADDRESS_TYPE_SHIPPING_ID');
+            $shippingAddress->push();
+        }
 
         $buy = new Buy;
         $buy->user()->associate(\Auth::user());
@@ -73,11 +90,14 @@ class CheckoutController extends Controller
 
         \CartBipolar::destroy();
 
+        \Mail::to(\Auth::user())->send(new BuyConfirmation($buy));
+
         return redirect()->route('confirmation', $buy->id);
     }
 
     public function confirmation($buyId)
     {
+        /** @var Buy $buy */
         $buy = Buy::findOrFail($buyId);
         $setting = Settings::first();
 
@@ -88,6 +108,9 @@ class CheckoutController extends Controller
         $payuSignatureCode = $this->payuSignatureCode($buy, $referenceCode);
 
         abort_if($buy->user_id !== \Auth::id(), 403);
+
+        // todo: remove this is only for browser email testing
+        // return new BuyConfirmation($buy);
 
         return view('web.shop.confirmation', compact('buy', 'payuSignatureCode', 'referenceCode'));
     }

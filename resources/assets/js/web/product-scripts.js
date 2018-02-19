@@ -4,11 +4,28 @@ import swal from 'sweetalert2';
 $(function () {
   $('.product-size').on('click', function (event) {
     event.preventDefault();
-    const $sizeButton = $(this); 
+    const $sizeButton = $(this);
     $('.product-sizes>.product-size').removeClass('product-size-selected');
-    
+
     $sizeButton.addClass('product-size-selected');
     $('#size-selected').val($sizeButton.data('stockHashId'));
+  });
+
+  // Add to wishlist
+  $('.wishlist-add').on('click', function () {
+    const productHashId = $(this).data('productId');
+    $.post(`/ajax/wishlist/add/${productHashId}`)
+      .done(response => {
+        swal({
+          title: `<span class="color-white">${response['message']}</span>`,
+          background: 'black',
+          toast: true,
+          position: "top-right",
+          showConfirmButton: false,
+          timer: 3000,
+          animation: false,
+        });
+      });
   });
 
   if ($('.tooltip-container').length) {
@@ -43,24 +60,18 @@ $(function () {
 
   $('#product-add-cart').submit(function (event) {
     event.preventDefault();
-    
-    const formFields = $(this).serializeArray();
-    
+
     if ($('.product-sizes').length) {
       const $sizeSelected = $('#size-selected');
       if ($sizeSelected.val().trim().length === 0) {
-        return swal({
-          title: 'Atención',
-          text: 'Necesitas seleccionar una talla para continuar',
-          confirmButtonColor: '#000000',
-        });
+        return $('.bipolar-alert-message').show();
       }
     }
 
     const fields = {};
     $(this).serializeArray().map(field => {
       fields[field['name']] = field['value'];
-    });    
+    });
 
     return $.post('/ajax/cart/product', fields).done(() => location.reload());
   });

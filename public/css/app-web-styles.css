@@ -18040,6 +18040,10 @@ button.close {
   }
 }
 
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  text-transform: uppercase;
+}
+
 .select2-container {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -18731,7 +18735,7 @@ button.close {
 .active.btn-dark-rounded,
 .active.btn-bipolar-rounded {
   color: white;
-  background-color: #312E36;
+  background-color: black;
   border-color: black;
   outline: none;
 }
@@ -18951,6 +18955,84 @@ fieldset[disabled] .active.btn-bipolar-rounded {
   z-index: 10;
 }
 
+.bipolar-success-message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  border-top: 3px solid #8fae1b;
+  background-color: #f7f6f7;
+  color: #515151;
+  padding: 13px 26px;
+  list-style: none;
+  width: auto;
+  word-wrap: break-word;
+}
+
+.bipolar-success-message i.fa {
+  color: #8fae1b;
+  margin-right: 10px;
+}
+
+.bipolar-success-message > .success-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.bipolar-success-message > .success-content a.btn:hover {
+  background-color: #f7f6f7;
+}
+
+.bipolar-alert-message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  border-top: 3px solid #FF5C5C;
+  background-color: #f7f6f7;
+  color: #515151;
+  padding: 13px 26px;
+  list-style: none;
+  width: auto;
+  word-wrap: break-word;
+}
+
+.bipolar-alert-message i.fa {
+  color: #FF5C5C;
+  margin-right: 10px;
+}
+
+.bipolar-alert-message > .success-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.bipolar-alert-message > .success-content a.btn:hover {
+  background-color: #f7f6f7;
+}
+
 body {
   font-family: "GothamLight", Verdana;
   font-size: 13px;
@@ -19032,6 +19114,10 @@ button:active {
 .color-transparent {
   background: transparent;
   margin-bottom: 0;
+}
+
+.color-white {
+  color: white;
 }
 
 a {
@@ -19119,45 +19205,6 @@ a:hover {
   margin-top: 20px;
   margin-bottom: 20px;
   padding-bottom: 20px;
-}
-
-.bipolar-success-message {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: relative;
-  border-top: 3px solid #8fae1b;
-  background-color: #f7f6f7;
-  color: #515151;
-  padding: 13px 26px;
-  list-style: none;
-  width: auto;
-  word-wrap: break-word;
-}
-
-.bipolar-success-message i.fa {
-  color: #8fae1b;
-  margin-right: 10px;
-}
-
-.bipolar-success-message > .success-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 100%;
-}
-
-.bipolar-success-message > .success-content a.btn:hover {
-  background-color: #f7f6f7;
 }
 
 .breadcrumb-without-padding,
@@ -20230,6 +20277,30 @@ input[type="date"] {
   opacity: 0.9;
 }
 
+.overlay-container .overlay-links a,
+.overlay-container .overlay-links button {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: black;
+  color: #fcbeb9;
+  padding: 1.2em;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+
+.overlay-container .overlay-links a img,
+.overlay-container .overlay-links button img {
+  width: 20px;
+}
+
 .overlay-image {
   position: absolute;
   top: 0;
@@ -20373,6 +20444,7 @@ input[type="date"] {
 
 .bipolar-login-register-content .bipolar-login-col {
   border: 5px solid #eee;
+  padding: 45px 40px;
 }
 
 .bipolar-login-register-content .bipolar-facebook-button {
@@ -20569,6 +20641,10 @@ input[type="date"] {
   letter-spacing: 2.5px;
 }
 
+.bipolar-checkout .panel-default .panel-heading a:hover {
+  text-decoration: none;
+}
+
 .bipolar-checkout .panel-default .panel-heading + .panel-collapse > .panel-body {
   border: 1px solid #eee;
   border-radius: 20px;
@@ -20588,6 +20664,24 @@ input[type="date"] {
   color: black;
 }
 
+.bipolar-checkout .panel-default .form-control {
+  text-align: left;
+}
+
+.bipolar-checkout .panel-default .send-distinct-address {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.bipolar-checkout .panel-default .send-distinct-address label {
+  font-family: "GothamBold", Verdana, Verdana;
+  font-size: 11px;
+  color: black;
+  text-transform: uppercase;
+  padding-left: 10px;
+  font-weight: normal;
+}
+
 .bipolar-checkout .table-review-order {
   border: none;
   border-bottom: 1px solid #eee;
@@ -20604,6 +20698,7 @@ input[type="date"] {
   text-transform: uppercase;
   border-bottom: 1px solid #222;
   padding: 10px 15px;
+  font-weight: normal;
 }
 
 .bipolar-checkout .table-review-order tbody tr {

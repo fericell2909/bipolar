@@ -3,14 +3,14 @@
 <div class="row">
     <div class="col-md-12">
         <div class="white-box">
-            <h3 class="box-title">Lista de banners</h3>
+            <h3 class="box-title">Lista de históricos</h3>
             <table class="table">
                 <thead>
                 <tr>
                     <th>Nombre</th>
                     <th>Imagen</th>
                     <th>Orden</th>
-                    <th>Acciones</th>
+                    <th colspan="2">Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,6 +27,11 @@
                         <td>
                           <a href="{{ route('historics.edit', $historic->id) }}" class="btn btn-dark btn-rounded btn-sm">
                             <i class="fa fa-pencil"></i> Editar
+                          </a>
+                        </td>
+                        <td>
+                          <a href="{{ route('historics.trash', $historic->id) }}" class="btn btn-dark btn-rounded btn-sm">
+                            <i class="fa fa-trash"></i> Eliminar
                           </a>
                         </td>
                     </tr>

@@ -1,7 +1,7 @@
 <?php
 
 Route::prefix(LaravelLocalization::setLocale())
-    ->middleware(['localeSessionRedirect', 'localizationRedirect', 'localize'])
+    ->middleware(['localeSessionRedirect', 'localizationRedirect', 'localize', 'removeEmptyCarts'])
     ->group(function () {
         Route::get('/', 'Web\LandingsController@home')->name('home');
         Route::get('account-management/{loginRegister?}', 'Web\Auth\LoginController@showLoginForm')->name('login-with-register');
@@ -11,12 +11,15 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::post('register', 'Web\Auth\RegisterController@register')->name('register.post');
         Route::post('logout', 'Web\Auth\LoginController@logout')->name('logout');
         Route::post('register/newsletter', 'Web\NewsletterController@register')->name('register.newsletter');
+        Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+        Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
         Route::get('shop', 'Web\ShopController@shop')->name('shop');
         Route::post('shop', 'Web\ShopController@shop')->name('shop.post');
         Route::get('shop/{productSlug}', 'Web\ShopController@product')->name('shop.product');
 
-        Route::get('wishlist/add/{productSlug}', 'Web\WishlistController@add')->name('wishlist.add');
         Route::get('wishlist/remove/{productSlug}', 'Web\WishlistController@remove')->name('wishlist.remove');
         Route::get('wishlist', 'Web\WishlistController@view')->name('wishlist');
 
@@ -47,3 +50,4 @@ Route::prefix(LaravelLocalization::setLocale())
 
 Route::post('ajax/oauth/facebook', 'Web\Auth\LoginController@facebookAuth');
 Route::post('ajax/cart/product', 'Web\Ajax\CartController@add');
+Route::post('ajax/wishlist/add/{productHashId}', 'Web\Ajax\WishlistController@add');

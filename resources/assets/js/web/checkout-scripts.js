@@ -5,7 +5,25 @@ $(function() {
     const addressId = $(this).val();
     
     $.post(`ajax/address/${addressId}/main`)
-      .done(() => console.log('guardado'));
+      .done(() => {
+        $('#sectionCollapseOne').collapse('hide');
+        $('#sectionCollapseTwo').collapse('show');
+      });
+  });
+
+  $('.address-shipping-option').click(function () {
+    const addressId = $(this).val();
+
+    $.post(`ajax/address/${addressId}/main`)
+      .done(() => {
+        $('#sectionCollapseTwo').collapse('hide');
+        $('#sectionCollapseThree').collapse('show');
+      });
+  });
+
+  $('input[name="send-distinct-address"]').click(function () {
+    $('#form-new-shipping-address').toggle();
+    $('#checkoutContinuePartThree').toggle();
   });
   
   $('.trash-icon').click(function () {
@@ -29,5 +47,19 @@ $(function() {
         location.reload();
       }
     });
+  });
+
+  $('#checkoutContinuePartThree').click(function () {
+    $('#sectionCollapseOne').collapse('hide');
+    $('#sectionCollapseTwo').collapse('hide');
+    $('#sectionCollapseThree').collapse('show');
+  });
+
+  $('#checkout-form').submit(function (event) {
+    const terms = $('input[name="terms"]');
+    if (terms.is(':checked') === false) {
+      $('#terms-check').show();
+      return event.preventDefault();
+    }
   });
 });

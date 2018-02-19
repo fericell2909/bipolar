@@ -28627,8 +28627,23 @@ $(function () {
     var addressId = $(this).val();
 
     $.post('ajax/address/' + addressId + '/main').done(function () {
-      return console.log('guardado');
+      $('#sectionCollapseOne').collapse('hide');
+      $('#sectionCollapseTwo').collapse('show');
     });
+  });
+
+  $('.address-shipping-option').click(function () {
+    var addressId = $(this).val();
+
+    $.post('ajax/address/' + addressId + '/main').done(function () {
+      $('#sectionCollapseTwo').collapse('hide');
+      $('#sectionCollapseThree').collapse('show');
+    });
+  });
+
+  $('input[name="send-distinct-address"]').click(function () {
+    $('#form-new-shipping-address').toggle();
+    $('#checkoutContinuePartThree').toggle();
   });
 
   $('.trash-icon').click(function () {
@@ -28655,6 +28670,20 @@ $(function () {
       }
     });
   });
+
+  $('#checkoutContinuePartThree').click(function () {
+    $('#sectionCollapseOne').collapse('hide');
+    $('#sectionCollapseTwo').collapse('hide');
+    $('#sectionCollapseThree').collapse('show');
+  });
+
+  $('#checkout-form').submit(function (event) {
+    var terms = $('input[name="terms"]');
+    if (terms.is(':checked') === false) {
+      $('#terms-check').show();
+      return event.preventDefault();
+    }
+  });
 });
 
 /***/ }),
@@ -28677,6 +28706,22 @@ $(function () {
 
     $sizeButton.addClass('product-size-selected');
     $('#size-selected').val($sizeButton.data('stockHashId'));
+  });
+
+  // Add to wishlist
+  $('.wishlist-add').on('click', function () {
+    var productHashId = $(this).data('productId');
+    $.post('/ajax/wishlist/add/' + productHashId).done(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
+        title: '<span class="color-white">' + response['message'] + '</span>',
+        background: 'black',
+        toast: true,
+        position: "top-right",
+        showConfirmButton: false,
+        timer: 3000,
+        animation: false
+      });
+    });
   });
 
   if ($('.tooltip-container').length) {
@@ -28712,16 +28757,10 @@ $(function () {
   $('#product-add-cart').submit(function (event) {
     event.preventDefault();
 
-    var formFields = $(this).serializeArray();
-
     if ($('.product-sizes').length) {
       var $sizeSelected = $('#size-selected');
       if ($sizeSelected.val().trim().length === 0) {
-        return __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
-          title: 'Atención',
-          text: 'Necesitas seleccionar una talla para continuar',
-          confirmButtonColor: '#000000'
-        });
+        return $('.bipolar-alert-message').show();
       }
     }
 
@@ -28850,73 +28889,82 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countup_js__ = __webpack_require__("./node_modules/countup.js/dist/countUp.min.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countup_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_countup_js__);
 
+
 __webpack_require__("./node_modules/icheck/icheck.js");
 
 $(function () {
-    // Owl Carousel scripts
-    var thumbs = 5;
-    var duration = 300;
+  // Owl Carousel scripts
+  var thumbs = 5;
+  var duration = 300;
 
-    var owlMain = $('.owl-carousel-main').owlCarousel({
-        items: 1,
-        onDragged: draggedOwlMain
+  var owlMain = $('.owl-carousel-main').owlCarousel({
+    items: 1,
+    onDragged: draggedOwlMain
+  });
+  var owlThumbnail = $('.owl-carousel-thumbnails').owlCarousel({
+    margin: 10,
+    items: thumbs
+  });
+
+  function draggedOwlMain(event) {
+    owlMain.trigger('to.owl.carousel', [event.item.index, duration, true]);
+  }
+
+  owlThumbnail.on('click', '.owl-item', function () {
+    var index = $(this).index();
+    owlMain.trigger('to.owl.carousel', [index, duration, true]);
+    owlThumbnail.trigger('to.owl.carousel', [index, duration, true]);
+  });
+
+  // Historic change image
+  $('#showHistoricModal').on('show.bs.modal', function (event) {
+    var $button = $(event.relatedTarget);
+    var imageUrl = $button.data('imageUrl');
+
+    $('.image-historic-preview').attr('src', imageUrl);
+  });
+
+  // Scroll header function
+  $(function () {
+    $(document).scroll(function () {
+      var $transparentHeader = $('.bipolar-header-desktop');
+      var $grandHeader = $(".bipolar-grand-header");
+      var $grandHeaderAlternate = $('.bipolar-alternate-grand-header');
+      var isLongScroll = $(this).scrollTop() > $grandHeader.height();
+      var homeIsLongScroll = $(this).scrollTop() > $transparentHeader.height();
+      if (isLongScroll === true || homeIsLongScroll === true) {
+        $transparentHeader.addClass('hidden');
+        $grandHeader.addClass('hidden');
+        $grandHeaderAlternate.removeClass('hidden');
+      } else {
+        $transparentHeader.removeClass('hidden');
+        $grandHeader.removeClass('hidden');
+        $grandHeaderAlternate.addClass('hidden');
+      }
     });
-    var owlThumbnail = $('.owl-carousel-thumbnails').owlCarousel({
-        margin: 10,
-        items: thumbs
+  });
+
+  // Bootstrap tooltip
+  $('[data-toggle="tooltip"]').tooltip();
+
+  if ($('.bipolar-counts-title').length) {
+    var $firstCounter = $('#bipolar-first-counter');
+    var $secondCounter = $('#bipolar-second-counter');
+    var counterOptions = {
+      useEasing: true,
+      useGrouping: true,
+      separator: '',
+      decimal: '.'
+    };
+
+    $.get('https://graph.facebook.com/bipolar.zapatos/?fields=fan_count&access_token=100210840716931|hxQGZTOgdjwE1zG8tDKwyN7Fvy0').done(function (response) {
+      var firstCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a('bipolar-first-counter', 0, $firstCounter.data('number'), 0, 2.5, counterOptions);
+      var secondCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a('bipolar-second-counter', 0, response['fan_count'], 0, 2.5, counterOptions);
+
+      firstCounter.start();
+      secondCounter.start();
     });
-
-    function draggedOwlMain(event) {
-        owlMain.trigger('to.owl.carousel', [event.item.index, duration, true]);
-    }
-
-    owlThumbnail.on('click', '.owl-item', function () {
-        var index = $(this).index();
-        owlMain.trigger('to.owl.carousel', [index, duration, true]);
-        owlThumbnail.trigger('to.owl.carousel', [index, duration, true]);
-    });
-
-    // Scroll header function
-    $(function () {
-        $(document).scroll(function () {
-            var $transparentHeader = $('.bipolar-header-desktop');
-            var $grandHeader = $(".bipolar-grand-header");
-            var $grandHeaderAlternate = $('.bipolar-alternate-grand-header');
-            var isLongScroll = $(this).scrollTop() > $grandHeader.height();
-            var homeIsLongScroll = $(this).scrollTop() > $transparentHeader.height();
-            if (isLongScroll === true || homeIsLongScroll === true) {
-                $transparentHeader.addClass('hidden');
-                $grandHeader.addClass('hidden');
-                $grandHeaderAlternate.removeClass('hidden');
-            } else {
-                $transparentHeader.removeClass('hidden');
-                $grandHeader.removeClass('hidden');
-                $grandHeaderAlternate.addClass('hidden');
-            }
-        });
-    });
-
-    // Bootstrap tooltip
-    $('[data-toggle="tooltip"]').tooltip();
-
-    if ($('.bipolar-counts-title').length) {
-        var $firstCounter = $('#bipolar-first-counter');
-        var $secondCounter = $('#bipolar-second-counter');
-        var counterOptions = {
-            useEasing: true,
-            useGrouping: true,
-            separator: '',
-            decimal: '.'
-        };
-
-        $.get('https://graph.facebook.com/bipolar.zapatos/?fields=fan_count&access_token=100210840716931|hxQGZTOgdjwE1zG8tDKwyN7Fvy0').done(function (response) {
-            var firstCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a('bipolar-first-counter', 0, $firstCounter.data('number'), 0, 2.5, counterOptions);
-            var secondCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a('bipolar-second-counter', 0, response['fan_count'], 0, 2.5, counterOptions);
-
-            firstCounter.start();
-            secondCounter.start();
-        });
-    }
+  }
 });
 
 /***/ }),

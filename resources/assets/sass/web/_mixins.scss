@@ -1,0 +1,51 @@
+@mixin bipolar_alert($color) {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-top: 3px solid $color;
+  background-color: #f7f6f7;
+  color: #515151;
+  padding: 13px 26px;
+  list-style: none;
+  width: auto;
+  word-wrap: break-word;
+
+  i.fa {
+    color: $color;
+    margin-right: 10px;
+  }
+
+  >.success-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    a.btn {
+      &:hover {
+        background-color: #f7f6f7;
+      }
+    }
+  }
+}
+
+// Bootstrap Media Queries
+@mixin xxs {
+  @media only screen and (min-width : 320px) { @content }
+}
+
+@mixin xs {
+  @media only screen and (min-width : 480px) { @content }
+}
+
+@mixin sm {
+  @media only screen and (min-width : 768px) { @content }
+}
+
+@mixin md {
+  @media only screen and (min-width : 992px) { @content }
+}
+
+@mixin lg {
+  @media only screen and (min-width : 1200px) { @content }
+}

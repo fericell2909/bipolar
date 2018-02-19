@@ -55,7 +55,15 @@ class UserController extends Controller
         $user->save();
 
         flash()->success('Actualizado con éxito');
+
         return redirect()->back();
+    }
+
+    public function withCartFilled()
+    {
+        $users = User::has('carts')->with('carts.details.product')->latest()->get();
+
+        return view('admin.users.with-carts', compact('users'));
     }
 
     public function download()

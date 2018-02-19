@@ -1,31 +1,28 @@
 @extends('web.layouts.app_web')
 @section('content')
+  <?php /** @var \Illuminate\Support\Collection $historics */ ?>
+  @foreach($historics->chunk(2) as $chunk)
     <div class="row no-gutters bipolar-historic">
-      @foreach($historics as $historic)
-        @if($inverse)
-          <div class="col-md-3">
-            <img class="img-product" src="{{ $historic->photo }}" alt="xd">
-          </div>
-          <div class="col-md-3">
-            <div class="container-title-product">
-                <img src="https://bipolar-peru.s3.amazonaws.com/assets/transparencia.png" width="317" height="210" alt="Bipolar" class="img-transparency">
-                <span class="product-name">{{ $historic->name }}</span>
-            </div>
-          </div>
-        @else
-          <div class="col-md-3">
-            <div class="container-title-product">
-                <img src="https://bipolar-peru.s3.amazonaws.com/assets/transparencia.png" width="317" height="210" alt="Bipolar" class="img-transparency">
-                <span class="product-name">{{ $historic->name }}</span>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <img class="img-product" src="{{ $historic->photo }}" alt="xd">
-          </div>
-        @endif
-        @if($loop->iteration % 2 === 0)
-          @php($inverse = !$inverse)
-        @endif
-      @endforeach
+        @foreach($chunk as $historic)
+          @if($inverse)
+            @include("web.partials.historic-photo", ['name' => $historic->name, 'photo' => $historic->photo, 'inverse' => true])
+            @include("web.partials.historic-name", ['name' => $historic->name, 'photo' => $historic->photo, 'inverse' => true])
+          @else
+            @include("web.partials.historic-name", ['name' => $historic->name, 'photo' => $historic->photo, 'inverse' => false])
+            @include("web.partials.historic-photo", ['name' => $historic->name, 'photo' => $historic->photo, 'inverse' => false])
+          @endif
+        @endforeach
     </div>
+    @php($inverse = !$inverse)
+  @endforeach
+
+  <div class="modal fade" id="showHistoricModal" tabindex="-1" role="dialog" aria-labelledby="showHistoricModal">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img src="https://placehold.it/794x527" alt="Bipolar" class="image-historic-preview">
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection

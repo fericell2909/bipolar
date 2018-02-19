@@ -92,6 +92,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </a>
                     <ul class="nav nav-second-level">
                         <li><a href="{{ route('users.index') }}">Listar usuarios</a></li>
+                        <li><a href="{{ route('users.with-carts') }}">Usuarios sin comprar</a></li>
                     </ul>
                 </li>
                 <li>
@@ -126,6 +127,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li><a href="{{ route('historics.create') }}">Nuevo histórico</a></li>
                         <li><a href="{{ route('historics.index') }}">Listar históricos</a></li>
                         <li><a href="{{ route('historics.order') }}">Ordenar</a></li>
+                        <li><a href="{{ route('historics.trashed') }}">Eliminados</a></li>
                     </ul>
                 </li>
                 <li>

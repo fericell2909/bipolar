@@ -15,7 +15,7 @@
   text-transform: uppercase;
   &:hover, &:focus, &:active, &.active {
     color: white;
-    background-color: #312E36;
+    background-color: $bipolar-black;
     border-color: $bipolar-black;
     outline: none;
   }

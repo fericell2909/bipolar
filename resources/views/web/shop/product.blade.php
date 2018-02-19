@@ -51,6 +51,12 @@
                 {!! Form::open(['id' => 'product-add-cart']) !!}
                     {!! Form::hidden('product_id', $product->hash_id) !!}
                     @if(count($stockWithSizes))
+                        <div class="bipolar-alert-message" style="display: none">
+                            <i class="fa fa-times-circle-o"></i>
+                            <div class="success-content">
+                                <span>Necesita seleccionar una talla para continuar</span>
+                            </div>
+                        </div>
                         <div class="product-sizes">
                             <h6 class="text-uppercase">Selecciona tu talla</h6>
                             @foreach($stockWithSizes as $stock)
@@ -81,7 +87,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="bipolar-button-description-container">
-                                    <a href="{{ route('wishlist.add', $product->slug) }}">
+                                    <a class="wishlist-add" data-product-id="{{ $product->hash_id }}">
                                         <i class="fa fa-heart-o"></i>
                                         <span>Wishlist</span>
                                     </a>
