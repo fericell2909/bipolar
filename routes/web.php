@@ -11,6 +11,10 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::post('register', 'Web\Auth\RegisterController@register')->name('register.post');
         Route::post('logout', 'Web\Auth\LoginController@logout')->name('logout');
         Route::post('register/newsletter', 'Web\NewsletterController@register')->name('register.newsletter');
+        /*Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+        Route::post('password/reset', 'Auth\ResetPasswordController@reset');*/
 
         Route::get('shop', 'Web\ShopController@shop')->name('shop');
         Route::post('shop', 'Web\ShopController@shop')->name('shop.post');

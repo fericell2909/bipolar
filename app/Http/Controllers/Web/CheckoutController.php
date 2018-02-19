@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Mail\BuyConfirmation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
@@ -89,11 +90,14 @@ class CheckoutController extends Controller
 
         \CartBipolar::destroy();
 
+        \Mail::to(\Auth::user())->send(new BuyConfirmation($buy));
+
         return redirect()->route('confirmation', $buy->id);
     }
 
     public function confirmation($buyId)
     {
+        /** @var Buy $buy */
         $buy = Buy::findOrFail($buyId);
         $setting = Settings::first();
 
@@ -104,6 +108,9 @@ class CheckoutController extends Controller
         $payuSignatureCode = $this->payuSignatureCode($buy, $referenceCode);
 
         abort_if($buy->user_id !== \Auth::id(), 403);
+
+        // todo: remove this is only for browser email testing
+        // return new BuyConfirmation($buy);
 
         return view('web.shop.confirmation', compact('buy', 'payuSignatureCode', 'referenceCode'));
     }
