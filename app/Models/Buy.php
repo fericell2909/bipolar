@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Hashable;
 use Illuminate\Database\Eloquent\Model;
 
 class Buy extends Model
 {
+    use Hashable;
+
     public function billing_address()
     {
         return $this->belongsTo(Address::class, 'billing_address_id');
@@ -19,6 +22,11 @@ class Buy extends Model
     public function details()
     {
         return $this->hasMany(BuyDetail::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 
     public function user()

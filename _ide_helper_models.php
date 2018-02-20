@@ -16,6 +16,7 @@ namespace App\Models{
  * @property int $user_id
  * @property int $billing_address_id
  * @property int $shipping_address_id
+ * @property int|null $buy_number
  * @property float $subtotal
  * @property float $total
  * @property float $total_dolar
@@ -23,11 +24,14 @@ namespace App\Models{
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\Address $billing_address
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $details
+ * @property-read string $hash_id
  * @property-read mixed $total_currency
  * @property-read mixed $total_session
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment[] $payments
  * @property-read \App\Models\Address $shipping_address
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBuyNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingAddressId($value)
@@ -436,6 +440,7 @@ namespace App\Models{
  * @property string $password
  * @property string|null $active
  * @property string|null $facebook_id
+ * @property string|null $payme_wallet_token
  * @property string|null $birthday_date
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
@@ -452,6 +457,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereLastname($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePaymeWalletToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoto($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
@@ -490,6 +496,37 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereShippingId($value)
  */
 	class ShippingInclude extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Payment
+ *
+ * @property int $id
+ * @property int $buy_id
+ * @property string|null $auth_result
+ * @property string|null $auth_result_text
+ * @property string|null $auth_code
+ * @property string|null $error_code
+ * @property string|null $card_brand
+ * @property string|null $reference
+ * @property string|null $verification
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\Buy $buy
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereAuthCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereAuthResult($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereAuthResultText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereBuyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereCardBrand($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereErrorCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereReference($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereVerification($value)
+ */
+	class Payment extends \Eloquent {}
 }
 
 namespace App\Models{
