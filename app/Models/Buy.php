@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Traits\Hashable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\ModelStatus\HasStatuses;
 
 class Buy extends Model
 {
-    use Hashable;
+    use Hashable, HasStatuses;
 
     public function billing_address()
     {

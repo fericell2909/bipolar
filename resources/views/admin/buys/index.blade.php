@@ -11,8 +11,9 @@
             <th>Nombre</th>
             <th>Comprado</th>
             <th>Enviar a</th>
-            <td>Fecha</td>
-            <td>Total</td>
+            <th>Estado</th>
+            <th>Fecha</th>
+            <th>Total</th>
             <th>Acciones</th>
           </tr>
           </thead>
@@ -26,17 +27,22 @@
                 <td>
                   {{ $buy->shipping_address->address }} {{ $buy->shipping_address->country_state->name }} {{ $buy->shipping_address->country_state->country->name }}
                 </td>
+                <td>{{ ucfirst($buy->status) }}</td>
                 <td>{{ $buy->created_at->format('d/m/Y') }}</td>
                 <td>S/ {{ $buy->total }} / $ {{ $buy->total_dolar }}</td>
                 <td>
+                  <button class="btn btn-dark btn-rounded btn-sm change-to-sent-status" data-buy-id="{{ $buy->id }}">
+                    <i class="fa fa-check"></i> Marcar como enviado
+                  </button>
                   <button class="btn btn-dark btn-rounded btn-sm" data-target="#buy_details_{{ $buy->id }}" data-toggle="modal">
-                    Ver
+                    <i class="fa fa-eye"></i> Ver
                   </button>
                 </td>
               </tr>
           @endforeach
           </tbody>
         </table>
+        {!! $buys->links() !!}
         @each('admin.partials.buy_details', $buys, 'buy')
       </div>
     </div>

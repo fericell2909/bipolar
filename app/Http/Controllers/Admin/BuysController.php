@@ -11,7 +11,7 @@ class BuysController extends Controller
     {
         $buys = Buy::orderByDesc('id')
             ->with(['user', 'details.product', 'shipping_address.country_state.country'])
-            ->get();
+            ->paginate(20);
 
         return view('admin.buys.index', compact('buys'));
     }

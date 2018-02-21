@@ -38,3 +38,5 @@ Route::post('historics/order', 'Admin\Ajax\HistoricsController@order');
 
 Route::post('banners/order', 'Admin\Ajax\BannersController@order');
 Route::delete('banners/{banner}', 'Admin\Ajax\BannersController@destroy');
+
+Route::post('buys/{buyId}/sent', 'Admin\Ajax\BuysController@sent');

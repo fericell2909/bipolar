@@ -90,6 +90,8 @@ class CheckoutController extends Controller
 
         \CartBipolar::destroy();
 
+        $buy->setStatus(config('constants.BUY_INCOMPLETE_STATUS'));
+
         \Mail::to(\Auth::user())->send(new BuyConfirmation($buy));
 
         return redirect()->route('confirmation', $buy->id);
@@ -109,7 +111,6 @@ class CheckoutController extends Controller
 
         abort_if($buy->user_id !== \Auth::id(), 403);
 
-        // todo: remove this is only for browser email testing
         // return new BuyConfirmation($buy);
 
         return view('web.shop.confirmation', compact('buy', 'payuSignatureCode', 'referenceCode'));
