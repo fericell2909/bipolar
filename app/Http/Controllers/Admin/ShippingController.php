@@ -196,19 +196,32 @@ class ShippingController extends Controller
 
     public function updatePriceShipping(ShippingEditPriceRequest $request, $shippingId)
     {
+        /** @var Shipping $shipping */
         $shipping = Shipping::findOrFail($shippingId);
         $shipping->g200 = $request->input('g200');
+        $shipping->g200_dolar = $request->input('g200_dolar');
         $shipping->g500 = $request->input('g500');
+        $shipping->g500_dolar = $request->input('g500_dolar');
         $shipping->kg1 = $request->input('kg1');
+        $shipping->kg1_dolar = $request->input('kg1_dolar');
         $shipping->kg2 = $request->input('kg2');
+        $shipping->kg2_dolar = $request->input('kg2_dolar');
         $shipping->kg3 = $request->input('kg3');
+        $shipping->kg3_dolar = $request->input('kg3_dolar');
         $shipping->kg4 = $request->input('kg4');
+        $shipping->kg4_dolar = $request->input('kg4_dolar');
         $shipping->kg5 = $request->input('kg5');
+        $shipping->kg5_dolar = $request->input('kg5_dolar');
         $shipping->kg6 = $request->input('kg6');
+        $shipping->kg6_dolar = $request->input('kg6_dolar');
         $shipping->kg7 = $request->input('kg7');
+        $shipping->kg7_dolar = $request->input('kg7_dolar');
         $shipping->kg8 = $request->input('kg8');
+        $shipping->kg8_dolar = $request->input('kg8_dolar');
         $shipping->kg9 = $request->input('kg9');
+        $shipping->kg9_dolar = $request->input('kg9_dolar');
         $shipping->kg10 = $request->input('kg10');
+        $shipping->kg10_dolar = $request->input('kg10_dolar');
         $shipping->save();
 
         return redirect()->route('settings.shipping.index');

@@ -262,24 +262,31 @@ class PaymeController extends Controller
             return $detail->product->weight ?? 0;
         });
 
+        $dolarsPrice = \Session::get('BIPOLAR_CURRENCY') === 'USD';
+
         switch ($totalWeight) {
-            case $totalWeight <= 0.2: $totalShipping = $shipping->g200; break;
-            case $totalWeight <= 0.5: $totalShipping = $shipping->g500; break;
-            case $totalWeight <= 1: $totalShipping = $shipping->kg1; break;
-            case $totalWeight <= 2: $totalShipping = $shipping->kg2; break;
-            case $totalWeight <= 3: $totalShipping = $shipping->kg3; break;
-            case $totalWeight <= 4: $totalShipping = $shipping->kg4; break;
-            case $totalWeight <= 5: $totalShipping = $shipping->kg5; break;
-            case $totalWeight <= 6: $totalShipping = $shipping->kg6; break;
-            case $totalWeight <= 7: $totalShipping = $shipping->kg7; break;
-            case $totalWeight <= 8: $totalShipping = $shipping->kg8; break;
-            case $totalWeight <= 9: $totalShipping = $shipping->kg9; break;
-            case $totalWeight <= 10: $totalShipping = $shipping->kg10; break;
+            case $totalWeight <= 0.2: $totalShipping = ($dolarsPrice ? $shipping->g200_dolar : $shipping->g200); break;
+            case $totalWeight <= 0.5: $totalShipping = ($dolarsPrice ? $shipping->g500_dolar : $shipping->g500); break;
+            case $totalWeight <= 1: $totalShipping = ($dolarsPrice ? $shipping->kg1_dolar : $shipping->kg1); break;
+            case $totalWeight <= 2: $totalShipping = ($dolarsPrice ? $shipping->kg2_dolar : $shipping->kg2); break;
+            case $totalWeight <= 3: $totalShipping = ($dolarsPrice ? $shipping->kg3_dolar : $shipping->kg3); break;
+            case $totalWeight <= 4: $totalShipping = ($dolarsPrice ? $shipping->kg4_dolar : $shipping->kg4); break;
+            case $totalWeight <= 5: $totalShipping = ($dolarsPrice ? $shipping->kg5_dolar : $shipping->kg5); break;
+            case $totalWeight <= 6: $totalShipping = ($dolarsPrice ? $shipping->kg6_dolar : $shipping->kg6); break;
+            case $totalWeight <= 7: $totalShipping = ($dolarsPrice ? $shipping->kg7_dolar : $shipping->kg7); break;
+            case $totalWeight <= 8: $totalShipping = ($dolarsPrice ? $shipping->kg8_dolar : $shipping->kg8); break;
+            case $totalWeight <= 9: $totalShipping = ($dolarsPrice ? $shipping->kg9_dolar : $shipping->kg9); break;
+            case $totalWeight <= 10: $totalShipping = ($dolarsPrice ? $shipping->kg10_dolar : $shipping->kg10); break;
             default: $totalShipping = 0; break;
         }
 
-        $buy->shipping_fee = $totalShipping;
-        $buy->total = floatval($buy->subtotal + $totalShipping);
+        if ($dolarsPrice) {
+            $buy->shipping_fee_dolar = $totalShipping;
+            $buy->total = floatval($buy->subtotal + $totalShipping);
+        } else {
+            $buy->shipping_fee = $totalShipping;
+            $buy->total = floatval($buy->subtotal + $totalShipping);
+        }
         $buy->save();
 
         return $buy->shipping_fee;

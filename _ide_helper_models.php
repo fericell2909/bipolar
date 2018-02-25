@@ -18,7 +18,8 @@ namespace App\Models{
  * @property int $shipping_address_id
  * @property int|null $buy_number
  * @property float $subtotal
- * @property float $shipping_fee
+ * @property float|null $shipping_fee_dolar
+ * @property float|null $shipping_fee
  * @property float $total
  * @property float $total_dolar
  * @property string|null $payed
@@ -29,6 +30,8 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $details
  * @property-read string $hash_id
  * @property-read mixed $status
+ * @property-read mixed $subtotal_currency
+ * @property-read mixed $subtotal_session
  * @property-read mixed $total_currency
  * @property-read mixed $total_session
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment[] $payments
@@ -43,6 +46,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy wherePayed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingFeeDolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShowroom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereSubtotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereTotal($value)
@@ -318,17 +322,29 @@ namespace App\Models{
  * @property string $title
  * @property int $active
  * @property float|null $g200
+ * @property float|null $g200_dolar
  * @property float|null $g500
+ * @property float|null $g500_dolar
  * @property float|null $kg1
+ * @property float|null $kg1_dolar
  * @property float|null $kg2
+ * @property float|null $kg2_dolar
  * @property float|null $kg3
+ * @property float|null $kg3_dolar
  * @property float|null $kg4
+ * @property float|null $kg4_dolar
  * @property float|null $kg5
+ * @property float|null $kg5_dolar
  * @property float|null $kg6
+ * @property float|null $kg6_dolar
  * @property float|null $kg7
+ * @property float|null $kg7_dolar
  * @property float|null $kg8
+ * @property float|null $kg8_dolar
  * @property float|null $kg9
+ * @property float|null $kg9_dolar
  * @property float|null $kg10
+ * @property float|null $kg10_dolar
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Country[] $excluded_countries
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $excluded_states
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingExclude[] $excludes
@@ -337,18 +353,30 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingInclude[] $includes
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG200($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG200Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG500($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG500Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg10($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg10Dolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg1Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg2Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg3Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg4($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg4Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg5($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg5Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg6($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg6Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg7($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg7Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg8($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg8Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg9($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg9Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereTitle($value)
  */
 	class Shipping extends \Eloquent {}
