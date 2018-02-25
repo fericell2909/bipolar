@@ -48,7 +48,7 @@ class ShippingController extends Controller
         $shipping->active = false;
         $shipping->save();
 
-        if ($request->get('all_countries') === 1) {
+        if ($request->filled('all_countries')) {
             $includeCountry = new ShippingInclude;
             $includeCountry->all_countries = true;
             $includeCountry->save();
@@ -142,7 +142,7 @@ class ShippingController extends Controller
         $shipping->title = $request->input('title');
         $shipping->save();
 
-        if ($request->get('all_countries') === 1) {
+        if ($request->filled('all_countries')) {
             $hasAllWorldSelected = $shipping->includes->contains(function ($shippingInclude) {
                 return boolval($shippingInclude->all_countries) === true;
             });
