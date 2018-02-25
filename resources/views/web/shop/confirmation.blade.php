@@ -1,28 +1,44 @@
 @extends('web.layouts.app_web')
+@push('css_plus')
+{{-- Script de Alignet --}}
+<script type="text/javascript" src="{{ env('PAYME_URL_MODAL') }}"></script>
+@endpush
 @section('content')
 <div class="background-title-image">
   <h1>Compra</h1>
 </div>
 <div class="container bipolar-detail-order">
-  {{--  <p>El pedido {{ $buy->id }} fue realizado el 25 de enero 2018 y está actualmente pagada</p>  --}}
-  <div class="text-center" style="margin-bottom: 15px;">
-    <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
-      <input name="merchantId"      type="hidden"  value="{{ env('BIPOLAR_PAYU_MERCHANTID') }}"   >
-      <input name="accountId"       type="hidden"  value="{{ env('BIPOLAR_PAYU_ACCOUNTID') }}" >
-      <input name="description"     type="hidden"  value="Venta para {{ Auth::user()->name }}"  >
-      <input name="referenceCode"   type="hidden"  value="{{ $referenceCode }}" >
-      <input name="amount"          type="hidden"  value="{{ $buy->total_session }}"   >
-      <input name="tax"             type="hidden"  value="0"  >
-      <input name="taxReturnBase"   type="hidden"  value="0" >
-      <input name="currency"        type="hidden"  value="{{ Session::get('BIPOLAR_CURRENCY', 'USD') }}" >
-      <input name="signature"       type="hidden"  value="{{ $payuSignatureCode }}"  >
-      <input name="test"            type="hidden"  value="1">
-      <input name="buyerEmail"      type="hidden"  value="{{ Auth::user()->email }}" >
-      <input name="responseUrl"     type="hidden"  value="{{ url('/checkout/response') }}" >
-      <input name="confirmationUrl" type="hidden"  value="{{ url('/checkout/confirmation') }}" >
-      <input name="Submit"          type="submit" class="btn btn-dark-rounded" value="Pagar" >
-    </form>
-  </div>
+  <form name="f1" action="#" id="f1" class="alignet-form-vpos2" method="post">
+    <input type="hidden" name="acquirerId" value="{{ $acquirerId }}">
+    <input type="hidden" name="idCommerce" value="{{ $idCommerce }}">
+    <input type="hidden" name="language" value="SP">
+    <input type="hidden" name="purchaseOperationNumber" value="{{ $purchaseOperationNumber }}">
+    <input type="hidden" name="purchaseAmount" value="{{ $purchaseAmount }}">
+    <input type="hidden" name="purchaseCurrencyCode" value="{{ $purchaseCurrencyCode }}">
+    <input type="hidden" name="shippingFirstName" value="{{ str_limit($user->name, 30, '') }}">
+    <input type="hidden" name="shippingLastName" value="{{ str_limit($user->lastname ?? $user->name, 50, '') }}">
+    <input type="hidden" name="shippingEmail" value="{{ str_limit($user->email, 30, '') }}">
+    <input type="hidden" name="shippingAddress" value="{{ str_limit($buy->shipping_address->address ?? 'Av.Bipolar 1120', 50, '') }}">
+    <input type="hidden" name="shippingZIP" value="{{ str_limit($buy->shipping_address->zip ?? '123', 50, '') }}">
+    <input type="hidden" name="shippingCity" value="{{ str_limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
+    <input type="hidden" name="shippingState" value="{{ str_limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
+    <input type="hidden" name="shippingCountry" value="{{ str_limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
+    {{--Parametro para la Integracion con Pay-me. Contiene el valor del parametro codCardHolderCommerce--}}
+    <input type="hidden" name="userCommerce" value="{{ $codCardHolderCommerce }}" />
+    {{--Parametro para la Integracion con Pay-me. Contiene el valor del parametro codAsoCardHolderWallet--}}
+    <input type="hidden" name="userCodePayme" value="{{ $userPaymeCode }}" />
+    <input type="hidden" name="purchaseVerification" value="{{ $purchaseVerification }}" />
+    <input type="hidden" name="programmingLanguage" value="PHP">
+    <input type="hidden" name="descriptionProducts" value="Pedido en Ambrea.pe">
+    <p class="text-center">
+      <button class="btn btn-dark btn-rounded" onclick="javascript:AlignetVPOS2.openModal('{{ env('PAYME_URL_ALIGNET') }}', '2')">
+        <span class="icon">
+          <i class="fa fa-credit-card"></i>
+        </span>
+        <span>Realizar pago</span>
+      </button>
+    </p>
+  </form>
   <table class="table-order">
     <thead>
       <tr>
@@ -95,3 +111,17 @@
   </div>
 </div>
 @endsection
+@push('js_plus')
+<script>
+  function ready(fn) {
+      if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+          fn();
+      } else {
+          document.addEventListener('DOMContentLoaded', fn);
+      }
+  }
+  (ready(function () {
+      AlignetVPOS2.openModal("{{ env('PAYME_URL_ALIGNET') }}", '2');
+  }));
+</script>
+@endpush

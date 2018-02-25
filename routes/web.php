@@ -41,7 +41,12 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::get('checkout', 'Web\CheckoutController@checkout')->name('checkout');
             Route::post('checkout', 'Web\CheckoutController@buy');
             Route::post('address/{addressType}/register', 'Web\AddressesController@add')->name('address.add');
-            Route::get('confirmation/{buyId}', 'Web\CheckoutController@confirmation')->name('confirmation');
+            // todo: delete this route and method in controller
+            //Route::get('confirmation/{buyId}', 'Web\CheckoutController@confirmation')->name('confirmation');
+            Route::get('confirmation/{buyId}', 'Web\PaymeController@pagoPayme')->name('confirmation');
+            // todo: this is for confirm in the server
+            Route::get('reconfirmation-payment', 'Web\PaymeController@reconfirmation')->name('reconfirmation');
+            Route::post('confirmation-payment', 'Web\PaymeController@paymentSuccessful')->name('confirmation.successful');
             Route::get('ajax/country/{countryId}/country-states', 'Web\Ajax\CountryStatesController@get');
             Route::post('ajax/address/{addressId}/main', 'Web\Ajax\AddressesController@setMain');
             Route::delete('ajax/address/{addressId}', 'Web\Ajax\AddressesController@remove');
