@@ -16,7 +16,12 @@ class ShippingController extends Controller
 {
     public function index()
     {
-        $shippings = Shipping::orderByDesc('id')->with('includes.country', 'excludes')->get();
+        $shippings = Shipping::orderByDesc('id')->with([
+            'includes.country',
+            'includes.country_state.country',
+            'excludes.country',
+            'excludes.country_state.country',
+        ])->get();
 
         return view('admin.shipping.index', compact('shippings'));
     }
