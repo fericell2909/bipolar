@@ -4,6 +4,7 @@
 <script type="text/javascript" src="{{ env('PAYME_URL_MODAL') }}"></script>
 @endpush
 @section('content')
+<?php /** @var \App\Models\Buy $buy */ ?>
 <div class="background-title-image">
   <h1>Compra</h1>
 </div>
@@ -64,7 +65,7 @@
       </tr>
       <tr>
         <td>Envío:</td>
-        <td>Recoger del showroom</td>
+        <td><span class="price">{{ $buy->showroom ? 'Recoger del showroom' : number_format($buy->shipping_fee, 2) }}</span></td>
       </tr>
       <tr>
         <td>Forma de pago:</td>
@@ -81,7 +82,7 @@
     <tbody>
       <tr>
         <td>Email:</td>
-        <td>{{ Auth::user()->email }}</td>
+        <td>{{ $buy->user->email }}</td>
       </tr>
     </tbody>
   </table>

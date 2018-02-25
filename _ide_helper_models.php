@@ -18,9 +18,11 @@ namespace App\Models{
  * @property int $shipping_address_id
  * @property int|null $buy_number
  * @property float $subtotal
+ * @property float $shipping_fee
  * @property float $total
  * @property float $total_dolar
  * @property string|null $payed
+ * @property int $showroom
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\Address $billing_address
@@ -40,6 +42,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy wherePayed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShowroom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereSubtotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereTotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereTotalDolar($value)

@@ -35,6 +35,24 @@ class Buy extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getSubtotalCurrencyAttribute()
+    {
+        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
+            return "S/ " . intval($this->subtotal);
+        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
+            return "$ " . intval($this->subtotal);
+        }
+    }
+
+    public function getSubtotalSessionAttribute()
+    {
+        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
+            return intval($this->total);
+        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
+            return intval($this->total_dolar);
+        }
+    }
+
     public function getTotalCurrencyAttribute()
     {
         if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
