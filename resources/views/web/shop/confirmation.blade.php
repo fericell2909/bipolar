@@ -61,11 +61,11 @@
       @endforeach
       <tr>
         <td>Subtotal:</td>
-        <td><span class="price">{{ $buy->total_currency }}</span></td>
+        <td><span class="price">{{ $buy->subtotal_currency }}</span></td>
       </tr>
       <tr>
         <td>Envío:</td>
-        <td><span class="price">{{ $buy->showroom ? 'Recoger del showroom' : number_format($buy->shipping_fee, 2) }}</span></td>
+        <td><span class="price">{{ $buy->showroom ? 'Recoger del showroom' : $buy->shipping_fee_currency }}</span></td>
       </tr>
       <tr>
         <td>Forma de pago:</td>

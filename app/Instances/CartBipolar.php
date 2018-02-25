@@ -6,6 +6,7 @@ use App\Models\Cart;
 
 class CartBipolar
 {
+    /** @var \Illuminate\Database\Eloquent\Model|Cart $cart */
     private $cart;
 
     public function __construct()
@@ -110,5 +111,10 @@ class CartBipolar
         $this->recalculate();
 
         return true;
+    }
+
+    public function getTotalBySessionCurrency() : float
+    {
+        return \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->total : $this->cart->subtotal;
     }
 }

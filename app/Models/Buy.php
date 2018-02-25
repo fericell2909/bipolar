@@ -37,37 +37,22 @@ class Buy extends Model
 
     public function getSubtotalCurrencyAttribute()
     {
-        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
-            return "S/ " . intval($this->subtotal);
-        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
-            return "$ " . intval($this->subtotal);
-        }
-    }
+        $moneySign = \Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN' ? 'S/' : '$';
 
-    public function getSubtotalSessionAttribute()
-    {
-        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
-            return intval($this->total);
-        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
-            return intval($this->total_dolar);
-        }
+        return "{$moneySign} " . intval($this->subtotal);
     }
 
     public function getTotalCurrencyAttribute()
     {
-        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
-            return "S/ " . intval($this->total);
-        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
-            return "$ " . intval($this->total_dolar);
-        }
+        $moneySign = \Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN' ? 'S/' : '$';
+
+        return "{$moneySign} " . intval($this->total);
     }
 
-    public function getTotalSessionAttribute()
+    public function getShippingFeeCurrencyAttribute()
     {
-        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
-            return intval($this->total);
-        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
-            return intval($this->total_dolar);
-        }
+        $moneySign = $this->currency === 'PEN' ? 'S/' : '$';
+
+        return "{$moneySign} " . number_format($this->shipping_fee, 2);
     }
 }

@@ -14,6 +14,7 @@
             <th>Estado</th>
             <th>Fecha</th>
             <th>Total</th>
+            <th class="text-center">Showroom pickup</th>
             <th>Acciones</th>
           </tr>
           </thead>
@@ -29,7 +30,8 @@
                 </td>
                 <td>{{ ucfirst($buy->status) }}</td>
                 <td>{{ $buy->created_at->format('d/m/Y') }}</td>
-                <td>S/ {{ $buy->total }} / $ {{ $buy->total_dolar }}</td>
+                <td>{{ $buy->total }} {{ $buy->currency }}</td>
+                <td class="text-center">{!! $buy->showroom ? "<i class='fa fa-check'></i>" : null !!}</td>
                 <td>
                   <button class="btn btn-dark btn-rounded btn-sm change-to-sent-status" data-buy-id="{{ $buy->id }}">
                     <i class="fa fa-check"></i> Marcar como enviado

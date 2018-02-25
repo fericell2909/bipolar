@@ -28,7 +28,7 @@ class BuyDetail extends Model
         if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
             return "S/ " . intval($this->total);
         } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
-            return "$ " . intval($this->total_dolar);
+            return "$ " . intval($this->total);
         }
     }
 }

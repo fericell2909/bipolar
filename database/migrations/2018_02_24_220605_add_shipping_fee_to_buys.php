@@ -14,9 +14,14 @@ class AddShippingFeeToBuys extends Migration
     public function up()
     {
         Schema::table('buys', function (Blueprint $table) {
+            $table->string('currency', 3)->default('PEN')->after('total');
             $table->decimal('shipping_fee', 7, 2)->nullable()->after('subtotal');
-            $table->decimal('shipping_fee_dolar', 7, 2)->nullable()->after('subtotal');
             $table->boolean('showroom')->default(false)->after('payed');
+            $table->dropColumn('total_dolar');
+        });
+
+        Schema::table('buy_details', function (Blueprint $table) {
+            $table->dropColumn('total_dolar');
         });
     }
 

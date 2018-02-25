@@ -237,6 +237,10 @@
 								<div class="submit-payment">
 									<button type="submit" class="btn btn-dark-rounded">Pagar</button>
 									<p>
+										{!! Form::checkbox('showroom_pick', '1', null) !!}
+										<label>Recoger en showroom</label>
+									</p>
+									<p>
 										{!! Form::checkbox('terms', '1', null) !!}
 										<label for="terms">He leído y acepto los <a href="#">términos y condiciones</a></label>
 									</p>

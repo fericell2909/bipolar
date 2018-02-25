@@ -18,10 +18,9 @@ namespace App\Models{
  * @property int $shipping_address_id
  * @property int|null $buy_number
  * @property float $subtotal
- * @property float|null $shipping_fee_dolar
  * @property float|null $shipping_fee
  * @property float $total
- * @property float $total_dolar
+ * @property string $currency
  * @property string|null $payed
  * @property int $showroom
  * @property \Carbon\Carbon|null $created_at
@@ -29,11 +28,10 @@ namespace App\Models{
  * @property-read \App\Models\Address $billing_address
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $details
  * @property-read string $hash_id
+ * @property-read mixed $shipping_fee_currency
  * @property-read mixed $status
  * @property-read mixed $subtotal_currency
- * @property-read mixed $subtotal_session
  * @property-read mixed $total_currency
- * @property-read mixed $total_session
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment[] $payments
  * @property-read \App\Models\Address $shipping_address
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
@@ -42,15 +40,14 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBuyNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCurrency($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy wherePayed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingFee($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingFeeDolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShowroom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereSubtotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereTotal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereTotalDolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereUserId($value)
  */
@@ -111,7 +108,6 @@ namespace App\Models{
  * @property int|null $stock_id
  * @property int $quantity
  * @property float $total
- * @property float $total_dolar
  * @property-read \App\Models\Buy $buy
  * @property-read mixed $total_currency
  * @property-read \App\Models\Product $product
@@ -122,7 +118,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereStockId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereTotal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereTotalDolar($value)
  */
 	class BuyDetail extends \Eloquent {}
 }
