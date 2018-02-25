@@ -20,20 +20,25 @@ namespace App\Models{
  * @property float $subtotal
  * @property float $total
  * @property float $total_dolar
+ * @property string|null $payed
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\Address $billing_address
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $details
  * @property-read string $hash_id
+ * @property-read mixed $status
  * @property-read mixed $total_currency
  * @property-read mixed $total_session
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment[] $payments
  * @property-read \App\Models\Address $shipping_address
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
  * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy currentStatus($name)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBuyNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy wherePayed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereSubtotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereTotal($value)

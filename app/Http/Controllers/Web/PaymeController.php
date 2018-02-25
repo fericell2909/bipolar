@@ -14,6 +14,7 @@ class PaymeController extends Controller
     public function pagoPayme(Request $request, $buyId)
     {
         //$buy = Buy::findByHash($buyHashId);
+        /** @var Buy $buy */
         $buy = Buy::findOrFail($buyId);
 
         //abort_if(\Auth::user()->cant('view', $buy), 403);
@@ -28,7 +29,6 @@ class PaymeController extends Controller
         $idCommerce = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_COMMERCE_ID') : env('PAYME_COMMERCE_ID_ENGLISH');
         $purchaseOperationNumber = sprintf('%06d', $buy->buy_number);
         $purchaseAmount = intval($buy->total_session * 100);
-        // todo: cambiar el currency code (PEN / USD)
         $purchaseCurrencyCode = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? '840' : '604';
         $claveVPOS = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_VPOS_COMMERCE_SECRET') : env('PAYME_VPOS_COMMERCE_SECRET_ENGLISH');
 
@@ -120,8 +120,7 @@ class PaymeController extends Controller
 
         if ($request->input('authorizationResult') == '00') {
             $payment->auth_result_text = 'Operación Autorizada';
-            // todo: change the buy status to payed
-            //$buy->pay = true;
+            $buy->payed = now()->toDateTimeString();
             $buy->save();
         } elseif ($request->input('authorizationResult') == '01') {
             $payment->auth_result_text = 'Operación Denegada';
