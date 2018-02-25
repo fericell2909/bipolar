@@ -13,12 +13,10 @@ class PaymeController extends Controller
 {
     public function pagoPayme(Request $request, $buyId)
     {
-        //$buy = Buy::findByHash($buyHashId);
         /** @var Buy $buy */
         $buy = Buy::findOrFail($buyId);
 
-        //abort_if(\Auth::user()->cant('view', $buy), 403);
-        //abort_if($buy->tipo_pago_id == config('constants.TIPO_PAGO_MEMBRESIA_ID'), 403);
+        $this->authorize('view', $buy);
 
         $buy->buy_number = $this->getCurrentBuyNumber();
         $buy->save();

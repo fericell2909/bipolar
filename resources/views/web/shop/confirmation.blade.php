@@ -121,7 +121,7 @@
       }
   }
   (ready(function () {
-      AlignetVPOS2.openModal("{{ env('PAYME_URL_ALIGNET') }}", '2');
+      //AlignetVPOS2.openModal("{{ env('PAYME_URL_ALIGNET') }}", '2');
   }));
 </script>
 @endpush

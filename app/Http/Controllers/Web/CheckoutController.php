@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Web;
 
 use App\Mail\BuyConfirmation;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\Address;
 use App\Models\Buy;
 use App\Models\BuyDetail;
-use App\Models\Settings;
 
 class CheckoutController extends Controller
 {
@@ -95,29 +93,5 @@ class CheckoutController extends Controller
         \Mail::to(\Auth::user())->send(new BuyConfirmation($buy));
 
         return redirect()->route('confirmation', $buy->id);
-    }
-
-    public function confirmation($buyId)
-    {
-        /** @var Buy $buy */
-        $buy = Buy::findOrFail($buyId);
-        $setting = Settings::first();
-
-        $setting->current_buy++;
-        $setting->save();
-        $referenceCode = now()->format('dmY') . "C" . $setting->current_buy;
-
-        $payuSignatureCode = $this->payuSignatureCode($buy, $referenceCode);
-
-        abort_if($buy->user_id !== \Auth::id(), 403);
-
-        // return new BuyConfirmation($buy);
-
-        return view('web.shop.confirmation', compact('buy', 'payuSignatureCode', 'referenceCode'));
-    }
-
-    private function payuSignatureCode(Buy $buy, $referenceCode)
-    {
-        return env('BIPOLAR_PAYU_APIKEY') . "~" . env('BIPOLAR_PAYU_MERCHANTID') . "~" . $referenceCode . "~" . $buy->total_session . "~" . \Session::get('BIPOLAR_CURRENCY', 'USD');
     }
 }
