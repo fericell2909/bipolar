@@ -88,12 +88,12 @@
     <input type="hidden" name="programmingLanguage" value="PHP">
     <input type="hidden" name="descriptionProducts" value="Pedido en Ambrea.pe">
     <p class="text-center">
-      <button class="btn btn-dark btn-rounded" onclick="javascript:AlignetVPOS2.openModal('{{ env('PAYME_URL_ALIGNET') }}', '2')">
+      <a href="#" class="btn btn-dark btn-rounded" onclick="javascript:AlignetVPOS2.openModal('{{ env('PAYME_URL_ALIGNET') }}', '2')">
         <span class="icon">
           <i class="fa fa-credit-card"></i>
         </span>
         <span>Realizar pago</span>
-      </button>
+      </a>
     </p>
   </form>
   @endif
