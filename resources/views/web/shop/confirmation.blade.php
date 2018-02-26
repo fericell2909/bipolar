@@ -64,6 +64,7 @@
   </div>
 </div>
 <div class="container bipolar-detail-order">
+  @if(!$buy->payed)
   <form name="f1" action="#" id="f1" class="alignet-form-vpos2" method="post">
     <input type="hidden" name="acquirerId" value="{{ $acquirerId }}">
     <input type="hidden" name="idCommerce" value="{{ $idCommerce }}">
@@ -95,6 +96,7 @@
       </button>
     </p>
   </form>
+  @endif
   <table class="table-order">
     <thead>
       <tr>

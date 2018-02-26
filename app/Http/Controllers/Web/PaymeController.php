@@ -100,7 +100,7 @@ class PaymeController extends Controller
         ));
     }
 
-    public function pagoPaymeConfirmacionPost(Request $request)
+    public function reconfirmationPost(Request $request)
     {
         /** @var Buy $buy */
         $buy = Buy::whereUserId($request->user()->id)->latest('id')->firstOrFail();
@@ -120,6 +120,7 @@ class PaymeController extends Controller
             $payment->auth_result_text = 'Operación Autorizada';
             $buy->payed = now()->toDateTimeString();
             $buy->save();
+            $buy->setStatus(config('constants.BUY_PROCESSING_STATUS'), 'Pago exitoso');
         } elseif ($request->input('authorizationResult') == '01') {
             $payment->auth_result_text = 'Operación Denegada';
         } elseif ($request->input('authorizationResult') == '05') {
@@ -128,14 +129,14 @@ class PaymeController extends Controller
 
         $payment->save();
 
-        return redirect()->route('compra.confirmacion', $buy->hash_id);
+        return redirect()->route('confirmation', $buy->id);
     }
 
-    public function pagoPaymeConfirmacion(Request $request)
+    public function reconfirmation(Request $request)
     {
         $buy = Buy::whereUserId($request->user()->id)->latest('id')->firstOrFail();
 
-        return redirect()->route('compra.confirmacion', $buy->hash_id);
+        return redirect()->route('confirmation', $buy->id);
     }
 
 
