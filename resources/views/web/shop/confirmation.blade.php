@@ -86,7 +86,7 @@
     <input type="hidden" name="userCodePayme" value="{{ $userPaymeCode }}" />
     <input type="hidden" name="purchaseVerification" value="{{ $purchaseVerification }}" />
     <input type="hidden" name="programmingLanguage" value="PHP">
-    <input type="hidden" name="descriptionProducts" value="Pedido en Ambrea.pe">
+    <input type="hidden" name="descriptionProducts" value="Pedido en Bipolar.com.pe">
     <p class="text-center">
       <a href="#" class="btn btn-dark btn-rounded" onclick="javascript:AlignetVPOS2.openModal('{{ env('PAYME_URL_ALIGNET') }}', '2')">
         <span class="icon">
