@@ -1638,13 +1638,13 @@ textarea {
 }
 
 a {
-  color: black;
+  color: #353535;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: black;
+  color: #0f0f0f;
   text-decoration: underline;
 }
 
@@ -1913,12 +1913,12 @@ mark,
 }
 
 .text-primary {
-  color: black;
+  color: #353535;
 }
 
 a.text-primary:hover,
 a.text-primary:focus {
-  color: black;
+  color: #1c1b1b;
 }
 
 .text-success {
@@ -1962,12 +1962,12 @@ a.text-danger:focus {
 }
 
 .bg-primary {
-  background-color: black;
+  background-color: #353535;
 }
 
 a.bg-primary:hover,
 a.bg-primary:focus {
-  background-color: black;
+  background-color: #1c1b1b;
 }
 
 .bg-success {
@@ -4314,29 +4314,29 @@ fieldset[disabled] .btn-default.focus {
 
 .btn-primary {
   color: #fff;
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #282828;
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
   color: #fff;
-  background-color: black;
+  background-color: #1c1b1b;
   border-color: black;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: black;
-  border-color: black;
+  background-color: #1c1b1b;
+  border-color: #0a0a0a;
 }
 
 .btn-primary:active,
 .btn-primary.active,
 .open > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: black;
-  border-color: black;
+  background-color: #1c1b1b;
+  border-color: #0a0a0a;
 }
 
 .btn-primary:active:hover,
@@ -4349,7 +4349,7 @@ fieldset[disabled] .btn-default.focus {
 .open > .btn-primary.dropdown-toggle:focus,
 .open > .btn-primary.dropdown-toggle.focus {
   color: #fff;
-  background-color: black;
+  background-color: #0a0a0a;
   border-color: black;
 }
 
@@ -4368,12 +4368,12 @@ fieldset[disabled] .btn-default.focus {
 fieldset[disabled] .btn-primary:hover,
 fieldset[disabled] .btn-primary:focus,
 fieldset[disabled] .btn-primary.focus {
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #282828;
 }
 
 .btn-primary .badge {
-  color: black;
+  color: #353535;
   background-color: #fff;
 }
 
@@ -4638,7 +4638,7 @@ fieldset[disabled] .btn-danger.focus {
 }
 
 .btn-link {
-  color: black;
+  color: #353535;
   font-weight: normal;
   border-radius: 0;
 }
@@ -4662,7 +4662,7 @@ fieldset[disabled] .btn-link {
 
 .btn-link:hover,
 .btn-link:focus {
-  color: black;
+  color: #0f0f0f;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -4830,7 +4830,7 @@ tbody.collapse.in {
   color: #fff;
   text-decoration: none;
   outline: 0;
-  background-color: black;
+  background-color: #353535;
 }
 
 .dropdown-menu > .disabled > a,
@@ -5333,7 +5333,7 @@ tbody.collapse.in {
 .nav .open > a:hover,
 .nav .open > a:focus {
   background-color: #eeeeee;
-  border-color: black;
+  border-color: #353535;
 }
 
 .nav .nav-divider {
@@ -5393,7 +5393,7 @@ tbody.collapse.in {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   color: #fff;
-  background-color: black;
+  background-color: #353535;
 }
 
 .nav-stacked > li {
@@ -6202,7 +6202,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 6px 12px;
   line-height: 1.42857143;
   text-decoration: none;
-  color: black;
+  color: #353535;
   background-color: #fff;
   border: 1px solid #ddd;
   margin-left: -1px;
@@ -6226,7 +6226,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > li > span:hover,
 .pagination > li > span:focus {
   z-index: 2;
-  color: black;
+  color: #0f0f0f;
   background-color: #eeeeee;
   border-color: #ddd;
 }
@@ -6239,8 +6239,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > .active > span:focus {
   z-index: 3;
   color: #fff;
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
   cursor: default;
 }
 
@@ -6388,12 +6388,12 @@ a.label:focus {
 }
 
 .label-primary {
-  background-color: black;
+  background-color: #353535;
 }
 
 .label-primary[href]:hover,
 .label-primary[href]:focus {
-  background-color: black;
+  background-color: #1c1b1b;
 }
 
 .label-success {
@@ -6465,7 +6465,7 @@ a.label:focus {
 
 .list-group-item.active > .badge,
 .nav-pills > .active > a > .badge {
-  color: black;
+  color: #353535;
   background-color: #fff;
 }
 
@@ -6572,7 +6572,7 @@ a.badge:focus {
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
-  border-color: black;
+  border-color: #353535;
 }
 
 .alert {
@@ -6707,7 +6707,7 @@ a.thumbnail.active {
   line-height: 20px;
   color: #fff;
   text-align: center;
-  background-color: black;
+  background-color: #353535;
   -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   -webkit-transition: width 0.6s ease;
@@ -6893,8 +6893,8 @@ button.list-group-item {
 .list-group-item.active:focus {
   z-index: 2;
   color: #fff;
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
 }
 
 .list-group-item.active .list-group-item-heading,
@@ -6912,7 +6912,7 @@ button.list-group-item {
 .list-group-item.active .list-group-item-text,
 .list-group-item.active:hover .list-group-item-text,
 .list-group-item.active:focus .list-group-item-text {
-  color: #666666;
+  color: #9b9b9b;
 }
 
 .list-group-item-success {
@@ -7369,26 +7369,26 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-primary {
-  border-color: black;
+  border-color: #353535;
 }
 
 .panel-primary > .panel-heading {
   color: #fff;
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
 }
 
 .panel-primary > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: black;
+  border-top-color: #353535;
 }
 
 .panel-primary > .panel-heading .badge {
-  color: black;
+  color: #353535;
   background-color: #fff;
 }
 
 .panel-primary > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: black;
+  border-bottom-color: #353535;
 }
 
 .panel-success {
@@ -9016,7 +9016,7 @@ button.close {
 
 .pretty input:checked ~ .state.p-primary label:after,
 .pretty.p-toggle .state.p-primary label:after {
-  background-color: black !important;
+  background-color: #353535 !important;
 }
 
 .pretty input:checked ~ .state.p-primary .icon,
@@ -9029,7 +9029,7 @@ button.close {
 
 .pretty input:checked ~ .state.p-primary-o label:before,
 .pretty.p-toggle .state.p-primary-o label:before {
-  border-color: black;
+  border-color: #353535;
 }
 
 .pretty input:checked ~ .state.p-primary-o label:after,
@@ -9043,25 +9043,25 @@ button.close {
 .pretty.p-toggle .state.p-primary-o .icon,
 .pretty.p-toggle .state.p-primary-o .svg,
 .pretty.p-toggle .state.p-primary-o svg {
-  color: black;
-  stroke: black;
+  color: #353535;
+  stroke: #353535;
 }
 
 .pretty.p-default:not(.p-fill) input:checked ~ .state.p-primary-o label:after {
-  background-color: black !important;
+  background-color: #353535 !important;
 }
 
 .pretty.p-switch input:checked ~ .state.p-primary:before {
-  border-color: black;
+  border-color: #353535;
 }
 
 .pretty.p-switch.p-fill input:checked ~ .state.p-primary:before {
-  background-color: black !important;
+  background-color: #353535 !important;
 }
 
 .pretty.p-switch.p-slim input:checked ~ .state.p-primary:before {
-  border-color: black;
-  background-color: black !important;
+  border-color: #020202;
+  background-color: #020202 !important;
 }
 
 .pretty input:checked ~ .state.p-info label:after,
@@ -18711,8 +18711,8 @@ button.close {
 .btn-dark-rounded,
 .btn-bipolar-rounded {
   color: white;
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
   font-family: "GothamBold", Verdana;
   font-size: 11px;
   text-transform: uppercase;
@@ -18735,8 +18735,8 @@ button.close {
 .active.btn-dark-rounded,
 .active.btn-bipolar-rounded {
   color: white;
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
   outline: none;
 }
 
@@ -18746,7 +18746,7 @@ button.close {
 .open .dropdown-toggle.btn-bipolar-rounded {
   color: white;
   background-color: #312E36;
-  border-color: black;
+  border-color: #353535;
 }
 
 .btn-dark:active,
@@ -18775,16 +18775,16 @@ button.close {
 [disabled].btn-add-cart,
 [disabled].btn-dark-rounded,
 [disabled].btn-bipolar-rounded {
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
 }
 
 fieldset[disabled] .btn-dark,
 fieldset[disabled] .btn-add-cart,
 fieldset[disabled] .btn-dark-rounded,
 fieldset[disabled] .btn-bipolar-rounded {
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
 }
 
 .btn-dark.disabled:hover,
@@ -18795,16 +18795,16 @@ fieldset[disabled] .btn-bipolar-rounded {
 [disabled].btn-add-cart:hover,
 [disabled].btn-dark-rounded:hover,
 [disabled].btn-bipolar-rounded:hover {
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
 }
 
 fieldset[disabled] .btn-dark:hover,
 fieldset[disabled] .btn-add-cart:hover,
 fieldset[disabled] .btn-dark-rounded:hover,
 fieldset[disabled] .btn-bipolar-rounded:hover {
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
 }
 
 .btn-dark.disabled:focus,
@@ -18815,16 +18815,16 @@ fieldset[disabled] .btn-bipolar-rounded:hover {
 [disabled].btn-add-cart:focus,
 [disabled].btn-dark-rounded:focus,
 [disabled].btn-bipolar-rounded:focus {
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
 }
 
 fieldset[disabled] .btn-dark:focus,
 fieldset[disabled] .btn-add-cart:focus,
 fieldset[disabled] .btn-dark-rounded:focus,
 fieldset[disabled] .btn-bipolar-rounded:focus {
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
 }
 
 .btn-dark.disabled:active,
@@ -18835,16 +18835,16 @@ fieldset[disabled] .btn-bipolar-rounded:focus {
 [disabled].btn-add-cart:active,
 [disabled].btn-dark-rounded:active,
 [disabled].btn-bipolar-rounded:active {
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
 }
 
 fieldset[disabled] .btn-dark:active,
 fieldset[disabled] .btn-add-cart:active,
 fieldset[disabled] .btn-dark-rounded:active,
 fieldset[disabled] .btn-bipolar-rounded:active {
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
 }
 
 .btn-dark.disabled.active,
@@ -18855,23 +18855,23 @@ fieldset[disabled] .btn-bipolar-rounded:active {
 [disabled].active.btn-add-cart,
 [disabled].active.btn-dark-rounded,
 [disabled].active.btn-bipolar-rounded {
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
 }
 
 fieldset[disabled] .btn-dark.active,
 fieldset[disabled] .active.btn-add-cart,
 fieldset[disabled] .active.btn-dark-rounded,
 fieldset[disabled] .active.btn-bipolar-rounded {
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
 }
 
 .btn-dark .badge,
 .btn-add-cart .badge,
 .btn-dark-rounded .badge,
 .btn-bipolar-rounded .badge {
-  color: black;
+  color: #353535;
   background-color: white;
 }
 
@@ -18896,9 +18896,9 @@ fieldset[disabled] .active.btn-bipolar-rounded {
 .btn-add-cart:hover,
 .btn-dark-rounded:hover,
 .btn-bipolar-rounded:hover {
-  color: black;
+  color: #353535;
   background: white;
-  border: 1px solid black;
+  border: 1px solid #353535;
 }
 
 .btn-bipolar-rounded {
@@ -19077,7 +19077,7 @@ button:active {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 26px;
   font-weight: 400;
-  color: black;
+  color: #353535;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -19098,13 +19098,13 @@ button:active {
   font-family: "SaharaBodoni";
   font-size: 60px;
   line-height: 1.2;
-  color: black;
+  color: #353535;
 }
 
 .bipolar-counts-container .bipolar-counts .bipolar-counts-subtitle {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 15px;
-  color: black;
+  color: #353535;
   line-height: 1.4;
   margin-top: 12px;
   letter-spacing: 4px;
@@ -19121,19 +19121,19 @@ button:active {
 }
 
 a {
-  color: black;
+  color: #353535;
 }
 
 a:hover {
-  color: black;
+  color: #353535;
 }
 
 .btn-link {
-  color: black;
+  color: #353535;
 }
 
 .content-newsletter {
-  color: black;
+  color: #353535;
   background: url(https://bipolar.com.pe/wp-content/uploads/2015/03/huevos.jpg);
   background-position: center;
   background-repeat: no-repeat;
@@ -19165,7 +19165,7 @@ a:hover {
 
 .page-404 > h1 {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
-  color: black;
+  color: #353535;
   letter-spacing: 12px;
   display: inline-block;
   border: 5px solid #eee;
@@ -19178,7 +19178,7 @@ a:hover {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 15px;
   letter-spacing: 0.2em;
-  color: black;
+  color: #353535;
   font-style: normal;
 }
 
@@ -19191,7 +19191,7 @@ a:hover {
 .header-worldwide-shipping {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   color: white;
-  background: black;
+  background: #353535;
   text-transform: uppercase;
   text-align: center;
   vertical-align: middle;
@@ -19322,7 +19322,7 @@ input[type="date"] {
 .bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-number-count {
   position: absolute;
   font-weight: bold;
-  background-color: black;
+  background-color: #353535;
   color: white;
   font-size: 11px;
   font-family: "GothamBold", Verdana;
@@ -19367,7 +19367,7 @@ input[type="date"] {
   display: block;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
-  color: black;
+  color: #353535;
   font-weight: normal;
 }
 
@@ -19380,7 +19380,7 @@ input[type="date"] {
 
 .bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside ul.cart-list li .quantity {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
-  color: black;
+  color: #353535;
   font-size: 12px;
   font-weight: normal;
 }
@@ -19409,7 +19409,7 @@ input[type="date"] {
 .bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside .total .amount {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
-  color: black;
+  color: #353535;
   font-weight: normal;
 }
 
@@ -19538,12 +19538,12 @@ input[type="date"] {
 
 .navbar-brand span {
   font-family: "GothamBold", Verdana;
-  color: black;
+  color: #353535;
 }
 
 .navbar-right-text {
   font-family: "GothamBold", Verdana;
-  color: black;
+  color: #353535;
   font-size: 12px;
 }
 
@@ -19597,7 +19597,7 @@ input[type="date"] {
   text-transform: uppercase;
   vertical-align: middle;
   font-size: 12px;
-  color: black;
+  color: #353535;
   word-spacing: 1px;
 }
 
@@ -19616,7 +19616,7 @@ input[type="date"] {
   font-family: "GothamBold", Verdana;
   font-size: 12px;
   padding-top: 17px;
-  color: black;
+  color: #353535;
 }
 
 .text-heading-account {
@@ -19625,14 +19625,14 @@ input[type="date"] {
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
-  color: black;
+  color: #353535;
   padding-bottom: 10px;
 }
 
 @media screen and (max-width: 991px) {
   .header-mobile-menu {
     display: block;
-    background: black;
+    background: #353535;
     color: white;
     font-size: 15px;
     font-weight: 600;
@@ -19661,7 +19661,7 @@ input[type="date"] {
   .header-mobile-menu .cart-white-mobile .cart-number-count-inverse {
     position: absolute;
     background-color: #fcbeb9;
-    color: black;
+    color: #353535;
     font-family: "GothamBold", Verdana;
     font-size: 11px;
     border-radius: 100%;
@@ -19704,7 +19704,7 @@ input[type="date"] {
     display: block;
     font-family: "BauerBodoniStdBold", "Times New Roman Bold";
     font-size: 17px;
-    color: black;
+    color: #353535;
     font-weight: normal;
   }
 
@@ -19717,7 +19717,7 @@ input[type="date"] {
 
   .header-mobile-menu .cart-white-mobile .cart-inside-mobile ul.cart-list li .quantity {
     font-family: "BauerBodoniStdBold", "Times New Roman Bold";
-    color: black;
+    color: #353535;
     font-size: 12px;
     font-weight: normal;
   }
@@ -19745,7 +19745,7 @@ input[type="date"] {
   .header-mobile-menu .cart-white-mobile .cart-inside-mobile .total .amount {
     font-family: "BauerBodoniStdBold", "Times New Roman Bold";
     font-size: 17px;
-    color: black;
+    color: #353535;
     font-weight: normal;
   }
 
@@ -19840,10 +19840,10 @@ input[type="date"] {
 .bipolar-filter-title {
   font-size: 15px;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
-  color: black;
+  color: #353535;
   text-transform: uppercase;
   padding-bottom: 10px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #353535;
   letter-spacing: 2.3px;
   margin-top: 15px;
 }
@@ -19891,7 +19891,7 @@ input[type="date"] {
 
 .pagination li a.page-number {
   background: #f5f5f5;
-  color: black;
+  color: #353535;
   border: none;
   border-radius: 100%;
   line-height: 30px;
@@ -19902,7 +19902,7 @@ input[type="date"] {
 
 .pagination li a.page-number.active,
 .pagination li a.page-number:hover {
-  background: black;
+  background: #353535;
   color: #f5f5f5;
 }
 
@@ -19918,7 +19918,7 @@ input[type="date"] {
 }
 
 .shop-discount-container .shop-discount {
-  background-color: black;
+  background-color: #353535;
   color: #fcbeb9;
   text-align: center;
   line-height: 45px;
@@ -19939,14 +19939,14 @@ input[type="date"] {
 .product-content .product-title {
   font-family: "SaharaBodoni";
   font-size: 75px;
-  color: black;
+  color: #353535;
 }
 
 .product-content .product-subtitle {
   text-transform: uppercase;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 15px;
-  color: black;
+  color: #353535;
   letter-spacing: 0.2em;
   margin-bottom: 50px;
 }
@@ -19963,7 +19963,7 @@ input[type="date"] {
 }
 
 .product-content .product-price .product-amount {
-  color: black;
+  color: #353535;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 36px;
   letter-spacing: 5px;
@@ -20018,14 +20018,14 @@ input[type="date"] {
 }
 
 .product-content .product-sizes .product-size-selected {
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
   color: white;
 }
 
 .product-content .product-sizes .product-size-selected:hover {
-  background-color: black;
-  border-color: black;
+  background-color: #353535;
+  border-color: #353535;
   color: white;
 }
 
@@ -20072,8 +20072,8 @@ input[type="date"] {
 
 .product-content .quantity-select {
   background-color: white;
-  color: black;
-  border: 1px solid black;
+  color: #353535;
+  border: 1px solid #353535;
 }
 
 .product-content .product-currency-select {
@@ -20194,11 +20194,11 @@ input[type="date"] {
 .tippy-tooltip.bipolar-theme {
   font-size: 11px;
   padding: 7px;
-  background-color: black;
+  background-color: #353535;
 }
 
 .bipolar-footer {
-  background: black;
+  background: #353535;
   color: white;
   padding: 70px 30px;
   position: fixed;
@@ -20288,7 +20288,7 @@ input[type="date"] {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background: black;
+  background: #353535;
   color: #fcbeb9;
   padding: 1.2em;
   border-radius: 50%;
@@ -20326,7 +20326,7 @@ input[type="date"] {
 }
 
 .overlay-text {
-  color: black;
+  color: #353535;
   font-family: "SaharaBodoni";
   font-size: 122px;
 }
@@ -20336,7 +20336,7 @@ input[type="date"] {
   font-size: 15px;
   font-weight: bold;
   letter-spacing: 0.2em;
-  color: black;
+  color: #353535;
   text-transform: uppercase;
 }
 
@@ -20385,7 +20385,7 @@ input[type="date"] {
 .overlay-shop-text {
   position: relative;
   font-family: "SaharaBodoni";
-  color: black;
+  color: #353535;
   font-size: 40px;
 }
 
@@ -20397,7 +20397,7 @@ input[type="date"] {
   font-weight: 400;
   font-style: normal;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
-  color: black;
+  color: #353535;
   margin-bottom: 4px;
   text-align: center;
 }
@@ -20413,7 +20413,7 @@ input[type="date"] {
 }
 
 .overlay-shop-buttons .overlay-radio-button:hover {
-  background: black;
+  background: #353535;
 }
 
 @media (max-width: 768px) {
@@ -20455,7 +20455,7 @@ input[type="date"] {
 .bipolar-login-register-content .bipolar-title-login-register {
   font-size: 16px;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
-  color: black;
+  color: #353535;
   letter-spacing: 0.2em;
 }
 
@@ -20473,7 +20473,7 @@ input[type="date"] {
   padding: 10px 15px;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
-  color: black;
+  color: #353535;
   font-weight: normal;
   letter-spacing: 2.55px;
 }
@@ -20488,7 +20488,7 @@ input[type="date"] {
   letter-spacing: 0.5px;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
-  color: black;
+  color: #353535;
   font-weight: normal;
 }
 
@@ -20505,7 +20505,7 @@ input[type="date"] {
   letter-spacing: 1px;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
-  color: black;
+  color: #353535;
   font-weight: normal;
 }
 
@@ -20529,7 +20529,7 @@ input[type="date"] {
     font-weight: normal;
     font-size: 12px;
     text-transform: uppercase;
-    color: black;
+    color: #353535;
   }
 
   .table-cart tbody tr td.product-remove {
@@ -20575,7 +20575,7 @@ input[type="date"] {
 .cart-total-inner > h2 {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   text-transform: uppercase;
-  color: black;
+  color: #353535;
   font-size: 17px;
   letter-spacing: 2.55px;
   font-weight: normal;
@@ -20603,7 +20603,7 @@ input[type="date"] {
   letter-spacing: 1px;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
-  color: black;
+  color: #353535;
   font-weight: normal;
 }
 
@@ -20635,7 +20635,7 @@ input[type="date"] {
   text-transform: uppercase;
   border-bottom: 1px solid #eee;
   padding: 10px 15px;
-  color: black;
+  color: #353535;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
   letter-spacing: 2.5px;
@@ -20661,7 +20661,7 @@ input[type="date"] {
   padding-left: 10px;
   font-size: 11px;
   font-family: "GothamBold", Verdana;
-  color: black;
+  color: #353535;
 }
 
 .bipolar-checkout .panel-default .form-control {
@@ -20676,7 +20676,7 @@ input[type="date"] {
 .bipolar-checkout .panel-default .send-distinct-address label {
   font-family: "GothamBold", Verdana, Verdana;
   font-size: 11px;
-  color: black;
+  color: #353535;
   text-transform: uppercase;
   padding-left: 10px;
   font-weight: normal;
@@ -20693,7 +20693,7 @@ input[type="date"] {
 .bipolar-checkout .table-review-order thead th {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
-  color: black;
+  color: #353535;
   letter-spacing: 2.55px;
   text-transform: uppercase;
   border-bottom: 1px solid #222;
@@ -20708,7 +20708,7 @@ input[type="date"] {
 .bipolar-checkout .table-review-order tbody tr td {
   padding: 10px 15px;
   vertical-align: middle;
-  color: black;
+  color: #353535;
 }
 
 .bipolar-checkout .table-review-order tbody tr td.product-name {
@@ -20736,7 +20736,7 @@ input[type="date"] {
 .bipolar-checkout .table-review-order tbody tr .amount {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
-  color: black;
+  color: #353535;
 }
 
 .bipolar-checkout .payment-method {
@@ -20749,7 +20749,7 @@ input[type="date"] {
 .bipolar-checkout .payment-method .checkbox-content {
   font-family: "GothamBold", Verdana;
   text-transform: uppercase;
-  color: black;
+  color: #353535;
   padding-left: 10px;
   font-size: 11px;
 }
@@ -20766,7 +20766,7 @@ input[type="date"] {
 .bipolar-checkout .submit-payment p label {
   font-family: "GothamBold", Verdana;
   font-size: 11px;
-  color: black;
+  color: #353535;
   text-transform: uppercase;
   padding-left: 10px;
   font-weight: normal;
@@ -20823,7 +20823,7 @@ input[type="date"] {
 .bipolar-checkout .address-list .address-list-title {
   text-transform: uppercase;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
-  color: black;
+  color: #353535;
   font-size: 17px;
   letter-spacing: 2.5px;
   margin-left: 10px;
@@ -20847,7 +20847,7 @@ input[type="date"] {
 .bipolar-checkout .address-list .address-list-content .address-list-of-lists > li {
   text-transform: uppercase;
   font-size: 11px;
-  color: black;
+  color: #353535;
   font-family: "GothamBold", Verdana;
 }
 
@@ -20916,7 +20916,7 @@ table.table-buys thead th {
   padding: 10px 15px;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
-  color: black;
+  color: #353535;
   font-weight: normal;
   letter-spacing: 2.55px;
 }
@@ -20932,7 +20932,7 @@ table.table-buys tbody td a.order-link {
 table.table-buys tbody td span.price {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
-  color: black;
+  color: #353535;
   font-weight: normal;
 }
 
@@ -20950,7 +20950,7 @@ table.table-buys tbody td.order-actions {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: black;
+  color: #353535;
 }
 
 .bipolar-detail-order table.table-order {
@@ -20960,14 +20960,14 @@ table.table-buys tbody td.order-actions {
 .bipolar-detail-order table.table-order span.price {
   font-size: 17px;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
-  color: black;
+  color: #353535;
   font-weight: normal;
 }
 
 .bipolar-detail-order table.table-order thead th {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
-  color: black;
+  color: #353535;
   font-weight: normal;
   text-transform: uppercase;
   border-bottom: 1px solid #222;
@@ -20980,7 +20980,7 @@ table.table-buys tbody td.order-actions {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 10px 15px;
   vertical-align: middle;
-  color: black;
+  color: #353535;
 }
 
 .bipolar-detail-order table.customer-details {
@@ -20994,7 +20994,7 @@ table.table-buys tbody td.order-actions {
   text-transform: uppercase;
   font-size: 12px;
   line-height: 1.42;
-  color: black;
+  color: #353535;
   padding: 8px;
   vertical-align: top;
   border-top: 1px solid #ddd;
@@ -21006,7 +21006,7 @@ table.table-buys tbody td.order-actions {
 
 .bipolar-historic .container-title-product {
   max-width: 100%;
-  background-color: black;
+  background-color: #353535;
 }
 
 .bipolar-historic .container-title-product .img-transparency {
@@ -21042,7 +21042,7 @@ table.table-buys tbody td.order-actions {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   text-transform: uppercase;
   letter-spacing: 4.5px;
-  color: black;
+  color: #353535;
   font-size: 30px;
   font-weight: normal;
 }
@@ -21058,7 +21058,7 @@ table.table-buys tbody td.order-actions {
 }
 
 .bipolar-contact-form .contact-form label {
-  color: black;
+  color: #353535;
   line-height: 13px;
   text-transform: uppercase;
   font-size: 11px;
@@ -21077,5 +21077,109 @@ table.table-buys tbody td.order-actions {
 
 .bipolar-contact-form .contact-form .btn {
   margin-bottom: 40px;
+}
+
+/*Form Wizard*/
+
+/*END Form Wizard*/
+
+.bs-wizard {
+  margin: 40px 0;
+  padding: 0 0 10px 0;
+}
+
+.bs-wizard > .bs-wizard-step {
+  padding: 0;
+  position: relative;
+}
+
+.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {
+  color: #595959;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.bs-wizard > .bs-wizard-step .bs-wizard-info {
+  color: #999;
+  font-size: 14px;
+}
+
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  display: block;
+  background: #121618;
+  top: 45px;
+  left: 50%;
+  margin-top: -15px;
+  margin-left: -15px;
+  border-radius: 50%;
+}
+
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {
+  content: ' ';
+  width: 14px;
+  height: 14px;
+  background: whitesmoke;
+  border-radius: 50px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+
+.bs-wizard > .bs-wizard-step > .progress {
+  position: relative;
+  border-radius: 0;
+  height: 8px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  margin: 20px 0;
+}
+
+.bs-wizard > .bs-wizard-step > .progress > .progress-bar {
+  width: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background: #121618;
+}
+
+.bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {
+  width: 0%;
+}
+
+.bs-wizard > .bs-wizard-step:last-child.active > .progress > .progress-bar {
+  width: 100%;
+}
+
+.bs-wizard > .bs-wizard-step:first-child > .progress {
+  left: 50%;
+  width: 50%;
+}
+
+.bs-wizard > .bs-wizard-step:last-child > .progress {
+  width: 50%;
+}
+
+.bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {
+  width: 100%;
+}
+
+.bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {
+  width: 50%;
+}
+
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {
+  background-color: #f5f5f5;
+}
+
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {
+  opacity: 0;
+}
+
+.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot {
+  pointer-events: none;
 }
 

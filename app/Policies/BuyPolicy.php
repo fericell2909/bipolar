@@ -10,11 +10,6 @@ class BuyPolicy
 {
     use HandlesAuthorization;
 
-    public function before()
-    {
-        return \Auth::guard('admin')->check();
-    }
-
     public function view(User $user, Buy $buy)
     {
         return $buy->user_id === $user->id;

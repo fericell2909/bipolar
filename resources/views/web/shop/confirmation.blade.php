@@ -8,6 +8,61 @@
 <div class="background-title-image">
   <h1>Compra</h1>
 </div>
+<div class="container">
+  <div class="row bs-wizard">
+    @if($buy->status === config('constants.BUY_INCOMPLETE_STATUS'))
+      @php($firstClass = 'active')
+    @elseif(!is_null($buy->latestStatus([config('constants.BUY_PROCESSING_STATUS'), config('constants.BUY_CULMINATED_STATUS'), config('constants.BUY_SENT_STATUS')])))
+      @php($firstClass = 'complete')
+    @else
+      @php($firstClass = 'disabled')
+    @endif
+    <div class="col-xs-3 bs-wizard-step {{ $firstClass }}">
+      <div class="text-center bs-wizard-stepnum">Comprado</div>
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+      <a class="bs-wizard-dot"></a>
+      <div class="bs-wizard-info text-center"></div>
+    </div>
+    @if($buy->status === config('constants.BUY_PROCESSING_STATUS'))
+      @php($secondClass = 'active')
+    @elseif(!is_null($buy->latestStatus([config('constants.BUY_CULMINATED_STATUS'), config('constants.BUY_SENT_STATUS')])))
+      @php($secondClass = 'complete')
+    @else
+      @php($secondClass = 'disabled')
+    @endif
+    <div class="col-xs-3 bs-wizard-step {{ $secondClass }}">
+      <div class="text-center bs-wizard-stepnum">Pagado</div>
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+      <a class="bs-wizard-dot"></a>
+      <div class="bs-wizard-info text-center"></div>
+    </div>
+    @if($buy->status === config('constants.BUY_SENT_STATUS'))
+      @php($thirdClass = 'active')
+    @elseif($buy->status === config('constants.BUY_CULMINATED_STATUS'))
+      @php($thirdClass = 'complete')
+    @else
+      @php($thirdClass = 'disabled')
+    @endif
+    <div class="col-xs-3 bs-wizard-step {{ $thirdClass }}">
+      <div class="text-center bs-wizard-stepnum">Enviado</div>
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+      <a class="bs-wizard-dot"></a>
+      <div class="bs-wizard-info text-center"></div>
+    </div>
+    <div class="col-xs-3 bs-wizard-step {{ $buy->status === config('constants.BUY_CULMINATED_STATUS') ? 'active' : 'disabled' }}">
+      <div class="text-center bs-wizard-stepnum">Culminado</div>
+      <div class="progress"><div class="progress-bar"></div></div>
+      <a class="bs-wizard-dot"></a>
+      <div class="bs-wizard-info text-center"></div>
+    </div>
+  </div>
+</div>
 <div class="container bipolar-detail-order">
   <form name="f1" action="#" id="f1" class="alignet-form-vpos2" method="post">
     <input type="hidden" name="acquirerId" value="{{ $acquirerId }}">
