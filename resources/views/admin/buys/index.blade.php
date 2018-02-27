@@ -9,6 +9,7 @@
           <tr>
             <th>#</th>
             <th>Nombre</th>
+            <th>Correo</th>
             <th>Comprado</th>
             <th>Enviar a</th>
             <th>Estado</th>
@@ -25,6 +26,7 @@
               <tr>
                 <td>{{ $buy->id }}</td>
                 <td>{{ $buy->user->name }}</td>
+                <td>{{ $buy->user->email }}</td>
                 <td>{{ $buy->details->count() }} artículos</td>
                 <td>
                   {{ $buy->shipping_address->address }} {{ $buy->shipping_address->country_state->name }} {{ $buy->shipping_address->country_state->country->name }}
