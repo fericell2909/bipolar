@@ -28929,19 +28929,34 @@ $(function () {
     $(document).scroll(function () {
       var $transparentHeader = $('.bipolar-header-desktop');
       var $grandHeader = $(".bipolar-grand-header");
-      var $grandHeaderAlternate = $('.bipolar-alternate-grand-header');
+      var $bipolarNavigation = $grandHeader.children('.bipolar-navigation');
+      var $container = $bipolarNavigation.children('.container');
+      var $logoInHeader = $container.find('.bipolar-logo');
+      //let $grandHeaderAlternate = $('.bipolar-alternate-grand-header');
       var isLongScroll = $(this).scrollTop() > $grandHeader.height();
       var homeIsLongScroll = $(this).scrollTop() > $transparentHeader.height();
       if (isLongScroll === true || homeIsLongScroll === true) {
         $transparentHeader.addClass('hidden');
-        $grandHeader.addClass('hidden');
-        $grandHeaderAlternate.removeClass('hidden');
+        $grandHeader.addClass('bipolar-grand-header-hidden');
+        $logoInHeader.removeClass('hidden');
+        $container.removeClass('resized-container');
+        $bipolarNavigation.addClass('has-shadow').addClass('has-background');
+        //$grandHeaderAlternate.removeClass('hidden');
       } else {
         $transparentHeader.removeClass('hidden');
-        $grandHeader.removeClass('hidden');
-        $grandHeaderAlternate.addClass('hidden');
+        $grandHeader.removeClass('bipolar-grand-header-hidden');
+        $logoInHeader.addClass('hidden');
+        $container.addClass('resized-container');
+        $bipolarNavigation.removeClass('has-shadow').removeClass('has-background');
+        //$grandHeaderAlternate.addClass('hidden');
       }
     });
+  });
+
+  $('.bipolar-item').hover(function () {
+    $(this).children('a').children('.the-line').addClass('is-active');
+  }, function () {
+    $(this).children('a').children('.the-line').removeClass('is-active');
   });
 
   // Bootstrap tooltip

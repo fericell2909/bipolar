@@ -19257,6 +19257,95 @@ input[type="date"] {
   width: 100%;
   z-index: 10;
   top: 0;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.bipolar-grand-header.bipolar-grand-header-hidden,
+.bipolar-grand-header-hidden.bipolar-alternate-grand-header {
+  -webkit-transform: translateY(-164px);
+          transform: translateY(-164px);
+}
+
+.bipolar-grand-header .bipolar-navigation.has-shadow,
+.bipolar-alternate-grand-header .bipolar-navigation.has-shadow {
+  -webkit-box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
+}
+
+.bipolar-grand-header .bipolar-navigation.has-background,
+.bipolar-alternate-grand-header .bipolar-navigation.has-background {
+  background: #fcbeb9;
+  -webkit-transition: .8s;
+  transition: .8s;
+}
+
+.bipolar-grand-header .bipolar-navigation .container.resized-container,
+.bipolar-alternate-grand-header .bipolar-navigation .container.resized-container,
+.bipolar-grand-header .bipolar-navigation .resized-container.bipolar-container,
+.bipolar-alternate-grand-header .bipolar-navigation .resized-container.bipolar-container {
+  max-width: 900px;
+}
+
+.bipolar-grand-header .bipolar-navigation ul.bipolar-items,
+.bipolar-alternate-grand-header .bipolar-navigation ul.bipolar-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  min-height: 60px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.bipolar-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item,
+.bipolar-alternate-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item {
+  cursor: pointer;
+}
+
+.bipolar-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a:hover,
+.bipolar-alternate-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a:hover,
+.bipolar-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a:focus,
+.bipolar-alternate-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+.bipolar-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a .item-text,
+.bipolar-alternate-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a .item-text {
+  font-size: 15px;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  font-style: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.bipolar-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a .item-text:hover,
+.bipolar-alternate-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a .item-text:hover,
+.bipolar-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a .item-text:focus,
+.bipolar-alternate-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a .item-text:focus {
+  color: white;
+  outline: none;
+}
+
+.bipolar-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a .the-line,
+.bipolar-alternate-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a .the-line {
+  border-top: 1px solid white;
+  width: 0%;
+  margin: auto;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.bipolar-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a .the-line.is-active,
+.bipolar-alternate-grand-header .bipolar-navigation ul.bipolar-items li.bipolar-item a .the-line.is-active {
+  width: 100%;
 }
 
 .bipolar-first-navbar {
@@ -19427,6 +19516,8 @@ input[type="date"] {
 }
 
 .bipolar-alternate-grand-header {
+  -webkit-transition: all .3s;
+  transition: all .3s;
   -webkit-box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
           box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
 }
@@ -19484,33 +19575,6 @@ input[type="date"] {
 .bipolar-navbar-styles {
   margin-bottom: 0;
   border-radius: 0;
-}
-
-.bipolar-navigation {
-  padding: 22px 20px 14px;
-}
-
-.bipolar-navigation div li {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.bipolar-navigation div li a {
-  font-size: 15px;
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
-  font-style: normal;
-  font-weight: 400;
-  text-transform: uppercase;
-  padding-bottom: 6px;
-  letter-spacing: 4px;
-}
-
-.bipolar-navigation div li a:hover,
-.bipolar-navigation div li a:focus {
-  color: white;
-  border-bottom: 1px solid white;
-  text-decoration: none;
-  outline: none;
 }
 
 .nav .open > a {

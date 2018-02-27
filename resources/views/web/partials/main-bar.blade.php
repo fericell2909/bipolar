@@ -111,27 +111,50 @@
 			</div>
 	</nav>
 	<section class="bipolar-navigation text-center">
-		<div class="container">
-			<ul class="list-inline">
-				<li>
-					<a href="{{ route('home') }}">Home</a>
+		<div class="container resized-container">
+			<ul class="bipolar-items">
+				<li class="bipolar-logo hidden">
+					<a href="{{ route('home') }}">
+						<img src="{{ asset('images/logo-linea.png') }}" width="160">
+					</a>
 				</li>
-				<li>
-					<a href="{{ route('landings.bipolar') }}">Bipolar</a>
+				<li class="bipolar-item">
+					<a href="{{ route('home') }}">
+						<div class="item-text">Home</div>
+						<div class="the-line"></div>
+					</a>
 				</li>
-				<li>
-					<a href="{{ route('landings.showroom') }}">Showroom</a>
+				<li class="bipolar-item">
+					<a href="{{ route('landings.bipolar') }}">
+						<div class="item-text">Bipolar</div>
+						<div class="the-line"></div>
+					</a>
 				</li>
-				<li>
-					<a href="{{ route('shop') }}">Shop</a>
+				<li class="bipolar-item">
+					<a href="{{ route('landings.showroom') }}">
+						<div class="item-text">Showroom</div>
+						<div class="the-line"></div>
+					</a>
 				</li>
-				<li>
-					<a href="#">Newsletter</a>
+				<li class="bipolar-item">
+					<a href="{{ route('shop') }}">
+						<div class="item-text">Shop</div>
+						<div class="the-line"></div>
+					</a>
 				</li>
-				<li>
-					<a href="{{ route('landings.contacto') }}">Contacto</a>
+				<li class="bipolar-item">
+					<a href="#">
+						<div class="item-text">Newsletter</div>
+						<div class="the-line"></div>
+					</a>
+				</li>
+				<li class="bipolar-item">
+					<a href="{{ route('landings.contacto') }}">
+						<div class="item-text">Contacto</div>
+						<div class="the-line"></div>
+					</a>
 				</li>
 			</ul>
 		</div>
 	</section>
-	</div>
+</div>

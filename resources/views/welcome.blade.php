@@ -13,7 +13,6 @@
 </head>
 <body class="no-top">
     @include('web.partials.main-bar', ['background' => false])
-    @include('web.partials.alternate_bar')
     @include('web.partials.mobile-bar')
     <div>
         <div class="carousel slide carousel-home" data-ride="carousel">
