@@ -39,7 +39,7 @@
                   <tr>
                     <td class="column_cell tl switch_tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: left;line-height: inherit;">
                       <h3 style="font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 0;color: #4d4d4d;font-size: 25px;line-height: 23px;">
-                        {{ $detail->product->name }} {{ $detail->stock ? __('bipolar.size_abbr') . ". " . $detail->stock->size->name : null }} <span class="tm" style="font-size: 18px; line-height: inherit;color: #f8beb6;">× {{ $detail->quantity }}</span>
+                        {{ $detail->product->name }} <span style="font-size: 18px;">{{ $detail->stock ? __('bipolar.size_abbr') . ". " . $detail->stock->size->name : null }}</span> <span class="tm" style="font-size: 18px; line-height: inherit;color: #f8beb6;">× {{ $detail->quantity }}</span>
                       </h3>
                     </td>
                   </tr>
@@ -123,7 +123,7 @@
               <tbody>
               <tr>
                 <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
-                  <h2 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 8px;color: #4d4d4d;font-size: 20px;line-height: 26px;">TUS DATOS</h2>
+                  <h2 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 35px;margin-bottom: 8px;color: #4d4d4d;font-size: 20px;line-height: 26px;">TUS DATOS</h2>
                 </td>
               </tr>
               </tbody>
@@ -154,7 +154,7 @@
                 <tr>
                   <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
                     <h4 class="mte" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 32px;margin-bottom: 8px;color: #f8beb6;font-size: 14px;line-height: 18px;">Enviar a</h4>
-                    <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 24px;">
+                    <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 24px;">
                       @if($buy->billing_address)
                         {{ $buy->billing_address->name }} {{ $buy->billing_address->lastname }}<br>
                         {{ $buy->billing_address->address }} <br>
@@ -164,7 +164,7 @@
                       @endif
                     </p>
                     <h4 class="mte" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 32px;margin-bottom: 8px;color: #f8beb6;font-size: 14px;line-height: 18px;">Método de envío</h4>
-                    <p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;">Envío local</p>
+                    <p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;">Envío local</p>
                   </td>
                 </tr>
                 </tbody>
@@ -177,7 +177,7 @@
                 <tr>
                   <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
                     <h4 class="mte" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 32px;margin-bottom: 8px;color: #f8beb6;font-size: 14px;line-height: 18px;">Facturar a</h4>
-                    <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 24px;">
+                    <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 24px;">
                       @if($buy->shipping_address)
                         {{ $buy->shipping_address->name }} {{ $buy->shipping_address->lastname }}<br>
                         {{ $buy->shipping_address->address }} <br>
@@ -187,7 +187,7 @@
                       @endif
                     </p>
                     <h4 class="mte" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 32px;margin-bottom: 8px;color: #f8beb6;font-size: 14px;line-height: 18px;">Número de pedido</h4>
-                    <p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;">#{{ $buy->id }}</p>
+                    <p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;">#{{ $buy->id }}</p>
                   </td>
                 </tr>
                 </tbody>

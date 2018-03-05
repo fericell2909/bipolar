@@ -726,8 +726,8 @@
               <tbody>
               <tr>
                 <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
-                  <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 8px;color: #4d4d4d;font-size: 18px;line-height: 23px;">¿Preguntas?</h3>
-                  <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">Escríbenos a shop@bipolar.com.pe o llámanos al (+51) 965.367.385.</p>
+                  <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #4d4d4d;font-size: 18px;line-height: 23px;">¿Preguntas?</h3>
+                  <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">Escríbenos a shop@bipolar.com.pe o llámanos al (+51) 965.367.385.</p>
                 </td>
               </tr>
               </tbody>
