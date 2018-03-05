@@ -31,7 +31,7 @@
           <td class="order-actions">
             <a href="#" class="btn btn-dark-rounded">Pagar</a>
             <a href="#" class="btn btn-dark-rounded">Cancelar</a>
-            <a href="#" class="btn btn-dark-rounded">Ver</a>
+            <a href="{{ route('confirmation', $buy->id) }}" class="btn btn-dark-rounded">Ver</a>
           </td>
         </tr>
         @endforeach

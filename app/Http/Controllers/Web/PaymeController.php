@@ -37,6 +37,8 @@ class PaymeController extends Controller
         $codCardHolderCommerce = $user->id;
         $userPaymeCode = $tokenUsuario;
 
+        return new \App\Mail\BuyConfirmation($buy);
+
         return view('web.shop.confirmation', compact(
             'user',
             'buy',

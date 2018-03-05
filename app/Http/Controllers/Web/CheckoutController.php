@@ -93,7 +93,6 @@ class CheckoutController extends Controller
 
         $buy->setStatus(config('constants.BUY_INCOMPLETE_STATUS'));
 
-        debug($request->has('showroom_pick'), $request->input('showroom_pick'));
         if ($request->filled('showroom_pick')) {
             $buy->showroom = true;
             $buy->save();
