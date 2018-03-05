@@ -749,7 +749,7 @@
       <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnFollowContentContainer" style="max-width: 640px; background-color: #ffffff;">
         <tbody>
         <tr>
-          <td align="center" style="padding-left:9px;padding-right:9px;">
+          <td align="center" style="padding: 9px;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;" class="mcnFollowContent">
               <tbody>
               <tr>
