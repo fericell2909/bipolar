@@ -36,7 +36,7 @@
     @endif
     @include('flash::message')
     <section class="header-worldwide-shipping">
-        Envío a todo el mundo
+        {{ __('bipolar.home.worldwide_shipping') }}
     </section>
     <div class="row no-gutters">
         @foreach($homePosts as $homePost)
@@ -78,16 +78,16 @@
                 <p class="text-center">
                     <i class="fa fa-2x fa-envelope-o"></i>
                 </p>
-                <h4 class="newsletter-title">Suscríbete</h4>
-                <p class="newsletter-subtitle">Y disfruta de descuentos especiales.</p>
+                <h4 class="newsletter-title">{{ __('bipolar.home.suscribe') }}</h4>
+                <p class="newsletter-subtitle">{{ __('bipolar.home.suscribe_details') }}.</p>
                 {!! Form::open(['route' => 'register.newsletter']) !!}
                     <div class="form-group">
-                        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required' => true]) !!}
+                        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('bipolar.home.name'), 'required' => true]) !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Correo', 'required' => true]) !!}
+                        {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => __('bipolar.home.email'), 'required' => true]) !!}
                     </div>
-                    <button class="btn btn-dark btn-rounded">Enviar</button>
+                    <button class="btn btn-dark btn-rounded">{{ __('bipolar.home.send') }}</button>
                 {!! Form::close() !!}
             </div>
         </div>

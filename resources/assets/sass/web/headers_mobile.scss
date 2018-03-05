@@ -69,6 +69,24 @@
         width: 293px;
         z-index: 10;
 
+        .empty-cart {
+          padding: 2.5em 0;
+
+          h4 {
+            font-size: 16px;
+            font-family: $bodoni-bold-font;
+            word-spacing: 0.2em;
+            color: $bipolar-black;
+            letter-spacing: 2.4px;
+          }
+
+          p {
+            font-family: $gotham-light-font;
+            font-size: 14px;
+            color: #868686;
+          }
+        }
+
         ul.cart-list {
           list-style: none;
           line-height: 20px;

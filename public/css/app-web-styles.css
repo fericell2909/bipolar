@@ -19439,6 +19439,24 @@ input[type="date"] {
   z-index: 10;
 }
 
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside .empty-cart {
+  padding: 2.5em 0;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside .empty-cart h4 {
+  font-size: 16px;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  word-spacing: 0.2em;
+  color: #000000;
+  letter-spacing: 2.4px;
+}
+
+.bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside .empty-cart p {
+  font-family: "GothamLight", Verdana;
+  font-size: 14px;
+  color: #868686;
+}
+
 .bipolar-second-navbar .bipolar-shopping-cart-wrapper .bipolar-shopping-cart-content .cart-inside ul.cart-list {
   list-style: none;
   line-height: 20px;
@@ -19749,6 +19767,24 @@ input[type="date"] {
     right: -30px;
     width: 293px;
     z-index: 10;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile .empty-cart {
+    padding: 2.5em 0;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile .empty-cart h4 {
+    font-size: 16px;
+    font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+    word-spacing: 0.2em;
+    color: #000000;
+    letter-spacing: 2.4px;
+  }
+
+  .header-mobile-menu .cart-white-mobile .cart-inside-mobile .empty-cart p {
+    font-family: "GothamLight", Verdana;
+    font-size: 14px;
+    color: #868686;
   }
 
   .header-mobile-menu .cart-white-mobile .cart-inside-mobile ul.cart-list {
