@@ -51,9 +51,9 @@ class PaymeController extends Controller
         ));
     }
 
-    public function confirmation(Request $request, $buyHashId)
+    public function confirmation(Request $request, $buyId)
     {
-        $buy = Buy::findByHash($buyHashId);
+        $buy = Buy::findOrFail($buyId);
 
         $this->authorize('view', $buy);
         //abort_if($buy->tipo_pago_id == config('constants.TIPO_PAGO_MEMBRESIA_ID'), 403);
@@ -128,7 +128,7 @@ class PaymeController extends Controller
 
         $payment->save();
 
-        return redirect()->route('reconfirmation');
+        return redirect()->route('reconfirmation', $buy->id);
     }
 
     public function reconfirmation(Request $request)
