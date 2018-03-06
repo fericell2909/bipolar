@@ -64,6 +64,16 @@
   </div>
 </div>
 <div class="container bipolar-detail-order">
+  @if($paymeCode)
+    @if($paymeCode !== '00')
+      <div class="bipolar-alert-message" >
+        <i class="fa fa-times-circle-o"></i>
+        <div class="success-content">
+          <span>La compra no tiene un resultado de pago exitoso, intente de nuevamente presionando el siguiente botón</span>
+        </div>
+      </div>
+    @endif
+  @endif
   @if(!$buy->payed)
   <form name="f1" action="#" id="f1" class="alignet-form-vpos2" method="post">
     <input type="hidden" name="acquirerId" value="{{ $acquirerId }}">

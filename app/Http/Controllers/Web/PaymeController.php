@@ -47,8 +47,7 @@ class PaymeController extends Controller
             'purchaseOperationNumber',
             'purchaseVerification',
             'purchaseCurrencyCode',
-            'userPaymeCode',
-            'horasEnvioDiario'
+            'userPaymeCode'
         ));
     }
 
@@ -96,7 +95,7 @@ class PaymeController extends Controller
             'purchaseVerification',
             'purchaseCurrencyCode',
             'userPaymeCode',
-            'horasEnvioDiario'
+            'paymeCode'
         ));
     }
 
