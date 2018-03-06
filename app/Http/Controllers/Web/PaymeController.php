@@ -56,7 +56,7 @@ class PaymeController extends Controller
     {
         $buy = Buy::findByHash($buyHashId);
 
-        abort_if(\Auth::user()->cant('view', $buy), 403);
+        $this->authorize('view', $buy);
         //abort_if($buy->tipo_pago_id == config('constants.TIPO_PAGO_MEMBRESIA_ID'), 403);
 
         // Comprobando si el pago fue realizado correctamente
@@ -71,11 +71,11 @@ class PaymeController extends Controller
             $tokenUsuario = $this->getOrRegisterInWallet($request);
 
             $acquirerId = env('PAYME_ACQUIRER_ID');
-            $idCommerce = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_COMMERCE_ID') : env('PAYME_COMMERCE_ID_ENGLISH');
+            $idCommerce = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_COMMERCE_ID_ENGLISH') : env('PAYME_COMMERCE_ID');
             $purchaseOperationNumber = sprintf('%06d', $buy->buy_number);
             $purchaseAmount = intval(number_format($buy->total, 2) * 100);
             $purchaseCurrencyCode = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? '840' : '604';
-            $claveVPOS = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_VPOS_COMMERCE_SECRET') : env('PAYME_VPOS_COMMERCE_SECRET_ENGLISH');
+            $claveVPOS = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_VPOS_COMMERCE_SECRET_ENGLISH') : env('PAYME_VPOS_COMMERCE_SECRET');
 
             $purchaseVerification = openssl_digest($acquirerId . $idCommerce . $purchaseOperationNumber . $purchaseAmount . $purchaseCurrencyCode . $claveVPOS, 'sha512');
         }
@@ -85,8 +85,10 @@ class PaymeController extends Controller
         $codCardHolderCommerce = $user->id;
         $userPaymeCode = $tokenUsuario;
 
-        return view('comun.confirmacion', compact(
+        return view('web.shop.confirmation', compact(
             'user',
+            'buy',
+            'acquirerId',
             'codCardHolderCommerce',
             'idCommerce',
             'purchaseAmount',
@@ -94,9 +96,7 @@ class PaymeController extends Controller
             'purchaseVerification',
             'purchaseCurrencyCode',
             'userPaymeCode',
-            'paymeCode',
-            'acquirerId',
-            'buy'
+            'horasEnvioDiario'
         ));
     }
 
