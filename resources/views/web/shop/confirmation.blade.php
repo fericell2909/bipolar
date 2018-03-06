@@ -64,7 +64,7 @@
   </div>
 </div>
 <div class="container bipolar-detail-order">
-  @if($paymeCode)
+  @if(isset($paymeCode))
     @if($paymeCode !== '00')
       <div class="bipolar-alert-message" >
         <i class="fa fa-times-circle-o"></i>
