@@ -66,7 +66,7 @@
 <div class="container bipolar-detail-order">
   @if(isset($paymeCode))
     @if($paymeCode !== '00')
-      <div class="bipolar-alert-message" >
+      <div class="bipolar-alert-message" style="margin-bottom: 20px;">
         <i class="fa fa-times-circle-o"></i>
         <div class="success-content">
           <span>La compra no tiene un resultado de pago exitoso, intente de nuevamente presionando el siguiente botón</span>
