@@ -128,7 +128,7 @@ class PaymeController extends Controller
 
         $payment->save();
 
-        return redirect()->route('reconfirmation', $buy->id);
+        return redirect()->route('reconfirmation');
     }
 
     public function reconfirmation(Request $request)
