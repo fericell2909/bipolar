@@ -24,9 +24,9 @@ class PaymeController extends Controller
         $tokenUsuario = $this->getOrRegisterInWallet($request);
 
         $acquirerId = env('PAYME_ACQUIRER_ID');
-        $idCommerce = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_COMMERCE_ID') : env('PAYME_COMMERCE_ID_ENGLISH');
+        $idCommerce = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_COMMERCE_ID_ENGLISH') : env('PAYME_COMMERCE_ID');
         $purchaseOperationNumber = sprintf('%06d', $buy->buy_number);
-        $purchaseAmount = intval($buy->total_session * 100);
+        $purchaseAmount = intval($buy->total * 100);
         $purchaseCurrencyCode = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? '840' : '604';
         $claveVPOS = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_VPOS_COMMERCE_SECRET') : env('PAYME_VPOS_COMMERCE_SECRET_ENGLISH');
 
