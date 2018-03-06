@@ -28,7 +28,7 @@ class PaymeController extends Controller
         $purchaseOperationNumber = sprintf('%06d', $buy->buy_number);
         $purchaseAmount = intval($buy->total * 100);
         $purchaseCurrencyCode = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? '840' : '604';
-        $claveVPOS = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_VPOS_COMMERCE_SECRET') : env('PAYME_VPOS_COMMERCE_SECRET_ENGLISH');
+        $claveVPOS = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_VPOS_COMMERCE_SECRET_ENGLISH') : env('PAYME_VPOS_COMMERCE_SECRET');
 
         $purchaseVerification = openssl_digest($acquirerId . $idCommerce . $purchaseOperationNumber . $purchaseAmount . $purchaseCurrencyCode . $claveVPOS, 'sha512');
 
