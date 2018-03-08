@@ -39,7 +39,7 @@
                   <tr>
                     <td class="column_cell tl switch_tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: left;line-height: inherit;">
                       <h3 style="font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 0;color: #4d4d4d;font-size: 25px;line-height: 23px;">
-                        {{ $detail->product->name }} <span style="font-size: 18px;">{{ $detail->stock ? __('bipolar.size_abbr') . ". " . $detail->stock->size->name : null }}</span> <span class="tm" style="font-size: 18px; line-height: inherit;color: #f8beb6;">× {{ $detail->quantity }}</span>
+                        {{ $detail->product->name }} <span style="font-size: 18px; color: #f8beb6;">{{ $detail->stock ? __('bipolar.size_abbr') . ". " . $detail->stock->size->name : null }}</span> <span class="tm" style="font-size: 18px; line-height: inherit;color: #f8beb6;">× {{ $detail->quantity }}</span>
                       </h3>
                     </td>
                   </tr>

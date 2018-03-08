@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'size_abbr' => 'S',
+    'size_abbr' => 'Size',
     'navbar' => [
         'change_currency' => 'Change currency',
         'contact_us' => 'Contact us',
