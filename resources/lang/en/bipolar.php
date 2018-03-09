@@ -25,5 +25,16 @@ return [
         'suscribe' => 'Suscribe',
         'suscribe_details' => 'Get the latest news',
         'worldwide_shipping' => 'Worldwide shipping',
-    ]
+    ],
+    'shop' => [
+        'see_filters' => 'See filters',
+        'search' => 'Search',
+        'filter' => ':type Filter',
+        'sizes' => 'Sizes',
+        'recommendations' => 'Recommendations',
+        'show_results' => 'Showing 1-12 of :total results',
+        'order_default' => 'DEFAULT SORTING',
+        'order_priceup' => 'SORT BY PRICE: LOW TO HIGH',
+        'order_pricedown' => 'SORT BY PRICE: HIGH TO LOW',
+    ],
 ];

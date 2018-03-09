@@ -25,5 +25,16 @@ return [
         'suscribe' => 'Suscríbete',
         'suscribe_details' => 'Y disfruta de descuentos especiales',
         'worldwide_shipping' => 'Envío a todo el mundo',
-    ]
+    ],
+    'shop' => [
+        'see_filters' => 'Ver filtros',
+        'search' => 'Buscar',
+        'filter' => 'Filtrar :type',
+        'sizes' => 'Tallas',
+        'recommendations' => 'Destacados',
+        'show_results' => 'Mostrando 1-12 de :total resultados',
+        'order_default' => 'ORDEN PREDETERMINADO',
+        'order_priceup' => 'ORDENAR DE PRECIO BAJO A PRECIO ALTO',
+        'order_pricedown' => 'ORDENAR DE PRECIO ALTO A PRECIO BAJO',
+    ],
 ];

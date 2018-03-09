@@ -69,9 +69,9 @@ class ShopController extends Controller
         });
 
         $orderOptions = [
-            'default'   => 'ORDEN PREDETERMINADO',
-            'priceup'   => 'ORDENAR DE PRECIO BAJO A PRECIO ALTO',
-            'pricedown' => 'ORDENAR DE PRECIO ALTO A PRECIO BAJO',
+            'default'   => __('bipolar.shop.order_default'),
+            'priceup'   => __('bipolar.shop.order_priceup'),
+            'pricedown' => __('bipolar.shop.order_pricedown'),
         ];
         $selectedOrderOption = $request->filled('orderBy') ? $request->input('orderBy') : null;
 

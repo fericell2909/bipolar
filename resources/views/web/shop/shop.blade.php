@@ -4,19 +4,21 @@
   <div class="bipolar-container">
     <div class="row shop-container">
       <div class="col-md-3 see-filters-button visible-xs-block">
-        <button type="button" class="btn btn-dark-rounded btn-block btn-see-filters">Ver filtros</button>
+        <button type="button" class="btn btn-dark-rounded btn-block btn-see-filters">
+          {{ __('bipolar.shop.see_filters') }}
+        </button>
       </div>
       <div class="col-md-3 filters-container">
         <div class="form-group">
           <div class="input-group">
-            {!! Form::text('search', null, ['class' => 'form-control', 'placeholder' => 'Buscar']) !!}
+            {!! Form::text('search', null, ['class' => 'form-control', 'placeholder' => __('bipolar.shop.search')]) !!}
             <div class="input-group-addon bipolar-search-button">
               <i class="fa fa-search"></i>
             </div>
           </div>
         </div>
         @foreach($types as $type)
-          <h4 class="bipolar-filter-title">Filtrar {{ $type->name }}</h4>
+          <h4 class="bipolar-filter-title">{{ __('bipolar.shop.filter', ['type' => $type->name]) }}</h4>
           <div class="list-unstyled bipolar-filters">
             @foreach($type->subtypes as $subtype)
               <div class="pretty bipolar-filter p-icon p-round">
@@ -30,7 +32,7 @@
           </div>
         @endforeach
         @if($sizes)
-          <h4 class="bipolar-filter-title">Tallas</h4>
+          <h4 class="bipolar-filter-title">{{ __('bipolar.shop.sizes') }}</h4>
           <div class="list-unstyled bipolar-filters">
             @foreach($sizes as $size)
               <div class="pretty bipolar-filter p-icon p-round">
@@ -44,9 +46,9 @@
           </div>
         @endif
         <div class="hidden-xs">
-          <h4 class="bipolar-filter-title">Destacados</h4>
+          <h4 class="bipolar-filter-title">{{ __('bipolar.shop.recommendations') }}</h4>
           @foreach($productsSalient as $salient)
-                <?php /** @var \App\Models\Product $salient */ ?>
+            <?php /** @var \App\Models\Product $salient */ ?>
             <div class="row no-gutters bipolar-product-showed">
               <div class="col-md-5 ">
                 @if(count($salient->photos))
@@ -74,7 +76,7 @@
       </div>
       <div class="col-md-9">
         <div class="bipolar-shop-results-filter">
-          <span>MOSTRANDO 1–12 DE {{ $products->total() }} RESULTADOS</span>
+          <span class="text-uppercase">{{ __('bipolar.shop.show_results', ['total' => $products->total()]) }}</span>
           {!! Form::select('orderBy', $orderOptions, $selectedOrderOption, ['id' => 'shop-sort-by', 'class' => 'select-orders']) !!}
         </div>
         <div class="row">
