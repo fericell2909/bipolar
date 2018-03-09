@@ -31,6 +31,6 @@ class BuyConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.web_buy_confirmation');
+        return $this->subject('Se registró su compra')->view('emails.web_buy_confirmation');
     }
 }

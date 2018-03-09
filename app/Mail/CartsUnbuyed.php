@@ -2,26 +2,26 @@
 
 namespace App\Mail;
 
-use App\Models\Buy;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Models\Cart;
 
-class BuySent extends Mailable
+class CartsUnbuyed extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $buy;
+    public $cart;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Buy $buy)
+    public function __construct(Cart $cart)
     {
-        $this->buy = $buy;
+        $this->cart = $cart;
     }
 
     /**
@@ -31,6 +31,6 @@ class BuySent extends Mailable
      */
     public function build()
     {
-        return $this->subject('Su pedido está en camino')->view('emails.admin_buy_sent');
+        return $this->subject('Completa tu compra')->view('emails.web_cart_unbuyed');
     }
 }
