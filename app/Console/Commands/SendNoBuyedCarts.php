@@ -39,7 +39,10 @@ class SendNoBuyedCarts extends Command
      */
     public function handle()
     {
-        $carts = Cart::has('details')->whereNotNull('user_id')->get();
+        $carts = Cart::has('details')
+            ->with('details.product.photos', 'details.stock', 'details.stock.size', 'details.product')
+            ->whereNotNull('user_id')
+            ->get();
 
         foreach ($carts as $cart) {
             \Mail::to($cart->user->email)->send(new CartsUnbuyed($cart));

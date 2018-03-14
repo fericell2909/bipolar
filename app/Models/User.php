@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class);
     }
 
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
     public function getActiveLabelAdmin()
     {
         if ($this->active) {

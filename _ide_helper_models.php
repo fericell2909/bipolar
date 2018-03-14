@@ -10,6 +10,26 @@
 
 namespace App\Models{
 /**
+ * App\Models\Wishlist
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $product_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\Product $product
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist whereUserId($value)
+ */
+	class Wishlist extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Buy
  *
  * @property int $id
