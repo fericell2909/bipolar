@@ -11,7 +11,7 @@ $factory->define(\App\Models\Product::class, function (Faker $faker) {
         ],
         'price'         => $faker->numberBetween(300, 500),
         'price_dolar'   => $faker->numberBetween(300, 500),
-        'weight'        => $faker->optional()->randomFloat(2, 10, 3000),
+        'weight'        => $faker->optional()->randomFloat(2, 1, 10),
         'description'   => [
             'es' => $faker->optional()->paragraph(2),
             'en' => $faker->optional()->paragraph(2),

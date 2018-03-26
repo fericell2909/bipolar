@@ -1,21 +1,21 @@
 <section class="container visible-xs-block visible-sm-block">
-	<p class="text-center text-heading-mobile">¡Hola!
-		<a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">Ingresa</a> o
-		<a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">regístrate</a>
+	<p class="text-center text-heading-mobile">{{ Auth::check() ? __('bipolar.navbar.welcome') : __('bipolar.navbar.hi') }}
+		<a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">{{ __('bipolar.navbar.enter') }}</a> {{ __('bipolar.navbar.or') }}
+		<a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">{{ __('bipolar.navbar.register') }}</a>
   </p>
   <div class="text-heading-account">
-    {{ Auth::check() ? Auth::user()->name : 'Mi cuenta' }}
+    {{ Auth::check() ? Auth::user()->name : __('bipolar.navbar.my_settings') }}
     <i class="fa fa-chevron-down"></i>
   </div>
   <ul class="bipolar-dropdown-menu in-mobile hidden-md hidden-lg">
-    <li><a href="{{ route('profile') }}"><i class="fa fa-user"></i> Mi cuenta</a></li>
+    <li><a href="{{ route('profile') }}"><i class="fa fa-user"></i> {{ __('bipolar.navbar.my_account') }}</a></li>
     <li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
     <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Shopping cart</a></li>
     <li><a href="{{ route('checkout') }}"><i class="fa fa-share"></i> Checkout</a></li>
-    <li><a><i class="fa fa-usd"></i> Change currency</a></li>
+    <li><a><i class="fa fa-usd"></i> {{ __('bipolar.navbar.change_currency') }}</a></li>
     <li><a href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a></li>
     <li><a href="{{ route('change-currency', ['currency' => 'USD']) }}">Dólares (USD)</a></li>
-    <li><a><i class="fa fa-language"></i> Idioma</a></li>
+    <li><a><i class="fa fa-language"></i> {{ __('bipolar.navbar.language') }}</a></li>
     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
       <li>
         <a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
@@ -51,26 +51,33 @@
     <img src="{{ asset('images/cart-white.svg') }}" width="35">
     <span class="cart-number-count-inverse">{{ CartBipolar::count() }}</span>
     <div class="cart-inside-mobile">
-      <ul class="cart-list">
-        @foreach(CartBipolar::content() as $cartDetail)
-        <li>
-          <a href="{{ route('shop.product', $cartDetail->product->slug) }}" class="product-link-cart">
-            <img src="{{ ($cartDetail->product->photos)->first()->url }}" alt="{{ $cartDetail->product->name }}">
-            {{ $cartDetail->product->name }}
-          </a>
-          <span class="quantity">{{ $cartDetail->quantity }} x {{ $cartDetail->total_currency }}</span>
-          <a href="#" class="product-delete-cart"><img src="{{ asset('images/close.svg') }}" width="20" alt="Delete"></a>
-        </li>
-        @endforeach
-      </ul>
-      <div class="total">
-        <strong>Subtotal:</strong>
-        <span class="amount">{{ CartBipolar::totalCurrency() }}</span>
-      </div>
-      <div class="buttons">
-        <a href="{{ route('cart') }}" class="btn btn-dark btn-rounded">Ver carrito</a>
-        <a href="#" class="btn btn-dark btn-rounded">Checkout</a>
-      </div>
+      @if(CartBipolar::count() > 0)
+        <ul class="cart-list">
+          @foreach(CartBipolar::content() as $cartDetail)
+          <li>
+            <a href="{{ route('shop.product', $cartDetail->product->slug) }}" class="product-link-cart">
+              <img src="{{ ($cartDetail->product->photos)->first()->url }}" alt="{{ $cartDetail->product->name }}">
+              {{ $cartDetail->product->name }}
+            </a>
+            <span class="quantity">{{ $cartDetail->quantity }} x {{ $cartDetail->total_currency }}</span>
+            <a href="#" class="product-delete-cart"><img src="{{ asset('images/close.svg') }}" width="20" alt="Delete"></a>
+          </li>
+          @endforeach
+        </ul>
+        <div class="total">
+          <strong>Subtotal:</strong>
+          <span class="amount">{{ CartBipolar::totalCurrency() }}</span>
+        </div>
+        <div class="buttons">
+          <a href="{{ route('cart') }}" class="btn btn-dark btn-rounded">{{ __('bipolar.navbar.see_cart') }}</a>
+          <a href="#" class="btn btn-dark btn-rounded">Checkout</a>
+        </div>
+      @else
+        <div class="empty-cart">
+          <h4 class="text-center text-uppercase">{{ __('bipolar.navbar.empty_cart') }}</h4>
+          <p class="text-center">{{ __('bipolar.navbar.empty_cart_detail') }}</p>
+        </div>
+      @endif
     </div>
   </div>
 </section>
@@ -80,6 +87,5 @@
   <li><a href="{{ route('landings.showroom') }}"><span>Showroom</span></a></li>
   <li><a href="{{ route('shop') }}"><span>Shop</span></a></li>
   <li><a href="#"><span>Newsletter</span></a></li>
-  <li><a href="#"><span>Blog</span></a></li>
-  <li><a href="#"><span>Contact us</span></a></li>
+  <li><a href="{{ route('landings.contacto') }}"><span>{{ __('bipolar.navbar.contact_us') }}</span></a></li>
 </ul>

@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Hashable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\ModelStatus\HasStatuses;
 
 class Buy extends Model
 {
+    use Hashable, HasStatuses;
+
     public function billing_address()
     {
         return $this->belongsTo(Address::class, 'billing_address_id');
@@ -21,26 +25,34 @@ class Buy extends Model
         return $this->hasMany(BuyDetail::class);
     }
 
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function getTotalCurrencyAttribute()
+    public function getSubtotalCurrencyAttribute()
     {
-        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
-            return "S/ " . intval($this->total);
-        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
-            return "$ " . intval($this->total_dolar);
-        }
+        $moneySign = \Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN' ? 'S/' : '$';
+
+        return "{$moneySign} " . intval($this->subtotal);
     }
 
-    public function getTotalSessionAttribute()
+    public function getTotalCurrencyAttribute()
     {
-        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
-            return intval($this->total);
-        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
-            return intval($this->total_dolar);
-        }
+        $moneySign = \Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN' ? 'S/' : '$';
+
+        return "{$moneySign} " . intval($this->total);
+    }
+
+    public function getShippingFeeCurrencyAttribute()
+    {
+        $moneySign = $this->currency === 'PEN' ? 'S/' : '$';
+
+        return "{$moneySign} " . number_format($this->shipping_fee, 2);
     }
 }

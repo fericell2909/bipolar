@@ -152,7 +152,7 @@
     .column_cell h2,
     .column_cell h3,
     .column_cell h4 {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Times New Roman", Helvetica, sans-serif;
     }
 
     .ebtn a,
@@ -242,7 +242,7 @@
     .column_cell a span,
     .column_cell.tp,
     .column_cell .tp {
-      color: #388cda;
+      color: #f8beb6;
     }
 
     .nav_menu {
@@ -577,8 +577,10 @@
       .column_cell h2,
       .column_cell h3,
       .column_cell h4 {
-        font-family: "Lato", sans-serif !important;
-        font-weight: 400 !important;
+        /*font-family: "Lato", sans-serif !important;*/
+        font-family: "Times New Roman", sans-serif !important;
+        font-weight: 400;
+        letter-spacing: .3px;
       }
 
       .ebtn a,
@@ -589,6 +591,7 @@
       .column_cell h3,
       .column_cell h4 {
         font-weight: 700 !important;
+        letter-spacing: .3px;
       }
 
       .column_cell a {
@@ -698,7 +701,7 @@
         <tbody>
         <tr>
           <td>
-            <img src="https://bipolar-peru.s3.amazonaws.com/assets/bipolar-mail-header.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
+            <img src="https://bipolar-peru.s3.amazonaws.com/assets/mails/bipolar-mail-header.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
           </td>
         </tr>
         </tbody>
@@ -718,13 +721,13 @@
       <table role="presentation" class="content_section" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;max-width: 640px;margin: 0 auto;text-align: center;min-width: 0 !important;">
         <tbody>
         <tr>
-          <td class="content_cell content_b tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 8px;padding-right: 8px;background-color: #ffffff;text-align: center;font-size: 0 !important;">
+          <td class="content_cell content_b tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 8px;padding-right: 8px;background-color: #FAD8D3;text-align: center;font-size: 0 !important;">
             <table role="presentation" class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
               <tbody>
               <tr>
                 <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
-                  <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 8px;color: #4d4d4d;font-size: 18px;line-height: 23px;">¿Preguntas?</h3>
-                  <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 24px;">Escríbenos a shop@bipolar.com.pe o llámanos al +51 965.367.385.</p>
+                  <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 18px;line-height: 23px;">¿Preguntas?</h3>
+                  <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">Escríbenos a shop@bipolar.com.pe o llámanos al (+51) 965.367.385.</p>
                 </td>
               </tr>
               </tbody>
@@ -739,14 +742,14 @@
   </tbody>
 </table>
 <!-- Instagram y facebook -->
-<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnFollowBlock" style="min-width:100%;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnFollowBlock" style="min-width:100%">
   <tbody class="mcnFollowBlockOuter">
   <tr>
-    <td align="center" valign="top" style="padding:9px;" class="mcnFollowBlockInner">
-      <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnFollowContentContainer" style="min-width:100%;">
+    <td align="center" valign="top" class="mcnFollowBlockInner">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnFollowContentContainer" style="max-width: 640px; background-color: #ffffff;">
         <tbody>
         <tr>
-          <td align="center" style="padding-left:9px;padding-right:9px;">
+          <td align="center" style="padding: 9px;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;" class="mcnFollowContent">
               <tbody>
               <tr>
@@ -850,7 +853,7 @@
         <tbody>
         <tr>
           <td>
-            <img src="https://bipolar-peru.s3.amazonaws.com/assets/bipolar-mail-footer.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
+            <img src="https://bipolar-peru.s3.amazonaws.com/assets/mails/bipolar-mail-footer.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
           </td>
         </tr>
         </tbody>

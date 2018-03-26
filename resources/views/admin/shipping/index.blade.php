@@ -25,6 +25,7 @@
           </thead>
           <tbody>
             @foreach($shippings as $shipping)
+              <?php /** @var \App\Models\Shipping $shipping */ ?>
               <tr>
                 <td>{{ $shipping->id }}</td>
                 <td>{{ $shipping->title }}</td>

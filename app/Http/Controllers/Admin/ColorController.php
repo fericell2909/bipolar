@@ -64,9 +64,12 @@ class ColorController extends Controller
     {
         $color = Color::findByHash($colorHashId);
 
-        // todo: check if color has products
-
-        $color->delete();
+        $color->products()->sync([]);
+        try {
+            $color->delete();
+        } catch (\Exception $e) {
+            flash()->error('No se pudo eliminar');
+        }
 
         flash()->success('Eliminado correctamente');
 

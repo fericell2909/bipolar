@@ -22,7 +22,7 @@
               <tr>
                 <td>{{ $detail->product->name }}</td>
                 <td>{{ $detail->quantity }}</td>
-                <td>S/ {{ $detail->total }} | $ {{ $detail->total_dolar }}</td>
+                <td>{{ $detail->total }} {{ $detail->buy->currency }}</td>
               </tr>
             @endforeach
           </tbody>

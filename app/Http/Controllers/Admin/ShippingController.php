@@ -16,7 +16,12 @@ class ShippingController extends Controller
 {
     public function index()
     {
-        $shippings = Shipping::orderByDesc('id')->with('includes.country', 'excludes')->get();
+        $shippings = Shipping::orderByDesc('id')->with([
+            'includes.country',
+            'includes.country_state.country',
+            'excludes.country',
+            'excludes.country_state.country',
+        ])->get();
 
         return view('admin.shipping.index', compact('shippings'));
     }
@@ -48,7 +53,7 @@ class ShippingController extends Controller
         $shipping->active = false;
         $shipping->save();
 
-        if ($request->get('all_countries') === 1) {
+        if ($request->filled('all_countries')) {
             $includeCountry = new ShippingInclude;
             $includeCountry->all_countries = true;
             $includeCountry->save();
@@ -142,7 +147,7 @@ class ShippingController extends Controller
         $shipping->title = $request->input('title');
         $shipping->save();
 
-        if ($request->get('all_countries') === 1) {
+        if ($request->filled('all_countries')) {
             $hasAllWorldSelected = $shipping->includes->contains(function ($shippingInclude) {
                 return boolval($shippingInclude->all_countries) === true;
             });
@@ -191,19 +196,32 @@ class ShippingController extends Controller
 
     public function updatePriceShipping(ShippingEditPriceRequest $request, $shippingId)
     {
+        /** @var Shipping $shipping */
         $shipping = Shipping::findOrFail($shippingId);
         $shipping->g200 = $request->input('g200');
+        $shipping->g200_dolar = $request->input('g200_dolar');
         $shipping->g500 = $request->input('g500');
+        $shipping->g500_dolar = $request->input('g500_dolar');
         $shipping->kg1 = $request->input('kg1');
+        $shipping->kg1_dolar = $request->input('kg1_dolar');
         $shipping->kg2 = $request->input('kg2');
+        $shipping->kg2_dolar = $request->input('kg2_dolar');
         $shipping->kg3 = $request->input('kg3');
+        $shipping->kg3_dolar = $request->input('kg3_dolar');
         $shipping->kg4 = $request->input('kg4');
+        $shipping->kg4_dolar = $request->input('kg4_dolar');
         $shipping->kg5 = $request->input('kg5');
+        $shipping->kg5_dolar = $request->input('kg5_dolar');
         $shipping->kg6 = $request->input('kg6');
+        $shipping->kg6_dolar = $request->input('kg6_dolar');
         $shipping->kg7 = $request->input('kg7');
+        $shipping->kg7_dolar = $request->input('kg7_dolar');
         $shipping->kg8 = $request->input('kg8');
+        $shipping->kg8_dolar = $request->input('kg8_dolar');
         $shipping->kg9 = $request->input('kg9');
+        $shipping->kg9_dolar = $request->input('kg9_dolar');
         $shipping->kg10 = $request->input('kg10');
+        $shipping->kg10_dolar = $request->input('kg10_dolar');
         $shipping->save();
 
         return redirect()->route('settings.shipping.index');

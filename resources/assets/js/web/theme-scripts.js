@@ -37,21 +37,36 @@ $(function () {
   // Scroll header function
   $(function () {
     $(document).scroll(function () {
-      let $transparentHeader = $('.bipolar-header-desktop');
-      let $grandHeader = $(".bipolar-grand-header");
-      let $grandHeaderAlternate = $('.bipolar-alternate-grand-header');
-      let isLongScroll = $(this).scrollTop() > $grandHeader.height();
-      let homeIsLongScroll = $(this).scrollTop() > $transparentHeader.height();
+      const $transparentHeader = $('.bipolar-header-desktop');
+      const $grandHeader = $(".bipolar-grand-header");
+      const $bipolarNavigation = $grandHeader.children('.bipolar-navigation');
+      const $container = $bipolarNavigation.children('.container');
+      const $logoInHeader = $container.find('.bipolar-logo');
+      //let $grandHeaderAlternate = $('.bipolar-alternate-grand-header');
+      const isLongScroll = $(this).scrollTop() > $grandHeader.height();
+      const homeIsLongScroll = $(this).scrollTop() > $transparentHeader.height();
       if (isLongScroll === true || homeIsLongScroll === true) {
         $transparentHeader.addClass('hidden');
-        $grandHeader.addClass('hidden');
-        $grandHeaderAlternate.removeClass('hidden');
+        $grandHeader.addClass('bipolar-grand-header-hidden');
+        $logoInHeader.removeClass('hidden');
+        $container.removeClass('resized-container');
+        $bipolarNavigation.addClass('has-shadow').addClass('has-background');
+        //$grandHeaderAlternate.removeClass('hidden');
       } else {
         $transparentHeader.removeClass('hidden');
-        $grandHeader.removeClass('hidden');
-        $grandHeaderAlternate.addClass('hidden');
+        $grandHeader.removeClass('bipolar-grand-header-hidden');
+        $logoInHeader.addClass('hidden');
+        $container.addClass('resized-container');
+        $bipolarNavigation.removeClass('has-shadow').removeClass('has-background');
+        //$grandHeaderAlternate.addClass('hidden');
       }
     });
+  });
+
+  $('.bipolar-item').hover(function () {
+    $(this).children('a').children('.the-line').addClass('is-active');
+  }, function () {
+    $(this).children('a').children('.the-line').removeClass('is-active');
   });
 
   // Bootstrap tooltip

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Newsletter;
+use App\Mail\NewsletterSuscribed;
 
 class NewsletterController extends Controller
 {
@@ -15,9 +16,13 @@ class NewsletterController extends Controller
             'name'  => 'required|between:1,255',
         ]);
 
-        Newsletter::subscribeOrUpdate($request->input('email'), ['firstName' => $request->input('name')]);
+        $name = $request->input('name');
 
-        flash()->success('Gracias por registrarte a nuestro newsletter. Esperemos disfrutes de las promociones');
+        Newsletter::subscribeOrUpdate($request->input('email'), ['firstName' => $name]);
+
+        \Mail::to($request->input('email'))->send(new NewsletterSuscribed($name));
+
+        //flash()->success('Gracias por registrarte a nuestro newsletter. Esperemos disfrutes de las promociones');
 
         return redirect()->back();
     }

@@ -16,7 +16,6 @@
 </head>
 <body>
     @include('web.partials.main-bar', ['background' => true])
-    @include('web.partials.alternate_bar')
     @include('web.partials.mobile-bar')
     <div class="bipolar-the-content">
         @yield('content')
