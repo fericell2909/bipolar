@@ -26,6 +26,7 @@
                         <h1 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 8px;color: #4d4d4d;font-size: 26px;line-height: 34px;">
                           GRACIAS {{ strtoupper($name) }} <br> POR SUSCRIBIRTE A NUESTRO NEWSLETTER
                         </h1>
+                        <h5 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 8px;color: #4d4d4d;font-size: 15px;line-height: 30px;">Si deseas desuscribirte de nuestra lista puedes hacerlo desde <a href="https://bipolar.us12.list-manage.com/unsubscribe?u=d616f5c8cc9cff44a6ae9337a&id=914e120268">aquí</a>.</h5>
                       </td>
                     </tr>
                   </tbody>
