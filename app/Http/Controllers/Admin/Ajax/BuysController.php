@@ -15,7 +15,9 @@ class BuysController extends Controller
         $buy = Buy::findOrFail($buyId);
         $buy->setStatus(config('constants.BUY_SENT_STATUS'), "Cambiando por {$request->user()->email} el " . date('d-m-Y'));
 
-        \Mail::to($buy->user->email)->send(new BuySent($buy));
+        if (boolval($buy->showroom) === false) {
+            \Mail::to($buy->user->email)->send(new BuySent($buy));
+        }
 
         return response()->json(['success' => true]);
     }
