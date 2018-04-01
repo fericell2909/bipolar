@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.34 on 2018-02-20 19:01:03.
+ * Generated for Laravel 5.5.34 on 2018-04-01 16:16:02.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -14518,6 +14518,16 @@ namespace Facades\App\Instances {
         public static function destroy()
         {
             return \App\Instances\CartBipolar::destroy();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getTotalBySessionCurrency()
+        {
+            return \App\Instances\CartBipolar::getTotalBySessionCurrency();
         }
          
     }
