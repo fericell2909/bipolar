@@ -500,6 +500,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Buy[] $buys
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Cart[] $carts
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Wishlist[] $wishlists
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereBirthdayDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
