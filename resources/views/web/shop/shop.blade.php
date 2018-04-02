@@ -165,7 +165,7 @@
                     @endforeach
                   </div>
                   <p class="text-right" style="margin-top:10px;">
-                    <a href="{{ route('shop.product', $salient->slug) }}" class="btn btn-dark btn-rounded">Ver más</a>
+                    <a href="{{ route('shop.product', $product->slug) }}" class="btn btn-dark btn-rounded">Ver más</a>
                   </p>
                 </div>
               @endif
