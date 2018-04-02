@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'contacto@bipolar.com.pe'),
+        'address' => env('MAIL_FROM_ADDRESS', 'shop@bipolar.com.pe'),
         'name' => env('MAIL_FROM_NAME', 'Bipolar'),
     ],
 
