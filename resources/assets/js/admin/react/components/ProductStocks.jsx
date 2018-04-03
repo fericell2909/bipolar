@@ -4,27 +4,30 @@ import axios from 'axios';
 import StockRow from './StockRow';
 
 class BipolarProductStocks extends React.Component {
+
+  state = {
+    stocks: [],
+    stocksBsale: [],
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      stocks: [],
-      stocksBsale: [
-        {id: 1, name: 'Papas'},
-        {id: 2, name: 'Camotes'},
-        {id: 3, name: 'Yucas'},
-      ],
-    };
   }
 
-  saveStockData = stockId => {
-    return console.log(`Presionado ${stockId}`);
+  onUpdateStock = () => {
+    return this.getStocksByProduct().then(response => {
+      return this.setState({stocks: response.data.data});
+    })
+  };
+
+  getStocksByProduct = () => {
+    return axios.get(`/ajax-admin/products/${this.props.productHashId}/stocks`);
   };
 
   componentDidMount() {
     const getBsaleStocks = axios.get('/ajax-admin/bsale/products');
-    const getStocksByProduct = axios.get(`/ajax-admin/products/${this.props.productHashId}/stocks`);
 
-    axios.all([getBsaleStocks, getStocksByProduct])
+    axios.all([getBsaleStocks, this.getStocksByProduct()])
       .then(axios.spread((responseBsale, responseStocks) => {
         this.setState({
           stocksBsale: responseBsale.data,
@@ -38,8 +41,8 @@ class BipolarProductStocks extends React.Component {
       this.state.stocks.map(stock => {
         return <StockRow key={stock['id']}
                          stock={stock}
-                         stocksBsale={this.state.stocksBsale}
-                         saveStock={this.saveStockData}/>;
+                         onUpdate={this.onUpdateStock}
+                         stocksBsale={this.state.stocksBsale}/>;
       }) :
       <tr>
         <td colSpan={3}>No hay stocks</td>

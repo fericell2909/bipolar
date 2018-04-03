@@ -33,6 +33,8 @@ Route::prefix('products')->group(function () {
     Route::get('{productHashId}/stocks', 'Admin\Ajax\ProductController@stocks');
 });
 
+Route::post('stocks/{stockId}', 'Admin\Ajax\ProductController@updateStock');
+
 Route::prefix('home-posts')->group(function () {
     Route::post('order', 'Admin\Ajax\HomePostController@order');
     Route::post('{hashId}/photos', 'Admin\Ajax\PhotoController@homePostUpload')->name('homepost.photo.upload');

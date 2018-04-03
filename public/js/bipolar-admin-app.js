@@ -71172,14 +71172,21 @@ var BipolarProductStocks = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (BipolarProductStocks.__proto__ || Object.getPrototypeOf(BipolarProductStocks)).call(this, props));
 
-    _this.saveStockData = function (stockId) {
-      return console.log('Presionado ' + stockId);
-    };
-
     _this.state = {
       stocks: [],
-      stocksBsale: [{ id: 1, name: 'Papas' }, { id: 2, name: 'Camotes' }, { id: 3, name: 'Yucas' }]
+      stocksBsale: []
     };
+
+    _this.onUpdateStock = function () {
+      return _this.getStocksByProduct().then(function (response) {
+        return _this.setState({ stocks: response.data.data });
+      });
+    };
+
+    _this.getStocksByProduct = function () {
+      return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/products/' + _this.props.productHashId + '/stocks');
+    };
+
     return _this;
   }
 
@@ -71189,9 +71196,8 @@ var BipolarProductStocks = function (_React$Component) {
       var _this2 = this;
 
       var getBsaleStocks = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/bsale/products');
-      var getStocksByProduct = __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/ajax-admin/products/' + this.props.productHashId + '/stocks');
 
-      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.all([getBsaleStocks, getStocksByProduct]).then(__WEBPACK_IMPORTED_MODULE_2_axios___default.a.spread(function (responseBsale, responseStocks) {
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.all([getBsaleStocks, this.getStocksByProduct()]).then(__WEBPACK_IMPORTED_MODULE_2_axios___default.a.spread(function (responseBsale, responseStocks) {
         _this2.setState({
           stocksBsale: responseBsale.data,
           stocks: responseStocks.data.data
@@ -71206,8 +71212,8 @@ var BipolarProductStocks = function (_React$Component) {
       var stocks = this.state.stocks.length ? this.state.stocks.map(function (stock) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__StockRow__["a" /* default */], { key: stock['id'],
           stock: stock,
-          stocksBsale: _this3.state.stocksBsale,
-          saveStock: _this3.saveStockData });
+          onUpdate: _this3.onUpdateStock,
+          stocksBsale: _this3.state.stocksBsale });
       }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { colSpan: 3 }, 'No hay stocks'));
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('table', { className: 'table table-responsive' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('thead', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, '#'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', { className: 'text-center' }, 'Talla'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Cantidad'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Producto en Bsale'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Acciones'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tbody', null, stocks));
@@ -71232,6 +71238,8 @@ if (document.getElementById('bipolar-product-stocks')) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_autocomplete__ = __webpack_require__("./node_modules/react-autocomplete/build/lib/Autocomplete.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_autocomplete___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_autocomplete__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__("./node_modules/axios/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () {
@@ -71275,6 +71283,7 @@ function _inherits(subClass, superClass) {
 
 
 
+
 var StockRow = function (_React$Component) {
   _inherits(StockRow, _React$Component);
 
@@ -71286,6 +71295,7 @@ var StockRow = function (_React$Component) {
     _this.state = {
       copyBsaleStocks: [],
       selectedBsaleStock: 0,
+      selectedBsaleQuantity: 0,
       selectedBsaleStockText: ''
     };
     _this.stylesSelected = {
@@ -71324,7 +71334,8 @@ var StockRow = function (_React$Component) {
 
     _this.onSelectStock = function (nameStock, item) {
       _this.setState({
-        selectedBsaleStock: item.id,
+        selectedBsaleStock: item['id'],
+        selectedBsaleQuantity: item['quantity'],
         selectedBsaleStockText: nameStock
       });
     };
@@ -71335,6 +71346,21 @@ var StockRow = function (_React$Component) {
 
     _this.renderAutocomplete = function (item, isHighlighted) {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { key: item.id, style: isHighlighted ? _this.stylesSelected : _this.stylesUnselected }, item.text);
+    };
+
+    _this.saveStockData = function () {
+      if (_this.state.selectedBsaleStock === 0) {
+        return alert('No ha seleccionado ningun stock');
+      }
+
+      var params = {
+        bsaleStockId: _this.state.selectedBsaleStock,
+        quantity: _this.state.selectedBsaleQuantity
+      };
+
+      return __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/ajax-admin/stocks/' + _this.props.stock['id'], params).then(function () {
+        return _this.props.onUpdate();
+      });
     };
 
     return _this;
@@ -71348,8 +71374,6 @@ var StockRow = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       var stock = this.props.stock;
       var selectedBsaleText = this.state.selectedBsaleStockText;
 
@@ -71359,9 +71383,7 @@ var StockRow = function (_React$Component) {
         renderItem: this.renderAutocomplete,
         getItemValue: this.getItemValue,
         onChange: this.onChangeText,
-        onSelect: this.onSelectStock })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { onClick: function onClick() {
-          return _this2.props.saveStock(stock['id']);
-        }, className: 'btn btn-dark btn-rounded btn-sm' }, 'Guardar')));
+        onSelect: this.onSelectStock })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { onClick: this.saveStockData, className: 'btn btn-dark btn-rounded btn-sm' }, 'Guardar')));
     }
   }]);
 

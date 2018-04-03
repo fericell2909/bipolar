@@ -202,7 +202,7 @@ class ProductController extends Controller
     public function deletesoft($productHashId)
     {
         $product = Product::findByHash($productHashId);
-        
+
         $product->delete();
 
         return response()->json(['success' => true]);
@@ -247,10 +247,18 @@ class ProductController extends Controller
         $products = Product::findByManyHash($request->input('products'));
 
         switch ($stateOption) {
-            case "draft": $state = State::find(1); break;
-            case "pending": $state = State::find(2); break;
-            case "published": $state = State::find(3); break;
-            default: $state = State::first(); break;
+            case "draft":
+                $state = State::find(1);
+                break;
+            case "pending":
+                $state = State::find(2);
+                break;
+            case "published":
+                $state = State::find(3);
+                break;
+            default:
+                $state = State::first();
+                break;
         }
 
         $products->each(function ($product) use ($state) {
@@ -301,5 +309,21 @@ class ProductController extends Controller
         $product = Product::findByHash($productHashId);
 
         return AdminStockResource::collection($product->stocks);
+    }
+
+    public function updateStock(Request $request, $stockId)
+    {
+        $this->validate($request, [
+            'bsaleStockId' => 'required',
+            'quantity'     => 'required',
+        ]);
+
+        /** @var Stock $productStock */
+        $productStock = Stock::findOrFail($stockId);
+        $productStock->bsale_stock_id = $request->input('bsaleStockId');
+        $productStock->quantity = $request->input('quantity');
+        $productStock->save();
+
+        return new AdminStockResource($productStock);
     }
 }

@@ -1,11 +1,13 @@
 import React from 'react';
 import Autocomplete from 'react-autocomplete';
+import axios from 'axios';
 
 class StockRow extends React.Component {
 
   state = {
     copyBsaleStocks: [],
     selectedBsaleStock: 0,
+    selectedBsaleQuantity: 0,
     selectedBsaleStockText: '',
   };
   stylesSelected = {
@@ -48,7 +50,8 @@ class StockRow extends React.Component {
 
   onSelectStock = (nameStock, item) => {
     this.setState({
-      selectedBsaleStock: item.id,
+      selectedBsaleStock: item['id'],
+      selectedBsaleQuantity: item['quantity'],
       selectedBsaleStockText: nameStock,
     });
   };
@@ -61,6 +64,20 @@ class StockRow extends React.Component {
         {item.text}
       </div>
     );
+  };
+
+  saveStockData = () => {
+    if (this.state.selectedBsaleStock === 0) {
+      return alert('No ha seleccionado ningun stock');
+    }
+
+    const params = {
+      bsaleStockId: this.state.selectedBsaleStock,
+      quantity: this.state.selectedBsaleQuantity,
+    };
+
+    return axios.post(`/ajax-admin/stocks/${this.props.stock['id']}`, params)
+      .then(() => this.props.onUpdate());
   };
 
   componentDidMount() {
@@ -88,7 +105,9 @@ class StockRow extends React.Component {
             onSelect={this.onSelectStock}/>
         </td>
         <td>
-          <button onClick={() => this.props.saveStock(stock['id'])} className="btn btn-dark btn-rounded btn-sm">Guardar</button>
+          <button onClick={this.saveStockData} className="btn btn-dark btn-rounded btn-sm">
+            Guardar
+          </button>
         </td>
       </tr>
     );
