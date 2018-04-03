@@ -54,7 +54,7 @@ class BipolarProductStocks extends React.Component {
         <tr>
           <th>#</th>
           <th className="text-center">Talla</th>
-          <th>Cantidad</th>
+          <th className="text-center">Cantidad</th>
           <th>Producto en Bsale</th>
           <th>Acciones</th>
         </tr>

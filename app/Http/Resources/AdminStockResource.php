@@ -19,9 +19,10 @@ class AdminStockResource extends Resource
         $stock = $this;
 
         return [
-            'id'        => $stock->id,
-            'size_name' => $stock->size->name ?? '--',
-            'quantity'  => $stock->quantity,
+            'id'             => $stock->id,
+            'bsale_stock_id' => $stock->bsale_stock_id,
+            'size_name'      => $stock->size->name ?? '--',
+            'quantity'       => $stock->quantity,
         ];
     }
 }

@@ -10,17 +10,25 @@ class StockRow extends React.Component {
     selectedBsaleQuantity: 0,
     selectedBsaleStockText: '',
   };
-  stylesSelected = {
-    background: 'black',
-    color: 'white',
-    cursor: 'pointer',
-    padding: '10px',
-  };
-  stylesUnselected = {
-    background: 'white',
-    color: 'black',
-    cursor: 'pointer',
-    padding: '10px',
+  styles = {
+    selected: {
+      background: 'black',
+      color: 'white',
+      cursor: 'pointer',
+      padding: '10px',
+    },
+    unselected: {
+      background: 'white',
+      color: 'black',
+      cursor: 'pointer',
+      padding: '10px',
+    },
+    wrapperAutocomplete: {
+      width: 500,
+    },
+    inputAutocomplete: {
+      width: '100%',
+    },
   };
 
   constructor(props) {
@@ -60,7 +68,7 @@ class StockRow extends React.Component {
 
   renderAutocomplete = (item, isHighlighted) => {
     return (
-      <div key={item.id} style={isHighlighted ? this.stylesSelected : this.stylesUnselected}>
+      <div key={item.id} style={isHighlighted ? this.styles.selected : this.styles.unselected}>
         {item.text}
       </div>
     );
@@ -82,6 +90,17 @@ class StockRow extends React.Component {
 
   componentDidMount() {
     this.setState({copyBsaleStocks: [...this.props.stocksBsale]});
+
+    if (this.props.stock['bsale_stock_id'] !== null) {
+      const filtered = this.props.stocksBsale.filter(stock => {
+        return stock.id === this.props.stock['bsale_stock_id'];
+      });
+
+      this.setState({
+        copyBsaleStocks: filtered,
+        selectedBsaleStockText: filtered[0]['text'],
+      });
+    }
   }
 
   render() {
@@ -92,9 +111,7 @@ class StockRow extends React.Component {
       <tr>
         <td>{stock['id']}</td>
         <td className="text-center">{stock['size_name']}</td>
-        <td>
-          <input type="number" value={stock['quantity']} readOnly/>
-        </td>
+        <td className="text-center">{stock['quantity']}</td>
         <td>
           <Autocomplete
             value={selectedBsaleText}
@@ -102,7 +119,9 @@ class StockRow extends React.Component {
             renderItem={this.renderAutocomplete}
             getItemValue={this.getItemValue}
             onChange={this.onChangeText}
-            onSelect={this.onSelectStock}/>
+            onSelect={this.onSelectStock}
+            inputProps={{style: this.styles.inputAutocomplete}}
+            wrapperStyle={this.styles.wrapperAutocomplete}/>
         </td>
         <td>
           <button onClick={this.saveStockData} className="btn btn-dark btn-rounded btn-sm">

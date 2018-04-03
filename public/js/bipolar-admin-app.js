@@ -71216,7 +71216,7 @@ var BipolarProductStocks = function (_React$Component) {
           stocksBsale: _this3.state.stocksBsale });
       }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { colSpan: 3 }, 'No hay stocks'));
 
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('table', { className: 'table table-responsive' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('thead', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, '#'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', { className: 'text-center' }, 'Talla'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Cantidad'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Producto en Bsale'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Acciones'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tbody', null, stocks));
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('table', { className: 'table table-responsive' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('thead', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, '#'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', { className: 'text-center' }, 'Talla'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', { className: 'text-center' }, 'Cantidad'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Producto en Bsale'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Acciones'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tbody', null, stocks));
     }
   }]);
 
@@ -71298,17 +71298,25 @@ var StockRow = function (_React$Component) {
       selectedBsaleQuantity: 0,
       selectedBsaleStockText: ''
     };
-    _this.stylesSelected = {
-      background: 'black',
-      color: 'white',
-      cursor: 'pointer',
-      padding: '10px'
-    };
-    _this.stylesUnselected = {
-      background: 'white',
-      color: 'black',
-      cursor: 'pointer',
-      padding: '10px'
+    _this.styles = {
+      selected: {
+        background: 'black',
+        color: 'white',
+        cursor: 'pointer',
+        padding: '10px'
+      },
+      unselected: {
+        background: 'white',
+        color: 'black',
+        cursor: 'pointer',
+        padding: '10px'
+      },
+      wrapperAutocomplete: {
+        width: 500
+      },
+      inputAutocomplete: {
+        width: '100%'
+      }
     };
 
     _this.onChangeText = function (event, value) {
@@ -71345,7 +71353,7 @@ var StockRow = function (_React$Component) {
     };
 
     _this.renderAutocomplete = function (item, isHighlighted) {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { key: item.id, style: isHighlighted ? _this.stylesSelected : _this.stylesUnselected }, item.text);
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { key: item.id, style: isHighlighted ? _this.styles.selected : _this.styles.unselected }, item.text);
     };
 
     _this.saveStockData = function () {
@@ -71369,7 +71377,20 @@ var StockRow = function (_React$Component) {
   _createClass(StockRow, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      var _this2 = this;
+
       this.setState({ copyBsaleStocks: [].concat(_toConsumableArray(this.props.stocksBsale)) });
+
+      if (this.props.stock['bsale_stock_id'] !== null) {
+        var filtered = this.props.stocksBsale.filter(function (stock) {
+          return stock.id === _this2.props.stock['bsale_stock_id'];
+        });
+
+        this.setState({
+          copyBsaleStocks: filtered,
+          selectedBsaleStockText: filtered[0]['text']
+        });
+      }
     }
   }, {
     key: 'render',
@@ -71377,13 +71398,15 @@ var StockRow = function (_React$Component) {
       var stock = this.props.stock;
       var selectedBsaleText = this.state.selectedBsaleStockText;
 
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, stock['id']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { className: 'text-center' }, stock['size_name']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'number', value: stock['quantity'], readOnly: true })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_autocomplete___default.a, {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, stock['id']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { className: 'text-center' }, stock['size_name']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { className: 'text-center' }, stock['quantity']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_autocomplete___default.a, {
         value: selectedBsaleText,
         items: this.state.copyBsaleStocks,
         renderItem: this.renderAutocomplete,
         getItemValue: this.getItemValue,
         onChange: this.onChangeText,
-        onSelect: this.onSelectStock })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { onClick: this.saveStockData, className: 'btn btn-dark btn-rounded btn-sm' }, 'Guardar')));
+        onSelect: this.onSelectStock,
+        inputProps: { style: this.styles.inputAutocomplete },
+        wrapperStyle: this.styles.wrapperAutocomplete })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { onClick: this.saveStockData, className: 'btn btn-dark btn-rounded btn-sm' }, 'Guardar')));
     }
   }]);
 
