@@ -71216,7 +71216,7 @@ var BipolarProductStocks = function (_React$Component) {
           stocksBsale: _this3.state.stocksBsale });
       }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { colSpan: 3 }, 'No hay stocks'));
 
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('table', { className: 'table table-responsive' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('thead', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, '#'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', { className: 'text-center' }, 'Talla'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', { className: 'text-center' }, 'Cantidad'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Producto en Bsale'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Acciones'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tbody', null, stocks));
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'table-responsive' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('table', { className: 'table' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('thead', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, '#'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', { className: 'text-center' }, 'Talla'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', { className: 'text-center' }, 'Cantidad'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Producto en Bsale'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Acciones'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tbody', null, stocks)));
     }
   }]);
 
@@ -71312,7 +71312,7 @@ var StockRow = function (_React$Component) {
         padding: '10px'
       },
       wrapperAutocomplete: {
-        width: 500
+        width: '100%'
       },
       inputAutocomplete: {
         width: '100%'
@@ -71405,7 +71405,7 @@ var StockRow = function (_React$Component) {
         getItemValue: this.getItemValue,
         onChange: this.onChangeText,
         onSelect: this.onSelectStock,
-        inputProps: { style: this.styles.inputAutocomplete },
+        inputProps: { className: 'form-control', style: this.styles.inputAutocomplete },
         wrapperStyle: this.styles.wrapperAutocomplete })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { onClick: this.saveStockData, className: 'btn btn-dark btn-rounded btn-sm' }, 'Guardar')));
     }
   }]);

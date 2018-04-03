@@ -24,7 +24,7 @@ class StockRow extends React.Component {
       padding: '10px',
     },
     wrapperAutocomplete: {
-      width: 500,
+      width: '100%',
     },
     inputAutocomplete: {
       width: '100%',
@@ -120,7 +120,7 @@ class StockRow extends React.Component {
             getItemValue={this.getItemValue}
             onChange={this.onChangeText}
             onSelect={this.onSelectStock}
-            inputProps={{style: this.styles.inputAutocomplete}}
+            inputProps={{className: 'form-control', style: this.styles.inputAutocomplete}}
             wrapperStyle={this.styles.wrapperAutocomplete}/>
         </td>
         <td>

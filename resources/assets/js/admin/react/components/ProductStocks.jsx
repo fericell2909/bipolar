@@ -49,20 +49,22 @@ class BipolarProductStocks extends React.Component {
       </tr>;
 
     return (
-      <table className="table table-responsive">
-        <thead>
-        <tr>
-          <th>#</th>
-          <th className="text-center">Talla</th>
-          <th className="text-center">Cantidad</th>
-          <th>Producto en Bsale</th>
-          <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        {stocks}
-        </tbody>
-      </table>
+      <div className="table-responsive">
+        <table className="table">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th className="text-center">Talla</th>
+            <th className="text-center">Cantidad</th>
+            <th>Producto en Bsale</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          {stocks}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
