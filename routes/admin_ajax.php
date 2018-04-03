@@ -10,6 +10,10 @@ Route::get('types', 'Admin\Ajax\TypeController@index');
 Route::get('states', 'Admin\Ajax\StateController@index');
 Route::get('search/products', 'Admin\Ajax\ProductController@search');
 
+Route::prefix('bsale')->group(function () {
+    Route::get('products', 'Admin\BsaleController@products');
+});
+
 Route::prefix('products')->group(function () {
     Route::get('/', 'Admin\Ajax\ProductController@get');
     Route::post('/', 'Admin\Ajax\ProductController@store');
@@ -26,6 +30,7 @@ Route::prefix('products')->group(function () {
     Route::post('{productHashId}/photo/upload', 'Admin\Ajax\PhotoController@productUpload')->name('products.photo.upload');
     Route::post('photos/order', 'Admin\Ajax\PhotoController@orderPhotos');
     Route::delete('remove/{productId}', 'Admin\Ajax\ProductController@deletesoft');
+    Route::get('{productHashId}/stocks', 'Admin\Ajax\ProductController@stocks');
 });
 
 Route::prefix('home-posts')->group(function () {

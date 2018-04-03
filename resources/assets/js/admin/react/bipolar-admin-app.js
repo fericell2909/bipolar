@@ -18,3 +18,4 @@ require('./components/ProductActivations');
 require('./components/ProductNew');
 require('./components/ProductEdit');
 require('./components/ProductList');
+require('./components/ProductStocks');

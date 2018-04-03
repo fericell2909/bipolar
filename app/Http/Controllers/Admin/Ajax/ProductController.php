@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin\Ajax;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductNewRequest;
+use App\Http\Resources\AdminStockResource;
 use App\Models\Color;
-use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Settings;
 use App\Models\Size;
@@ -294,5 +294,12 @@ class ProductController extends Controller
         }
 
         return response()->json(['success' => true]);
+    }
+
+    public function stocks($productHashId)
+    {
+        $product = Product::findByHash($productHashId);
+
+        return AdminStockResource::collection($product->stocks);
     }
 }

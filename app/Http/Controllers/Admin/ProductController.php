@@ -150,23 +150,6 @@ class ProductController extends Controller
     {
         $product = Product::findBySlugOrFail($productSlug);
 
-        $product->load('stocks.size');
-
         return view('admin.products.stocks', compact('product'));
-    }
-
-    public function stockSave(Request $request, $stockId)
-    {
-        $this->validate($request, ['quantity' => 'required|numeric|between:1,1000']);
-
-        /** @var Stock $stock */
-        $stock = Stock::findOrFail($stockId);
-
-        $stock->quantity = $request->input('quantity');
-        $stock->save();
-
-        flash()->success('Se guardó con éxito');
-
-        return redirect()->back();
     }
 }
