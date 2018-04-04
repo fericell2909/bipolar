@@ -20,6 +20,7 @@ class BsaleController extends Controller
         $response = Zttp::withHeaders(['access_token' => $this->token])
             ->get('https://api.bsale.cl/v1/stocks.json', [
                 'expand' => 'office,variant.product',
+                'limit' => 100000000,
             ]);
 
         if (!$response->isSuccess()) {
