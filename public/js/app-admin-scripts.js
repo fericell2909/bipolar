@@ -57,10 +57,10 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -81,7 +81,7 @@
 /***/ "./node_modules/css-loader/index.js!./node_modules/switchery/switchery.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -190,10 +190,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 (function (root, factory) {
     if (true) {
         // AMD. Make globaly available as well
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__("./node_modules/moment/moment.js"), __webpack_require__("./node_modules/daterangepicker/node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_RESULT__ = function (moment, jquery) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__("./node_modules/moment/moment.js"), __webpack_require__("./node_modules/daterangepicker/node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (moment, jquery) {
             if (!jquery.fn) jquery.fn = {}; // webpack server rendering
             return factory(moment, jquery);
-        }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+        }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
     } else if (typeof module === 'object' && module.exports) {
         // Node / Browserify
@@ -12053,9 +12053,9 @@ jQuery.nodeName = nodeName;
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 
 if ( true ) {
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function() {
 		return jQuery;
-	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+	}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 }
 
@@ -26434,9 +26434,9 @@ jQuery.isNumeric = function( obj ) {
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 
 if ( true ) {
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function() {
 		return jQuery;
-	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+	}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 }
 
@@ -56738,7 +56738,13 @@ $(function () {
 /***/ "./resources/assets/js/admin/plugins/bootstrap-extension.min.js":
 /***/ (function(module, exports) {
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+};
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -56752,9 +56758,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  */
 if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requires jQuery");+function (t) {
   "use strict";
+
   var e = t.fn.jquery.split(" ")[0].split(".");if (e[0] < 2 && e[1] < 9 || 1 == e[0] && 9 == e[1] && e[2] < 1 || e[0] > 3) throw new Error("Bootstrap's JavaScript requires jQuery version 1.9.1 or higher, but lower than version 4");
 }(jQuery), +function (t) {
   "use strict";
+
   function e(e) {
     return this.each(function () {
       var i = t(this),
@@ -56773,6 +56781,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   }, t(document).on("click.bs.alert.data-api", i, s.prototype.close);
 }(jQuery), +function (t) {
   "use strict";
+
   function e(e) {
     return this.each(function () {
       var s = t(this),
@@ -56802,6 +56811,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   });
 }(jQuery), +function (t) {
   "use strict";
+
   function e(e) {
     return this.each(function () {
       var s = t(this),
@@ -56868,6 +56878,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   });
 }(jQuery), +function (t) {
   "use strict";
+
   function e(e) {
     var i = e.attr("data-target");i || (i = e.attr("href"), i = i && /#[A-Za-z]/.test(i) && i.replace(/.*(?=#[^\s]*$)/, ""));var s = i && t(i);return s && s.length ? s : e.parent();
   }function i(i) {
@@ -56909,6 +56920,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   }).on("click.bs.dropdown.data-api", o, a.prototype.toggle).on("keydown.bs.dropdown.data-api", o, a.prototype.keydown).on("keydown.bs.dropdown.data-api", ".dropdown-menu", a.prototype.keydown);
 }(jQuery), +function (t) {
   "use strict";
+
   function e(e, s) {
     return this.each(function () {
       var n = t(this),
@@ -56991,6 +57003,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   });
 }(jQuery), +function (t) {
   "use strict";
+
   function e(e) {
     return this.each(function () {
       var s = t(this),
@@ -57022,6 +57035,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   };t(document).on("click.bs.tab.data-api", '[data-toggle="tab"]', n).on("click.bs.tab.data-api", '[data-toggle="pill"]', n);
 }(jQuery), +function (t) {
   "use strict";
+
   function e(e) {
     return this.each(function () {
       var s = t(this),
@@ -57062,6 +57076,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   });
 }(jQuery), +function (t) {
   "use strict";
+
   function e(e) {
     var i,
         s = e.attr("data-target") || (i = e.attr("href")) && i.replace(/.*(?=#[^\s]+$)/, "");return t(s);
@@ -57111,6 +57126,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   });
 }(jQuery), +function (t) {
   "use strict";
+
   function e(i, s) {
     this.$body = t(document.body), this.$scrollElement = t(t(i).is(document.body) ? window : i), this.options = t.extend({}, e.DEFAULTS, s), this.selector = (this.options.target || "") + " .nav li > a", this.offsets = [], this.targets = [], this.activeTarget = null, this.scrollHeight = 0, this.$scrollElement.on("scroll.bs.scrollspy", t.proxy(this.process, this)), this.refresh(), this.process();
   }function i(i) {
@@ -57157,6 +57173,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   });
 }(jQuery), +function (t) {
   "use strict";
+
   function e() {
     var t = document.createElement("bootstrap"),
         e = { WebkitTransition: "webkitTransitionEnd", MozTransition: "transitionend", OTransition: "oTransitionEnd otransitionend", transition: "transitionend" };for (var i in e) {
@@ -57192,6 +57209,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
  *
  * See usage examples at http://jscolor.com/examples/
  */
+
 window.jscolor || (window.jscolor = function () {
   var e = { register: function register() {
       e.attachDOMReadyEvent(e.init), e.attachEvent(document, "mousedown", e.onDocumentMouseDown), e.attachEvent(document, "touchstart", e.onDocumentTouchStart), e.attachEvent(window, "resize", e.onWindowResize);
@@ -57897,6 +57915,7 @@ $(document).ready(function () {
 
 !function (t) {
   "use strict";
+
   function e(t) {
     return null !== t && t === t.window;
   }function n(t) {
@@ -58096,10 +58115,26 @@ $(function () {
 
 /***/ }),
 
-/***/ 1:
+/***/ "./resources/assets/sass/admin/app-admin-styles.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/web/app-web-styles.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/assets/js/admin/app-admin-scripts.js");
+__webpack_require__("./resources/assets/js/admin/app-admin-scripts.js");
+__webpack_require__("./resources/assets/sass/admin/app-admin-styles.scss");
+module.exports = __webpack_require__("./resources/assets/sass/web/app-web-styles.scss");
 
 
 /***/ })

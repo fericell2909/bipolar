@@ -189,7 +189,7 @@
 
 @font-face {
   font-family: 'SaharaBodoni';
-  src: url("/fonts/SaharaBodoni.otf?901458255631c72bb70d699810fb9d69");
+  src: url(/fonts/SaharaBodoni.otf?901458255631c72bb70d699810fb9d69);
 }
 
 @font-face {
@@ -3645,52 +3645,52 @@ input[type="search"] {
   }
 
   input[type="date"].input-sm,
-  .input-group-sm > input[type="date"].form-control,
-  .input-group-sm > input[type="date"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="date"].btn,
+  .input-group-sm > input.form-control[type="date"],
+  .input-group-sm > input.input-group-addon[type="date"],
+  .input-group-sm > .input-group-btn > input.btn[type="date"],
   .input-group-sm input[type="date"],
   input[type="time"].input-sm,
-  .input-group-sm > input[type="time"].form-control,
-  .input-group-sm > input[type="time"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="time"].btn,
+  .input-group-sm > input.form-control[type="time"],
+  .input-group-sm > input.input-group-addon[type="time"],
+  .input-group-sm > .input-group-btn > input.btn[type="time"],
   .input-group-sm
   input[type="time"],
   input[type="datetime-local"].input-sm,
-  .input-group-sm > input[type="datetime-local"].form-control,
-  .input-group-sm > input[type="datetime-local"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="datetime-local"].btn,
+  .input-group-sm > input.form-control[type="datetime-local"],
+  .input-group-sm > input.input-group-addon[type="datetime-local"],
+  .input-group-sm > .input-group-btn > input.btn[type="datetime-local"],
   .input-group-sm
   input[type="datetime-local"],
   input[type="month"].input-sm,
-  .input-group-sm > input[type="month"].form-control,
-  .input-group-sm > input[type="month"].input-group-addon,
-  .input-group-sm > .input-group-btn > input[type="month"].btn,
+  .input-group-sm > input.form-control[type="month"],
+  .input-group-sm > input.input-group-addon[type="month"],
+  .input-group-sm > .input-group-btn > input.btn[type="month"],
   .input-group-sm
   input[type="month"] {
     line-height: 30px;
   }
 
   input[type="date"].input-lg,
-  .input-group-lg > input[type="date"].form-control,
-  .input-group-lg > input[type="date"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="date"].btn,
+  .input-group-lg > input.form-control[type="date"],
+  .input-group-lg > input.input-group-addon[type="date"],
+  .input-group-lg > .input-group-btn > input.btn[type="date"],
   .input-group-lg input[type="date"],
   input[type="time"].input-lg,
-  .input-group-lg > input[type="time"].form-control,
-  .input-group-lg > input[type="time"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="time"].btn,
+  .input-group-lg > input.form-control[type="time"],
+  .input-group-lg > input.input-group-addon[type="time"],
+  .input-group-lg > .input-group-btn > input.btn[type="time"],
   .input-group-lg
   input[type="time"],
   input[type="datetime-local"].input-lg,
-  .input-group-lg > input[type="datetime-local"].form-control,
-  .input-group-lg > input[type="datetime-local"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="datetime-local"].btn,
+  .input-group-lg > input.form-control[type="datetime-local"],
+  .input-group-lg > input.input-group-addon[type="datetime-local"],
+  .input-group-lg > .input-group-btn > input.btn[type="datetime-local"],
   .input-group-lg
   input[type="datetime-local"],
   input[type="month"].input-lg,
-  .input-group-lg > input[type="month"].form-control,
-  .input-group-lg > input[type="month"].input-group-addon,
-  .input-group-lg > .input-group-btn > input[type="month"].btn,
+  .input-group-lg > input.form-control[type="month"],
+  .input-group-lg > input.input-group-addon[type="month"],
+  .input-group-lg > .input-group-btn > input.btn[type="month"],
   .input-group-lg
   input[type="month"] {
     line-height: 46px;
@@ -3818,9 +3818,9 @@ textarea.input-sm,
 .input-group-sm > textarea.input-group-addon,
 .input-group-sm > .input-group-btn > textarea.btn,
 select[multiple].input-sm,
-.input-group-sm > select[multiple].form-control,
-.input-group-sm > select[multiple].input-group-addon,
-.input-group-sm > .input-group-btn > select[multiple].btn {
+.input-group-sm > select.form-control[multiple],
+.input-group-sm > select.input-group-addon[multiple],
+.input-group-sm > .input-group-btn > select.btn[multiple] {
   height: auto;
 }
 
@@ -3874,9 +3874,9 @@ textarea.input-lg,
 .input-group-lg > textarea.input-group-addon,
 .input-group-lg > .input-group-btn > textarea.btn,
 select[multiple].input-lg,
-.input-group-lg > select[multiple].form-control,
-.input-group-lg > select[multiple].input-group-addon,
-.input-group-lg > .input-group-btn > select[multiple].btn {
+.input-group-lg > select.form-control[multiple],
+.input-group-lg > select.input-group-addon[multiple],
+.input-group-lg > .input-group-btn > select.btn[multiple] {
   height: auto;
 }
 
@@ -18772,9 +18772,9 @@ button.close {
 .disabled.btn-dark-rounded,
 .disabled.btn-bipolar-rounded,
 .btn-dark[disabled],
-[disabled].btn-add-cart,
-[disabled].btn-dark-rounded,
-[disabled].btn-bipolar-rounded {
+.btn-add-cart[disabled],
+.btn-dark-rounded[disabled],
+.btn-bipolar-rounded[disabled] {
   background-color: #000000;
   border-color: #000000;
 }
@@ -18792,9 +18792,9 @@ fieldset[disabled] .btn-bipolar-rounded {
 .disabled.btn-dark-rounded:hover,
 .disabled.btn-bipolar-rounded:hover,
 .btn-dark[disabled]:hover,
-[disabled].btn-add-cart:hover,
-[disabled].btn-dark-rounded:hover,
-[disabled].btn-bipolar-rounded:hover {
+.btn-add-cart[disabled]:hover,
+.btn-dark-rounded[disabled]:hover,
+.btn-bipolar-rounded[disabled]:hover {
   background-color: #000000;
   border-color: #000000;
 }
@@ -18812,9 +18812,9 @@ fieldset[disabled] .btn-bipolar-rounded:hover {
 .disabled.btn-dark-rounded:focus,
 .disabled.btn-bipolar-rounded:focus,
 .btn-dark[disabled]:focus,
-[disabled].btn-add-cart:focus,
-[disabled].btn-dark-rounded:focus,
-[disabled].btn-bipolar-rounded:focus {
+.btn-add-cart[disabled]:focus,
+.btn-dark-rounded[disabled]:focus,
+.btn-bipolar-rounded[disabled]:focus {
   background-color: #000000;
   border-color: #000000;
 }
@@ -18832,9 +18832,9 @@ fieldset[disabled] .btn-bipolar-rounded:focus {
 .disabled.btn-dark-rounded:active,
 .disabled.btn-bipolar-rounded:active,
 .btn-dark[disabled]:active,
-[disabled].btn-add-cart:active,
-[disabled].btn-dark-rounded:active,
-[disabled].btn-bipolar-rounded:active {
+.btn-add-cart[disabled]:active,
+.btn-dark-rounded[disabled]:active,
+.btn-bipolar-rounded[disabled]:active {
   background-color: #000000;
   border-color: #000000;
 }
@@ -18852,9 +18852,9 @@ fieldset[disabled] .btn-bipolar-rounded:active {
 .disabled.active.btn-dark-rounded,
 .disabled.active.btn-bipolar-rounded,
 .btn-dark[disabled].active,
-[disabled].active.btn-add-cart,
-[disabled].active.btn-dark-rounded,
-[disabled].active.btn-bipolar-rounded {
+.btn-add-cart[disabled].active,
+.btn-dark-rounded[disabled].active,
+.btn-bipolar-rounded[disabled].active {
   background-color: #000000;
   border-color: #000000;
 }
