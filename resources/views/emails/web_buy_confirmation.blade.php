@@ -26,7 +26,7 @@
                   <tbody>
                   <tr>
                     <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
-                      <p class="mb_0 imgr" style="font-family: Arial, Helvetica, sans-serif;font-size: 0;color: #757575;line-height: 100%;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;width: 100%;height: auto;clear: both;"><img class="bra" role="img" src="{{ $detail->product->photos->first()->url }}" width="140" height="140" alt="{{ $detail->product->name }}" style="max-width: 140px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;border-radius: 4px;width: 100%;height: auto;font-size: 0;margin-left: auto;margin-right: auto;"></p>
+                      <p class="mb_0 imgr" style="font-family: Arial, Helvetica, sans-serif;font-size: 0;color: #757575;line-height: 100%;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;width: 100%;height: auto;clear: both;"><img class="bra" role="img" src="{{ $detail->product->photos->first()->url }}" width="140" height="140" alt="{{ $detail->product->name }}" style="max-width: 140px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;width: 100%;height: auto;font-size: 0;margin-left: auto;margin-right: auto;"></p>
                     </td>
                   </tr>
                   </tbody>
