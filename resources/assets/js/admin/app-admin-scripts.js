@@ -1,5 +1,7 @@
 try {
     window.$ = window.jQuery = require('jquery');
+    window.Popper = require('popper.js').default;
+    require('bootstrap');
 } catch (e) {}
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
@@ -13,12 +15,9 @@ if (token) {
 }
 
 // Plugins
-window.Popper = require('popper.js').default;
-require('bootstrap/dist/js/bootstrap.min');
-require('./plugins/bootstrap-extension.min');
-require('jquery-slimscroll');
 require('daterangepicker');
-require('./plugins/sidebar-nav.min');
+require('./plugins/perfect-scrollbar.jquery.min');
+require('./plugins/sidebarmenu');
 require('./plugins/waves');
 require('./plugins/theme-scripts');
 require('./plugins/jscolor.min');
