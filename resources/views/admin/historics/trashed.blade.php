@@ -18,11 +18,7 @@
               <?php /** @var \App\Models\Historic $historic */ ?>
               <tr>
                 <td>{{ $historic->name }}</td>
-                <td>
-                  <button class="btn btn-dark btn-rounded btn-sm" data-target="#historic_preview_{{ $historic->id }}" data-toggle="modal">
-                    <i class="fa fa-eye"></i> Ver imagen
-                  </button>
-                </td>
+                <td><img src="{{ $historic->photo }}" width="100"></td>
                 <td>{{ $historic->order }}</td>
                 <td>
                   <a href="{{ route('historics.restore', $historic->id) }}" class="btn btn-dark btn-rounded btn-sm">
@@ -33,7 +29,6 @@
                   </a>
                 </td>
               </tr>
-              @include('admin.partials.historic_preview', ['id' => $historic->id, 'image' => $historic->photo])
           @endforeach
           </tbody>
         </table>
