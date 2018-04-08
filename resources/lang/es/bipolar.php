@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'size_abbr' => 'talla',
+    'size_abbr' => 'Talla',
     'navbar' => [
         'change_currency' => 'Cambiar moneda',
         'contact_us' => 'Contacto',
@@ -36,5 +36,9 @@ return [
         'order_default' => 'ORDEN PREDETERMINADO',
         'order_priceup' => 'ORDENAR DE PRECIO BAJO A PRECIO ALTO',
         'order_pricedown' => 'ORDENAR DE PRECIO ALTO A PRECIO BAJO',
+    ],
+    'mails' => [
+        'questions' => '¿Preguntas?',
+        'write_us'  => 'Escríbenos a shop@bipolar.com.pe o llámanos al (+51) 965.367.385',
     ],
 ];
