@@ -28,7 +28,6 @@ const ProductRow = props => {
           onChange={props.clickProductSelect}
         />
       </td>
-      <td>{props.id}</td>
       <td>
         {props.imageUrl ? <img src={props.imageUrl} width="100" /> : "--"}
       </td>

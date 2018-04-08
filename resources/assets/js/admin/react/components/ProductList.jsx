@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 import axios from "axios";
 import get from "lodash/get";
 import swal from "sweetalert2";
-import { existInArray, removeFromSimpleArray } from "../helpers";
+import { removeFromSimpleArray } from "../helpers";
 import ProductRow from "./partials/ProductRow";
 
-export default class BipolarProductList extends React.Component {
+class BipolarProductList extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -225,9 +225,15 @@ export default class BipolarProductList extends React.Component {
 
   render() {
     const productsSource = this.state.filteredProducts;
-/*       this.state.filteredProducts.length > 0
-        ? [...this.state.filteredProducts]
-        : [...this.state.products]; */
+    const subtypes = this.state.subtypesForSelect.map(type => {
+      return type.subtypes.map(subtype => {
+        return (
+          <option key={subtype["hash_id"]} value={subtype["hash_id"]}>
+            {subtype["name"]}
+          </option>
+        );
+      });
+    });
 
     const filters = (
       <div className="row">
@@ -268,16 +274,6 @@ export default class BipolarProductList extends React.Component {
         </div>
       </div>
     );
-
-    const subtypes = this.state.subtypesForSelect.map(type => {
-      return type.subtypes.map(subtype => {
-        return (
-          <option key={subtype["hash_id"]} value={subtype["hash_id"]}>
-            {subtype["name"]}
-          </option>
-        );
-      });
-    });
 
     const productsRender = productsSource.map(product => {
       return (
@@ -393,7 +389,6 @@ export default class BipolarProductList extends React.Component {
                       onChange={this.handleSelectAllProducts}
                     />
                   </th>
-                  <th>#</th>
                   <th>
                     <i className="fa fa-photo" />
                   </th>
