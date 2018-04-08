@@ -62,10 +62,9 @@
                   <span class="hidden-md-down">{{ Auth::user()->name }} &nbsp;<i class="fas fa-angle-down"></i></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right animated flipInY">
+                  <a href="{{ route('admin.dashboard') }}" class="dropdown-item"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                   <div class="dropdown-divider"></div>
-                  <!-- text-->
                   <a href="#" class="dropdown-item"><i class="fas fa-power-off"></i> Cerrar sesión</a>
-                  <!-- text-->
                 </div>
               </li>
             </ul>
@@ -144,7 +143,7 @@
               <li>
                 <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                   <i class="fas fa-fw fa-images"></i>
-                  <span class="hide-menu"> Histórico</span>
+                  <span class="hide-menu"> Banners</span>
                 </a>
                 <ul aria-expanded="false" class="collapse">
                   <li><a href="{{ route('banners.create') }}">Nuevo banner</a></li>
@@ -194,7 +193,7 @@
         </div>
         <!-- /.container-fluid -->
       </div>
-      <footer class="footer text-center"> {{ date('Y') }} &copy; Bipolar</footer>
+      <footer class="footer text-center"> &copy; {{ date('Y') }} Bipolar</footer>
       <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->

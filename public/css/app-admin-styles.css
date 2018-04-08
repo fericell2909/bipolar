@@ -1557,7 +1557,7 @@ File: scss
 }
 
 .skin-red .topbar {
-  background: #e46a76;
+  background: #fb9678;
 }
 
 .skin-red .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
@@ -1571,25 +1571,25 @@ File: scss
 
 .skin-red .sidebar-nav ul li a.active,
 .skin-red .sidebar-nav ul li a:hover {
-  color: #e46a76;
+  color: #fb9678;
 }
 
 .skin-red .sidebar-nav ul li a.active i,
 .skin-red .sidebar-nav ul li a:hover i {
-  color: #e46a76;
+  color: #fb9678;
 }
 
 .skin-red .sidebar-nav > ul > li.active > a {
-  color: #e46a76;
-  border-left: 3px solid #e46a76;
+  color: #fb9678;
+  border-left: 3px solid #fb9678;
 }
 
 .skin-red .sidebar-nav > ul > li.active > a i {
-  color: #e46a76;
+  color: #fb9678;
 }
 
 .skin-red .page-titles .breadcrumb .breadcrumb-item.active {
-  color: #e46a76;
+  color: #fb9678;
 }
 
 .skin-blue {
