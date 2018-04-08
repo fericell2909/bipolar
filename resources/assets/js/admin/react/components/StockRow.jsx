@@ -109,7 +109,6 @@ class StockRow extends React.Component {
 
     return (
       <tr>
-        <td>{stock['id']}</td>
         <td className="text-center">{stock['size_name']}</td>
         <td className="text-center">{stock['quantity']}</td>
         <td>

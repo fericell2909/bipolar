@@ -56,7 +56,8 @@ namespace App\Models{
  * @property-read \App\Models\Address $shipping_address
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
  * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy currentStatus($name)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy currentStatus($names)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy otherCurrentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBuyNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCreatedAt($value)

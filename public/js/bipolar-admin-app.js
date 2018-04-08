@@ -70527,21 +70527,17 @@ var BipolarProductList = function (_React$Component) {
       var _this3 = this;
 
       var productsSource = this.state.filteredProducts;
-      /*       this.state.filteredProducts.length > 0
-              ? [...this.state.filteredProducts]
-              : [...this.state.products]; */
+      var subtypes = this.state.subtypesForSelect.map(function (type) {
+        return type.subtypes.map(function (subtype) {
+          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", { key: subtype["hash_id"], value: subtype["hash_id"] }, subtype["name"]);
+        });
+      });
 
       var filters = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", null, "Filtrar por estado publicaci\xF3n"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("select", { value: this.state.stateSelected, onChange: this.handleStateChange, className: "custom-select col-12" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", { value: "" }, "Todos"), this.state.statesForSelect.map(function (state) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", { key: state.hash_id, value: state.hash_id }, state.name);
       })))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", null, "Filtrar por tipo"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("select", { value: this.state.subtypeSelected, onChange: this.handleSubtypeChange, className: "custom-select col-12" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", { value: "" }, "Todos"), subtypes))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", null, "Filtrar por fecha de creaci\xF3n"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("select", { value: this.state.creationDateSelected, onChange: this.handleCreationDateChange, className: "custom-select col-12" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", { value: "" }, "Todos"), this.state.creationDates.map(function (creationDate) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", { key: creationDate.value, value: creationDate.value }, creationDate.name);
       })))));
-
-      var subtypes = this.state.subtypesForSelect.map(function (type) {
-        return type.subtypes.map(function (subtype) {
-          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("option", { key: subtype["hash_id"], value: subtype["hash_id"] }, subtype["name"]);
-        });
-      });
 
       var productsRender = productsSource.map(function (product) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__partials_ProductRow__["a" /* default */], {
@@ -70578,7 +70574,7 @@ var BipolarProductList = function (_React$Component) {
         type: "checkbox",
         checked: productsSource.length === this.state.selectedProducts.length,
         onChange: this.handleSelectAllProducts
-      })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "#"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-photo" })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Nombre"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Tipos"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", { className: "text-right" }, "Precio (S/)"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", { className: "text-right" }, "Precio ($)"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", { className: "text-center" }, "Estado"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", { className: "text-center" }, "Env\xEDo gratis"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", { className: "text-center" }, "Destacado"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Acciones"))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tbody", null, productsRender.length ? productsRender : null)))));
+      })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-photo" })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Nombre"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Tipos"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", { className: "text-right" }, "Precio (S/)"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", { className: "text-right" }, "Precio ($)"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", { className: "text-center" }, "Estado"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", { className: "text-center" }, "Env\xEDo gratis"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", { className: "text-center" }, "Destacado"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Acciones"))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tbody", null, productsRender.length ? productsRender : null)))));
     }
   }, {
     key: "componentDidMount",
@@ -70608,8 +70604,6 @@ var BipolarProductList = function (_React$Component) {
 
   return BipolarProductList;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (BipolarProductList);
 
 if (document.getElementById("bipolar-product-list")) {
   __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(BipolarProductList, null), document.getElementById("bipolar-product-list"));
@@ -71216,7 +71210,7 @@ var BipolarProductStocks = function (_React$Component) {
           stocksBsale: _this3.state.stocksBsale });
       }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { colSpan: 3 }, 'No hay stocks'));
 
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'table-responsive' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('table', { className: 'table' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('thead', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, '#'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', { className: 'text-center' }, 'Talla'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', { className: 'text-center' }, 'Cantidad'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Producto en Bsale'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Acciones'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tbody', null, stocks)));
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'table-responsive' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('table', { className: 'table' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('thead', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', { className: 'text-center' }, 'Talla'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', { className: 'text-center' }, 'Cantidad'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Producto en Bsale'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('th', null, 'Acciones'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tbody', null, stocks)));
     }
   }]);
 
@@ -71398,7 +71392,7 @@ var StockRow = function (_React$Component) {
       var stock = this.props.stock;
       var selectedBsaleText = this.state.selectedBsaleStockText;
 
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, stock['id']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { className: 'text-center' }, stock['size_name']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { className: 'text-center' }, stock['quantity']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_autocomplete___default.a, {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { className: 'text-center' }, stock['size_name']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { className: 'text-center' }, stock['quantity']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_autocomplete___default.a, {
         value: selectedBsaleText,
         items: this.state.copyBsaleStocks,
         renderItem: this.renderAutocomplete,
@@ -71551,7 +71545,7 @@ var ProductRow = function ProductRow(props) {
     checked: isSelected,
     value: props.hashId,
     onChange: props.clickProductSelect
-  })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, props.id), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, props.imageUrl ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: props.imageUrl, width: "100" }) : "--"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, props.name), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, badgesSubtypes), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "text-right" }, parseInt(props.price)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "text-right" }, parseInt(props.priceDolar)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "text-center" }, state), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "text-center" }, props.freeShipping ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-check" }) : null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "text-center" }, props.isSalient !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-check" }) : null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+  })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, props.imageUrl ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: props.imageUrl, width: "100" }) : "--"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, props.name), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, badgesSubtypes), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "text-right" }, parseInt(props.price)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "text-right" }, parseInt(props.priceDolar)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "text-center" }, state), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "text-center" }, props.freeShipping ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-check" }) : null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "text-center" }, props.isSalient !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-check" }) : null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
     href: props.previewUrl,
     target: "_blank",
     className: "btn btn-sm btn-dark btn-rounded"

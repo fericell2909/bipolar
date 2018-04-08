@@ -37,4 +37,8 @@ return [
         'order_priceup' => 'SORT BY PRICE: LOW TO HIGH',
         'order_pricedown' => 'SORT BY PRICE: HIGH TO LOW',
     ],
+    'mails' => [
+        'questions' => 'Questions?',
+        'write_us'  => 'Email us at shop@bipolar.com.pe or call us at (+51) 965.367.385',
+    ],
 ];
