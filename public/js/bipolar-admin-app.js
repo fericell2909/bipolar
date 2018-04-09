@@ -16857,29 +16857,89 @@ var BipolarProductRecommended = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (BipolarProductRecommended.__proto__ || Object.getPrototypeOf(BipolarProductRecommended)).call(this, props));
 
+    _this.handleSearchProduct = function (event) {
+      var searchText = event.target.value;
+      var searchedProducts = _this.state.originalProducts.filter(function (product) {
+        return product.name.search(searchText) !== -1;
+      });
+
+      _this.setState({ searchText: searchText, products: searchedProducts });
+    };
+
+    _this.handleRemoveRecommended = function (productHashId) {
+      __WEBPACK_IMPORTED_MODULE_5_sweetalert2___default()({
+        title: "Remover recomendado",
+        message: "Desea remover este producto de recomendados",
+        type: "question",
+        confirmButtonText: 'Remover y guardar',
+        showCancelButton: true,
+        cancelButtonText: 'No hacer nada'
+      }).then(function (result) {
+        if (result.value) {
+          __WEBPACK_IMPORTED_MODULE_4_axios___default.a.delete("/ajax-admin/products/" + _this.props.productHashId + "/recommendeds/" + productHashId).then(function (_ref) {
+            var data = _ref.data;
+
+            if (data["success"] === true) {
+              __WEBPACK_IMPORTED_MODULE_5_sweetalert2___default()({
+                title: 'Guardado',
+                type: 'success',
+                toast: true,
+                position: 'top-right',
+                showConfirmButton: false,
+                timer: 3000
+              });
+              _this.getRecommendeds();
+            }
+          }).catch(function (error) {
+            return console.log(error);
+          });
+        }
+      });
+    };
+
+    _this.getAllProducts = function () {
+      __WEBPACK_IMPORTED_MODULE_4_axios___default.a.get("/ajax-admin/products").then(function (response) {
+        var products = response.data["data"];
+        var formattedProducts = products.map(function (product) {
+          return _extends({}, product, {
+            firstImageUrl: __WEBPACK_IMPORTED_MODULE_2_lodash_get___default()(product, "photos.0.url", null)
+          });
+        });
+
+        _this.setState({
+          products: formattedProducts,
+          originalProducts: formattedProducts
+        });
+      });
+    };
+
+    _this.getRecommendeds = function () {
+      __WEBPACK_IMPORTED_MODULE_4_axios___default.a.get("/ajax-admin/products/" + _this.props.productHashId + "/recommendeds").then(function (response) {
+        var recommendeds = response.data["data"];
+        var formattedRecommendeds = recommendeds.map(function (product) {
+          return _extends({}, product, {
+            firstImageUrl: __WEBPACK_IMPORTED_MODULE_2_lodash_get___default()(product, "photos.0.url", null)
+          });
+        });
+
+        _this.setState({
+          recommendedProducts: formattedRecommendeds
+        });
+      }).catch(function (error) {
+        return console.error(error);
+      });
+    };
+
     _this.state = {
       products: [],
       originalProducts: [],
       recommendedProducts: [],
       searchText: ""
     };
-
-    _this.handleSearchProduct = _this.handleSearchProduct.bind(_this);
-    _this.getRecommendeds = _this.getRecommendeds.bind(_this);
     return _this;
   }
 
   _createClass(BipolarProductRecommended, [{
-    key: "handleSearchProduct",
-    value: function handleSearchProduct(event) {
-      var searchText = event.target.value;
-      var searchedProducts = this.state.originalProducts.filter(function (product) {
-        return product.name.search(searchText) !== -1;
-      });
-
-      this.setState({ searchText: searchText, products: searchedProducts });
-    }
-  }, {
     key: "handleSaveRecommended",
     value: function handleSaveRecommended(productHashId) {
       var _this2 = this;
@@ -16893,8 +16953,8 @@ var BipolarProductRecommended = function (_React$Component) {
         cancelButtonText: 'No hacer nada'
       }).then(function (result) {
         if (result.value) {
-          __WEBPACK_IMPORTED_MODULE_4_axios___default.a.post("/ajax-admin/products/" + _this2.props.productHashId + "/recommendeds/" + productHashId).then(function (_ref) {
-            var data = _ref.data;
+          __WEBPACK_IMPORTED_MODULE_4_axios___default.a.post("/ajax-admin/products/" + _this2.props.productHashId + "/recommendeds/" + productHashId).then(function (_ref2) {
+            var data = _ref2.data;
 
             if (data["success"] === true) {
               __WEBPACK_IMPORTED_MODULE_5_sweetalert2___default()({
@@ -16914,113 +16974,40 @@ var BipolarProductRecommended = function (_React$Component) {
       });
     }
   }, {
-    key: "handleRemoveRecommended",
-    value: function handleRemoveRecommended(productHashId) {
-      var _this3 = this;
-
-      __WEBPACK_IMPORTED_MODULE_5_sweetalert2___default()({
-        title: "Remover recomendado",
-        message: "Desea remover este producto de recomendados",
-        type: "question",
-        confirmButtonText: 'Remover y guardar',
-        showCancelButton: true,
-        cancelButtonText: 'No hacer nada'
-      }).then(function (result) {
-        if (result.value) {
-          __WEBPACK_IMPORTED_MODULE_4_axios___default.a.delete("/ajax-admin/products/" + _this3.props.productHashId + "/recommendeds/" + productHashId).then(function (_ref2) {
-            var data = _ref2.data;
-
-            if (data["success"] === true) {
-              __WEBPACK_IMPORTED_MODULE_5_sweetalert2___default()({
-                title: 'Guardado',
-                type: 'success',
-                toast: true,
-                position: 'top-right',
-                showConfirmButton: false,
-                timer: 3000
-              });
-              _this3.getRecommendeds();
-            }
-          }).catch(function (error) {
-            return console.log(error);
-          });
-        }
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var findedProductsList = this.state.products.map(function (product) {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tr", { key: product["hash_id"] }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, product["id"]), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, product["firstImageUrl"] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: product["firstImageUrl"], width: "100" }) : "--"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, product["name"]), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, __WEBPACK_IMPORTED_MODULE_3_lodash_isEmpty___default()(product["state"]) ? "--" : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "badge badge-" + product["state"]["color"] }, product["state"]["name"])), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tr", { key: product["hash_id"] }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "align-middle" }, product["id"]), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "align-middle text-center" }, product["firstImageUrl"] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: product["firstImageUrl"], width: "100" }) : "--"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "align-middle" }, product["name"]), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "align-middle" }, __WEBPACK_IMPORTED_MODULE_3_lodash_isEmpty___default()(product["state"]) ? "--" : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "badge badge-" + product["state"]["color"] }, product["state"]["name"])), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "align-middle" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
           className: "btn btn-sm btn-dark btn-rounded",
           onClick: function onClick() {
-            return _this4.handleSaveRecommended(product["hash_id"]);
+            return _this3.handleSaveRecommended(product["hash_id"]);
           }
         }, "Recomendar")));
       });
 
       var recommendedList = this.state.recommendedProducts.map(function (product) {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tr", { key: product["hash_id"] }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, "#"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, product["firstImageUrl"] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: product["firstImageUrl"], width: "100" }) : "Sin fotos"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, product["name"]), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, __WEBPACK_IMPORTED_MODULE_3_lodash_isEmpty___default()(product["state"]) ? "--" : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "badge badge-" + product["state"]["color"] }, product["state"]["name"])), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tr", { key: product["hash_id"] }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "align-middle" }, "#"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "align-middle text-center" }, product["firstImageUrl"] !== null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: product["firstImageUrl"], width: "100" }) : "Sin fotos"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "align-middle" }, product["name"]), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "align-middle" }, __WEBPACK_IMPORTED_MODULE_3_lodash_isEmpty___default()(product["state"]) ? "--" : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "badge badge-" + product["state"]["color"] }, product["state"]["name"])), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "align-middle" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
           className: "btn btn-sm btn-dark btn-rounded",
           onClick: function onClick() {
-            return _this4.handleRemoveRecommended(product["hash_id"]);
+            return _this3.handleRemoveRecommended(product["hash_id"]);
           }
         }, "Remover")));
       });
 
-      var content = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "white-box" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3", { className: "box-title" }, "Seleccionar recomendados"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "input-group" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+      var content = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-md" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "card-header" }, "Seleccionar recomendados"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "input-group mb-3" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
         className: "form-control",
         type: "text",
         value: this.state.searchText,
         placeholder: "Buscar otros productos",
         onChange: this.handleSearchProduct
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "input-group-btn" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "input-group-append" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
         onClick: this.handleSearchProduct,
-        className: "btn btn-sm btn-dark btn-rounded"
-      }, "Buscar"))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("table", { className: "table table-responsive" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("thead", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tr", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "#"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-photo" })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Nombre"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Estado"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Acciones"))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tbody", null, findedProductsList.length > 0 ? findedProductsList : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tr", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { colSpan: "5" }, "No se encontraron productos")))))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "white-box" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3", { className: "box-title" }, "Lista de recomendados"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("table", { className: "table table-responsive" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("thead", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tr", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "#"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-photo" })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Nombre"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Estado"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Acciones"))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tbody", null, recommendedList.length > 0 ? recommendedList : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tr", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { colSpan: "5" }, "No hay productos sugeridos")))))));
+        className: "btn btn-sm btn-dark"
+      }, "Buscar"))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("table", { className: "table table-hover color-table dark-table" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("thead", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tr", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "#"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", { className: "text-center" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-fw fa-image" })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Nombre"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Estado"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Acciones"))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tbody", null, findedProductsList.length > 0 ? findedProductsList : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tr", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { colSpan: "5" }, "No se encontraron productos"))))))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-md" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "card-header" }, "Lista de recomendados"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("table", { className: "table table-hover color-table dark-table" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("thead", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tr", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "#"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", { className: "text-center" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-fw fa-image" })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Nombre"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Estado"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("th", null, "Acciones"))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tbody", null, recommendedList.length > 0 ? recommendedList : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("tr", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", { className: "text-center", colSpan: "5" }, "No hay productos sugeridos"))))))));
 
       return content;
-    }
-  }, {
-    key: "getAllProducts",
-    value: function getAllProducts() {
-      var _this5 = this;
-
-      __WEBPACK_IMPORTED_MODULE_4_axios___default.a.get("/ajax-admin/products").then(function (response) {
-        var products = response.data["data"];
-        var formattedProducts = products.map(function (product) {
-          return _extends({}, product, {
-            firstImageUrl: __WEBPACK_IMPORTED_MODULE_2_lodash_get___default()(product, "photos.0.url", null)
-          });
-        });
-
-        _this5.setState({
-          products: formattedProducts,
-          originalProducts: formattedProducts
-        });
-      });
-    }
-  }, {
-    key: "getRecommendeds",
-    value: function getRecommendeds() {
-      var _this6 = this;
-
-      __WEBPACK_IMPORTED_MODULE_4_axios___default.a.get("/ajax-admin/products/" + this.props.productHashId + "/recommendeds").then(function (response) {
-        var recommendeds = response.data["data"];
-        var formattedRecommendeds = recommendeds.map(function (product) {
-          return _extends({}, product, {
-            firstImageUrl: __WEBPACK_IMPORTED_MODULE_2_lodash_get___default()(product, "photos.0.url", null)
-          });
-        });
-
-        _this6.setState({
-          recommendedProducts: formattedRecommendeds
-        });
-      }).catch(function (error) {
-        return console.error(error);
-      });
     }
   }, {
     key: "componentDidMount",
@@ -68759,6 +68746,71 @@ var BipolarProductEdit = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (BipolarProductEdit.__proto__ || Object.getPrototypeOf(BipolarProductEdit)).call(this, props));
 
+    _this.handleInputChange = function (event) {
+      _this.setState({
+        product: _extends({}, _this.state.product, _defineProperty({}, event.target.name, event.target.value))
+      });
+    };
+
+    _this.handleSalientChange = function (event) {
+      _this.setState({
+        product: _extends({}, _this.state.product, {
+          salient: event.target.checked
+        })
+      });
+    };
+
+    _this.handleColorChange = function (event) {
+      var colorHashId = event.target.value;
+      var selected = _this.state.product.selectedColors;
+
+      if (event.target.checked) {
+        selected.push(colorHashId);
+      } else {
+        selected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["b" /* removeFromSimpleArray */])(selected, colorHashId);
+      }
+
+      return _this.setState({
+        product: _extends({}, _this.state.product, {
+          selectedColors: selected
+        })
+      });
+    };
+
+    _this.handleSizeChange = function (event) {
+      var sizeHashId = event.target.value;
+      var selected = _this.state.product.selectedSizes;
+
+      if (event.target.checked) {
+        selected.push(sizeHashId);
+      } else {
+        selected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["b" /* removeFromSimpleArray */])(selected, sizeHashId);
+      }
+
+      return _this.setState({
+        product: _extends({}, _this.state.product, {
+          selectedSizes: selected
+        })
+      });
+    };
+
+    _this.handleSubtypeChange = function (event) {
+      var subtypeHashId = event.target.value;
+      var selected = _this.state.product.selectedSubtypes;
+
+      if (event.target.checked) {
+        selected.push(subtypeHashId);
+      } else {
+        selected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["b" /* removeFromSimpleArray */])(selected, subtypeHashId);
+      }
+
+      return _this.setState({
+        product: _extends({}, _this.state.product, {
+          selectedSubtypes: selected
+        })
+      });
+    };
+
     _this.handleEditorDescription = function (editorState) {
       var htmlText = __WEBPACK_IMPORTED_MODULE_8_draftjs_to_html___default()(Object(__WEBPACK_IMPORTED_MODULE_6_draft_js__["convertToRaw"])(editorState.getCurrentContent()));
       _this.setState({ editorState: editorState, product: _extends({}, _this.state.product, {
@@ -68771,6 +68823,59 @@ var BipolarProductEdit = function (_React$Component) {
       _this.setState({ editorStateEnglish: editorState, product: _extends({}, _this.state.product, {
           description_english: htmlText
         }) });
+    };
+
+    _this.handleUpdateProduct = function (event) {
+      event.preventDefault();
+
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.put("/ajax-admin/products/" + _this.props.productHashId, {
+        name: _this.state.product.name,
+        name_english: _this.state.product.name_english,
+        price: _this.state.product.price,
+        weight: _this.state.product.weight,
+        description: _this.state.product.description,
+        description_english: _this.state.product.description_english,
+        free_shipping: _this.state.product.free_shipping,
+        salient: _this.state.product.salient,
+        colors: _this.state.product.selectedColors,
+        sizes: _this.state.product.selectedSizes,
+        subtypes: _this.state.product.selectedSubtypes,
+        state: _this.state.product.selectedState
+      }).then(function (response) {
+        var data = response.data;
+
+        if (response.status === 200) {
+          __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()({
+            title: 'Actualizado',
+            type: 'success',
+            toast: true,
+            position: 'top-right',
+            showConfirmButton: false,
+            timer: 3000
+          });
+          return setTimeout(function () {
+            return window.location.href = data['edit_route'];
+          }, 3000);
+        }
+
+        return alert('algo malo paso');
+      });
+    };
+
+    _this.handleChangeFreeShipping = function (event) {
+      _this.setState({
+        product: _extends({}, _this.state.product, {
+          free_shipping: event.target.checked
+        })
+      });
+    };
+
+    _this.handleProductStateChange = function (event) {
+      _this.setState({
+        product: _extends({}, _this.state.product, {
+          selectedState: event.target.value
+        })
+      });
     };
 
     _this.state = {
@@ -68797,145 +68902,10 @@ var BipolarProductEdit = function (_React$Component) {
       editorState: __WEBPACK_IMPORTED_MODULE_6_draft_js__["EditorState"].createEmpty(),
       editorStateEnglish: __WEBPACK_IMPORTED_MODULE_6_draft_js__["EditorState"].createEmpty()
     };
-
-    _this.handleInputChange = _this.handleInputChange.bind(_this);
-    _this.handleColorChange = _this.handleColorChange.bind(_this);
-    _this.handleSizeChange = _this.handleSizeChange.bind(_this);
-    _this.handleSubtypeChange = _this.handleSubtypeChange.bind(_this);
-    _this.handleUpdateProduct = _this.handleUpdateProduct.bind(_this);
-    _this.handleProductStateChange = _this.handleProductStateChange.bind(_this);
-    _this.handleSalientChange = _this.handleSalientChange.bind(_this);
-    _this.handleChangeFreeShipping = _this.handleChangeFreeShipping.bind(_this);
     return _this;
   }
 
   _createClass(BipolarProductEdit, [{
-    key: "handleInputChange",
-    value: function handleInputChange(event) {
-      this.setState({
-        product: _extends({}, this.state.product, _defineProperty({}, event.target.name, event.target.value))
-      });
-    }
-  }, {
-    key: "handleSalientChange",
-    value: function handleSalientChange(event) {
-      this.setState({
-        product: _extends({}, this.state.product, {
-          salient: event.target.checked
-        })
-      });
-    }
-  }, {
-    key: "handleColorChange",
-    value: function handleColorChange(event) {
-      var colorHashId = event.target.value;
-      var selected = this.state.product.selectedColors;
-
-      if (event.target.checked) {
-        selected.push(colorHashId);
-      } else {
-        selected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["b" /* removeFromSimpleArray */])(selected, colorHashId);
-      }
-
-      return this.setState({
-        product: _extends({}, this.state.product, {
-          selectedColors: selected
-        })
-      });
-    }
-  }, {
-    key: "handleSizeChange",
-    value: function handleSizeChange(event) {
-      var sizeHashId = event.target.value;
-      var selected = this.state.product.selectedSizes;
-
-      if (event.target.checked) {
-        selected.push(sizeHashId);
-      } else {
-        selected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["b" /* removeFromSimpleArray */])(selected, sizeHashId);
-      }
-
-      return this.setState({
-        product: _extends({}, this.state.product, {
-          selectedSizes: selected
-        })
-      });
-    }
-  }, {
-    key: "handleSubtypeChange",
-    value: function handleSubtypeChange(event) {
-      var subtypeHashId = event.target.value;
-      var selected = this.state.product.selectedSubtypes;
-
-      if (event.target.checked) {
-        selected.push(subtypeHashId);
-      } else {
-        selected = Object(__WEBPACK_IMPORTED_MODULE_5__helpers__["b" /* removeFromSimpleArray */])(selected, subtypeHashId);
-      }
-
-      return this.setState({
-        product: _extends({}, this.state.product, {
-          selectedSubtypes: selected
-        })
-      });
-    }
-  }, {
-    key: "handleUpdateProduct",
-    value: function handleUpdateProduct(event) {
-      event.preventDefault();
-
-      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.put("/ajax-admin/products/" + this.props.productHashId, {
-        name: this.state.product.name,
-        name_english: this.state.product.name_english,
-        price: this.state.product.price,
-        weight: this.state.product.weight,
-        description: this.state.product.description,
-        description_english: this.state.product.description_english,
-        free_shipping: this.state.product.free_shipping,
-        salient: this.state.product.salient,
-        colors: this.state.product.selectedColors,
-        sizes: this.state.product.selectedSizes,
-        subtypes: this.state.product.selectedSubtypes,
-        state: this.state.product.selectedState
-      }).then(function (response) {
-        var data = response.data;
-
-        if (response.status === 200) {
-          __WEBPACK_IMPORTED_MODULE_4_sweetalert2___default()({
-            title: 'Actualizado',
-            type: 'success',
-            toast: true,
-            position: 'top-right',
-            showConfirmButton: false,
-            timer: 3000
-          });
-          return setTimeout(function () {
-            return window.location.href = data['edit_route'];
-          }, 3000);
-        }
-
-        return alert('algo malo paso');
-      });
-    }
-  }, {
-    key: "handleChangeFreeShipping",
-    value: function handleChangeFreeShipping(event) {
-      this.setState({
-        product: _extends({}, this.state.product, {
-          free_shipping: event.target.checked
-        })
-      });
-    }
-  }, {
-    key: "handleProductStateChange",
-    value: function handleProductStateChange(event) {
-      this.setState({
-        product: _extends({}, this.state.product, {
-          selectedState: event.target.value
-        })
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       var isInvalidForm = this.state.product.name.length === 0 || this.state.product.price <= 0 || this.state.product.selectedState.length === 0;
@@ -68944,10 +68914,10 @@ var BipolarProductEdit = function (_React$Component) {
         return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { key: state['hash_id'], value: state['hash_id'] }, state['name']);
       });
 
-      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-9" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "white-box" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { onSubmit: this.handleUpdateProduct }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-4" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Nombre"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.name, onChange: this.handleInputChange, name: "name", type: "text",
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-9" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { onSubmit: this.handleUpdateProduct }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-4" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Nombre"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.name, onChange: this.handleInputChange, name: "name", type: "text",
         className: "form-control", required: true }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-4" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Nombre (Ingl\xE9s)"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.name_english, onChange: this.handleInputChange, name: "name_english", className: "form-control", type: "text", required: true }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-4" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Precio"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.price, onChange: this.handleInputChange, name: "price", type: "number",
         className: "form-control", required: true })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Descripci\xF3n (Opcional)"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_react_draft_wysiwyg__["Editor"], { editorState: this.state.editorState, onEditorStateChange: this.handleEditorDescription, editorClassName: "demo-editor-content" })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Descripci\xF3n en ingl\xE9s (Opcional)"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_react_draft_wysiwyg__["Editor"], { editorState: this.state.editorStateEnglish, onEditorStateChange: this.handleEditorDescriptionEnglish, editorClassName: "demo-editor-content" })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Estado"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("select", { className: "custom-select col-12", value: this.state.product.selectedState, onChange: this.handleProductStateChange, required: true }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione un estado"), productStatesRender.length ? productStatesRender : null))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Peso (kg)"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { value: this.state.product.weight, onChange: this.handleInputChange, name: "weight", type: "number", step: "any",
-        className: "form-control", placeholder: "Opcional" })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", { className: "checkbox-inline" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.free_shipping, onChange: this.handleChangeFreeShipping, type: "checkbox" }), "Env\xEDo gratuito")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", { className: "checkbox-inline" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.salient, onChange: this.handleSalientChange, type: "checkbox" }), "Destacado"))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("hr", null), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { disabled: isInvalidForm, type: "submit", className: "btn btn-dark btn-rounded" }, "Actualizar e ir a subir fotos")))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__partials_ProductColors__["a" /* default */], { colors: this.state.colors,
+        className: "form-control", placeholder: "Opcional" })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", { className: "checkbox-inline" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.free_shipping, onChange: this.handleChangeFreeShipping, type: "checkbox" }), "Env\xEDo gratuito")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", { className: "checkbox-inline" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { checked: this.state.product.salient, onChange: this.handleSalientChange, type: "checkbox" }), "Destacado"))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("hr", null), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { disabled: isInvalidForm, type: "submit", className: "btn btn-dark btn-rounded" }, "Actualizar e ir a subir fotos"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__partials_ProductColors__["a" /* default */], { colors: this.state.colors,
         selected: this.state.product.selectedColors,
         toggleCheck: this.handleColorChange }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__partials_ProductSizes__["a" /* default */], { sizes: this.state.sizes,
         selected: this.state.product.selectedSizes,
@@ -69742,7 +69712,7 @@ var StockRow = function (_React$Component) {
       var stock = this.props.stock;
       var selectedBsaleText = this.state.selectedBsaleStockText;
 
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { className: 'text-center' }, stock['size_name']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { className: 'text-center' }, stock['quantity']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_autocomplete___default.a, {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { className: 'align-middle text-center' }, stock['size_name']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { className: 'align-middle text-center' }, stock['quantity']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { className: 'align-middle' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_autocomplete___default.a, {
         value: selectedBsaleText,
         items: this.state.copyBsaleStocks,
         renderItem: this.renderAutocomplete,
@@ -69750,7 +69720,7 @@ var StockRow = function (_React$Component) {
         onChange: this.onChangeText,
         onSelect: this.onSelectStock,
         inputProps: { className: 'form-control', style: this.styles.inputAutocomplete },
-        wrapperStyle: this.styles.wrapperAutocomplete })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { onClick: this.saveStockData, className: 'btn btn-dark btn-rounded btn-sm' }, 'Guardar')));
+        wrapperStyle: this.styles.wrapperAutocomplete })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('td', { className: 'align-middle' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { onClick: this.saveStockData, className: 'btn btn-dark btn-rounded btn-sm' }, 'Guardar')));
     }
   }]);
 

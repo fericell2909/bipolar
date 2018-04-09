@@ -16,6 +16,7 @@ if (token) {
 
 // Plugins
 require('daterangepicker');
+require('dropzone');
 require('./plugins/perfect-scrollbar.jquery.min');
 require('./plugins/sidebarmenu');
 require('./plugins/waves');
