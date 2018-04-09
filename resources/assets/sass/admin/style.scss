@@ -20,7 +20,6 @@ File: scss
 @import 'colors/megna-dark'; 
 @import 'colors/purple-dark';  
 
-
 // Import Bootstrap source files
 @import "~bootstrap/scss/bootstrap";
 
@@ -28,7 +27,7 @@ File: scss
 @import 'core/core';
 @import 'widgets/widgets';
 @import 'responsive';
-
+@import "pages/login-register-lock";
 
 //In This scss you can write your scss
 @import 'custom'; 
