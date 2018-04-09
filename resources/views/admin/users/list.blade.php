@@ -25,8 +25,8 @@
     </div>
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header">
-          <a href="{{ route('users.download') }}" class="btn btn-sm btn-outline-dark btn-rounded pull-right">
+        <div class="card-header text-right">
+          <a href="{{ route('users.download') }}" class="btn btn-sm btn-outline-dark btn-rounded">
             <i class="fas fa-fw fa-file-excel"></i>
             Descargar todos
           </a>
@@ -50,20 +50,20 @@
                 @forelse($users as $user)
                   <?php /** @var \App\Models\User $user */ ?>
                   <tr>
-                    <td>{{ $user->id }}</td>
-                    <td class="text-center">
+                    <td class="align-middle">{{ $user->id }}</td>
+                    <td class="align-middle text-center">
                       @if($user->photo)
                         <img src="{{ $user->photo }}" alt="" class="img-circle" style="width: 32px; height: 32px">
                       @else
                         <i class="fas fa-fw fa-image"></i>
                       @endif
                     </td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->lastname }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->getBirthdayOrNull() }}</td>
-                    <td>{!! $user->getActiveLabelAdmin() !!}</td>
-                    <td>
+                    <td class="align-middle">{{ $user->name }}</td>
+                    <td class="align-middle">{{ $user->lastname }}</td>
+                    <td class="align-middle">{{ $user->email }}</td>
+                    <td class="align-middle">{{ $user->getBirthdayOrNull() }}</td>
+                    <td class="align-middle">{!! $user->getActiveLabelAdmin() !!}</td>
+                    <td class="align-middle">
                       <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-rounded btn-dark">
                         <i class="fas fa-fw fa-edit"></i>
                         Editar

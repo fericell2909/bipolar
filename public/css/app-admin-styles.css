@@ -23661,15 +23661,15 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
   border-bottom: 6px solid #be2626;
 }
 
+input[type="checkbox"] {
+  margin-right: 1em;
+}
+
 .demo-editor-content {
   border: 1px solid #f1f1f1;
   height: 275px;
   padding: 5px;
   border-radius: 2px;
-}
-
-.custom-select {
-  height: calc(4.25rem);
 }
 
 .swal2-popup {

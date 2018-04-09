@@ -1,30 +1,25 @@
 @extends('admin.layouts.app_admin')
+@section('title', 'Ordenar productos')
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="white-box">
-                <h3 class="box-title">Coge un elemento para ordenar y suelta para guardar</h3>
-                <div id="sortable-products">
-                    @foreach($products as $product)
-                        <?php /** @var \App\Models\Product $product */ ?>
-                        <div class="media" data-id="{{ $product->hash_id }}">
-                            <div class="media-left">
-                                @if(count($product->photos) > 0)
-                                <a>
-                                    <img class="media-object" src="{{ $product->photos->first()->url }}" width="100">
-                                </a>
-                                @endif
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">{{ $product->name }} {!! $product->state->getAdminHtml() !!}</h4>
-                                <p>
-                                    {{ $product->description }}
-                                </p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+  <div class="card">
+    <div class="card-header bg-dark">
+      <h4 class="text-white">Coge un elemento para ordenar y suelta para guardar</h4>
     </div>
+    <div class="card-body">
+      <ul id="sortable-products" class="list-unstyled">
+        @foreach($products as $product)
+              <?php /** @var \App\Models\Product $product */ ?>
+          <li class="media my-1" data-id="{{ $product->hash_id }}">
+            <img class="d-flex mr-3" width="100" src="{{ optional($product->photos->first())->url ?? 'https://placehold.it/100x50' }}" >
+            <div class="media-body">
+              <h5 class="mt-0 mb-1">{{ $product->name }} {!! $product->state->getAdminHtml() !!}</h5>
+              <p>
+                {{ $product->description }}
+              </p>
+            </div>
+          </li>
+        @endforeach
+      </ul>
+    </div>
+  </div>
 @endsection

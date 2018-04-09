@@ -177,7 +177,11 @@
             <div class="col-md-5 align-self-center">
               <h4 class="text-themecolor">@yield('title')</h4>
             </div>
-            <!-- /.col-lg-12 -->
+            <div class="col-md-7 align-self-center text-right">
+              <div class="d-flex justify-content-end align-items-center">
+                @yield('superior-buttons')
+              </div>
+            </div>
           </div>
           @if ($errors->any())
             <div class="alert alert-danger">

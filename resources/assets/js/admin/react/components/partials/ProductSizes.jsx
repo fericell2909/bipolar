@@ -6,26 +6,22 @@ const ProductSizes = props => {
     const isSelected = existInArray(props.selected, size['hash_id']);
     return (
       <div key={size['hash_id']} className="checkbox">
-        <label>
-          <input type="checkbox"
-                 checked={isSelected}
-                 value={size['hash_id']}
-                 onChange={props.toggleCheck}/>
-          {size['name']}
-        </label>
+        <input type="checkbox"
+               checked={isSelected}
+               value={size['hash_id']}
+               onChange={props.toggleCheck}/>
+        <label>{size['name']}</label>
       </div>
     );
   });
 
   return (
-    <div className="white-box">
-      <div className="panel panel-inverse">
-        <div className="panel-heading">Tallas</div>
+    <div className="card">
+      <div className="card-header bg-dark">
+        <h4 className="text-white">Tallas</h4>
       </div>
-      <div className="panel-wrapper collapse in">
-        <div className="panel-body">
-          {sizesRender.length ? sizesRender : 'No hay tallas'}
-        </div>
+      <div className="card-body">
+        {sizesRender.length ? sizesRender : 'No hay tallas'}
       </div>
     </div>
   );

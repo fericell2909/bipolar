@@ -20,13 +20,13 @@
             @forelse($users as $user)
               <?php /** @var \App\Models\User $user */ ?>
               <tr>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->lastname }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->getBirthdayOrNull() }}</td>
-                <td>{!! $user->getActiveLabelAdmin() !!}</td>
-                <td>
+                <td class="align-middle">{{ $user->id }}</td>
+                <td class="align-middle">{{ $user->name }}</td>
+                <td class="align-middle">{{ $user->lastname }}</td>
+                <td class="align-middle">{{ $user->email }}</td>
+                <td class="align-middle">{{ $user->getBirthdayOrNull() }}</td>
+                <td class="align-middle">{!! $user->getActiveLabelAdmin() !!}</td>
+                <td class="align-middle">
                   <button class="btn btn-sm btn-rounded btn-dark" data-target="#cart_details_{{ optional($user->carts->first())->id }}" data-toggle="modal">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                     Ver carrito
