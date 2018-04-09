@@ -1,8 +1,8 @@
 @extends('admin.layouts.app_admin')
+@section('title', 'Configuración general')
 @section('content')
-  <div class="row">
-    <div class="col-md-12 white-box">
-      <h3 class="box-title">Configuración general</h3>
+  <div class="card">
+    <div class="card-body">
       {!! Form::open() !!}
       <div class="form-row">
         <div class="col-md-6">

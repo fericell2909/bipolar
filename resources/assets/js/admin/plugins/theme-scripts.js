@@ -1,263 +1,193 @@
-const switcher = require('switchery/switchery');
-const select2 = require('select2/dist/js/select2.full');
-require('dropzone/dist/dropzone-amd-module');
-//require('icheck');
-
-$(document).ready(function () {
-
-    const body = $("body");
-
-    $(function () {
-        $(".preloader").fadeOut();
-        $('#side-menu').metisMenu();
-    });
-
-    // Select 2
-    $('.select2').select2();
-
-    // Switchery
-    if ($('.js-switch').length) {
-        const elem = document.querySelector('.js-switch');
-        const init = new switcher(elem, {color: '#F9967B'});
+$(function () {
+  "use strict";
+  $(function () {
+    $(".preloader").fadeOut();
+  });
+  jQuery(document).on('click', '.mega-dropdown', function (e) {
+    e.stopPropagation()
+  });
+  // ==============================================================
+  // This is for the top header part and sidebar part
+  // ==============================================================
+  var set = function () {
+    var width = (window.innerWidth > 0) ? window.innerWidth : this.screen.width;
+    var topOffset = 55;
+    if (width < 1170) {
+      $("body").addClass("mini-sidebar");
+      $('.navbar-brand span').hide();
+      $(".sidebartoggler i").addClass("ti-menu");
     }
-
-    if ($('.js-switch-salient').length) {
-        const elem = document.querySelector('.js-switch-salient');
-        const init = new switcher(elem, {color: '#F9967B'});
+    else {
+      $("body").removeClass("mini-sidebar");
+      $('.navbar-brand span').show();
     }
+    var height = ((window.innerHeight > 0) ? window.innerHeight : this.screen.height) - 1;
+    height = height - topOffset;
+    if (height < 1) height = 1;
+    if (height > topOffset) {
+      $(".page-wrapper").css("min-height", (height) + "px");
+    }
+  };
+  $(window).ready(set);
+  $(window).on("resize", set);
+  // ==============================================================
+  // Theme options
+  // ==============================================================
+  $(".sidebartoggler").on('click', function () {
+    if ($("body").hasClass("mini-sidebar")) {
+      $("body").trigger("resize");
+      $("body").removeClass("mini-sidebar");
+      $('.navbar-brand span').show();
+    }
+    else {
+      $("body").trigger("resize");
+      $("body").addClass("mini-sidebar");
+      $('.navbar-brand span').hide();
+    }
+  });
+  // this is for close icon when navigation open in mobile view
+  $(".nav-toggler").click(function () {
+    $("body").toggleClass("show-sidebar");
+    $(".nav-toggler i").toggleClass("ti-menu");
+    $(".nav-toggler i").addClass("ti-close");
+  });
+  $(".search-box a, .search-box .app-search .srh-btn").on('click', function () {
+    $(".app-search").toggle(200);
+  });
+  // ==============================================================
+  // Right sidebar options
+  // ==============================================================
+  $(".right-side-toggle").click(function () {
+    $(".right-sidebar").slideDown(50);
+    $(".right-sidebar").toggleClass("shw-rside");
+  });
+  // ==============================================================
+  // This is for the floating labels
+  // ==============================================================
+  $('.floating-labels .form-control').on('focus blur', function (e) {
+    $(this).parents('.form-group').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));
+  }).trigger('blur');
 
-    // Icheck
-    /*$('.icheck').iCheck({
-        checkboxClass: 'icheckbox_flat',
-        radioClass: 'iradio_flat',
-    });*/
+  // ==============================================================
+  //tooltip
+  // ==============================================================
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+  // ==============================================================
+  //Popover
+  // ==============================================================
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
 
-    /* ===== Open-Close Right Sidebar ===== */
+  // ==============================================================
+  // Perfact scrollbar
+  // ==============================================================
+  $('.scroll-sidebar, .right-side-panel, .message-center, .right-sidebar').perfectScrollbar();
+  // ==============================================================
+  // Resize all elements
+  // ==============================================================
+  $("body").trigger("resize");
+  // ==============================================================
+  // To do list
+  // ==============================================================
+  $(".list-task li label").click(function () {
+    $(this).toggleClass("task-done");
+  });
+  // ==============================================================
+  // Collapsable cards
+  // ==============================================================
+  $('a[data-action="collapse"]').on('click', function (e) {
+    e.preventDefault();
+    $(this).closest('.card').find('[data-action="collapse"] i').toggleClass('ti-minus ti-plus');
+    $(this).closest('.card').children('.card-body').collapse('toggle');
+  });
+  // Toggle fullscreen
+  $('a[data-action="expand"]').on('click', function (e) {
+    e.preventDefault();
+    $(this).closest('.card').find('[data-action="expand"] i').toggleClass('mdi-arrow-expand mdi-arrow-compress');
+    $(this).closest('.card').toggleClass('card-fullscreen');
+  });
+  // Close Card
+  $('a[data-action="close"]').on('click', function () {
+    $(this).closest('.card').removeClass().slideUp('fast');
+  });
+  // ==============================================================
+  // Color variation
+  // ==============================================================
 
-    $(".right-side-toggle").on("click", function () {
-        $(".right-sidebar").slideDown(50).toggleClass("shw-rside");
-        $(".fxhdr").on("click", function () {
-            body.toggleClass("fix-header");
-            /* Fix Header JS */
-        });
-        $(".fxsdr").on("click", function () {
-            body.toggleClass("fix-sidebar");
-            /* Fix Sidebar JS */
-        });
+  var mySkins = [
+    "skin-default",
+    "skin-green",
+    "skin-red",
+    "skin-blue",
+    "skin-purple",
+    "skin-megna",
+    "skin-default-dark",
+    "skin-green-dark",
+    "skin-red-dark",
+    "skin-blue-dark",
+    "skin-purple-dark",
+    "skin-megna-dark"
+  ]
+  /**
+   * Get a prestored setting
+   *
+   * @param String name Name of of the setting
+   * @returns String The value of the setting | null
+   */
+  function get(name) {
+    if (typeof (Storage) !== 'undefined') {
+      return localStorage.getItem(name)
+    }
+    else {
+      window.alert('Please use a modern browser to properly view this template!')
+    }
+  }
+  /**
+   * Store a new settings in the browser
+   *
+   * @param String name Name of the setting
+   * @param String val Value of the setting
+   * @returns void
+   */
+  function store(name, val) {
+    if (typeof (Storage) !== 'undefined') {
+      localStorage.setItem(name, val)
+    }
+    else {
+      window.alert('Please use a modern browser to properly view this template!')
+    }
+  }
 
-        /* ===== Service Panel JS ===== */
+  /**
+   * Replaces the old skin with the new skin
+   * @param String cls the new skin class
+   * @returns Boolean false to prevent link's default action
+   */
+  function changeSkin(cls) {
+    $.each(mySkins, function (i) {
+      $('body').removeClass(mySkins[i])
+    })
+    $('body').addClass(cls)
+    store('skin', cls)
+    return false
+  }
 
-        var fxhdr = $('.fxhdr');
-        if (body.hasClass("fix-header")) {
-            fxhdr.attr('checked', true);
-        } else {
-            fxhdr.attr('checked', false);
-        }
-        if (body.hasClass("fix-sidebar")) {
-            fxhdr.attr('checked', true);
-        } else {
-            fxhdr.attr('checked', false);
-        }
-    });
-
-    /* ===========================================================
-        Loads the correct sidebar on window load.
-        collapses the sidebar on window resize.
-        Sets the min-height of #page-wrapper to window size.
-    =========================================================== */
-
-    $(function () {
-        var set = function () {
-                var topOffset = 60,
-                    width = (window.innerWidth > 0) ? window.innerWidth : this.screen.width,
-                    height = ((window.innerHeight > 0) ? window.innerHeight : this.screen.height) - 1;
-                if (width < 768) {
-                    $('div.navbar-collapse').addClass('collapse');
-                    topOffset = 100;
-                    /* 2-row-menu */
-                } else {
-                    $('div.navbar-collapse').removeClass('collapse');
-                }
-
-                /* ===== This is for resizing window ===== */
-
-                if (width < 1170) {
-                    body.addClass('content-wrapper');
-                    $(".open-close i").removeClass('icon-arrow-left-circle');
-                    $(".sidebar-nav, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible");
-                    $(".logo span").hide();
-                } else {
-                    body.removeClass('content-wrapper');
-                    $(".open-close i").addClass('icon-arrow-left-circle');
-                    $(".logo span").show();
-                }
-
-                height = height - topOffset;
-                if (height < 1) {
-                    height = 1;
-                }
-                if (height > topOffset) {
-                    $("#page-wrapper").css("min-height", (height) + "px");
-                }
-            },
-            url = window.location,
-            element = $('ul.nav a').filter(function () {
-                return this.href === url || url.href.indexOf(this.href) === 0;
-            }).addClass('active').parent().parent().addClass('in').parent();
-        if (element.is('li')) {
-            element.addClass('active');
-        }
-        $(window).ready(set);
-        $(window).on("resize", set);
-    });
-
-    /* ===================================================
-        This is for click on open close button
-        Sidebar open close
-    =================================================== */
-
-    $(".open-close").on('click', function () {
-        if ($("body").hasClass("content-wrapper")) {
-            $("body").trigger("resize");
-            $(".sidebar-nav, .slimScrollDiv").css("overflow", "hidden").parent().css("overflow", "visible");
-            $("body").removeClass("content-wrapper");
-            $(".open-close i").addClass("icon-arrow-left-circle");
-            $(".logo span").show();
-        } else {
-            $("body").trigger("resize");
-            $(".sidebar-nav, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible");
-            $("body").addClass("content-wrapper");
-            $(".open-close i").removeClass("icon-arrow-left-circle");
-            $(".logo span").hide();
-        }
-    });
-
-    /* ===== Collapsible Panels JS ===== */
-
-    (function ($, window, document) {
-        var panelSelector = '[data-perform="panel-collapse"]',
-            panelRemover = '[data-perform="panel-dismiss"]';
-        $(panelSelector).each(function () {
-            var collapseOpts = {
-                    toggle: false
-                },
-                parent = $(this).closest('.panel'),
-                wrapper = parent.find('.panel-wrapper'),
-                child = $(this).children('i');
-            if (!wrapper.length) {
-                wrapper = parent.children('.panel-heading').nextAll().wrapAll('<div/>').parent().addClass('panel-wrapper');
-                collapseOpts = {};
-            }
-            wrapper.collapse(collapseOpts).on('hide.bs.collapse', function () {
-                child.removeClass('ti-minus').addClass('ti-plus');
-            }).on('show.bs.collapse', function () {
-                child.removeClass('ti-plus').addClass('ti-minus');
-            });
-        });
-
-        /* ===== Collapse Panels ===== */
-
-        $(document).on('click', panelSelector, function (e) {
-            e.preventDefault();
-            var parent = $(this).closest('.panel'),
-                wrapper = parent.find('.panel-wrapper');
-            wrapper.collapse('toggle');
-        });
-
-        /* ===== Remove Panels ===== */
-
-        $(document).on('click', panelRemover, function (e) {
-            e.preventDefault();
-            var removeParent = $(this).closest('.panel');
-
-            function removeElement() {
-                var col = removeParent.parent();
-                removeParent.remove();
-                col.filter(function () {
-                    return ($(this).is('[class*="col-"]') && $(this).children('*').length === 0);
-                }).remove();
-            }
-
-            removeElement();
-        });
-    }(jQuery, window, document));
-
-    /* ===== Tooltip Initialization ===== */
-
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-
-    /* ===== Popover Initialization ===== */
-
-    $(function () {
-        $('[data-toggle="popover"]').popover();
-    });
-
-    /* ===== Task Initialization ===== */
-
-    $(".list-task li label").on("click", function () {
-        $(this).toggleClass("task-done");
-    });
-    $(".settings_box a").on("click", function () {
-        $("ul.theme_color").toggleClass("theme_block");
-    });
-
-    /* ===== Collepsible Toggle ===== */
-
-    $(".collapseble").on("click", function () {
-        $(".collapseblebox").fadeToggle(350);
-    });
-
-    /* ===== Sidebar ===== */
-
-    $('.slimscrollright').slimScroll({
-        height: '100%',
-        position: 'right',
-        size: "5px",
-        color: '#dcdcdc'
-    });
-    $('.slimscrollsidebar').slimScroll({
-        height: '100%',
-        position: 'right',
-        size: "5px",
-        color: '#dcdcdc'
-    });
-    $('.chat-list').slimScroll({
-        height: '100%',
-        position: 'right',
-        size: "5px",
-        color: '#dcdcdc'
-    });
-
-    /* ===== Resize all elements ===== */
-
-    body.trigger("resize");
-
-    /* ===== Visited ul li ===== */
-
-    $('.visited li a').on("click", function (e) {
-        $('.visited li').removeClass('active');
-        var $parent = $(this).parent();
-        if (!$parent.hasClass('active')) {
-            $parent.addClass('active');
-        }
-        e.preventDefault();
-    });
-
-    /* ===== Login and Recover Password ===== */
-
-    $('#to-recover').on("click", function () {
-        $("#loginform").slideUp();
-        $("#recoverform").fadeIn();
-    });
-
-    /* =================================================================
-        Update 1.5
-        this is for close icon when navigation open in mobile view
-    ================================================================= */
-
-    $(".navbar-toggle").on("click", function () {
-        $(".navbar-toggle i").toggleClass("ti-menu").addClass("ti-close");
-    });
+  function setup() {
+    var tmp = get('skin')
+    if (tmp && $.inArray(tmp, mySkins)) changeSkin(tmp)
+    // Add the change skin listener
+    $('[data-skin]').on('click', function (e) {
+      if ($(this).hasClass('knob')) return
+      e.preventDefault()
+      changeSkin($(this).data('skin'))
+    })
+  }
+  setup()
+  $("#themecolors").on("click", "a", function () {
+    $("#themecolors li a").removeClass("working"),
+      $(this).addClass("working")
+  })
 });

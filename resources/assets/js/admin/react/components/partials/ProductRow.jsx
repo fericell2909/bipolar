@@ -5,13 +5,13 @@ const ProductRow = props => {
   const isSelected = existInArray(props.selectedProducts, props.hashId);
   const badgesSubtypes = props.subtypes.map(subtype => {
     return (
-      <span key={subtype["hash_id"]} className="badge badge-dark">
+      <span key={subtype["hash_id"]} className="label label-rounded label-inverse">
         {subtype["name"]}
       </span>
     );
   });
   const state = props.state ? (
-    <span className={`badge badge-${props.state.color}`}>
+    <span className={`label label-rounded label-${props.state.color}`}>
       {props.state.name}
     </span>
   ) : (
@@ -20,7 +20,7 @@ const ProductRow = props => {
 
   return (
     <tr>
-      <td>
+      <td className="align-middle">
         <input
           type="checkbox"
           checked={isSelected}
@@ -28,40 +28,42 @@ const ProductRow = props => {
           onChange={props.clickProductSelect}
         />
       </td>
-      <td>
+      <td className="align-middle text-center">
         {props.imageUrl ? <img src={props.imageUrl} width="100" /> : "--"}
       </td>
-      <td>{props.name}</td>
-      <td>{badgesSubtypes}</td>
-      <td className="text-right">{parseInt(props.price)}</td>
-      <td className="text-right">{parseInt(props.priceDolar)}</td>
-      <td className="text-center">{state}</td>
-      <td className="text-center">
-        {props.freeShipping ? <i className="fa fa-check" /> : null}
+      <td className="align-middle">{props.name}</td>
+      <td className="align-middle">{badgesSubtypes}</td>
+      <td className="align-middle text-right">{parseInt(props.price)}</td>
+      <td className="align-middle text-right">{parseInt(props.priceDolar)}</td>
+      <td className="align-middle text-center">{state}</td>
+      <td className="align-middle text-center">
+        {props.freeShipping ? <i className="fas fa-fw fa-check" /> : null}
       </td>
-      <td className="text-center">
-        {props.isSalient !== null ? <i className="fa fa-check" /> : null}
+      <td className="align-middle text-center">
+        {props.isSalient !== null ? <i className="fas fa-fw fa-check" /> : null}
       </td>
-      <td>
-        <a
-          href={props.previewUrl}
-          target="_blank"
-          className="btn btn-sm btn-dark btn-rounded"
-        >
-          <i className="fa fa-eye" /> Vista previa
-        </a>
-        <a
-          href={`/admin/products/${props.hashId}/edit`}
-          className="btn btn-sm btn-dark btn-rounded"
-        >
-          <i className="fa fa-pencil" /> Editar
-        </a>
-        <button
-          onClick={() => props.clickDelete(props.hashId)}
-          className="btn btn-sm btn-dark btn-rounded"
-        >
-          <i className="fa fa-trash" /> Descartar
-        </button>
+      <td className="align-middle">
+        <div className="button-group">
+          <a
+            href={props.previewUrl}
+            target="_blank"
+            className="btn btn-sm btn-dark btn-rounded"
+          >
+            <i className="fas fa-fw fa-eye" /> Vista previa
+          </a>
+          <a
+            href={`/admin/products/${props.hashId}/edit`}
+            className="btn btn-sm btn-dark btn-rounded"
+          >
+            <i className="fas fa-fw fa-edit" /> Editar
+          </a>
+          <button
+            onClick={() => props.clickDelete(props.hashId)}
+            className="btn btn-sm btn-dark btn-rounded"
+          >
+            <i className="fas fa-fw fa-trash" /> Descartar
+          </button>
+        </div>
       </td>
     </tr>
   );

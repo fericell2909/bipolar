@@ -135,76 +135,82 @@ class BipolarProductNew extends React.Component {
     return (
       <div className="row">
         <div className="col-md-9">
-          <div className="white-box">
-            <form onSubmit={this.handleSaveProduct}>
-              <div className="form-row">
-                <div className="col-md-4">
-                  <div className="form-group">
-                    <label>Nombre</label>
-                    <input value={this.state.name} onChange={this.handleInputChange} name="name" type="text"
-                           className="form-control" required/>
+          <div className="card">
+            <div className="card-body">
+              <form onSubmit={this.handleSaveProduct}>
+                <div className="form-row">
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label>Nombre</label>
+                      <input value={this.state.name} onChange={this.handleInputChange} name="name" type="text"
+                             className="form-control" required/>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label>Nombre (Inglés)</label>
+                      <input value={this.state.name_english} onChange={this.handleInputChange} name="name_english" type="text"
+                             className="form-control" required/>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label>Precio</label>
+                      <input value={this.state.price} onChange={this.handleInputChange} name="price" type="number" step="any"
+                             className="form-control" required/>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-4">
-                  <div className="form-group">
-                    <label>Nombre (Inglés)</label>
-                    <input value={this.state.name_english} onChange={this.handleInputChange} name="name_english" type="text"
-                           className="form-control" required/>
+                <div className="form-group">
+                  <label>Descripción (Opcional)</label>
+                  <Editor editorState={editorState} onEditorStateChange={this.handleEditorDescription} editorClassName="demo-editor-content"/>
+                </div>
+                <div className="form-group">
+                  <label>Descripción en inglés (Opcional)</label>
+                  <Editor editorState={editorStateEnglish} onEditorStateChange={this.handleEditorDescriptionEnglish} editorClassName="demo-editor-content"/>
+                </div>
+                <div className="form-row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Estado</label>
+                      <select className="custom-select col-12" value={this.state.selectedState} onChange={this.handleProductStateChange} required>
+                        <option value="" disabled>Seleccione un estado</option>
+                        {productStatesRender.length ? productStatesRender : null}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Peso (kg)</label>
+                      <input value={this.state.weight} onChange={this.handleInputChange} name="weight" type="number" step="any"
+                             className="form-control" placeholder="Opcional"/>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-4">
-                  <div className="form-group">
-                    <label>Precio</label>
-                    <input value={this.state.price} onChange={this.handleInputChange} name="price" type="number" step="any"
-                           className="form-control" required/>
+                <div className="row">
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <div className="checkbox">
+                        <input checked={this.state.free_shipping} onChange={this.handleChangeFreeShipping} type="checkbox"/>
+                        <label> Envío gratuito</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <div className="checkbox">
+                        <input checked={this.state.salient} onChange={this.handleSalientChange} type="checkbox"/>
+                        <label> Destacado</label>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="form-group">
-                <label>Descripción (Opcional)</label>
-                <Editor editorState={editorState} onEditorStateChange={this.handleEditorDescription} editorClassName="demo-editor-content"/>
-              </div>
-              <div className="form-group">
-                <label>Descripción en inglés (Opcional)</label>
-                <Editor editorState={editorStateEnglish} onEditorStateChange={this.handleEditorDescriptionEnglish} editorClassName="demo-editor-content"/>
-              </div>
-              <div className="form-row">
-                <div className="col-md-6">
-                  <div className="form-group">
-                    <label>Estado</label>
-                    <select className="custom-select col-12" value={this.state.selectedState} onChange={this.handleProductStateChange} required>
-                      <option value="" disabled>Seleccione un estado</option>
-                      {productStatesRender.length ? productStatesRender : null}
-                    </select>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="form-group">
-                    <label>Peso (kg)</label>
-                    <input value={this.state.weight} onChange={this.handleInputChange} name="weight" type="number" step="any"
-                           className="form-control" placeholder="Opcional"/>
-                  </div>
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="col-md-3">
-                  <label className="checkbox-inline">
-                    <input checked={this.state.free_shipping} onChange={this.handleChangeFreeShipping} type="checkbox"/>
-                    Envío gratuito
-                  </label>
-                </div>
-                <div className="col-md-3">
-                  <label className="checkbox-inline">
-                    <input checked={this.state.salient} onChange={this.handleSalientChange} type="checkbox"/>
-                    Destacado
-                  </label>
-                </div>
-              </div>
-              <hr/>
-              <button disabled={isInvalidForm} type="submit" className="btn btn-dark btn-rounded">
-                Guardar e ir a subir fotos
-              </button>
-            </form>
+                <hr/>
+                <button disabled={isInvalidForm} type="submit" className="btn btn-dark btn-rounded">
+                  Guardar e ir a subir fotos
+                </button>
+              </form>
+            </div>
           </div>
         </div>
         <div className="col-md-3">

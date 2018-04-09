@@ -13,7 +13,7 @@
         "axios": "^0.18.0",
         "babel-plugin-transform-class-properties": "^6.24.1",
         "babel-preset-react": "^6.23.0",
-        "bootstrap": "4.0.0",
+        "bootstrap": "^4.0.0",
         "bootstrap-sass": "^3.3.7",
         "countup.js": "^1.9.3",
         "cross-env": "^5.1.4",
@@ -25,16 +25,15 @@
         "icheck": "^1.0.2",
         "immutable": "^3.8.2",
         "jquery": "3.3.1",
-        "jquery-slimscroll": "^1.3.8",
         "laravel-mix": "^2.1.11",
         "lodash": "^4.17.5",
         "mdi": "^2.1.19",
         "owl.carousel": "^2.2.0",
         "popper.js": "^1.12.9",
         "pretty-checkbox": "^3.0.3",
-        "react": "^16.3.0",
+        "react": "^16.3.1",
         "react-autocomplete": "^1.8.1",
-        "react-dom": "^16.3.0",
+        "react-dom": "^16.3.1",
         "react-draft-wysiwyg": "^1.12.7",
         "select2": "4.0.5",
         "sortablejs": "^1.6.1",
@@ -44,6 +43,6 @@
     },
     "dependencies": {
         "browser-sync": "^2.23.6",
-        "browser-sync-webpack-plugin": "^2.0.1"
+        "browser-sync-webpack-plugin": "^2.2.2"
     }
 }

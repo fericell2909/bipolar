@@ -109,9 +109,9 @@ class StockRow extends React.Component {
 
     return (
       <tr>
-        <td className="text-center">{stock['size_name']}</td>
-        <td className="text-center">{stock['quantity']}</td>
-        <td>
+        <td className="align-middle text-center">{stock['size_name']}</td>
+        <td className="align-middle text-center">{stock['quantity']}</td>
+        <td className="align-middle">
           <Autocomplete
             value={selectedBsaleText}
             items={this.state.copyBsaleStocks}
@@ -122,7 +122,7 @@ class StockRow extends React.Component {
             inputProps={{className: 'form-control', style: this.styles.inputAutocomplete}}
             wrapperStyle={this.styles.wrapperAutocomplete}/>
         </td>
-        <td>
+        <td className="align-middle">
           <button onClick={this.saveStockData} className="btn btn-dark btn-rounded btn-sm">
             Guardar
           </button>

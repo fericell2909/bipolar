@@ -1,23 +1,19 @@
 @extends('admin.layouts.app_admin')
+@section('title', 'Ordenar históricos')
 @section('content')
-  <div class="row">
-    <div class="col-md-12 white-box">
-      <h3 class="box-title">Ordenar históricos</h3>
-      <div id="sortable-historics">
+  <div class="card">
+    <div class="card-body">
+      <ul id="sortable-historics" class="list-unstyled">
         @foreach($historics as $historic)
-          <?php /** @var \App\Models\Banner $banner */ ?>
-          <div class="media" data-id="{{ $historic->id }}">
-            <div class="media-left">
-              <a>
-                <img class="media-object" src="{{ $historic->photo }}" width="100">
-              </a>
-            </div>
+          <?php /** @var \App\Models\Historic $historic */ ?>
+          <li class="media my-2" data-id="{{ $historic->hash_id }}">
+            <img class="d-flex mr-3" width="100" src="{{ $historic->photo ?? 'https://placehold.it/100x50' }}" >
             <div class="media-body">
-              <h4 class="media-heading">Modelo {{ $historic->name }}</h4>
+              <h5 class="mt-0 mb-1">Modelo {{ $historic->name }}</h5>
             </div>
-          </div>
+          </li>
         @endforeach
-      </div>
+      </ul>
     </div>
   </div>
 @endsection
