@@ -2,11 +2,10 @@
 
 Route::get('login', 'Admin\Auth\LoginController@showLoginForm')->name('login.admin');
 Route::post('login', 'Admin\Auth\LoginController@login')->name('login.admin.post');
+Route::post('logout', 'Admin\Auth\LoginController@logout');
 
 Route::middleware('auth:admin')->group(function () {
-    Route::get('/', function () {
-        return view('admin.home');
-    })->name('admin.dashboard');
+    Route::view('/', 'admin.home')->name('admin.dashboard');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('admin.logs');
 
     Route::prefix('buys')->group(function () {

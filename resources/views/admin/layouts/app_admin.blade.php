@@ -12,8 +12,8 @@
     <!-- Custom CSS -->
     <link href="{{ mix('css/app-admin-styles.css') }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{ asset('public/favicon-bipolar.jpg') }}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('public/favicon-bipolar.jpg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -64,7 +64,9 @@
                 <div class="dropdown-menu dropdown-menu-right animated flipInY">
                   <a href="{{ route('admin.dashboard') }}" class="dropdown-item"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                   <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item"><i class="fas fa-power-off"></i> Cerrar sesión</a>
+                  <a href="javascript:void(0)" onclick="document.getElementById('logout-form').submit()" class="dropdown-item"><i class="fas fa-power-off"></i> Cerrar sesión</a>
+                  {!! Form::open(['id' => 'logout-form', 'url' => '/logout', 'method' => 'post', 'style' => 'display:none']) !!}
+                  {!! Form::close() !!}
                 </div>
               </li>
             </ul>
@@ -79,7 +81,7 @@
         <div class="scroll-sidebar">
           <div class="sidebar-nav">
             <ul id="sidebarnav">
-              <li class="nav-small-cap">--- PERSONAL</li>
+              <li class="nav-small-cap">--- SECCIONES</li>
               <li>
                 <a class="waves-effect waves-dark" href="{{ route('admin.dashboard') }}" aria-expanded="false">
                   <i class="fas fa-fw fa-tachometer-alt"></i>
