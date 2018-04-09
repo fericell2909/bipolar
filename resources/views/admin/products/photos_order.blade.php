@@ -1,5 +1,6 @@
 @extends('admin.layouts.app_admin')
-@section('title', 'Ordenar fotos del producto')
+<?php /** @var \App\Models\Product $product */ ?>
+@section('title', "Ordenar fotos del producto {$product->name}")
 @section('content')
   <div class="row">
     <div class="col-md-12">
@@ -8,8 +9,6 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          <h3 class="box-title">Coge un elemento para ordenar y suelta para guardar</h3>
-            <?php /** @var \App\Models\Product $product */ ?>
           <div id="sortable-items" class="list-group">
             @foreach($product->photos as $photo)
               <div class="list-group-item" data-id="{{ $photo->hash_id }}">

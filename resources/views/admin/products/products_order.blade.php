@@ -8,7 +8,7 @@
     <div class="card-body">
       <ul id="sortable-products" class="list-unstyled">
         @foreach($products as $product)
-              <?php /** @var \App\Models\Product $product */ ?>
+          <?php /** @var \App\Models\Product $product */ ?>
           <li class="media my-1" data-id="{{ $product->hash_id }}">
             <img class="d-flex mr-3" width="100" src="{{ optional($product->photos->first())->url ?? 'https://placehold.it/100x50' }}" >
             <div class="media-body">
