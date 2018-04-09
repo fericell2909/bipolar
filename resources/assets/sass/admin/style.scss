@@ -1,0 +1,34 @@
+/*
+Template Name: Admin Template
+Author: Niravjoshi / Wrappixel
+File: scss
+*/
+
+@import 'variable';  
+
+//Colors
+@import 'colors/default';
+@import 'colors/green'; 
+@import 'colors/megna'; 
+@import 'colors/purple'; 
+@import 'colors/red'; 
+@import 'colors/blue';
+@import 'colors/blue-dark'; 
+@import 'colors/default-dark'; 
+@import 'colors/green-dark'; 
+@import 'colors/red-dark'; 
+@import 'colors/megna-dark'; 
+@import 'colors/purple-dark';  
+
+// Import Bootstrap source files
+@import "~bootstrap/scss/bootstrap";
+
+//This is the core files
+@import 'core/core';
+@import 'widgets/widgets';
+@import 'responsive';
+@import "pages/login-register-lock";
+
+//In This scss you can write your scss
+@import 'custom'; 
+

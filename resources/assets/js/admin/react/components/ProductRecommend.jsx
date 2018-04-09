@@ -14,19 +14,16 @@ export default class BipolarProductRecommended extends React.Component {
       recommendedProducts: [],
       searchText: "",
     };
-
-    this.handleSearchProduct = this.handleSearchProduct.bind(this);
-    this.getRecommendeds = this.getRecommendeds.bind(this);
   }
 
-  handleSearchProduct(event) {
+  handleSearchProduct = event => {
     const searchText = event.target.value;
     const searchedProducts = this.state.originalProducts.filter(product => {
       return product.name.search(searchText) !== -1;
     });
 
     this.setState({ searchText, products: searchedProducts });
-  }
+  };
 
   handleSaveRecommended(productHashId) {
     swal({
@@ -58,7 +55,7 @@ export default class BipolarProductRecommended extends React.Component {
     });
   }
 
-  handleRemoveRecommended(productHashId) {
+  handleRemoveRecommended = productHashId => {
     swal({
       title: "Remover recomendado",
       message: "Desea remover este producto de recomendados",
@@ -85,22 +82,22 @@ export default class BipolarProductRecommended extends React.Component {
         .catch(error => console.log(error));
       }
     });
-  }
+  };
 
   render() {
     const findedProductsList = this.state.products.map(product => {
       return (
         <tr key={product["hash_id"]}>
-          <td>{product["id"]}</td>
-          <td>
+          <td className="align-middle">{product["id"]}</td>
+          <td className="align-middle text-center">
             {product["firstImageUrl"] !== null ? (
               <img src={product["firstImageUrl"]} width="100" />
             ) : (
               "--"
             )}
           </td>
-          <td>{product["name"]}</td>
-          <td>
+          <td className="align-middle">{product["name"]}</td>
+          <td className="align-middle">
             {isEmpty(product["state"]) ? (
               "--"
             ) : (
@@ -109,7 +106,7 @@ export default class BipolarProductRecommended extends React.Component {
               </span>
             )}
           </td>
-          <td>
+          <td className="align-middle">
             <button
               className="btn btn-sm btn-dark btn-rounded"
               onClick={() => this.handleSaveRecommended(product["hash_id"])}
@@ -124,16 +121,16 @@ export default class BipolarProductRecommended extends React.Component {
     const recommendedList = this.state.recommendedProducts.map(product => {
       return (
         <tr key={product["hash_id"]}>
-          <td>#</td>
-          <td>
+          <td className="align-middle">#</td>
+          <td className="align-middle text-center">
             {product["firstImageUrl"] !== null ? (
               <img src={product["firstImageUrl"]} width="100" />
             ) : (
               "Sin fotos"
             )}
           </td>
-          <td>{product["name"]}</td>
-          <td>
+          <td className="align-middle">{product["name"]}</td>
+          <td className="align-middle">
             {isEmpty(product["state"]) ? (
               "--"
             ) : (
@@ -142,7 +139,7 @@ export default class BipolarProductRecommended extends React.Component {
               </span>
             )}
           </td>
-          <td>
+          <td className="align-middle">
             <button
               className="btn btn-sm btn-dark btn-rounded"
               onClick={() => this.handleRemoveRecommended(product["hash_id"])}
@@ -156,75 +153,79 @@ export default class BipolarProductRecommended extends React.Component {
 
     const content = (
       <div className="row">
-        <div className="col-md-6">
-          <div className="white-box">
-            <h3 className="box-title">Seleccionar recomendados</h3>
-            <div className="input-group">
-              <input
-                className="form-control"
-                type="text"
-                value={this.state.searchText}
-                placeholder="Buscar otros productos"
-                onChange={this.handleSearchProduct}
-              />
-              <span className="input-group-btn">
-                <button
-                  onClick={this.handleSearchProduct}
-                  className="btn btn-sm btn-dark btn-rounded"
-                >
-                  Buscar
-                </button>
-              </span>
-            </div>
-            <table className="table table-responsive">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>
-                    <i className="fa fa-photo" />
-                  </th>
-                  <th>Nombre</th>
-                  <th>Estado</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {findedProductsList.length > 0 ? (
-                  findedProductsList
-                ) : (
+        <div className="col-md">
+          <div className="card">
+            <div className="card-header">Seleccionar recomendados</div>
+            <div className="card-body">
+              <div className="input-group mb-3">
+                <input
+                  className="form-control"
+                  type="text"
+                  value={this.state.searchText}
+                  placeholder="Buscar otros productos"
+                  onChange={this.handleSearchProduct}
+                />
+                <div className="input-group-append">
+                  <button
+                    onClick={this.handleSearchProduct}
+                    className="btn btn-sm btn-dark"
+                  >
+                    Buscar
+                  </button>
+                </div>
+              </div>
+              <table className="table table-hover color-table dark-table">
+                <thead>
                   <tr>
-                    <td colSpan="5">No se encontraron productos</td>
+                    <th>#</th>
+                    <th className="text-center">
+                      <i className="fas fa-fw fa-image" />
+                    </th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
                   </tr>
-                )}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {findedProductsList.length > 0 ? (
+                    findedProductsList
+                  ) : (
+                    <tr>
+                      <td colSpan="5">No se encontraron productos</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-        <div className="col-md-6">
-          <div className="white-box">
-            <h3 className="box-title">Lista de recomendados</h3>
-            <table className="table table-responsive">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>
-                    <i className="fa fa-photo" />
-                  </th>
-                  <th>Nombre</th>
-                  <th>Estado</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recommendedList.length > 0 ? (
-                  recommendedList
-                ) : (
+        <div className="col-md">
+          <div className="card">
+            <div className="card-header">Lista de recomendados</div>
+            <div className="card-body">
+              <table className="table table-hover color-table dark-table">
+                <thead>
                   <tr>
-                    <td colSpan="5">No hay productos sugeridos</td>
+                    <th>#</th>
+                    <th className="text-center">
+                      <i className="fas fa-fw fa-image" />
+                    </th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
                   </tr>
-                )}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {recommendedList.length > 0 ? (
+                    recommendedList
+                  ) : (
+                    <tr>
+                      <td className="text-center" colSpan="5">No hay productos sugeridos</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -233,7 +234,7 @@ export default class BipolarProductRecommended extends React.Component {
     return content;
   }
 
-  getAllProducts() {
+  getAllProducts = () => {
     axios.get("/ajax-admin/products").then(response => {
       const products = response.data["data"];
       const formattedProducts = products.map(product => {
@@ -248,9 +249,9 @@ export default class BipolarProductRecommended extends React.Component {
         originalProducts: formattedProducts
       });
     });
-  }
+  };
 
-  getRecommendeds() {
+  getRecommendeds = () => {
     axios.get(`/ajax-admin/products/${this.props.productHashId}/recommendeds`)
       .then(response => {
         const recommendeds = response.data["data"];
@@ -266,7 +267,7 @@ export default class BipolarProductRecommended extends React.Component {
         });
       })
       .catch(error => console.error(error));
-  }
+  };
 
   componentDidMount() {
     this.getRecommendeds();

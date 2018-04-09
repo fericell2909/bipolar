@@ -205,8 +205,7 @@ class BipolarProductList extends React.Component {
 
     if (this.state.subtypeSelected.length > 0) {
       products = products.filter(product => {
-        let hasSubtypes = [];
-        hasSubtypes = product.subtypes.filter(subtype => {
+        let hasSubtypes = product.subtypes.filter(subtype => {
           return subtype["hash_id"] === this.state.subtypeSelected;
         });
 
@@ -299,111 +298,97 @@ class BipolarProductList extends React.Component {
     return (
       <div className="row">
         <div className="col-md-12">
-          <div className="white-box">
-            <div className="row">
-              <div className="col-md-11">
-                <h3 className="box-title">Listar los productos</h3>
-              </div>
-              <div className="col-md-1">
-                <a
-                  href="/admin/products/new"
-                  className="btn btn-dark btn-rounded"
-                >
-                  <i className="fa fa-plus" /> Nuevo
-                </a>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-9">
-                <label className="control-label">Buscar producto</label>
-                <div className="input-group">
-                  <span className="input-group-btn">
-                    <button className="btn btn-dark btn-sm" onClick={this.toggleFilters}>
-                      <i className="fa fa-filter"/> Filtros
-                    </button>
-                  </span>
-                  <input
-                    value={this.state.searchText}
-                    onChange={this.handleSearch}
-                    type="text"
-                    className="form-control"
-                  />
-                </div>
-              </div>
-              <div className="col-md-3">
-                <div className="form-group">
-                  <label>Acciones (pendiente)</label>
-                  <select
-                    value={this.state.selectedMassiveAction}
-                    onChange={this.handleMassiveSelection}
-                    className="custom-select col-12"
-                  >
-                    <option value="" disabled>
-                      Seleccione
-                    </option>
-                    <optgroup label="Estado publicación">
-                      <option value="change_published">
-                        Cambiar a activo (Publicado)
-                      </option>
-                      <option value="change_draft">Cambiar a borrador</option>
-                      <option value="change_pending">
-                        Cambiar a pendiente de revisión
-                      </option>
-                    </optgroup>
-                    <optgroup label="Destacado">
-                      <option value="activate_salient">
-                        Activar destacado
-                      </option>
-                      <option value="deactivate_salient">
-                        Desactivar destacado
-                      </option>
-                    </optgroup>
-                    <optgroup label="Envío gratuito">
-                      <option value="activate_free">
-                        Activar envío gratuito
-                      </option>
-                      <option value="deactivate_free">
-                        Desactivar envío gratuito
-                      </option>
-                    </optgroup>
-                    <optgroup label="Precio">
-                      <option value="dolar_price">
-                        Asignar precio en dólares
-                      </option>
-                    </optgroup>
-                  </select>
-                </div>
-              </div>
-            </div>
-            {this.state.showFilters ? filters : null}
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>
+          <div className="card">
+            <div className="card-body">
+              <div className="row">
+                <div className="col-md-9">
+                  <label className="control-label">Buscar producto</label>
+                  <div className="input-group">
+                    <div className="input-group-prepend">
+                      <button className="btn btn-dark btn-sm" onClick={this.toggleFilters}>
+                        <i className="fas fa-fw fa-filter"/> Filtros
+                      </button>
+                    </div>
                     <input
-                      type="checkbox"
-                      checked={
-                        productsSource.length ===
-                        this.state.selectedProducts.length
-                      }
-                      onChange={this.handleSelectAllProducts}
+                      value={this.state.searchText}
+                      onChange={this.handleSearch}
+                      type="text"
+                      className="form-control"
                     />
-                  </th>
-                  <th>
-                    <i className="fa fa-photo" />
-                  </th>
-                  <th>Nombre</th>
-                  <th>Tipos</th>
-                  <th className="text-right">Precio (S/)</th>
-                  <th className="text-right">Precio ($)</th>
-                  <th className="text-center">Estado</th>
-                  <th className="text-center">Envío gratis</th>
-                  <th className="text-center">Destacado</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>{productsRender.length ? productsRender : null}</tbody>
-            </table>
+                  </div>
+                </div>
+                <div className="col-md-3">
+                  <div className="form-group">
+                    <label>Acciones (pendiente)</label>
+                    <select
+                      value={this.state.selectedMassiveAction}
+                      onChange={this.handleMassiveSelection}
+                      className="custom-select col-12"
+                    >
+                      <option value="" disabled>
+                        Seleccione
+                      </option>
+                      <optgroup label="Estado publicación">
+                        <option value="change_published">
+                          Cambiar a activo (Publicado)
+                        </option>
+                        <option value="change_draft">Cambiar a borrador</option>
+                        <option value="change_pending">
+                          Cambiar a pendiente de revisión
+                        </option>
+                      </optgroup>
+                      <optgroup label="Destacado">
+                        <option value="activate_salient">
+                          Activar destacado
+                        </option>
+                        <option value="deactivate_salient">
+                          Desactivar destacado
+                        </option>
+                      </optgroup>
+                      <optgroup label="Envío gratuito">
+                        <option value="activate_free">
+                          Activar envío gratuito
+                        </option>
+                        <option value="deactivate_free">
+                          Desactivar envío gratuito
+                        </option>
+                      </optgroup>
+                      <optgroup label="Precio">
+                        <option value="dolar_price">
+                          Asignar precio en dólares
+                        </option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              {this.state.showFilters ? filters : null}
+              <div className="table-responsive">
+                <table className="table table-hover color-table dark-table">
+                  <thead>
+                    <tr>
+                      <th>
+                        <input
+                          type="checkbox"
+                          checked={productsSource.length === this.state.selectedProducts.length}
+                          onChange={this.handleSelectAllProducts}
+                        />
+                      </th>
+                      <th className="text-center"><i className="fas fa-fw fa-image" /></th>
+                      <th>Nombre</th>
+                      <th>Tipos</th>
+                      <th className="text-right">Precio (S/)</th>
+                      <th className="text-right">Precio ($)</th>
+                      <th className="text-center">Estado</th>
+                      <th className="text-center">Envío gratis</th>
+                      <th className="text-center">Destacado</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>{productsRender.length ? productsRender : null}</tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>

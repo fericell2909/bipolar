@@ -40,36 +40,27 @@ class BipolarProductEdit extends React.Component {
       editorState: EditorState.createEmpty(),
       editorStateEnglish: EditorState.createEmpty(),
     };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleColorChange = this.handleColorChange.bind(this);
-    this.handleSizeChange = this.handleSizeChange.bind(this);
-    this.handleSubtypeChange = this.handleSubtypeChange.bind(this);
-    this.handleUpdateProduct = this.handleUpdateProduct.bind(this);
-    this.handleProductStateChange = this.handleProductStateChange.bind(this);
-    this.handleSalientChange = this.handleSalientChange.bind(this);
-    this.handleChangeFreeShipping = this.handleChangeFreeShipping.bind(this);
   }
 
-  handleInputChange(event) {
+  handleInputChange = event => {
     this.setState({
       product: {
         ...this.state.product,
         [event.target.name]: event.target.value,
       }
     });
-  }
+  };
 
-  handleSalientChange(event) {
+  handleSalientChange = event => {
     this.setState({
       product: {
         ...this.state.product,
         salient: event.target.checked,
       }
     });
-  }
+  };
 
-  handleColorChange(event) {
+  handleColorChange = event => {
     const colorHashId = event.target.value;
     let selected = this.state.product.selectedColors;
 
@@ -85,9 +76,9 @@ class BipolarProductEdit extends React.Component {
         selectedColors: selected,
       }
     });
-  }
+  };
 
-  handleSizeChange(event) {
+  handleSizeChange = event => {
     const sizeHashId = event.target.value;
     let selected = this.state.product.selectedSizes;
 
@@ -103,9 +94,9 @@ class BipolarProductEdit extends React.Component {
         selectedSizes: selected,
       }
     });
-  }
+  };
 
-  handleSubtypeChange(event) {
+  handleSubtypeChange = event => {
     const subtypeHashId = event.target.value;
     let selected = this.state.product.selectedSubtypes;
 
@@ -121,7 +112,7 @@ class BipolarProductEdit extends React.Component {
         selectedSubtypes: selected,
       }
     });
-  }
+  };
 
   handleEditorDescription = editorState => {
     const htmlText = draftToHtml(convertToRaw(editorState.getCurrentContent()));
@@ -139,7 +130,7 @@ class BipolarProductEdit extends React.Component {
       }});
   };
 
-  handleUpdateProduct(event) {
+  handleUpdateProduct = event => {
     event.preventDefault();
 
     axios.put(`/ajax-admin/products/${this.props.productHashId}`, {
@@ -173,25 +164,25 @@ class BipolarProductEdit extends React.Component {
 
         return alert('algo malo paso');
       });
-  }
+  };
 
-  handleChangeFreeShipping(event) {
+  handleChangeFreeShipping = event => {
     this.setState({
       product: {
         ...this.state.product,
         free_shipping: event.target.checked,
       }
     });
-  }
+  };
 
-  handleProductStateChange(event) {
+  handleProductStateChange = event => {
     this.setState({
       product: {
         ...this.state.product,
         selectedState: event.target.value,
       }
     });
-  }
+  };
 
   render() {
     const isInvalidForm = this.state.product.name.length === 0 || this.state.product.price <= 0 || this.state.product.selectedState.length === 0;
@@ -203,75 +194,77 @@ class BipolarProductEdit extends React.Component {
     return (
       <div className="row">
         <div className="col-md-9">
-          <div className="white-box">
-            <form onSubmit={this.handleUpdateProduct}>
-              <div className="form-row">
-                <div className="col-md-4">
-                  <div className="form-group">
-                    <label>Nombre</label>
-                    <input value={this.state.product.name} onChange={this.handleInputChange} name="name" type="text"
-                           className="form-control" required/>
+          <div className="card">
+            <div className="card-body">
+              <form onSubmit={this.handleUpdateProduct}>
+                <div className="form-row">
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label>Nombre</label>
+                      <input value={this.state.product.name} onChange={this.handleInputChange} name="name" type="text"
+                             className="form-control" required/>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label>Nombre (Inglés)</label>
+                      <input value={this.state.product.name_english} onChange={this.handleInputChange} name="name_english" className="form-control" type="text" required/>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label>Precio</label>
+                      <input value={this.state.product.price} onChange={this.handleInputChange} name="price" type="number"
+                             className="form-control" required/>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-4">
-                  <div className="form-group">
-                    <label>Nombre (Inglés)</label>
-                    <input value={this.state.product.name_english} onChange={this.handleInputChange} name="name_english" className="form-control" type="text" required/>
+                <div className="form-group">
+                  <label>Descripción (Opcional)</label>
+                  <Editor editorState={this.state.editorState} onEditorStateChange={this.handleEditorDescription} editorClassName="demo-editor-content"/>
+                </div>
+                <div className="form-group">
+                  <label>Descripción en inglés (Opcional)</label>
+                  <Editor editorState={this.state.editorStateEnglish} onEditorStateChange={this.handleEditorDescriptionEnglish} editorClassName="demo-editor-content"/>
+                </div>
+                <div className="form-row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Estado</label>
+                      <select className="custom-select col-12" value={this.state.product.selectedState} onChange={this.handleProductStateChange} required>
+                        <option value="" disabled>Seleccione un estado</option>
+                        {productStatesRender.length ? productStatesRender : null}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Peso (kg)</label>
+                      <input value={this.state.product.weight} onChange={this.handleInputChange} name="weight" type="number" step="any"
+                             className="form-control" placeholder="Opcional"/>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-4">
-                  <div className="form-group">
-                    <label>Precio</label>
-                    <input value={this.state.product.price} onChange={this.handleInputChange} name="price" type="number"
-                           className="form-control" required/>
+                <div className="form-row">
+                  <div className="col-md-3">
+                    <label className="checkbox-inline">
+                      <input checked={this.state.product.free_shipping} onChange={this.handleChangeFreeShipping} type="checkbox"/>
+                      Envío gratuito
+                    </label>
+                  </div>
+                  <div className="col-md-3">
+                    <label className="checkbox-inline">
+                      <input checked={this.state.product.salient} onChange={this.handleSalientChange} type="checkbox"/>
+                      Destacado
+                    </label>
                   </div>
                 </div>
-              </div>
-              <div className="form-group">
-                <label>Descripción (Opcional)</label>
-                <Editor editorState={this.state.editorState} onEditorStateChange={this.handleEditorDescription} editorClassName="demo-editor-content"/>
-              </div>
-              <div className="form-group">
-                <label>Descripción en inglés (Opcional)</label>
-                <Editor editorState={this.state.editorStateEnglish} onEditorStateChange={this.handleEditorDescriptionEnglish} editorClassName="demo-editor-content"/>
-              </div>
-              <div className="form-row">
-                <div className="col-md-6">
-                  <div className="form-group">
-                    <label>Estado</label>
-                    <select className="custom-select col-12" value={this.state.product.selectedState} onChange={this.handleProductStateChange} required>
-                      <option value="" disabled>Seleccione un estado</option>
-                      {productStatesRender.length ? productStatesRender : null}
-                    </select>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="form-group">
-                    <label>Peso (kg)</label>
-                    <input value={this.state.product.weight} onChange={this.handleInputChange} name="weight" type="number" step="any"
-                           className="form-control" placeholder="Opcional"/>
-                  </div>
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="col-md-3">
-                  <label className="checkbox-inline">
-                    <input checked={this.state.product.free_shipping} onChange={this.handleChangeFreeShipping} type="checkbox"/>
-                    Envío gratuito
-                  </label>
-                </div>
-                <div className="col-md-3">
-                  <label className="checkbox-inline">
-                    <input checked={this.state.product.salient} onChange={this.handleSalientChange} type="checkbox"/>
-                    Destacado
-                  </label>
-                </div>
-              </div>
-              <hr/>
-              <button disabled={isInvalidForm} type="submit" className="btn btn-dark btn-rounded">
-                Actualizar e ir a subir fotos
-              </button>
-            </form>
+                <hr/>
+                <button disabled={isInvalidForm} type="submit" className="btn btn-dark btn-rounded">
+                  Actualizar e ir a subir fotos
+                </button>
+              </form>
+            </div>
           </div>
         </div>
         <div className="col-md-3">

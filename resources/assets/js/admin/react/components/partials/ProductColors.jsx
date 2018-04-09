@@ -40,25 +40,21 @@ export default class ProductColors extends React.Component {
       const isSelected = existInArray(this.props.selected, color['hash_id']);
       return (
         <div key={color['hash_id']} className="checkbox">
-          <label>
-            <input type="checkbox" checked={isSelected} value={color['hash_id']} onChange={this.props.toggleCheck}/>
-            {color['name']}
-          </label>
+          <input type="checkbox" checked={isSelected} value={color['hash_id']} onChange={this.props.toggleCheck}/>
+          <label> {color['name']}</label>
         </div>
       );
     });
 
     return (
-      <div className="white-box">
-        <div className="panel panel-inverse">
-          <div className="panel-heading">Colores</div>
+      <div className="card">
+        <div className="card-header bg-dark">
+          <h4 className="text-white">Colores</h4>
         </div>
-        <div className="panel-wrapper collapse in">
-          <div className="panel-body">
-            <input value={this.state.textSearchColors} onChange={this.handleSearchColors} type="text"
-                   className="form-control" placeholder="Buscar color"/>
-            {colorsRender.length ? colorsRender : 'No hay colores'}
-          </div>
+        <div className="card-body">
+          <input value={this.state.textSearchColors} onChange={this.handleSearchColors} type="text"
+                 className="form-control mb-3" placeholder="Buscar color"/>
+          {colorsRender.length ? colorsRender : 'No hay colores'}
         </div>
       </div>
     );

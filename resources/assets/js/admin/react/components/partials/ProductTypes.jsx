@@ -9,27 +9,23 @@ const ProductTypes = props => {
         const isSelected = existInArray(props.selected, subtype['hash_id']);
         return (
           <div key={subtype['hash_id']} className="checkbox">
-            <label>
-              <input type="checkbox"
-                     checked={isSelected}
-                     value={subtype['hash_id']}
-                     onChange={props.toggleCheck}/>
-              {subtype['name']}
-            </label>
+            <input type="checkbox"
+                   checked={isSelected}
+                   value={subtype['hash_id']}
+                   onChange={props.toggleCheck}/>
+            <label>{subtype['name']}</label>
           </div>
         );
       });
     }
 
     return (
-      <div className="white-box" key={type['hash_id']}>
-        <div className="panel panel-inverse">
-          <div className="panel-heading">Tipo de {type['name']}</div>
+      <div className="card" key={type['hash_id']}>
+        <div className="card-header bg-dark">
+          <h4 className="text-white">Tipo de {type['name']}</h4>
         </div>
-        <div className="panel-wrapper collapse in">
-          <div className="panel-body">
-            {subtypes.length ? subtypes : 'No hay subtipos'}
-          </div>
+        <div className="card-body">
+          {subtypes.length ? subtypes : 'No hay subtipos'}
         </div>
       </div>
     );
