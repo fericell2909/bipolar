@@ -5,11 +5,15 @@
 @import "~select2/dist/css/select2";
 @import "~switchery/switchery.css";
 @import "~dropzone/dist/min/dropzone.min";
-@import "~daterangepicker/daterangepicker.css";
 @import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+@import "~tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min";
+// Bootstrap Datetimepicker Fix
+.bootstrap-datetimepicker-widget.dropdown-menu {
+  width: 100%;
+}
 
 input[type="checkbox"] {
-  margin-right: 1em;
+  margin-right: 0.7em;
 }
 
 .demo-editor-content {
@@ -19,6 +23,7 @@ input[type="checkbox"] {
   border-radius: 2px;
 }
 
+/*
 .swal2-popup {
   font-size: 1.6rem !important;
-}
+}*/

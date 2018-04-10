@@ -7,11 +7,21 @@
       <div class="form-row">
         <div class="col-md-6 form-group">
           <label>Fecha de inicio</label>
-          {!! Form::text('begin', null, ['class' => 'form-control singledatepicker']) !!}
+          {!! Form::text('begin', null, [
+            'class' => 'form-control datetimepicker-input',
+            'id' => 'datepickerbegin',
+            'data-toggle' => "datetimepicker",
+            'data-target' => "#datepickerbegin",
+          ]) !!}
         </div>
         <div class="col-md-6 form-group">
           <label>Fecha de fin</label>
-          {!! Form::text('end', null, ['class' => 'form-control singledatepicker']) !!}
+          {!! Form::text('end', null, [
+            'class' => 'form-control datetimepicker-input',
+            'id' => 'datepickerend',
+            'data-toggle' => "datetimepicker",
+            'data-target' => "#datepickerend",
+          ]) !!}
         </div>
         <div class="col-md-6 form-group">
           <label>Imagen</label>
