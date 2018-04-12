@@ -30,7 +30,7 @@
   <a href="{{ route('products.stock', $product->slug) }}" class="col-md">
     <div class="card text-center {{ $active === 5 ? 'text-white bg-primary' : null }}">
       <div class="card-body">
-        <h4 class="card-text">5. Fotos</h4>
+        <h4 class="card-text">5. Stocks</h4>
       </div>
     </div>
   </a>
