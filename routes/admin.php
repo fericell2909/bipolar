@@ -56,6 +56,10 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('order', 'Admin\BannersController@order')->name('banners.order');
     });
 
+    Route::prefix('coupons')->group(function () {
+        Route::get('/', 'Admin\CouponController@create')->name('coupons.create');
+    });
+
     Route::prefix('historics')->group(function () {
         Route::get('/', 'Admin\HistoricsController@index')->name('historics.index');
         Route::get('new', 'Admin\HistoricsController@create')->name('historics.create');

@@ -144,6 +144,15 @@
               </li>
               <li>
                 <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                  <i class="fas fa-fw fa-tags"></i>
+                  <span class="hide-menu"> Cupones</span>
+                </a>
+                <ul aria-expanded="false" class="collapse">
+                  <li><a href="{{ route('coupons.create') }}">Crear cupón</a></li>
+                </ul>
+              </li>
+              <li>
+                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                   <i class="fas fa-fw fa-images"></i>
                   <span class="hide-menu"> Banners</span>
                 </a>
