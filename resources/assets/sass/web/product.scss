@@ -31,6 +31,16 @@
       font-size: 36px;
       letter-spacing: 5px;
     }
+
+    .product-original-amount {
+      color: $bipolar-black;
+      opacity: .5;
+      font-family: $bodoni-bold-font;
+      text-decoration: line-through;
+      font-size: 36px;
+      letter-spacing: 5px;
+      margin-left: 0.5em;
+    }
   }
 
   .product-description {

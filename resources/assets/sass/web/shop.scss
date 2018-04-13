@@ -94,6 +94,13 @@
   font-family: $bodoni-bold-font;
 }
 
+.bipolar-relevants-discount {
+  font-size: 12px;
+  color: black;
+  font-family: $bodoni-bold-font;
+  text-decoration: line-through;
+}
+
 .bipolar-product-in-modal {
   margin: 14px 0;
 }
@@ -124,9 +131,29 @@
 
 .shop-discount-container {
   position: absolute;
-  top: 7%;
-  right: 10%;
+  top: 3%;
+  right: 5%;
   z-index: $z-index-shop-discount;
+  font-family: $bodoni-bold-font;
+
+  .shop-discount {
+    background-color: $bipolar-black;
+    color: $bipolar-color;
+    text-align: center;
+    line-height: 45px;
+    width: 44px;
+    height: 44px;
+    font-size: 15px;
+    border-radius: 100%;
+  }
+}
+
+.shop-discount-preview-container {
+  position: absolute;
+  top: 5%;
+  right: 9%;
+  z-index: $z-index-shop-discount;
+  font-family: $bodoni-bold-font;
 
   .shop-discount {
     background-color: $bipolar-black;

@@ -43,14 +43,17 @@ class CartController extends Controller
             ]);
         }
 
+        /** @var CartDetail $cartDetail */
+        $pricePEN = $cartDetail->product->discount ? $cartDetail->product->price_discount : $cartDetail->product->price;
+        $priceUSD = $cartDetail->product->discount ? $cartDetail->product->price_dolar_discount : $cartDetail->product->price_dolar;
         $cartDetail->quantity = $cartDetail->quantity + $request->input('quantity');
-        $cartDetail->total = $cartDetail->product->price * $cartDetail->quantity;
-        $cartDetail->total_dolar = $cartDetail->product->price_dolar * $cartDetail->quantity;
+        $cartDetail->total = $pricePEN * $cartDetail->quantity;
+        $cartDetail->total_dolar = $priceUSD * $cartDetail->quantity;
         $cartDetail->save();
 
         $cart->load('details');
 
-        $cart = $this->calculateTotal($cart);
+        $this->calculateTotal($cart);
 
         \Session::flash('success_add_product', $product->name);
 

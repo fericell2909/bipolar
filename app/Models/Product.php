@@ -87,4 +87,13 @@ class Product extends Model
             return "$ " . intval($this->price_dolar);
         }
     }
+
+    public function getPriceDiscountCurrencyAttribute()
+    {
+        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
+            return "S/ " . intval($this->price_discount);
+        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
+            return "$ " . intval($this->price_dolar_discount);
+        }
+    }
 }

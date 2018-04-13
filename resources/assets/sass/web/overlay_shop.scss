@@ -54,6 +54,18 @@
   text-align: center;
 }
 
+.overlay-discount-container {
+  span:first-child {
+    margin-right: .5em;
+  }
+
+  .overlay-shop-discount-text {
+    @extend .overlay-shop-color-text;
+    text-decoration: line-through;
+    margin-left: .5em;
+  }
+}
+
 .overlay-shop-buttons {
   position: relative;
   margin-top: 5px;

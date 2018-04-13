@@ -68,7 +68,12 @@
                     {{ $salient->colors->first()->name }}
                   </div>
                 @endif
-                <span class="bipolar-relevants-subtitle">{{ $salient->price }}</span>
+                @if($salient->discount)
+                  <span class="bipolar-relevants-subtitle">{{ $salient->price_discount_currency }}</span>
+                  <span class="bipolar-relevants-discount">{{ $salient->price_currency }}</span>
+                @else
+                  <span class="bipolar-relevants-subtitle">{{ $salient->price_currency }}</span>
+                @endif
               </div>
             </div>
           @endforeach
@@ -81,6 +86,7 @@
         </div>
         <div class="row">
           @forelse($products as $product)
+            <?php /** @var \App\Models\Product $product */ ?>
             <div class="col-md-4 bipolar-product">
               @if(count($product->photos))
                 <a class="product-link" href="{{ route('shop.product', $product->slug) }}"></a>
@@ -92,8 +98,14 @@
                   </div>
                 @endif
                 <div class="overlay-shop-container">
-                  <img src="{{ optional($product->photos)->first()->url }}" alt="{{ $product->name }}"
-                       class="img-responsive">
+                  @if($product->discount)
+                    <div class="shop-discount-preview-container">
+                      <div class="shop-discount">
+                        <span>{{ $product->discount }}%</span>
+                      </div>
+                    </div>
+                  @endif
+                  <img src="{{ optional($product->photos)->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
                   <div class="overlay-shop-image">
                     <div class="overlay-shop-text">
                       <a href="{{ route('shop.product', $product->slug) }}"
@@ -104,7 +116,14 @@
                         {{ $product->colors->first()->name }}
                       </div>
                     @endif
-                    <div class="overlay-shop-color-text">{{ $product->price }}</div>
+                    @if($product->discount)
+                      <div class="overlay-discount-container">
+                        <span class="overlay-shop-color-text">{{ $product->price_discount_currency }}</span>
+                        <span class="overlay-shop-discount-text">{{ $product->price_currency }}</span>
+                      </div>
+                    @else
+                      <div class="overlay-shop-color-text">{{ $product->price_currency }}</div>
+                    @endif
                     <div class="overlay-shop-buttons">
                       <a class="btn btn-dark overlay-radio-button wishlist-add"
                          data-product-id="{{ $product->hash_id }}" title="Wishlist">

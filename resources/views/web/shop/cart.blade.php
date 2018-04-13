@@ -17,6 +17,7 @@
 		</thead>
 		<tbody>
 			@forelse(CartBipolar::content() as $cartDetail)
+      <?php /** @var \App\Models\CartDetail $cartDetail */ ?>
 			<tr>
         <td class="product-remove"><a href="{{ route('cart.remove', $cartDetail->product->slug) }}"><img src="{{ asset('images/close.svg') }}" width="20"></a></td>
 				<td class="product-thumbnail">
@@ -29,7 +30,7 @@
           @endif
 				</td>
 				<td class="product-price" data-title="Precio">
-          <span class="amount">{{ $cartDetail->product->price_currency }}</span>
+          <span class="amount">{{ $cartDetail->product->discount ? $cartDetail->product->price_discount_currency : $cartDetail->product->price_currency }}</span>
         </td>
 				<td data-title="Cantidad">
           <div class="quantity-content">

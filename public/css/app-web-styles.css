@@ -19985,6 +19985,13 @@ input[type="date"] {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
 }
 
+.bipolar-relevants-discount {
+  font-size: 12px;
+  color: black;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  text-decoration: line-through;
+}
+
 .bipolar-product-in-modal {
   margin: 14px 0;
 }
@@ -20012,12 +20019,32 @@ input[type="date"] {
 
 .shop-discount-container {
   position: absolute;
-  top: 7%;
-  right: 10%;
+  top: 3%;
+  right: 5%;
   z-index: 4;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
 }
 
 .shop-discount-container .shop-discount {
+  background-color: #000000;
+  color: #fcbeb9;
+  text-align: center;
+  line-height: 45px;
+  width: 44px;
+  height: 44px;
+  font-size: 15px;
+  border-radius: 100%;
+}
+
+.shop-discount-preview-container {
+  position: absolute;
+  top: 5%;
+  right: 9%;
+  z-index: 4;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+}
+
+.shop-discount-preview-container .shop-discount {
   background-color: #000000;
   color: #fcbeb9;
   text-align: center;
@@ -20067,6 +20094,16 @@ input[type="date"] {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 36px;
   letter-spacing: 5px;
+}
+
+.product-content .product-price .product-original-amount {
+  color: #000000;
+  opacity: .5;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  text-decoration: line-through;
+  font-size: 36px;
+  letter-spacing: 5px;
+  margin-left: 0.5em;
 }
 
 .product-content .product-description {
@@ -20489,7 +20526,8 @@ input[type="date"] {
   font-size: 40px;
 }
 
-.overlay-shop-color-text {
+.overlay-shop-color-text,
+.overlay-discount-container .overlay-shop-discount-text {
   position: relative;
   text-transform: uppercase;
   letter-spacing: 1.65px;
@@ -20500,6 +20538,15 @@ input[type="date"] {
   color: #000000;
   margin-bottom: 4px;
   text-align: center;
+}
+
+.overlay-discount-container span:first-child {
+  margin-right: .5em;
+}
+
+.overlay-discount-container .overlay-shop-discount-text {
+  text-decoration: line-through;
+  margin-left: .5em;
 }
 
 .overlay-shop-buttons {

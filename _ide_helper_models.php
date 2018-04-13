@@ -277,6 +277,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
  * @property-read string $hash_id
  * @property-read mixed $price_currency
+ * @property-read mixed $price_discount_currency
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommendeds
  * @property-read \App\Models\State|null $state

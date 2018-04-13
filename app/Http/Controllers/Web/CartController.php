@@ -21,9 +21,11 @@ class CartController extends Controller
 
         foreach ($request->input('quantity') as $detailHashId => $quantity) {
             $cartDetail = CartDetail::findByHash($detailHashId);
+            $pricePEN = $cartDetail->product->discount ? $cartDetail->product->price_discount : $cartDetail->product->price;
+            $priceUSD = $cartDetail->product->discount ? $cartDetail->product->price_dolar_discount : $cartDetail->product->price_dolar;
             $cartDetail->quantity = $quantity;
-            $cartDetail->total = $quantity * $cartDetail->product->price;
-            $cartDetail->total_dolar = $quantity * $cartDetail->product->price_dolar;
+            $cartDetail->total = $quantity * $pricePEN;
+            $cartDetail->total_dolar = $quantity * $priceUSD;
             $cartDetail->save();
         }
 
