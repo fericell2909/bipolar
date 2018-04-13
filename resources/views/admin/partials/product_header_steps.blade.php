@@ -34,4 +34,11 @@
       </div>
     </div>
   </a>
+  <a href="{{ route('products.discount', $product->slug) }}" class="col-md">
+    <div class="card text-center {{ $active === 6 ? 'text-white bg-primary' : null }}">
+      <div class="card-body">
+        <h4 class="card-text">6. Descuentos</h4>
+      </div>
+    </div>
+  </a>
 </div>

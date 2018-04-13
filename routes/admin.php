@@ -34,6 +34,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('{productHashId}/hard-delete', 'Admin\ProductController@deletehard')->name('products.harddelete');
         Route::get('{product}/stocks', 'Admin\ProductController@stock')->name('products.stock');
         Route::post('stocks/{stock}/quantity', 'Admin\ProductController@stockSave')->name('products.stock.save');
+        Route::get('{slug}/discount', 'Admin\ProductController@discount')->name('products.discount');
     });
 
     Route::prefix('home-posts')->group(function () {

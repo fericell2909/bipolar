@@ -326,4 +326,21 @@ class ProductController extends Controller
 
         return new AdminStockResource($productStock);
     }
+
+    public function updateDiscount(Request $request, $productHashId)
+    {
+        $this->validate($request, [
+            'discount'             => 'required|numeric',
+            'price_discount'       => 'required|numeric',
+            'price_dolar_discount' => 'required|numeric',
+        ]);
+
+        $product = Product::findByHash($productHashId);
+        $product->discount = intval($request->input('discount')) === 0 ? null : $request->input('discount');
+        $product->price_discount = intval($request->input('price_discount')) === 0 ? null : $request->input('price_discount');
+        $product->price_dolar_discount = intval($request->input('price_dolar_discount')) === 0 ? null : $request->input('price_dolar_discount');
+        $product->save();
+
+        return response()->json(['mensaje' => 'Guardado con éxito']);
+    }
 }

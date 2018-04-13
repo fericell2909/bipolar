@@ -37,6 +37,13 @@
         </div>
       </div>
     </div>
+    <div class="col-md">
+      <div class="card text-center">
+        <div class="card-body">
+          <h4 class="card-text">6. Descuentos</h4>
+        </div>
+      </div>
+    </div>
   </div>
   <div id="bipolar-product-new"></div>
 @endsection

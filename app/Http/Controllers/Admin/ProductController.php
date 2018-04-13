@@ -152,4 +152,11 @@ class ProductController extends Controller
 
         return view('admin.products.stocks', compact('product'));
     }
+
+    public function discount($productSlug)
+    {
+        $product = Product::findBySlugOrFail($productSlug);
+
+        return view('admin.products.discount', compact('product'));
+    }
 }

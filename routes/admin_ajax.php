@@ -22,6 +22,7 @@ Route::prefix('products')->group(function () {
     Route::get('{productHashId}/recommendeds', 'Admin\Ajax\ProductController@recommendeds');
     Route::post('{productHashId}/recommendeds/{recommendedHashId}', 'Admin\Ajax\ProductController@recommend');
     Route::delete('{productHashId}/recommendeds/{recommendedHashId}', 'Admin\Ajax\ProductController@removeRecommend');
+    Route::post('{productHashId}/discount', 'Admin\Ajax\ProductController@updateDiscount');
     Route::post('state/{action}', 'Admin\Ajax\ProductController@stateToggle');
     Route::post('freeshipping/{activate}', 'Admin\Ajax\ProductController@freeShippingToggle');
     Route::post('salient/{activate}', 'Admin\Ajax\ProductController@salientToggle');
