@@ -148,7 +148,8 @@
                   <span class="hide-menu"> Cupones</span>
                 </a>
                 <ul aria-expanded="false" class="collapse">
-                  <li><a href="{{ route('coupons.create') }}">Crear cupón</a></li>
+                  <li><a href="{{ route('coupons.create') }}">Nuevo cupón</a></li>
+                  <li><a href="{{ route('coupons.index') }}">Listar cupones</a></li>
                 </ul>
               </li>
               <li>

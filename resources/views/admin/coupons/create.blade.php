@@ -1,17 +1,25 @@
 @extends('admin.layouts.app_admin')
-@section('title', 'Crear cupón')
+@section('title', 'Nuevo cupón')
 @section('content')
   <div class="card">
     <div class="card-body">
-      {!! Form::open([]) !!}
+      {!! Form::open(['method' => 'POST']) !!}
       <div class="row">
         <div class="form-group col-md-6">
           {!! Form::label('Codigo (Debe ser único)') !!}
-          {!! Form::text('code', null, ['class' => 'form-control']) !!}
+          {!! Form::text('code', null, ['class' => 'form-control', 'required', 'autocomplete' => 'off']) !!}
         </div>
         <div class="form-group col-md-6">
           {!! Form::label('Límite por persona (0 = Ilimitado)') !!}
-          {!! Form::text('limit', 0, ['class' => 'form-control']) !!}
+          {!! Form::number('limit', 0, ['class' => 'form-control', 'required', 'min' => 0]) !!}
+        </div>
+        <div class="form-group col-md-6">
+          {!! Form::label('Tipo de cupón') !!}
+          {!! Form::select('coupon_type', $types, null, ['class' => 'form-control', 'required']) !!}
+        </div>
+        <div class="form-group col-md-6">
+          {!! Form::label('Por un monto de') !!}
+          {!! Form::number('amount', null, ['class' => 'form-control', 'min' => 0, 'required']) !!}
         </div>
         <div class="form-group col-md-6 col-lg-6">
           {!! Form::label('Desde') !!}
@@ -20,6 +28,7 @@
             'id' => 'datepickerbegin',
             'data-toggle' => "datetimepicker",
             'data-target' => "#datepickerbegin",
+            'required',
           ]) !!}
         </div>
         <div class="form-group col-md-6 col-lg-6">
@@ -29,6 +38,7 @@
              'id' => 'datepickerend',
              'data-toggle' => "datetimepicker",
              'data-target' => "#datepickerend",
+             'required',
            ]) !!}
         </div>
       </div>

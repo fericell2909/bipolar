@@ -17,7 +17,7 @@ $(function () {
   }
 
   const datePickerOptions = {
-    format: 'YYYY-MM-DD HH:mm',
+    format: 'DD/MM/YYYY',
     icons: {
       time: 'far fa-clock',
       date: 'far fa-calendar',
@@ -30,6 +30,10 @@ $(function () {
       close: 'fas fa-times'
     }
   };
+  const dateTimePickerOptions = {
+    ...datePickerOptions,
+    format: 'DD/MM/YYYY HH:mm',
+  };
 
   if ($("#datepickerbegin").length) {
     $("#datepickerbegin").datetimepicker(datePickerOptions);
@@ -37,5 +41,13 @@ $(function () {
 
   if ($('#datepickerend').length) {
     $("#datepickerend").datetimepicker(datePickerOptions);
+  }
+
+  if ($("#datetimepickerbegin").length) {
+    $("#datetimepickerbegin").datetimepicker(dateTimePickerOptions);
+  }
+
+  if ($("#datetimepickerend").length) {
+    $("#datetimepickerend").datetimepicker(dateTimePickerOptions);
   }
 });

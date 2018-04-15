@@ -738,6 +738,46 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\CouponType
+ *
+ * @property int $id
+ * @property string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Coupon[] $coupons
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponType whereName($value)
+ */
+	class CouponType extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Coupon
+ *
+ * @property int $id
+ * @property int $type_id
+ * @property string $code
+ * @property int $amount
+ * @property int $frequency
+ * @property \Carbon\Carbon $begin
+ * @property \Carbon\Carbon $end
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\CouponType $type
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereBegin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereEnd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereFrequency($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereUpdatedAt($value)
+ */
+	class Coupon extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Historic
  *
  * @property int $id

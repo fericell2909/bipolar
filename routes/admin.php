@@ -58,7 +58,9 @@ Route::middleware('auth:admin')->group(function () {
     });
 
     Route::prefix('coupons')->group(function () {
-        Route::get('/', 'Admin\CouponController@create')->name('coupons.create');
+        Route::get('/', 'Admin\CouponController@index')->name('coupons.index');
+        Route::get('/new', 'Admin\CouponController@create')->name('coupons.create');
+        Route::post('/new', 'Admin\CouponController@store');
     });
 
     Route::prefix('historics')->group(function () {
