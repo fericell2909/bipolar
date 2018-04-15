@@ -43372,8 +43372,7 @@ $(function () {
     var _init = new switcher(_elem, { color: '#F9967B' });
   }
 
-  var datePickerOptions = {
-    format: 'DD/MM/YYYY',
+  var generalDateTimeOptions = {
     icons: {
       time: 'far fa-clock',
       date: 'far fa-calendar',
@@ -43386,16 +43385,22 @@ $(function () {
       close: 'fas fa-times'
     }
   };
-  var dateTimePickerOptions = _extends({}, datePickerOptions, {
+  var datePickerOptions = _extends({}, generalDateTimeOptions, {
+    format: 'DD/MM/YYYY'
+  });
+  var dateTimePickerOptions = _extends({}, generalDateTimeOptions, {
     format: 'DD/MM/YYYY HH:mm'
   });
 
-  if ($("#datepickerbegin").length) {
-    $("#datepickerbegin").datetimepicker(datePickerOptions);
+  var datePickerBegin = $("#datepickerbegin");
+  var datePickerEnd = $("#datepickerend");
+
+  if (datePickerBegin.length) {
+    datePickerBegin.datetimepicker(datePickerOptions);
   }
 
-  if ($('#datepickerend').length) {
-    $("#datepickerend").datetimepicker(datePickerOptions);
+  if (datePickerEnd.length) {
+    datePickerEnd.datetimepicker(datePickerOptions);
   }
 
   if ($("#datetimepickerbegin").length) {

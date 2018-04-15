@@ -16,8 +16,7 @@ $(function () {
     const init = new switcher(elem, {color: '#F9967B'});
   }
 
-  const datePickerOptions = {
-    format: 'DD/MM/YYYY',
+  const generalDateTimeOptions = {
     icons: {
       time: 'far fa-clock',
       date: 'far fa-calendar',
@@ -28,19 +27,26 @@ $(function () {
       today: 'far fa-calendar-check',
       clear: 'fas fa-trash',
       close: 'fas fa-times'
-    }
+    },
+  };
+  const datePickerOptions = {
+    ...generalDateTimeOptions,
+    format: 'DD/MM/YYYY',
   };
   const dateTimePickerOptions = {
-    ...datePickerOptions,
+    ...generalDateTimeOptions,
     format: 'DD/MM/YYYY HH:mm',
   };
 
-  if ($("#datepickerbegin").length) {
-    $("#datepickerbegin").datetimepicker(datePickerOptions);
+  const datePickerBegin = $("#datepickerbegin");
+  const datePickerEnd = $("#datepickerend");
+
+  if (datePickerBegin.length) {
+    datePickerBegin.datetimepicker(datePickerOptions);
   }
 
-  if ($('#datepickerend').length) {
-    $("#datepickerend").datetimepicker(datePickerOptions);
+  if (datePickerEnd.length) {
+    datePickerEnd.datetimepicker(datePickerOptions);
   }
 
   if ($("#datetimepickerbegin").length) {

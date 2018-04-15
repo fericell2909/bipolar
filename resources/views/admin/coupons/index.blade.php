@@ -35,7 +35,7 @@
               <td class="align-middle">{{ $coupon->end->format('d/m/Y') }}</td>
               <td class="align-middle text-center">
                 <div class="button-group">
-                  <a href="#" class="btn btn-dark btn-sm btn-rounded">
+                  <a href="{{ route('coupon.edit', $coupon->id) }}" class="btn btn-dark btn-sm btn-rounded">
                     <i class="fas fa-fw fa-edit"></i> Editar
                   </a>
                 </div>

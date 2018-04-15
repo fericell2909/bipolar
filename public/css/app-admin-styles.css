@@ -23808,7 +23808,7 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 }
 
 .bootstrap-datetimepicker-widget.dropdown-menu {
-  width: 100%;
+  width: 50%;
 }
 
 input[type="checkbox"] {
