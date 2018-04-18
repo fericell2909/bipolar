@@ -30,8 +30,11 @@ class CouponController extends Controller
         $coupon = new Coupon;
         $coupon->code = $request->input('code');
         $coupon->type_id = $request->input('coupon_type');
-        $coupon->amount = $request->input('amount');
+        $coupon->amount_pen = $request->input('amount_pen');
+        $coupon->amount_usd = $request->input('amount_usd');
         $coupon->frequency = $request->input('limit');
+        $coupon->minimum_pen = $request->input('minimum_pen');
+        $coupon->minimum_usd = $request->input('minimum_usd');
         $coupon->begin = Carbon::createFromFormat('d/m/Y', $request->input('begin'))->startOfDay();
         $coupon->end = Carbon::createFromFormat('d/m/Y', $request->input('end'))->endOfDay();
         $coupon->save();
@@ -55,8 +58,11 @@ class CouponController extends Controller
         $coupon = Coupon::findOrFail($couponId);
         $coupon->code = $request->input('code');
         $coupon->type_id = $request->input('coupon_type');
-        $coupon->amount = $request->input('amount');
+        $coupon->amount_pen = $request->input('amount_pen');
+        $coupon->amount_usd = $request->input('amount_usd');
         $coupon->frequency = $request->input('limit');
+        $coupon->minimum_pen = $request->input('minimum_pen');
+        $coupon->minimum_usd = $request->input('minimum_usd');
         $coupon->begin = Carbon::createFromFormat('d/m/Y', $request->input('begin'))->startOfDay();
         $coupon->end = Carbon::createFromFormat('d/m/Y', $request->input('end'))->endOfDay();
         $coupon->save();

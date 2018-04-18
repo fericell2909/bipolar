@@ -16,4 +16,7 @@ return [
     'BUY_PROCESSING_STATUS'    => 'processing',
     'BUY_SENT_STATUS'          => 'sent',
     'BUY_CULMINATED_STATUS'    => 'culminated',
+    // Discount type
+    'PERCENTAGE_DISCOUNT_ID'   => '1',
+    'QUANTITY_DISCOUNT_ID'     => '1',
 ];

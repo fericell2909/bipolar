@@ -5,7 +5,7 @@
     <div class="card-body">
       {!! Form::open(['method' => 'POST']) !!}
       <div class="row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-12">
           {!! Form::label('Codigo (Debe ser único)') !!}
           {!! Form::text('code', null, ['class' => 'form-control', 'required', 'autocomplete' => 'off']) !!}
         </div>
@@ -17,9 +17,41 @@
           {!! Form::label('Tipo de cupón') !!}
           {!! Form::select('coupon_type', $types, null, ['class' => 'form-control', 'required']) !!}
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-3">
           {!! Form::label('Por un monto de') !!}
-          {!! Form::number('amount', null, ['class' => 'form-control', 'min' => 0, 'required']) !!}
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Carrito en S/</span>
+            </div>
+            {!! Form::number('amount_pen', null, ['class' => 'form-control', 'min' => 0, 'step' => 'any', 'required']) !!}
+          </div>
+        </div>
+        <div class="form-group col-md-3">
+          {!! Form::label('Por un monto de') !!}
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Carrito en $</span>
+            </div>
+            {!! Form::number('amount_usd', null, ['class' => 'form-control', 'min' => 0, 'step' => 'any', 'required']) !!}
+          </div>
+        </div>
+        <div class="form-group col-md-3">
+          {!! Form::label('Monto mínimo PEN') !!}
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">S/</span>
+            </div>
+            {!! Form::number('minimum_pen', 0, ['class' => 'form-control', 'min' => 0, 'required']) !!}
+          </div>
+        </div>
+        <div class="form-group col-md-3">
+          {!! Form::label('Monto mínimo USD') !!}
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-fw fa-dollar-sign"></i></span>
+            </div>
+            {!! Form::number('minimum_usd', 0, ['class' => 'form-control', 'min' => 0, 'required']) !!}
+          </div>
         </div>
         <div class="form-group col-md-6 col-lg-6">
           {!! Form::label('Desde') !!}

@@ -756,20 +756,26 @@ namespace App\Models{
  * @property int $id
  * @property int $type_id
  * @property string $code
- * @property int $amount
+ * @property float $amount_pen
+ * @property float $amount_usd
  * @property int $frequency
+ * @property float $minimum_pen
+ * @property float $minimum_usd
  * @property \Carbon\Carbon $begin
  * @property \Carbon\Carbon $end
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\CouponType $type
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereAmountPen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereAmountUsd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereBegin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereEnd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereFrequency($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereMinimumPen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereMinimumUsd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereUpdatedAt($value)
  */

@@ -17,8 +17,11 @@ class CreateCouponsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('type_id');
             $table->string('code')->unique();
-            $table->unsignedInteger('amount')->default(0);
+            $table->decimal('amount_pen', 7, 2);
+            $table->decimal('amount_usd', 7, 2);
             $table->unsignedInteger('frequency')->default(0);
+            $table->decimal('minimum_pen', 7, 2);
+            $table->decimal('minimum_usd', 7, 2);
             $table->dateTime('begin');
             $table->dateTime('end');
             $table->timestamps();
