@@ -2,6 +2,7 @@
 <?php /** @var \App\Models\Coupon $coupon */ ?>
 @section('title', "Editar cupón {$coupon->code}")
 @section('content')
+  @include('admin.partials.coupon_steps', ['active' => 1])
   <div class="card">
     <div class="card-body">
       {!! Form::open(['method' => 'POST']) !!}
@@ -15,7 +16,7 @@
           {!! Form::number('limit', $coupon->frequency, ['class' => 'form-control', 'required', 'min' => 0]) !!}
         </div>
         <div class="form-group col-md-6">
-          {!! Form::label('Tipo de cupón') !!}
+          {!! Form::label('Tipo de descuento') !!}
           {!! Form::select('coupon_type', $types, $coupon->type_id, ['class' => 'form-control', 'required']) !!}
         </div>
         <div class="form-group col-md-3">

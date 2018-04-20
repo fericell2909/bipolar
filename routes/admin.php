@@ -61,6 +61,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/', 'Admin\CouponController@index')->name('coupons.index');
         Route::get('/new', 'Admin\CouponController@create')->name('coupons.create');
         Route::post('/new', 'Admin\CouponController@store');
+        Route::get('/associate/{coupon}', 'Admin\CouponController@associate')->name('coupons.associate');
         Route::get('/edit/{coupon}', 'Admin\CouponController@edit')->name('coupon.edit');
         Route::post('/edit/{coupon}', 'Admin\CouponController@update');
     });

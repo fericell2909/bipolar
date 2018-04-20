@@ -22,7 +22,7 @@ class CouponController extends Controller
     {
         $types = CouponType::all()->pluck('name', 'id')->toArray();
 
-        return view('admin.coupons.create', compact('types'));
+        return view('admin.coupons.new', compact('types'));
     }
 
     public function store(CouponNewRequest $request)
@@ -41,7 +41,14 @@ class CouponController extends Controller
 
         flash()->success('Cupón creado con éxito');
 
-        return redirect()->route('coupons.index');
+        return redirect()->route('coupons.associate', $coupon->id);
+    }
+
+    public function associate($coupondId)
+    {
+        $coupon = Coupon::findOrFail($coupondId);
+
+        return view('admin.coupons.relations', compact('coupon'));
     }
 
     public function edit($couponId)

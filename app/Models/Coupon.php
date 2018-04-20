@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Coupon extends Model
 {
     protected $dates = ['begin', 'end'];
+    protected $casts = [
+        'product_types' => 'array',
+        'products'      => 'array',
+    ];
 
     public function type()
     {

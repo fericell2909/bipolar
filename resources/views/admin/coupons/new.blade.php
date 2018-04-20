@@ -1,6 +1,22 @@
 @extends('admin.layouts.app_admin')
 @section('title', 'Nuevo cupón')
 @section('content')
+  <div class="row">
+    <div class="col-md">
+      <div class="card text-center text-white bg-primary">
+        <div class="card-body">
+          <h4 class="card-text">1. Datos de cupón</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card text-center">
+        <div class="card-body">
+          <h4 class="card-text">2. Asociar con productos</h4>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="card">
     <div class="card-body">
       {!! Form::open(['method' => 'POST']) !!}
@@ -14,7 +30,7 @@
           {!! Form::number('limit', 0, ['class' => 'form-control', 'required', 'min' => 0]) !!}
         </div>
         <div class="form-group col-md-6">
-          {!! Form::label('Tipo de cupón') !!}
+          {!! Form::label('Tipo de descuento') !!}
           {!! Form::select('coupon_type', $types, null, ['class' => 'form-control', 'required']) !!}
         </div>
         <div class="form-group col-md-3">
