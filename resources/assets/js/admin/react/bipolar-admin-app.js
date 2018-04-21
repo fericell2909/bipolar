@@ -20,3 +20,4 @@ require('./components/ProductEdit');
 require('./components/ProductList');
 require('./components/ProductStocks');
 require('./components/ProductDiscount');
+require('./components/CouponAssociation');

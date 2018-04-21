@@ -48,3 +48,6 @@ Route::post('banners/order', 'Admin\Ajax\BannersController@order');
 Route::delete('banners/{banner}', 'Admin\Ajax\BannersController@destroy');
 
 Route::post('buys/{buyId}/sent', 'Admin\Ajax\BuysController@sent');
+
+Route::get('coupons/{coupon}', 'Admin\Ajax\CouponsController@show');
+Route::post('coupons/{coupon}/types-subtypes', 'Admin\Ajax\CouponsController@saveTypesAndSubtypes');

@@ -763,8 +763,8 @@ namespace App\Models{
  * @property float $minimum_usd
  * @property \Carbon\Carbon $begin
  * @property \Carbon\Carbon $end
- * @property string|null $product_types
- * @property string|null $products
+ * @property array $product_types
+ * @property array $products
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\CouponType $type
