@@ -763,8 +763,9 @@ namespace App\Models{
  * @property float $minimum_usd
  * @property \Carbon\Carbon $begin
  * @property \Carbon\Carbon $end
- * @property array $product_types
  * @property array $products
+ * @property array $product_subtypes
+ * @property array $product_types
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\CouponType $type
@@ -778,6 +779,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereMinimumPen($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereMinimumUsd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereProductSubtypes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereProductTypes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereProducts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereTypeId($value)

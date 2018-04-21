@@ -19,10 +19,11 @@ class CouponResource extends JsonResource
         $coupon = $this;
 
         return [
-            'id'            => $this->when(\Auth::guard('admin')->check(), $coupon->id),
-            'code'          => $coupon->code,
-            'product_types' => $coupon->product_types ?? [],
-            'products'      => $coupon->products ?? [],
+            'id'               => $this->when(\Auth::guard('admin')->check(), $coupon->id),
+            'code'             => $coupon->code,
+            'product_types'    => $coupon->product_types ?? [],
+            'products'         => $coupon->products ?? [],
+            'product_subtypes' => $coupon->product_subtypes ?? [],
         ];
     }
 }

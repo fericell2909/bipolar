@@ -10,21 +10,31 @@ class CouponAssociation extends React.Component {
   state = {
     types: [],
     products: [],
+    subtypes: [],
     couponTypes: [],
     couponProducts: [],
+    couponSubtypes: [],
   };
 
   getData = async () => {
     const dataTypes = await axios.get('/ajax-admin/types').catch(console.warn);
     const dataProducts = await axios.get('/ajax-admin/products').catch(console.warn);
+    const dataSubtypes = await axios.get('/ajax-admin/subtypes').catch(console.warn);
     const responseCoupon = await axios.get(`/ajax-admin/coupons/${this.props.couponId}`).catch(console.warn);
     const coupon = responseCoupon['data']['data'];
     this.setState({
+      subtypes: dataSubtypes['data']['data'],
       types: dataTypes['data']['data'],
       products: dataProducts['data']['data'],
       couponProducts: coupon['products'],
       couponTypes: coupon['product_types'],
+      couponSubtypes: coupon['product_subtypes'],
     });
+  };
+
+  handleUpdateSubtype = values => {
+    const optionsSelected = values.map(value => value['value']);
+    this.setState({couponSubtypes: optionsSelected});
   };
 
   handleUpdateType = values => {
@@ -41,6 +51,7 @@ class CouponAssociation extends React.Component {
     const content = {
       types: this.state.couponTypes,
       products: this.state.couponProducts,
+      subtypes: this.state.couponSubtypes,
     };
     const response = await axios.post(`/ajax-admin/coupons/${this.props.couponId}/types-subtypes`, content).catch(console.warn);
 
@@ -68,6 +79,9 @@ class CouponAssociation extends React.Component {
     const optionProducts = this.state.products.length ? this.state.products.map(product => {
       return {value: product['id'], label: product["name"]};
     }) : null;
+    const optionSubtypes = this.state.subtypes.length ? this.state.subtypes.map(product => {
+      return {value: product['id'], label: product["name"]};
+    }) : null;
 
     return (
       <div className="card">
@@ -77,6 +91,12 @@ class CouponAssociation extends React.Component {
               <div className="form-group">
                 <label>Tipos</label>
                 <ReactSelect options={optionTypes} onChange={this.handleUpdateType} value={this.state.couponTypes} multi closeOnSelect={false}/>
+              </div>
+            </div>
+            <div className="col-md">
+              <div className="form-group">
+                <label>Subtipos</label>
+                <ReactSelect options={optionSubtypes} onChange={this.handleUpdateSubtype} value={this.state.couponSubtypes} multi closeOnSelect={false}/>
               </div>
             </div>
             <div className="col-md">

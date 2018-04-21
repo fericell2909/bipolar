@@ -21,8 +21,9 @@ class CouponsController extends Controller
     {
         /** @var Coupon $coupon */
         $coupon = Coupon::findOrFail($couponId);
-        $coupon->product_types = $request->input('types');
-        $coupon->products = $request->input('products');
+        $coupon->product_subtypes = $request->input('subtypes') ?? null;
+        $coupon->product_types = $request->input('types') ?? null;
+        $coupon->products = $request->input('products') ?? null;
         $coupon->save();
 
         return response()->json(['message' => 'Guardado con éxito']);

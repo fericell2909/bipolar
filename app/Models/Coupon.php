@@ -8,8 +8,9 @@ class Coupon extends Model
 {
     protected $dates = ['begin', 'end'];
     protected $casts = [
-        'product_types' => 'array',
-        'products'      => 'array',
+        'product_subtypes' => 'array',
+        'product_types'    => 'array',
+        'products'         => 'array',
     ];
 
     public function type()

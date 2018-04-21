@@ -24,8 +24,9 @@ class CreateCouponsTable extends Migration
             $table->decimal('minimum_usd', 7, 2);
             $table->dateTime('begin');
             $table->dateTime('end');
-            $table->json('product_types')->nullable();
             $table->json('products')->nullable();
+            $table->json('product_subtypes')->nullable();
+            $table->json('product_types')->nullable();
             $table->timestamps();
         });
 

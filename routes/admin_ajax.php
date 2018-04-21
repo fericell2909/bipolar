@@ -7,6 +7,7 @@ Route::delete('photo/{photoId}', 'Admin\ProductController@deletePhoto');
 Route::get('colors', 'Admin\Ajax\ColorController@index');
 Route::get('sizes', 'Admin\Ajax\SizeController@index');
 Route::get('types', 'Admin\Ajax\TypeController@index');
+Route::get('subtypes', 'Admin\Ajax\TypeController@subtypes');
 Route::get('states', 'Admin\Ajax\StateController@index');
 Route::get('search/products', 'Admin\Ajax\ProductController@search');
 

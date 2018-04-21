@@ -14,11 +14,14 @@ class Subtype extends Resource
      */
     public function toArray($request)
     {
-        /** @var \App\Models\Subtype|Resource $this */
+        /** @var \App\Models\Subtype $subtype */
+        $subtype = $this;
+
         return [
-            'hash_id' => $this->hash_id,
-            'name'    => $this->name,
-            'slug'    => $this->slug,
+            'id'      => $this->when(\Auth::guard('admin')->check(), $subtype->id),
+            'hash_id' => $subtype->hash_id,
+            'name'    => $subtype->name,
+            'slug'    => $subtype->slug,
         ];
     }
 }
