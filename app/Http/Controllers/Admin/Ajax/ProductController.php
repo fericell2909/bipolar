@@ -14,6 +14,8 @@ use App\Models\Stock;
 use App\Models\Subtype;
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Resources\ProductCollection;
+use App\Models\Type;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -330,17 +332,74 @@ class ProductController extends Controller
     public function updateDiscount(Request $request, $productHashId)
     {
         $this->validate($request, [
-            'discount'             => 'required|numeric',
-            'price_discount'       => 'required|numeric',
+            'discount_pen'         => 'required|numeric',
+            'discount_usd'         => 'required|numeric',
+            'price_usd_discount'   => 'required|numeric',
             'price_dolar_discount' => 'required|numeric',
         ]);
 
         $product = Product::findByHash($productHashId);
-        $product->discount = intval($request->input('discount')) === 0 ? null : $request->input('discount');
-        $product->price_discount = intval($request->input('price_discount')) === 0 ? null : $request->input('price_discount');
-        $product->price_dolar_discount = intval($request->input('price_dolar_discount')) === 0 ? null : $request->input('price_dolar_discount');
+        $product->discount_pen = intval($request->input('discount_pen')) === 0 ? null : $request->input('discount_pen');
+        $product->discount_usd = intval($request->input('discount_usd')) === 0 ? null : $request->input('discount_usd');
+        $product->price_pen_discount = intval($request->input('price_pen_discount')) === 0 ? null : $request->input('price_pen_discount');
+        $product->price_usd_discount = intval($request->input('price_usd_discount')) === 0 ? null : $request->input('price_usd_discount');
         $product->save();
 
         return response()->json(['mensaje' => 'Guardado con éxito']);
+    }
+
+    public function massiveDiscount(Request $request)
+    {
+        $discountPEN = $request->input('discountPEN');
+        $discountUSD = $request->input('discountUSD');
+        $products = $request->filled('products') ? Product::find($request->input('products')) : collect([]);
+        $types = $request->filled('types') ? Type::find($request->input('types')) : collect([]);
+        $subtypes = $request->filled('subtypes') ? Subtype::find($request->input('subtypes')) : collect([]);
+        $beginDiscount = Carbon::createFromFormat('d/m/Y', $request->input('beginDiscount'))->startOfDay();
+        $endDiscount = Carbon::createFromFormat('d/m/Y', $request->input('endDiscount'))->startOfDay();
+        $convertToNull = false;
+
+        if (intval($discountPEN) === 0 && intval($discountUSD) === 0) {
+            $convertToNull = true;
+        }
+
+        $mainParams = [
+            'begin_discount' => $convertToNull ? null : $beginDiscount->toDateTimeString(),
+            'end_discount'   => $convertToNull ? null : $endDiscount->toDateTimeString(),
+            'discount_pen'   => $convertToNull ? null : $discountPEN,
+            'discount_usd'   => $convertToNull ? null : $discountUSD,
+        ];
+
+        $types->each(function ($type) use ($discountPEN, $discountUSD, $mainParams, $convertToNull) {
+            /** @var Type $type */
+            $type->subtypes->each(function ($subtype) use ($discountPEN, $discountUSD, $mainParams, $convertToNull) {
+                /** @var Subtype $subtype */
+                $subtype->products->each($this->assignMassiveDiscount($discountPEN, $discountUSD, $mainParams, $convertToNull));
+            });
+        });
+
+        $subtypes->each(function ($subtype) use ($discountPEN, $discountUSD, $mainParams, $convertToNull) {
+            /** @var Subtype $subtype */
+            $subtype->products->each($this->assignMassiveDiscount($discountPEN, $discountUSD, $mainParams, $convertToNull));
+        });
+
+        $products->each($this->assignMassiveDiscount($discountPEN, $discountUSD, $mainParams, $convertToNull));
+
+        return response()->json(['success' => true, 'message' => 'Agregado los descuentos']);
+    }
+
+    private function assignMassiveDiscount($discountPEN, $discountUSD, $mainParams, $convertToNull)
+    {
+        return function ($product) use ($discountPEN, $discountUSD, $mainParams, $convertToNull) {
+            /** @var Product $product */
+            $specificParams = [
+                'price_pen_discount' => $convertToNull ? null : $product->price - calculate_percentage($product->price, $discountPEN),
+                'price_usd_discount' => $convertToNull ? null : $product->price_dolar - calculate_percentage($product->price_dolar, $discountUSD),
+            ];
+
+            $updateParams = array_merge($mainParams, $specificParams);
+
+            $product->update($updateParams);
+        };
     }
 }

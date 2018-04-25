@@ -14,25 +14,19 @@ class ProductDiscount extends React.Component {
       name: '',
       price: 0,
       price_dolar: 0,
-      discount: 0,
-      price_discount: 0,
-      price_dolar_discount: 0,
+      discount_PEN: 0,
+      discount_USD: 0,
+      price_pen_discount: 0,
+      price_usd_discount: 0,
     },
   };
 
-  modifyDiscount = event => {
+  modifyPENDiscount = event => {
     let discount = event.target.value;
     const product = this.state.product;
 
     if (discount === "" || discount === '-') {
-      return this.setState({
-        product: {
-          ...product,
-          discount: "",
-          price_discount: 0,
-          price_dolar_discount: 0,
-        }
-      });
+      discount = 0;
     }
 
     discount = parseFloat(event.target.value);
@@ -42,21 +36,49 @@ class ProductDiscount extends React.Component {
         product: {
           ...product,
           discount: 0,
-          price_discount: 0,
-          price_dolar_discount: 0,
+          price_pen_discount: 0,
         }
       });
     }
 
     const discountPEN = calculatePercentage(this.state.product.price, discount, true);
+
+    this.setState({
+      product: {
+        ...product,
+        discount_PEN: discount,
+        price_pen_discount: product.price - discountPEN,
+      }
+    });
+  };
+
+  modifyUSDDiscount = event => {
+    let discount = event.target.value;
+    const product = this.state.product;
+
+    if (discount === "" || discount === '-') {
+      discount = 0;
+    }
+
+    discount = parseFloat(event.target.value);
+
+    if (discount <= 0) {
+      return this.setState({
+        product: {
+          ...product,
+          discount: 0,
+          price_usd_discount: 0,
+        }
+      });
+    }
+
     const discountUSD = calculatePercentage(this.state.product.price_dolar, discount, true);
 
     this.setState({
       product: {
         ...product,
-        discount,
-        price_discount: product.price - discountPEN,
-        price_dolar_discount: product.price_dolar - discountUSD,
+        discount_USD: discount,
+        price_usd_discount: product.price_dolar - discountUSD,
       }
     });
   };
@@ -81,9 +103,10 @@ class ProductDiscount extends React.Component {
             name: product['name'],
             price: product['price'],
             price_dolar: product['price_dolar'],
-            discount: product['discount'],
-            price_discount: product['price_discount'],
-            price_dolar_discount: product['price_dolar_discount'],
+            discount_PEN: product['discount_pen'],
+            discount_USD: product['discount_usd'],
+            price_pen_discount: product['price_pen_discount'],
+            price_usd_discount: product['price_usd_discount'],
           }
         })
       });
@@ -92,9 +115,10 @@ class ProductDiscount extends React.Component {
   saveChanges = event => {
     event.preventDefault();
     const params = {
-      discount: this.state.product.discount,
-      price_discount: this.state.product.price_discount,
-      price_dolar_discount: this.state.product.price_dolar_discount,
+      discount_pen: this.state.product.discount_PEN,
+      discount_usd: this.state.product.discount_USD,
+      price_pen_discount: this.state.product.price_pen_discount,
+      price_usd_discount: this.state.product.price_usd_discount,
     };
     return axios.post(`/ajax-admin/products/${this.props.productHashId}/discount`, params)
       .then(response => {
@@ -113,9 +137,25 @@ class ProductDiscount extends React.Component {
             <div className="row">
               <div className="col-md">
                 <div className="form-group">
-                  <label>Aplicar un descuento para {this.state.product.name} de</label>
+                  <label>Aplicar un descuento en soles para {this.state.product.name} de</label>
                   <div className="input-group">
-                    <input value={this.state.product.discount} onChange={this.modifyDiscount} type="number"  max={100} className="form-control"  required/>
+                    <input value={this.state.product.discount_PEN} onChange={this.modifyPENDiscount} type="number"  max={100} className="form-control"  required/>
+                    <div className="input-group-append">
+                    <span className="input-group-text">
+                      <i className="fas fa-fw fa-percent"/>
+                    </span>
+                    </div>
+                  </div>
+                  <span className="help-block">
+                    <small>0: Sin descuento, >= 0: Aplica descuento</small>
+                  </span>
+                </div>
+              </div>
+              <div className="col-md">
+                <div className="form-group">
+                  <label>Aplicar un descuento en dólares para {this.state.product.name} de</label>
+                  <div className="input-group">
+                    <input value={this.state.product.discount_USD} onChange={this.modifyUSDDiscount} type="number"  max={100} className="form-control"  required/>
                     <div className="input-group-append">
                     <span className="input-group-text">
                       <i className="fas fa-fw fa-percent"/>
@@ -134,7 +174,7 @@ class ProductDiscount extends React.Component {
                     <div className="input-group-prepend">
                       <span className="input-group-text">S/</span>
                     </div>
-                    <input value={this.state.product.price_discount}
+                    <input value={this.state.product.price_pen_discount}
                            onChange={this.changePricePEN}
                            max={this.state.product.price}
                            type="number"
@@ -154,7 +194,7 @@ class ProductDiscount extends React.Component {
                     <div className="input-group-prepend">
                       <span className="input-group-text">$</span>
                     </div>
-                    <input value={this.state.product.price_dolar_discount}
+                    <input value={this.state.product.price_usd_discount}
                            onChange={this.changePriceUSD}
                            max={this.state.product.price_dolar}
                            type="number"

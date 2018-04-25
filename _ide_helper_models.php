@@ -262,11 +262,14 @@ namespace App\Models{
  * @property array $name
  * @property string|null $slug
  * @property array $description
- * @property int|null $discount
+ * @property \Carbon\Carbon|null $end_discount
+ * @property \Carbon\Carbon|null $begin_discount
+ * @property int|null $discount_pen
+ * @property int|null $discount_usd
  * @property float $price
- * @property float|null $price_discount
+ * @property float|null $price_pen_discount
  * @property float $price_dolar
- * @property float|null $price_dolar_discount
+ * @property float|null $price_usd_discount
  * @property float|null $weight
  * @property int $order
  * @property int $free_shipping
@@ -287,19 +290,22 @@ namespace App\Models{
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Product onlyTrashed()
  * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereBeginDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDiscountPen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDiscountUsd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereEndDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFreeShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSalient($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePriceDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePriceDolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePriceDolarDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePricePenDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePriceUsdDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)

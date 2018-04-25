@@ -15,8 +15,16 @@ class Product extends Model
     use Hashable, Sluggable, SluggableScopeHelpers, SoftDeletes, HasTranslations;
 
     protected $table = 'products';
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'begin_discount', 'end_discount'];
     protected $translatable = ['name', 'description'];
+    protected $fillable = [
+        'begin_discount',
+        'end_discount',
+        'discount_pen',
+        'discount_usd',
+        'price_pen_discount',
+        'price_usd_discount',
+    ];
 
     public function colors()
     {
@@ -58,7 +66,7 @@ class Product extends Model
         return [
             'slug' => [
                 'source' => 'name',
-            ]
+            ],
         ];
     }
 
@@ -67,7 +75,7 @@ class Product extends Model
      * This function get all the sizes finded in stocks, always return a collection
      * @return Collection
      */
-    public function sizes() : Collection
+    public function sizes(): Collection
     {
         $sizes = $this->stocks->filter(function ($stock) {
             return $stock->size !== null;
@@ -91,9 +99,9 @@ class Product extends Model
     public function getPriceDiscountCurrencyAttribute()
     {
         if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
-            return "S/ " . intval($this->price_discount);
+            return "S/ " . intval($this->price_pen_discount);
         } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
-            return "$ " . intval($this->price_dolar_discount);
+            return "$ " . intval($this->price_usd_discount);
         }
     }
 }

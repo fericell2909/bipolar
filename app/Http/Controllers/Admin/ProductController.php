@@ -159,4 +159,9 @@ class ProductController extends Controller
 
         return view('admin.products.discount', compact('product'));
     }
+
+    public function multipleDiscount()
+    {
+        return view('admin.products.multiple_discounts');
+    }
 }

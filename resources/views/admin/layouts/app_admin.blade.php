@@ -120,6 +120,12 @@
                 </ul>
               </li>
               <li>
+                <a class="waves-effect waves-dark" href="{{ route('products.multiple-discounts') }}" aria-expanded="false">
+                  <i class="fas fa-fw fa-percent"></i>
+                  <span class="hide-menu"> Descuentos</span>
+                </a>
+              </li>
+              <li>
                 <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                   <i class="fas fa-fw fa-warehouse"></i>
                   <span class="hide-menu"> Publicaciones Home</span>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Stock;
 use Illuminate\Http\Resources\Json\Resource;
 
 class Product extends Resource
@@ -25,12 +24,16 @@ class Product extends Resource
             'name_english'          => (string)$product->getTranslation('name', 'en'),
             'description'           => $product->getTranslation('description', 'es'),
             'description_english'   => $product->getTranslation('description', 'en'),
+            'slug'                  => $product->slug,
             'weight'                => $product->weight,
-            'discount'              => (int)$product->discount,
             'price'                 => (int)$product->price,
-            'price_discount'        => (float)$product->price_discount,
             'price_dolar'           => (int)$product->price_dolar,
-            'price_dolar_discount'  => (float)$product->price_dolar_discount,
+            'price_pen_discount'    => (float)$product->price_pen_discount,
+            'price_usd_discount'    => (float)$product->price_usd_discount,
+            'discount_pen'          => (int)$product->discount_pen,
+            'discount_usd'          => (int)$product->discount_usd,
+            'begin_discount'        => optional($product->begin_discount)->toDateString(),
+            'end_discount'          => optional($product->end_discount)->toDateString(),
             'free_shipping'         => boolval($product->free_shipping),
             'is_salient'            => $product->is_salient,
             'preview_route'         => $this->when(\Auth::guard('admin')->check(), route('products.preview', $product->slug)),
