@@ -23,7 +23,7 @@ return [
         'name' => 'Nombre',
         'send' => 'Enviar',
         'suscribe' => 'Suscríbete',
-        'suscribe_details' => 'Y disfruta de descuentos especiales',
+        'suscribe_details' => 'Y disfruta de descuentos especiales.',
         'worldwide_shipping' => 'Envío a todo el mundo',
     ],
     'shop' => [

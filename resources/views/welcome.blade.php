@@ -79,7 +79,7 @@
                     <i class="fa fa-2x fa-envelope-o"></i>
                 </p>
                 <h4 class="newsletter-title">{{ __('bipolar.home.suscribe') }}</h4>
-                <p class="newsletter-subtitle">{{ __('bipolar.home.suscribe_details') }}.</p>
+                <p class="newsletter-subtitle">{{ __('bipolar.home.suscribe_details') }}</p>
                 {!! Form::open(['route' => 'register.newsletter']) !!}
                     <div class="form-group">
                         {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('bipolar.home.name'), 'required' => true]) !!}
