@@ -71,10 +71,10 @@
             <a href="mailto:bipolar@bipolar.com.pe">
               <i class="fa fa-envelope-o"></i>
             </a>
-            <a href="https://www.facebook.com/bipolar.zapatos">
+            <a href="https://www.facebook.com/bipolar.zapatos" target="_blank">
               <i class="fa fa-facebook"></i>
             </a>
-            <a href="https://instagram.com/bipolar_zapatos">
+            <a href="https://instagram.com/bipolar_zapatos" target="_blank">
               <i class="fa fa-instagram"></i>
             </a>
           </div>

@@ -64,12 +64,12 @@
 						</a>
 					</li>
 					<li>
-						<a href="https://www.facebook.com/bipolar.zapatos">
+						<a href="https://www.facebook.com/bipolar.zapatos" target="_blank">
 							<i class="fa fa-facebook"></i>
 						</a>
 					</li>
 					<li>
-						<a href="https://instagram.com/bipolar_zapatos">
+						<a href="https://instagram.com/bipolar_zapatos" target="_blank">
 							<i class="fa fa-instagram"></i>
 						</a>
 					</li>
