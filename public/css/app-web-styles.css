@@ -21379,3 +21379,17 @@ table.table-buys tbody td.order-actions {
   pointer-events: none;
 }
 
+.shipping-landing h1 {
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  font-size: 26px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.shipping-landing h6 {
+  font-family: "GothamBold", Verdana;
+  font-weight: normal;
+  font-size: 13px;
+}
+

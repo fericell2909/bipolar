@@ -41,4 +41,17 @@ return [
         'questions' => 'Questions?',
         'write_us'  => 'Email us at shop@bipolar.com.pe or call us at (+51) 965.367.385',
     ],
+    'shipping' => [
+        'title' => 'Shipping',
+        'rates' => 'The shipping rates available are:',
+        'dolar_rates' => 'Shipping rates in dollars may suffer slight variations due to exchange rate.',
+        'confirmation' => 'Order confirmation',
+        'confirmation_text' => 'Once you made your order, you will receive a confirmation email with your order detail in the next 24 hours of a working day. In case you don´t receive it, please contact us at shop@bipolar.com.pe.',
+        'shipping_confirmation' => 'Shipping information confirmation',
+        'shipping_confirmation_text' => 'Before we can dispatch your order, we may need to confirm your details and shipping information. If this happens, days before your shipment, you will be receiving an email from Bipolar asking for a Shipping Information Confirmation. Please make sure that the shipping information is correct and complete as we’re unable to redirect orders once they are on their way to you.',
+        'shipping_time' => 'Delivery time',
+        'shipping_time_text' => 'Our delivery time starts from the moment you receive your order confirmation or from the moment when the shipping information (in case of being required) is confirmed. After that, a 72 hour period (in working days) awaits for the items to be dispatched. The estimated time for international delivery is 2 weeks but it depends on your local mail service.',
+        'payments' => 'Payment',
+        'payments_text' => 'We accept Visa, Mastercard, American Express & Diners.',
+    ],
 ];

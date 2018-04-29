@@ -41,4 +41,17 @@ return [
         'questions' => '¿Preguntas?',
         'write_us'  => 'Escríbenos a shop@bipolar.com.pe o llámanos al (+51) 965.367.385',
     ],
+    'shipping' => [
+        'title' => 'Envíos',
+        'rates' => 'Las tarifas de envío disponibles son',
+        'dolar_rates' => 'Las tarifas en dólares son aproximadas.',
+        'confirmation' => 'Confirmación de pedido',
+        'confirmation_text' => 'Una vez efectuado el pedido, recibirás un email de confirmación con los detalles de tu orden en el transcurso de las siguientes 24 horas de un día laborable. En caso de no recibirlo, por favor contáctanos a shop@bipolar.com.pe.',
+        'shipping_confirmation' => 'Confirmación de información del envío',
+        'shipping_confirmation_text' => 'Antes de despachar la orden, podríamos necesitar que nos confirmes algunos detalles de la información brindada para el envío. Si esto sucediera, días antes del envío recibirás un email de Bipolar para confirmar la información. Asegúrate que la información enviada sea la correcta pues una vez realizado el envío, no tenemos posibilidad de cambiarla.',
+        'shipping_time' => 'Tiempo de entrega',
+        'shipping_time_text' => 'Nuestro tiempo de entrega se inicia a partir del envío de la confirmación de pedido o de la confirmación de información, si esta fuese necesaria. Luego de eso, en el transcurso de las siguientes 72 horas de días laborables, tu pedido será enviado.',
+        'payments' => 'Pagos',
+        'payments_text' => 'Aceptamos tarjetas Visa, Mastercard, American Express y Diners.',
+    ],
 ];
