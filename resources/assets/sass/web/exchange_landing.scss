@@ -1,4 +1,4 @@
-.shipping-landing {
+.exchange-landing {
   h1 {
     font-family: $bodoni-bold-font;
     font-size: 26px;
@@ -12,9 +12,17 @@
     font-family: $gotham-bold-font;
     font-weight: normal;
     font-size: 13px;
+    margin-bottom: 20px;
   }
 
   p {
     margin-bottom: 20px;
+  }
+
+  small {
+    font-family: $gotham-bold-font;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 13px;
   }
 }

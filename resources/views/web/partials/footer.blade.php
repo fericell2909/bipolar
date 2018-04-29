@@ -23,7 +23,7 @@
               <a href="{{ route('landings.shipping') }}">Envíos</a>
             </li>
             <li>
-              <a href="#">Cambios y devoluciones</a>
+              <a href="{{ route('landings.exchange') }}">Cambios y devoluciones</a>
             </li>
             <li>
               <a href="#">Recomendaciones de uso</a>

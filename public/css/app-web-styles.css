@@ -21385,11 +21385,43 @@ table.table-buys tbody td.order-actions {
   font-weight: 400;
   text-transform: uppercase;
   color: #000000;
+  margin: 75px 0;
 }
 
 .shipping-landing h6 {
   font-family: "GothamBold", Verdana;
   font-weight: normal;
+  font-size: 13px;
+}
+
+.shipping-landing p {
+  margin-bottom: 20px;
+}
+
+.exchange-landing h1 {
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  font-size: 26px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #000000;
+  margin: 75px 0;
+}
+
+.exchange-landing h6 {
+  font-family: "GothamBold", Verdana;
+  font-weight: normal;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.exchange-landing p {
+  margin-bottom: 20px;
+}
+
+.exchange-landing small {
+  font-family: "GothamBold", Verdana;
+  font-weight: normal;
+  font-style: italic;
   font-size: 13px;
 }
 
