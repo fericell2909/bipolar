@@ -19735,6 +19735,7 @@ input:focus:-ms-input-placeholder {
 }
 
 .text-heading-mobile {
+  font-family: "GothamLight", Verdana;
   font-size: 12px;
   padding-top: 17px;
   color: #000000;
