@@ -1,5 +1,4 @@
 $(document).click(function(event) {
-  console.log(event.target);
   if(!$(event.target).is('.cart-white-mobile > img') && !$(event.target).is('.cart-white-mobile > span')){
     $('.cart-inside-mobile').css('visibility', 'hidden');
   }
