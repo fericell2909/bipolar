@@ -32,6 +32,11 @@ button {
   font-size: 1.6rem !important;
 }
 
+.bipolar-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
 .bipolar-background {
   background-color: $bipolar-color;
 }

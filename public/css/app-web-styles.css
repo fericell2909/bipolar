@@ -19065,6 +19065,11 @@ button:active {
   font-size: 1.6rem !important;
 }
 
+.bipolar-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
 .bipolar-background {
   background-color: #fcbeb9;
 }
@@ -20385,7 +20390,7 @@ input:focus:-ms-input-placeholder {
   position: fixed;
   bottom: 0;
   width: 100%;
-  z-index: -30;
+  z-index: 0;
 }
 
 .bipolar-footer .item-content {

@@ -15,10 +15,12 @@
     @stack('css_plus')
 </head>
 <body>
-    @include('web.partials.main-bar', ['background' => true])
-    @include('web.partials.mobile-bar')
-    <div class="bipolar-the-content">
-        @yield('content')
+    <div class="bipolar-wrapper">
+      @include('web.partials.main-bar', ['background' => true])
+      @include('web.partials.mobile-bar')
+      <div class="bipolar-the-content">
+          @yield('content')
+      </div>
     </div>
     @include('web.partials.footer')
     <script src="{{ mix('js/app-web-scripts.js') }}"></script>
