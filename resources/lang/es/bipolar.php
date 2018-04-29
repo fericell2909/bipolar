@@ -24,7 +24,7 @@ return [
         'send' => 'Enviar',
         'suscribe' => 'Suscríbete',
         'suscribe_details' => 'Y disfruta de descuentos especiales.',
-        'worldwide_shipping' => 'Envío a todo el mundo',
+        'worldwide_shipping' => 'Envíos a todo el mundo',
     ],
     'shop' => [
         'see_filters' => 'Ver filtros',

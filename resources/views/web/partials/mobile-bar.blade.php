@@ -1,6 +1,8 @@
 <section class="container visible-xs-block visible-sm-block">
-	<p class="text-center text-heading-mobile">{{ Auth::check() ? __('bipolar.navbar.welcome') : __('bipolar.navbar.hi') }}
-		<a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">{{ __('bipolar.navbar.enter') }}</a> {{ __('bipolar.navbar.or') }}
+	<p class="text-center text-heading-mobile">
+    <span>{{ Auth::check() ? __('bipolar.navbar.welcome') : __('bipolar.navbar.hi') }}</span>
+    <a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">{{ __('bipolar.navbar.enter') }}</a>
+    <span>{{ __('bipolar.navbar.or') }}</span>
 		<a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">{{ __('bipolar.navbar.register') }}</a>
   </p>
   <div class="text-heading-account">
