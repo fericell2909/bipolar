@@ -50,4 +50,5 @@ require('./shop-scripts');
 require('./product-scripts');
 require('./select2-scripts');
 require('./checkout-scripts');
+require('./click-outside-handler');
 //require('./react/app-react-scripts');

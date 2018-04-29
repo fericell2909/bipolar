@@ -8,6 +8,8 @@
     <title>Bipolar</title>
     <link rel="stylesheet" href="{{ mix('css/app-web-styles.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
     {{-- Script de Font Awesome --}}
     <script src="https://use.fontawesome.com/d71cf672b2.js"></script>
 </head>
@@ -72,24 +74,22 @@
         </div>
     </div>
     @endif
-    <div class="row content-newsletter">
-        <div class="col-md-offset-4 col-md-4">
-            <div class="card-body">
-                <p class="text-center">
-                    <i class="fa fa-2x fa-envelope-o"></i>
-                </p>
-                <h4 class="newsletter-title">{{ __('bipolar.home.suscribe') }}</h4>
-                <p class="newsletter-subtitle">{{ __('bipolar.home.suscribe_details') }}</p>
-                {!! Form::open(['route' => 'register.newsletter']) !!}
-                    <div class="form-group">
-                        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('bipolar.home.name'), 'required' => true]) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => __('bipolar.home.email'), 'required' => true]) !!}
-                    </div>
-                    <button class="btn btn-dark btn-rounded">{{ __('bipolar.home.send') }}</button>
-                {!! Form::close() !!}
+    <div class="content-newsletter">
+        <div class="container-content">
+            <div class="text-center">
+                <i class="fa fa-2x fa-envelope-o"></i>
             </div>
+            <div class="newsletter-title">{{ __('bipolar.home.suscribe') }}</div>
+            <div class="newsletter-subtitle">{{ __('bipolar.home.suscribe_details') }}</div>
+            {!! Form::open(['route' => 'register.newsletter', 'class' => 'form-suscribe']) !!}
+                <div class="form-group">
+                    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('bipolar.home.name'), 'required' => true]) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => __('bipolar.home.email'), 'required' => true]) !!}
+                </div>
+                <button class="btn btn-dark btn-rounded">{{ __('bipolar.home.send') }}</button>
+            {!! Form::close() !!}
         </div>
     </div>
     @include('web.partials.footer')
