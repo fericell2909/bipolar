@@ -134,6 +134,7 @@
                   <li><a href="{{ route('homepost.create') }}">Nueva publicación</a></li>
                   <li><a href="{{ route('homepost.index') }}">Listar publicaciones</a></li>
                   <li><a href="{{ route('homepost.order') }}">Ordenar</a></li>
+                  <li><a href="{{ route('homepost.types') }}">Tipos de publicación</a></li>
                 </ul>
               </li>
               <li>

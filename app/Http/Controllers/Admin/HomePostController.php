@@ -7,6 +7,7 @@ use App\Models\HomePost;
 use App\Models\PostType;
 use App\Models\State;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class HomePostController extends Controller
 {
@@ -90,5 +91,45 @@ class HomePostController extends Controller
         $homePost = HomePost::findBySlugOrFail($homePostSlug);
 
         return view('admin.home_posts.photos_order', compact('homePost'));
+    }
+
+    public function showTypes()
+    {
+        $postTypes = PostType::all();
+
+        return view('admin.home_posts.types', compact('postTypes'));
+    }
+
+    public function storeType(Request $request)
+    {
+        $this->validate($request, ['name' => 'required|between:1,255']);
+
+        $homePostType = new PostType;
+        $homePostType->name = $request->input('name');
+        $homePostType->save();
+
+        flash()->success('Guardado correctamente');
+
+        return redirect()->back();
+    }
+
+    public function editType($postTypeId)
+    {
+        $postType = PostType::findOrFail($postTypeId);
+
+        return view('admin.home_posts.types_edit', compact('postType'));
+    }
+
+    public function updateType($postTypeId, Request $request)
+    {
+        $this->validate($request, ['name' => 'required|between:1,255']);
+        
+        $postType = PostType::findOrFail($postTypeId);
+        $postType->name = $request->input('name');
+        $postType->save();
+
+        flash()->success('Actualizado correctamente');
+
+        return redirect()->route('homepost.types');
     }
 }

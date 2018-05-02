@@ -47,6 +47,10 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('{slug}/photos/order', 'Admin\HomePostController@orderPhotos')->name('homepost.photos.order');
         Route::get('edit/{slug}', 'Admin\HomePostController@show')->name('homepost.edit');
         Route::post('edit/{slug}', 'Admin\HomePostController@update');
+        Route::get('type/new', 'Admin\HomePostController@showTypes')->name('homepost.types');
+        Route::post('type/new', 'Admin\HomePostController@storeType');
+        Route::get('type/edit/{postType}', 'Admin\HomePostController@editType')->name('homepost.types.edit');
+        Route::post('type/edit/{postType}', 'Admin\HomePostController@updateType');
     });
 
     Route::prefix('banners')->group(function () {

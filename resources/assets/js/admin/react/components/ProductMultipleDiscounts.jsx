@@ -151,7 +151,7 @@ class ProductMultipleDiscounts extends React.Component {
               <div className="row">
                 <div className="col-md">
                   <div className="form-group">
-                    <label>Cantidad descuento soles</label>
+                    <label>Porcentaje descuento soles</label>
                     <div className="input-group">
                       <input value={this.state.qtyDiscountPEN} onChange={this.handleChangeDiscountPEN} type="number" max={100} className="form-control"  required/>
                       <div className="input-group-append">
@@ -167,7 +167,7 @@ class ProductMultipleDiscounts extends React.Component {
                 </div>
                 <div className="col-md">
                   <div className="form-group">
-                    <label>Cantidad descuento dólares</label>
+                    <label>Porcentaje descuento dólares</label>
                     <div className="input-group">
                       <input value={this.state.qtyDiscountUSD} onChange={this.handleChangeDiscountUSD} type="number" max={100} className="form-control"  required/>
                       <div className="input-group-append">
