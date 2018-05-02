@@ -21,6 +21,7 @@ class HomePostController extends Controller
     public function create()
     {
         $postTypes = PostType::orderBy('name')->get()->pluck('name', 'id')->toArray();
+        $postTypes = array_prepend($postTypes, 'Seleccione', '');
         $states = State::orderBy('name')->get()->pluck('name', 'id')->toArray();
 
         return view('admin.home_posts.new', compact('postTypes', 'states'));
@@ -29,13 +30,16 @@ class HomePostController extends Controller
     public function store(HomePostNewRequest $request)
     {
         $state = State::findOrFail($request->input('state'));
-        $postType = PostType::findOrFail($request->input('post_type'));
 
         $homePost = new HomePost;
         $homePost->name = $request->input('name');
         $homePost->redirection_link = $request->input('link');
         $homePost->state()->associate($state);
-        $homePost->post_type()->associate($postType);
+        if ($request->filled('post_type')) {
+            $postType = PostType::findOrFail($request->input('post_type'));
+            $homePost->post_type()->associate($postType);
+        }
+
         $homePost->save();
 
         flash('Creado con éxito')->success();
@@ -47,6 +51,7 @@ class HomePostController extends Controller
     {
         $homePost = HomePost::findBySlugOrFail($homePostSlug);
         $postTypes = PostType::orderBy('name')->get()->pluck('name', 'id')->toArray();
+        $postTypes = array_prepend($postTypes, 'Seleccione', '');
         $states = State::orderBy('name')->get()->pluck('name', 'id')->toArray();
 
         return view('admin.home_posts.edit', compact('homePost', 'postTypes', 'states'));
@@ -57,12 +62,15 @@ class HomePostController extends Controller
         /** @var HomePost $homePost */
         $homePost = HomePost::findBySlugOrFail($homePostSlug);
         $state = State::findOrFail($request->input('state'));
-        $postType = PostType::findOrFail($request->input('post_type'));
 
         $homePost->name = $request->input('name');
         $homePost->redirection_link = $request->input('link');
         $homePost->state()->associate($state);
-        $homePost->post_type()->associate($postType);
+        if ($request->filled('post_type')) {
+            $postType = PostType::findOrFail($request->input('post_type'));
+            $homePost->post_type()->associate($postType);
+        }
+
         $homePost->save();
 
         flash('Actualizado con éxito')->success();

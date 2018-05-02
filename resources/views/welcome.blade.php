@@ -51,9 +51,11 @@
                                 <div class="overlay-text">
                                     {{ $homePost->name }}
                                 </div>
+                                @if($homePost->post_type)
                                 <div class="overlay-text-description">
                                     {{ $homePost->post_type->name }}
                                 </div>
+                                @endif
                             </div>
                         </a>
                     @endif
