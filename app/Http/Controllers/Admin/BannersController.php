@@ -38,11 +38,14 @@ class BannersController extends Controller
         /** @var State $state */
         $state = State::findOrFail($request->input('state'));
 
+        $begin = $request->filled('begin') ? $request->input('begin') : now()->format('Y-m-d H:i');
+        $end = $request->filled('end') ? $request->input('end') : '2099-12-31 23:59';
+
         $banner = new Banner;
         $banner->url = $amazonPath;
         $banner->relative_url = $imagePath;
-        $banner->begin_date = Carbon::createFromFormat('Y-m-d H:i', $request->input('begin'));
-        $banner->end_date = Carbon::createFromFormat('Y-m-d H:i', $request->input('end'));
+        $banner->begin_date = Carbon::createFromFormat('Y-m-d H:i', $begin);
+        $banner->end_date = Carbon::createFromFormat('Y-m-d H:i', $end);
         $banner->state()->associate($state);
         $banner->save();
 
@@ -66,8 +69,11 @@ class BannersController extends Controller
         $banner = Banner::findOrFail($bannerId);
         $state = State::findOrFail($request->input('state'));
 
-        $banner->begin_date = Carbon::createFromFormat('Y-m-d H:i', $request->input('begin'));
-        $banner->end_date = Carbon::createFromFormat('Y-m-d H:i', $request->input('end'));
+        $begin = $request->filled('begin') ? $request->input('begin') : now()->format('Y-m-d H:i');
+        $end = $request->filled('end') ? $request->input('end') : '2099-12-31 23:59';
+
+        $banner->begin_date = Carbon::createFromFormat('Y-m-d H:i', $begin);
+        $banner->end_date = Carbon::createFromFormat('Y-m-d H:i', $end);
         $banner->state()->associate($state);
 
         if ($request->file('photo')) {
