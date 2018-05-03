@@ -52,7 +52,7 @@
           </div>
         </div>
         <div class="form-group col-md-3">
-          {!! Form::label('Monto mínimo PEN') !!}
+          {!! Form::label('Monto mínimo de compra PEN') !!}
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">S/</span>
@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="form-group col-md-3">
-          {!! Form::label('Monto mínimo USD') !!}
+          {!! Form::label('Monto mínimo de compra USD') !!}
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-fw fa-dollar-sign"></i></span>
