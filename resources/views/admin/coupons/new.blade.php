@@ -98,6 +98,10 @@
           </div>
         </div>
       </div>
+      <div class="form-group">
+        <input type="checkbox" name="discount_products" value="1">
+        <label>¿Incluir productos con descuento?</label>
+      </div>
       {!! Form::submit('Guardar', ['class' => 'btn btn-rounded btn-dark']) !!}
       {!! Form::close() !!}
     </div>

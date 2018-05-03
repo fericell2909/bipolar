@@ -27,6 +27,7 @@ class CreateCouponsTable extends Migration
             $table->json('products')->nullable();
             $table->json('product_subtypes')->nullable();
             $table->json('product_types')->nullable();
+            $table->boolean('discounted_products')->default(false);
             $table->timestamps();
         });
 

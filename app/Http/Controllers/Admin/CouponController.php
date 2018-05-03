@@ -35,6 +35,7 @@ class CouponController extends Controller
         $coupon->frequency = $request->input('limit');
         $coupon->minimum_pen = $request->input('minimum_pen');
         $coupon->minimum_usd = $request->input('minimum_usd');
+        $coupon->discounted_products = boolval($request->input('discount_products'));
         $coupon->begin = Carbon::createFromFormat('d/m/Y', $request->input('begin'))->startOfDay();
         $coupon->end = Carbon::createFromFormat('d/m/Y', $request->input('end'))->endOfDay();
         $coupon->save();
@@ -70,6 +71,7 @@ class CouponController extends Controller
         $coupon->frequency = $request->input('limit');
         $coupon->minimum_pen = $request->input('minimum_pen');
         $coupon->minimum_usd = $request->input('minimum_usd');
+        $coupon->discounted_products = boolval($request->input('discount_products'));
         $coupon->begin = Carbon::createFromFormat('d/m/Y', $request->input('begin'))->startOfDay();
         $coupon->end = Carbon::createFromFormat('d/m/Y', $request->input('end'))->endOfDay();
         $coupon->save();

@@ -165,7 +165,7 @@ namespace App\Models{
  * App\Models\HomePost
  *
  * @property int $id
- * @property int $post_type_id
+ * @property int|null $post_type_id
  * @property int|null $state_id
  * @property string $name
  * @property string|null $slug
@@ -175,7 +175,7 @@ namespace App\Models{
  * @property \Carbon\Carbon|null $updated_at
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
- * @property-read \App\Models\PostType $post_type
+ * @property-read \App\Models\PostType|null $post_type
  * @property-read \App\Models\State|null $state
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereCreatedAt($value)
@@ -262,10 +262,10 @@ namespace App\Models{
  * @property array $name
  * @property string|null $slug
  * @property array $description
- * @property \Carbon\Carbon|null $end_discount
- * @property \Carbon\Carbon|null $begin_discount
  * @property int|null $discount_pen
  * @property int|null $discount_usd
+ * @property \Carbon\Carbon|null $begin_discount
+ * @property \Carbon\Carbon|null $end_discount
  * @property float $price
  * @property float|null $price_pen_discount
  * @property float $price_dolar
@@ -772,6 +772,7 @@ namespace App\Models{
  * @property array $products
  * @property array $product_subtypes
  * @property array $product_types
+ * @property int $discounted_products
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\CouponType $type
@@ -780,6 +781,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereBegin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereDiscountedProducts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereEnd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereFrequency($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereId($value)

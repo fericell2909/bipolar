@@ -84,6 +84,10 @@
           </div>
         </div>
       </div>
+      <div class="form-group">
+        <input type="checkbox" name="discount_products" value="1"{{ $request->input('discount_products') ? 'checked' : null }}>
+        <label>¿Incluir productos con descuento?</label>
+      </div>
       {!! Form::submit('Actualizar', ['class' => 'btn btn-rounded btn-dark']) !!}
       {!! Form::close() !!}
     </div>

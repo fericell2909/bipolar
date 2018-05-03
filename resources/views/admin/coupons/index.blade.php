@@ -22,6 +22,7 @@
               <th>Fin</th>
               <th>Mínimo S/</th>
               <th>Mínimo $</th>
+              <th class="text-center">¿Productos con descuento?</th>
               <th class="text-center">Acciones</th>
             </tr>
           </thead>
@@ -39,6 +40,7 @@
               <td class="align-middle">{{ $coupon->end->format('d/m/Y') }}</td>
               <td class="align-middle">{{ $coupon->minimum_pen }}</td>
               <td class="align-middle">{{ $coupon->minimum_usd }}</td>
+              <td class="align-middle text-center">{{ $coupon->discounted_products ? 'Sí' : 'No' }}</td>
               <td class="align-middle text-center">
                 <div class="button-group">
                   <a href="{{ route('coupon.edit', $coupon->id) }}" class="btn btn-dark btn-sm btn-rounded">
