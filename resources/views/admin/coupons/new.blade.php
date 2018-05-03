@@ -34,19 +34,19 @@
           {!! Form::select('coupon_type', $types, null, ['class' => 'form-control', 'required']) !!}
         </div>
         <div class="form-group col-md-3">
-          {!! Form::label('Por un monto de') !!}
+          {!! Form::label('Para compras en soles') !!}
           <div class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text">Carrito en S/</span>
+              <span class="input-group-text">Descuento %-S/</span>
             </div>
             {!! Form::number('amount_pen', null, ['class' => 'form-control', 'min' => 0, 'step' => 'any', 'required']) !!}
           </div>
         </div>
         <div class="form-group col-md-3">
-          {!! Form::label('Por un monto de') !!}
+          {!! Form::label('Para compras en dólares') !!}
           <div class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text">Carrito en $</span>
+              <span class="input-group-text">Descuento %-$</span>
             </div>
             {!! Form::number('amount_usd', null, ['class' => 'form-control', 'min' => 0, 'step' => 'any', 'required']) !!}
           </div>
