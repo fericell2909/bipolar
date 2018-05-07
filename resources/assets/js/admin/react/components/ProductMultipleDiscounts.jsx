@@ -150,8 +150,9 @@ class ProductMultipleDiscounts extends React.Component {
           selectedProducts: [], 
           qtyDiscountPEN: 0,
           qtyDiscountUSD: 0,
-        })
+        });
       })
+      .then(this.getTasks)
       .catch(console.warn);
   };
 

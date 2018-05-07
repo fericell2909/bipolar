@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.15 on 2018-04-06 12:26:58.
+ * Generated for Laravel 5.6.20 on 2018-05-07 18:18:43.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1994,6 +1994,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param object $mixin
          * @return void 
+         * @throws \ReflectionException
          * @static 
          */ 
         public static function mixin($mixin)
@@ -2314,7 +2315,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get a driver instance.
          *
-         * @param string $name
+         * @param string|null $name
          * @return mixed 
          * @static 
          */ 
@@ -2468,7 +2469,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get a cache driver instance.
          *
-         * @param string $driver
+         * @param string|null $driver
          * @return mixed 
          * @static 
          */ 
@@ -2598,7 +2599,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param mixed $value
-         * @param \DateTimeInterface|\DateInterval|float|int $minutes
+         * @param \DateTimeInterface|\DateInterval|float|int|null $minutes
          * @return void 
          * @static 
          */ 
@@ -2927,6 +2928,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param object $mixin
          * @return void 
+         * @throws \ReflectionException
          * @static 
          */ 
         public static function mixin($mixin)
@@ -4047,6 +4049,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Unset the event dispatcher for this connection.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function unsetEventDispatcher()
+        {
+            //Method inherited from \Illuminate\Database\Connection            
+            \Illuminate\Database\MySqlConnection::unsetEventDispatcher();
+        }
+        
+        /**
          * Determine if the connection in a "dry run".
          *
          * @return bool 
@@ -4919,6 +4933,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param object $mixin
          * @return void 
+         * @throws \ReflectionException
          * @static 
          */ 
         public static function mixin($mixin)
@@ -4973,7 +4988,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $name
          * @param string $class
-         * @param array $abilities
+         * @param array|null $abilities
          * @return $this 
          * @static 
          */ 
@@ -5575,6 +5590,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param object $mixin
          * @return void 
+         * @throws \ReflectionException
          * @static 
          */ 
         public static function mixin($mixin)
@@ -6067,6 +6083,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param object $mixin
          * @return void 
+         * @throws \ReflectionException
          * @static 
          */ 
         public static function mixin($mixin)
@@ -6209,7 +6226,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Attempt to get the broker from the local cache.
          *
-         * @param string $name
+         * @param string|null $name
          * @return \Illuminate\Contracts\Auth\PasswordBroker 
          * @static 
          */ 
@@ -6765,6 +6782,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param object $mixin
          * @return void 
+         * @throws \ReflectionException
          * @static 
          */ 
         public static function mixin($mixin)
@@ -8692,6 +8710,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param object $mixin
          * @return void 
+         * @throws \ReflectionException
          * @static 
          */ 
         public static function mixin($mixin)
@@ -8945,6 +8964,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param object $mixin
          * @return void 
+         * @throws \ReflectionException
          * @static 
          */ 
         public static function mixin($mixin)
@@ -9715,6 +9735,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param object $mixin
          * @return void 
+         * @throws \ReflectionException
          * @static 
          */ 
         public static function mixin($mixin)
@@ -11502,6 +11523,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param object $mixin
          * @return void 
+         * @throws \ReflectionException
          * @static 
          */ 
         public static function mixin($mixin)
@@ -11547,13 +11569,13 @@ namespace Illuminate\Support\Facades {
          * @param array $rules
          * @param array $messages
          * @param array $customAttributes
-         * @return void 
+         * @return array 
          * @throws \Illuminate\Validation\ValidationException
          * @static 
          */ 
         public static function validate($data, $rules, $messages = array(), $customAttributes = array())
         {
-            \Illuminate\Validation\Factory::validate($data, $rules, $messages, $customAttributes);
+            return \Illuminate\Validation\Factory::validate($data, $rules, $messages, $customAttributes);
         }
         
         /**
@@ -13531,6 +13553,7 @@ namespace Collective\Html {
          *
          * @param object $mixin
          * @return void 
+         * @throws \ReflectionException
          * @static 
          */ 
         public static function mixin($mixin)
@@ -13926,6 +13949,7 @@ namespace Collective\Html {
          *
          * @param object $mixin
          * @return void 
+         * @throws \ReflectionException
          * @static 
          */ 
         public static function mixin($mixin)
@@ -16041,6 +16065,25 @@ namespace  {
             }
          
             /**
+             * Add a subquery join clause to the query.
+             *
+             * @param \Closure|\Illuminate\Database\Query\Builder|string $query
+             * @param string $as
+             * @param string $first
+             * @param string|null $operator
+             * @param string|null $second
+             * @param string $type
+             * @param bool $where
+             * @return \Illuminate\Database\Query\Builder|static 
+             * @throws \InvalidArgumentException
+             * @static 
+             */ 
+            public static function joinSub($query, $as, $first, $operator = null, $second = null, $type = 'inner', $where = false)
+            {    
+                return \Illuminate\Database\Query\Builder::joinSub($query, $as, $first, $operator, $second, $type, $where);
+            }
+         
+            /**
              * Add a left join to the query.
              *
              * @param string $table
@@ -16071,6 +16114,22 @@ namespace  {
             }
          
             /**
+             * Add a subquery left join to the query.
+             *
+             * @param \Closure|\Illuminate\Database\Query\Builder|string $query
+             * @param string $as
+             * @param string $first
+             * @param string|null $operator
+             * @param string|null $second
+             * @return \Illuminate\Database\Query\Builder|static 
+             * @static 
+             */ 
+            public static function leftJoinSub($query, $as, $first, $operator = null, $second = null)
+            {    
+                return \Illuminate\Database\Query\Builder::leftJoinSub($query, $as, $first, $operator, $second);
+            }
+         
+            /**
              * Add a right join to the query.
              *
              * @param string $table
@@ -16098,6 +16157,22 @@ namespace  {
             public static function rightJoinWhere($table, $first, $operator, $second)
             {    
                 return \Illuminate\Database\Query\Builder::rightJoinWhere($table, $first, $operator, $second);
+            }
+         
+            /**
+             * Add a subquery right join to the query.
+             *
+             * @param \Closure|\Illuminate\Database\Query\Builder|string $query
+             * @param string $as
+             * @param string $first
+             * @param string|null $operator
+             * @param string|null $second
+             * @return \Illuminate\Database\Query\Builder|static 
+             * @static 
+             */ 
+            public static function rightJoinSub($query, $as, $first, $operator = null, $second = null)
+            {    
+                return \Illuminate\Database\Query\Builder::rightJoinSub($query, $as, $first, $operator, $second);
             }
          
             /**
@@ -16380,11 +16455,11 @@ namespace  {
              *
              * @param string $column
              * @param string $operator
-             * @param string $value
+             * @param mixed $value
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
              */ 
-            public static function orWhereDate($column, $operator, $value)
+            public static function orWhereDate($column, $operator, $value = null)
             {    
                 return \Illuminate\Database\Query\Builder::orWhereDate($column, $operator, $value);
             }
@@ -17280,6 +17355,7 @@ namespace  {
              *
              * @param object $mixin
              * @return void 
+             * @throws \ReflectionException
              * @static 
              */ 
             public static function mixin($mixin)

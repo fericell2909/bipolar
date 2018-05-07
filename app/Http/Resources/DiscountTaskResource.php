@@ -22,9 +22,9 @@ class DiscountTaskResource extends JsonResource
     {
         /** @var \App\Models\DiscountTask $discountTask */
         $discountTask = $this;
-        $types = isset($discountTask->product_types) ? Type::find($discountTask->product_types) : [];
-        $products = isset($discountTask->products) ? Product::find($discountTask->products) : [];
-        $subtypes = isset($discountTask->product_subtypes) ? Subtype::find($discountTask->product_subtypes) : [];
+        $types = Type::find($discountTask->product_types);
+        $products = Product::find($discountTask->products);
+        $subtypes = Subtype::find($discountTask->product_subtypes);
 
         return [
             'id'                    => (int)$discountTask->id,
@@ -34,11 +34,11 @@ class DiscountTaskResource extends JsonResource
             'discount_pen'          => $discountTask->discount_pen,
             'discount_usd'          => $discountTask->discount_usd,
             'product_types'         => $discountTask->product_types ?? [],
-            'product_types_full'    => TypeResource::collection($types),
             'products'              => $discountTask->products ?? [],
-            'products_full'         => ProductResource::collection($products),
             'product_subtypes'      => $discountTask->product_subtypes ?? [],
-            'product_subtypes_full' => SubtypeResource::collection($subtypes),
+            'products_full'         => !is_null($products) ? ProductResource::collection($products) : [],
+            'product_types_full'    => !is_null($types) ? TypeResource::collection($types) : [],
+            'product_subtypes_full' => !is_null($subtypes) ? SubtypeResource::collection($subtypes): [],
             'available'             => (bool)$discountTask->available,
             'executed'              => (bool)$discountTask->executed,
         ];
