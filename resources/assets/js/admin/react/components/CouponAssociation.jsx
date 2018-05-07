@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import axios from "axios";
 import * as swal from "sweetalert2";
 import ReactSelect from "react-select";
-import "react-select/dist/react-select.css";
 
 class CouponAssociation extends React.Component {
 
@@ -75,13 +74,13 @@ class CouponAssociation extends React.Component {
   render() {
     const optionTypes = this.state.types.length ? this.state.types.map(type => {
       return {value: type['id'], label: type["name"]};
-    }) : null;
+    }) : [];
     const optionProducts = this.state.products.length ? this.state.products.map(product => {
       return {value: product['id'], label: product["name"]};
-    }) : null;
+    }) : [];
     const optionSubtypes = this.state.subtypes.length ? this.state.subtypes.map(product => {
       return {value: product['id'], label: product["name"]};
-    }) : null;
+    }) : [];
 
     return (
       <div className="card">
@@ -90,19 +89,19 @@ class CouponAssociation extends React.Component {
             <div className="col-md">
               <div className="form-group">
                 <label>Tipos</label>
-                <ReactSelect options={optionTypes} onChange={this.handleUpdateType} value={this.state.couponTypes} multi closeOnSelect={false}/>
+                <ReactSelect options={optionTypes} onChange={this.handleUpdateType} value={this.state.couponTypes} isMulti closeMenuOnSelect={false}/>
               </div>
             </div>
             <div className="col-md">
               <div className="form-group">
                 <label>Subtipos</label>
-                <ReactSelect options={optionSubtypes} onChange={this.handleUpdateSubtype} value={this.state.couponSubtypes} multi closeOnSelect={false}/>
+                <ReactSelect options={optionSubtypes} onChange={this.handleUpdateSubtype} value={this.state.couponSubtypes} isMulti closeMenuOnSelect={false}/>
               </div>
             </div>
             <div className="col-md">
               <div className="form-group">
                 <label>Productos</label>
-                <ReactSelect options={optionProducts} onChange={this.handleUpdateProducts} value={this.state.couponProducts} multi closeOnSelect={false}/>
+                <ReactSelect options={optionProducts} onChange={this.handleUpdateProducts} value={this.state.couponProducts} isMulti closeMenuOnSelect={false}/>
               </div>
             </div>
           </div>

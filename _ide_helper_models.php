@@ -193,6 +193,40 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\DiscountTask
+ *
+ * @property int $id
+ * @property string $name
+ * @property int $discount_pen
+ * @property int $discount_usd
+ * @property \Carbon\Carbon $begin
+ * @property \Carbon\Carbon $end
+ * @property array $products
+ * @property array $product_subtypes
+ * @property array $product_types
+ * @property int $available
+ * @property int $executed
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereAvailable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereBegin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereDiscountPen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereDiscountUsd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereEnd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereExecuted($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereProductSubtypes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereProductTypes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereProducts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereUpdatedAt($value)
+ */
+	class DiscountTask extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Settings
  *
  * @property int $id

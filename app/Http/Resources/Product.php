@@ -17,11 +17,18 @@ class Product extends Resource
         /** @var \App\Models\Product $product */
         $product = $this;
 
+        if ($this->whenLoaded('colors')) {
+            $fullName = $product->getTranslation('name', 'es') . "/" . $product->getTranslation('name', 'en') . " - " . $product->colors->implode('name', ',');
+        } else {
+            $fullName = $product->getTranslation('name', 'es') . "/" . $product->getTranslation('name', 'en');
+        }
+
         return [
             'id'                    => $this->when(\Auth::guard('admin')->check(), $product->id),
             'hash_id'               => $product->hash_id,
             'name'                  => (string)$product->getTranslation('name', 'es'),
             'name_english'          => (string)$product->getTranslation('name', 'en'),
+            'fullname'              => $this->when(\Auth::guard('admin')->check(), (string)$fullName),
             'description'           => $product->getTranslation('description', 'es'),
             'description_english'   => $product->getTranslation('description', 'en'),
             'slug'                  => $product->slug,

@@ -33,7 +33,6 @@ Route::prefix('products')->group(function () {
     Route::post('photos/order', 'Admin\Ajax\PhotoController@orderPhotos');
     Route::delete('remove/{productId}', 'Admin\Ajax\ProductController@deletesoft');
     Route::get('{productHashId}/stocks', 'Admin\Ajax\ProductController@stocks');
-    Route::post('discounts', 'Admin\Ajax\ProductController@massiveDiscount');
 });
 
 Route::post('stocks/{stockId}', 'Admin\Ajax\ProductController@updateStock');
@@ -53,3 +52,9 @@ Route::post('buys/{buyId}/sent', 'Admin\Ajax\BuysController@sent');
 
 Route::get('coupons/{coupon}', 'Admin\Ajax\CouponsController@show');
 Route::post('coupons/{coupon}/types-subtypes', 'Admin\Ajax\CouponsController@saveTypesAndSubtypes');
+
+Route::get('discount-tasks', 'Admin\Ajax\DiscountController@index');
+Route::post('discount-tasks', 'Admin\Ajax\DiscountController@store');
+Route::post('discount-tasks/{discountTaskId}/execute', 'Admin\Ajax\DiscountController@execute');
+Route::post('discount-tasks/{discountTaskId}/revert', 'Admin\Ajax\DiscountController@revert');
+Route::put('discount-tasks/{discountTaskId}', 'Admin\Ajax\DiscountController@update');
