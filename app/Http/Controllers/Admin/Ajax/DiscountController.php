@@ -93,8 +93,8 @@ class DiscountController extends Controller
             'begin_discount' => $discount->begin,
             'end_discount'   => $discount->end,
         ];
-
-        if (count($discount->product_types)) {
+    
+        if ($discount->product_types) {
             $types = Type::find($discount->product_types);
             foreach ($types as $type) {
                 foreach ($type->subtypes as $subtype) {
@@ -103,14 +103,14 @@ class DiscountController extends Controller
             }
         }
 
-        if (count($discount->product_subtypes)) {
+        if ($discount->product_subtypes) {
             $subtypes = Subtype::find($discount->product_subtypes);
             foreach ($subtypes as $subtype) {
                 $subtype->products->each($this->assignMassiveDiscount($discount->discount_pen, $discount->discount_usd, $mainParams, false));
             }
         }
 
-        if (count($discount->products) > 0) {
+        if ($discount->products) {
             $products = Product::find($discount->products);
             $products->each($this->assignMassiveDiscount($discount->discount_pen, $discount->discount_usd, $mainParams, false));
         }

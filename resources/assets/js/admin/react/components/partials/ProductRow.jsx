@@ -17,6 +17,14 @@ const ProductRow = props => {
   ) : (
     "--"
   );
+  let priceDiscountText;
+  let discountText;
+  if (props.priceDiscountPEN && props.priceDiscountUSD) {
+    priceDiscountText = `${props.priceDiscountPEN}/${props.priceDiscountUSD}`;
+  }
+  if (props.discountPEN && props.discountUSD) {
+    discountText = `${props.discountPEN}%/${props.discountUSD}%`;
+  }
 
   return (
     <tr>
@@ -35,9 +43,8 @@ const ProductRow = props => {
       <td className="align-middle">{badgesSubtypes}</td>
       <td className="align-middle text-right">{parseInt(props.price)}</td>
       <td className="align-middle text-right">{parseInt(props.priceDolar)}</td>
-      <td className="align-middle text-center">{props.discount ? `-${props.discount}%` : ''}</td>
-      <td className="align-middle text-right">{props.priceDiscountPEN ? props.priceDiscountPEN : ''}</td>
-      <td className="align-middle text-right">{props.priceDiscountUSD ? props.priceDiscountUSD : ''}</td>
+      <td className="align-middle text-center">{discountText}</td>
+      <td className="align-middle text-right">{priceDiscountText}</td>
       <td className="align-middle text-center">{state}</td>
       <td className="align-middle text-center">
         {props.freeShipping ? <i className="fas fa-fw fa-check" /> : null}
