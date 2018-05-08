@@ -6,7 +6,11 @@
 <div class="container bipolar-checkout">
 	<div class="row">
 		<div class="col-md-3">
-
+			{!! Form::open(['class' => 'form-coupon']) !!}
+        {!! Form::label('Have a coupon?') !!}
+        {!! Form::text('coupon_name', null, ['class' => 'form-control', 'placeholder' => 'COUPON CODE', 'required']) !!}
+				<button type="submit" class="btn btn-dark-rounded">Apply code</button>
+			{!! Form::close() !!}
 		</div>
 		<div class="col-md-9">
 			@if($errors->any())
