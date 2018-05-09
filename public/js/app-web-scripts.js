@@ -26839,6 +26839,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 $(function () {
+  $('#form-coupon').submit(function (event) {
+    event.preventDefault();
+    var params = $(this).serializeArray();
+    $.post('/ajax/coupon', params).done(function (response) {
+      $('#alert-coupon').hide();
+      return window.location.reload();
+    }).fail(function (error) {
+      if (error.status === 400) {
+        var response = error.responseJSON;
+        if (response['message']) {
+          $('#alert-coupon').show().html(response['message']);
+        }
+      }
+    });
+  });
+
   $('.address-billing-option').click(function () {
     var addressId = $(this).val();
 

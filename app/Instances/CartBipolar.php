@@ -3,6 +3,7 @@
 namespace App\Instances;
 
 use App\Models\Cart;
+use App\Models\Coupon;
 
 class CartBipolar
 {
@@ -116,5 +117,16 @@ class CartBipolar
     public function getTotalBySessionCurrency() : float
     {
         return \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->total : $this->cart->total_dolar;
+    }
+
+    public function addCoupon(Coupon $coupon)
+    {
+        $this->cart->coupon()->associate($coupon);
+        return $this->cart->save();
+    }
+
+    public function hasCoupon()
+    {
+        return !is_null($this->cart->coupon_id);
     }
 }

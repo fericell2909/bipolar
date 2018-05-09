@@ -267,14 +267,17 @@ namespace App\Models{
  * @property int $id
  * @property int|null $user_id
  * @property string|null $session_id
+ * @property int|null $coupon_id
  * @property float $subtotal
  * @property float $total
  * @property float $total_dolar
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\Coupon|null $coupon
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CartDetail[] $details
  * @property-read mixed $total_currency
  * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereCouponId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSessionId($value)

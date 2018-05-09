@@ -6,11 +6,17 @@
 <div class="container bipolar-checkout">
 	<div class="row">
 		<div class="col-md-3">
-			{!! Form::open(['class' => 'form-coupon']) !!}
-        {!! Form::label('Have a coupon?') !!}
-        {!! Form::text('coupon_name', null, ['class' => 'form-control', 'placeholder' => 'COUPON CODE', 'required']) !!}
-				<button type="submit" class="btn btn-dark-rounded">Apply code</button>
-			{!! Form::close() !!}
+			@if($cart->coupon)
+				Cupón {{ $cart->coupon->code }}
+				<button class="btn btn-dark-rounded">Remover</button>
+			@else
+				<div id="alert-coupon" class="alert alert-danger" style="display: none;"></div>
+				{!! Form::open(["id" => 'form-coupon', 'class' => 'form-coupon']) !!}
+					{!! Form::label('Have a coupon?') !!}
+					{!! Form::text('coupon_name', null, ['class' => 'form-control', 'placeholder' => 'COUPON CODE', 'autocomplete' => 'off', 'required']) !!}
+					<button type="submit" class="btn btn-dark-rounded">Apply code</button>
+				{!! Form::close() !!}
+				@endif
 		</div>
 		<div class="col-md-9">
 			@if($errors->any())
@@ -208,7 +214,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach(CartBipolar::content() as $cartDetail)
+                  @foreach($cart->details as $cartDetail)
                   <tr>
                     <td class="product-name">
                       {{ $cartDetail->product->name }} x {{ $cartDetail->quantity }}

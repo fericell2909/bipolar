@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.20 on 2018-05-07 18:18:43.
+ * Generated for Laravel 5.6.20 on 2018-05-09 00:17:23.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -14703,6 +14703,16 @@ namespace Facades\App\Instances {
         public static function getTotalBySessionCurrency()
         {
             return \App\Instances\CartBipolar::getTotalBySessionCurrency();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addCoupon($coupon)
+        {
+            return \App\Instances\CartBipolar::addCoupon($coupon);
         }
          
     }

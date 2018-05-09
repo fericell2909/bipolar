@@ -8,6 +8,11 @@ class Cart extends Model
 {
     protected $fillable = ['session_id', 'user_id'];
 
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class, 'coupon_id');
+    }
+
     public function details()
     {
         return $this->hasMany(CartDetail::class);
