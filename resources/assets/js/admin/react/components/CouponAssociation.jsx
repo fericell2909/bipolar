@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import axios from "axios";
 import * as swal from "sweetalert2";
 import ReactSelect from "react-select";
+import Animated from 'react-select/lib/animated';
 
 class CouponAssociation extends React.Component {
 
@@ -20,31 +21,29 @@ class CouponAssociation extends React.Component {
     const dataProducts = await axios.get('/ajax-admin/products').catch(console.warn);
     const dataSubtypes = await axios.get('/ajax-admin/subtypes').catch(console.warn);
     const responseCoupon = await axios.get(`/ajax-admin/coupons/${this.props.couponId}`).catch(console.warn);
+    const products = dataProducts['data']['data'];
+    const subtypes = dataSubtypes['data']['data'];
+    const types = dataTypes['data']['data'];
     const coupon = responseCoupon['data']['data'];
+    const selectedProducts = coupon['products'].length && products.length ? products.filter(product => coupon['products'].includes(product['id'])).map(this.mapProduct) : [];
+    const selectedSubtypes = coupon['product_subtypes'].length && subtypes.length ? subtypes.filter(subtype => coupon['product_subtypes'].includes(subtype['id'])).map(this.mapSubtype) : [];
+    const selectedTypes = coupon['product_types'].length && types.length ? types.filter(type => coupon['product_types'].includes(type['id'])).map(this.mapType) : [];
+    
     this.setState({
-      subtypes: dataSubtypes['data']['data'],
-      types: dataTypes['data']['data'],
-      products: dataProducts['data']['data'],
-      couponProducts: coupon['products'],
-      couponTypes: coupon['product_types'],
-      couponSubtypes: coupon['product_subtypes'],
+      subtypes,
+      types,
+      products,
+      couponProducts: selectedProducts,
+      couponTypes: selectedTypes,
+      couponSubtypes: selectedSubtypes,
     });
   };
 
-  handleUpdateSubtype = values => {
-    const optionsSelected = values.map(value => value['value']);
-    this.setState({couponSubtypes: optionsSelected});
-  };
+  handleUpdateSubtype = values => this.setState({couponSubtypes: values});
 
-  handleUpdateType = values => {
-    const optionsSelected = values.map(value => value['value']);
-    this.setState({couponTypes: optionsSelected});
-  };
+  handleUpdateType = values => this.setState({couponTypes: values});
 
-  handleUpdateProducts = values => {
-    const optionsSelected = values.map(value => value['value']);
-    this.setState({couponProducts: optionsSelected});
-  };
+  handleUpdateProducts = values => this.setState({couponProducts: values});
 
   handleSaveChanges = async () => {
     const content = {
@@ -67,21 +66,23 @@ class CouponAssociation extends React.Component {
     }
   };
 
+  mapProduct = product => {
+    return {value: product['id'], label: `${product["fullname"]} - PEN: ${product['price']} / USD: ${product["price_dolar"]}`};
+  };
+
+  mapSubtype = subtype => ({value: subtype['id'], label: subtype["name"]});
+
+  mapType = type => ({value: type['id'], label: type["name"]});
+
   componentDidMount() {
     this.getData();
   }
 
   render() {
-    const optionTypes = this.state.types.length ? this.state.types.map(type => {
-      return {value: type['id'], label: type["name"]};
-    }) : [];
-    const optionProducts = this.state.products.length ? this.state.products.map(product => {
-      return {value: product['id'], label: product["name"]};
-    }) : [];
-    const optionSubtypes = this.state.subtypes.length ? this.state.subtypes.map(product => {
-      return {value: product['id'], label: product["name"]};
-    }) : [];
-
+    const optionTypes = this.state.types.length ? this.state.types.map(this.mapType) : [];
+    const optionProducts = this.state.products.length ? this.state.products.map(this.mapProduct) : [];
+    const optionSubtypes = this.state.subtypes.length ? this.state.subtypes.map(this.mapSubtype) : [];
+    
     return (
       <div className="card">
         <div className="card-body">
@@ -89,19 +90,19 @@ class CouponAssociation extends React.Component {
             <div className="col-md">
               <div className="form-group">
                 <label>Tipos</label>
-                <ReactSelect options={optionTypes} onChange={this.handleUpdateType} value={this.state.couponTypes} isMulti closeMenuOnSelect={false}/>
+                <ReactSelect components={Animated} options={optionTypes} onChange={this.handleUpdateType} value={this.state.couponTypes} isMulti closeMenuOnSelect={false}/>
               </div>
             </div>
             <div className="col-md">
               <div className="form-group">
                 <label>Subtipos</label>
-                <ReactSelect options={optionSubtypes} onChange={this.handleUpdateSubtype} value={this.state.couponSubtypes} isMulti closeMenuOnSelect={false}/>
+                <ReactSelect components={Animated} options={optionSubtypes} onChange={this.handleUpdateSubtype} value={this.state.couponSubtypes} isMulti closeMenuOnSelect={false}/>
               </div>
             </div>
             <div className="col-md">
               <div className="form-group">
                 <label>Productos</label>
-                <ReactSelect options={optionProducts} onChange={this.handleUpdateProducts} value={this.state.couponProducts} isMulti closeMenuOnSelect={false}/>
+                <ReactSelect components={Animated} options={optionProducts} onChange={this.handleUpdateProducts} value={this.state.couponProducts} isMulti closeMenuOnSelect={false}/>
               </div>
             </div>
           </div>
