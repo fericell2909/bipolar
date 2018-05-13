@@ -315,6 +315,7 @@ namespace App\Models{
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
+ * @property-read mixed $discount_amount
  * @property-read string $hash_id
  * @property-read mixed $price_currency
  * @property-read mixed $price_discount_currency

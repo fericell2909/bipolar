@@ -96,6 +96,15 @@ class Product extends Model
         }
     }
 
+    public function getDiscountAmountAttribute()
+    {
+        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
+            return intval($this->discount_pen);
+        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
+            return intval($this->discount_usd);
+        }
+    }
+
     public function getPriceDiscountCurrencyAttribute()
     {
         if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {

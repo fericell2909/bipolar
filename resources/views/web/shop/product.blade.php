@@ -17,10 +17,10 @@
         <div class="col-sm-6 col-md-6">
           @if(count($product->photos))
             <div>
-              @if($product->discount)
+              @if($product->discount_pen && $product->discount_usd)
                 <div class="shop-discount-container">
                   <div class="shop-discount">
-                    <span>{{ $product->discount }}%</span>
+                    <span>{{ $product->discount_amount }}%</span>
                   </div>
                 </div>
               @endif
@@ -43,7 +43,7 @@
             <div class="product-subtitle">{{ $product->colors->first()->name }}</div>
           @endif
           <p class="product-price">
-            @if($product->discount)
+            @if($product->discount_pen && $product->discount_usd)
               <span class="product-amount">{{ $product->price_discount_currency }}</span>
               <span class="product-original-amount">{{ $product->price_currency }}</span>
             @else
