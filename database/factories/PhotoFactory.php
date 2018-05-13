@@ -7,7 +7,7 @@ $factory->define(\App\Models\Photo::class, function (Faker $faker) {
         'product_id' => function () {
             return factory(\App\Models\Product::class)->create()->id;
         },
-        'url'        => $faker->imageUrl(317, 210, 'city'),
+        'url'        => 'https://placehold.it/317x210/000000/ffffff',
         'order'      => $faker->numberBetween(1, 10),
     ];
 });
