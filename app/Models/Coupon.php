@@ -17,4 +17,13 @@ class Coupon extends Model
     {
         return $this->belongsTo(CouponType::class, 'type_id');
     }
+
+    public function getDiscountFormatAttribute()
+    {
+        if ($this->type_id === config('constants.PERCENTAGE_DISCOUNT_ID')) {
+            return \Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN' ? "%{$this->amount_pen}" : "%{$this->amount_usd}";
+        } elseif ($this->type_id === config('constants.QUANTITY_DISCOUNT_ID')) {
+            return \Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN' ? "S/{$this->amount_pen}" : "\${$this->amount_usd}";
+        }
+    }
 }

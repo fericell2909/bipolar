@@ -216,6 +216,7 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <?php /** @var \App\Models\Cart $cart */ ?>
                   @foreach($cart->details as $cartDetail)
                   <tr>
                     <td class="product-name">
@@ -229,6 +230,12 @@
                     <td><span class="amount">{{ $cartDetail->total_currency }}</span></td>
                   </tr>
                   @endforeach
+                  @if($cart->coupon)
+                    <tr>
+                      <td class="total">Descuento: {{ $cart->coupon->code }}</td>
+                      <td><span class="amount">{{ $cart->coupon->discount_format }}</span></td>
+                    </tr>
+                  @endif
                   <tr>
                     <td class="total">Subtotal</td>
                     <td><span class="amount">{{ CartBipolar::totalCurrency() }}</span></td>
