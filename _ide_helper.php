@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.20 on 2018-05-09 00:17:23.
+ * Generated for Laravel 5.6.20 on 2018-05-13 12:55:18.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -14713,6 +14713,26 @@ namespace Facades\App\Instances {
         public static function addCoupon($coupon)
         {
             return \App\Instances\CartBipolar::addCoupon($coupon);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function removeCoupon()
+        {
+            return \App\Instances\CartBipolar::removeCoupon();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function hasCoupon()
+        {
+            return \App\Instances\CartBipolar::hasCoupon();
         }
          
     }

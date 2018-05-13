@@ -35,6 +35,13 @@ class CouponController extends Controller
         return response()->json(['success' => 'Guardado con éxito']);
     }
 
+    public function remove()
+    {
+        \CartBipolar::removeCoupon();
+
+        return response()->json(['success' => 'Guardado']);
+    }
+
     private function errorResponse($message)
     {
         return response()->json(['message' => $message], Response::HTTP_BAD_REQUEST);

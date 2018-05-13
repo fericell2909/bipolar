@@ -23,6 +23,18 @@
     }
   }
 
+  .content-coupon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #eee;
+    padding: 1em;
+    border-radius: 5px;
+    color: $bipolar-black;
+    font-family: $gotham-bold-font;
+  }
+
   .panel-default {
     border: none;
     box-shadow: none;

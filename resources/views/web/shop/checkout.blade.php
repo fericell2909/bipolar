@@ -7,8 +7,10 @@
 	<div class="row">
 		<div class="col-md-3">
 			@if($cart->coupon)
-				Cupón {{ $cart->coupon->code }}
-				<button class="btn btn-dark-rounded">Remover</button>
+				<div class="content-coupon">
+          <p>Cupón {{ $cart->coupon->code }}</p>
+          <button type="button" id="button-remove-coupon" class="btn btn-dark-rounded">Remover</button>
+				</div>
 			@else
 				<div id="alert-coupon" class="alert alert-danger" style="display: none;"></div>
 				{!! Form::open(["id" => 'form-coupon', 'class' => 'form-coupon']) !!}

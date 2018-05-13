@@ -125,6 +125,12 @@ class CartBipolar
         return $this->cart->save();
     }
 
+    public function removeCoupon()
+    {
+        $this->cart->coupon()->dissociate();
+        return $this->cart->save();
+    }
+
     public function hasCoupon()
     {
         return !is_null($this->cart->coupon_id);
