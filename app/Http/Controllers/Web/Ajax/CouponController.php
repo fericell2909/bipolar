@@ -38,6 +38,9 @@ class CouponController extends Controller
             case $couponService::DOESNT_HAVE_MINIMUN:
                 return $this->errorResponse("Para usar este cupón necesita un mínimo de {$couponService->getMinimum()} en el carrito");
                 break;
+            case $couponService::DOESNT_HAVE_PRODUCTS_OR_TYPES_OR_SUBTYPES;
+                return $this->errorResponse("El carrito no tiene los requisitos para usar este cupón");
+                break;
         }
 
         \CartBipolar::addCoupon($couponService->getCoupon());
