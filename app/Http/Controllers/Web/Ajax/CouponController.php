@@ -23,7 +23,7 @@ class CouponController extends Controller
         /** @var Cart $cart */
         $cart = \CartBipolar::last();
 
-        $couponService = new CouponService($cart, $couponName);
+        $couponService = new CouponService($cart, $couponName, \Session::get('BIPOLAR_CURRENCY', 'PEN'));
 
         switch ($couponService->isValid()) {
             case $couponService::NOT_EXIST:
@@ -34,6 +34,9 @@ class CouponController extends Controller
                 break;
             case $couponService::NOT_ALLOW_DISCOUNTED_PRODUCTS:
                 return $this->errorResponse("Este cupón no permite que haya productos con descuento");
+                break;
+            case $couponService::DOESNT_HAVE_MINIMUN:
+                return $this->errorResponse("Para usar este cupón necesita un mínimo de {$couponService->getMinimum()} en el carrito");
                 break;
         }
 
