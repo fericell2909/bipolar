@@ -14,6 +14,11 @@ class Buy extends Model
     {
         return $this->belongsTo(Address::class, 'billing_address_id');
     }
+
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class, 'coupon_id');
+    }
     
     public function shipping_address()
     {

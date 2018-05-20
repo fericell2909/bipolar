@@ -38,8 +38,11 @@ class CouponController extends Controller
             case $couponService::DOESNT_HAVE_MINIMUN:
                 return $this->errorResponse("Para usar este cupón necesita un mínimo de {$couponService->getMinimum()} en el carrito");
                 break;
-            case $couponService::DOESNT_HAVE_PRODUCTS_OR_TYPES_OR_SUBTYPES;
+            case $couponService::DOESNT_HAVE_PRODUCTS_OR_TYPES_OR_SUBTYPES:
                 return $this->errorResponse("El carrito no tiene los requisitos para usar este cupón");
+                break;
+            case $couponService::CANT_USE_FOR_FREQUENCY:
+                return $this->errorResponse("Ya ha utilizado el cupón el máximo de veces permitidas");
                 break;
         }
 

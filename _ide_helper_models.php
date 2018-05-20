@@ -34,6 +34,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $user_id
+ * @property int $coupon_id
  * @property int $billing_address_id
  * @property int $shipping_address_id
  * @property int|null $buy_number
@@ -46,6 +47,7 @@ namespace App\Models{
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\Address $billing_address
+ * @property-read \App\Models\Coupon $coupon
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $details
  * @property-read string $hash_id
  * @property-read mixed $shipping_fee_currency
@@ -60,6 +62,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy otherCurrentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBuyNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCouponId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCurrency($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereId($value)
