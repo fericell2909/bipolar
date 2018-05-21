@@ -3,7 +3,10 @@
 namespace App\Instances;
 
 use App\Models\Cart;
+use App\Models\CartDetail;
 use App\Models\Coupon;
+use App\Models\Product;
+use Illuminate\Support\Collection;
 
 class CartBipolar
 {
@@ -18,7 +21,44 @@ class CartBipolar
             $this->cart = Cart::firstOrCreate(['session_id' => \Session::getId()]);
         }
 
-        $this->cart->load(['details']);
+        // Destroy another instances
+        try {
+            Cart::whereKeyNot($this->cart->id)
+                ->where('user_id', $this->cart->user_id)
+                ->where('session_id', $this->cart->session_id)
+                ->delete();
+        } catch (\Exception $e) {
+            dd($e);
+        }
+
+        $this->cart->load(['details', 'details.product.subtypes']);
+    }
+
+    /**
+     * @param int $quantity
+     * @param Product $product
+     * @param null $stockId
+     * @return CartDetail
+     */
+    public function add(int $quantity, Product $product, $stockId = null) : CartDetail
+    {
+        /** @var CartDetail $cartDetail */
+        $cartDetail = CartDetail::firstOrCreate([
+            'cart_id'    => $this->cart->id,
+            'product_id' => $product->id,
+            'stock_id'   => $stockId,
+        ]);
+
+        $pricePEN = $cartDetail->product->discount ? $cartDetail->product->price_discount : $cartDetail->product->price;
+        $priceUSD = $cartDetail->product->discount ? $cartDetail->product->price_dolar_discount : $cartDetail->product->price_dolar;
+        $cartDetail->quantity = $cartDetail->quantity + $quantity;
+        $cartDetail->total = $pricePEN * $cartDetail->quantity;
+        $cartDetail->total_dolar = $priceUSD * $cartDetail->quantity;
+        $cartDetail->save();
+
+        $this->recalculate();
+
+        return $cartDetail;
     }
 
     /**
@@ -27,6 +67,14 @@ class CartBipolar
      * @return Cart
      */
     public function last()
+    {
+        return $this->cart;
+    }
+
+    /**
+     * @return Cart
+     */
+    public function model() : Cart
     {
         return $this->cart;
     }
