@@ -167,10 +167,38 @@ class CartBipolar
         return \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->total : $this->cart->total_dolar;
     }
 
+    /**
+     * @param Coupon $coupon
+     * @return Cart|\Illuminate\Database\Eloquent\Model
+     */
     public function addCoupon(Coupon $coupon)
     {
         $this->cart->coupon()->associate($coupon);
-        return $this->cart->save();
+
+        $discountPEN = 0;
+        $discountUSD = 0;
+        if ($coupon->type_id === config('constants.PERCENTAGE_DISCOUNT_ID')) {
+            // calcular a cada uno de los productos que esten dentro del coupon
+        } elseif ($coupon->type_id === config('constants.QUANTITY_DISCOUNT_ID')) {
+            // calcular a la suma de los productos que esten dentro del coupon
+            /** @var Collection $detailsInCoupon */
+            $detailsInCoupon = $this->cart->details->filter(function ($detail) use ($coupon) {
+                /** @var CartDetail $detail */
+                $detailInCouponProducts = in_array($detail->product_id, $coupon->products);
+                $detailInCouponSubtypes = count(array_intersect($coupon->product_subtypes, $detail->product->subtypes->pluck('id')->toArray())) > 0;
+                $detailInCouponTypes = count(array_intersect($coupon->product_types, $detail->product->subtypes->groupBy('type_id')->keys()->toArray())) > 0;
+                return $detailInCouponProducts || $detailInCouponSubtypes || $detailInCouponTypes;
+            });
+            $discountPEN = $detailsInCoupon->sum('total') - $coupon->amount_pen > 0 ? $coupon->amount_pen : $detailsInCoupon->sum('total');
+            $discountUSD = $detailsInCoupon->sum('total_dolar') - $coupon->amount_usd > 0 ? $coupon->amount_usd : $detailsInCoupon->sum('total_dolar');
+        }
+
+        $this->cart->discount_coupon_pen = $discountPEN;
+        $this->cart->discount_coupon_usd = $discountUSD;
+        $this->cart->total = $this->cart->total - $discountPEN;
+        $this->cart->total_dolar = $this->cart->total_dolar - $discountUSD;
+        $this->cart->save();
+        return $this->cart;
     }
 
     public function removeCoupon()

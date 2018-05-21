@@ -271,6 +271,8 @@ namespace App\Models{
  * @property int|null $user_id
  * @property string|null $session_id
  * @property int|null $coupon_id
+ * @property float|null $discount_coupon_pen
+ * @property float|null $discount_coupon_usd
  * @property float $subtotal
  * @property float $total
  * @property float $total_dolar
@@ -282,6 +284,8 @@ namespace App\Models{
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereCouponId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereDiscountCouponPen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereDiscountCouponUsd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSessionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSubtotal($value)
