@@ -25,8 +25,6 @@ class CartBipolarTest extends TestCase
 
     public function test_add_coupon_quantity_to_cart()
     {
-        // todo: add second product
-        // todo: assert if cart coupon discount is same
         $randomQuantity = $this->faker->numberBetween(10, 30);
         /** @var Product $product */
         $product = factory(Product::class)->create();
@@ -39,14 +37,15 @@ class CartBipolarTest extends TestCase
         ]);
 
         $this->cart->add($randomQuantity, $product);
+        $this->cart->add($randomQuantity, factory(Product::class)->create());
 
         $this->assertEquals($this->cart->content()->sum('total'), $this->cart->model()->total);
         $this->assertEquals($this->cart->content()->sum('total_dolar'), $this->cart->model()->total_dolar);
 
-        $cart = $this->cart->addCoupon($couponByQuantity);
+        $cartAfterCoupon = $this->cart->addCoupon($couponByQuantity);
 
-        $this->assertEquals($this->cart->content()->sum('total') - $couponByQuantity->amount_pen, $cart->total);
-        $this->assertEquals($this->cart->content()->sum('total_dolar') - $couponByQuantity->amount_usd, $cart->total_dolar);
+        $this->assertEquals($this->cart->content()->sum('total') - $cartAfterCoupon->discount_coupon_pen, $cartAfterCoupon->total);
+        $this->assertEquals($this->cart->content()->sum('total_dolar') - $cartAfterCoupon->discount_coupon_usd, $cartAfterCoupon->total_dolar);
     }
 
     public function test_add_coupon_percentage_to_cart()
@@ -63,6 +62,7 @@ class CartBipolarTest extends TestCase
         ]);
 
         $this->cart->add($randomQuantity, $product);
+        $this->cart->add($randomQuantity, factory(Product::class)->create());
 
         $this->assertEquals($this->cart->content()->sum('total') - $this->cart->model()->discount_coupon_pen, $this->cart->model()->total);
         $this->assertEquals($this->cart->content()->sum('total_dolar') - $this->cart->model()->discount_coupon_usd, $this->cart->model()->total_dolar);
