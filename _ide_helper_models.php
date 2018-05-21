@@ -281,6 +281,7 @@ namespace App\Models{
  * @property-read \App\Models\Coupon|null $coupon
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CartDetail[] $details
  * @property-read mixed $total_currency
+ * @property-read mixed $total_discount_coupon
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereCouponId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereCreatedAt($value)

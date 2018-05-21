@@ -32,6 +32,15 @@ class Cart extends Model
         }
     }
 
+    public function getTotalDiscountCouponAttribute()
+    {
+        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
+            return "S/ " . intval($this->discount_coupon_pen);
+        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
+            return "$ " . intval($this->discount_coupon_usd);
+        }
+    }
+
     public function destroyCart()
     {
         if ($this->details->count() === 0) {

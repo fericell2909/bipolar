@@ -232,8 +232,8 @@
                   @endforeach
                   @if($cart->coupon)
                     <tr>
-                      <td class="total">Descuento: {{ $cart->coupon->code }}</td>
-                      <td><span class="amount">{{ $cart->coupon->discount_format }}</span></td>
+                      <td class="total">Cupón {{ $cart->coupon->code }} : {{ $cart->coupon->discount_format }}</td>
+                      <td><span class="amount">-{{ $cart->total_discount_coupon }}</span></td>
                     </tr>
                   @endif
                   <tr>

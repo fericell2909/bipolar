@@ -210,9 +210,9 @@ class CartBipolar
     {
         return function ($detail) use ($coupon) {
             /** @var CartDetail $detail */
-            $detailInCouponProducts = in_array($detail->product_id, $coupon->products);
-            $detailInCouponSubtypes = count(array_intersect($coupon->product_subtypes, $detail->product->subtypes->pluck('id')->toArray())) > 0;
-            $detailInCouponTypes = count(array_intersect($coupon->product_types, $detail->product->subtypes->groupBy('type_id')->keys()->toArray())) > 0;
+            $detailInCouponProducts = in_array($detail->product_id, $coupon->products ?? []);
+            $detailInCouponSubtypes = count(array_intersect($coupon->product_subtypes ?? [], $detail->product->subtypes->pluck('id')->toArray())) > 0;
+            $detailInCouponTypes = count(array_intersect($coupon->product_types ?? [], $detail->product->subtypes->groupBy('type_id')->keys()->toArray())) > 0;
             return $detailInCouponProducts || $detailInCouponSubtypes || $detailInCouponTypes;
         };
     }
