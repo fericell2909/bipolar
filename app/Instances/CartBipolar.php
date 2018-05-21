@@ -178,17 +178,16 @@ class CartBipolar
         $discountPEN = 0;
         $discountUSD = 0;
         if ($coupon->type_id === config('constants.PERCENTAGE_DISCOUNT_ID')) {
-            // calcular a cada uno de los productos que esten dentro del coupon
+            // Sub the percentage
+            $detailsInCoupon = $this->cart->details->filter($this->detailsInCoupon($coupon));
+            $percentagePEN = calculate_percentage($detailsInCoupon->sum('total'), $coupon->amount_pen);
+            $percentageUSD = calculate_percentage($detailsInCoupon->sum('total_dolar'), $coupon->amount_usd);
+            $discountPEN = $detailsInCoupon->sum('total') - $percentagePEN > 0 ? $percentagePEN : $detailsInCoupon->sum('total');
+            $discountUSD = $detailsInCoupon->sum('total_dolar') - $percentageUSD > 0 ? $percentageUSD : $detailsInCoupon->sum('total_dolar');
         } elseif ($coupon->type_id === config('constants.QUANTITY_DISCOUNT_ID')) {
-            // calcular a la suma de los productos que esten dentro del coupon
+            // Sum all products in coupon and sub the total amount
             /** @var Collection $detailsInCoupon */
-            $detailsInCoupon = $this->cart->details->filter(function ($detail) use ($coupon) {
-                /** @var CartDetail $detail */
-                $detailInCouponProducts = in_array($detail->product_id, $coupon->products);
-                $detailInCouponSubtypes = count(array_intersect($coupon->product_subtypes, $detail->product->subtypes->pluck('id')->toArray())) > 0;
-                $detailInCouponTypes = count(array_intersect($coupon->product_types, $detail->product->subtypes->groupBy('type_id')->keys()->toArray())) > 0;
-                return $detailInCouponProducts || $detailInCouponSubtypes || $detailInCouponTypes;
-            });
+            $detailsInCoupon = $this->cart->details->filter($this->detailsInCoupon($coupon));
             $discountPEN = $detailsInCoupon->sum('total') - $coupon->amount_pen > 0 ? $coupon->amount_pen : $detailsInCoupon->sum('total');
             $discountUSD = $detailsInCoupon->sum('total_dolar') - $coupon->amount_usd > 0 ? $coupon->amount_usd : $detailsInCoupon->sum('total_dolar');
         }
@@ -199,6 +198,23 @@ class CartBipolar
         $this->cart->total_dolar = $this->cart->total_dolar - $discountUSD;
         $this->cart->save();
         return $this->cart;
+    }
+
+    /**
+     * Filter details for check if it is contained in the coupon
+     *
+     * @param Coupon $coupon
+     * @return \Closure
+     */
+    private function detailsInCoupon(Coupon $coupon)
+    {
+        return function ($detail) use ($coupon) {
+            /** @var CartDetail $detail */
+            $detailInCouponProducts = in_array($detail->product_id, $coupon->products);
+            $detailInCouponSubtypes = count(array_intersect($coupon->product_subtypes, $detail->product->subtypes->pluck('id')->toArray())) > 0;
+            $detailInCouponTypes = count(array_intersect($coupon->product_types, $detail->product->subtypes->groupBy('type_id')->keys()->toArray())) > 0;
+            return $detailInCouponProducts || $detailInCouponSubtypes || $detailInCouponTypes;
+        };
     }
 
     public function removeCoupon()

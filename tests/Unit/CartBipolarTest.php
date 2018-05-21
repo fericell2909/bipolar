@@ -25,6 +25,8 @@ class CartBipolarTest extends TestCase
 
     public function test_add_coupon_quantity_to_cart()
     {
+        // todo: add second product
+        // todo: assert if cart coupon discount is same
         $randomQuantity = $this->faker->numberBetween(10, 30);
         /** @var Product $product */
         $product = factory(Product::class)->create();
@@ -47,11 +49,27 @@ class CartBipolarTest extends TestCase
         $this->assertEquals($this->cart->content()->sum('total_dolar') - $couponByQuantity->amount_usd, $cart->total_dolar);
     }
 
-    public function add_coupon_percentage_to_cart()
+    public function test_add_coupon_percentage_to_cart()
     {
-        /** @var Coupon $couponByPercentage  */
+        $randomQuantity = $this->faker->numberBetween(10, 30);
+        /** @var Product $product */
+        $product = factory(Product::class)->create();
+        $product->subtypes()->sync(factory(Subtype::class, 2)->create()->pluck('id')->toArray());
+        $product->load('subtypes');
+        /** @var Coupon $couponByPercentage */
+        $couponByPercentage = factory(Coupon::class)->states('percentage')->create([
+            'products'         => [$product->id],
+            'product_subtypes' => $product->subtypes->pluck('id')->toArray(),
+        ]);
 
-        //$couponByPercentage = factory(Coupon::class)->states('percentage')->create();
-        //$this->assertTrue($this->cart->addCoupon($couponByPercentage));
+        $this->cart->add($randomQuantity, $product);
+
+        $this->assertEquals($this->cart->content()->sum('total') - $this->cart->model()->discount_coupon_pen, $this->cart->model()->total);
+        $this->assertEquals($this->cart->content()->sum('total_dolar') - $this->cart->model()->discount_coupon_usd, $this->cart->model()->total_dolar);
+
+        $cartAfterCoupon = $this->cart->addCoupon($couponByPercentage);
+
+        $this->assertEquals($this->cart->content()->sum('total') - $cartAfterCoupon->discount_coupon_pen, $cartAfterCoupon->total);
+        $this->assertEquals($this->cart->content()->sum('total_dolar') - $cartAfterCoupon->discount_coupon_usd, $cartAfterCoupon->total_dolar);
     }
 }
