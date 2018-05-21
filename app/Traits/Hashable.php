@@ -6,6 +6,9 @@ use Illuminate\Support\Collection;
 
 trait Hashable
 {
+    /** @method static $this findOrFail($id, array $columns = []) */
+    /** @method static $this findByHash($hashedId, array $columns = []) */
+
     /**
      * @param $hashedId
      * @param array $columns

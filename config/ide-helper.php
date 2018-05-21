@@ -46,9 +46,10 @@ return array(
     |
     */
 
-    'include_helpers' => false,
+    'include_helpers' => true,
 
     'helper_files' => array(
+        app_path() . '/helpers.php',
         base_path() . '/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
     ),
 
