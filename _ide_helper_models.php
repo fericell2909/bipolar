@@ -366,6 +366,34 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Post
+ *
+ * @property int $id
+ * @property array $title
+ * @property array $content
+ * @property string|null $slug
+ * @property string|null $main_image
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read mixed $status
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post currentStatus($names)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post otherCurrentStatus($names)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereMainImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUpdatedAt($value)
+ */
+	class Post extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Banner
  *
  * @property int $id
@@ -668,6 +696,7 @@ namespace App\Models{
  * @property int $id
  * @property int|null $product_id
  * @property int|null $home_post_id
+ * @property int|null $post_id
  * @property string $url
  * @property string|null $relative_url
  * @property int $order
@@ -675,11 +704,13 @@ namespace App\Models{
  * @property \Carbon\Carbon|null $updated_at
  * @property-read string $hash_id
  * @property-read \App\Models\HomePost|null $home_post
+ * @property-read \App\Models\Post|null $post
  * @property-read \App\Models\Product|null $product
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereHomePostId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo wherePostId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereRelativeUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereUpdatedAt($value)
