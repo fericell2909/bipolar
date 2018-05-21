@@ -10,7 +10,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "@fortawesome/fontawesome": "^1.1.7",
+        "@fortawesome/fontawesome": "^1.1.8",
         "axios": "^0.18.0",
         "babel-plugin-transform-class-properties": "^6.24.1",
         "babel-preset-react": "^6.23.0",
@@ -19,7 +19,7 @@
         "countup.js": "^1.9.3",
         "cross-env": "^5.1.4",
         "draft-js": "^0.10.5",
-        "draftjs-to-html": "^0.8.2",
+        "draftjs-to-html": "^0.8.4",
         "dropzone": "^5.4.0",
         "html-to-draftjs": "^1.4.0",
         "icheck": "^1.0.2",
@@ -46,7 +46,7 @@
         "tippy.js": "^2.0.8"
     },
     "dependencies": {
-        "@fortawesome/react-fontawesome": "^0.0.19",
+        "@fortawesome/react-fontawesome": "^0.0.20",
         "browser-sync": "^2.24.4",
         "browser-sync-webpack-plugin": "^2.2.2"
     }

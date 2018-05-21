@@ -53,6 +53,10 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('type/edit/{postType}', 'Admin\HomePostController@updateType');
     });
 
+    Route::prefix('blog')->group(function () {
+        Route::get('new', 'Admin\BlogController@create')->name('blog.create');
+    });
+
     Route::prefix('banners')->group(function () {
         Route::get('/', 'Admin\BannersController@index')->name('banners.index');
         Route::get('new', 'Admin\BannersController@create')->name('banners.create');

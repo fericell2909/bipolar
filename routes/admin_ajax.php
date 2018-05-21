@@ -43,6 +43,9 @@ Route::prefix('home-posts')->group(function () {
     Route::post('photos/order', 'Admin\Ajax\PhotoController@orderPhotos');
 });
 
+Route::post('post/new', 'Admin\Ajax\PostController@store');
+Route::post('post/photos', 'Admin\Ajax\PhotoController@postUpload');
+
 Route::post('historics/order', 'Admin\Ajax\HistoricsController@order');
 
 Route::post('banners/order', 'Admin\Ajax\BannersController@order');
