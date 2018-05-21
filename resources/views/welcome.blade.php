@@ -65,11 +65,15 @@
             <div class="bipolar-counts-container">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 bipolar-counts"> 
+                        <div class="col-md-4 bipolar-counts"> 
                             <div id="bipolar-first-counter" class="bipolar-counts-title" data-number="{{ $settings->bipolar_counts }}"></div>
                             <div class="bipolar-counts-subtitle">Bipolares</div>
                         </div>
-                        <div class="col-md-6 bipolar-counts">
+                        <div class="col-md-4 bipolar-counts">
+                            <div id="bipolar-instagram-counter" class="bipolar-counts-title" data-number="{{ $settings->instagram_counts }}"></div>
+                            <div class="bipolar-counts-subtitle">Instagram fans</div>
+                        </div>
+                        <div class="col-md-4 bipolar-counts">
                             <div id="bipolar-second-counter" class="bipolar-counts-title"></div>
                             <div class="bipolar-counts-subtitle">Facebook Fans</div>
                         </div>

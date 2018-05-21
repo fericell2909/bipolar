@@ -75,6 +75,7 @@ $(function () {
   if ($('.bipolar-counts-title').length) {
     const $firstCounter = $('#bipolar-first-counter');
     const $secondCounter = $('#bipolar-second-counter');
+    const $instagramCounter = $('#bipolar-instagram-counter');
     const counterOptions = {
       useEasing: true,
       useGrouping: true,
@@ -85,10 +86,12 @@ $(function () {
     $.get('https://graph.facebook.com/bipolar.zapatos/?fields=fan_count&access_token=100210840716931|hxQGZTOgdjwE1zG8tDKwyN7Fvy0')
       .done(response => {
         const firstCounter = new CountUp('bipolar-first-counter', 0, $firstCounter.data('number'), 0, 2.5, counterOptions);
+        const instagramCounter = new CountUp('bipolar-instagram-counter', 0, $instagramCounter.data('number'), 0, 2.5, counterOptions);
         const secondCounter = new CountUp('bipolar-second-counter', 0, response['fan_count'], 0, 2.5, counterOptions);
 
         firstCounter.start();
         secondCounter.start();
+        instagramCounter.start();
       });
   }
 });
