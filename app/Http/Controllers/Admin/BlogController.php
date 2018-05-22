@@ -19,4 +19,11 @@ class BlogController extends Controller
 
         return view('admin.blog.index', compact('posts'));
     }
+
+    public function edit($postId)
+    {
+        $post = Post::findOrFail($postId);
+
+        return view('admin.blog.edit', compact('post'));
+    }
 }

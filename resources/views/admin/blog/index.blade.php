@@ -23,7 +23,7 @@
               <td class="align-middle">{!! $post->state->getAdminHtml() !!}</td>
               <td class="align-middle">
                 <div class="button-group">
-                  <a href="#" class="btn btn-dark btn-sm btn-rounded">
+                  <a href="{{ route('blog.edit', $post->id) }}" class="btn btn-dark btn-sm btn-rounded">
                     <i class="fas fa-fw fa-edit"></i>
                     Editar
                   </a>
