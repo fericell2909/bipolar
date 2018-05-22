@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Ajax;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\State;
 
 class PostController extends Controller
 {
@@ -15,7 +16,10 @@ class PostController extends Controller
             'title_english'   => 'required|between:1,2000',
             'content'         => 'nullable|min:1',
             'content_english' => 'nullable|min:1',
+            'state'           => 'required',
         ]);
+
+        $state = State::findByHash($request->input('state'));
 
         $post = new Post;
         $post->setTranslations('title', [
@@ -26,8 +30,11 @@ class PostController extends Controller
             'es' => $request->input('content'),
             'en' => $request->input('content_english'),
         ]);
+        $post->state()->associate($state);
         $post->save();
 
-        return response()->json($post);
+        return response()->json([
+            'redirect_url' => route('blog.index'),
+        ]);
     }
 }

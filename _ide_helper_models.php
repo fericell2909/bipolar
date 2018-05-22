@@ -373,9 +373,11 @@ namespace App\Models{
  * @property array $content
  * @property string|null $slug
  * @property string|null $main_photo
+ * @property int|null $state_id
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read mixed $status
+ * @property-read \App\Models\State|null $state
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post currentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post findSimilarSlugs($attribute, $config, $slug)
@@ -385,6 +387,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereMainPhoto($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUpdatedAt($value)
  */

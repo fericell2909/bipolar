@@ -12,8 +12,10 @@ class PostNew extends React.Component {
     titleEnglish: "",
     content: "",
     contentEnglish: "",
+    stateSelected: "",
     editorState: EditorState.createEmpty(),
-    editorStateEnglish: EditorState.createEmpty()
+    editorStateEnglish: EditorState.createEmpty(),
+    states: [],
   };
 
   handleEditorDescription = editorState => {
@@ -45,9 +47,16 @@ class PostNew extends React.Component {
       title_english: this.state.titleEnglish,
       content: this.state.content,
       content_english: this.state.contentEnglish,
+      state: this.state.stateSelected,
     }).catch(console.error);
-    // redirect to list of post
+    window.location.href = savePost.data['redirect_url'];
   };
+
+  handleChangeSelect = event => this.setState({ stateSelected: event.target.value });
+
+  componentDidMount() {
+    axios.get('/ajax-admin/states').then(({data}) => this.setState({states: data['data']})).catch(console.error);
+  }
 
   render() {
     const toolbarEditor = {
@@ -67,6 +76,8 @@ class PostNew extends React.Component {
         alt: { present: false, mandatory: false }
       }
     };
+
+    const statesOptions = this.state.states.map(state => <option key={state['hash_id']} value={state['hash_id']}>{state['name']}</option>);
 
     return (
       <div className="row">
@@ -115,6 +126,17 @@ class PostNew extends React.Component {
                     onEditorStateChange={this.handleEditorDescriptionEnglish}
                     editorClassName="demo-editor-content"
                   />
+                </div>
+                <div className="form-row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Estado</label>
+                      <select onChange={this.handleChangeSelect} value={this.state.stateSelected} className="form-control" required={true}>
+                        <option value="" disabled>Seleccione</option>
+                        {statesOptions}
+                      </select>
+                    </div>
+                  </div>
                 </div>
                 <button type="submit" className="btn btn-dark btn-rounded">Guardar</button>
               </form>

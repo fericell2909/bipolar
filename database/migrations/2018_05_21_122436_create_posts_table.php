@@ -19,7 +19,12 @@ class CreatePostsTable extends Migration
             $table->text('content')->nullable();
             $table->string('slug', 300)->nullable();
             $table->text('main_photo')->nullable();
+            $table->unsignedInteger('state_id')->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreign('state_id')->references('id')->on('states');
         });
     }
 
