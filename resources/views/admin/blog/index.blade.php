@@ -17,11 +17,11 @@
         <tbody>
           @foreach($posts as $post)
             <tr>
-              <td>{{ $post->id }}</td>
-              <td>{{ $post->title }}</td>
+              <td class="align-middle">{{ $post->id }}</td>
+              <td class="align-middle">{{ $post->title }}</td>
               <td>{!! str_limit($post->content, 30) !!}</td>
-              <td>{!! $post->state->getAdminHtml() !!}</td>
-              <td>
+              <td class="align-middle">{!! $post->state->getAdminHtml() !!}</td>
+              <td class="align-middle">
                 <div class="button-group">
                   <a href="#" class="btn btn-dark btn-sm btn-rounded">
                     <i class="fas fa-fw fa-edit"></i>
