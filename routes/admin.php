@@ -54,6 +54,7 @@ Route::middleware('auth:admin')->group(function () {
     });
 
     Route::prefix('blog')->group(function () {
+        Route::get('/', 'Admin\BlogController@index')->name('blog.index');
         Route::get('new', 'Admin\BlogController@create')->name('blog.create');
     });
 

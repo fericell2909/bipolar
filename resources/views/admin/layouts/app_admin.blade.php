@@ -144,7 +144,7 @@
                 </a>
                 <ul aria-expanded="false" class="collapse">
                   <li><a href="{{ route('blog.create') }}">Nueva publicación</a></li>
-                  <li><a href="#">Listar publicaciones</a></li>
+                  <li><a href="{{ route('blog.index') }}">Listar publicaciones</a></li>
                 </ul>
               </li>
               <li>
