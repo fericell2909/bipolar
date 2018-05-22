@@ -30,6 +30,23 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Category
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereUpdatedAt($value)
+ */
+	class Category extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Buy
  *
  * @property int $id
@@ -376,6 +393,7 @@ namespace App\Models{
  * @property int|null $state_id
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories
  * @property-read mixed $status
  * @property-read \App\Models\State|null $state
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses

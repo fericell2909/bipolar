@@ -43,6 +43,8 @@ Route::prefix('home-posts')->group(function () {
     Route::post('photos/order', 'Admin\Ajax\PhotoController@orderPhotos');
 });
 
+Route::get('categories', 'Admin\Ajax\CategoryController@index');
+
 Route::post('post/new', 'Admin\Ajax\PostController@store');
 Route::post('post/photos', 'Admin\Ajax\PhotoController@postUpload');
 

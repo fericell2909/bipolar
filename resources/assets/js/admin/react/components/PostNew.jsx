@@ -16,6 +16,7 @@ class PostNew extends React.Component {
     editorState: EditorState.createEmpty(),
     editorStateEnglish: EditorState.createEmpty(),
     states: [],
+    categories: [],
   };
 
   handleEditorDescription = editorState => {
@@ -54,8 +55,17 @@ class PostNew extends React.Component {
 
   handleChangeSelect = event => this.setState({ stateSelected: event.target.value });
 
+  getData = async () => {
+    const responseStates = await axios.get('/ajax-admin/states').catch(console.error);
+    const responseCategories = await axios.get('/ajax-admin/categories').catch(console.error);
+    this.setState({
+      states: responseStates.data['data'],
+      categories: responseCategories.data['data'],
+    })
+  };
+
   componentDidMount() {
-    axios.get('/ajax-admin/states').then(({data}) => this.setState({states: data['data']})).catch(console.error);
+    this.getData();
   }
 
   render() {
@@ -78,6 +88,7 @@ class PostNew extends React.Component {
     };
 
     const statesOptions = this.state.states.map(state => <option key={state['hash_id']} value={state['hash_id']}>{state['name']}</option>);
+    const categories = this.state.categories.map(category => <div className="checkbox"><input type="checkbox" value={category['id']}/> {category['name']}</div>);
 
     return (
       <div className="row">
@@ -149,7 +160,7 @@ class PostNew extends React.Component {
               <h4 className="text-white">Categorías</h4>
             </div>
             <div className="card-body">
-              Categorías
+              {categories}
             </div>
           </div>
           <div className="card">

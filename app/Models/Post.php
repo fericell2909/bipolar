@@ -23,6 +23,11 @@ class Post extends Model
         ];
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
     public function state()
     {
         return $this->belongsTo(State::class, 'state_id');
