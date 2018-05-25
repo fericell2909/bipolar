@@ -10,6 +10,7 @@
               <th>#</th>
               <th class="text-center"><i class="fas fa-fw fa-image"></i></th>
               <th>Nombre</th>
+              <th>Tipo</th>
               <th>Estado</th>
               <th><i class="fas fa-fw fa-cog"></i></th>
             </tr>
@@ -23,6 +24,7 @@
                   <img src="{{ optional($homePost->photos->first())->url ?? 'https://placehold.it/100x50' }}" width="100">
                 </td>
                 <td class="align-middle">{{ $homePost->name }}</td>
+                <td class="align-middle">{{ $homePost->post_type->name ?? '--' }}</td>
                 <td class="align-middle">{!! $homePost->state->getAdminHtml() !!}</td>
                 <td class="align-middle">
                   <a href="{{ route('homepost.edit', $homePost->slug) }}" class="btn btn-dark btn-sm btn-rounded">

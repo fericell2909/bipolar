@@ -7,6 +7,7 @@ use App\Models\HomePost;
 use App\Models\PostType;
 use App\Models\State;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class HomePostController extends Controller
 {
@@ -20,6 +21,7 @@ class HomePostController extends Controller
     public function create()
     {
         $postTypes = PostType::orderBy('name')->get()->pluck('name', 'id')->toArray();
+        $postTypes = array_prepend($postTypes, 'Seleccione', '');
         $states = State::orderBy('name')->get()->pluck('name', 'id')->toArray();
 
         return view('admin.home_posts.new', compact('postTypes', 'states'));
@@ -28,13 +30,16 @@ class HomePostController extends Controller
     public function store(HomePostNewRequest $request)
     {
         $state = State::findOrFail($request->input('state'));
-        $postType = PostType::findOrFail($request->input('post_type'));
 
         $homePost = new HomePost;
         $homePost->name = $request->input('name');
         $homePost->redirection_link = $request->input('link');
         $homePost->state()->associate($state);
-        $homePost->post_type()->associate($postType);
+        if ($request->filled('post_type')) {
+            $postType = PostType::findOrFail($request->input('post_type'));
+            $homePost->post_type()->associate($postType);
+        }
+
         $homePost->save();
 
         flash('Creado con éxito')->success();
@@ -46,6 +51,7 @@ class HomePostController extends Controller
     {
         $homePost = HomePost::findBySlugOrFail($homePostSlug);
         $postTypes = PostType::orderBy('name')->get()->pluck('name', 'id')->toArray();
+        $postTypes = array_prepend($postTypes, 'Seleccione', '');
         $states = State::orderBy('name')->get()->pluck('name', 'id')->toArray();
 
         return view('admin.home_posts.edit', compact('homePost', 'postTypes', 'states'));
@@ -56,12 +62,15 @@ class HomePostController extends Controller
         /** @var HomePost $homePost */
         $homePost = HomePost::findBySlugOrFail($homePostSlug);
         $state = State::findOrFail($request->input('state'));
-        $postType = PostType::findOrFail($request->input('post_type'));
 
         $homePost->name = $request->input('name');
         $homePost->redirection_link = $request->input('link');
         $homePost->state()->associate($state);
-        $homePost->post_type()->associate($postType);
+        if ($request->filled('post_type')) {
+            $postType = PostType::findOrFail($request->input('post_type'));
+            $homePost->post_type()->associate($postType);
+        }
+
         $homePost->save();
 
         flash('Actualizado con éxito')->success();
@@ -90,5 +99,45 @@ class HomePostController extends Controller
         $homePost = HomePost::findBySlugOrFail($homePostSlug);
 
         return view('admin.home_posts.photos_order', compact('homePost'));
+    }
+
+    public function showTypes()
+    {
+        $postTypes = PostType::all();
+
+        return view('admin.home_posts.types', compact('postTypes'));
+    }
+
+    public function storeType(Request $request)
+    {
+        $this->validate($request, ['name' => 'required|between:1,255']);
+
+        $homePostType = new PostType;
+        $homePostType->name = $request->input('name');
+        $homePostType->save();
+
+        flash()->success('Guardado correctamente');
+
+        return redirect()->back();
+    }
+
+    public function editType($postTypeId)
+    {
+        $postType = PostType::findOrFail($postTypeId);
+
+        return view('admin.home_posts.types_edit', compact('postType'));
+    }
+
+    public function updateType($postTypeId, Request $request)
+    {
+        $this->validate($request, ['name' => 'required|between:1,255']);
+        
+        $postType = PostType::findOrFail($postTypeId);
+        $postType->name = $request->input('name');
+        $postType->save();
+
+        flash()->success('Actualizado correctamente');
+
+        return redirect()->route('homepost.types');
     }
 }

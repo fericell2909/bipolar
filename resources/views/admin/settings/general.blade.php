@@ -5,13 +5,19 @@
     <div class="card-body">
       {!! Form::open() !!}
       <div class="form-row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="form-group">
             {!! Form::label('Contador de bipolares') !!}
             {!! Form::number('bipolar_counts', $settings->bipolar_counts, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Contador bipolares']) !!}
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
+          <div class="form-group">
+            {!! Form::label('Fans en instagram') !!}
+            {!! Form::number('instagram_counts', $settings->instagram_counts, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Contador instagram fans']) !!}
+          </div>
+        </div>
+        <div class="col-md-4">
           <div class="form-group">
             {!! Form::label('Dolar precio (S/)') !!}
             {!! Form::number('dolar_price', $settings->dolar_change, ['class' => 'form-control', 'step' => 'any', 'required' => true, 'value' => true]) !!}

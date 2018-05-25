@@ -20,7 +20,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
   </head>
 
   <body class="skin-red fixed-layout">
@@ -120,6 +120,12 @@
                 </ul>
               </li>
               <li>
+                <a class="waves-effect waves-dark" href="{{ route('products.multiple-discounts') }}" aria-expanded="false">
+                  <i class="fas fa-fw fa-percent"></i>
+                  <span class="hide-menu"> Descuentos</span>
+                </a>
+              </li>
+              <li>
                 <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                   <i class="fas fa-fw fa-warehouse"></i>
                   <span class="hide-menu"> Publicaciones Home</span>
@@ -128,6 +134,7 @@
                   <li><a href="{{ route('homepost.create') }}">Nueva publicación</a></li>
                   <li><a href="{{ route('homepost.index') }}">Listar publicaciones</a></li>
                   <li><a href="{{ route('homepost.order') }}">Ordenar</a></li>
+                  <li><a href="{{ route('homepost.types') }}">Tipos de publicación</a></li>
                 </ul>
               </li>
               <li>
@@ -140,6 +147,16 @@
                   <li><a href="{{ route('historics.index') }}">Listar históricos</a></li>
                   <li><a href="{{ route('historics.order') }}">Ordenar</a></li>
                   <li><a href="{{ route('historics.trashed') }}">Eliminados</a></li>
+                </ul>
+              </li>
+              <li>
+                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                  <i class="fas fa-fw fa-tags"></i>
+                  <span class="hide-menu"> Cupones</span>
+                </a>
+                <ul aria-expanded="false" class="collapse">
+                  <li><a href="{{ route('coupons.create') }}">Nuevo cupón</a></li>
+                  <li><a href="{{ route('coupons.index') }}">Listar cupones</a></li>
                 </ul>
               </li>
               <li>

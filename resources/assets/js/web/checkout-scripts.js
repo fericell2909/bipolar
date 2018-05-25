@@ -1,6 +1,37 @@
 import swal from "sweetalert2";
 
 $(function() {
+  $('#form-coupon').submit(function (event) {
+    event.preventDefault();
+    const params = $(this).serializeArray();
+    $.post(`/ajax/coupon`, params)
+      .done(() => {
+        $('#alert-coupon').hide();
+        return window.location.reload();
+      })
+      .fail(error => {
+        if (error.status === 400) {
+          const response = error.responseJSON;
+          if (response['message']) {
+            $('#alert-coupon').show().html(response['message']);
+          }
+        }
+      });
+  });
+
+  $('#button-remove-coupon').click(function () {
+    $.post('/ajax/coupon-remove')
+      .done(() => window.location.reload())
+      .fail(error => {
+        if (error.status === 400) {
+          const response = error.responseJSON;
+          if (response['message']) {
+            $('#alert-coupon').show().html(response['message']);
+          }
+        }
+      });
+  });
+
   $('.address-billing-option').click(function () {
     const addressId = $(this).val();
     

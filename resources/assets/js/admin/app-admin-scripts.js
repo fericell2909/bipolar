@@ -1,22 +1,24 @@
 try {
-    window.$ = window.jQuery = require('jquery');
-    window.Popper = require('popper.js').default;
-    require('bootstrap');
-} catch (e) {}
+  window.$ = window.jQuery = require('jquery');
+  window.Popper = require('popper.js').default;
+  require('bootstrap');
+  window.moment = require('moment');
+} catch (e) {
+}
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-    window.$.ajaxSetup({
-        headers: {'X-CSRF-TOKEN': token.content}
-    });
+  window.$.ajaxSetup({
+    headers: {'X-CSRF-TOKEN': token.content}
+  });
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 // Plugins
-require('daterangepicker');
 require('dropzone');
+require('tempusdominus-bootstrap-4');
 require('./plugins/perfect-scrollbar.jquery.min');
 require('./plugins/sidebarmenu');
 require('./plugins/waves');

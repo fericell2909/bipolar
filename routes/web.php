@@ -25,6 +25,7 @@ Route::prefix(LaravelLocalization::setLocale())
 
         Route::get('bipolar', 'Web\LandingsController@bipolar')->name('landings.bipolar');
         Route::get('shipping', 'Web\LandingsController@shipping')->name('landings.shipping');
+        Route::view('exchange-and-returns', 'web.landings.exchange_returns')->name('landings.exchange');
         Route::get('showroom', 'Web\LandingsController@showroom')->name('landings.showroom');
         Route::get('historico', 'Web\LandingsController@historico')->name('landings.historico');
         Route::get('contacto', 'Web\LandingsController@contact')->name('landings.contacto');
@@ -53,3 +54,5 @@ Route::prefix(LaravelLocalization::setLocale())
 Route::post('ajax/oauth/facebook', 'Web\Auth\LoginController@facebookAuth');
 Route::post('ajax/cart/product', 'Web\Ajax\CartController@add');
 Route::post('ajax/wishlist/add/{productHashId}', 'Web\Ajax\WishlistController@add');
+Route::post('ajax/coupon', 'Web\Ajax\CouponController@add');
+Route::post('ajax/coupon-remove', 'Web\Ajax\CouponController@remove');

@@ -1,6 +1,8 @@
 <section class="container visible-xs-block visible-sm-block">
-	<p class="text-center text-heading-mobile">{{ Auth::check() ? __('bipolar.navbar.welcome') : __('bipolar.navbar.hi') }}
-		<a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">{{ __('bipolar.navbar.enter') }}</a> {{ __('bipolar.navbar.or') }}
+	<p class="text-center text-heading-mobile">
+    <span>{{ Auth::check() ? __('bipolar.navbar.welcome') : __('bipolar.navbar.hi') }}</span>
+    <a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">{{ __('bipolar.navbar.enter') }}</a>
+    <span>{{ __('bipolar.navbar.or') }}</span>
 		<a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">{{ __('bipolar.navbar.register') }}</a>
   </p>
   <div class="text-heading-account">
@@ -56,7 +58,7 @@
           @foreach(CartBipolar::content() as $cartDetail)
           <li>
             <a href="{{ route('shop.product', $cartDetail->product->slug) }}" class="product-link-cart">
-              <img src="{{ ($cartDetail->product->photos)->first()->url }}" alt="{{ $cartDetail->product->name }}">
+              <img src="{{ optional($cartDetail->product->photos->first())->url ?? 'https://placehold.it/300x300' }}" alt="{{ $cartDetail->product->name }}">
               {{ $cartDetail->product->name }}
             </a>
             <span class="quantity">{{ $cartDetail->quantity }} x {{ $cartDetail->total_currency }}</span>

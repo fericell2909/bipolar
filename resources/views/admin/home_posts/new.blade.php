@@ -34,23 +34,19 @@
               {!! Form::label('Nombre') !!}
               {!! Form::text('name', null, ['class' => 'form-control']) !!}
             </div>
-            <div class="col-md-6 form-group">
-              {!! Form::label('Nombre (inglés)') !!}
-              {!! Form::text('name_english', null, ['class' => 'form-control', 'placeholder' => 'En desarrollo']) !!}
-            </div>
+            <fieldset class="col-md-6 form-group">
+              {!! Form::label('Enlace para redirigir') !!}
+              {!! Form::text('link', null, ['class' => 'form-control']) !!}
+            </fieldset>
           </div>
-          <fieldset class="form-group">
-            {!! Form::label('Enlace para redirigir') !!}
-            {!! Form::text('link', null, ['class' => 'form-control']) !!}
-          </fieldset>
           <div class="form-row">
             <div class="col-md-6 form-group">
               {!! Form::label('Categoría') !!}
-              {!! Form::select('post_type', $postTypes, null, ['class' => 'custom-select col-12']) !!}
+              {!! Form::select('post_type', $postTypes, null, ['class' => 'form-control']) !!}
             </div>
             <div class="col-md-6 form-group">
               {!! Form::label('Estado') !!}
-              {!! Form::select('state', $states, null, ['class' => 'custom-select col-12']) !!}
+              {!! Form::select('state', $states, null, ['class' => 'form-control']) !!}
             </div>
           </div>
           {!! Form::submit('Guardar', ['class' => 'btn btn-dark btn-rounded btn-sm']) !!}

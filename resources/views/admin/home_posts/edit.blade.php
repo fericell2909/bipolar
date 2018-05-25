@@ -12,18 +12,14 @@
             {!! Form::text('name', $homePost->name, ['class' => 'form-control']) !!}
           </div>
           <div class="col-md-6 form-group">
-            {!! Form::label('Nombre (inglés)') !!}
-            {!! Form::text('name_english', null, ['class' => 'form-control', 'placeholder' => 'En desarrollo']) !!}
+            {!! Form::label('Enlace para redirigir') !!}
+            {!! Form::text('link', $homePost->redirection_link, ['class' => 'form-control']) !!}
           </div>
         </div>
-        <fieldset class="form-group">
-          {!! Form::label('Enlace para redirigir') !!}
-          {!! Form::text('link', $homePost->redirection_link, ['class' => 'form-control']) !!}
-        </fieldset>
         <div class="form-row">
           <div class="col-md-6 form-group">
             {!! Form::label('Categoría') !!}
-            {!! Form::select('post_type', $postTypes, $homePost->post_type_id, ['class' => 'custom-select col-12']) !!}
+            {!! Form::select('post_type', $postTypes, $homePost->post_type_id ?? null, ['class' => 'custom-select col-12']) !!}
           </div>
           <div class="col-md-6 form-group">
             {!! Form::label('Estado') !!}

@@ -28,7 +28,7 @@ class HomePostNewRequest extends FormRequest
             'name'      => 'required|between:1,255',
             'link'      => 'required|between:1,255|url',
             'state'     => ['required', Rule::exists('states', 'id')],
-            'post_type' => ['required', Rule::exists('post_types', 'id')],
+            'post_type' => ['nullable', Rule::exists('post_types', 'id')],
         ];
     }
 }

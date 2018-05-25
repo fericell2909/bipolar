@@ -14,6 +14,8 @@ use App\Models\Stock;
 use App\Models\Subtype;
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Resources\ProductCollection;
+use App\Models\Type;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -325,5 +327,24 @@ class ProductController extends Controller
         $productStock->save();
 
         return new AdminStockResource($productStock);
+    }
+
+    public function updateDiscount(Request $request, $productHashId)
+    {
+        $this->validate($request, [
+            'discount_pen'         => 'required|numeric',
+            'discount_usd'         => 'required|numeric',
+            'price_usd_discount'   => 'required|numeric',
+            'price_dolar_discount' => 'required|numeric',
+        ]);
+
+        $product = Product::findByHash($productHashId);
+        $product->discount_pen = intval($request->input('discount_pen')) === 0 ? null : $request->input('discount_pen');
+        $product->discount_usd = intval($request->input('discount_usd')) === 0 ? null : $request->input('discount_usd');
+        $product->price_pen_discount = intval($request->input('price_pen_discount')) === 0 ? null : $request->input('price_pen_discount');
+        $product->price_usd_discount = intval($request->input('price_usd_discount')) === 0 ? null : $request->input('price_usd_discount');
+        $product->save();
+
+        return response()->json(['mensaje' => 'Guardado con éxito']);
     }
 }

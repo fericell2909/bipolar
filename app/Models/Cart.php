@@ -8,6 +8,11 @@ class Cart extends Model
 {
     protected $fillable = ['session_id', 'user_id'];
 
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class, 'coupon_id');
+    }
+
     public function details()
     {
         return $this->hasMany(CartDetail::class);
@@ -24,6 +29,15 @@ class Cart extends Model
             return "S/ " . intval($this->total);
         } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
             return "$ " . intval($this->total_dolar);
+        }
+    }
+
+    public function getTotalDiscountCouponAttribute()
+    {
+        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
+            return "S/ " . intval($this->discount_coupon_pen);
+        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
+            return "$ " . intval($this->discount_coupon_usd);
         }
     }
 

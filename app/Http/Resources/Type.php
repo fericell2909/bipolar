@@ -14,11 +14,14 @@ class Type extends Resource
      */
     public function toArray($request)
     {
-        /** @var \App\Models\Type|Resource $this */
+        /** @var \App\Models\Type $type */
+        $type = $this;
+
         return [
-            'hash_id'  => $this->hash_id,
-            'name'     => $this->name,
-            'slug'     => $this->slug,
+            'id'       => $this->when(\Auth::guard('admin')->check(), $type->id),
+            'hash_id'  => $type->hash_id,
+            'name'     => $type->name,
+            'slug'     => $type->slug,
             'subtypes' => Subtype::collection($this->whenLoaded('subtypes')),
         ];
     }

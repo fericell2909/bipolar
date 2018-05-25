@@ -19,13 +19,15 @@ class SettingsController extends Controller
     public function saveGeneral(Request $request)
     {
         $this->validate($request, [
-            'bipolar_counts' => 'required|integer|min:0',
-            'dolar_price'    => 'required|numeric|min:0',
-            'free_shipping'  => 'nullable|boolean',
+            'bipolar_counts'   => 'required|integer|min:0',
+            'instagram_counts' => 'required|integer|min:0',
+            'dolar_price'      => 'required|numeric|min:0',
+            'free_shipping'    => 'nullable|boolean',
         ]);
 
         $settings = Settings::first();
         $settings->bipolar_counts = $request->input('bipolar_counts');
+        $settings->instagram_counts = $request->input('instagram_counts');
         $settings->dolar_change = $request->input('dolar_price');
         $settings->free_shipping = $request->input('free_shipping', false);
         $settings->save();

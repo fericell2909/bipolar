@@ -18,3 +18,13 @@ export function removeFromSimpleArray(theArray, value) {
     }
     return [...theArray];
 }
+
+export function calculatePercentage(total, percentage, likeInteger = false) {
+    const discount = total * (percentage / 100);
+
+    if (likeInteger) {
+        return parseInt(discount);
+    }
+
+    return discount;
+}

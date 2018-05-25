@@ -14,7 +14,7 @@ class BannerNewRequest extends FormRequest
      */
     public function authorize()
     {
-        return \Auth::check();
+        return \Auth::guard('admin')->check();
     }
 
     /**
@@ -25,8 +25,8 @@ class BannerNewRequest extends FormRequest
     public function rules()
     {
         return [
-            'begin' => 'required|date_format:Y-m-d H:i',
-            'end'   => 'required|date_format:Y-m-d H:i',
+            'begin' => 'nullable|date_format:Y-m-d H:i',
+            'end'   => 'nullable|date_format:Y-m-d H:i',
             'photo' => 'required|image',
             'state' => [
                 'required',

@@ -64,12 +64,12 @@
 						</a>
 					</li>
 					<li>
-						<a href="https://www.facebook.com/bipolar.zapatos">
+						<a href="https://www.facebook.com/bipolar.zapatos" target="_blank">
 							<i class="fa fa-facebook"></i>
 						</a>
 					</li>
 					<li>
-						<a href="https://instagram.com/bipolar_zapatos">
+						<a href="https://instagram.com/bipolar_zapatos" target="_blank">
 							<i class="fa fa-instagram"></i>
 						</a>
 					</li>
@@ -89,7 +89,7 @@
 									@foreach(CartBipolar::content() as $cartDetail)
 									<li>
 										<a href="{{ route('shop.product', $cartDetail->product->slug) }}" class="product-link-cart">
-											<img src="{{ ($cartDetail->product->photos)->first()->url }}" alt="{{ $cartDetail->product->name }}"> {{ $cartDetail->product->name }}
+											<img src="{{ optional($cartDetail->product->photos->first())->url ?? 'https://placehold.it/300x300' }}" alt="{{ $cartDetail->product->name }}"> {{ $cartDetail->product->name }}
 										</a>
 										<span class="quantity">{{ $cartDetail->quantity }} x {{ $cartDetail->total_currency }}</span>
 										<a href="{{ route('cart.remove', $cartDetail->product->slug) }}" class="product-delete-cart">

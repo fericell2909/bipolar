@@ -34,6 +34,8 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('{productHashId}/hard-delete', 'Admin\ProductController@deletehard')->name('products.harddelete');
         Route::get('{product}/stocks', 'Admin\ProductController@stock')->name('products.stock');
         Route::post('stocks/{stock}/quantity', 'Admin\ProductController@stockSave')->name('products.stock.save');
+        Route::get('{slug}/discount', 'Admin\ProductController@discount')->name('products.discount');
+        Route::get('multiple-discounts', 'Admin\ProductController@multipleDiscount')->name('products.multiple-discounts');
     });
 
     Route::prefix('home-posts')->group(function () {
@@ -45,6 +47,10 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('{slug}/photos/order', 'Admin\HomePostController@orderPhotos')->name('homepost.photos.order');
         Route::get('edit/{slug}', 'Admin\HomePostController@show')->name('homepost.edit');
         Route::post('edit/{slug}', 'Admin\HomePostController@update');
+        Route::get('type/new', 'Admin\HomePostController@showTypes')->name('homepost.types');
+        Route::post('type/new', 'Admin\HomePostController@storeType');
+        Route::get('type/edit/{postType}', 'Admin\HomePostController@editType')->name('homepost.types.edit');
+        Route::post('type/edit/{postType}', 'Admin\HomePostController@updateType');
     });
 
     Route::prefix('banners')->group(function () {
@@ -54,6 +60,15 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/{banner}/edit', 'Admin\BannersController@edit')->name('banners.edit');
         Route::post('/{banner}/edit', 'Admin\BannersController@update');
         Route::get('order', 'Admin\BannersController@order')->name('banners.order');
+    });
+
+    Route::prefix('coupons')->group(function () {
+        Route::get('/', 'Admin\CouponController@index')->name('coupons.index');
+        Route::get('/new', 'Admin\CouponController@create')->name('coupons.create');
+        Route::post('/new', 'Admin\CouponController@store');
+        Route::get('/associate/{coupon}', 'Admin\CouponController@associate')->name('coupons.associate');
+        Route::get('/edit/{coupon}', 'Admin\CouponController@edit')->name('coupon.edit');
+        Route::post('/edit/{coupon}', 'Admin\CouponController@update');
     });
 
     Route::prefix('historics')->group(function () {

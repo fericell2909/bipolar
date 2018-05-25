@@ -7,6 +7,7 @@ Route::delete('photo/{photoId}', 'Admin\ProductController@deletePhoto');
 Route::get('colors', 'Admin\Ajax\ColorController@index');
 Route::get('sizes', 'Admin\Ajax\SizeController@index');
 Route::get('types', 'Admin\Ajax\TypeController@index');
+Route::get('subtypes', 'Admin\Ajax\TypeController@subtypes');
 Route::get('states', 'Admin\Ajax\StateController@index');
 Route::get('search/products', 'Admin\Ajax\ProductController@search');
 
@@ -22,6 +23,7 @@ Route::prefix('products')->group(function () {
     Route::get('{productHashId}/recommendeds', 'Admin\Ajax\ProductController@recommendeds');
     Route::post('{productHashId}/recommendeds/{recommendedHashId}', 'Admin\Ajax\ProductController@recommend');
     Route::delete('{productHashId}/recommendeds/{recommendedHashId}', 'Admin\Ajax\ProductController@removeRecommend');
+    Route::post('{productHashId}/discount', 'Admin\Ajax\ProductController@updateDiscount');
     Route::post('state/{action}', 'Admin\Ajax\ProductController@stateToggle');
     Route::post('freeshipping/{activate}', 'Admin\Ajax\ProductController@freeShippingToggle');
     Route::post('salient/{activate}', 'Admin\Ajax\ProductController@salientToggle');
@@ -47,3 +49,12 @@ Route::post('banners/order', 'Admin\Ajax\BannersController@order');
 Route::delete('banners/{banner}', 'Admin\Ajax\BannersController@destroy');
 
 Route::post('buys/{buyId}/sent', 'Admin\Ajax\BuysController@sent');
+
+Route::get('coupons/{coupon}', 'Admin\Ajax\CouponsController@show');
+Route::post('coupons/{coupon}/types-subtypes', 'Admin\Ajax\CouponsController@saveTypesAndSubtypes');
+
+Route::get('discount-tasks', 'Admin\Ajax\DiscountController@index');
+Route::post('discount-tasks', 'Admin\Ajax\DiscountController@store');
+Route::post('discount-tasks/{discountTaskId}/execute', 'Admin\Ajax\DiscountController@execute');
+Route::post('discount-tasks/{discountTaskId}/revert', 'Admin\Ajax\DiscountController@revert');
+Route::put('discount-tasks/{discountTaskId}', 'Admin\Ajax\DiscountController@update');

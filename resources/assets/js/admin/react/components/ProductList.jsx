@@ -285,6 +285,10 @@ class BipolarProductList extends React.Component {
           subtypes={product["subtypes"]}
           price={product["price"]}
           priceDolar={product["price_dolar"]}
+          discountPEN={product['discount_pen']}
+          discountUSD={product['discount_usd']}
+          priceDiscountPEN={product['price_pen_discount']}
+          priceDiscountUSD={product['price_usd_discount']}
           state={product["state"]}
           freeShipping={product["free_shipping"]}
           isSalient={product["is_salient"]}
@@ -367,21 +371,23 @@ class BipolarProductList extends React.Component {
                 <table className="table table-hover color-table dark-table">
                   <thead>
                     <tr>
-                      <th>
+                      <th className="align-middle">
                         <input
                           type="checkbox"
                           checked={productsSource.length === this.state.selectedProducts.length}
                           onChange={this.handleSelectAllProducts}
                         />
                       </th>
-                      <th className="text-center"><i className="fas fa-fw fa-image" /></th>
+                      <th className="align-middle text-center"><i className="fas fa-fw fa-image" /></th>
                       <th>Nombre</th>
                       <th>Tipos</th>
-                      <th className="text-right">Precio (S/)</th>
-                      <th className="text-right">Precio ($)</th>
-                      <th className="text-center">Estado</th>
-                      <th className="text-center">Envío gratis</th>
-                      <th className="text-center">Destacado</th>
+                      <th className="align-middle text-right">Precio (S/)</th>
+                      <th className="align-middle text-right">Precio ($)</th>
+                      <th className="align-middle text-center">Descuento (PEN/USD)</th>
+                      <th className="align-middle text-right">Desc. (PEN/USD)</th>
+                      <th className="align-middle text-center">Estado</th>
+                      <th className="align-middle text-center">Envío gratis</th>
+                      <th className="align-middle text-center">Destacado</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>

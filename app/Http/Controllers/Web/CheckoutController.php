@@ -29,6 +29,8 @@ class CheckoutController extends Controller
             return redirect(route('shop'));
         }
 
+        $cart = \CartBipolar::last();
+
         $countries = Country::orderBy('name')->get()->mapWithKeys(function ($country) {
             return [$country->id => mb_strtoupper($country->name)];
         })->toArray();
@@ -41,7 +43,7 @@ class CheckoutController extends Controller
             return $address->address_type->name == 'shipping';
         });
 
-        return view('web.shop.checkout', compact('countries', 'billingAddresses', 'shippingAddresses'));
+        return view('web.shop.checkout', compact('cart', 'countries', 'billingAddresses', 'shippingAddresses'));
     }
 
     public function buy(Request $request)
