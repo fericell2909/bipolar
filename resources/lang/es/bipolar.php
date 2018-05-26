@@ -26,6 +26,15 @@ return [
         'suscribe_details' => 'Y disfruta de descuentos especiales.',
         'worldwide_shipping' => 'Envíos a todo el mundo',
     ],
+    'contact' => [
+        'contact_us' => 'Contáctanos',
+        'if_you_want' => 'Si quieres ponerte en contacto con nosotros,',
+        'write_us_to' => 'escríbenos a bipolar@bipolar.com.pe o deja tu mensaje aquí:',
+        'name' => 'Nombre',
+        'email' => 'Correo',
+        'message' => 'Mensaje',
+        'send' => 'Enviar',
+    ],
     'shop' => [
         'see_filters' => 'Ver filtros',
         'search' => 'Buscar',

@@ -26,6 +26,15 @@ return [
         'suscribe_details' => 'Get the latest news',
         'worldwide_shipping' => 'Worldwide shipping',
     ],
+    'contact' => [
+        'contact_us' => 'Contact us',
+        'if_you_want' => 'If you want to get in touch with us, you can write us to',
+        'write_us_to' => 'bipolar@bipolar.com.pe or leave your message here:',
+        'name' => 'Name',
+        'email' => 'Email',
+        'message' => 'Message',
+        'send' => 'Send',
+    ],
     'shop' => [
         'see_filters' => 'See filters',
         'search' => 'Search',
