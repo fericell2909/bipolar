@@ -150,7 +150,7 @@
 					</a>
 				</li>
 				<li class="bipolar-item">
-					<a href="#">
+					<a href="{{ route('landings.newsletter') }}">
 						<div class="item-text">Newsletter</div>
 						<div class="the-line"></div>
 					</a>

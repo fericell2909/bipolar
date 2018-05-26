@@ -18,6 +18,16 @@ return [
         'see_cart' => 'ver carrito',
         'welcome' => 'Bienvenido',
     ],
+    'footer' => [
+        'location' => 'Ubicación',
+        'info' => [
+            'shipping' => 'Envíos',
+            'exchange' => 'Cambios y devoluciones',
+            'caretips' => 'Recomendaciones de uso',
+        ],
+        'company' => 'Contenidos',
+        'contact' => 'Contacto',
+    ],
     'home' => [
         'email' => 'Correo',
         'name' => 'Nombre',
@@ -25,6 +35,15 @@ return [
         'suscribe' => 'Suscríbete',
         'suscribe_details' => 'Y disfruta de descuentos especiales.',
         'worldwide_shipping' => 'Envíos a todo el mundo',
+    ],
+    'contact' => [
+        'contact_us' => 'Contáctanos',
+        'if_you_want' => 'Si quieres ponerte en contacto con nosotros,',
+        'write_us_to' => 'escríbenos a bipolar@bipolar.com.pe o deja tu mensaje aquí:',
+        'name' => 'Nombre',
+        'email' => 'Correo',
+        'message' => 'Mensaje',
+        'send' => 'Enviar',
     ],
     'shop' => [
         'see_filters' => 'Ver filtros',
@@ -72,5 +91,14 @@ return [
         'faulty_two' => 'Ten en cuenta que si los artículos son dañados como resultado del uso o descuido, esté no será considerado como dañado.',
         'faulty_three' => 'Muchos de nuestros productos están hechos con materiales y acabados muy delicados por lo que es necesario tratarlos con cuidado, transportarlos y guardarlos siempre dentro su caja, alejarlos del agua y de la exposición directa al sol. Para artículos en los que no sea posible reparar o reemplazar, se hará la devolución del importe completo (no incluye el envío de vuelta). Para los casos de artículos dañados fuera del márgen de nuestra Política de devoluciones, por favor contáctanos a shop@bipolar.com.pe. En la medida de nuestras posibilidades, intentaremos siempre reparar estos daños.',
         'faulty_four' => 'Para cualquier duda o consulta, escríbenos a',
+    ],
+    'showroom' => [
+        'find_us' => 'Encuéntranos',
+        'opening' => 'Horario',
+        'location' => 'Ubicación',
+        'schedule' => 'Lunes a Sábado de 11:00am-8:30pm',
+        'about' => 'Our Showroom is located in San Isidro, Lima – Peru.
+        We seek to give our clients personalized attention so we work behind closed doors.
+        For more information, please write us at shop@bipolar.com.pe or call us at (+51) 965.367.385.',
     ],
 ];

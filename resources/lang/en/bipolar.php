@@ -18,6 +18,16 @@ return [
         'see_cart' => 'see cart',
         'welcome' => 'Welcome',
     ],
+    'footer' => [
+        'location' => 'Location',
+        'info' => [
+            'shipping' => 'Shipping',
+            'exchange' => 'Exchange & return',
+            'caretips' => 'Care tips',
+        ],
+        'company' => 'Company',
+        'contact' => 'Contact',
+    ],
     'home' => [
         'email' => 'Email',
         'name' => 'Name',
@@ -25,6 +35,15 @@ return [
         'suscribe' => 'Suscribe',
         'suscribe_details' => 'Get the latest news',
         'worldwide_shipping' => 'Worldwide shipping',
+    ],
+    'contact' => [
+        'contact_us' => 'Contact us',
+        'if_you_want' => 'If you want to get in touch with us, you can write us to',
+        'write_us_to' => 'bipolar@bipolar.com.pe or leave your message here:',
+        'name' => 'Name',
+        'email' => 'Email',
+        'message' => 'Message',
+        'send' => 'Send',
     ],
     'shop' => [
         'see_filters' => 'See filters',
@@ -72,5 +91,14 @@ return [
         'faulty_two' => 'Where possible, we will offer to repair faulty items.',
         'faulty_three' => 'You will receive a full refund if the item cannot be repaired or replaced (return shipping not included). For all faulty items outside of our Returns Policy, please contact us at shop@bipolar.com.pe',
         'faulty_four' => 'For any other questions or inquiries please do contact us at',
+    ],
+    'showroom' => [
+        'find_us' => 'Find us',
+        'opening' => 'Opening hours',
+        'location' => 'Location',
+        'schedule' => 'Monday-Saturday 11:00am-8:30pm',
+        'about' => 'Nuestro Showroom se encuentra en San Isidro, Lima – Perú. <br>
+        Buscamos darle a nuestras clientas una atención personalizada por lo que atendemos a puerta cerrada. <br>
+        Para más información, escríbenos a shop@bipolar.com.pe o al (+51) 965.367.385.',
     ],
 ];
