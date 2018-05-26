@@ -28,6 +28,7 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::view('exchange-and-returns', 'web.landings.exchange_returns')->name('landings.exchange');
         Route::get('showroom', 'Web\LandingsController@showroom')->name('landings.showroom');
         Route::get('historico', 'Web\LandingsController@historico')->name('landings.historico');
+        Route::view('newsletter', 'web.landings.newsletter_landing')->name('landings.newsletter');
         Route::get('contacto', 'Web\LandingsController@contact')->name('landings.contacto');
         Route::post('contacto', 'Web\LandingsController@contactProcess');
 
