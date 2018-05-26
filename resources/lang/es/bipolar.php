@@ -18,6 +18,16 @@ return [
         'see_cart' => 'ver carrito',
         'welcome' => 'Bienvenido',
     ],
+    'footer' => [
+        'location' => 'Ubicación',
+        'info' => [
+            'shipping' => 'Envíos',
+            'exchange' => 'Cambios y devoluciones',
+            'caretips' => 'Recomendaciones de uso',
+        ],
+        'company' => 'Contenidos',
+        'contact' => 'Contacto',
+    ],
     'home' => [
         'email' => 'Correo',
         'name' => 'Nombre',

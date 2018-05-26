@@ -18,6 +18,16 @@ return [
         'see_cart' => 'see cart',
         'welcome' => 'Welcome',
     ],
+    'footer' => [
+        'location' => 'Location',
+        'info' => [
+            'shipping' => 'Shipping',
+            'exchange' => 'Exchange & return',
+            'caretips' => 'Care tips',
+        ],
+        'company' => 'Company',
+        'contact' => 'Contact',
+    ],
     'home' => [
         'email' => 'Email',
         'name' => 'Name',
