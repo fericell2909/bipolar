@@ -5,21 +5,19 @@
         <div class="row">
             <div class="col-md-8">
                 <p class="title-text-content">Showroom</p>
-                <p>
-                    Nuestro Showroom Bipolar se encuentra en San Isidro, Lima – Perú. Buscamos darle a nuestras clientas una atención personalizada por lo que atendemos únicamente previa cita. Si quieres visitarnos, solo tienes que escribirnos a bipolar@bipolar.com.pe o al (+51) 965.367.385 para agendar tu visita.
-                </p>
+                <p>{!! __('bipolar.showroom.about') !!}</p>
             </div>
             <div class="col-md-4">
-                <p class="title-text-content">Encuéntranos</p>
+                <p class="title-text-content">{{ __('bipolar.showroom.find_us') }}</p>
                 <div class="table-responsie">
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td><strong>Horario</strong></td>
-                                <td>Lunes a Sábado de 11:30 am – 8:00 pm</td>
+                                <td><strong>{{ __('bipolar.showroom.opening') }}</strong></td>
+                                <td>{{ __('bipolar.showroom.schedule') }}</td>
                             </tr>
                             <tr>
-                                <td><strong>Ubicación</strong></td>
+                                <td><strong>{{ __('bipolar.showroom.location') }}</strong></td>
                                 <td>San Isidro</td>
                             </tr>
                         </tbody>
