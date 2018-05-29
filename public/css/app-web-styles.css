@@ -19078,6 +19078,15 @@ button:active {
   background-color: white;
 }
 
+.bipolar-the-content h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #000000;
+}
+
 .title-text-content {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 26px;
@@ -21354,21 +21363,19 @@ table.table-buys tbody td.order-actions {
   display: block;
   background: #121618;
   top: 45px;
-  left: 50%;
   margin-top: -15px;
-  margin-left: -15px;
   border-radius: 50%;
 }
 
 .bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {
   content: ' ';
-  width: 14px;
-  height: 14px;
-  background: whitesmoke;
+  width: 22px;
+  height: 22px;
+  background: #fcbeb9;
   border-radius: 50px;
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top: 4px;
+  left: 4px;
 }
 
 .bs-wizard > .bs-wizard-step > .progress {
@@ -21378,6 +21385,7 @@ table.table-buys tbody td.order-actions {
   -webkit-box-shadow: none;
           box-shadow: none;
   margin: 20px 0;
+  left: -50%;
 }
 
 .bs-wizard > .bs-wizard-step > .progress > .progress-bar {
@@ -21396,7 +21404,7 @@ table.table-buys tbody td.order-actions {
 }
 
 .bs-wizard > .bs-wizard-step:first-child > .progress {
-  left: 50%;
+  left: 0;
   width: 50%;
 }
 

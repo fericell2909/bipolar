@@ -37,7 +37,7 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::post('cart', 'Web\CartController@update')->name('cart.update');
 
         Route::middleware('auth:web')->group(function () {
-            Route::get('my-account', 'Web\UserController@myaccount')->name('myaccount');
+            Route::get('my-account/buys', 'Web\UserController@myaccount')->name('myaccount');
             Route::get('my-account/edit-account', 'Web\UserController@profile')->name('profile');
             Route::post('my-account/edit-account', 'Web\UserController@updateProfile')->name('profile.update');
             Route::get('checkout', 'Web\CheckoutController@checkout')->name('checkout');

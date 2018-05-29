@@ -24,7 +24,7 @@
 						<i class="fa fa-chevron-down"></i>
 					</a>
 					<ul class="bipolar-dropdown-menu in-desktop hidden-xs hidden-sm">
-						<li><a href="{{ route('profile') }}"><i class="fa fa-user"></i> {{ __('bipolar.navbar.my_account') }}</a></li>
+						<li><a href="{{ route('myaccount') }}"><i class="fa fa-user"></i> {{ __('bipolar.navbar.my_account') }}</a></li>
 						<li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
 						<li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Shopping cart</a></li>
 						<li><a href="{{ route('checkout') }}"><i class="fa fa-share"></i> Checkout</a></li>
