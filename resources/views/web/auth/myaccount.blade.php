@@ -29,7 +29,6 @@
           <td>{{ $buy->status }}</td>
           <td><span class="price">{{ $buy->totalCurrency }}</span> por {{ $buy->details->count() }} items</td>
           <td class="order-actions">
-            <a href="#" class="btn btn-dark-rounded">Pagar</a>
             <a href="#" class="btn btn-dark-rounded">Cancelar</a>
             <a href="{{ route('confirmation', $buy->id) }}" class="btn btn-dark-rounded">Ver</a>
           </td>
