@@ -108,9 +108,7 @@ class PaymeController extends Controller
     {
         /** @var Buy $buy */
         $buy = Buy::whereUserId($request->user()->id)->latest('id')->firstOrFail();
-
         //event(new IntentoPagoRealizado($request->user(), $request->all()));
-        \Log::info($request->all());
 
         $payment = new Payment;
         $payment->buy()->associate($buy);
