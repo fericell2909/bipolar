@@ -14,7 +14,7 @@ class CreateCouponRelationshipInBuys extends Migration
     public function up()
     {
         Schema::table('buys', function (Blueprint $table) {
-            $table->unsignedInteger('coupon_id')->after('user_id');
+            $table->unsignedInteger('coupon_id')->nullable()->after('user_id');
         });
 
         Schema::table('buys', function (Blueprint $table) {
