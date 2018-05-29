@@ -3,7 +3,7 @@
   $(document).ready(function () {
     function getUserData() {
       FB.api('/me', {fields: 'id, first_name, last_name, email, gender, verified'}, function (authUser) {
-        FB.api('/' + authUser.id + '/picture?height=300', function (image) {
+        FB.api('/' + authUser.id + '/picture?height=300,redirect=0', function (image) {
           $.post('/ajax/oauth/facebook', {
             user: authUser,
             image: image
@@ -23,7 +23,7 @@
         if (respuesta.status === 'connected') {
           getUserData();
         }
-      }, {scope: 'public_profile,email,user_friends'});
+      }, {scope: 'public_profile,email'});
     }
   
     window.fbAsyncInit = function () {
