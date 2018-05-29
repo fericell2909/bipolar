@@ -51,9 +51,14 @@ class PaymeController extends Controller
         ));
     }
 
-    public function confirmation(Request $request, $buyId)
+    public function confirmation(Request $request, $buyId = null)
     {
-        $buy = Buy::findOrFail($buyId);
+        /** @var Buy $buy */
+        if ($buy) {
+            $buy = Buy::findOrFail($buyId);
+        } else {
+            $buy = Buy::whereUserId($request->user()->id)->latest('id')->firstOrFail();
+        }
 
         $this->authorize('view', $buy);
         //abort_if($buy->tipo_pago_id == config('constants.TIPO_PAGO_MEMBRESIA_ID'), 403);
