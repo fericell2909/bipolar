@@ -54,7 +54,7 @@ class PaymeController extends Controller
     public function confirmation(Request $request, $buyId = null)
     {
         /** @var Buy $buy */
-        if ($buy) {
+        if ($buyId) {
             $buy = Buy::findOrFail($buyId);
         } else {
             $buy = Buy::whereUserId($request->user()->id)->latest('id')->firstOrFail();
