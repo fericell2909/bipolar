@@ -21109,11 +21109,15 @@ input:focus:-ms-input-placeholder {
 .text-heading-account {
   font-family: "GothamBold", Verdana;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 22px;
   color: #000000;
   padding-bottom: 10px;
+}
+
+.text-heading-account > .fa {
+  font-size: 9px;
 }
 
 @media screen and (max-width: 991px) {
