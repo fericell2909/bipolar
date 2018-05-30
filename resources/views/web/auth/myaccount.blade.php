@@ -7,7 +7,7 @@
     <p>
       Hola {{ \Auth::user()->name }} (¿no eres bipolar? <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar sesión</a>). 
       Desde tu página de cuenta, puedes ver tus pedidos recientes, gestionar la dirección de envío, la dirección de facturación
-      y <a href="#">cambiar la información de la cuenta y la contraseña</a>
+      y <a href="{{ route('profile') }}">cambiar la información de la cuenta y la contraseña</a>
     </p>
     {!! Form::open(['route' => 'logout', 'style' => 'display:none', 'id' => 'logout-form']) !!}
     {!! Form::close() !!}
@@ -26,10 +26,9 @@
         <tr>
           <td><a href="{{ route('confirmation', $buy->id) }}" class="order-link">#{{ $buy->id }}</a></td>
           <td>{{ $buy->created_at->format('d-m-Y') }}</td>
-          <td>--</td>
+          <td>{{ $buy->status }}</td>
           <td><span class="price">{{ $buy->totalCurrency }}</span> por {{ $buy->details->count() }} items</td>
           <td class="order-actions">
-            <a href="#" class="btn btn-dark-rounded">Pagar</a>
             <a href="#" class="btn btn-dark-rounded">Cancelar</a>
             <a href="{{ route('confirmation', $buy->id) }}" class="btn btn-dark-rounded">Ver</a>
           </td>

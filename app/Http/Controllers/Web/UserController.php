@@ -42,7 +42,7 @@ class UserController extends Controller
 
     public function myaccount()
     {
-        $buys = Buy::whereUserId(\Auth::id())->orderByDesc('id')->get();
+        $buys = Buy::whereUserId(\Auth::id())->with('details')->orderByDesc('id')->get();
 
         return view('web.auth.myaccount', compact('buys'));
     }

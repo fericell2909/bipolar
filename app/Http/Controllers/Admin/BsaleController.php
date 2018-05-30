@@ -34,6 +34,7 @@ class BsaleController extends Controller
         $items = $items->map(function ($item) {
             $productName = data_get($item, "variant.product.name", "--");
             $officeName = data_get($item, "office.name", "--");
+            $variant = data_get($item, "variant.description", 'Sin variante');
             $quantity = $item["quantityAvailable"];
             $stockId = $item["id"];
 
@@ -42,7 +43,7 @@ class BsaleController extends Controller
                 'product_name' => $productName,
                 'office_name'  => $officeName,
                 'quantity'     => $quantity,
-                'text'         => "{$productName} x {$quantity} en {$officeName}",
+                'text'         => "{$productName} x {$quantity} en {$officeName} - Variante: {$variant}",
             ];
         });
 

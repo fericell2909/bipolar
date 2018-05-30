@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.22 on 2018-05-20 20:30:29.
+ * Generated for Laravel 5.6.23 on 2018-05-28 19:13:49.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -7923,7 +7923,7 @@ namespace Illuminate\Support\Facades {
          * Gets the mime type associated with the format.
          *
          * @param string $format The format
-         * @return string The associated mime type (null if not found)
+         * @return string|null The associated mime type (null if not found)
          * @static 
          */ 
         public static function getMimeType($format)
@@ -14787,6 +14787,8 @@ namespace Facades\App\Instances {
         /**
          * 
          *
+         * @param \App\Instances\Coupon $coupon
+         * @return \App\Instances\Cart|\Illuminate\Database\Eloquent\Model 
          * @static 
          */ 
         public static function addCoupon($coupon)

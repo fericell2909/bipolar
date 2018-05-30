@@ -4,7 +4,7 @@
 			<div class="col-sm-6 col-md-3">
 				<div class="item-content">
 					<p class="title-section">
-						<span>Ubicación</span>
+						<span>{{ __('bipolar.footer.location') }}</span>
 					</p>
 					<ul>
 						<li>SAN ISIDRO, LIMA - PERÚ</li>
@@ -20,22 +20,21 @@
           </p>
           <ul>
             <li>
-              <a href="{{ route('landings.shipping') }}">Envíos</a>
+              <a href="{{ route('landings.shipping') }}">{{ __('bipolar.footer.info.shipping') }}</a>
             </li>
             <li>
-              <a href="{{ route('landings.exchange') }}">Cambios y devoluciones</a>
+              <a href="{{ route('landings.exchange') }}">{{ __('bipolar.footer.info.exchange') }}</a>
             </li>
             <li>
-              <a href="#">Recomendaciones de uso</a>
+              <a href="#">{{ __('bipolar.footer.info.caretips') }}</a>
             </li>
           </ul>
         </div>
 			</div>
 			<div class="col-sm-6 col-md-3">
         <div class="item-content">
-
           <p class="title-section">
-            <span>Contenido</span>
+            <span>{{ __('bipolar.footer.company') }}</span>
           </p>
           <ul>
             <li>
@@ -57,7 +56,7 @@
               <a href="#">Blog</a>
             </li>
             <li>
-              <a href="{{ route('landings.contacto') }}">Contacto</a>
+              <a href="{{ route('landings.contacto') }}">{{ __('bipolar.contact.contact_us') }}</a>
             </li>
           </ul>
         </div>
@@ -65,7 +64,7 @@
 			<div class="col-sm-6 col-md-3">
         <div class="item-content">
           <p class="title-section">
-            <span>Contacto</span>
+            <span>{{ __('bipolar.footer.contact') }}</span>
           </p>
           <div class="footer-icons">
             <a href="mailto:bipolar@bipolar.com.pe">

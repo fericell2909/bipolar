@@ -9,36 +9,36 @@
             <table class="table table-hover color-table dark-table">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Nombre</th>
-                  <th>Correo</th>
-                  <th>Comprado</th>
-                  <th>Enviar a</th>
-                  <th>Estado</th>
-                  <th>Pagada</th>
-                  <th>Fecha</th>
-                  <th>Total</th>
-                  <th class="text-center">Showroom pickup</th>
-                  <th>Acciones</th>
+                  <th class="align-middle">#</th>
+                  <th class="align-middle">Nombre</th>
+                  <th class="align-middle">Correo</th>
+                  <th class="align-middle">Comprado</th>
+                  <th class="align-middle">Enviar a</th>
+                  <th class="align-middle">Estado</th>
+                  <th class="align-middle">Pagada</th>
+                  <th class="align-middle">Fecha</th>
+                  <th class="align-middle">Total</th>
+                  <th class="text-center align-middle">Showroom pickup</th>
+                  <th class="align-middle">Acciones</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($buys as $buy)
                   <?php /** @var \App\Models\Buy $buy */ ?>
                   <tr>
-                    <td>{{ $buy->id }}</td>
-                    <td>{{ $buy->user->name }}</td>
-                    <td>{{ $buy->user->email }}</td>
-                    <td>{{ $buy->details->count() }} artículos</td>
-                    <td>
+                    <td class="align-middle">{{ $buy->id }}</td>
+                    <td class="align-middle">{{ $buy->user->name }}</td>
+                    <td class="align-middle">{{ $buy->user->email }}</td>
+                    <td class="align-middle">{{ $buy->details->count() }} artículos</td>
+                    <td class="align-middle">
                       {{ $buy->shipping_address->address }} {{ $buy->shipping_address->country_state->name }} {{ $buy->shipping_address->country_state->country->name }}
                     </td>
-                    <td>{{ ucfirst($buy->status) }}</td>
-                    <td>{!! $buy->payed ? "<i class='fa fa-check'></i>" : null !!}</td>
-                    <td>{{ $buy->created_at->format('d/m/Y') }}</td>
-                    <td>{{ $buy->total }} {{ $buy->currency }}</td>
-                    <td class="text-center">{!! $buy->showroom ? "<i class='fa fa-check'></i>" : null !!}</td>
-                    <td>
+                    <td class="align-middle">{{ ucfirst($buy->status) }}</td>
+                    <td class="align-middle">{!! $buy->payed ? "<i class='fa fa-check'></i>" : null !!}</td>
+                    <td class="align-middle">{{ $buy->created_at->format('d/m/Y') }}</td>
+                    <td class="align-middle">{{ $buy->total }} {{ $buy->currency }}</td>
+                    <td class="text-center align-middle">{!! $buy->showroom ? "<i class='fa fa-check'></i>" : null !!}</td>
+                    <td class="align-middle">
                       <button class="btn btn-dark btn-sm btn-rounded" data-target="#payments_{{ $buy->id }}" data-toggle="modal">
                         <i class="fa fa-credit-card"></i> Intentos de pago
                       </button>

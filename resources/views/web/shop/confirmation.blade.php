@@ -9,6 +9,7 @@
   <h1>Compra</h1>
 </div>
 <div class="container">
+  <h2>#Orden {{ $buy->id }}</h2>
   <div class="row bs-wizard">
     @if($buy->status === config('constants.BUY_INCOMPLETE_STATUS'))
       @php($firstClass = 'active')
@@ -17,8 +18,8 @@
     @else
       @php($firstClass = 'disabled')
     @endif
-    <div class="col-xs-3 bs-wizard-step {{ $firstClass }}">
-      <div class="text-center bs-wizard-stepnum">Comprado</div>
+    <div class="col-xs-2 bs-wizard-step {{ $firstClass }}">
+      <div class="bs-wizard-stepnum">Comprado</div>
       <div class="progress">
         <div class="progress-bar"></div>
       </div>
@@ -32,8 +33,8 @@
     @else
       @php($secondClass = 'disabled')
     @endif
-    <div class="col-xs-3 bs-wizard-step {{ $secondClass }}">
-      <div class="text-center bs-wizard-stepnum">Pagado</div>
+    <div class="col-xs-2 bs-wizard-step {{ $secondClass }}">
+      <div class="bs-wizard-stepnum">Pagado</div>
       <div class="progress">
         <div class="progress-bar"></div>
       </div>
@@ -47,16 +48,16 @@
     @else
       @php($thirdClass = 'disabled')
     @endif
-    <div class="col-xs-3 bs-wizard-step {{ $thirdClass }}">
-      <div class="text-center bs-wizard-stepnum">Enviado</div>
+    <div class="col-xs-2 bs-wizard-step {{ $thirdClass }}">
+      <div class="bs-wizard-stepnum">Enviado</div>
       <div class="progress">
         <div class="progress-bar"></div>
       </div>
       <a class="bs-wizard-dot"></a>
       <div class="bs-wizard-info text-center"></div>
     </div>
-    <div class="col-xs-3 bs-wizard-step {{ $buy->status === config('constants.BUY_CULMINATED_STATUS') ? 'active' : 'disabled' }}">
-      <div class="text-center bs-wizard-stepnum">Culminado</div>
+    <div class="col-xs-2 bs-wizard-step {{ $buy->status === config('constants.BUY_CULMINATED_STATUS') ? 'active' : 'disabled' }}">
+      <div class="bs-wizard-stepnum">Culminado</div>
       <div class="progress"><div class="progress-bar"></div></div>
       <a class="bs-wizard-dot"></a>
       <div class="bs-wizard-info text-center"></div>
@@ -89,7 +90,7 @@
     <input type="hidden" name="shippingZIP" value="{{ str_limit($buy->shipping_address->zip ?? '123', 50, '') }}">
     <input type="hidden" name="shippingCity" value="{{ str_limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
     <input type="hidden" name="shippingState" value="{{ str_limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
-    <input type="hidden" name="shippingCountry" value="{{ str_limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
+    <input type="hidden" name="shippingCountry" value="{{ str_limit($buy->shipping_address->country_state->name ?? 'Peru', 50, '') }}">
     {{--Parametro para la Integracion con Pay-me. Contiene el valor del parametro codCardHolderCommerce--}}
     <input type="hidden" name="userCommerce" value="{{ $codCardHolderCommerce }}" />
     {{--Parametro para la Integracion con Pay-me. Contiene el valor del parametro codAsoCardHolderWallet--}}

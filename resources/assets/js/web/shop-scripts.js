@@ -1,10 +1,26 @@
+const PhotoSwipe = require('photoswipe/dist/photoswipe.min');
+const PhotoSwipeUI = require('photoswipe/dist/photoswipe-ui-default.min');
+
 $(function () {
-    // Icheck
-    /* let shopIcheck = $('.icheck').iCheck({
-        checkboxClass: 'iradio_square',
-        radioClass: 'iradio_square',
-        increaseArea: '20%',
-    }); */
+    if ($('.image-photoswipe-trigger').length && window.hasOwnProperty('BipolarProductPhotos')) {
+        $('.image-photoswipe-trigger').click(() => {
+            var pswpElement = document.querySelectorAll('.pswp')[0];
+
+            // build items array
+            var items = window.BipolarProductPhotos;
+
+            // define options (if needed)
+            var options = {
+                // optionName: 'option value'
+                // for example:
+                index: 0 // start at first slide
+            };
+
+            // Initializes and opens PhotoSwipe
+            var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI, items, options);
+            gallery.init();
+        });
+    }
 
     if ($('.bipolar-filters').length) {
         $('.bipolar-filters').show('slow');

@@ -15,8 +15,8 @@ class SocialNetworkService
         $userPhoto = $image['data']['url'] ?? null;
 
         if ($user) {
-            if (empty($user->photo) || $user->photo == 'https://lorempixel.com/300/000/fff') {
-                $user->photo = $image['data']['url'];
+            if ((empty($user->photo) || $user->photo == 'https://lorempixel.com/300/000/fff') && !is_null($userPhoto)) {
+                $user->photo = $userPhoto;
                 $user->save();
             }
 
