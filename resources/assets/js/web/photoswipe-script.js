@@ -1,3 +1,4 @@
+// TODO: this is for custom photoswipe
 const initPhotoSwipeFromDOM = gallerySelector => {
 	// parse slide data (url, title, size ...) from DOM elements 
 	// (children of gallerySelector)

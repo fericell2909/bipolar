@@ -1,8 +1,7 @@
 @extends('web.layouts.app_web')
 @section('content')
-    @include('web.partials.photoswipe')
-    <button id="see-photoswipe">lanzar</button>
-    <?php /** @var \App\Models\Product $product */ ?>
+  <?php /** @var \App\Models\Product $product */ ?>
+  @include('web.partials.photoswipe', ['product' => $product])
     <div class="breadcrumb visible-md-block visible-lg-block">
       <div class="breadcrumb-content container">
         <i class="fa fa-home"></i> &raquo; <a href="#">Shop</a> &raquo; {{ $product->name }}
@@ -28,7 +27,7 @@
               @endif
               <div id="viewer-images" class="owl-carousel-main owl-carousel owl-theme">
                 @foreach($product->photos as $photo)
-                  <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive">
+                  <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive image-photoswipe-trigger">
                 @endforeach
               </div>
               <div class="owl-carousel-thumbnails owl-carousel owl-theme">

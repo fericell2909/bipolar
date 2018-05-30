@@ -45,3 +45,16 @@
     </div>
 	</div>
 </div>
+
+@push('js_plus')
+<script>
+  const BipolarProductPagePhotos = @json($product->photos->map(function ($photo) { return $photo->url; }));
+  window.BipolarProductPhotos = BipolarProductPagePhotos.map(photo => {
+    return {
+      w: 757,
+      h: 503,
+      src: photo,
+    };
+  });
+</script>
+@endpush

@@ -2,23 +2,12 @@ const PhotoSwipe = require('photoswipe/dist/photoswipe.min');
 const PhotoSwipeUI = require('photoswipe/dist/photoswipe-ui-default.min');
 
 $(function () {
-    if ($('#see-photoswipe').length) {
-        $('#see-photoswipe').click(() => {
+    if ($('.image-photoswipe-trigger').length && window.hasOwnProperty('BipolarProductPhotos')) {
+        $('.image-photoswipe-trigger').click(() => {
             var pswpElement = document.querySelectorAll('.pswp')[0];
 
             // build items array
-            var items = [
-                {
-                    src: 'https://placekitten.com/600/400',
-                    w: 600,
-                    h: 400
-                },
-                {
-                    src: 'https://placekitten.com/1200/900',
-                    w: 1200,
-                    h: 900
-                }
-            ];
+            var items = window.BipolarProductPhotos;
 
             // define options (if needed)
             var options = {
