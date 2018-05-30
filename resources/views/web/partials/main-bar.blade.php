@@ -20,7 +20,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 					<a class="navbar-right-text" href="#">
-						{{ Auth::check() ? Auth::user()->name : __('bipolar.navbar.my_settings') }}
+						{{ __('bipolar.navbar.my_settings') }}
 						<i class="fa fa-chevron-down"></i>
 					</a>
 					<ul class="bipolar-dropdown-menu in-desktop hidden-xs hidden-sm">
