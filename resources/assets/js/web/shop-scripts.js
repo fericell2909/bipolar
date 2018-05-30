@@ -1,10 +1,37 @@
+const PhotoSwipe = require('photoswipe/dist/photoswipe.min');
+const PhotoSwipeUI = require('photoswipe/dist/photoswipe-ui-default.min');
+
 $(function () {
-    // Icheck
-    /* let shopIcheck = $('.icheck').iCheck({
-        checkboxClass: 'iradio_square',
-        radioClass: 'iradio_square',
-        increaseArea: '20%',
-    }); */
+    if ($('#see-photoswipe').length) {
+        $('#see-photoswipe').click(() => {
+            var pswpElement = document.querySelectorAll('.pswp')[0];
+
+            // build items array
+            var items = [
+                {
+                    src: 'https://placekitten.com/600/400',
+                    w: 600,
+                    h: 400
+                },
+                {
+                    src: 'https://placekitten.com/1200/900',
+                    w: 1200,
+                    h: 900
+                }
+            ];
+
+            // define options (if needed)
+            var options = {
+                // optionName: 'option value'
+                // for example:
+                index: 0 // start at first slide
+            };
+
+            // Initializes and opens PhotoSwipe
+            var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI, items, options);
+            gallery.init();
+        });
+    }
 
     if ($('.bipolar-filters').length) {
         $('.bipolar-filters').show('slow');
