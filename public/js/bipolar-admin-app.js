@@ -107814,6 +107814,7 @@ function _inherits(subClass, superClass) {
 
 
 
+// TODO: save the new tag and the new category
 
 var PostNew = function (_React$Component) {
   _inherits(PostNew, _React$Component);
@@ -107840,7 +107841,10 @@ var PostNew = function (_React$Component) {
       editorStateEnglish: __WEBPACK_IMPORTED_MODULE_3_draft_js__["EditorState"].createEmpty(),
       states: [],
       categories: [],
-      tags: []
+      tags: [],
+      // for new category and tag
+      textCategory: '',
+      textTag: ''
     }, _this.handleEditorDescription = function (editorState) {
       var htmlText = __WEBPACK_IMPORTED_MODULE_5_draftjs_to_html___default()(Object(__WEBPACK_IMPORTED_MODULE_3_draft_js__["convertToRaw"])(editorState.getCurrentContent()));
       _this.setState({
@@ -107892,6 +107896,10 @@ var PostNew = function (_React$Component) {
       };
     }(), _this.handleChangeSelect = function (event) {
       return _this.setState({ stateSelected: event.target.value });
+    }, _this.handleTypeNewCategory = function (event) {
+      return _this.setState({ textCategory: event.target.value });
+    }, _this.handleTypeNewTag = function (event) {
+      return _this.setState({ textTag: event.target.value });
     }, _this.getData = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
       var responseStates, responseCategories, responseTags;
       return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
@@ -108010,7 +108018,7 @@ var PostNew = function (_React$Component) {
         toolbar: toolbarEditor,
         onEditorStateChange: this.handleEditorDescriptionEnglish,
         editorClassName: "demo-editor-content"
-      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Estado"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("select", { onChange: this.handleChangeSelect, value: this.state.stateSelected, className: "form-control", required: true }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, categories)), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Tags")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, tags))));
+      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Estado"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("select", { onChange: this.handleChangeSelect, value: this.state.stateSelected, className: "form-control", required: true }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { className: "form-inline mb-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "flex-grow-1 mr-2 form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { onChange: this.handleTypeNewCategory, value: this.state.textCategory, type: "text", className: "w-100 form-control", placeholder: "Nueva categor\xEDa", required: true })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { className: "btn btn-sm btn-dark btn-rounded" }, "Crear")), categories)), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Etiquetas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { className: "form-inline mb-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "flex-grow-1 mr-2 form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { onChange: this.handleTypeNewTag, value: this.state.textTag, type: "text", className: "w-100 form-control", placeholder: "Nueva etiqueta", required: true })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { className: "btn btn-sm btn-dark btn-rounded" }, "Crear")), tags))));
     }
   }]);
 
