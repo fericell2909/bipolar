@@ -58,6 +58,8 @@ Route::post('buys/{buyId}/sent', 'Admin\Ajax\BuysController@sent');
 Route::get('coupons/{coupon}', 'Admin\Ajax\CouponsController@show');
 Route::post('coupons/{coupon}/types-subtypes', 'Admin\Ajax\CouponsController@saveTypesAndSubtypes');
 
+Route::get('tags', 'Admin\Ajax\TagsController@index');
+
 Route::get('discount-tasks', 'Admin\Ajax\DiscountController@index');
 Route::post('discount-tasks', 'Admin\Ajax\DiscountController@store');
 Route::post('discount-tasks/{discountTaskId}/execute', 'Admin\Ajax\DiscountController@execute');

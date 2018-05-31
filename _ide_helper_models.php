@@ -397,6 +397,7 @@ namespace App\Models{
  * @property-read mixed $status
  * @property-read \App\Models\State|null $state
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post currentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post otherCurrentStatus($names)
@@ -589,6 +590,19 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereUpdatedAt($value)
  */
 	class Stock extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Tag
+ *
+ * @property int $id
+ * @property string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereName($value)
+ */
+	class Tag extends \Eloquent {}
 }
 
 namespace App\Models{

@@ -32,4 +32,9 @@ class Post extends Model
     {
         return $this->belongsTo(State::class, 'state_id');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }

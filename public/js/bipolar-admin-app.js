@@ -107839,7 +107839,8 @@ var PostNew = function (_React$Component) {
       editorState: __WEBPACK_IMPORTED_MODULE_3_draft_js__["EditorState"].createEmpty(),
       editorStateEnglish: __WEBPACK_IMPORTED_MODULE_3_draft_js__["EditorState"].createEmpty(),
       states: [],
-      categories: []
+      categories: [],
+      tags: []
     }, _this.handleEditorDescription = function (editorState) {
       var htmlText = __WEBPACK_IMPORTED_MODULE_5_draftjs_to_html___default()(Object(__WEBPACK_IMPORTED_MODULE_3_draft_js__["convertToRaw"])(editorState.getCurrentContent()));
       _this.setState({
@@ -107892,7 +107893,7 @@ var PostNew = function (_React$Component) {
     }(), _this.handleChangeSelect = function (event) {
       return _this.setState({ stateSelected: event.target.value });
     }, _this.getData = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-      var responseStates, responseCategories;
+      var responseStates, responseCategories, responseTags;
       return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -107907,13 +107908,19 @@ var PostNew = function (_React$Component) {
 
             case 5:
               responseCategories = _context2.sent;
+              _context2.next = 8;
+              return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.get('/ajax-admin/tags').catch(console.error);
+
+            case 8:
+              responseTags = _context2.sent;
 
               _this.setState({
                 states: responseStates.data['data'],
-                categories: responseCategories.data['data']
+                categories: responseCategories.data['data'],
+                tags: responseTags.data['data']
               });
 
-            case 7:
+            case 10:
             case "end":
               return _context2.stop();
           }
@@ -107977,7 +107984,10 @@ var PostNew = function (_React$Component) {
         return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { key: state['hash_id'], value: state['hash_id'] }, state['name']);
       });
       var categories = this.state.categories.map(function (category) {
-        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "checkbox" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { type: "checkbox", value: category['id'] }), " ", category['name']);
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "checkbox", key: category['id'] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { type: "checkbox", value: category['id'] }), " ", category['name']);
+      });
+      var tags = this.state.tags.map(function (tag) {
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "checkbox", key: tag['id'] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { type: "checkbox", value: tag['id'] }), " ", tag['name']);
       });
 
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-9" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { onSubmit: this.handleSubmit }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "T\xEDtulo de la publicaci\xF3n"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", {
@@ -108000,7 +108010,7 @@ var PostNew = function (_React$Component) {
         toolbar: toolbarEditor,
         onEditorStateChange: this.handleEditorDescriptionEnglish,
         editorClassName: "demo-editor-content"
-      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Estado"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("select", { onChange: this.handleChangeSelect, value: this.state.stateSelected, className: "form-control", required: true }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, categories)), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Tags")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, "Tags"))));
+      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Estado"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("select", { onChange: this.handleChangeSelect, value: this.state.stateSelected, className: "form-control", required: true }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, categories)), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Tags")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, tags))));
     }
   }]);
 
