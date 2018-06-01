@@ -79,7 +79,7 @@
   <form name="f1" action="#" id="f1" class="alignet-form-vpos2" method="post">
     <input type="hidden" name="acquirerId" value="{{ $acquirerId }}">
     <input type="hidden" name="idCommerce" value="{{ $idCommerce }}">
-    <input type="hidden" name="language" value="SP">
+    <input type="hidden" name="language" value="{{ __('bipolar.payme_modal_lang') }}">
     <input type="hidden" name="purchaseOperationNumber" value="{{ $purchaseOperationNumber }}">
     <input type="hidden" name="purchaseAmount" value="{{ $purchaseAmount }}">
     <input type="hidden" name="purchaseCurrencyCode" value="{{ $purchaseCurrencyCode }}">

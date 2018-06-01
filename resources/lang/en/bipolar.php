@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'payme_modal_lang' => 'EN',
     'size_abbr' => 'Size',
     'navbar' => [
         'change_currency' => 'Change currency',
