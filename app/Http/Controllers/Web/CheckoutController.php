@@ -268,6 +268,6 @@ class CheckoutController extends Controller
         $buy->total = floatval($buy->subtotal + $totalShipping);
         $buy->save();
 
-        return $buy->shipping_fee;
+        return $buy->shipping_fee ?? 0;
     }
 }
