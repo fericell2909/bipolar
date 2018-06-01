@@ -25,9 +25,9 @@ class BuyDetail extends Model
 
     public function getTotalCurrencyAttribute()
     {
-        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
+        if ($this->buy->currency === 'PEN') {
             return "S/ " . intval($this->total);
-        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
+        } elseif ($this->buy->currency === 'USD') {
             return "$ " . intval($this->total);
         }
     }
