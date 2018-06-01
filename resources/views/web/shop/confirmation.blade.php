@@ -99,7 +99,7 @@
     <input type="hidden" name="programmingLanguage" value="PHP">
     <input type="hidden" name="descriptionProducts" value="Pedido en Bipolar.com.pe">
     <p class="text-center">
-      <a href="#" class="btn btn-dark btn-rounded" onclick="javascript:AlignetVPOS2.openModal('{{ env('PAYME_URL_ALIGNET') }}', '2')">
+      <a href="#" class="btn btn-dark btn-rounded" onclick="javascript:AlignetVPOS2.openModal('{{ env('APP_ENV') === "production" ? "" : env('PAYME_URL_ALIGNET') }}', '2')">
         <span class="icon">
           <i class="fa fa-credit-card"></i>
         </span>
