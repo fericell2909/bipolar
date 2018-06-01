@@ -12,11 +12,15 @@
 .text-heading-account {
   font-family: $gotham-bold-font;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 22px;
   color: $bipolar-black;
   padding-bottom: 10px;
+
+  >.fa {
+    font-size: 9px;
+  }
 }
 
 @media screen and (max-width: 991px) {

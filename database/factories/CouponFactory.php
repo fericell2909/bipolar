@@ -12,7 +12,7 @@ $factory->define(Coupon::class, function (Faker $faker) {
             config('constants.PERCENTAGE_DISCOUNT_ID'),
             config('constants.QUANTITY_DISCOUNT_ID'),
         ]),
-        'code'                => mb_strtoupper($faker->unique()->word),
+        'code'                => mb_strtoupper($faker->unique()->word . str_random(5)),
         'amount_pen'          => $faker->numberBetween(10, 30),
         'amount_usd'          => $faker->numberBetween(10, 30),
         'frequency'           => $faker->numberBetween(0, 10),

@@ -51,9 +51,14 @@ class PaymeController extends Controller
         ));
     }
 
-    public function confirmation(Request $request, $buyId)
+    public function confirmation(Request $request, $buyId = null)
     {
-        $buy = Buy::findOrFail($buyId);
+        /** @var Buy $buy */
+        if ($buyId) {
+            $buy = Buy::findOrFail($buyId);
+        } else {
+            $buy = Buy::whereUserId($request->user()->id)->latest('id')->firstOrFail();
+        }
 
         $this->authorize('view', $buy);
         //abort_if($buy->tipo_pago_id == config('constants.TIPO_PAGO_MEMBRESIA_ID'), 403);
@@ -103,7 +108,6 @@ class PaymeController extends Controller
     {
         /** @var Buy $buy */
         $buy = Buy::whereUserId($request->user()->id)->latest('id')->firstOrFail();
-
         //event(new IntentoPagoRealizado($request->user(), $request->all()));
 
         $payment = new Payment;
@@ -128,7 +132,7 @@ class PaymeController extends Controller
 
         $payment->save();
 
-        return redirect()->route('reconfirmation', $buy->id);
+        return redirect(route('reconfirmation', $buy->id));
     }
 
     public function reconfirmation(Request $request)

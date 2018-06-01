@@ -1,5 +1,4 @@
 // Fonts
-//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 @font-face {
   font-family: 'BauerBodoniStd';
   src: url('../../fonts/Bodoni/BauerBodoniStd Roman.otf');
@@ -42,24 +41,18 @@ input::-webkit-clear-button {
 
 // Variables
 @import "variables";
-
 // Bootstrap 3 Custom
 @import "bootstrap";
-
-// Bootstrap 4
-//@import "~bootstrap/scss/bootstrap";
-
 // Owl Carousel
 @import "~owl.carousel/dist/assets/owl.carousel.css";
-// Viewer JS
-//@import "~viewerjs/dist/viewer";
-// Flat skins
-// @import "~icheck/skins/square/square";
 // Pretty Checkbox
 $pretty--color-primary: $bipolar-black;
 @import '~pretty-checkbox/src/pretty-checkbox.scss';
 // Material Design Icons
 @import "~mdi/scss/materialdesignicons";
+// Photoswipe
+@import "~photoswipe/src/css/main";
+@import "~photoswipe/src/css/default-skin/default-skin";
 
 // Select 2
 .select2-container--default .select2-search--dropdown .select2-search__field {

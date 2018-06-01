@@ -37,15 +37,15 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::post('cart', 'Web\CartController@update')->name('cart.update');
 
         Route::middleware('auth:web')->group(function () {
-            Route::get('my-account', 'Web\UserController@myaccount')->name('myaccount');
+            Route::get('my-account/buys', 'Web\UserController@myaccount')->name('myaccount');
             Route::get('my-account/edit-account', 'Web\UserController@profile')->name('profile');
             Route::post('my-account/edit-account', 'Web\UserController@updateProfile')->name('profile.update');
             Route::get('checkout', 'Web\CheckoutController@checkout')->name('checkout');
             Route::post('checkout', 'Web\CheckoutController@buy');
             Route::post('address/{addressType}/register', 'Web\AddressesController@add')->name('address.add');
             Route::get('confirmation/{buyId}', 'Web\PaymeController@pagoPayme')->name('confirmation');
-            Route::get('confirmation-payment/{buyId}', 'Web\PaymeController@confirmation')->name('reconfirmation');
             Route::post('confirmation-payment', 'Web\PaymeController@reconfirmationPost')->name('confirmation.successful');
+            Route::get('confirmation-payment/{buyId?}', 'Web\PaymeController@confirmation')->name('reconfirmation');
             Route::get('ajax/country/{countryId}/country-states', 'Web\Ajax\CountryStatesController@get');
             Route::post('ajax/address/{addressId}/main', 'Web\Ajax\AddressesController@setMain');
             Route::delete('ajax/address/{addressId}', 'Web\Ajax\AddressesController@remove');
