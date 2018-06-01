@@ -202,11 +202,13 @@ class PaymeController extends Controller
         $setting = Settings::first();
 
         // Primera numero de operacion
-        if (empty($setting->current_buy)) {
-            return 1;
+        if (intval($setting->current_buy) === 0) {
+            $setting->current_buy = 1;
+        } else {
+            $setting->current_buy = $setting->current_buy + 1;
+            $setting->save();
         }
-
-        $setting->current_buy = $setting->current_buy + 1;
+        
         $setting->save();
 
         return $setting->current_buy;
