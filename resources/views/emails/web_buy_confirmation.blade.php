@@ -124,7 +124,7 @@
               <tbody>
               <tr>
                 <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
-                  <h2 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 35px;margin-bottom: 8px;color: #000000;font-size: 20px;line-height: 25px;">TUS DATOS</h2>
+                  <h2 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 35px;margin-bottom: 8px;color: #000000;font-size: 20px;line-height: 25px;">{{ __('bipolar.mails.your_data') }}</h2>
                 </td>
               </tr>
               </tbody>
@@ -154,7 +154,7 @@
                 <tbody>
                 <tr>
                   <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
-                    <h4 class="mte" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 32px;margin-bottom: 8px;color: #f8beb6;font-size: 14px;line-height: 18px;">Enviar a</h4>
+                    <h4 class="mte" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 32px;margin-bottom: 8px;color: #f8beb6;font-size: 14px;line-height: 18px;">{{ __('bipolar.mails.shipping_to') }}</h4>
                     <p style="font-family: Arial, Helvetica, sans-serif;font-size: 15px;color: #000000;line-height: 25px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 24px;">
                       @if($buy->billing_address)
                         {{ $buy->billing_address->name }} {{ $buy->billing_address->lastname }}<br>
@@ -164,8 +164,8 @@
                         {{ $buy->billing_address->country_state->country->name }}
                       @endif
                     </p>
-                    <h4 class="mte" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 32px;margin-bottom: 8px;color: #f8beb6;font-size: 14px;line-height: 18px;">Método de envío</h4>
-                    <p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 15px;color: #000000;line-height: 25px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;">Envío local</p>
+                    <h4 class="mte" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 32px;margin-bottom: 8px;color: #f8beb6;font-size: 14px;line-height: 18px;">{{ __('bipolar.mails.shipping_method') }}</h4>
+                    <p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 15px;color: #000000;line-height: 25px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;">{{ $shipping_method }}</p>
                   </td>
                 </tr>
                 </tbody>
@@ -177,7 +177,7 @@
                 <tbody>
                 <tr>
                   <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
-                    <h4 class="mte" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 32px;margin-bottom: 8px;color: #f8beb6;font-size: 14px;line-height: 18px;">Facturar a</h4>
+                    <h4 class="mte" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 32px;margin-bottom: 8px;color: #f8beb6;font-size: 14px;line-height: 18px;">{{ __('bipolar.mails.billing_to') }}</h4>
                     <p style="font-family: Arial, Helvetica, sans-serif;font-size: 15px;color: #000000;line-height: 25px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 24px;">
                       @if($buy->shipping_address)
                         {{ $buy->shipping_address->name }} {{ $buy->shipping_address->lastname }}<br>
@@ -187,7 +187,7 @@
                         {{ $buy->shipping_address->country_state->country->name }}
                       @endif
                     </p>
-                    <h4 class="mte" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 32px;margin-bottom: 8px;color: #f8beb6;font-size: 14px;line-height: 18px;">Número de pedido</h4>
+                    <h4 class="mte" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 32px;margin-bottom: 8px;color: #f8beb6;font-size: 14px;line-height: 18px;">{{ __('bipolar.mails.order_number') }}</h4>
                     <p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 15px;color: #000000;line-height: 25px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;">
                       <a href="{{ route('confirmation', $buy->id) }}" style="color: #000000">#{{ $buy->id }}</a>
                     </p>

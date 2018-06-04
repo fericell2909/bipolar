@@ -31,6 +31,10 @@ class BuyConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->subject(__('bipolar.mails.buy_received_subject'))->view('emails.web_buy_confirmation');
+        $shippingMethod = $this->buy->showroom ? __('bipolar.mails.shipping_method_showroom') : __('bipolar.mails.shipping_method_local');
+
+        return $this->subject(__('bipolar.mails.buy_received_subject'))
+            ->view('emails.web_buy_confirmation')
+            ->with('shipping_method', $shippingMethod);
     }
 }
