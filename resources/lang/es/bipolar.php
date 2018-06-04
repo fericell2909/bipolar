@@ -58,8 +58,16 @@ return [
         'order_pricedown' => 'ORDENAR DE PRECIO ALTO A PRECIO BAJO',
     ],
     'mails' => [
+        'buy_received_subject' => 'Gracias por tu compra!',
         'questions' => '¿Preguntas?',
-        'write_us'  => 'Escríbenos a shop@bipolar.com.pe o llámanos al (+51) 965.367.385',
+        'write_us'  => 'Escríbenos a <a href="mailto:shop@bipolar.com.pe" style="color: #000000">shop@bipolar.com.pe</a> o llámanos al <a href="tel:+51965367385" style="color: #000000">(+51) 965.367.385</a>',
+        'your_data' => 'TUS DATOS',
+        'order_number' => 'Orden de pedido',
+        'shipping_method' => 'Método de envío',
+        'shipping_to' => 'Enviar a',
+        'billing_to' => 'Facturar a',
+        'shipping_method_showroom' => 'Recoger en showroom',
+        'shipping_method_local' => 'Local',
     ],
     'shipping' => [
         'title' => 'Envíos',

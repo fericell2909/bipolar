@@ -620,6 +620,14 @@
       }
     }
 
+    .hide-desktop {
+      max-height: 0 !important;
+      display: none !important;
+      mso-hide: all !important;
+      overflow: hidden !important;
+      font-size: 0 !important;
+    }
+
     @media (max-width: 657px) {
       .col_1,
       .col_12,
@@ -685,9 +693,16 @@
         overflow: hidden !important;
         font-size: 0 !important;
       }
+
+      .hide-desktop {
+        display: block !important;
+        max-height: 100% !important;
+        font-size: 14px !important;
+        overflow: auto !important;
+      }
     }
   </style>
-
+  @stack('css_plus')
 </head>
 <?php /** @var \App\Models\Buy $buy */ ?>
 <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="min-width: 100%;margin: 0;padding: 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;background-color: #eceff1;width: 100% !important;">
@@ -726,8 +741,8 @@
               <tbody>
               <tr>
                 <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
-                  <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 18px;line-height: 23px;">{{ __('bipolar.mails.questions') }}</h3>
-                  <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">{{ __('bipolar.mails.write_us') }}</p>
+                  <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 15px;line-height: 23px;">{{ __('bipolar.mails.questions') }}</h3>
+                  <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">{!! __('bipolar.mails.write_us') !!}</p>
                 </td>
               </tr>
               </tbody>
