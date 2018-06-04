@@ -1,5 +1,10 @@
 <?php
 
+Route::get('/preview-mail', function () {
+    $buy = \App\Models\Buy::find(40);
+
+    return new \App\Mail\BuyConfirmation($buy);
+});
 Route::prefix(LaravelLocalization::setLocale())
     ->middleware(['localeSessionRedirect', 'localizationRedirect', 'localize', 'removeEmptyCarts'])
     ->group(function () {

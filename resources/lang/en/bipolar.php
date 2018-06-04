@@ -58,8 +58,9 @@ return [
         'order_pricedown' => 'SORT BY PRICE: HIGH TO LOW',
     ],
     'mails' => [
+        'buy_received_subject' => 'Thank you for your purchase!',
         'questions' => 'Questions?',
-        'write_us'  => 'Email us at shop@bipolar.com.pe or call us at (+51) 965.367.385',
+        'write_us'  => 'Email us at <a href="mailto:shop@bipolar.com.pe" style="color: #000000">shop@bipolar.com.pe</a> or call us at <a href="tel:+51965367385" style="color: #000000">(+51) 965.367.385</a>',
     ],
     'shipping' => [
         'title' => 'Shipping',
