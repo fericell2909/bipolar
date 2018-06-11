@@ -164,7 +164,7 @@ class CartBipolar
 
     public function getTotalBySessionCurrency() : float
     {
-        return \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->total : $this->cart->total_dolar;
+        return \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->total_dolar : $this->cart->total;
     }
 
     /**
