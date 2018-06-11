@@ -110,4 +110,30 @@ return [
         Buscamos darle a nuestras clientas una atención personalizada por lo que atendemos a puerta cerrada. <br>
         Para más información, escríbenos a shop@bipolar.com.pe o al (+51) 965.367.385.',
     ],
+    'care_tips' => [
+        'title' => 'Care tips',
+        'content' => "
+            <p>Bipolar products are handmade with leather carefully chosen for their quality, color and texture. Genuine leather is a natural product so little imperfections as well as slight color changes show its authenticity and origin..</p>
+            <p>Some of our products are very delicate so you must treat them with care and keep them away from water or direct sunlight so they can remain in perfect conditions for a long time.</p>
+            <p><strong><br>Here are some care tips you may find useful:<br> </strong></p>
+            <hr>
+            <p><strong>1.</strong>  Transport and store your shoes inside it´s box. Avoid carrying them in bags as they could lose their original form, or accessories may be damaged.</p>
+            <hr>
+            <p><strong>2.</strong> Avoid extreme temperatures, water and direct sunlight for long periods.</p>
+            <hr>
+            <p><strong>3.</strong> If they get wet from the rain, let them dry naturally.</p>
+            <hr>
+            <p><strong>4.</strong> Avoid sharp objects and rough surfaces that may damage leather.</p>
+            <hr>
+            <p><strong>5.</strong> Use a small brush to remove dust from your suede shoes every time you wear them.</p>
+            <hr>
+            <p><strong>6.</strong> Use a dry cloth to clean your classic leather or patent leather shoes.</p>
+            <hr>
+            <p><strong>7.</strong> If you had a light stain, use a cloth with benzine and clean them without rubbing. Try it on a small area first.</p>
+            <hr>
+            <p><strong>8.</strong> If the stain persists or if your shoes need a deep cleaning, take them to the nearest shoe repair shop.</p>
+            <hr>
+            <p>If you have any questions about your bipolars, please contact us at <strong>bipolar@bipolar.com.pe.</strong></p>
+        ",
+    ],
 ];

@@ -34,7 +34,7 @@ return [
         'name' => 'Nombre',
         'send' => 'Enviar',
         'suscribe' => 'Suscríbete',
-        'suscribe_details' => 'Y disfruta de descuentos especiales.',
+        'suscribe_details' => 'Y entérate de las últimas novedades.',
         'worldwide_shipping' => 'Envíos a todo el mundo',
     ],
     'contact' => [
@@ -109,5 +109,31 @@ return [
         'about' => 'Our Showroom is located in San Isidro, Lima – Peru.
         We seek to give our clients personalized attention so we work behind closed doors.
         For more information, please write us at shop@bipolar.com.pe or call us at (+51) 965.367.385.',
+    ],
+    'care_tips' => [
+        'title' => 'Recomendaciones de uso',
+        'content' => "
+            <p>Los productos Bipolar son hechos a mano con piel cuidadosamente elegida por su calidad, color y textura.</p>
+            <p>La piel es un genuino producto de la naturaleza por lo que las pequeñas imperfecciones y ligeros cambios de color demuestran su autenticidad y procedencia. Muchos de nuestros productos utilizan materiales o acabados muy delicados por lo que es muy importante que los trates con cuidado para que estén junto a ti por mucho tiempo.</p>
+            <p><strong><br> Aquí te damos algunas recomendaciones:<br> </strong></p>
+            <hr>
+            <p><strong>1.</strong> Transporta y almacena tus zapatos dentro de su caja. Evita meterlos dentro de bolsas pues podrían perder su forma original o sus accesorios podrían dañarse.</p>
+            <hr>
+            <p><strong>2.</strong> Evita las temperaturas extremas, el agua y la exposición directa al sol por periodos largos.</p>
+            <hr>
+            <p><strong>3.</strong> Si se mojan por la lluvia, déjalos secar al natural.</p>
+            <hr>
+            <p><strong>4.</strong> Evita los objetos puntiagudos y las superficies ásperas pues el cuero podría dañarse.</p>
+            <hr>
+            <p><strong>5.</strong> Usa un cepillo pequeño para quitar el polvo de tus zapatos de ante / gamuza cada vez que los uses.</p>
+            <hr>
+            <p><strong>6.</strong> Usa un paño seco para limpiar tus zapatos de cuero clásico o charol.</p>
+            <hr>
+            <p><strong>7.</strong> Si tuvieran alguna mancha ligera, utiliza un paño con bencina y limpialos sin frotar.<br> Haz la prueba en un área pequeña primero.</p>
+            <hr>
+            <p><strong>8.</strong> Si la mancha persiste o si necesitan un limpiado a profundidad, llévalos a la renovadora de calzado más cercana.</p>
+            <hr>
+            <p>Si tienes alguna duda sobre tus bipolares, no dudes en escribirnos a <strong>bipolar@bipolar.com.pe.</strong></p>
+        ",
     ],
 ];

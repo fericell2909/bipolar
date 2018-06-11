@@ -26,7 +26,7 @@
               <a href="{{ route('landings.exchange') }}">{{ __('bipolar.footer.info.exchange') }}</a>
             </li>
             <li>
-              <a href="#">{{ __('bipolar.footer.info.caretips') }}</a>
+              <a href="{{ route('landings.care_tips') }}">{{ __('bipolar.footer.info.caretips') }}</a>
             </li>
           </ul>
         </div>
