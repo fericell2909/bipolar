@@ -26,6 +26,7 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::get('bipolar', 'Web\LandingsController@bipolar')->name('landings.bipolar');
         Route::get('shipping', 'Web\LandingsController@shipping')->name('landings.shipping');
         Route::view('exchange-and-returns', 'web.landings.exchange_returns')->name('landings.exchange');
+        Route::view('care-tips', 'web.landings.care_tips')->name('landings.care_tips');
         Route::get('showroom', 'Web\LandingsController@showroom')->name('landings.showroom');
         Route::get('historico', 'Web\LandingsController@historico')->name('landings.historico');
         Route::view('newsletter', 'web.landings.newsletter_landing')->name('landings.newsletter');
