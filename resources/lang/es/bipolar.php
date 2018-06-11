@@ -34,7 +34,7 @@ return [
         'name' => 'Nombre',
         'send' => 'Enviar',
         'suscribe' => 'Suscríbete',
-        'suscribe_details' => 'Y disfruta de descuentos especiales.',
+        'suscribe_details' => 'Y entérate de las últimas novedades.',
         'worldwide_shipping' => 'Envíos a todo el mundo',
     ],
     'contact' => [
