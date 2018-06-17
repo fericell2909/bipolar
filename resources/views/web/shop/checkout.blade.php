@@ -79,7 +79,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Código zip') !!}
-									{!! Form::text('zip', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('zip', null, ['class' => 'form-control']) !!}
 								</div>
 							</div>
 							<div class="text-center">
