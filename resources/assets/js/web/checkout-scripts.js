@@ -86,6 +86,10 @@ $(function() {
     $('#sectionCollapseThree').collapse('show');
   });
 
+  $('.panel').click(function () {
+    $(this).children('.panel-heading').toggleClass('content-collapsed');
+  });
+
   $('#checkout-form').submit(function (event) {
     const terms = $('input[name="terms"]');
     if (terms.is(':checked') === false) {

@@ -111,7 +111,7 @@
 					</div>
 				</div>
 				<div class="panel panel-default">
-					<div class="panel-heading" role="tab" id="headingTwo">
+					<div class="panel-heading content-collapsed" role="tab" id="headingTwo">
 						<h4 class="panel-title">
 							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseTwo" aria-expanded="false"
 							 aria-controls="collapseTwo">
@@ -198,7 +198,7 @@
 					</div>
 				</div>
 				<div class="panel panel-default">
-					<div class="panel-heading" role="tab" id="headingThree">
+					<div class="panel-heading content-collapsed" role="tab" id="headingThree">
 						<h4 class="panel-title">
 							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseThree" aria-expanded="false"
 							 aria-controls="collapseThree">

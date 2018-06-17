@@ -46,12 +46,14 @@
       background: none;
       text-align: center;
       border-radius: 0;
-      border: none;
+
+      &.content-collapsed {
+        border-bottom: 1px solid #eee;
+      }
 
       a {
         display: block;
         text-transform: uppercase;
-        border-bottom: 1px solid #eee;
         padding: 10px 15px;
         color: $bipolar-black;
         font-family: $bodoni-bold-font;

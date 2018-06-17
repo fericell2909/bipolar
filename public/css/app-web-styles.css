@@ -22228,13 +22228,15 @@ input:focus:-ms-input-placeholder {
   background: none;
   text-align: center;
   border-radius: 0;
-  border: none;
+}
+
+.bipolar-checkout .panel-default .panel-heading.content-collapsed {
+  border-bottom: 1px solid #eee;
 }
 
 .bipolar-checkout .panel-default .panel-heading a {
   display: block;
   text-transform: uppercase;
-  border-bottom: 1px solid #eee;
   padding: 10px 15px;
   color: #000000;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
