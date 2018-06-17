@@ -86,6 +86,20 @@ $(function() {
     $('#sectionCollapseThree').collapse('show');
   });
 
+  $('#sectionCollapseOne, #sectionCollapseTwo, #sectionCollapseThree')
+    .on('show.bs.collapse', event => {
+      const headingId = $(event.currentTarget).attr('aria-labelledby');
+      const heading = $(`#${headingId}`);
+      heading.removeClass('content-collapsed');
+      heading.children('.panel-icon').html("<i class='fa fa-chevron-up'></i>");
+    })
+    .on('hide.bs.collapse', event => {
+      const headingId = $(event.currentTarget).attr('aria-labelledby');
+      const heading = $(`#${headingId}`);
+      heading.addClass('content-collapsed');
+      heading.children('.panel-icon').html("<i class='fa fa-chevron-down'></i>");
+    });
+
   $('#checkout-form').submit(function (event) {
     const terms = $('input[name="terms"]');
     if (terms.is(':checked') === false) {

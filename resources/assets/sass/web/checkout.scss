@@ -43,23 +43,37 @@
     }
 
     .panel-heading {
+      display: flex;
+      align-items: center;
       background: none;
       text-align: center;
       border-radius: 0;
-      border: none;
 
-      a {
-        display: block;
-        text-transform: uppercase;
+      &.content-collapsed {
         border-bottom: 1px solid #eee;
-        padding: 10px 15px;
-        color: $bipolar-black;
-        font-family: $bodoni-bold-font;
-        font-size: 17px;
-        letter-spacing: 2.5px;
-        &:hover {
-          text-decoration: none;
+      }
+
+      .panel-title {
+        display: inline-block;
+        flex: 1;
+
+        a {
+          display: block;
+          text-transform: uppercase;
+          padding: 10px 15px;
+          color: $bipolar-black;
+          font-family: $bodoni-bold-font;
+          font-size: 17px;
+          letter-spacing: 2.5px;
+          &:hover {
+            text-decoration: none;
+          }
         }
+      }
+
+      .panel-icon {
+        display: inline-block;
+        cursor: pointer;
       }
 
       & + .panel-collapse {

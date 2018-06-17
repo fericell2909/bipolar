@@ -32,60 +32,16 @@
 			@endif
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-default">
-					<div class="panel-heading" role="tab" id="headingOne">
+					<div class="panel-heading {{ !Request::has('part') ? null : 'content-collapsed' }}" role="tab" id="headingOne">
 						<h4 class="panel-title">
 							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseOne" aria-expanded="true" aria-controls="sectionCollapseOne">
 								Dirección de facturación
 							</a>
 						</h4>
+						<div class="panel-icon"><i class="fa fa-chevron-down"></i></div>
 					</div>
 					<div id="sectionCollapseOne" class="panel-collapse collapse {{ !Request::has('part') ? 'in' : null }}" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
-							{!! Form::open(['url' => route('address.add', 'billing')]) !!}
-							<div class="row">
-								<div class="form-group col-md-6">
-									{!! Form::label('Nombre') !!}
-									{!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
-								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label('Apellidos') !!}
-									{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true]) !!}
-								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label('Correo') !!}
-									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true]) !!}
-								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label('Teléfono') !!}
-									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true]) !!}
-								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label('País') !!}
-									<select name="country" id="" class="form-control select-2-countries">
-										<option disabled selected>SELECCIONAR</option>
-										@foreach($countries as $countryId => $countryName)
-											<option value="{{ $countryId }}">{{ $countryName }}</option>
-										@endforeach
-									</select>
-								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label('Estado / Ciudad') !!}
-									{!! Form::select('state', [], null, ['class' => 'form-control select-2-country-states', 'required' => true]) !!}
-									{!! Form::hidden('country_state_billing_hidden', null, ['id' => 'country_state_billing_hidden']) !!}
-								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label('Address') !!}
-									{!! Form::text('address', null, ['class' => 'form-control', 'required' => true]) !!}
-								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label('Código zip') !!}
-									{!! Form::text('zip', null, ['class' => 'form-control', 'required' => true]) !!}
-								</div>
-							</div>
-							<div class="text-center">
-								<button type="submit" id="checkoutContinuePartTwo" class="btn btn-dark-rounded">Continuar</button>
-							</div>
-							{!! Form::close() !!}
 							@foreach($billingAddresses as $billingAddress)
 								<div class="address-list">
 									<div class="pretty p-default p-round p-thick">
@@ -107,46 +63,28 @@
 									</div>
 								</div>
 							@endforeach
-						</div>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading" role="tab" id="headingTwo">
-						<h4 class="panel-title">
-							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseTwo" aria-expanded="false"
-							 aria-controls="collapseTwo">
-								Dirección de envío
-							</a>
-						</h4>
-					</div>
-					<div id="sectionCollapseTwo" class="panel-collapse collapse {{ Request::input('part') === "2" ? 'in' : null }}" role="tabpanel" aria-labelledby="headingTwo">
-						<div class="panel-body">
-							<div id="bipolar-directions"></div>
-              <div class="send-distinct-address">
-                <label>¿Enviar a una dirección diferente?</label> {!! Form::checkbox('send-distinct-address', '1') !!}
-              </div>
-							{!! Form::open(['url' => route('address.add', 'shipping'), 'id' => 'form-new-shipping-address', 'style' => 'display:none']) !!}
+							{!! Form::open(['url' => route('address.add', 'billing')]) !!}
 							<div class="row">
 								<div class="form-group col-md-6">
 									{!! Form::label('Nombre') !!}
-									{!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('name', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Apellidos') !!}
-									{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Correo') !!}
-									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Teléfono') !!}
-									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('País') !!}
-									<select name="country" id="" class="select-2-countries-shipping form-control" required>
-										<option selected disabled>SELECCIONAR</option>
+									<select name="country" id="" class="form-control select-2-countries" autocomplete="off">
+										<option disabled selected>SELECCIONAR</option>
 										@foreach($countries as $countryId => $countryName)
 											<option value="{{ $countryId }}">{{ $countryName }}</option>
 										@endforeach
@@ -154,28 +92,47 @@
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Estado / Ciudad') !!}
-									{!! Form::select('state', [], null, ['class' => 'select-2-country-states-shipping form-control', 'required' => true]) !!}
-									{!! Form::hidden('country_state_shipping_hidden', null, ['id' => 'country_state_shipping_hidden']) !!}
+									{!! Form::select('state', [], null, ['class' => 'form-control select-2-country-states', 'required' => true, 'autocomplete' => 'off']) !!}
+									{!! Form::hidden('country_state_billing_hidden', null, ['id' => 'country_state_billing_hidden']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Address') !!}
-									{!! Form::text('address', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('address', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Código zip') !!}
-									{!! Form::text('zip', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('zip', null, ['class' => 'form-control', 'autocomplete' => 'off']) !!}
 								</div>
 							</div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-dark-rounded">Continuar</button>
-              </div>
+							<div class="text-center">
+								<button type="submit" id="checkoutContinuePartTwo" class="btn btn-dark-rounded">Continuar</button>
+							</div>
 							{!! Form::close() !!}
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading {{ Request::input('part') === "2" ? null : 'content-collapsed' }}" role="tab" id="headingTwo">
+						<h4 class="panel-title">
+							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseTwo" aria-expanded="false"
+							 aria-controls="collapseTwo">
+								Dirección de envío
+							</a>
+						</h4>
+						<div class="panel-icon"><i class="fa fa-chevron-down"></i></div>
+					</div>
+					<div id="sectionCollapseTwo" class="panel-collapse collapse {{ Request::input('part') === "2" ? 'in' : null }}" role="tabpanel" aria-labelledby="headingTwo">
+						<div class="panel-body">
+							<div id="bipolar-directions"></div>
+              <div class="send-distinct-address">
+                <label>¿Enviar a una dirección diferente?</label> {!! Form::checkbox('send-distinct-address', '1') !!}
+              </div>
 							@foreach($shippingAddresses as $shippingAddress)
 								<div class="address-list">
 									<div class="pretty p-default p-round p-thick">
 										{!! Form::radio('address_shipping', $shippingAddress->hash_id, $shippingAddress->main, ['class' => 'address-list-option address-shipping-option']) !!}
 										<div class="state p-primary-o">
-												<label class="address-list-title">{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</label>
+											<label class="address-list-title">{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</label>
 										</div>
 									</div>
 									<div class="address-list-content">
@@ -191,6 +148,51 @@
 									</div>
 								</div>
 							@endforeach
+							{!! Form::open(['url' => route('address.add', 'shipping'), 'id' => 'form-new-shipping-address', 'style' => 'display:none']) !!}
+							<div class="row">
+								<div class="form-group col-md-6">
+									{!! Form::label('Nombre') !!}
+									{!! Form::text('name', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Apellidos') !!}
+									{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Correo') !!}
+									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Teléfono') !!}
+									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('País') !!}
+									<select name="country" id="" class="select-2-countries-shipping form-control" required autocomplete="off">
+										<option selected disabled>SELECCIONAR</option>
+										@foreach($countries as $countryId => $countryName)
+											<option value="{{ $countryId }}">{{ $countryName }}</option>
+										@endforeach
+									</select>
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Estado / Ciudad') !!}
+									{!! Form::select('state', [], null, ['class' => 'select-2-country-states-shipping form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+									{!! Form::hidden('country_state_shipping_hidden', null, ['id' => 'country_state_shipping_hidden']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Address') !!}
+									{!! Form::text('address', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+								</div>
+								<div class="form-group col-md-6">
+									{!! Form::label('Código zip') !!}
+									{!! Form::text('zip', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+								</div>
+							</div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-dark-rounded">Continuar</button>
+              </div>
+							{!! Form::close() !!}
               <div class="text-center">
                 <button type="button" class="btn btn-dark-rounded" id="checkoutContinuePartThree">Continuar</button>
               </div>
@@ -198,13 +200,14 @@
 					</div>
 				</div>
 				<div class="panel panel-default">
-					<div class="panel-heading" role="tab" id="headingThree">
+					<div class="panel-heading {{ Request::input('part') === '3' ? null : 'content-collapsed' }}" role="tab" id="headingThree">
 						<h4 class="panel-title">
 							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseThree" aria-expanded="false"
 							 aria-controls="collapseThree">
 								Tu pedido
 							</a>
 						</h4>
+						<div class="panel-icon"><i class="fa fa-chevron-down"></i></div>
 					</div>
 					<div id="sectionCollapseThree" class="panel-collapse collapse {{ Request::input('part') === '3' ? 'in' : null }}" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body centered">

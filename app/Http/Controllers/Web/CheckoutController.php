@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Mail\BuyConfirmation;
 use App\Http\Controllers\Controller;
 use App\Models\CartDetail;
 use App\Models\Country;
@@ -117,8 +116,6 @@ class CheckoutController extends Controller
         } else {
             $this->calculateShippingFee($buy);
         }
-
-        \Mail::to(\Auth::user())->send(new BuyConfirmation($buy));
 
         return redirect()->route('confirmation', $buy->id);
     }

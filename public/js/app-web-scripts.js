@@ -27358,6 +27358,18 @@ $(function () {
     $('#sectionCollapseThree').collapse('show');
   });
 
+  $('#sectionCollapseOne, #sectionCollapseTwo, #sectionCollapseThree').on('show.bs.collapse', function (event) {
+    var headingId = $(event.currentTarget).attr('aria-labelledby');
+    var heading = $('#' + headingId);
+    heading.removeClass('content-collapsed');
+    heading.children('.panel-icon').html("<i class='fa fa-chevron-up'></i>");
+  }).on('hide.bs.collapse', function (event) {
+    var headingId = $(event.currentTarget).attr('aria-labelledby');
+    var heading = $('#' + headingId);
+    heading.addClass('content-collapsed');
+    heading.children('.panel-icon').html("<i class='fa fa-chevron-down'></i>");
+  });
+
   $('#checkout-form').submit(function (event) {
     var terms = $('input[name="terms"]');
     if (terms.is(':checked') === false) {
