@@ -45,23 +45,23 @@
 							<div class="row">
 								<div class="form-group col-md-6">
 									{!! Form::label('Nombre') !!}
-									{!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('name', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Apellidos') !!}
-									{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Correo') !!}
-									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Teléfono') !!}
-									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('País') !!}
-									<select name="country" id="" class="form-control select-2-countries">
+									<select name="country" id="" class="form-control select-2-countries" autocomplete="off">
 										<option disabled selected>SELECCIONAR</option>
 										@foreach($countries as $countryId => $countryName)
 											<option value="{{ $countryId }}">{{ $countryName }}</option>
@@ -70,16 +70,16 @@
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Estado / Ciudad') !!}
-									{!! Form::select('state', [], null, ['class' => 'form-control select-2-country-states', 'required' => true]) !!}
+									{!! Form::select('state', [], null, ['class' => 'form-control select-2-country-states', 'required' => true, 'autocomplete' => 'off']) !!}
 									{!! Form::hidden('country_state_billing_hidden', null, ['id' => 'country_state_billing_hidden']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Address') !!}
-									{!! Form::text('address', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('address', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Código zip') !!}
-									{!! Form::text('zip', null, ['class' => 'form-control']) !!}
+									{!! Form::text('zip', null, ['class' => 'form-control', 'autocomplete' => 'off']) !!}
 								</div>
 							</div>
 							<div class="text-center">
@@ -129,23 +129,23 @@
 							<div class="row">
 								<div class="form-group col-md-6">
 									{!! Form::label('Nombre') !!}
-									{!! Form::text('name', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('name', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Apellidos') !!}
-									{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Correo') !!}
-									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Teléfono') !!}
-									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('País') !!}
-									<select name="country" id="" class="select-2-countries-shipping form-control" required>
+									<select name="country" id="" class="select-2-countries-shipping form-control" required autocomplete="off">
 										<option selected disabled>SELECCIONAR</option>
 										@foreach($countries as $countryId => $countryName)
 											<option value="{{ $countryId }}">{{ $countryName }}</option>
@@ -154,16 +154,16 @@
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Estado / Ciudad') !!}
-									{!! Form::select('state', [], null, ['class' => 'select-2-country-states-shipping form-control', 'required' => true]) !!}
+									{!! Form::select('state', [], null, ['class' => 'select-2-country-states-shipping form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 									{!! Form::hidden('country_state_shipping_hidden', null, ['id' => 'country_state_shipping_hidden']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Address') !!}
-									{!! Form::text('address', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('address', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label('Código zip') !!}
-									{!! Form::text('zip', null, ['class' => 'form-control', 'required' => true]) !!}
+									{!! Form::text('zip', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 							</div>
               <div class="text-center">
