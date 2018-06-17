@@ -32,12 +32,13 @@
 			@endif
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-default">
-					<div class="panel-heading" role="tab" id="headingOne">
+					<div class="panel-heading {{ !Request::has('part') ? null : 'content-collapsed' }}" role="tab" id="headingOne">
 						<h4 class="panel-title">
 							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseOne" aria-expanded="true" aria-controls="sectionCollapseOne">
 								Dirección de facturación
 							</a>
 						</h4>
+						<div class="panel-icon"><i class="fa fa-chevron-down"></i></div>
 					</div>
 					<div id="sectionCollapseOne" class="panel-collapse collapse {{ !Request::has('part') ? 'in' : null }}" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
@@ -111,13 +112,14 @@
 					</div>
 				</div>
 				<div class="panel panel-default">
-					<div class="panel-heading content-collapsed" role="tab" id="headingTwo">
+					<div class="panel-heading {{ Request::input('part') === "2" ? null : 'content-collapsed' }}" role="tab" id="headingTwo">
 						<h4 class="panel-title">
 							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseTwo" aria-expanded="false"
 							 aria-controls="collapseTwo">
 								Dirección de envío
 							</a>
 						</h4>
+						<div class="panel-icon"><i class="fa fa-chevron-down"></i></div>
 					</div>
 					<div id="sectionCollapseTwo" class="panel-collapse collapse {{ Request::input('part') === "2" ? 'in' : null }}" role="tabpanel" aria-labelledby="headingTwo">
 						<div class="panel-body">
@@ -198,13 +200,14 @@
 					</div>
 				</div>
 				<div class="panel panel-default">
-					<div class="panel-heading content-collapsed" role="tab" id="headingThree">
+					<div class="panel-heading {{ Request::input('part') === '3' ? null : 'content-collapsed' }}" role="tab" id="headingThree">
 						<h4 class="panel-title">
 							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseThree" aria-expanded="false"
 							 aria-controls="collapseThree">
 								Tu pedido
 							</a>
 						</h4>
+						<div class="panel-icon"><i class="fa fa-chevron-down"></i></div>
 					</div>
 					<div id="sectionCollapseThree" class="panel-collapse collapse {{ Request::input('part') === '3' ? 'in' : null }}" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body centered">

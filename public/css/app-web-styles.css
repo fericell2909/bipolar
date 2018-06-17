@@ -22225,6 +22225,12 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-checkout .panel-default .panel-heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background: none;
   text-align: center;
   border-radius: 0;
@@ -22234,7 +22240,14 @@ input:focus:-ms-input-placeholder {
   border-bottom: 1px solid #eee;
 }
 
-.bipolar-checkout .panel-default .panel-heading a {
+.bipolar-checkout .panel-default .panel-heading .panel-title {
+  display: inline-block;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.bipolar-checkout .panel-default .panel-heading .panel-title a {
   display: block;
   text-transform: uppercase;
   padding: 10px 15px;
@@ -22244,8 +22257,13 @@ input:focus:-ms-input-placeholder {
   letter-spacing: 2.5px;
 }
 
-.bipolar-checkout .panel-default .panel-heading a:hover {
+.bipolar-checkout .panel-default .panel-heading .panel-title a:hover {
   text-decoration: none;
+}
+
+.bipolar-checkout .panel-default .panel-heading .panel-icon {
+  display: inline-block;
+  cursor: pointer;
 }
 
 .bipolar-checkout .panel-default .panel-heading + .panel-collapse > .panel-body {
