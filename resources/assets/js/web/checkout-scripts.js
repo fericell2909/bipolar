@@ -86,8 +86,8 @@ $(function() {
     $('#sectionCollapseThree').collapse('show');
   });
 
-  $('.panel').click(function () {
-    $(this).children('.panel-heading').toggleClass('content-collapsed');
+  $('.panel-heading').click(function () {
+    $(this).toggleClass('content-collapsed');
   });
 
   $('#checkout-form').submit(function (event) {
