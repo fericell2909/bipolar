@@ -41,6 +41,27 @@
 					</div>
 					<div id="sectionCollapseOne" class="panel-collapse collapse {{ !Request::has('part') ? 'in' : null }}" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
+							@foreach($billingAddresses as $billingAddress)
+								<div class="address-list">
+									<div class="pretty p-default p-round p-thick">
+										{!! Form::radio('address_billing', $billingAddress->hash_id, $billingAddress->main, ['class' => 'address-list-option address-billing-option']) !!}
+										<div class="state p-primary-o">
+											<label class="address-list-title">{{ $billingAddress->name }} {{ $billingAddress->lastname }}</label>
+										</div>
+									</div>
+									<div class="address-list-content">
+										<ul class="address-list-of-lists">
+											<li>{{ $billingAddress->address }}</li>
+											<li>{{ $billingAddress->country_state->name }}</li>
+											<li>{{ $billingAddress->country_state->country->name }}</li>
+											<li>{{ $billingAddress->phone }}</li>
+										</ul>
+										<div class="trash-icon" data-address-hash-id="{{ $billingAddress->hash_id }}">
+											<a><img src="{{ asset('images/trash.svg') }}" width="20" alt="Eliminar"></a>
+										</div>
+									</div>
+								</div>
+							@endforeach
 							{!! Form::open(['url' => route('address.add', 'billing')]) !!}
 							<div class="row">
 								<div class="form-group col-md-6">
@@ -86,27 +107,6 @@
 								<button type="submit" id="checkoutContinuePartTwo" class="btn btn-dark-rounded">Continuar</button>
 							</div>
 							{!! Form::close() !!}
-							@foreach($billingAddresses as $billingAddress)
-								<div class="address-list">
-									<div class="pretty p-default p-round p-thick">
-										{!! Form::radio('address_billing', $billingAddress->hash_id, $billingAddress->main, ['class' => 'address-list-option address-billing-option']) !!}
-										<div class="state p-primary-o">
-											<label class="address-list-title">{{ $billingAddress->name }} {{ $billingAddress->lastname }}</label>
-										</div>
-									</div>
-									<div class="address-list-content">
-										<ul class="address-list-of-lists">
-											<li>{{ $billingAddress->address }}</li>
-											<li>{{ $billingAddress->country_state->name }}</li>
-											<li>{{ $billingAddress->country_state->country->name }}</li>
-											<li>{{ $billingAddress->phone }}</li>
-										</ul>
-										<div class="trash-icon" data-address-hash-id="{{ $billingAddress->hash_id }}">
-											<a><img src="{{ asset('images/trash.svg') }}" width="20" alt="Eliminar"></a>
-										</div>
-									</div>
-								</div>
-							@endforeach
 						</div>
 					</div>
 				</div>
@@ -125,6 +125,27 @@
               <div class="send-distinct-address">
                 <label>¿Enviar a una dirección diferente?</label> {!! Form::checkbox('send-distinct-address', '1') !!}
               </div>
+							@foreach($shippingAddresses as $shippingAddress)
+								<div class="address-list">
+									<div class="pretty p-default p-round p-thick">
+										{!! Form::radio('address_shipping', $shippingAddress->hash_id, $shippingAddress->main, ['class' => 'address-list-option address-shipping-option']) !!}
+										<div class="state p-primary-o">
+											<label class="address-list-title">{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</label>
+										</div>
+									</div>
+									<div class="address-list-content">
+										<ul class="address-list-of-lists">
+											<li>{{ $shippingAddress->address }}</li>
+											<li>{{ $shippingAddress->country_state->name }}</li>
+											<li>{{ $shippingAddress->country_state->country->name }}</li>
+											<li>{{ $shippingAddress->phone }}</li>
+										</ul>
+										<div class="trash-icon">
+											<a href="#"><img src="{{ asset('images/trash.svg') }}" width="20" alt="Eliminar"></a>
+										</div>
+									</div>
+								</div>
+							@endforeach
 							{!! Form::open(['url' => route('address.add', 'shipping'), 'id' => 'form-new-shipping-address', 'style' => 'display:none']) !!}
 							<div class="row">
 								<div class="form-group col-md-6">
@@ -170,27 +191,6 @@
                 <button type="submit" class="btn btn-dark-rounded">Continuar</button>
               </div>
 							{!! Form::close() !!}
-							@foreach($shippingAddresses as $shippingAddress)
-								<div class="address-list">
-									<div class="pretty p-default p-round p-thick">
-										{!! Form::radio('address_shipping', $shippingAddress->hash_id, $shippingAddress->main, ['class' => 'address-list-option address-shipping-option']) !!}
-										<div class="state p-primary-o">
-												<label class="address-list-title">{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</label>
-										</div>
-									</div>
-									<div class="address-list-content">
-										<ul class="address-list-of-lists">
-											<li>{{ $shippingAddress->address }}</li>
-											<li>{{ $shippingAddress->country_state->name }}</li>
-											<li>{{ $shippingAddress->country_state->country->name }}</li>
-											<li>{{ $shippingAddress->phone }}</li>
-										</ul>
-										<div class="trash-icon">
-											<a href="#"><img src="{{ asset('images/trash.svg') }}" width="20" alt="Eliminar"></a>
-										</div>
-									</div>
-								</div>
-							@endforeach
               <div class="text-center">
                 <button type="button" class="btn btn-dark-rounded" id="checkoutContinuePartThree">Continuar</button>
               </div>
