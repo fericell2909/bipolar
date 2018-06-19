@@ -120,6 +120,7 @@ class CartBipolar
 
         if ($this->cart->details->count() === 0) {
             $this->cart->subtotal = 0;
+            $this->cart->subtotal_dolar = 0;
             $this->cart->total = 0;
             $this->cart->total_dolar = 0;
             return $this->cart->save();
@@ -133,6 +134,7 @@ class CartBipolar
         });
 
         $this->cart->subtotal = $total;
+        $this->cart->subtotal_dolar = $totalDolar;
         $this->cart->total = $total;
         $this->cart->total_dolar = $totalDolar;
         return $this->cart->save();
@@ -160,6 +162,11 @@ class CartBipolar
         $this->recalculate();
 
         return true;
+    }
+
+    public function getSubtotalBySessionCurrency() : float
+    {
+        return \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->subtotal_dolar : $this->cart->subtotal;
     }
 
     public function getTotalBySessionCurrency() : float

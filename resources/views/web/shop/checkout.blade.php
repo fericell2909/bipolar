@@ -241,11 +241,11 @@
                   @endif
                   <tr>
                     <td class="total">Subtotal</td>
-                    <td><span class="amount">{{ CartBipolar::totalCurrency() }}</span></td>
+                    <td><span class="amount">{{ $cart->subtotal_currency }}</span></td>
                   </tr>
                   <tr>
                     <td class="total">Total</td>
-                    <td><span class="amount">{{ CartBipolar::totalCurrency() }}</span></td>
+                    <td><span class="amount">{{ $cart->total_currency }}</span></td>
                   </tr>
                 </tbody>
 							</table>

@@ -75,13 +75,11 @@ class CheckoutController extends Controller
             $shippingAddress->push();
         }
 
-        $lastCart = \CartBipolar::last();
-
         $buy = new Buy;
         $buy->user()->associate(\Auth::user());
         $buy->billing_address()->associate($billingAddress);
         $buy->shipping_address()->associate($shippingAddress);
-        $buy->subtotal = $lastCart->subtotal;
+        $buy->subtotal = \CartBipolar::getSubtotalBySessionCurrency();
         $buy->total = \CartBipolar::getTotalBySessionCurrency();
         $buy->currency = \Session::get('BIPOLAR_CURRENCY', 'USD');
 
