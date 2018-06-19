@@ -136,4 +136,17 @@ return [
             <p>Si tienes alguna duda sobre tus bipolares, no dudes en escribirnos a <strong>bipolar@bipolar.com.pe.</strong></p>
         ",
     ],
+    'confirmation' => [
+        'your_order' => 'Tu pedido',
+        'product' => 'Producto',
+        'shipping' => 'Envío',
+        'pick_showroom' => 'Recoger en el showroom',
+        'size' => 'Talla',
+        'payment' => 'Forma de pago',
+        'credit_card' => 'Tarjeta de crédito o de débito',
+        'make_payment' => 'Realizar pago',
+        'billing_address' => 'Dirección de facturación',
+        'shipping_address' => 'Dirección de envío',
+        'customer_info' => 'Detalles del cliente',
+    ],
 ];

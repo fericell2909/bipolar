@@ -136,4 +136,17 @@ return [
             <p>If you have any questions about your bipolars, please contact us at <strong>bipolar@bipolar.com.pe.</strong></p>
         ",
     ],
+    'confirmation' => [
+        'your_order' => 'Your order',
+        'product' => 'Product',
+        'shipping' => 'Shipping',
+        'pick_showroom' => 'Pick at the showroom',
+        'size' => 'Size',
+        'payment' => 'Payment method',
+        'credit_card' => 'Credit or debit card',
+        'make_payment' => 'Make payment',
+        'billing_address' => 'Billing Address',
+        'shipping_address' => 'Shipping Address',
+        'customer_info' => 'Customer info',
+    ],
 ];

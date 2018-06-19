@@ -21062,7 +21062,6 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-dropdown-menu li {
-  padding: 10px;
   white-space: nowrap;
   cursor: pointer;
   vertical-align: middle;
@@ -21077,6 +21076,8 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-dropdown-menu li a {
+  display: block;
+  padding: 10px;
   text-transform: uppercase;
   vertical-align: middle;
   font-size: 12px;
@@ -22175,9 +22176,9 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-checkout .form-coupon label {
-  color: #000000;
-  font-family: "GothamBold", Verdana;
+  font-family: "GothamBold", sans-serif;
   font-weight: normal;
+  color: #000000;
   font-size: 11px;
   width: 100%;
   text-align: center;
@@ -22194,6 +22195,8 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-checkout .content-coupon {
+  font-family: "GothamBold", sans-serif;
+  font-weight: normal;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -22211,7 +22214,6 @@ input:focus:-ms-input-placeholder {
   padding: 1em;
   border-radius: 5px;
   color: #000000;
-  font-family: "GothamBold", Verdana;
 }
 
 .bipolar-checkout .panel-default {
@@ -22248,11 +22250,12 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-checkout .panel-default .panel-heading .panel-title a {
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
   display: block;
   text-transform: uppercase;
   padding: 10px 15px;
   color: #000000;
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 17px;
   letter-spacing: 2.5px;
 }
@@ -22276,12 +22279,12 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-checkout .panel-default .panel-heading + .panel-collapse > .panel-body .form-group > label {
+  font-family: "GothamBold", sans-serif;
   font-weight: normal;
   text-align: left;
   text-transform: uppercase;
   padding-left: 10px;
   font-size: 11px;
-  font-family: "GothamBold", Verdana;
   color: #000000;
 }
 
@@ -22295,12 +22298,12 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-checkout .panel-default .send-distinct-address label {
-  font-family: "GothamBold", Verdana, Verdana;
+  font-family: "GothamBold", sans-serif;
+  font-weight: normal;
   font-size: 11px;
   color: #000000;
   text-transform: uppercase;
   padding-left: 10px;
-  font-weight: normal;
 }
 
 .bipolar-checkout .table-review-order {
@@ -22312,14 +22315,14 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-checkout .table-review-order thead th {
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
   font-size: 17px;
   color: #000000;
   letter-spacing: 2.55px;
   text-transform: uppercase;
   border-bottom: 1px solid #222;
   padding: 10px 15px;
-  font-weight: normal;
 }
 
 .bipolar-checkout .table-review-order tbody tr {
@@ -22333,13 +22336,13 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-checkout .table-review-order tbody tr td.product-name {
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
-  font-size: 17px;
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
   font-weight: normal;
+  font-size: 17px;
 }
 
 .bipolar-checkout .table-review-order tbody tr td.product-name .stock-variation {
-  font-family: "GothamLight", Verdana;
+  font-family: "GothamLight", sans-serif;
   font-weight: normal;
   font-size: 12px;
   text-transform: uppercase;
@@ -22347,15 +22350,16 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-checkout .table-review-order tbody tr td.total {
-  font-family: "GothamLight", Verdana;
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
   font-weight: normal;
-  font-size: 12px;
+  font-size: 17px;
   text-transform: uppercase;
-  letter-spacing: 0;
+  letter-spacing: 2.55px;
 }
 
 .bipolar-checkout .table-review-order tbody tr .amount {
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
   font-size: 17px;
   color: #000000;
 }
@@ -22368,7 +22372,8 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-checkout .payment-method .checkbox-content {
-  font-family: "GothamBold", Verdana;
+  font-family: "GothamBold", sans-serif;
+  font-weight: normal;
   text-transform: uppercase;
   color: #000000;
   padding-left: 10px;
@@ -22385,12 +22390,12 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-checkout .submit-payment p label {
-  font-family: "GothamBold", Verdana;
+  font-family: "GothamBold", sans-serif;
+  font-weight: normal;
   font-size: 11px;
   color: #000000;
   text-transform: uppercase;
   padding-left: 10px;
-  font-weight: normal;
 }
 
 .bipolar-checkout .submit-payment p a {
@@ -22418,7 +22423,6 @@ input:focus:-ms-input-placeholder {
 .bipolar-checkout .select-2-countries,
 .bipolar-checkout .select-2-country-states {
   border: none;
-  background-color: #f5f5f5;
   color: #878787;
   line-height: 1;
   border-radius: 42px;
@@ -22428,9 +22432,7 @@ input:focus:-ms-input-placeholder {
   -webkit-appearance: none;
   -moz-appearance: none;
   height: 35px;
-  background-image: url(/images/arrow_down.png?321c26753bb0f9825710a27f813910d5);
-  background-repeat: no-repeat;
-  background-position: calc(100% - 10px);
+  background: #f5f5f5 url(/images/arrow_down.png?321c26753bb0f9825710a27f813910d5) no-repeat calc(100% - 10px);
 }
 
 .bipolar-checkout .address-list {
@@ -22466,10 +22468,11 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-checkout .address-list .address-list-content .address-list-of-lists > li {
+  font-family: "GothamBold", sans-serif;
+  font-weight: normal;
   text-transform: uppercase;
   font-size: 11px;
   color: #000000;
-  font-family: "GothamBold", Verdana;
 }
 
 .bipolar-checkout .address-list .address-list-content .trash-icon {
@@ -22566,9 +22569,10 @@ table.table-buys tbody td.order-actions {
 }
 
 .bipolar-detail-order h2 {
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
   font-size: 26px;
   margin-bottom: 20px;
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   text-transform: uppercase;
   letter-spacing: 3px;
   color: #000000;
@@ -22579,29 +22583,37 @@ table.table-buys tbody td.order-actions {
 }
 
 .bipolar-detail-order table.table-order span.price {
-  font-size: 17px;
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
-  color: #000000;
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
   font-weight: normal;
+  font-size: 17px;
+  color: #000000;
 }
 
 .bipolar-detail-order table.table-order thead th {
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
   font-size: 17px;
   color: #000000;
-  font-weight: normal;
   text-transform: uppercase;
   border-bottom: 1px solid #222;
   padding: 10px 15px;
   letter-spacing: 2.55px;
 }
 
-.bipolar-detail-order table.table-order tbody td {
+.bipolar-detail-order table.table-order tbody tr td {
   position: relative;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 10px 15px;
   vertical-align: middle;
   color: #000000;
+}
+
+.bipolar-detail-order table.table-order tbody tr td.total-title {
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
+  font-size: 17px;
+  letter-spacing: 2.55px;
+  text-transform: uppercase;
 }
 
 .bipolar-detail-order table.customer-details {
