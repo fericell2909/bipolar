@@ -22568,9 +22568,10 @@ table.table-buys tbody td.order-actions {
 }
 
 .bipolar-detail-order h2 {
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
   font-size: 26px;
   margin-bottom: 20px;
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   text-transform: uppercase;
   letter-spacing: 3px;
   color: #000000;
@@ -22581,29 +22582,37 @@ table.table-buys tbody td.order-actions {
 }
 
 .bipolar-detail-order table.table-order span.price {
-  font-size: 17px;
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
-  color: #000000;
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
   font-weight: normal;
+  font-size: 17px;
+  color: #000000;
 }
 
 .bipolar-detail-order table.table-order thead th {
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
   font-size: 17px;
   color: #000000;
-  font-weight: normal;
   text-transform: uppercase;
   border-bottom: 1px solid #222;
   padding: 10px 15px;
   letter-spacing: 2.55px;
 }
 
-.bipolar-detail-order table.table-order tbody td {
+.bipolar-detail-order table.table-order tbody tr td {
   position: relative;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 10px 15px;
   vertical-align: middle;
   color: #000000;
+}
+
+.bipolar-detail-order table.table-order tbody tr td.total-title {
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
+  font-size: 17px;
+  letter-spacing: 2.55px;
+  text-transform: uppercase;
 }
 
 .bipolar-detail-order table.customer-details {
