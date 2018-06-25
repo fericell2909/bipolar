@@ -12,6 +12,8 @@
           <thead>
             <tr>
               <th>Producto</th>
+              <th>Talla</th>
+              <th>Color</th>
               <th>Cantidad</th>
               <th>Total</th>
             </tr>
@@ -21,6 +23,8 @@
               <?php /** @var \App\Models\BuyDetail $detail */ ?>
               <tr>
                 <td>{{ $detail->product->name }}</td>
+                <td>{{ optional($detail->stock)->size->name ?? '--' }}</td>
+                <td>{{ optional($detail->product->colors->first())->name ?? '--' }}</td>
                 <td>{{ $detail->quantity }}</td>
                 <td>{{ $detail->total }} {{ $detail->buy->currency }}</td>
               </tr>
