@@ -106,9 +106,9 @@ return [
         'opening' => 'Opening hours',
         'location' => 'Location',
         'schedule' => 'Monday-Saturday 11:00am-8:30pm',
-        'about' => 'Nuestro Showroom se encuentra en San Isidro, Lima – Perú. <br>
-        Buscamos darle a nuestras clientas una atención personalizada por lo que atendemos a puerta cerrada. <br>
-        Para más información, escríbenos a shop@bipolar.com.pe o al (+51) 965.367.385.',
+        'about' => 'Our Showroom is located in San Isidro, Lima – Peru.
+        We seek to give our clients personalized attention so we work behind closed doors.
+        For more information, please write us at shop@bipolar.com.pe or call us at (+51) 965.367.385.',
     ],
     'care_tips' => [
         'title' => 'Care tips',
