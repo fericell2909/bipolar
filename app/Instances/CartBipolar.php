@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\CartDetail;
 use App\Models\Coupon;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Collection;
 
 class CartBipolar
@@ -108,6 +109,20 @@ class CartBipolar
     public function totalCurrency()
     {
         return $this->cart->total_currency;
+    }
+
+    /**
+     * @param Cart $cart
+     * @param User $user
+     * @return Cart
+     */
+    public function convertToUser(Cart $cart, User $user)
+    {
+        $cart->session_id = null;
+        $cart->user()->associate($user);
+        $cart->save();
+
+        return $cart;
     }
 
     public function recalculate()

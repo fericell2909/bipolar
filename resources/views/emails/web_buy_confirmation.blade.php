@@ -1,5 +1,6 @@
 @extends("emails.layout_emails")
 @section("content")
+<?php /** @var \App\Models\Buy $buy */ ?>
 <!-- product_extended -->
 <table role="presentation" class="email_table" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
   <tbody>
@@ -87,14 +88,14 @@
                 <tr>
                   <td class="column_cell px bb tr switch_tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 16px;padding-right: 16px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #f8beb6;text-align: right;border-bottom: 1px solid;border-color: #e6e9eb;line-height: inherit;">
                     <p class="mb" style="font-weight: 700;font-size: 15px;color: #f8beb6;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 16px;">
-                      Subtotal {{ $buy->total_currency }}<br>
+                      Subtotal {{ $buy->subtotal_currency }}<br>
                       {{ __('bipolar.shipping.title') }} {{ $buy->shipping_fee_currency }}
                     </p>
                   </td>
                 </tr>
                 <tr>
                   <td class="column_cell px tr switch_tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 16px;padding-right: 16px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: right;line-height: inherit;">
-                    <h3 class="mb" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 16px;color: #4d4d4d;font-size: 18px;line-height: 23px;"><span class="tp" style="font-size: 25px; line-height: inherit; color: #000000">{{ $buy->total_currency }}</span></h3>
+                    <h3 class="mb" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 16px;color: #4d4d4d;font-size: 20px;line-height: 23px;">TOTAL <span class="tp" style="font-size: 25px; line-height: inherit; color: #000000">{{ $buy->total_currency }}</span></h3>
                   </td>
                 </tr>
                 </tbody>

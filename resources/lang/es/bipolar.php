@@ -1,6 +1,16 @@
 <?php
 
 return [
+    'form_fields' => [
+        'firstname' => 'Nombres',
+        'lastname' => 'Apellidos',
+        'email' => 'Correo',
+        'phone' => 'Teléfono',
+        'country' => 'País',
+        'city' => 'Estado / Ciudad',
+        'address' => 'Dirección',
+        'zip' => 'Código zip',
+    ],
     'payme_modal_lang' => 'SP',
     'size_abbr' => 'Talla',
     'navbar' => [
@@ -148,5 +158,28 @@ return [
         'billing_address' => 'Dirección de facturación',
         'shipping_address' => 'Dirección de envío',
         'customer_info' => 'Detalles del cliente',
+    ],
+    'checkout' => [
+        'coupon' => 'Cupón',
+        'remove' => 'Remover',
+        'have_coupon' => '¿Tienes un cupón?',
+        'coupon_code' => 'Código de cupón',
+        'apply_coupon' => 'Aplicar cupón',
+        'billing_address' => 'Dirección de facturación',
+        'shipping_address' => 'Dirección de envío',
+        'your_order' => 'Tu pedido',
+        'shipping' => 'Envío',
+        'showroom_shipping' => 'Recoger en el showroom',
+        'terms_check' => 'Necesita aceptar los términos y condiciones para continuar',
+        'terms_accept' => 'He leído y acepto los <a href="{{ route(\'landings.exchange\') }}" target="_blank">términos y condiciones</a>',
+        'shipping_check' => 'Necesita seleccionar una opción de envío',
+        'continue' => 'Continuar',
+        'select' => 'SELECCIONAR',
+        'another_address' => '¿Enviar a una dirección diferente?',
+    ],
+    'password_email' => [
+        'reset' => 'Restaurar contraseña',
+        'explain' => 'Estás recibiendo este correo porque recibimos una solicitud de restauración desde tu cuenta',
+        'prevent' => 'Si no solicitaste restaurar tu contraseña, ignora este correo',
     ],
 ];

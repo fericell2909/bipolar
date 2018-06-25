@@ -161,6 +161,20 @@
             text-transform: uppercase;
             letter-spacing: 2.55px;
           }
+
+          &.shipping-pickers {
+            .picker {
+              @include gotham_bold_font;
+              display: block;
+              text-transform: uppercase;
+              font-size: 11px;
+              margin: 6px 0;
+
+              input[type="radio"] {
+                margin-right: 5px;
+              }
+            }
+          }
         }
 
         .amount {

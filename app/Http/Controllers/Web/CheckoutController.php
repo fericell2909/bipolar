@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Mail\BuyConfirmation;
 use App\Models\CartDetail;
 use App\Models\Country;
 use App\Models\Address;
@@ -108,11 +109,16 @@ class CheckoutController extends Controller
 
         $buy->setStatus(config('constants.BUY_INCOMPLETE_STATUS'));
 
-        if ($request->filled('showroom_pick')) {
+        if ($request->input('showroom_pick') === 'free') {
             $buy->showroom = true;
             $buy->save();
-        } else {
+        } elseif ($request->input('showroom_pick') === 'pay') {
             $this->calculateShippingFee($buy);
+        }
+
+        // The email only sends in not a production environment
+        if (env('APP_ENV') !== 'production') {
+            \Mail::to($request->user())->send(new BuyConfirmation($buy));
         }
 
         return redirect()->route('confirmation', $buy->id);

@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.25 on 2018-06-18 21:00:25.
+ * Generated for Laravel 5.6.26 on 2018-06-24 22:26:38.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3349,7 +3349,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param mixed $payload
          * @param bool $unserialize
-         * @return string 
+         * @return mixed 
          * @throws \Illuminate\Contracts\Encryption\DecryptException
          * @static 
          */ 
@@ -9832,6 +9832,17 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Drop all views from the database.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function dropAllViews()
+        {
+            \Illuminate\Database\Schema\MySqlBuilder::dropAllViews();
+        }
+        
+        /**
          * Set the default string length for migrations.
          *
          * @param int $length
@@ -14776,6 +14787,19 @@ namespace Facades\App\Instances {
         public static function totalCurrency()
         {
             return \App\Instances\CartBipolar::totalCurrency();
+        }
+        
+        /**
+         * 
+         *
+         * @param \App\Instances\Cart $cart
+         * @param \App\Instances\User $user
+         * @return \App\Instances\Cart 
+         * @static 
+         */ 
+        public static function convertToUser($cart, $user)
+        {
+            return \App\Instances\CartBipolar::convertToUser($cart, $user);
         }
         
         /**
