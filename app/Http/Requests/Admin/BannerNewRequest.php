@@ -27,7 +27,7 @@ class BannerNewRequest extends FormRequest
         return [
             'begin' => 'nullable|date_format:Y-m-d H:i',
             'end'   => 'nullable|date_format:Y-m-d H:i',
-            'photo' => 'required|image',
+            'photo' => 'required|image|max:2000',
             'state' => [
                 'required',
                 Rule::exists('states', 'id'),
