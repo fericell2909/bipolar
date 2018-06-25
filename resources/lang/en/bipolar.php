@@ -1,6 +1,16 @@
 <?php
 
 return [
+    'form_fields' => [
+        'firstname' => 'First name',
+        'lastname' => 'Last name',
+        'email' => 'Email address',
+        'phone' => 'Phone',
+        'country' => 'Country',
+        'city' => 'Town / City',
+        'address' => 'Address',
+        'zip' => 'Postcode / Zip',
+    ],
     'payme_modal_lang' => 'EN',
     'size_abbr' => 'Size',
     'navbar' => [
@@ -148,5 +158,23 @@ return [
         'billing_address' => 'Billing Address',
         'shipping_address' => 'Shipping Address',
         'customer_info' => 'Customer info',
+    ],
+    'checkout' => [
+        'coupon' => 'Coupon',
+        'remove' => 'Remove',
+        'have_coupon' => '¿Have a coupon?',
+        'coupon_code' => 'Coupon code',
+        'apply_coupon' => 'Apply coupon',
+        'billing_address' => 'Billing address',
+        'shipping_address' => 'Shipping address',
+        'your_order' => 'Your order',
+        'shipping' => 'Shipping',
+        'showroom_shipping' => 'Pick at showroom',
+        'terms_check' => 'You need to check the terms to continue',
+        'terms_accept' => 'I have read the <a href="{{ route(\'landings.exchange\') }}" target="_blank">terms and conditions</a>',
+        'shipping_check' => 'You need to choose a shipping option',
+        'continue' => 'Continue',
+        'select' => 'SELECT',
+        'another_address' => 'Ship to a different address?',
     ],
 ];

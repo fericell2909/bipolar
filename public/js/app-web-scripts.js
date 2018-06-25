@@ -27370,12 +27370,25 @@ $(function () {
     heading.children('.panel-icon').html("<i class='fa fa-chevron-down'></i>");
   });
 
+  // Submit the checkout form
   $('#checkout-form').submit(function (event) {
+    var $hiddenShipping = $('input[name="showroom_pick"]');
+    if (!$hiddenShipping.val()) {
+      $('#shipping-check').show();
+      return event.preventDefault();
+    }
+
     var terms = $('input[name="terms"]');
     if (terms.is(':checked') === false) {
       $('#terms-check').show();
       return event.preventDefault();
     }
+  });
+
+  // Change the shipping for the form
+  $('input[name="shipping_pick"]').change(function (event) {
+    $('#shipping-check').hide();
+    return $('input[name="showroom_pick"]').val(event.target.value);
   });
 });
 

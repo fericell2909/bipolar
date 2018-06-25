@@ -108,10 +108,10 @@ class CheckoutController extends Controller
 
         $buy->setStatus(config('constants.BUY_INCOMPLETE_STATUS'));
 
-        if ($request->filled('showroom_pick')) {
+        if ($request->input('showroom_pick') === 'free') {
             $buy->showroom = true;
             $buy->save();
-        } else {
+        } elseif ($request->input('showroom_pick') === 'pay') {
             $this->calculateShippingFee($buy);
         }
 

@@ -22357,6 +22357,19 @@ input:focus:-ms-input-placeholder {
   letter-spacing: 2.55px;
 }
 
+.bipolar-checkout .table-review-order tbody tr td.shipping-pickers .picker {
+  font-family: "GothamBold", sans-serif;
+  font-weight: normal;
+  display: block;
+  text-transform: uppercase;
+  font-size: 11px;
+  margin: 6px 0;
+}
+
+.bipolar-checkout .table-review-order tbody tr td.shipping-pickers .picker input[type="radio"] {
+  margin-right: 5px;
+}
+
 .bipolar-checkout .table-review-order tbody tr .amount {
   font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
   font-weight: normal;

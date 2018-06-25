@@ -100,11 +100,24 @@ $(function() {
       heading.children('.panel-icon').html("<i class='fa fa-chevron-down'></i>");
     });
 
+  // Submit the checkout form
   $('#checkout-form').submit(function (event) {
+    const $hiddenShipping = $('input[name="showroom_pick"]');
+    if (!$hiddenShipping.val()) {
+      $('#shipping-check').show();
+      return event.preventDefault();
+    }
+
     const terms = $('input[name="terms"]');
     if (terms.is(':checked') === false) {
       $('#terms-check').show();
       return event.preventDefault();
     }
+  });
+
+  // Change the shipping for the form
+  $('input[name="shipping_pick"]').change(event => {
+    $('#shipping-check').hide();
+    return $('input[name="showroom_pick"]').val(event.target.value);
   });
 });

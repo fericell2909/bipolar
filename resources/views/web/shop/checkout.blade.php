@@ -8,15 +8,15 @@
 		<div class="col-md-3">
 			@if($cart->coupon)
 				<div class="content-coupon">
-          <p>Cupón {{ $cart->coupon->code }}</p>
-          <button type="button" id="button-remove-coupon" class="btn btn-dark-rounded">Remover</button>
+          <p>{{ __('bipolar.checkout.coupon') }} {{ $cart->coupon->code }}</p>
+          <button type="button" id="button-remove-coupon" class="btn btn-dark-rounded">{{ __('bipolar.checkout.remove') }}</button>
 				</div>
 			@else
 				<div id="alert-coupon" class="alert alert-danger" style="display: none;"></div>
 				{!! Form::open(["id" => 'form-coupon', 'class' => 'form-coupon']) !!}
-					{!! Form::label('Have a coupon?') !!}
-					{!! Form::text('coupon_name', null, ['class' => 'form-control', 'placeholder' => 'COUPON CODE', 'autocomplete' => 'off', 'required']) !!}
-					<button type="submit" class="btn btn-dark-rounded">Apply code</button>
+					{!! Form::label(__('bipolar.checkout.have_coupon')) !!}
+					{!! Form::text('coupon_name', null, ['class' => 'form-control', 'placeholder' => __('bipolar.checkout.coupon_code'), 'autocomplete' => 'off', 'required']) !!}
+					<button type="submit" class="btn btn-dark-rounded">{{ __('bipolar.checkout.apply_coupon') }}</button>
 				{!! Form::close() !!}
 				@endif
 		</div>
@@ -35,7 +35,7 @@
 					<div class="panel-heading {{ !Request::has('part') ? null : 'content-collapsed' }}" role="tab" id="headingOne">
 						<h4 class="panel-title">
 							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseOne" aria-expanded="true" aria-controls="sectionCollapseOne">
-								Dirección de facturación
+								{{ __('bipolar.checkout.billing_address') }}
 							</a>
 						</h4>
 						<div class="panel-icon"><i class="fa fa-chevron-down"></i></div>
@@ -66,46 +66,46 @@
 							{!! Form::open(['url' => route('address.add', 'billing')]) !!}
 							<div class="row">
 								<div class="form-group col-md-6">
-									{!! Form::label('Nombre') !!}
+									{!! Form::label(__('bipolar.form_fields.firstname')) !!}
 									{!! Form::text('name', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Apellidos') !!}
+									{!! Form::label(__('bipolar.form_fields.lastname')) !!}
 									{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Correo') !!}
+									{!! Form::label(__('bipolar.form_fields.email')) !!}
 									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Teléfono') !!}
+									{!! Form::label(__('bipolar.form_fields.phone')) !!}
 									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('País') !!}
+									{!! Form::label(__('bipolar.form_fields.country')) !!}
 									<select name="country" id="" class="form-control select-2-countries" autocomplete="off">
-										<option disabled selected>SELECCIONAR</option>
+										<option disabled selected>{{ __('bipolar.checkout.select') }}</option>
 										@foreach($countries as $countryId => $countryName)
 											<option value="{{ $countryId }}">{{ $countryName }}</option>
 										@endforeach
 									</select>
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Estado / Ciudad') !!}
+									{!! Form::label(__('bipolar.form_fields.country')) !!}
 									{!! Form::select('state', [], null, ['class' => 'form-control select-2-country-states', 'required' => true, 'autocomplete' => 'off']) !!}
 									{!! Form::hidden('country_state_billing_hidden', null, ['id' => 'country_state_billing_hidden']) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Address') !!}
+									{!! Form::label(__('bipolar.form_fields.address')) !!}
 									{!! Form::text('address', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Código zip') !!}
+									{!! Form::label(__('bipolar.form_fields.zip')) !!}
 									{!! Form::text('zip', null, ['class' => 'form-control', 'autocomplete' => 'off']) !!}
 								</div>
 							</div>
 							<div class="text-center">
-								<button type="submit" id="checkoutContinuePartTwo" class="btn btn-dark-rounded">Continuar</button>
+								<button type="submit" id="checkoutContinuePartTwo" class="btn btn-dark-rounded">{{ __('bipolar.checkout.continue') }}</button>
 							</div>
 							{!! Form::close() !!}
 						</div>
@@ -116,7 +116,7 @@
 						<h4 class="panel-title">
 							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseTwo" aria-expanded="false"
 							 aria-controls="collapseTwo">
-								Dirección de envío
+								{{ __('bipolar.checkout.shipping_address') }}
 							</a>
 						</h4>
 						<div class="panel-icon"><i class="fa fa-chevron-down"></i></div>
@@ -125,7 +125,7 @@
 						<div class="panel-body">
 							<div id="bipolar-directions"></div>
               <div class="send-distinct-address">
-                <label>¿Enviar a una dirección diferente?</label> {!! Form::checkbox('send-distinct-address', '1') !!}
+                <label>{{ __('bipolar.checkout.another_address') }}</label> {!! Form::checkbox('send-distinct-address', '1') !!}
               </div>
 							@foreach($shippingAddresses as $shippingAddress)
 								<div class="address-list">
@@ -151,50 +151,50 @@
 							{!! Form::open(['url' => route('address.add', 'shipping'), 'id' => 'form-new-shipping-address', 'style' => 'display:none']) !!}
 							<div class="row">
 								<div class="form-group col-md-6">
-									{!! Form::label('Nombre') !!}
+									{!! Form::label(__('bipolar.form_fields.firstname')) !!}
 									{!! Form::text('name', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Apellidos') !!}
+									{!! Form::label(__('bipolar.form_fields.lastname')) !!}
 									{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Correo') !!}
+									{!! Form::label(__('bipolar.form_fields.email')) !!}
 									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Teléfono') !!}
+									{!! Form::label(__('bipolar.form_fields.email')) !!}
 									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('País') !!}
+									{!! Form::label(__('bipolar.form_fields.country')) !!}
 									<select name="country" id="" class="select-2-countries-shipping form-control" required autocomplete="off">
-										<option selected disabled>SELECCIONAR</option>
+										<option selected disabled>{{ __('bipolar.checkout.select') }}</option>
 										@foreach($countries as $countryId => $countryName)
 											<option value="{{ $countryId }}">{{ $countryName }}</option>
 										@endforeach
 									</select>
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Estado / Ciudad') !!}
+									{!! Form::label(__('bipolar.form_fields.city')) !!}
 									{!! Form::select('state', [], null, ['class' => 'select-2-country-states-shipping form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 									{!! Form::hidden('country_state_shipping_hidden', null, ['id' => 'country_state_shipping_hidden']) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Address') !!}
+									{!! Form::label(__('bipolar.form_fields.address')) !!}
 									{!! Form::text('address', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label('Código zip') !!}
+									{!! Form::label(__('bipolar.form_fields.zip')) !!}
 									{!! Form::text('zip', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 							</div>
               <div class="text-center">
-                <button type="submit" class="btn btn-dark-rounded">Continuar</button>
+                <button type="submit" class="btn btn-dark-rounded">{{ __('bipolar.checkout.continue') }}</button>
               </div>
 							{!! Form::close() !!}
               <div class="text-center">
-                <button type="button" class="btn btn-dark-rounded" id="checkoutContinuePartThree">Continuar</button>
+                <button type="button" class="btn btn-dark-rounded" id="checkoutContinuePartThree">{{ __('bipolar.checkout.continue') }}</button>
               </div>
 						</div>
 					</div>
@@ -204,7 +204,7 @@
 						<h4 class="panel-title">
 							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseThree" aria-expanded="false"
 							 aria-controls="collapseThree">
-								Tu pedido
+								{{ __('bipolar.checkout.your_order') }}
 							</a>
 						</h4>
 						<div class="panel-icon"><i class="fa fa-chevron-down"></i></div>
@@ -214,7 +214,7 @@
 							<table class="table-review-order">
                 <thead>
                   <tr>
-                    <th>Producto</th>
+                    <th>{{ __('bipolar.confirmation.product') }}</th>
                     <th>Total</th>
                   </tr>
                 </thead>
@@ -243,6 +243,13 @@
                     <td class="total">Subtotal</td>
                     <td><span class="amount">{{ $cart->subtotal_currency }}</span></td>
                   </tr>
+									<tr>
+										<td class="total">{{ __('bipolar.checkout.shipping') }}</td>
+										<td class="shipping-pickers">
+											<div class="picker">{!! Form::radio('shipping_pick', 'free', false, ['required']) !!} {{ __('bipolar.checkout.showroom_shipping') }}</div>
+											<div class="picker">{!! Form::radio('shipping_pick', 'pay', false, ['required']) !!} Pagar</div>
+										</td>
+									</tr>
                   <tr>
                     <td class="total">Total</td>
                     <td><span class="amount">{{ $cart->total_currency }}</span></td>
@@ -252,19 +259,22 @@
 							<div class="bipolar-alert-message" id="terms-check" style="display: none;">
 								<i class="fa fa-times-circle-o"></i>
 								<div class="success-content">
-									<span>Necesita aceptar los términos y condiciones para continuar</span>
+									<span>{{ __('bipolar.checkout.terms_check') }}</span>
+								</div>
+							</div>
+							<div class="bipolar-alert-message" id="shipping-check" style="display: none;">
+								<i class="fa fa-times-circle-o"></i>
+								<div class="success-content">
+									<span>{{ __('bipolar.checkout.shipping_check') }}</span>
 								</div>
 							</div>
 							{!! Form::open(['id' => 'checkout-form']) !!}
 								<div class="submit-payment">
-									<button type="submit" class="btn btn-dark-rounded">Pagar</button>
-									<p>
-										{!! Form::checkbox('showroom_pick', '1', null) !!}
-										<label>Recoger en showroom</label>
-									</p>
+									<button type="submit" class="btn btn-dark-rounded">{{ __('bipolar.checkout.continue') }}</button>
+									{!! Form::hidden('showroom_pick') !!}
 									<p>
 										{!! Form::checkbox('terms', '1', null) !!}
-										<label for="terms">He leído y acepto los <a href="#">términos y condiciones</a></label>
+										<label for="terms">{!! __('bipolar.checkout.terms_accept') !!}</label>
 									</p>
 								</div>
 							{!! Form::close() !!}
