@@ -182,4 +182,7 @@ return [
         'explain' => 'Estás recibiendo este correo porque recibimos una solicitud de restauración desde tu cuenta',
         'prevent' => 'Si no solicitaste restaurar tu contraseña, ignora este correo',
     ],
+    'suscription_email' => [
+        'desuscribe' => 'Si deseas desuscribirte de nuestra lista puedes hacerlo desde <a href="https://bipolar.us12.list-manage.com/unsubscribe?u=d616f5c8cc9cff44a6ae9337a&id=914e120268">aquí</a>',
+    ],
 ];
