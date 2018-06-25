@@ -182,4 +182,7 @@ return [
         'explain' => 'You are receiving this email because we received a password reset request for your account',
         'prevent' => 'If you did not request a password reset, no further action is required',
     ],
+    'suscription_email' => [
+        'desuscribe' => 'If you wish to unsubscribe from our list, you can do <a href="https://bipolar.us12.list-manage.com/unsubscribe?u=d616f5c8cc9cff44a6ae9337a&id=914e120268">here</a>',
+    ],
 ];
