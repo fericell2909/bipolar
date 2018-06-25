@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Web\Auth;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -61,5 +63,29 @@ class RegisterController extends Controller
             'birthday' => $data['birthday'] ?? null,
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $cartBeforeRegister = null;
+        if (\CartBipolar::count() > 0) {
+            $cartBeforeRegister = \CartBipolar::last();
+        }
+
+        $this->guard()->login($user);
+
+        if (!is_null($cartBeforeRegister)) {
+            \CartBipolar::convertToUser($cartBeforeRegister, $user);
+        }
+
+        if ($request->session()->has('url.intended')) {
+            return redirect($request->session()->get('url.intended'));
+        }
+
+        return $this->registered($request, $user) ?: redirect($this->redirectPath());
     }
 }

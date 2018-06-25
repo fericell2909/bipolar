@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.25 on 2018-06-18 21:00:25.
+ * Generated for Laravel 5.6.25 on 2018-06-24 22:11:04.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -14776,6 +14776,16 @@ namespace Facades\App\Instances {
         public static function totalCurrency()
         {
             return \App\Instances\CartBipolar::totalCurrency();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function convertToUser($cart, $user)
+        {
+            return \App\Instances\CartBipolar::convertToUser($cart, $user);
         }
         
         /**
