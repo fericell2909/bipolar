@@ -177,4 +177,9 @@ return [
         'select' => 'SELECCIONAR',
         'another_address' => '¿Enviar a una dirección diferente?',
     ],
+    'password_email' => [
+        'reset' => 'Restaurar contraseña',
+        'explain' => 'Estás recibiendo este correo porque recibimos una solicitud de restauración desde tu cuenta',
+        'prevent' => 'Si no solicitaste restaurar tu contraseña, ignora este correo',
+    ],
 ];

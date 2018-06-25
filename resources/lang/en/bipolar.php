@@ -177,4 +177,9 @@ return [
         'select' => 'SELECT',
         'another_address' => 'Ship to a different address?',
     ],
+    'password_email' => [
+        'reset' => 'Password reset',
+        'explain' => 'You are receiving this email because we received a password reset request for your account',
+        'prevent' => 'If you did not request a password reset, no further action is required',
+    ],
 ];
