@@ -161,6 +161,19 @@ class ShopController extends Controller
             $quantities[$number] = $number;
         }
 
+        $seoDescription = !empty($product->description) ? $product->description : 'Zapatos de diseñador hechos a mano en Perú. Designer shoes handmade in Peru';
+        $image = optional($product->photos->first())->url;
+        \SEO::metatags()->setTitle("{$product->name}")->setDescription($seoDescription);
+        \SEO::twitter()
+            ->setTitle("{$product->name} - Bipolar")
+            ->setDescription($seoDescription)
+            ->addImage($image);
+        \SEO::opengraph()
+            ->setType('article')
+            ->setTitle("{$product->name} - Bipolar")
+            ->setDescription($seoDescription)
+            ->addImage($image, ['width'  => 1024, 'height' => 680]);
+
         return view('web.shop.product', compact('product', 'stockWithSizes', 'quantities'));
     }
 }

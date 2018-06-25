@@ -118,8 +118,8 @@
         <div class="col-sm-6 col-md-5">
           <div class="bipolar-action-button-container">
             <span class="text-uppercase">Compártelo:</span>
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-envelope-o"></i></a>
+            <a href="#" onclick="window.open('https://www.facebook.com/sharer.php?s=100&p[url]={{ urlencode(URL::current()) }}','sharer', 'toolbar=0,status=0,width=620,height=280');"><i class="fa fa-facebook"></i></a>
+            <a href="mailto:bipolar@bipolar.com.pe"><i class="fa fa-envelope-o"></i></a>
           </div>
         </div>
       </div>

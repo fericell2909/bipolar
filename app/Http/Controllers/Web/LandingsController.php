@@ -7,11 +7,21 @@ use App\Mail\SendContactMessage;
 use App\Models\HomePost;
 use App\Models\Settings;
 use App\Models\Banner;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Http\Request;
 use App\Models\Historic;
 
 class LandingsController extends Controller
 {
+    use SEOTools;
+
+    public function __construct()
+    {
+        $imageUrl = 'https://bipolar-peru.s3.amazonaws.com/assets/jeringas-rosado.jpg';
+        $this->seo()->opengraph()->addImage($imageUrl);
+        $this->seo()->twitter()->addImage($imageUrl);
+    }
+
     public function home()
     {
         $homePosts = HomePost::whereStateId(config('constants.STATE_ACTIVE_ID'))
