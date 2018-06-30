@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\BSale;
 use Zttp\Zttp;
 
 class BsaleController extends Controller
@@ -12,11 +13,7 @@ class BsaleController extends Controller
     public function products()
     {
         /** @var \Zttp\ZttpResponse $response */
-        $response = Zttp::withHeaders(['access_token' => $this->token])
-            ->get('https://api.bsale.cl/v1/stocks.json', [
-                'expand' => 'office,variant.product',
-                'limit' => 100000000,
-            ]);
+        $response = BSale::stocksGet();
 
         if (!$response->isSuccess()) {
             return response()->json(['stocks' => []]);

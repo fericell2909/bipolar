@@ -8,6 +8,24 @@ use Zttp\Zttp;
 
 class BSale
 {
+    /**
+     * @return mixed
+     */
+    public static function stocksGet()
+    {
+        $response = Zttp::withHeaders(['access_token' => env('BSALE_TOKEN')])
+            ->get('https://api.bsale.cl/v1/stocks.json', [
+                'expand' => 'office,variant.product',
+                'limit'  => 100000000,
+            ]);
+
+        return $response;
+    }
+
+    /**
+     * @param Buy $buy
+     * @return mixed
+     */
     public static function documentCreate(Buy $buy)
     {
         /** @link https://github.com/gmontero/API-Bsale/wiki/Documentos#wiki-post-un-documento */
