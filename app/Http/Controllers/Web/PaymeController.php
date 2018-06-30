@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Http\Services\BSale;
 use App\Mail\BuyConfirmation;
 use App\Models\Buy;
 use App\Models\Payment;
@@ -126,6 +127,7 @@ class PaymeController extends Controller
             $buy->save();
             $buy->setStatus(config('constants.BUY_PROCESSING_STATUS'), 'Pago exitoso');
             \Mail::to($request->user())->send(new BuyConfirmation($buy));
+            BSale::documentCreate($buy);
         } elseif ($request->input('authorizationResult') == '01') {
             $payment->auth_result_text = 'Operación Denegada';
         } elseif ($request->input('authorizationResult') == '05') {

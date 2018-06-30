@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\BSale;
 use App\Mail\BuyConfirmation;
 use App\Models\CartDetail;
 use App\Models\Country;
@@ -10,19 +11,10 @@ use App\Models\Address;
 use App\Models\Buy;
 use App\Models\BuyDetail;
 use App\Models\Shipping;
-use App\Models\Stock;
 use Illuminate\Http\Request;
-use Zttp\Zttp;
 
 class CheckoutController extends Controller
 {
-    private $token;
-
-    public function __construct()
-    {
-        $this->token = env('BSALE_TOKEN');
-    }
-
     public function checkout()
     {
         if (\CartBipolar::count() === 0) {
@@ -94,9 +86,6 @@ class CheckoutController extends Controller
             if ($cartDetail->stock) {
                 $buyDetail->stock()->associate($cartDetail->stock);
                 $quantity = $cartDetail->quantity;
-                if ($cartDetail->stock->bsale_stock_id) {
-                    $quantity = $this->updateStockInBsale($cartDetail->stock, $cartDetail->quantity, $buy->id);
-                }
                 $buyDetail->stock->quantity -= $quantity;
                 $buyDetail->stock->save();
             }
@@ -119,57 +108,10 @@ class CheckoutController extends Controller
         // The email only sends in not a production environment
         if (env('APP_ENV') !== 'production') {
             \Mail::to($request->user())->send(new BuyConfirmation($buy));
+            BSale::documentCreate($buy);
         }
 
         return redirect()->route('confirmation', $buy->id);
-    }
-
-    /**
-     * @param Stock $stock
-     * @param int $quantity
-     * @return int|mixed
-     */
-    private function updateStockInBsale(Stock $stock, int $quantity, int $buyId)
-    {
-        // get the bsale stock and sale the quantity
-        /** @var \Zttp\ZttpResponse $response */
-        $response = Zttp::withHeaders(['access_token' => $this->token])
-            ->get("https://api.bsale.cl/v1/stocks/{$stock->bsale_stock_id}.json");
-
-        if (!$response->isSuccess()) {
-            return null;
-        }
-
-        /** @link https://github.com/gmontero/API-Bsale/wiki/Stocks#get-un-stock */
-        $content = $response->json();
-
-        // if the quantity is >= stock bsale qty, sell all
-        if ($content['quantityAvailable'] < $quantity) {
-            $quantity = $content['quantityAvailable'];
-        }
-
-        $dataConsume = [
-            'note'     => "Venta por Web compra #{$buyId}",
-            'officeId' => data_get($content, 'office.id'),
-            'details'  => [
-                [
-                    'quantity'  => $quantity,
-                    'variantId' => data_get($content, 'variant.id'),
-                ],
-            ],
-        ];
-
-        // create stock consume
-        /** @var \Zttp\ZttpResponse $responseConsume */
-        $responseConsume = Zttp::asJson()->withHeaders(['access_token' => $this->token])
-            ->post('https://api.bsale.cl/v1/stocks/consumptions.json', $dataConsume);
-
-        if (!$responseConsume->isSuccess()) {
-            return null;
-        }
-
-        // update the quantity in the stock
-        return $quantity;
     }
 
     /**
