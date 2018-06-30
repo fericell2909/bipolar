@@ -9,11 +9,6 @@ class BsaleController extends Controller
 {
     private $token;
 
-    public function __construct()
-    {
-        $this->token = env('BSALE_TOKEN');
-    }
-
     public function products()
     {
         /** @var \Zttp\ZttpResponse $response */
@@ -36,18 +31,16 @@ class BsaleController extends Controller
             $officeName = data_get($item, "office.name", "--");
             $variant = data_get($item, "variant.description", 'Sin variante');
             $quantity = $item["quantityAvailable"];
-            $stockId = $item["id"];
+            $variantId = data_get($item, "variant.id", "0");
 
             return [
-                'id'           => $stockId,
+                'id'           => $variantId,
                 'product_name' => $productName,
                 'office_name'  => $officeName,
                 'quantity'     => $quantity,
                 'text'         => "{$productName} x {$quantity} en {$officeName} - Variante: {$variant}",
             ];
         });
-
-        debug($items);
 
         return response()->json($items->toArray());
     }
