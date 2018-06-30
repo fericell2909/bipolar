@@ -186,7 +186,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label(__('bipolar.form_fields.zip')) !!}
-									{!! Form::text('zip', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+									{!! Form::text('zip', null, ['class' => 'form-control', 'autocomplete' => 'off']) !!}
 								</div>
 							</div>
               <div class="text-center">
