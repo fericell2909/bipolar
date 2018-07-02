@@ -120,7 +120,12 @@ class CheckoutController extends Controller
         // The email only sends in not a production environment
         if (env('APP_ENV') !== 'production') {
             \Mail::to($request->user())->send(new BuyConfirmation($buy));
-            BSale::documentCreate($buy);
+            $response = BSale::documentCreate($buy);
+            if ($response->isSuccess()) {
+                $content = $response->json();
+                $buy->bsale_document_url = array_get($content, 'urlPdf');
+                $buy->save();
+            }
         }
 
         return redirect()->route('confirmation', $buy->id);

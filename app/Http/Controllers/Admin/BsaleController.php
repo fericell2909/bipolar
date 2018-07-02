@@ -4,15 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\BSale;
-use Zttp\Zttp;
 
 class BsaleController extends Controller
 {
-    private $token;
-
     public function products()
     {
-        /** @var \Zttp\ZttpResponse $response */
         $response = BSale::stocksGet();
 
         if (!$response->isSuccess()) {
@@ -27,7 +23,7 @@ class BsaleController extends Controller
             $productName = data_get($item, "variant.product.name", "--");
             $officeName = data_get($item, "office.name", "--");
             $variant = data_get($item, "variant.description", 'Sin variante');
-            $quantity = $item["quantityAvailable"];
+            $quantity = intval($item["quantityAvailable"]) >= 0 ? $item["quantityAvailable"] : 0;
             $variantId = data_get($item, "variant.id", "0");
 
             return [

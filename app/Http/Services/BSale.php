@@ -5,13 +5,14 @@ namespace App\Http\Services;
 use App\Models\Buy;
 use App\Models\BuyDetail;
 use Zttp\Zttp;
+use Zttp\ZttpResponse;
 
 class BSale
 {
     /**
-     * @return mixed
+     * @return ZttpResponse
      */
-    public static function stocksGet()
+    public static function stocksGet(): ZttpResponse
     {
         $response = Zttp::withHeaders(['access_token' => env('BSALE_TOKEN')])
             ->get('https://api.bsale.cl/v1/stocks.json', [
@@ -24,25 +25,35 @@ class BSale
 
     /**
      * @param Buy $buy
-     * @return mixed
      */
-    public static function documentCreate(Buy $buy)
+    public static function documentCreate(Buy $buy): ZttpResponse
     {
         /** @link https://github.com/gmontero/API-Bsale/wiki/Documentos#wiki-post-un-documento */
-        /** @var \Zttp\ZttpResponse $responseConsume */
 
         $buy->load(['details', 'details.stock.product', 'shipping_address', 'user']);
 
-        $buyDetails = [];
-        $buy->details->each(function ($detail) use (&$buyDetails) {
+        $onlyDetailsWithBsaleStock = $buy->details->filter(function ($detail) {
             /** @var BuyDetail $detail */
-            return array_push($buyDetails, [
+            if (is_null($detail->stock_id)) {
+                return false;
+            }
+
+            if (is_null($detail->stock->bsale_stock_id)) {
+                return false;
+            }
+
+            return $detail->stock->bsale_stock_id;
+        });
+
+        $buyDetails = $onlyDetailsWithBsaleStock->map(function ($detail) {
+            /** @var BuyDetail $detail */
+            return [
                 'variantId'    => $detail->stock->bsale_stock_id,
                 // todo: change USD/PEN this if we need it
                 'netUnitValue' => $detail->stock->product->price_pen_discount,
                 'quantity'     => $detail->quantity,
                 'comment'      => "{$detail->quantity} x {$detail->stock->product->price_pen_discount}",
-            ]);
+            ];
         });
 
         $dataDocument = [
