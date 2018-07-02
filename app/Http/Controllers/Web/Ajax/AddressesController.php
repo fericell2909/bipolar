@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Ajax;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\ShippingService;
 use App\Models\Address;
 
 class AddressesController extends Controller
@@ -16,16 +17,23 @@ class AddressesController extends Controller
         $address->main = true;
         $address->save();
 
-        $otherAddresses = Address::whereAddressTypeId($address->address_type_id)
-            ->whereKeyNot($address->id)
-            ->get();
+        $addresses = Address::whereUserId(\Auth::id())->with('address_type', 'country_state')->get();
+        $addressSameTypeIds = $addresses->filter(function ($addressSameType) use ($address) {
+            /** @var Address $addressSameType */
+            return $addressSameType->address_type_id === $address->address_type_id;
+        })->pluck('id')->toArray();
 
-        foreach ($otherAddresses as $otherAddress) {
-            $otherAddress->main = false;
-            $otherAddress->save();
-        }
+        Address::whereIn('id', $addressSameTypeIds)->whereKeyNot($address->id)->update(['main' => false]);
 
-        return response()->json(['success' => true]);
+        /** @var \App\Models\Cart $cart */
+        $cart = \CartBipolar::last();
+        list($shipping, $shippingFee) = ShippingService::calculateShippingByCart($cart, $addresses, \Session::get('BIPOLAR_CURRENCY'));
+
+        return response()->json([
+            'success'       => true,
+            'shipping_fee'  => $shippingFee,
+            'shipping_name' => $shipping,
+        ]);
     }
 
     public function remove($addressHashId)

@@ -3,10 +3,44 @@
 namespace App\Http\Services;
 
 use App\Models\Address;
+use App\Models\Cart;
 use App\Models\Shipping;
+use Illuminate\Support\Collection;
 
 class ShippingService
 {
+    public static function calculateShippingByCart(Cart $cart, Collection $addresses, string $currency)
+    {
+        $shipping = null;
+        $totalWeight = $cart->details->sum(function ($detail) {
+            /** @var \App\Models\CartDetail $detail */
+            return $detail->product->weight ?? 0;
+        });
+        $shippingFee = 0;
+
+        $billingAddresses = $addresses->filter(function ($address) {
+            return $address->address_type->name === 'billing';
+        });
+        $shippingAddresses = $addresses->filter(function ($address) {
+            return $address->address_type->name === 'shipping';
+        });
+
+        if ($shippingAddresses->count() >= 1) {
+            $shipping = self::getShippingByAddresses($shippingAddresses);
+            $shippingFee = self::calculateShippingByWeight($shipping, $totalWeight, $currency);
+        } elseif ($shippingAddresses->count() === 0 && $billingAddresses->count() >= 1) {
+            $shipping = self::getShippingByAddresses($billingAddresses);
+            $shippingFee = self::calculateShippingByWeight($shipping, $totalWeight, $currency);
+        }
+
+        return [
+            // Shipping
+            $shipping->title ?? 'General',
+            // Shipping Fee
+            $currency === 'USD' ? "$ {$shippingFee}" : "S/ {$shippingFee}",
+        ];
+    }
+
     /**
      * Get a shipping address if exists from the database with the current shipping prices
      *
@@ -15,7 +49,7 @@ class ShippingService
      */
     public static function getShippingByAddress(Address $address)
     {
-        return Shipping::with(['includes', 'excludes'])
+        $shipping = Shipping::with(['includes', 'excludes'])
             ->whereHas('includes', function ($whereIncludes) use ($address) {
                 /** @var \Illuminate\Database\Query\Builder $whereIncludes */
                 $whereIncludes->where('country_state_id', $address->country_state_id);
@@ -27,6 +61,28 @@ class ShippingService
             })
             ->whereActive(true)
             ->first();
+
+        if (is_null($shipping)) {
+            $shipping = Shipping::whereActive(true)->first();
+        }
+
+        return $shipping;
+    }
+
+    /**
+     * @param Collection $addresses
+     * @return Shipping|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object
+     */
+    private static function getShippingByAddresses(Collection $addresses)
+    {
+        /** @var Address $address */
+        $address = $addresses->firstWhere('main', true);
+
+        if (is_null($address)) {
+            $address = $addresses->first();
+        }
+
+        return self::getShippingByAddress($address);
     }
 
     /**
@@ -35,7 +91,7 @@ class ShippingService
      * @param string $currency
      * @return float
      */
-    public static function calculateShippingByWeight(Shipping $shipping, float $totalWeight, string $currency) : float
+    public static function calculateShippingByWeight(Shipping $shipping, float $totalWeight, string $currency): float
     {
         if (is_null($shipping)) {
             return floatval(0);

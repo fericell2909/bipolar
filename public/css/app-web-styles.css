@@ -22370,6 +22370,16 @@ input:focus:-ms-input-placeholder {
   margin-right: 5px;
 }
 
+.bipolar-checkout .table-review-order tbody tr td.shipping-pickers .picker .shipping-explanation {
+  display: inline-block;
+}
+
+.bipolar-checkout .table-review-order tbody tr td.shipping-pickers .picker .shipping-explanation span:last-child {
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
+  font-size: 17px;
+}
+
 .bipolar-checkout .table-review-order tbody tr .amount {
   font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
   font-weight: normal;

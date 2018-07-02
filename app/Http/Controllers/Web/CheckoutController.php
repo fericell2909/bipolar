@@ -38,30 +38,16 @@ class CheckoutController extends Controller
             return $address->address_type->name == 'shipping';
         });
 
-        $shippingFee = null;
-        //$allowShowroomPickup = false;
-        $totalWeight = $cart->details->sum(function ($detail) {
-            /** @var CartDetail $detail */
-            return $detail->product->weight ?? 0;
-        });
+        list($shipping, $shippingFee) = ShippingService::calculateShippingByCart($cart, $addresses, \Session::get('BIPOLAR_CURRENCY'));
 
-        if ($shippingAddresses->count() > 1) {
-            $shipping = ShippingService::getShippingByAddress($shippingAddresses->filter->main);
-            $shippingFee = ShippingService::calculateShippingByWeight($shipping, $totalWeight, \Session::get('BIPOLAR_CURRENCY'));
-        } elseif ($shippingAddresses->count() === 0 && $billingAddresses->count() >= 1) {
-            $shipping = ShippingService::getShippingByAddress($billingAddresses->filter->main);
-            $shippingFee = ShippingService::calculateShippingByWeight($shipping, $totalWeight, \Session::get('BIPOLAR_CURRENCY'));
-        } elseif ($shippingAddresses->count() === 0 && $billingAddresses->count() === 0) {
-            $shippingFee = 0;
-        }
-
-        return view('web.shop.checkout', compact(
-            'cart',
-            'countries',
-            'billingAddresses',
-            'shippingAddresses',
-            'shippingFee'
-        ));
+        return view('web.shop.checkout', [
+            'cart'              => $cart,
+            'countries'         => $countries,
+            'billingAddresses'  => $billingAddresses,
+            'shippingAddresses' => $shippingAddresses,
+            'shippingName'      => $shipping,
+            'shippingFee'       => $shippingFee,
+        ]);
     }
 
     public function buy(Request $request)

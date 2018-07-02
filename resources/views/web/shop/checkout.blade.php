@@ -249,7 +249,10 @@
 											<div class="picker">{!! Form::radio('shipping_pick', 'free', false, ['required']) !!} {{ __('bipolar.checkout.showroom_shipping') }}</div>
 											<div class="picker">
 												{!! Form::radio('shipping_pick', 'pay', false, ['required']) !!}
-                        {{ \Session::get('BIPOLAR_CURRENCY') === 'USD' ? '$' : 'S/' }} <span id="checkout-shipping-fee">{{ $shippingFee }}</span>
+                        <div class="shipping-explanation">
+                          <span>{{ $shippingName }}:</span>
+                          <span>{{ $shippingFee }}</span>
+                        </div>
 											</div>
 										</td>
 									</tr>
