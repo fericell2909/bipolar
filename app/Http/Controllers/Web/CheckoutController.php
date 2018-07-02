@@ -126,18 +126,7 @@ class CheckoutController extends Controller
             return 0;
         }
 
-        $shipping = Shipping::with(['includes', 'excludes'])
-            ->whereHas('includes', function ($whereIncludes) use ($buy) {
-                /** @var \Illuminate\Database\Query\Builder $whereIncludes */
-                $whereIncludes->where('country_state_id', $buy->shipping_address->country_state_id);
-            })
-            ->whereDoesntHave('excludes', function ($whereDoesntHaveExcluded) use ($buy) {
-                /** @var \Illuminate\Database\Query\Builder $whereDoesntHaveExcluded */
-                $whereDoesntHaveExcluded->where('country_state_id', $buy->shipping_address->country_state_id)
-                    ->orWhere('country_id', $buy->shipping_address->country_state->country_id);
-            })
-            ->whereActive(true)
-            ->first();
+        $shipping = $this->getShippingAddress($buy->shipping_address);
 
         if (is_null($shipping)) {
             $shipping = Shipping::with(['includes', 'excludes'])
@@ -163,54 +152,89 @@ class CheckoutController extends Controller
             return $detail->product->weight ?? 0;
         });
 
-        $dolarsPrice = \Session::get('BIPOLAR_CURRENCY') === 'USD';
-
-        switch ($totalWeight) {
-            case $totalWeight <= 0.2:
-                $totalShipping = ($dolarsPrice ? $shipping->g200_dolar : $shipping->g200);
-                break;
-            case $totalWeight <= 0.5:
-                $totalShipping = ($dolarsPrice ? $shipping->g500_dolar : $shipping->g500);
-                break;
-            case $totalWeight <= 1:
-                $totalShipping = ($dolarsPrice ? $shipping->kg1_dolar : $shipping->kg1);
-                break;
-            case $totalWeight <= 2:
-                $totalShipping = ($dolarsPrice ? $shipping->kg2_dolar : $shipping->kg2);
-                break;
-            case $totalWeight <= 3:
-                $totalShipping = ($dolarsPrice ? $shipping->kg3_dolar : $shipping->kg3);
-                break;
-            case $totalWeight <= 4:
-                $totalShipping = ($dolarsPrice ? $shipping->kg4_dolar : $shipping->kg4);
-                break;
-            case $totalWeight <= 5:
-                $totalShipping = ($dolarsPrice ? $shipping->kg5_dolar : $shipping->kg5);
-                break;
-            case $totalWeight <= 6:
-                $totalShipping = ($dolarsPrice ? $shipping->kg6_dolar : $shipping->kg6);
-                break;
-            case $totalWeight <= 7:
-                $totalShipping = ($dolarsPrice ? $shipping->kg7_dolar : $shipping->kg7);
-                break;
-            case $totalWeight <= 8:
-                $totalShipping = ($dolarsPrice ? $shipping->kg8_dolar : $shipping->kg8);
-                break;
-            case $totalWeight <= 9:
-                $totalShipping = ($dolarsPrice ? $shipping->kg9_dolar : $shipping->kg9);
-                break;
-            case $totalWeight <= 10:
-                $totalShipping = ($dolarsPrice ? $shipping->kg10_dolar : $shipping->kg10);
-                break;
-            default:
-                $totalShipping = 0;
-                break;
-        }
+        $totalShipping = $this->getShippingPriceByWeight($shipping, floatval($totalWeight), \Session::get('BIPOLAR_CURRENCY'));
 
         $buy->shipping_fee = $totalShipping;
         $buy->total = floatval($buy->subtotal + $totalShipping);
         $buy->save();
 
         return $buy->shipping_fee ?? 0;
+    }
+
+    /**
+     * Get a shipping address if exists from the database with the current shipping prices
+     *
+     * @param Address $address
+     * @return Shipping|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object
+     */
+    private function getShippingAddress(Address $address)
+    {
+        return Shipping::with(['includes', 'excludes'])
+            ->whereHas('includes', function ($whereIncludes) use ($address) {
+                /** @var \Illuminate\Database\Query\Builder $whereIncludes */
+                $whereIncludes->where('country_state_id', $address->country_state_id);
+            })
+            ->whereDoesntHave('excludes', function ($whereDoesntHaveExcluded) use ($address) {
+                /** @var \Illuminate\Database\Query\Builder $whereDoesntHaveExcluded */
+                $whereDoesntHaveExcluded->where('country_state_id', $address->country_state_id)
+                    ->orWhere('country_id', $address->country_state->country_id);
+            })
+            ->whereActive(true)
+            ->first();
+    }
+
+    /**
+     * @param Shipping $shipping
+     * @param float $totalWeight
+     * @param string $currency
+     * @return float
+     */
+    private function getShippingPriceByWeight(Shipping $shipping, float $totalWeight, string $currency) : float
+    {
+        $isDolarCurrency = $currency === 'USD';
+
+        switch ($totalWeight) {
+            case $totalWeight <= 0.2:
+                $totalShipping = ($isDolarCurrency ? $shipping->g200_dolar : $shipping->g200);
+                break;
+            case $totalWeight <= 0.5:
+                $totalShipping = ($isDolarCurrency ? $shipping->g500_dolar : $shipping->g500);
+                break;
+            case $totalWeight <= 1:
+                $totalShipping = ($isDolarCurrency ? $shipping->kg1_dolar : $shipping->kg1);
+                break;
+            case $totalWeight <= 2:
+                $totalShipping = ($isDolarCurrency ? $shipping->kg2_dolar : $shipping->kg2);
+                break;
+            case $totalWeight <= 3:
+                $totalShipping = ($isDolarCurrency ? $shipping->kg3_dolar : $shipping->kg3);
+                break;
+            case $totalWeight <= 4:
+                $totalShipping = ($isDolarCurrency ? $shipping->kg4_dolar : $shipping->kg4);
+                break;
+            case $totalWeight <= 5:
+                $totalShipping = ($isDolarCurrency ? $shipping->kg5_dolar : $shipping->kg5);
+                break;
+            case $totalWeight <= 6:
+                $totalShipping = ($isDolarCurrency ? $shipping->kg6_dolar : $shipping->kg6);
+                break;
+            case $totalWeight <= 7:
+                $totalShipping = ($isDolarCurrency ? $shipping->kg7_dolar : $shipping->kg7);
+                break;
+            case $totalWeight <= 8:
+                $totalShipping = ($isDolarCurrency ? $shipping->kg8_dolar : $shipping->kg8);
+                break;
+            case $totalWeight <= 9:
+                $totalShipping = ($isDolarCurrency ? $shipping->kg9_dolar : $shipping->kg9);
+                break;
+            case $totalWeight <= 10:
+                $totalShipping = ($isDolarCurrency ? $shipping->kg10_dolar : $shipping->kg10);
+                break;
+            default:
+                $totalShipping = 0;
+                break;
+        }
+
+        return floatval($totalShipping);
     }
 }
