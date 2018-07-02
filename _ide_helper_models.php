@@ -44,6 +44,7 @@ namespace App\Models{
  * @property string $currency
  * @property string|null $payed
  * @property int $showroom
+ * @property string|null $bsale_document_url
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\Address $billing_address
@@ -61,6 +62,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy currentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy otherCurrentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBsaleDocumentUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBuyNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCouponId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCreatedAt($value)
@@ -787,6 +789,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Address[] $addresses
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereName($value)
  */
