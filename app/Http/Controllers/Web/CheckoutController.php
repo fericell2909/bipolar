@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Services\BSale;
 use App\Mail\BuyConfirmation;
+use App\Models\Cart;
 use App\Models\CartDetail;
 use App\Models\Country;
 use App\Models\Address;
@@ -21,6 +22,7 @@ class CheckoutController extends Controller
             return redirect(route('shop'));
         }
 
+        /** @var Cart $cart */
         $cart = \CartBipolar::last();
 
         $countries = Country::orderBy('name')->get()->mapWithKeys(function ($country) {
@@ -35,7 +37,30 @@ class CheckoutController extends Controller
             return $address->address_type->name == 'shipping';
         });
 
-        return view('web.shop.checkout', compact('cart', 'countries', 'billingAddresses', 'shippingAddresses'));
+        $shippingFee = null;
+        //$allowShowroomPickup = false;
+        $totalWeight = $cart->details->sum(function ($detail) {
+            /** @var CartDetail $detail */
+            return $detail->product->weight ?? 0;
+        });
+
+        if ($shippingAddresses->count() > 1) {
+            $shipping = $this->getShippingByAddress($shippingAddresses->filter->main);
+            $shippingFee = $this->calculateShippingByWeight($shipping, $totalWeight, \Session::get('BIPOLAR_CURRENCY'));
+        } elseif ($shippingAddresses->count() === 0 && $billingAddresses->count() >= 1) {
+            $shipping = $this->getShippingByAddress($billingAddresses->filter->main);
+            $shippingFee = $this->calculateShippingByWeight($shipping, $totalWeight, \Session::get('BIPOLAR_CURRENCY'));
+        } elseif ($shippingAddresses->count() === 0 && $billingAddresses->count() === 0) {
+            $shippingFee = 0;
+        }
+
+        return view('web.shop.checkout', compact(
+            'cart',
+            'countries',
+            'billingAddresses',
+            'shippingAddresses',
+            'shippingFee'
+        ));
     }
 
     public function buy(Request $request)
@@ -102,7 +127,7 @@ class CheckoutController extends Controller
             $buy->showroom = true;
             $buy->save();
         } elseif ($request->input('showroom_pick') === 'pay') {
-            $this->calculateShippingFee($buy);
+            $this->shippingFeeByBuy($buy);
         }
 
         // The email only sends in not a production environment
@@ -120,13 +145,13 @@ class CheckoutController extends Controller
      * @param Buy $buy
      * @return float
      */
-    private function calculateShippingFee(Buy $buy): float
+    private function shippingFeeByBuy(Buy $buy): float
     {
         if ($buy->showroom) {
             return 0;
         }
 
-        $shipping = $this->getShippingAddress($buy->shipping_address);
+        $shipping = $this->getShippingByAddress($buy->shipping_address);
 
         if (is_null($shipping)) {
             $shipping = Shipping::with(['includes', 'excludes'])
@@ -152,7 +177,7 @@ class CheckoutController extends Controller
             return $detail->product->weight ?? 0;
         });
 
-        $totalShipping = $this->getShippingPriceByWeight($shipping, floatval($totalWeight), \Session::get('BIPOLAR_CURRENCY'));
+        $totalShipping = $this->calculateShippingByWeight($shipping, floatval($totalWeight), \Session::get('BIPOLAR_CURRENCY'));
 
         $buy->shipping_fee = $totalShipping;
         $buy->total = floatval($buy->subtotal + $totalShipping);
@@ -167,7 +192,7 @@ class CheckoutController extends Controller
      * @param Address $address
      * @return Shipping|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object
      */
-    private function getShippingAddress(Address $address)
+    private function getShippingByAddress(Address $address)
     {
         return Shipping::with(['includes', 'excludes'])
             ->whereHas('includes', function ($whereIncludes) use ($address) {
@@ -189,8 +214,12 @@ class CheckoutController extends Controller
      * @param string $currency
      * @return float
      */
-    private function getShippingPriceByWeight(Shipping $shipping, float $totalWeight, string $currency) : float
+    private function calculateShippingByWeight(Shipping $shipping, float $totalWeight, string $currency) : float
     {
+        if (is_null($shipping)) {
+            return floatval(0);
+        }
+
         $isDolarCurrency = $currency === 'USD';
 
         switch ($totalWeight) {
