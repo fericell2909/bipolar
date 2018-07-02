@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Web\Ajax;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Address;
 
@@ -35,7 +34,22 @@ class AddressesController extends Controller
 
         abort_if($address->user_id !== \Auth::id(), 403);
 
-        $address->delete();
+        // If the deleted is a main address and there is another address of the same type
+        // convert the first address found to main address
+        if ($address->main) {
+            /** @var Address $anotherUserAddressOfTheSameType */
+            $anotherUserAddressOfTheSameType = $address->address_type->addresses()->where('user_id', \Auth::id())->get()->first();
+            if ($anotherUserAddressOfTheSameType) {
+                $anotherUserAddressOfTheSameType->main = true;
+                $anotherUserAddressOfTheSameType->save();
+            }
+        }
+
+        try {
+            $address->delete();
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'No se pudo eliminar']);
+        }
 
         return response()->json(['success' => true]);
     }
