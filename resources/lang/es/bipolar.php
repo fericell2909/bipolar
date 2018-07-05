@@ -177,6 +177,12 @@ return [
         'select' => 'SELECCIONAR',
         'another_address' => '¿Enviar a una dirección diferente?',
     ],
+    'password_recovery' => [
+        'my_account' => 'Mi cuenta',
+        'lost_question' => '¿Perdiste tu contraseña? Por favor introduce tu nombre de usuario o correo electrónico. Recibirás un enlace para crear una contraseña nueva por correo electrónico.',
+        'email' => 'Correo electrónico',
+        'recovery_password' => 'Reestablecer contraseña',
+    ],
     'password_email' => [
         'reset' => 'Restaurar contraseña',
         'explain' => 'Estás recibiendo este correo porque recibimos una solicitud de restauración desde tu cuenta',

@@ -177,6 +177,12 @@ return [
         'select' => 'SELECT',
         'another_address' => 'Ship to a different address?',
     ],
+    'password_recovery' => [
+        'my_account' => 'My account',
+        'lost_question' => 'Did you lost your account? Please fill your username or email. You will receive a link in your email.',
+        'email' => 'Email',
+        'recovery_password' => 'Recovery password',
+    ],
     'password_email' => [
         'reset' => 'Password reset',
         'explain' => 'You are receiving this email because we received a password reset request for your account',
