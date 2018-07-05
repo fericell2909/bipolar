@@ -16,6 +16,6 @@
         {!! Form::submit('Identificarse', ['class' => 'btn btn-dark btn-rounded text-uppercase']) !!}
     </div>
 {!! Form::close() !!}
-<div class="text-center forgot-password">
-    <a href="{{ route('password.request') }}">¿OLVIDASTE LA CONTRASEÑA?</a>
-</div>
+<p class="text-center forgot-password">
+    <a href="{{ route('password.request') }}">¿Olvidaste la contraseña?</a>
+</p>
