@@ -20,6 +20,8 @@ class PaymeController extends Controller
 
         $this->authorize('view', $buy);
 
+        $buy->load(['details.product.photos', 'details.stock.size', 'details.product']);
+
         $buy->buy_number = $this->getCurrentBuyNumber();
         $buy->save();
 
@@ -63,6 +65,7 @@ class PaymeController extends Controller
         }
 
         $this->authorize('view', $buy);
+        $buy->load(['details.product.photos', 'details.stock.size', 'details.product']);
         //abort_if($buy->tipo_pago_id == config('constants.TIPO_PAGO_MEMBRESIA_ID'), 403);
 
         // Comprobando si el pago fue realizado correctamente
