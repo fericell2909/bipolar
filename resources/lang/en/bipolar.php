@@ -10,6 +10,7 @@ return [
         'city' => 'Town / City',
         'address' => 'Address',
         'zip' => 'Postcode / Zip',
+        'birthdate' => 'Birth date',
     ],
     'payme_modal_lang' => 'EN',
     'size_abbr' => 'Size',
@@ -176,6 +177,15 @@ return [
         'continue' => 'Continue',
         'select' => 'SELECT',
         'another_address' => 'Ship to a different address?',
+    ],
+    'profile_edit' => [
+        'my_account' => 'My account',
+        'account_info' => 'Account info',
+        'password_change' => 'Change your password',
+        'update' => 'Update',
+        'old_password' => 'Old Password (leave blank to not make changes)',
+        'new_password' => 'New Password (leave blank to not make changes)',
+        'new_password_confirmation' => 'Confirm your new Password (leave blank to not make changes)',
     ],
     'password_recovery' => [
         'my_account' => 'My account',
