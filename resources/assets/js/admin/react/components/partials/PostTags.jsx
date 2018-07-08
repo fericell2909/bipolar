@@ -34,11 +34,20 @@ export default class PostTags extends React.Component {
   }
 
   render() {
-    const tags = this.state.tags.map(tag => (
-      <div className="checkbox" key={tag["id"]}>
-        <input type="checkbox" value={tag["id"]} /> {tag["name"]}
-      </div>
-    ));
+    const tags = this.state.tags.map(tag => {
+      const isSelected = existInArray(this.props.selected, tag["hash_id"]);
+      return (
+        <div className="checkbox" key={tag["hash_id"]}>
+          <input
+            checked={isSelected}
+            type="checkbox"
+            value={tag["hash_id"]}
+            onChange={this.props.checked}
+          />{" "}
+          {tag["name"]}
+        </div>
+      );
+    });
 
     return (
       <div className="card">

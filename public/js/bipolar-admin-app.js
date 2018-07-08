@@ -107842,7 +107842,8 @@ var PostNew = function (_React$Component) {
       editorState: __WEBPACK_IMPORTED_MODULE_3_draft_js__["EditorState"].createEmpty(),
       editorStateEnglish: __WEBPACK_IMPORTED_MODULE_3_draft_js__["EditorState"].createEmpty(),
       states: [],
-      selectedCategories: []
+      selectedCategories: [],
+      selectedTags: []
     }, _this.checkCategory = function (event) {
       var categoryId = event.target.value;
       var selectedCategories = _this.state.selectedCategories;
@@ -107854,6 +107855,17 @@ var PostNew = function (_React$Component) {
       }
 
       return _this.setState({ selectedCategories: selectedCategories });
+    }, _this.checkTag = function (event) {
+      var categoryId = event.target.value;
+      var selectedTags = _this.state.selectedTags;
+
+      if (event.target.checked) {
+        selectedTags.push(categoryId);
+      } else {
+        selectedTags = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["c" /* removeFromSimpleArray */])(selectedTags, categoryId);
+      }
+
+      return _this.setState({ selectedTags: selectedTags });
     }, _this.handleEditorDescription = function (editorState) {
       var htmlText = __WEBPACK_IMPORTED_MODULE_4_draftjs_to_html___default()(Object(__WEBPACK_IMPORTED_MODULE_3_draft_js__["convertToRaw"])(editorState.getCurrentContent()));
       _this.setState({
@@ -108015,7 +108027,10 @@ var PostNew = function (_React$Component) {
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__partials_PostCategories__["a" /* default */], {
         selected: this.state.selectedCategories,
         checked: this.checkCategory
-      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__partials_PostTags__["a" /* default */], null)));
+      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__partials_PostTags__["a" /* default */], {
+        selected: this.state.selectedTags,
+        checked: this.checkTag
+      })));
     }
   }]);
 
@@ -108471,8 +108486,16 @@ var PostTags = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       var tags = this.state.tags.map(function (tag) {
-        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "checkbox", key: tag["id"] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { type: "checkbox", value: tag["id"] }), " ", tag["name"]);
+        var isSelected = Object(__WEBPACK_IMPORTED_MODULE_2__helpers__["b" /* existInArray */])(_this4.props.selected, tag["hash_id"]);
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "checkbox", key: tag["hash_id"] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", {
+          checked: isSelected,
+          type: "checkbox",
+          value: tag["hash_id"],
+          onChange: _this4.props.checked
+        }), " ", tag["name"]);
       });
 
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Etiquetas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { onSubmit: this.handleCreateTag, className: "form-inline mb-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "flex-grow-1 mr-2 form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", {

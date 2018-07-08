@@ -18,7 +18,8 @@ class PostNew extends React.Component {
     editorState: EditorState.createEmpty(),
     editorStateEnglish: EditorState.createEmpty(),
     states: [],
-    selectedCategories: []
+    selectedCategories: [],
+    selectedTags: []
   };
 
   checkCategory = event => {
@@ -35,6 +36,19 @@ class PostNew extends React.Component {
     }
 
     return this.setState({ selectedCategories });
+  };
+
+  checkTag = event => {
+    const categoryId = event.target.value;
+    let selectedTags = this.state.selectedTags;
+
+    if (event.target.checked) {
+      selectedTags.push(categoryId);
+    } else {
+      selectedTags = removeFromSimpleArray(selectedTags, categoryId);
+    }
+
+    return this.setState({ selectedTags });
   };
 
   handleEditorDescription = editorState => {
@@ -195,7 +209,10 @@ class PostNew extends React.Component {
             selected={this.state.selectedCategories}
             checked={this.checkCategory}
           />
-          <PostTags />
+          <PostTags
+            selected={this.state.selectedTags}
+            checked={this.checkTag}
+          />
         </div>
       </div>
     );
