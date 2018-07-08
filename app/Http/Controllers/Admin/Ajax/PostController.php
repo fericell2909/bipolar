@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\State;
+use App\Models\Category;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -17,6 +19,8 @@ class PostController extends Controller
             'content'         => 'nullable|min:1',
             'content_english' => 'nullable|min:1',
             'state'           => 'required',
+            'categories'      => 'array',
+            'tags'            => 'array',
         ]);
 
         $state = State::findByHash($request->input('state'));
@@ -32,6 +36,16 @@ class PostController extends Controller
         ]);
         $post->state()->associate($state);
         $post->save();
+
+        if (count($request->input('categories')) > 0) {
+            $categories = Category::findByManyHash($request->input('categories'))->pluck('id')->toArray();
+            $post->categories()->sync($categories);
+        }
+
+        if (count($request->input('tags')) > 0) {
+            $tags = Tag::findByManyHash($request->input('tags'))->pluck('id')->toArray();
+            $post->tags()->sync($tags);
+        }
 
         return response()->json([
             'redirect_url' => route('blog.index'),

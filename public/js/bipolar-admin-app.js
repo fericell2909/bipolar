@@ -107896,13 +107896,17 @@ var PostNew = function (_React$Component) {
                   title_english: _this.state.titleEnglish,
                   content: _this.state.content,
                   content_english: _this.state.contentEnglish,
-                  state: _this.state.stateSelected
+                  state: _this.state.stateSelected,
+                  categories: _this.state.selectedCategories,
+                  tags: _this.state.selectedTags
                 }).catch(console.error);
 
               case 3:
                 savePost = _context.sent;
 
-                window.location.href = savePost.data["redirect_url"];
+                if (savePost.data["redirect_url"]) {
+                  window.location.href = savePost.data["redirect_url"];
+                }
 
               case 5:
               case "end":

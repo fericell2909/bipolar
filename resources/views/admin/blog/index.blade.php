@@ -9,7 +9,8 @@
           <tr>
             <th>#</th>
             <th>Título</th>
-            <th>Contenido (vista previa)</th>
+            <th>Categorías</th>
+            <th>Tags</th>
             <th>Estado</th>
             <th>Acciones</th>
           </tr>
@@ -18,8 +19,9 @@
           @foreach($posts as $post)
             <tr>
               <td class="align-middle">{{ $post->id }}</td>
-              <td class="align-middle">{{ $post->title }}</td>
-              <td>{!! str_limit($post->content, 30) !!}</td>
+              <td class="align-middle">{{ str_limit($post->getTranslation('title', 'es'), 60) }}</td>
+              <td class="align-middle">{{ $post->categories->implode('name', ', ') }}</td>
+              <td class="align-middle">{{ $post->tags->implode('name', ', ') }}</td>
               <td class="align-middle">{!! $post->state->getAdminHtml() !!}</td>
               <td class="align-middle">
                 <div class="button-group">

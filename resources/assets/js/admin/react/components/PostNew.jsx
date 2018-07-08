@@ -82,10 +82,14 @@ class PostNew extends React.Component {
         title_english: this.state.titleEnglish,
         content: this.state.content,
         content_english: this.state.contentEnglish,
-        state: this.state.stateSelected
+        state: this.state.stateSelected,
+        categories: this.state.selectedCategories,
+        tags: this.state.selectedTags
       })
       .catch(console.error);
-    window.location.href = savePost.data["redirect_url"];
+    if (savePost.data["redirect_url"]) {
+      window.location.href = savePost.data["redirect_url"];
+    }
   };
 
   handleChangeSelect = event =>
