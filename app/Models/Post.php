@@ -7,10 +7,11 @@ use Spatie\Translatable\HasTranslations;
 use Spatie\ModelStatus\HasStatuses;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use App\Traits\Hashable;
 
 class Post extends Model
 {
-    use HasTranslations, HasStatuses, Sluggable, SluggableScopeHelpers;
+    use HasTranslations, HasStatuses, Sluggable, SluggableScopeHelpers, Hashable;
 
     protected $translatable = ['title', 'content'];
 

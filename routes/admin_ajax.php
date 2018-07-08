@@ -48,6 +48,7 @@ Route::post('categories', 'Admin\Ajax\CategoryController@store');
 
 Route::post('post/new', 'Admin\Ajax\PostController@store');
 Route::post('post/photos', 'Admin\Ajax\PhotoController@postUpload');
+Route::get('post/{postId}/show', 'Admin\Ajax\PostController@show');
 
 Route::post('historics/order', 'Admin\Ajax\HistoricsController@order');
 

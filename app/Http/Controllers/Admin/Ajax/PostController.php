@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\State;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Http\Resources\PostResource;
 
 class PostController extends Controller
 {
@@ -50,5 +51,12 @@ class PostController extends Controller
         return response()->json([
             'redirect_url' => route('blog.index'),
         ]);
+    }
+
+    public function show($postId)
+    {
+        $post = Post::findOrFail($postId);
+
+        return new PostResource($post);
     }
 }

@@ -108206,7 +108206,7 @@ var PostEdit = function (_React$Component) {
               case 0:
                 event.preventDefault();
                 _context.next = 3;
-                return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.post('/ajax-admin/post/new', {
+                return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.post("/ajax-admin/post/new", {
                   title: _this.state.title,
                   title_english: _this.state.titleEnglish,
                   content: _this.state.content,
@@ -108217,7 +108217,7 @@ var PostEdit = function (_React$Component) {
               case 3:
                 savePost = _context.sent;
 
-                window.location.href = savePost.data['redirect_url'];
+                window.location.href = savePost.data["redirect_url"];
 
               case 5:
               case "end":
@@ -108240,10 +108240,39 @@ var PostEdit = function (_React$Component) {
     value: function componentDidMount() {
       var _this3 = this;
 
-      __WEBPACK_IMPORTED_MODULE_7_axios___default.a.get('/ajax-admin/states').then(function (_ref3) {
+      __WEBPACK_IMPORTED_MODULE_7_axios___default.a.get("/ajax-admin/states").then(function (_ref3) {
         var data = _ref3.data;
-        return _this3.setState({ states: data['data'] });
+        return _this3.setState({ states: data["data"] });
       }).catch(console.error);
+
+      __WEBPACK_IMPORTED_MODULE_7_axios___default.a.get("/ajax-admin/post/" + this.props.postId + "/show").then(function (response) {
+        var post = response.data["data"];
+        var _state = _this3.state,
+            editorState = _state.editorState,
+            editorStateEnglish = _state.editorStateEnglish;
+
+        var contentBlock = void 0,
+            contentBlockEnglish = null;
+
+        if (post["content_es"] !== null) {
+          contentBlock = __WEBPACK_IMPORTED_MODULE_4_html_to_draftjs___default()(post["content_es"]);
+          var contentState = __WEBPACK_IMPORTED_MODULE_3_draft_js__["ContentState"].createFromBlockArray(contentBlock.contentBlocks);
+          editorState = __WEBPACK_IMPORTED_MODULE_3_draft_js__["EditorState"].createWithContent(contentState);
+        }
+        if (post["content_en"] !== null) {
+          contentBlockEnglish = __WEBPACK_IMPORTED_MODULE_4_html_to_draftjs___default()(post["content_en"]);
+          var contentStateEnglish = __WEBPACK_IMPORTED_MODULE_3_draft_js__["ContentState"].createFromBlockArray(contentBlockEnglish.contentBlocks);
+          editorStateEnglish = __WEBPACK_IMPORTED_MODULE_3_draft_js__["EditorState"].createWithContent(contentStateEnglish);
+        }
+
+        _this3.setState({
+          title: post["title_es"],
+          titleEnglish: post["title_en"],
+          stateSelected: post["state"]["id"],
+          editorState: editorState,
+          editorStateEnglish: editorStateEnglish
+        });
+      });
     }
   }, {
     key: "render",
@@ -108292,19 +108321,21 @@ var PostEdit = function (_React$Component) {
       };
 
       var statesOptions = this.state.states.map(function (state) {
-        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { key: state['hash_id'], value: state['hash_id'] }, state['name']);
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { key: state["hash_id"], value: state["hash_id"] }, state["name"]);
       });
 
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-9" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { onSubmit: this.handleSubmit }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "T\xEDtulo de la publicaci\xF3n"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", {
         value: this.state.title,
         onChange: this.handleChangeTitle,
         type: "text",
-        className: "form-control", required: true
+        className: "form-control",
+        required: true
       }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "T\xEDtulo de la publicaci\xF3n (Ingl\xE9s)"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", {
         value: this.state.titleEnglish,
         onChange: this.handleChangeEnglishTitle,
         type: "text",
-        className: "form-control", required: true
+        className: "form-control",
+        required: true
       })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Contenido (Opcional)"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_react_draft_wysiwyg__["Editor"], {
         editorState: this.state.editorState,
         toolbar: toolbarEditor,
@@ -108315,7 +108346,12 @@ var PostEdit = function (_React$Component) {
         toolbar: toolbarEditor,
         onEditorStateChange: this.handleEditorDescriptionEnglish,
         editorClassName: "demo-editor-content"
-      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Estado"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("select", { onChange: this.handleChangeSelect, value: this.state.stateSelected, className: "form-control", required: true }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Tags")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, "Tags"))));
+      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Estado"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("select", {
+        onChange: this.handleChangeSelect,
+        value: this.state.stateSelected,
+        className: "form-control",
+        required: true
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Tags")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, "Tags"))));
     }
   }]);
 

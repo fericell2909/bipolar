@@ -15,7 +15,7 @@ class PostEdit extends React.Component {
     stateSelected: "",
     editorState: EditorState.createEmpty(),
     editorStateEnglish: EditorState.createEmpty(),
-    states: [],
+    states: []
   };
 
   handleEditorDescription = editorState => {
@@ -38,24 +38,61 @@ class PostEdit extends React.Component {
 
   handleChangeTitle = event => this.setState({ title: event.target.value });
 
-  handleChangeEnglishTitle = event => this.setState({ titleEnglish: event.target.value });
+  handleChangeEnglishTitle = event =>
+    this.setState({ titleEnglish: event.target.value });
 
   handleSubmit = async event => {
     event.preventDefault();
-    const savePost = await axios.post('/ajax-admin/post/new', {
-      title: this.state.title,
-      title_english: this.state.titleEnglish,
-      content: this.state.content,
-      content_english: this.state.contentEnglish,
-      state: this.state.stateSelected,
-    }).catch(console.error);
-    window.location.href = savePost.data['redirect_url'];
+    const savePost = await axios
+      .post("/ajax-admin/post/new", {
+        title: this.state.title,
+        title_english: this.state.titleEnglish,
+        content: this.state.content,
+        content_english: this.state.contentEnglish,
+        state: this.state.stateSelected
+      })
+      .catch(console.error);
+    window.location.href = savePost.data["redirect_url"];
   };
 
-  handleChangeSelect = event => this.setState({ stateSelected: event.target.value });
+  handleChangeSelect = event =>
+    this.setState({ stateSelected: event.target.value });
 
   componentDidMount() {
-    axios.get('/ajax-admin/states').then(({data}) => this.setState({states: data['data']})).catch(console.error);
+    axios
+      .get("/ajax-admin/states")
+      .then(({ data }) => this.setState({ states: data["data"] }))
+      .catch(console.error);
+
+    axios.get(`/ajax-admin/post/${this.props.postId}/show`).then(response => {
+      const post = response.data["data"];
+      let { editorState, editorStateEnglish } = this.state;
+      let contentBlock,
+        contentBlockEnglish = null;
+
+      if (post["content_es"] !== null) {
+        contentBlock = htmlToDraft(post["content_es"]);
+        const contentState = ContentState.createFromBlockArray(
+          contentBlock.contentBlocks
+        );
+        editorState = EditorState.createWithContent(contentState);
+      }
+      if (post["content_en"] !== null) {
+        contentBlockEnglish = htmlToDraft(post["content_en"]);
+        const contentStateEnglish = ContentState.createFromBlockArray(
+          contentBlockEnglish.contentBlocks
+        );
+        editorStateEnglish = EditorState.createWithContent(contentStateEnglish);
+      }
+
+      this.setState({
+        title: post["title_es"],
+        titleEnglish: post["title_en"],
+        stateSelected: post["state"]["id"],
+        editorState,
+        editorStateEnglish
+      });
+    });
   }
 
   render() {
@@ -77,7 +114,11 @@ class PostEdit extends React.Component {
       }
     };
 
-    const statesOptions = this.state.states.map(state => <option key={state['hash_id']} value={state['hash_id']}>{state['name']}</option>);
+    const statesOptions = this.state.states.map(state => (
+      <option key={state["hash_id"]} value={state["hash_id"]}>
+        {state["name"]}
+      </option>
+    ));
 
     return (
       <div className="row">
@@ -93,7 +134,8 @@ class PostEdit extends React.Component {
                         value={this.state.title}
                         onChange={this.handleChangeTitle}
                         type="text"
-                        className="form-control" required={true}
+                        className="form-control"
+                        required={true}
                       />
                     </div>
                   </div>
@@ -104,7 +146,8 @@ class PostEdit extends React.Component {
                         value={this.state.titleEnglish}
                         onChange={this.handleChangeEnglishTitle}
                         type="text"
-                        className="form-control" required={true}
+                        className="form-control"
+                        required={true}
                       />
                     </div>
                   </div>
@@ -131,14 +174,23 @@ class PostEdit extends React.Component {
                   <div className="col-md-6">
                     <div className="form-group">
                       <label>Estado</label>
-                      <select onChange={this.handleChangeSelect} value={this.state.stateSelected} className="form-control" required={true}>
-                        <option value="" disabled>Seleccione</option>
+                      <select
+                        onChange={this.handleChangeSelect}
+                        value={this.state.stateSelected}
+                        className="form-control"
+                        required={true}
+                      >
+                        <option value="" disabled>
+                          Seleccione
+                        </option>
                         {statesOptions}
                       </select>
                     </div>
                   </div>
                 </div>
-                <button type="submit" className="btn btn-dark btn-rounded">Guardar</button>
+                <button type="submit" className="btn btn-dark btn-rounded">
+                  Guardar
+                </button>
               </form>
             </div>
           </div>
@@ -148,17 +200,13 @@ class PostEdit extends React.Component {
             <div className="card-header bg-dark">
               <h4 className="text-white">Categorías</h4>
             </div>
-            <div className="card-body">
-              Categorías
-            </div>
+            <div className="card-body">Categorías</div>
           </div>
           <div className="card">
             <div className="card-header bg-dark">
               <h4 className="text-white">Tags</h4>
             </div>
-            <div className="card-body">
-              Tags
-            </div>
+            <div className="card-body">Tags</div>
           </div>
         </div>
       </div>
@@ -169,5 +217,5 @@ class PostEdit extends React.Component {
 if (document.getElementById("bipolar-edit-post")) {
   const postId = window.BipolarPostId;
   const elem = document.getElementById("bipolar-edit-post");
-  ReactDOM.render(<PostEdit postId={postId}/>, elem);
+  ReactDOM.render(<PostEdit postId={postId} />, elem);
 }
