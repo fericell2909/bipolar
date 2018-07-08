@@ -107745,14 +107745,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_draft_js__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_draft_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_draft_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_html_to_draftjs__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_html_to_draftjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_html_to_draftjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_draftjs_to_html__ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_draftjs_to_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_draftjs_to_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_draft_wysiwyg__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_draft_wysiwyg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react_draft_wysiwyg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_axios__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_draftjs_to_html__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_draftjs_to_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_draftjs_to_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_draft_wysiwyg__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_draft_wysiwyg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_draft_wysiwyg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__partials_PostTags__ = __webpack_require__(551);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__partials_PostCategories__ = __webpack_require__(552);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 
@@ -107815,6 +107815,7 @@ function _inherits(subClass, superClass) {
 
 
 
+
 var PostNew = function (_React$Component) {
   _inherits(PostNew, _React$Component);
 
@@ -107838,20 +107839,15 @@ var PostNew = function (_React$Component) {
       stateSelected: "",
       editorState: __WEBPACK_IMPORTED_MODULE_3_draft_js__["EditorState"].createEmpty(),
       editorStateEnglish: __WEBPACK_IMPORTED_MODULE_3_draft_js__["EditorState"].createEmpty(),
-      states: [],
-      categories: [],
-      tags: [],
-      // for new category and tag
-      textCategory: '',
-      textTag: ''
+      states: []
     }, _this.handleEditorDescription = function (editorState) {
-      var htmlText = __WEBPACK_IMPORTED_MODULE_5_draftjs_to_html___default()(Object(__WEBPACK_IMPORTED_MODULE_3_draft_js__["convertToRaw"])(editorState.getCurrentContent()));
+      var htmlText = __WEBPACK_IMPORTED_MODULE_4_draftjs_to_html___default()(Object(__WEBPACK_IMPORTED_MODULE_3_draft_js__["convertToRaw"])(editorState.getCurrentContent()));
       _this.setState({
         editorState: editorState,
         content: htmlText
       });
     }, _this.handleEditorDescriptionEnglish = function (editorStateEnglish) {
-      var htmlText = __WEBPACK_IMPORTED_MODULE_5_draftjs_to_html___default()(Object(__WEBPACK_IMPORTED_MODULE_3_draft_js__["convertToRaw"])(editorStateEnglish.getCurrentContent()));
+      var htmlText = __WEBPACK_IMPORTED_MODULE_4_draftjs_to_html___default()(Object(__WEBPACK_IMPORTED_MODULE_3_draft_js__["convertToRaw"])(editorStateEnglish.getCurrentContent()));
       _this.setState({
         editorStateEnglish: editorStateEnglish,
         contentEnglish: htmlText
@@ -107869,7 +107865,7 @@ var PostNew = function (_React$Component) {
               case 0:
                 event.preventDefault();
                 _context.next = 3;
-                return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.post('/ajax-admin/post/new', {
+                return __WEBPACK_IMPORTED_MODULE_6_axios___default.a.post('/ajax-admin/post/new', {
                   title: _this.state.title,
                   title_english: _this.state.titleEnglish,
                   content: _this.state.content,
@@ -107895,164 +107891,28 @@ var PostNew = function (_React$Component) {
       };
     }(), _this.handleChangeSelect = function (event) {
       return _this.setState({ stateSelected: event.target.value });
-    }, _this.handleTypeNewCategory = function (event) {
-      return _this.setState({ textCategory: event.target.value });
-    }, _this.handleTypeNewTag = function (event) {
-      return _this.setState({ textTag: event.target.value });
-    }, _this.handleCreateCategory = function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(event) {
-        var responseCategories;
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                event.preventDefault();
-
-                if (!(_this.state.textCategory.length === 0)) {
-                  _context2.next = 3;
-                  break;
-                }
-
-                return _context2.abrupt("return", false);
-
-              case 3:
-                _context2.next = 5;
-                return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.post('/ajax-admin/categories', { name: _this.state.textCategory }).catch(console.error);
-
-              case 5:
-                _context2.next = 7;
-                return _this.getCategories();
-
-              case 7:
-                responseCategories = _context2.sent;
-
-                _this.setState({
-                  textCategory: '',
-                  categories: responseCategories.data['data']
-                });
-
-              case 9:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, _this2);
-      }));
-
-      return function (_x2) {
-        return _ref3.apply(this, arguments);
-      };
-    }(), _this.handleCreateTag = function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(event) {
-        var responseTags;
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                event.preventDefault();
-
-                if (!(_this.state.textTag.length === 0)) {
-                  _context3.next = 3;
-                  break;
-                }
-
-                return _context3.abrupt("return", false);
-
-              case 3:
-                _context3.next = 5;
-                return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.post('/ajax-admin/tags', { name: _this.state.textTag }).catch(console.error);
-
-              case 5:
-                _context3.next = 7;
-                return _this.getTags();
-
-              case 7:
-                responseTags = _context3.sent;
-
-                _this.setState({
-                  textTag: '',
-                  tags: responseTags.data['data']
-                });
-
-              case 9:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, _this2);
-      }));
-
-      return function (_x3) {
-        return _ref4.apply(this, arguments);
-      };
-    }(), _this.getData = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
-      var responseStates, responseCategories, responseTags;
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+    }, _this.getData = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+      var responseStates;
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
-              _context4.next = 2;
-              return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.get('/ajax-admin/states').catch(console.error);
+              _context2.next = 2;
+              return __WEBPACK_IMPORTED_MODULE_6_axios___default.a.get('/ajax-admin/states').catch(console.error);
 
             case 2:
-              responseStates = _context4.sent;
-              _context4.next = 5;
-              return _this.getCategories();
-
-            case 5:
-              responseCategories = _context4.sent;
-              _context4.next = 8;
-              return _this.getTags();
-
-            case 8:
-              responseTags = _context4.sent;
+              responseStates = _context2.sent;
 
               _this.setState({
-                states: responseStates.data['data'],
-                categories: responseCategories.data['data'],
-                tags: responseTags.data['data']
+                states: responseStates.data['data']
               });
 
-            case 10:
+            case 4:
             case "end":
-              return _context4.stop();
+              return _context2.stop();
           }
         }
-      }, _callee4, _this2);
-    })), _this.getTags = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
-        while (1) {
-          switch (_context5.prev = _context5.next) {
-            case 0:
-              _context5.next = 2;
-              return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.get('/ajax-admin/tags').catch(console.error);
-
-            case 2:
-              return _context5.abrupt("return", _context5.sent);
-
-            case 3:
-            case "end":
-              return _context5.stop();
-          }
-        }
-      }, _callee5, _this2);
-    })), _this.getCategories = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
-        while (1) {
-          switch (_context6.prev = _context6.next) {
-            case 0:
-              _context6.next = 2;
-              return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.get('/ajax-admin/categories').catch(console.error);
-
-            case 2:
-              return _context6.abrupt("return", _context6.sent);
-
-            case 3:
-            case "end":
-              return _context6.stop();
-          }
-        }
-      }, _callee6, _this2);
+      }, _callee2, _this2);
     })), _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -108071,32 +107931,32 @@ var PostNew = function (_React$Component) {
           urlEnabled: true,
           uploadEnabled: true,
           uploadCallback: function () {
-            var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7(image) {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(image) {
               var formData, uploadPhoto;
-              return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
+              return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                 while (1) {
-                  switch (_context7.prev = _context7.next) {
+                  switch (_context3.prev = _context3.next) {
                     case 0:
                       formData = new FormData();
 
                       formData.append("image", image);
-                      _context7.next = 4;
-                      return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.post("/ajax-admin/post/photos", formData).catch(console.error);
+                      _context3.next = 4;
+                      return __WEBPACK_IMPORTED_MODULE_6_axios___default.a.post("/ajax-admin/post/photos", formData).catch(console.error);
 
                     case 4:
-                      uploadPhoto = _context7.sent;
-                      return _context7.abrupt("return", uploadPhoto.data);
+                      uploadPhoto = _context3.sent;
+                      return _context3.abrupt("return", uploadPhoto.data);
 
                     case 6:
                     case "end":
-                      return _context7.stop();
+                      return _context3.stop();
                   }
                 }
-              }, _callee7, _this3);
+              }, _callee3, _this3);
             }));
 
-            function uploadCallback(_x4) {
-              return _ref8.apply(this, arguments);
+            function uploadCallback(_x2) {
+              return _ref4.apply(this, arguments);
             }
 
             return uploadCallback;
@@ -108110,12 +107970,6 @@ var PostNew = function (_React$Component) {
       var statesOptions = this.state.states.map(function (state) {
         return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { key: state['hash_id'], value: state['hash_id'] }, state['name']);
       });
-      var categories = this.state.categories.map(function (category) {
-        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "checkbox", key: category['id'] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { type: "checkbox", value: category['id'] }), " ", category['name']);
-      });
-      var tags = this.state.tags.map(function (tag) {
-        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "checkbox", key: tag['id'] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { type: "checkbox", value: tag['id'] }), " ", tag['name']);
-      });
 
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-9" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { onSubmit: this.handleSubmit }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "T\xEDtulo de la publicaci\xF3n"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", {
         value: this.state.title,
@@ -108127,17 +107981,17 @@ var PostNew = function (_React$Component) {
         onChange: this.handleChangeEnglishTitle,
         type: "text",
         className: "form-control", required: true
-      })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Contenido (Opcional)"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_react_draft_wysiwyg__["Editor"], {
+      })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Contenido (Opcional)"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_draft_wysiwyg__["Editor"], {
         editorState: this.state.editorState,
         toolbar: toolbarEditor,
         onEditorStateChange: this.handleEditorDescription,
         editorClassName: "demo-editor-content"
-      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Contenido en ingl\xE9s (Opcional)"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_react_draft_wysiwyg__["Editor"], {
+      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Contenido en ingl\xE9s (Opcional)"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_draft_wysiwyg__["Editor"], {
         editorState: this.state.editorStateEnglish,
         toolbar: toolbarEditor,
         onEditorStateChange: this.handleEditorDescriptionEnglish,
         editorClassName: "demo-editor-content"
-      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Estado"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("select", { onChange: this.handleChangeSelect, value: this.state.stateSelected, className: "form-control", required: true }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { onSubmit: this.handleCreateCategory, className: "form-inline mb-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "flex-grow-1 mr-2 form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { onChange: this.handleTypeNewCategory, value: this.state.textCategory, type: "text", className: "w-100 form-control", placeholder: "Nueva categor\xEDa", required: true })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-sm btn-dark btn-rounded" }, "Crear")), categories)), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Etiquetas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { onSubmit: this.handleCreateTag, className: "form-inline mb-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "flex-grow-1 mr-2 form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { onChange: this.handleTypeNewTag, value: this.state.textTag, type: "text", className: "w-100 form-control", placeholder: "Nueva etiqueta", required: true })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-sm btn-dark btn-rounded" }, "Crear")), tags))));
+      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Estado"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("select", { onChange: this.handleChangeSelect, value: this.state.stateSelected, className: "form-control", required: true }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__partials_PostCategories__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__partials_PostTags__["a" /* default */], null)));
     }
   }]);
 
@@ -108403,6 +108257,398 @@ if (document.getElementById("bipolar-edit-post")) {
   var elem = document.getElementById("bipolar-edit-post");
   __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(PostEdit, { postId: postId }), elem);
 }
+
+/***/ }),
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers__ = __webpack_require__(21);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+
+
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var gen = fn.apply(this, arguments);return new Promise(function (resolve, reject) {
+      function step(key, arg) {
+        try {
+          var info = gen[key](arg);var value = info.value;
+        } catch (error) {
+          reject(error);return;
+        }if (info.done) {
+          resolve(value);
+        } else {
+          return Promise.resolve(value).then(function (value) {
+            step("next", value);
+          }, function (err) {
+            step("throw", err);
+          });
+        }
+      }return step("next");
+    });
+  };
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+
+
+
+var PostTags = function (_React$Component) {
+  _inherits(PostTags, _React$Component);
+
+  function PostTags() {
+    var _ref,
+        _this2 = this;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, PostTags);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PostTags.__proto__ || Object.getPrototypeOf(PostTags)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      textTag: '',
+      tags: []
+    }, _this.handleTypeNewTag = function (event) {
+      return _this.setState({ textTag: event.target.value });
+    }, _this.handleCreateTag = function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(event) {
+        var responseTags;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                event.preventDefault();
+
+                if (!(_this.state.textTag.length === 0)) {
+                  _context.next = 3;
+                  break;
+                }
+
+                return _context.abrupt("return", false);
+
+              case 3:
+                _context.next = 5;
+                return axios.post('/ajax-admin/tags', { name: _this.state.textTag }).catch(console.error);
+
+              case 5:
+                _context.next = 7;
+                return _this.getTags();
+
+              case 7:
+                responseTags = _context.sent;
+
+                _this.setState({
+                  textTag: '',
+                  tags: responseTags.data['data']
+                });
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, _this2);
+      }));
+
+      return function (_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }(), _this.getTags = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return axios.get('/ajax-admin/tags').catch(console.error);
+
+            case 2:
+              return _context2.abrupt("return", _context2.sent);
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, _this2);
+    })), _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(PostTags, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this3 = this;
+
+      this.getTags().then(function (response) {
+        return _this3.setState({ tags: response.data['data'] });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var tags = this.state.tags.map(function (tag) {
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "checkbox", key: tag["id"] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { type: "checkbox", value: tag["id"] }), " ", tag["name"]);
+      });
+
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Etiquetas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { onSubmit: this.handleCreateTag, className: "form-inline mb-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "flex-grow-1 mr-2 form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", {
+        onChange: this.handleTypeNewTag,
+        value: this.state.textTag,
+        type: "text",
+        className: "w-100 form-control",
+        placeholder: "Nueva etiqueta",
+        required: true
+      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-sm btn-dark btn-rounded" }, "Crear")), tags));
+    }
+  }]);
+
+  return PostTags;
+}(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (PostTags);
+
+/***/ }),
+/* 552 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+
+
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var gen = fn.apply(this, arguments);return new Promise(function (resolve, reject) {
+      function step(key, arg) {
+        try {
+          var info = gen[key](arg);var value = info.value;
+        } catch (error) {
+          reject(error);return;
+        }if (info.done) {
+          resolve(value);
+        } else {
+          return Promise.resolve(value).then(function (value) {
+            step("next", value);
+          }, function (err) {
+            step("throw", err);
+          });
+        }
+      }return step("next");
+    });
+  };
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+
+
+var PostCategories = function (_React$Component) {
+  _inherits(PostCategories, _React$Component);
+
+  function PostCategories() {
+    var _ref,
+        _this2 = this;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, PostCategories);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PostCategories.__proto__ || Object.getPrototypeOf(PostCategories)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      textCategory: '',
+      categories: []
+    }, _this.handleTypeNewCategory = function (event) {
+      return _this.setState({ textCategory: event.target.value });
+    }, _this.handleCreateCategory = function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(event) {
+        var responseCategories;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                event.preventDefault();
+
+                if (!(_this.state.textCategory.length === 0)) {
+                  _context.next = 3;
+                  break;
+                }
+
+                return _context.abrupt('return', false);
+
+              case 3:
+                _context.next = 5;
+                return axios.post('/ajax-admin/categories', { name: _this.state.textCategory }).catch(console.error);
+
+              case 5:
+                _context.next = 7;
+                return _this.getCategories();
+
+              case 7:
+                responseCategories = _context.sent;
+
+                _this.setState({
+                  textCategory: '',
+                  categories: responseCategories.data['data']
+                });
+
+              case 9:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, _this2);
+      }));
+
+      return function (_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }(), _this.getCategories = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return axios.get('/ajax-admin/categories').catch(console.error);
+
+            case 2:
+              return _context2.abrupt('return', _context2.sent);
+
+            case 3:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, _this2);
+    })), _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(PostCategories, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this3 = this;
+
+      this.getCategories().then(function (response) {
+        return _this3.setState({ categories: response.data['data'] });
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var categories = this.state.categories.map(function (category) {
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'checkbox', key: category["id"] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { type: 'checkbox', value: category["id"] }), ' ', category["name"]);
+      });
+
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card-header bg-dark' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('h4', { className: 'text-white' }, 'Categor\xEDas')), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card-body' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('form', {
+        onSubmit: this.handleCreateCategory,
+        className: 'form-inline mb-3'
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'flex-grow-1 mr-2 form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', {
+        onChange: this.handleTypeNewCategory,
+        value: this.state.textCategory,
+        type: 'text',
+        className: 'w-100 form-control',
+        placeholder: 'Nueva categor\xEDa',
+        required: true
+      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { type: 'submit', className: 'btn btn-sm btn-dark btn-rounded' }, 'Crear')), categories));
+    }
+  }]);
+
+  return PostCategories;
+}(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (PostCategories);
 
 /***/ })
 /******/ ]);
