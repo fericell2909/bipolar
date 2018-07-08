@@ -15,4 +15,15 @@ class CategoryController extends Controller
 
         return CategoryResource::collection($category);
     }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, ['name' => 'required|between:1,225']);
+
+        $category = new Category;
+        $category->name = $request->input('name');
+        $category->save();
+
+        return new CategoryResource($category);
+    }
 }

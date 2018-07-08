@@ -5,7 +5,6 @@ import htmlToDraft from "html-to-draftjs";
 import draftToHtml from "draftjs-to-html";
 import { Editor } from "react-draft-wysiwyg";
 import axios from "axios";
-// TODO: save the new tag and the new category
 
 class PostNew extends React.Component {
   state = {
@@ -64,16 +63,46 @@ class PostNew extends React.Component {
   
   handleTypeNewTag = event => this.setState({ textTag: event.target.value });
 
+  handleCreateCategory = async event => {
+    event.preventDefault();
+    if (this.state.textCategory.length === 0) {
+      return false;
+    }
+    await axios.post('/ajax-admin/categories', { name: this.state.textCategory }).catch(console.error);
+    const responseCategories = await this.getCategories();
+    this.setState({ 
+      textCategory: '',
+      categories: responseCategories.data['data'], 
+    });
+  };
+
+  handleCreateTag = async event => {
+    event.preventDefault();
+    if (this.state.textTag.length === 0) {
+      return false;
+    }
+    await axios.post('/ajax-admin/tags', { name: this.state.textTag }).catch(console.error);
+    const responseTags = await this.getTags();
+    this.setState({ 
+      textTag: '',
+      tags: responseTags.data['data'], 
+    });
+  };
+
   getData = async () => {
     const responseStates = await axios.get('/ajax-admin/states').catch(console.error);
-    const responseCategories = await axios.get('/ajax-admin/categories').catch(console.error);
-    const responseTags = await axios.get('/ajax-admin/tags').catch(console.error);
+    const responseCategories = await this.getCategories();
+    const responseTags = await this.getTags();
     this.setState({
       states: responseStates.data['data'],
       categories: responseCategories.data['data'],
       tags: responseTags.data['data'],
     })
   };
+
+  getTags = async () => (await axios.get('/ajax-admin/tags').catch(console.error));
+  
+  getCategories = async () => (await axios.get('/ajax-admin/categories').catch(console.error));
 
   componentDidMount() {
     this.getData();
@@ -172,11 +201,11 @@ class PostNew extends React.Component {
               <h4 className="text-white">Categorías</h4>
             </div>
             <div className="card-body">
-              <form className="form-inline mb-3">
+              <form onSubmit={this.handleCreateCategory} className="form-inline mb-3">
                 <div className="flex-grow-1 mr-2 form-group">
                   <input onChange={this.handleTypeNewCategory} value={this.state.textCategory} type="text" className="w-100 form-control" placeholder="Nueva categoría" required/>
                 </div>
-                <button className="btn btn-sm btn-dark btn-rounded">Crear</button>
+                <button type="submit" className="btn btn-sm btn-dark btn-rounded">Crear</button>
               </form>
               {categories}
             </div>
@@ -186,11 +215,11 @@ class PostNew extends React.Component {
               <h4 className="text-white">Etiquetas</h4>
             </div>
             <div className="card-body">
-              <form className="form-inline mb-3">
+              <form onSubmit={this.handleCreateTag} className="form-inline mb-3">
                 <div className="flex-grow-1 mr-2 form-group">
                   <input onChange={this.handleTypeNewTag} value={this.state.textTag} type="text" className="w-100 form-control" placeholder="Nueva etiqueta" required/>
                 </div>
-                <button className="btn btn-sm btn-dark btn-rounded">Crear</button>
+                <button type="submit" className="btn btn-sm btn-dark btn-rounded">Crear</button>
               </form>
               {tags}
             </div>

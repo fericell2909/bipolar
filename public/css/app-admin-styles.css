@@ -24239,6 +24239,7 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 
 input[type="checkbox"] {
   margin-right: 0.7em;
+  cursor: pointer;
 }
 
 .demo-editor-content {

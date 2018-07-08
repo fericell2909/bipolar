@@ -44,6 +44,7 @@ Route::prefix('home-posts')->group(function () {
 });
 
 Route::get('categories', 'Admin\Ajax\CategoryController@index');
+Route::post('categories', 'Admin\Ajax\CategoryController@store');
 
 Route::post('post/new', 'Admin\Ajax\PostController@store');
 Route::post('post/photos', 'Admin\Ajax\PhotoController@postUpload');
@@ -59,6 +60,7 @@ Route::get('coupons/{coupon}', 'Admin\Ajax\CouponsController@show');
 Route::post('coupons/{coupon}/types-subtypes', 'Admin\Ajax\CouponsController@saveTypesAndSubtypes');
 
 Route::get('tags', 'Admin\Ajax\TagsController@index');
+Route::post('tags', 'Admin\Ajax\TagsController@store');
 
 Route::get('discount-tasks', 'Admin\Ajax\DiscountController@index');
 Route::post('discount-tasks', 'Admin\Ajax\DiscountController@store');

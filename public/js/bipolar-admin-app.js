@@ -107814,7 +107814,6 @@ function _inherits(subClass, superClass) {
 
 
 
-// TODO: save the new tag and the new category
 
 var PostNew = function (_React$Component) {
   _inherits(PostNew, _React$Component);
@@ -107900,27 +107899,113 @@ var PostNew = function (_React$Component) {
       return _this.setState({ textCategory: event.target.value });
     }, _this.handleTypeNewTag = function (event) {
       return _this.setState({ textTag: event.target.value });
-    }, _this.getData = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+    }, _this.handleCreateCategory = function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(event) {
+        var responseCategories;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                event.preventDefault();
+
+                if (!(_this.state.textCategory.length === 0)) {
+                  _context2.next = 3;
+                  break;
+                }
+
+                return _context2.abrupt("return", false);
+
+              case 3:
+                _context2.next = 5;
+                return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.post('/ajax-admin/categories', { name: _this.state.textCategory }).catch(console.error);
+
+              case 5:
+                _context2.next = 7;
+                return _this.getCategories();
+
+              case 7:
+                responseCategories = _context2.sent;
+
+                _this.setState({
+                  textCategory: '',
+                  categories: responseCategories.data['data']
+                });
+
+              case 9:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, _this2);
+      }));
+
+      return function (_x2) {
+        return _ref3.apply(this, arguments);
+      };
+    }(), _this.handleCreateTag = function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(event) {
+        var responseTags;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                event.preventDefault();
+
+                if (!(_this.state.textTag.length === 0)) {
+                  _context3.next = 3;
+                  break;
+                }
+
+                return _context3.abrupt("return", false);
+
+              case 3:
+                _context3.next = 5;
+                return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.post('/ajax-admin/tags', { name: _this.state.textTag }).catch(console.error);
+
+              case 5:
+                _context3.next = 7;
+                return _this.getTags();
+
+              case 7:
+                responseTags = _context3.sent;
+
+                _this.setState({
+                  textTag: '',
+                  tags: responseTags.data['data']
+                });
+
+              case 9:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, _this2);
+      }));
+
+      return function (_x3) {
+        return _ref4.apply(this, arguments);
+      };
+    }(), _this.getData = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
       var responseStates, responseCategories, responseTags;
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
-              _context2.next = 2;
+              _context4.next = 2;
               return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.get('/ajax-admin/states').catch(console.error);
 
             case 2:
-              responseStates = _context2.sent;
-              _context2.next = 5;
-              return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.get('/ajax-admin/categories').catch(console.error);
+              responseStates = _context4.sent;
+              _context4.next = 5;
+              return _this.getCategories();
 
             case 5:
-              responseCategories = _context2.sent;
-              _context2.next = 8;
-              return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.get('/ajax-admin/tags').catch(console.error);
+              responseCategories = _context4.sent;
+              _context4.next = 8;
+              return _this.getTags();
 
             case 8:
-              responseTags = _context2.sent;
+              responseTags = _context4.sent;
 
               _this.setState({
                 states: responseStates.data['data'],
@@ -107930,10 +108015,44 @@ var PostNew = function (_React$Component) {
 
             case 10:
             case "end":
-              return _context2.stop();
+              return _context4.stop();
           }
         }
-      }, _callee2, _this2);
+      }, _callee4, _this2);
+    })), _this.getTags = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.next = 2;
+              return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.get('/ajax-admin/tags').catch(console.error);
+
+            case 2:
+              return _context5.abrupt("return", _context5.sent);
+
+            case 3:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, _this2);
+    })), _this.getCategories = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              _context6.next = 2;
+              return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.get('/ajax-admin/categories').catch(console.error);
+
+            case 2:
+              return _context6.abrupt("return", _context6.sent);
+
+            case 3:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6, _this2);
     })), _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -107952,32 +108071,32 @@ var PostNew = function (_React$Component) {
           urlEnabled: true,
           uploadEnabled: true,
           uploadCallback: function () {
-            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(image) {
+            var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7(image) {
               var formData, uploadPhoto;
-              return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+              return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
                 while (1) {
-                  switch (_context3.prev = _context3.next) {
+                  switch (_context7.prev = _context7.next) {
                     case 0:
                       formData = new FormData();
 
                       formData.append("image", image);
-                      _context3.next = 4;
+                      _context7.next = 4;
                       return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.post("/ajax-admin/post/photos", formData).catch(console.error);
 
                     case 4:
-                      uploadPhoto = _context3.sent;
-                      return _context3.abrupt("return", uploadPhoto.data);
+                      uploadPhoto = _context7.sent;
+                      return _context7.abrupt("return", uploadPhoto.data);
 
                     case 6:
                     case "end":
-                      return _context3.stop();
+                      return _context7.stop();
                   }
                 }
-              }, _callee3, _this3);
+              }, _callee7, _this3);
             }));
 
-            function uploadCallback(_x2) {
-              return _ref4.apply(this, arguments);
+            function uploadCallback(_x4) {
+              return _ref8.apply(this, arguments);
             }
 
             return uploadCallback;
@@ -108018,7 +108137,7 @@ var PostNew = function (_React$Component) {
         toolbar: toolbarEditor,
         onEditorStateChange: this.handleEditorDescriptionEnglish,
         editorClassName: "demo-editor-content"
-      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Estado"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("select", { onChange: this.handleChangeSelect, value: this.state.stateSelected, className: "form-control", required: true }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { className: "form-inline mb-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "flex-grow-1 mr-2 form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { onChange: this.handleTypeNewCategory, value: this.state.textCategory, type: "text", className: "w-100 form-control", placeholder: "Nueva categor\xEDa", required: true })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { className: "btn btn-sm btn-dark btn-rounded" }, "Crear")), categories)), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Etiquetas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { className: "form-inline mb-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "flex-grow-1 mr-2 form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { onChange: this.handleTypeNewTag, value: this.state.textTag, type: "text", className: "w-100 form-control", placeholder: "Nueva etiqueta", required: true })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { className: "btn btn-sm btn-dark btn-rounded" }, "Crear")), tags))));
+      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "Estado"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("select", { onChange: this.handleChangeSelect, value: this.state.stateSelected, className: "form-control", required: true }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { onSubmit: this.handleCreateCategory, className: "form-inline mb-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "flex-grow-1 mr-2 form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { onChange: this.handleTypeNewCategory, value: this.state.textCategory, type: "text", className: "w-100 form-control", placeholder: "Nueva categor\xEDa", required: true })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-sm btn-dark btn-rounded" }, "Crear")), categories)), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Etiquetas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { onSubmit: this.handleCreateTag, className: "form-inline mb-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "flex-grow-1 mr-2 form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { onChange: this.handleTypeNewTag, value: this.state.textTag, type: "text", className: "w-100 form-control", placeholder: "Nueva etiqueta", required: true })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-sm btn-dark btn-rounded" }, "Crear")), tags))));
     }
   }]);
 
