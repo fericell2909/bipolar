@@ -15040,51 +15040,78 @@ module.exports = root;
 /* harmony export (immutable) */ __webpack_exports__["b"] = existInArray;
 /* harmony export (immutable) */ __webpack_exports__["c"] = removeFromSimpleArray;
 /* harmony export (immutable) */ __webpack_exports__["a"] = calculatePercentage;
+/* unused harmony export debounce */
 function _toConsumableArray(arr) {
-    if (Array.isArray(arr)) {
-        for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
-            arr2[i] = arr[i];
-        }return arr2;
-    } else {
-        return Array.from(arr);
-    }
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }return arr2;
+  } else {
+    return Array.from(arr);
+  }
 }
 
 function isEnterKey(event) {
-    var keyCode = event.which || event.keyCode;
-    return keyCode === 13;
+  var keyCode = event.which || event.keyCode;
+  return keyCode === 13;
 }
 
 function isLeftClick(event) {
-    return event.button === 0;
+  return event.button === 0;
 }
 
 function existInArray(theArray, value) {
-    return theArray.findIndex(function (element) {
-        return element === value;
-    }) !== -1;
+  return theArray.findIndex(function (element) {
+    return element === value;
+  }) !== -1;
 }
 
 function removeFromSimpleArray(theArray, value) {
-    var indexElement = theArray.findIndex(function (element) {
-        return element === value;
-    });
-    if (indexElement !== -1) {
-        theArray.splice(indexElement, 1);
-    }
-    return [].concat(_toConsumableArray(theArray));
+  var indexElement = theArray.findIndex(function (element) {
+    return element === value;
+  });
+  if (indexElement !== -1) {
+    theArray.splice(indexElement, 1);
+  }
+  return [].concat(_toConsumableArray(theArray));
 }
 
 function calculatePercentage(total, percentage) {
-    var likeInteger = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  var likeInteger = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-    var discount = total * (percentage / 100);
+  var discount = total * (percentage / 100);
 
-    if (likeInteger) {
-        return parseInt(discount);
-    }
+  if (likeInteger) {
+    return parseInt(discount);
+  }
 
-    return discount;
+  return discount;
+}
+
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+function debounce(func, wait, immediate) {
+  var timeout;
+
+  return function executedFunction() {
+    var context = this;
+    var args = arguments;
+
+    var later = function later() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+
+    var callNow = immediate && !timeout;
+
+    clearTimeout(timeout);
+
+    timeout = setTimeout(later, wait);
+
+    if (callNow) func.apply(context, args);
+  };
 }
 
 /***/ }),
