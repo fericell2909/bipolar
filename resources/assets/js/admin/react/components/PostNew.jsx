@@ -6,6 +6,7 @@ import { Editor } from "react-draft-wysiwyg";
 import axios from "axios";
 import PostTags from "./partials/PostTags";
 import PostCategories from "./partials/PostCategories";
+import { removeFromSimpleArray } from "../helpers";
 
 class PostNew extends React.Component {
   state = {
@@ -18,6 +19,22 @@ class PostNew extends React.Component {
     editorStateEnglish: EditorState.createEmpty(),
     states: [],
     selectedCategories: []
+  };
+
+  checkCategory = event => {
+    const categoryId = event.target.value;
+    let selectedCategories = this.state.selectedCategories;
+
+    if (event.target.checked) {
+      selectedCategories.push(categoryId);
+    } else {
+      selectedCategories = removeFromSimpleArray(
+        selectedCategories,
+        categoryId
+      );
+    }
+
+    return this.setState({ selectedCategories });
   };
 
   handleEditorDescription = editorState => {
@@ -174,7 +191,10 @@ class PostNew extends React.Component {
           </div>
         </div>
         <div className="col-md-3">
-          <PostCategories />
+          <PostCategories
+            selected={this.state.selectedCategories}
+            checked={this.checkCategory}
+          />
           <PostTags />
         </div>
       </div>

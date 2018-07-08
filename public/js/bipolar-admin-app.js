@@ -107753,6 +107753,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__partials_PostTags__ = __webpack_require__(551);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__partials_PostCategories__ = __webpack_require__(552);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__helpers__ = __webpack_require__(21);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 
@@ -107816,6 +107817,7 @@ function _inherits(subClass, superClass) {
 
 
 
+
 var PostNew = function (_React$Component) {
   _inherits(PostNew, _React$Component);
 
@@ -107841,6 +107843,17 @@ var PostNew = function (_React$Component) {
       editorStateEnglish: __WEBPACK_IMPORTED_MODULE_3_draft_js__["EditorState"].createEmpty(),
       states: [],
       selectedCategories: []
+    }, _this.checkCategory = function (event) {
+      var categoryId = event.target.value;
+      var selectedCategories = _this.state.selectedCategories;
+
+      if (event.target.checked) {
+        selectedCategories.push(categoryId);
+      } else {
+        selectedCategories = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["c" /* removeFromSimpleArray */])(selectedCategories, categoryId);
+      }
+
+      return _this.setState({ selectedCategories: selectedCategories });
     }, _this.handleEditorDescription = function (editorState) {
       var htmlText = __WEBPACK_IMPORTED_MODULE_4_draftjs_to_html___default()(Object(__WEBPACK_IMPORTED_MODULE_3_draft_js__["convertToRaw"])(editorState.getCurrentContent()));
       _this.setState({
@@ -107999,7 +108012,10 @@ var PostNew = function (_React$Component) {
         value: this.state.stateSelected,
         className: "form-control",
         required: true
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__partials_PostCategories__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__partials_PostTags__["a" /* default */], null)));
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__partials_PostCategories__["a" /* default */], {
+        selected: this.state.selectedCategories,
+        checked: this.checkCategory
+      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__partials_PostTags__["a" /* default */], null)));
     }
   }]);
 
@@ -108484,6 +108500,7 @@ var PostTags = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers__ = __webpack_require__(21);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 
@@ -108537,6 +108554,7 @@ function _inherits(subClass, superClass) {
     throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
   }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 }
+
 
 
 
@@ -108635,8 +108653,16 @@ var PostCategories = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       var categories = this.state.categories.map(function (category) {
-        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "checkbox", key: category["id"] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", { type: "checkbox", value: category["id"] }), " ", category["name"]);
+        var isSelected = Object(__WEBPACK_IMPORTED_MODULE_2__helpers__["b" /* existInArray */])(_this4.props.selected, category["hash_id"]);
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "checkbox", key: category["hash_id"] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", {
+          type: "checkbox",
+          value: category["hash_id"],
+          checked: isSelected,
+          onChange: _this4.props.checked
+        }), " ", category["name"]);
       });
 
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", {

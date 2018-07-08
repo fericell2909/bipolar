@@ -1,4 +1,5 @@
 import React from "react";
+import { existInArray } from "../../helpers";
 
 export default class PostCategories extends React.Component {
   state = {
@@ -34,11 +35,20 @@ export default class PostCategories extends React.Component {
   }
 
   render() {
-    const categories = this.state.categories.map(category => (
-      <div className="checkbox" key={category["id"]}>
-        <input type="checkbox" value={category["id"]} /> {category["name"]}
-      </div>
-    ));
+    const categories = this.state.categories.map(category => {
+      const isSelected = existInArray(this.props.selected, category["hash_id"]);
+      return (
+        <div className="checkbox" key={category["hash_id"]}>
+          <input
+            type="checkbox"
+            value={category["hash_id"]}
+            checked={isSelected}
+            onChange={this.props.checked}
+          />{" "}
+          {category["name"]}
+        </div>
+      );
+    });
 
     return (
       <div className="card">

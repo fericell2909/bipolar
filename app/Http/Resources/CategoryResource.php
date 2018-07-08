@@ -20,6 +20,7 @@ class CategoryResource extends JsonResource
 
         return [
             'id' => $this->when($isAdmin, $category->id),
+            'hash_id' => $category->hash_id,
             'name' => $category->name,
         ];
     }
