@@ -4,8 +4,8 @@ import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { Editor } from "react-draft-wysiwyg";
 import axios from "axios";
-import PostTags from './partials/PostTags';
-import PostCategories from './partials/PostCategories';
+import PostTags from "./partials/PostTags";
+import PostCategories from "./partials/PostCategories";
 
 class PostNew extends React.Component {
   state = {
@@ -17,6 +17,7 @@ class PostNew extends React.Component {
     editorState: EditorState.createEmpty(),
     editorStateEnglish: EditorState.createEmpty(),
     states: [],
+    selectedCategories: []
   };
 
   handleEditorDescription = editorState => {
@@ -39,27 +40,33 @@ class PostNew extends React.Component {
 
   handleChangeTitle = event => this.setState({ title: event.target.value });
 
-  handleChangeEnglishTitle = event => this.setState({ titleEnglish: event.target.value });
+  handleChangeEnglishTitle = event =>
+    this.setState({ titleEnglish: event.target.value });
 
   handleSubmit = async event => {
     event.preventDefault();
-    const savePost = await axios.post('/ajax-admin/post/new', {
-      title: this.state.title,
-      title_english: this.state.titleEnglish,
-      content: this.state.content,
-      content_english: this.state.contentEnglish,
-      state: this.state.stateSelected,
-    }).catch(console.error);
-    window.location.href = savePost.data['redirect_url'];
+    const savePost = await axios
+      .post("/ajax-admin/post/new", {
+        title: this.state.title,
+        title_english: this.state.titleEnglish,
+        content: this.state.content,
+        content_english: this.state.contentEnglish,
+        state: this.state.stateSelected
+      })
+      .catch(console.error);
+    window.location.href = savePost.data["redirect_url"];
   };
 
-  handleChangeSelect = event => this.setState({ stateSelected: event.target.value });
+  handleChangeSelect = event =>
+    this.setState({ stateSelected: event.target.value });
 
   getData = async () => {
-    const responseStates = await axios.get('/ajax-admin/states').catch(console.error);
+    const responseStates = await axios
+      .get("/ajax-admin/states")
+      .catch(console.error);
     this.setState({
-      states: responseStates.data['data'],
-    })
+      states: responseStates.data["data"]
+    });
   };
 
   componentDidMount() {
@@ -85,7 +92,11 @@ class PostNew extends React.Component {
       }
     };
 
-    const statesOptions = this.state.states.map(state => <option key={state['hash_id']} value={state['hash_id']}>{state['name']}</option>);
+    const statesOptions = this.state.states.map(state => (
+      <option key={state["hash_id"]} value={state["hash_id"]}>
+        {state["name"]}
+      </option>
+    ));
 
     return (
       <div className="row">
@@ -101,7 +112,8 @@ class PostNew extends React.Component {
                         value={this.state.title}
                         onChange={this.handleChangeTitle}
                         type="text"
-                        className="form-control" required={true}
+                        className="form-control"
+                        required={true}
                       />
                     </div>
                   </div>
@@ -112,7 +124,8 @@ class PostNew extends React.Component {
                         value={this.state.titleEnglish}
                         onChange={this.handleChangeEnglishTitle}
                         type="text"
-                        className="form-control" required={true}
+                        className="form-control"
+                        required={true}
                       />
                     </div>
                   </div>
@@ -139,21 +152,30 @@ class PostNew extends React.Component {
                   <div className="col-md-6">
                     <div className="form-group">
                       <label>Estado</label>
-                      <select onChange={this.handleChangeSelect} value={this.state.stateSelected} className="form-control" required={true}>
-                        <option value="" disabled>Seleccione</option>
+                      <select
+                        onChange={this.handleChangeSelect}
+                        value={this.state.stateSelected}
+                        className="form-control"
+                        required={true}
+                      >
+                        <option value="" disabled>
+                          Seleccione
+                        </option>
                         {statesOptions}
                       </select>
                     </div>
                   </div>
                 </div>
-                <button type="submit" className="btn btn-dark btn-rounded">Guardar</button>
+                <button type="submit" className="btn btn-dark btn-rounded">
+                  Guardar
+                </button>
               </form>
             </div>
           </div>
         </div>
         <div className="col-md-3">
-          <PostCategories/>
-          <PostTags/>
+          <PostCategories />
+          <PostTags />
         </div>
       </div>
     );

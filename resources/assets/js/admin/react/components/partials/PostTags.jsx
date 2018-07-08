@@ -3,8 +3,8 @@ import { existInArray } from "../../helpers";
 
 export default class PostTags extends React.Component {
   state = {
-    textTag: '',
-    tags: [],
+    textTag: "",
+    tags: []
   };
 
   handleTypeNewTag = event => this.setState({ textTag: event.target.value });
@@ -14,18 +14,23 @@ export default class PostTags extends React.Component {
     if (this.state.textTag.length === 0) {
       return false;
     }
-    await axios.post('/ajax-admin/tags', { name: this.state.textTag }).catch(console.error);
+    await axios
+      .post("/ajax-admin/tags", { name: this.state.textTag })
+      .catch(console.error);
     const responseTags = await this.getTags();
-    this.setState({ 
-      textTag: '',
-      tags: responseTags.data['data'], 
+    this.setState({
+      textTag: "",
+      tags: responseTags.data["data"]
     });
   };
 
-  getTags = async () => (await axios.get('/ajax-admin/tags').catch(console.error));
+  getTags = async () =>
+    await axios.get("/ajax-admin/tags").catch(console.error);
 
   componentDidMount() {
-    this.getTags().then(response => this.setState({ tags: response.data['data'] }));
+    this.getTags().then(response =>
+      this.setState({ tags: response.data["data"] })
+    );
   }
 
   render() {

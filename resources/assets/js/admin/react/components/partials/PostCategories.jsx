@@ -2,29 +2,35 @@ import React from "react";
 
 export default class PostCategories extends React.Component {
   state = {
-    textCategory: '',
-    categories: [],
+    textCategory: "",
+    categories: []
   };
 
-  handleTypeNewCategory = event => this.setState({ textCategory: event.target.value });
-  
+  typeNewCategory = event =>
+    this.setState({ textCategory: event.target.value });
+
   handleCreateCategory = async event => {
     event.preventDefault();
     if (this.state.textCategory.length === 0) {
       return false;
     }
-    await axios.post('/ajax-admin/categories', { name: this.state.textCategory }).catch(console.error);
+    await axios
+      .post("/ajax-admin/categories", { name: this.state.textCategory })
+      .catch(console.error);
     const responseCategories = await this.getCategories();
-    this.setState({ 
-      textCategory: '',
-      categories: responseCategories.data['data'], 
+    this.setState({
+      textCategory: "",
+      categories: responseCategories.data["data"]
     });
   };
 
-  getCategories = async () => (await axios.get('/ajax-admin/categories').catch(console.error));
+  getCategories = async () =>
+    await axios.get("/ajax-admin/categories").catch(console.error);
 
   componentDidMount() {
-    this.getCategories().then(response => this.setState({ categories: response.data['data'] }));
+    this.getCategories().then(response =>
+      this.setState({ categories: response.data["data"] })
+    );
   }
 
   render() {
@@ -46,7 +52,7 @@ export default class PostCategories extends React.Component {
           >
             <div className="flex-grow-1 mr-2 form-group">
               <input
-                onChange={this.handleTypeNewCategory}
+                onChange={this.typeNewCategory}
                 value={this.state.textCategory}
                 type="text"
                 className="w-100 form-control"
