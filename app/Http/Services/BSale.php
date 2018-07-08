@@ -48,29 +48,31 @@ class BSale
         $buyDetails = $onlyDetailsWithBsaleStock->map(function ($detail) {
             /** @var BuyDetail $detail */
             return [
-                'variantId'    => $detail->stock->bsale_stock_id,
-                // todo: change USD/PEN this if we need it
-                'netUnitValue' => $detail->stock->product->price_pen_discount,
-                'quantity'     => $detail->quantity,
-                'comment'      => "{$detail->quantity} x {$detail->stock->product->price_pen_discount}",
+                'variantId' => $detail->stock->bsale_stock_id,
+                'quantity'  => $detail->quantity,
+                'comment'   => "{$detail->quantity} x {$detail->stock->product->price_pen_discount}",
             ];
         });
 
         $dataDocument = [
             'documentTypeId' => env('BSALE_SELL_DOCUMENT_TYPE', 23),
+            'priceListId'    => $buy->currency === 'USD' ? env('BSALE_PRICE_LIST_USD') : env('BSALE_PRICE_LIST_PEN'),
             'emissionDate'   => now()->timestamp,
             'expirationDate' => now()->addMonth()->timestamp,
             'declareSii'     => intval(false),
             'details'        => $buyDetails,
             'client'         => [
                 'firstName'    => $buy->user->name,
-                'code'         => $buy->user->id,
                 'city'         => $buy->shipping_address->country_state->name,
                 'municipality' => $buy->shipping_address->country_state->name,
                 'address'      => $buy->shipping_address->address,
                 'email'        => $buy->user->email,
             ],
         ];
+
+        if (env('APP_ENV') !== 'production') {
+            array_set($dataDocument, 'client.code', $buy->user->id);
+        }
 
         $response = Zttp::asJson()->withHeaders(['access_token' => env('BSALE_TOKEN')])
             ->post('https://api.bsale.cl/v1/documents.json', $dataDocument);
