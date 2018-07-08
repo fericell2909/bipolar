@@ -1,6 +1,18 @@
 <?php
 
 return [
+    'form_fields' => [
+        'firstname' => 'Nombres',
+        'lastname' => 'Apellidos',
+        'email' => 'Correo',
+        'phone' => 'Teléfono',
+        'country' => 'País',
+        'city' => 'Estado / Ciudad',
+        'address' => 'Dirección',
+        'zip' => 'Código zip',
+        'birthdate' => 'Fecha de cumpleaños',
+    ],
+    'payme_modal_lang' => 'SP',
     'size_abbr' => 'Talla',
     'navbar' => [
         'change_currency' => 'Cambiar moneda',
@@ -33,7 +45,7 @@ return [
         'name' => 'Nombre',
         'send' => 'Enviar',
         'suscribe' => 'Suscríbete',
-        'suscribe_details' => 'Y disfruta de descuentos especiales.',
+        'suscribe_details' => 'Y entérate de las últimas novedades.',
         'worldwide_shipping' => 'Envíos a todo el mundo',
     ],
     'contact' => [
@@ -57,8 +69,16 @@ return [
         'order_pricedown' => 'ORDENAR DE PRECIO ALTO A PRECIO BAJO',
     ],
     'mails' => [
+        'buy_received_subject' => 'Gracias por tu compra!',
         'questions' => '¿Preguntas?',
-        'write_us'  => 'Escríbenos a shop@bipolar.com.pe o llámanos al (+51) 965.367.385',
+        'write_us'  => 'Escríbenos a <a href="mailto:shop@bipolar.com.pe" style="color: #000000">shop@bipolar.com.pe</a> o llámanos al <a href="tel:+51965367385" style="color: #000000">(+51) 965.367.385</a>',
+        'your_data' => 'TUS DATOS',
+        'order_number' => 'Orden de pedido',
+        'shipping_method' => 'Método de envío',
+        'shipping_to' => 'Enviar a',
+        'billing_to' => 'Facturar a',
+        'shipping_method_showroom' => 'Recoger en showroom',
+        'shipping_method_local' => 'Local',
     ],
     'shipping' => [
         'title' => 'Envíos',
@@ -97,8 +117,88 @@ return [
         'opening' => 'Horario',
         'location' => 'Ubicación',
         'schedule' => 'Lunes a Sábado de 11:00am-8:30pm',
-        'about' => 'Our Showroom is located in San Isidro, Lima – Peru.
-        We seek to give our clients personalized attention so we work behind closed doors.
-        For more information, please write us at shop@bipolar.com.pe or call us at (+51) 965.367.385.',
+        'about' => 'Nuestro Showroom se encuentra en San Isidro, Lima – Perú. <br>
+        Buscamos darle a nuestras clientas una atención personalizada por lo que atendemos a puerta cerrada. <br>
+        Para más información, escríbenos a shop@bipolar.com.pe o al (+51) 965.367.385.',
+    ],
+    'care_tips' => [
+        'title' => 'Recomendaciones de uso',
+        'content' => "
+            <p>Los productos Bipolar son hechos a mano con piel cuidadosamente elegida por su calidad, color y textura.</p>
+            <p>La piel es un genuino producto de la naturaleza por lo que las pequeñas imperfecciones y ligeros cambios de color demuestran su autenticidad y procedencia. Muchos de nuestros productos utilizan materiales o acabados muy delicados por lo que es muy importante que los trates con cuidado para que estén junto a ti por mucho tiempo.</p>
+            <p><strong><br> Aquí te damos algunas recomendaciones:<br> </strong></p>
+            <hr>
+            <p><strong>1.</strong> Transporta y almacena tus zapatos dentro de su caja. Evita meterlos dentro de bolsas pues podrían perder su forma original o sus accesorios podrían dañarse.</p>
+            <hr>
+            <p><strong>2.</strong> Evita las temperaturas extremas, el agua y la exposición directa al sol por periodos largos.</p>
+            <hr>
+            <p><strong>3.</strong> Si se mojan por la lluvia, déjalos secar al natural.</p>
+            <hr>
+            <p><strong>4.</strong> Evita los objetos puntiagudos y las superficies ásperas pues el cuero podría dañarse.</p>
+            <hr>
+            <p><strong>5.</strong> Usa un cepillo pequeño para quitar el polvo de tus zapatos de ante / gamuza cada vez que los uses.</p>
+            <hr>
+            <p><strong>6.</strong> Usa un paño seco para limpiar tus zapatos de cuero clásico o charol.</p>
+            <hr>
+            <p><strong>7.</strong> Si tuvieran alguna mancha ligera, utiliza un paño con bencina y limpialos sin frotar.<br> Haz la prueba en un área pequeña primero.</p>
+            <hr>
+            <p><strong>8.</strong> Si la mancha persiste o si necesitan un limpiado a profundidad, llévalos a la renovadora de calzado más cercana.</p>
+            <hr>
+            <p>Si tienes alguna duda sobre tus bipolares, no dudes en escribirnos a <strong>bipolar@bipolar.com.pe.</strong></p>
+        ",
+    ],
+    'confirmation' => [
+        'your_order' => 'Tu pedido',
+        'product' => 'Producto',
+        'shipping' => 'Envío',
+        'pick_showroom' => 'Recoger en el showroom',
+        'size' => 'Talla',
+        'payment' => 'Forma de pago',
+        'credit_card' => 'Tarjeta de crédito o de débito',
+        'make_payment' => 'Realizar pago',
+        'billing_address' => 'Dirección de facturación',
+        'shipping_address' => 'Dirección de envío',
+        'customer_info' => 'Detalles del cliente',
+    ],
+    'checkout' => [
+        'coupon' => 'Cupón',
+        'remove' => 'Remover',
+        'have_coupon' => '¿Tienes un cupón?',
+        'coupon_code' => 'Código de cupón',
+        'apply_coupon' => 'Aplicar cupón',
+        'billing_address' => 'Dirección de facturación',
+        'shipping_address' => 'Dirección de envío',
+        'your_order' => 'Tu pedido',
+        'shipping' => 'Envío',
+        'showroom_shipping' => 'Recoger en el showroom',
+        'terms_check' => 'Necesita aceptar los términos y condiciones para continuar',
+        'terms_accept' => 'He leído y acepto los <a href="{{ route(\'landings.exchange\') }}" target="_blank">términos y condiciones</a>',
+        'shipping_check' => 'Necesita seleccionar una opción de envío',
+        'continue' => 'Continuar',
+        'select' => 'SELECCIONAR',
+        'another_address' => '¿Enviar a una dirección diferente?',
+    ],
+    'profile_edit' => [
+        'my_account' => 'Mi cuenta',
+        'account_info' => 'Información de tu cuenta',
+        'password_change' => 'Cambio de contraseña',
+        'update' => 'Actualizar',
+        'old_password' => 'Contraseña antigua (dejar en blanco para no realizar cambios)',
+        'new_password' => 'Nueva contraseña (dejar en blanco para no realizar cambios)',
+        'new_password_confirmation' => 'Confirmar nueva contraseña (dejar en blanco para no realizar cambios)',
+    ],
+    'password_recovery' => [
+        'my_account' => 'Mi cuenta',
+        'lost_question' => '¿Perdiste tu contraseña? Por favor introduce tu nombre de usuario o correo electrónico. Recibirás un enlace para crear una contraseña nueva por correo electrónico.',
+        'email' => 'Correo electrónico',
+        'recovery_password' => 'Reestablecer contraseña',
+    ],
+    'password_email' => [
+        'reset' => 'Restaurar contraseña',
+        'explain' => 'Estás recibiendo este correo porque recibimos una solicitud de restauración desde tu cuenta',
+        'prevent' => 'Si no solicitaste restaurar tu contraseña, ignora este correo',
+    ],
+    'suscription_email' => [
+        'desuscribe' => 'Si deseas desuscribirte de nuestra lista puedes hacerlo desde <a href="https://bipolar.us12.list-manage.com/unsubscribe?u=d616f5c8cc9cff44a6ae9337a&id=914e120268">aquí</a>',
     ],
 ];

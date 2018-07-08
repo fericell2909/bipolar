@@ -1,12 +1,13 @@
+@import "../mixins";
+
 .bipolar-checkout {
   .form-coupon {
     border: 3px solid #eee;
     padding: 20px;
 
     label {
+      @include gotham_bold_font;
       color: $bipolar-black;
-      font-family: $gotham-bold-font;
-      font-weight: normal;
       font-size: 11px;
       width: 100%;
       text-align: center;
@@ -24,6 +25,7 @@
   }
 
   .content-coupon {
+    @include gotham_bold_font;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,7 +34,6 @@
     padding: 1em;
     border-radius: 5px;
     color: $bipolar-black;
-    font-family: $gotham-bold-font;
   }
 
   .panel-default {
@@ -43,23 +44,37 @@
     }
 
     .panel-heading {
+      display: flex;
+      align-items: center;
       background: none;
       text-align: center;
       border-radius: 0;
-      border: none;
 
-      a {
-        display: block;
-        text-transform: uppercase;
+      &.content-collapsed {
         border-bottom: 1px solid #eee;
-        padding: 10px 15px;
-        color: $bipolar-black;
-        font-family: $bodoni-bold-font;
-        font-size: 17px;
-        letter-spacing: 2.5px;
-        &:hover {
-          text-decoration: none;
+      }
+
+      .panel-title {
+        display: inline-block;
+        flex: 1;
+
+        a {
+          @include bodoni_bold_font;
+          display: block;
+          text-transform: uppercase;
+          padding: 10px 15px;
+          color: $bipolar-black;
+          font-size: 17px;
+          letter-spacing: 2.5px;
+          &:hover {
+            text-decoration: none;
+          }
         }
+      }
+
+      .panel-icon {
+        display: inline-block;
+        cursor: pointer;
       }
 
       & + .panel-collapse {
@@ -71,12 +86,11 @@
           }
 
           .form-group > label {
-            font-weight: normal;
+            @include gotham_bold_font;
             text-align: left;
             text-transform: uppercase;
             padding-left: 10px;
             font-size: 11px;
-            font-family: $gotham-bold-font;
             color: $bipolar-black;
           }
         }
@@ -92,12 +106,11 @@
       margin-bottom: 2em;
 
       label {
-        font-family: $gotham-bold-font, Verdana;
+        @include gotham_bold_font;
         font-size: 11px;
         color: $bipolar-black;
         text-transform: uppercase;
         padding-left: 10px;
-        font-weight: normal;
       }
     }
   }
@@ -111,14 +124,13 @@
 
     thead {
       th {
-        font-family: $bodoni-bold-font;
+        @include bodoni_bold_font;
         font-size: 17px;
         color: $bipolar-black;
         letter-spacing: 2.55px;
         text-transform: uppercase;
         border-bottom: 1px solid #222;
         padding: 10px 15px;
-        font-weight: normal;
       }
     }
 
@@ -132,13 +144,11 @@
           color: $bipolar-black;
 
           &.product-name {
-            font-family: $bodoni-bold-font;
+            @include bodoni_bold_font;
             font-size: 17px;
-            font-weight: normal;
 
             .stock-variation {
-              font-family: $gotham-light-font;
-              font-weight: normal;
+              @include gotham_light_font;
               font-size: 12px;
               text-transform: uppercase;
               letter-spacing: 0;
@@ -146,16 +156,37 @@
           }
 
           &.total {
-            font-family: $gotham-light-font;
-            font-weight: normal;
-            font-size: 12px;
+            @include bodoni_bold_font;
+            font-size: 17px;
             text-transform: uppercase;
-            letter-spacing: 0;
+            letter-spacing: 2.55px;
+          }
+
+          &.shipping-pickers {
+            .picker {
+              @include gotham_bold_font;
+              display: block;
+              text-transform: uppercase;
+              font-size: 11px;
+              margin: 6px 0;
+
+              input[type="radio"] {
+                margin-right: 5px;
+              }
+
+              .shipping-explanation {
+                display: inline-block;
+                span:last-child {
+                  @include bodoni_bold_font;
+                  font-size: 17px;
+                }
+              }
+            }
           }
         }
 
         .amount {
-          font-family: $bodoni-bold-font;
+          @include bodoni_bold_font;
           font-size: 17px;
           color: $bipolar-black;
         }
@@ -170,7 +201,7 @@
     line-height: 40px;
 
     .checkbox-content {
-      font-family: $gotham-bold-font;
+      @include gotham_bold_font;
       text-transform: uppercase;
       color: $bipolar-black;
       padding-left: 10px;
@@ -186,12 +217,11 @@
       margin-top: 22px;
 
       label {
-        font-family: $gotham-bold-font;
+        @include gotham_bold_font;
         font-size: 11px;
         color: $bipolar-black;
         text-transform: uppercase;
         padding-left: 10px;
-        font-weight: normal;
       }
 
       a {
@@ -222,7 +252,6 @@
 
   .select-2-countries, .select-2-country-states {
     border: none;
-    background-color: $bipolar-gray;
     color: #878787;
     line-height: 1;
     -webkit-border-radius: 42px;
@@ -234,9 +263,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     height: 35px;
-    background-image: url(../../img/arrow_down.png);
-    background-repeat: no-repeat;
-    background-position: calc(100% - 10px);
+    background: $bipolar-gray url(../../img/arrow_down.png) no-repeat calc(100% - 10px);
   }
 
   .address-list {
@@ -265,10 +292,10 @@
         padding-left: 38px;
 
         > li {
+          @include gotham_bold_font;
           text-transform: uppercase;
           font-size: 11px;
           color: $bipolar-black;
-          font-family: $gotham-bold-font;
         }
       }
 

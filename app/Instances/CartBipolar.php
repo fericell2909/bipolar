@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\CartDetail;
 use App\Models\Coupon;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Collection;
 
 class CartBipolar
@@ -110,6 +111,20 @@ class CartBipolar
         return $this->cart->total_currency;
     }
 
+    /**
+     * @param Cart $cart
+     * @param User $user
+     * @return Cart
+     */
+    public function convertToUser(Cart $cart, User $user)
+    {
+        $cart->session_id = null;
+        $cart->user()->associate($user);
+        $cart->save();
+
+        return $cart;
+    }
+
     public function recalculate()
     {
         $this->cart = $this->cart->fresh();
@@ -120,6 +135,7 @@ class CartBipolar
 
         if ($this->cart->details->count() === 0) {
             $this->cart->subtotal = 0;
+            $this->cart->subtotal_dolar = 0;
             $this->cart->total = 0;
             $this->cart->total_dolar = 0;
             return $this->cart->save();
@@ -133,6 +149,7 @@ class CartBipolar
         });
 
         $this->cart->subtotal = $total;
+        $this->cart->subtotal_dolar = $totalDolar;
         $this->cart->total = $total;
         $this->cart->total_dolar = $totalDolar;
         return $this->cart->save();
@@ -162,9 +179,14 @@ class CartBipolar
         return true;
     }
 
+    public function getSubtotalBySessionCurrency() : float
+    {
+        return \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->subtotal_dolar : $this->cart->subtotal;
+    }
+
     public function getTotalBySessionCurrency() : float
     {
-        return \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->total : $this->cart->total_dolar;
+        return \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->total_dolar : $this->cart->total;
     }
 
     /**

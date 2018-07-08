@@ -1,0 +1,45 @@
+// Fonts
+@mixin bodoni_font() {
+  font-family: 'BauerBodoniStd', 'Times New Roman', sans-serif;
+  font-weight: normal;
+}
+
+@mixin bodoni_bold_font() {
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
+}
+
+@mixin sahari_bodoni_font() {
+  font-family: "SaharaBodoni", monospace;
+}
+
+@mixin gotham_light_font() {
+  font-family: "GothamLight", sans-serif;
+  font-weight: normal;
+}
+
+@mixin gotham_bold_font() {
+  font-family: "GothamBold", sans-serif;
+  font-weight: normal;
+}
+
+// Bootstrap Media Queries
+@mixin xxs {
+  @media only screen and (min-width : 320px) { @content }
+}
+
+@mixin xs {
+  @media only screen and (min-width : 480px) { @content }
+}
+
+@mixin sm {
+  @media only screen and (min-width : 768px) { @content }
+}
+
+@mixin md {
+  @media only screen and (min-width : 992px) { @content }
+}
+
+@mixin lg {
+  @media only screen and (min-width : 1200px) { @content }
+}

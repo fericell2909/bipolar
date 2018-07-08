@@ -88,65 +88,56 @@
           @forelse($products as $product)
             <?php /** @var \App\Models\Product $product */ ?>
             <div class="col-md-4 bipolar-product">
-              @if(count($product->photos))
-                <a class="product-link" href="{{ route('shop.product', $product->slug) }}"></a>
-                @if(false)
-                  <div class="shop-discount-container">
+              <a class="product-link" href="{{ route('shop.product', $product->slug) }}"></a>
+              <div class="overlay-shop-container">
+                @if($product->discount)
+                  <div class="shop-discount-preview-container">
                     <div class="shop-discount">
-                      <span>30%</span>
+                      <span>{{ $product->discount }}%</span>
                     </div>
                   </div>
                 @endif
-                <div class="overlay-shop-container">
-                  @if($product->discount)
-                    <div class="shop-discount-preview-container">
-                      <div class="shop-discount">
-                        <span>{{ $product->discount }}%</span>
-                      </div>
+                @if(count($product->photos))
+                  <img src="{{ optional($product->photos)->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
+                @else
+                    <img src="https://placehold.it/317x210" alt="{{ $product->name }}" class="img-responsive">
+                @endif
+                <div class="overlay-shop-image">
+                  <div class="overlay-shop-text">
+                    <a href="{{ route('shop.product', $product->slug) }}"
+                       style="text-decoration:none;">{{ $product->name }}</a>
+                  </div>
+                  @if($product->colors->count() > 0)
+                    <div class="overlay-shop-color-text">
+                      {{ $product->colors->first()->name }}
                     </div>
                   @endif
-                  <img src="{{ optional($product->photos)->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
-                  <div class="overlay-shop-image">
-                    <div class="overlay-shop-text">
-                      <a href="{{ route('shop.product', $product->slug) }}"
-                         style="text-decoration:none;">{{ $product->name }}</a>
+                  @if($product->discount)
+                    <div class="overlay-discount-container">
+                      <span class="overlay-shop-color-text">{{ $product->price_discount_currency }}</span>
+                      <span class="overlay-shop-discount-text">{{ $product->price_currency }}</span>
                     </div>
-                    @if($product->colors->count() > 0)
-                      <div class="overlay-shop-color-text">
-                        {{ $product->colors->first()->name }}
-                      </div>
-                    @endif
-                    @if($product->discount)
-                      <div class="overlay-discount-container">
-                        <span class="overlay-shop-color-text">{{ $product->price_discount_currency }}</span>
-                        <span class="overlay-shop-discount-text">{{ $product->price_currency }}</span>
-                      </div>
-                    @else
-                      <div class="overlay-shop-color-text">{{ $product->price_currency }}</div>
-                    @endif
-                    <div class="overlay-shop-buttons">
-                      <a class="btn btn-dark overlay-radio-button wishlist-add"
-                         data-product-id="{{ $product->hash_id }}" title="Wishlist">
-                        <img src="{{ asset('images/heart.svg') }}" width="18">
-                      </a>
-                      <a href="#"
-                         class="btn btn-dark overlay-radio-button button-see-details"
-                         data-hash-id="{{ $product->hash_id }}"
-                         title="Detalles">
-                        <img src="{{ asset('images/search.svg') }}" width="18">
-                      </a>
-                      <a href="{{ route('shop.product', $product->slug) }}" class="btn btn-dark overlay-radio-button"
-                         title="Agregar al carrito">
-                        <img src="{{ asset('images/shopping-cart.svg') }}" width="18">
-                      </a>
-                    </div>
+                  @else
+                    <div class="overlay-shop-color-text">{{ $product->price_currency }}</div>
+                  @endif
+                  <div class="overlay-shop-buttons">
+                    <a class="btn btn-dark overlay-radio-button wishlist-add"
+                       data-product-id="{{ $product->hash_id }}" title="Wishlist">
+                      <img src="{{ asset('images/heart.svg') }}" width="18">
+                    </a>
+                    <a href="#"
+                       class="btn btn-dark overlay-radio-button button-see-details"
+                       data-hash-id="{{ $product->hash_id }}"
+                       title="Detalles">
+                      <img src="{{ asset('images/search.svg') }}" width="18">
+                    </a>
+                    <a href="{{ route('shop.product', $product->slug) }}" class="btn btn-dark overlay-radio-button"
+                       title="Agregar al carrito">
+                      <img src="{{ asset('images/shopping-cart.svg') }}" width="18">
+                    </a>
                   </div>
                 </div>
-              @else
-                <a href="{{ route('shop.product', $product->slug) }}">
-                  <img src="https://placehold.it/317x210" alt="{{ $product->name }}" class="img-responsive">
-                </a>
-              @endif
+              </div>
             </div>
           @empty
             <h3>No se encontraron productos, cambie sus parámetros de búsqueda</h3>

@@ -11,9 +11,9 @@
             <tr>
               <td>
                 @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                <img src="https://bipolar-peru.s3.amazonaws.com/assets/mails/pedido-enviado-esp.jpg" style="max-width: 100%" alt="Bipolar">
+                <img src="https://bipolar-peru.s3.amazonaws.com/assets/mails/suscription_esp.png" style="max-width: 100%" alt="Bipolar">
                 @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                <img src="https://bipolar-peru.s3.amazonaws.com/assets/mails/pedido-enviado-eng.jpg" style="max-width: 100%" alt="Bipolar">
+                <img src="https://bipolar-peru.s3.amazonaws.com/assets/mails/suscription_eng.png" style="max-width: 100%" alt="Bipolar">
                 @endif
               </td>
             </tr>
@@ -23,9 +23,6 @@
                   <tbody>
                     <tr>
                       <td class="column_cell pt tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;padding-top: 16px;line-height: inherit;">
-                        <h1 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 8px;color: #4d4d4d;font-size: 26px;line-height: 34px;">
-                          GRACIAS {{ strtoupper($name) }} <br> POR SUSCRIBIRTE A NUESTRO NEWSLETTER
-                        </h1>
                         <h5 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 8px;color: #4d4d4d;font-size: 15px;line-height: 30px;">Si deseas desuscribirte de nuestra lista puedes hacerlo desde <a href="https://bipolar.us12.list-manage.com/unsubscribe?u=d616f5c8cc9cff44a6ae9337a&id=914e120268">aquí</a>.</h5>
                       </td>
                     </tr>

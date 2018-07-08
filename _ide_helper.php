@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.23 on 2018-05-28 19:13:49.
+ * Generated for Laravel 5.6.26 on 2018-07-01 21:46:51.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1745,13 +1745,13 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Invalid other sessions for the current user.
+         * Invalidate other sessions for the current user.
          * 
          * The application must be using the AuthenticateSession middleware.
          *
          * @param string $password
          * @param string $attribute
-         * @return $this 
+         * @return null|bool 
          * @static 
          */ 
         public static function logoutOtherDevices($password, $attribute = 'password')
@@ -1929,6 +1929,17 @@ namespace Illuminate\Support\Facades {
         public static function authenticate()
         {
             return \Illuminate\Auth\SessionGuard::authenticate();
+        }
+        
+        /**
+         * Determine if the guard has a user instance.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasUser()
+        {
+            return \Illuminate\Auth\SessionGuard::hasUser();
         }
         
         /**
@@ -3338,7 +3349,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param mixed $payload
          * @param bool $unserialize
-         * @return string 
+         * @return mixed 
          * @throws \Illuminate\Contracts\Encryption\DecryptException
          * @static 
          */ 
@@ -7559,6 +7570,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * 
+         *
+         * @internal 
+         * @static 
+         */ 
+        public static function setSessionFactory($factory)
+        {
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::setSessionFactory($factory);
+        }
+        
+        /**
          * Returns the client IP addresses.
          * 
          * In the returned array the most trusted IP address is first, and the
@@ -8512,7 +8535,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Determine if the request contains any of the given inputs.
          *
-         * @param string|array $key
+         * @param string|array $keys
          * @return bool 
          * @static 
          */ 
@@ -9809,6 +9832,17 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Drop all views from the database.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function dropAllViews()
+        {
+            \Illuminate\Database\Schema\MySqlBuilder::dropAllViews();
+        }
+        
+        /**
          * Set the default string length for migrations.
          *
          * @param int $length
@@ -10661,12 +10695,12 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $name
          * @param mixed $disk
-         * @return void 
+         * @return $this 
          * @static 
          */ 
         public static function set($name, $disk)
         {
-            \Illuminate\Filesystem\FilesystemManager::set($name, $disk);
+            return \Illuminate\Filesystem\FilesystemManager::set($name, $disk);
         }
         
         /**
@@ -13544,6 +13578,17 @@ namespace Collective\Html {
         }
         
         /**
+         * Take Request in fill process
+         *
+         * @param bool $consider
+         * @static 
+         */ 
+        public static function considerRequest($consider = true)
+        {
+            return \Collective\Html\FormBuilder::considerRequest($consider);
+        }
+        
+        /**
          * Get a value from the session's old input.
          *
          * @param string $name
@@ -14747,6 +14792,19 @@ namespace Facades\App\Instances {
         /**
          * 
          *
+         * @param \App\Instances\Cart $cart
+         * @param \App\Instances\User $user
+         * @return \App\Instances\Cart 
+         * @static 
+         */ 
+        public static function convertToUser($cart, $user)
+        {
+            return \App\Instances\CartBipolar::convertToUser($cart, $user);
+        }
+        
+        /**
+         * 
+         *
          * @static 
          */ 
         public static function recalculate()
@@ -14772,6 +14830,16 @@ namespace Facades\App\Instances {
         public static function destroy()
         {
             return \App\Instances\CartBipolar::destroy();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getSubtotalBySessionCurrency()
+        {
+            return \App\Instances\CartBipolar::getSubtotalBySessionCurrency();
         }
         
         /**
@@ -14814,6 +14882,886 @@ namespace Facades\App\Instances {
         public static function hasCoupon()
         {
             return \App\Instances\CartBipolar::hasCoupon();
+        }
+         
+    }
+ 
+}
+
+namespace Artesaos\SEOTools\Facades { 
+
+    class SEOMeta {
+        
+        /**
+         * Generates meta tags.
+         *
+         * @param bool $minify
+         * @return string 
+         * @static 
+         */ 
+        public static function generate($minify = false)
+        {
+            return \Artesaos\SEOTools\SEOMeta::generate($minify);
+        }
+        
+        /**
+         * Sets the title.
+         *
+         * @param string $title
+         * @param bool $appendDefault
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function setTitle($title, $appendDefault = true)
+        {
+            return \Artesaos\SEOTools\SEOMeta::setTitle($title, $appendDefault);
+        }
+        
+        /**
+         * Sets the default title tag.
+         *
+         * @param string $default
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function setTitleDefault($default)
+        {
+            return \Artesaos\SEOTools\SEOMeta::setTitleDefault($default);
+        }
+        
+        /**
+         * Sets the separator for the title tag.
+         *
+         * @param string $separator
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function setTitleSeparator($separator)
+        {
+            return \Artesaos\SEOTools\SEOMeta::setTitleSeparator($separator);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $description
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function setDescription($description)
+        {
+            return \Artesaos\SEOTools\SEOMeta::setDescription($description);
+        }
+        
+        /**
+         * Sets the list of keywords, you can send an array or string separated with commas
+         * also clears the previously set keywords.
+         *
+         * @param string|array $keywords
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function setKeywords($keywords)
+        {
+            return \Artesaos\SEOTools\SEOMeta::setKeywords($keywords);
+        }
+        
+        /**
+         * Add a keyword.
+         *
+         * @param string|array $keyword
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function addKeyword($keyword)
+        {
+            return \Artesaos\SEOTools\SEOMeta::addKeyword($keyword);
+        }
+        
+        /**
+         * Remove a metatag.
+         *
+         * @param string $key
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function removeMeta($key)
+        {
+            return \Artesaos\SEOTools\SEOMeta::removeMeta($key);
+        }
+        
+        /**
+         * Add a custom meta tag.
+         *
+         * @param string|array $meta
+         * @param string $value
+         * @param string $name
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function addMeta($meta, $value = null, $name = 'name')
+        {
+            return \Artesaos\SEOTools\SEOMeta::addMeta($meta, $value, $name);
+        }
+        
+        /**
+         * Sets the canonical URL.
+         *
+         * @param string $url
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function setCanonical($url)
+        {
+            return \Artesaos\SEOTools\SEOMeta::setCanonical($url);
+        }
+        
+        /**
+         * Sets the AMP html URL.
+         *
+         * @param string $url
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function setAmpHtml($url)
+        {
+            return \Artesaos\SEOTools\SEOMeta::setAmpHtml($url);
+        }
+        
+        /**
+         * Sets the prev URL.
+         *
+         * @param string $url
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function setPrev($url)
+        {
+            return \Artesaos\SEOTools\SEOMeta::setPrev($url);
+        }
+        
+        /**
+         * Sets the next URL.
+         *
+         * @param string $url
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function setNext($url)
+        {
+            return \Artesaos\SEOTools\SEOMeta::setNext($url);
+        }
+        
+        /**
+         * Add an alternate language.
+         *
+         * @param string $lang language code in ISO 639-1 format
+         * @param string $url
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function addAlternateLanguage($lang, $url)
+        {
+            return \Artesaos\SEOTools\SEOMeta::addAlternateLanguage($lang, $url);
+        }
+        
+        /**
+         * Add alternate languages.
+         *
+         * @param array $languages
+         * @return \Artesaos\SEOTools\MetaTagsContract 
+         * @static 
+         */ 
+        public static function addAlternateLanguages($languages)
+        {
+            return \Artesaos\SEOTools\SEOMeta::addAlternateLanguages($languages);
+        }
+        
+        /**
+         * Takes the title formatted for display.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getTitle()
+        {
+            return \Artesaos\SEOTools\SEOMeta::getTitle();
+        }
+        
+        /**
+         * Takes the default title.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getDefaultTitle()
+        {
+            return \Artesaos\SEOTools\SEOMeta::getDefaultTitle();
+        }
+        
+        /**
+         * takes the title that was set.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getTitleSession()
+        {
+            return \Artesaos\SEOTools\SEOMeta::getTitleSession();
+        }
+        
+        /**
+         * takes the title that was set.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getTitleSeparator()
+        {
+            return \Artesaos\SEOTools\SEOMeta::getTitleSeparator();
+        }
+        
+        /**
+         * Get the Meta keywords.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getKeywords()
+        {
+            return \Artesaos\SEOTools\SEOMeta::getKeywords();
+        }
+        
+        /**
+         * Get all metatags.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getMetatags()
+        {
+            return \Artesaos\SEOTools\SEOMeta::getMetatags();
+        }
+        
+        /**
+         * Get the Meta description.
+         *
+         * @return string|null 
+         * @static 
+         */ 
+        public static function getDescription()
+        {
+            return \Artesaos\SEOTools\SEOMeta::getDescription();
+        }
+        
+        /**
+         * Get the canonical URL.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getCanonical()
+        {
+            return \Artesaos\SEOTools\SEOMeta::getCanonical();
+        }
+        
+        /**
+         * Get the AMP html URL.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getAmpHtml()
+        {
+            return \Artesaos\SEOTools\SEOMeta::getAmpHtml();
+        }
+        
+        /**
+         * Get the prev URL.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getPrev()
+        {
+            return \Artesaos\SEOTools\SEOMeta::getPrev();
+        }
+        
+        /**
+         * Get the next URL.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getNext()
+        {
+            return \Artesaos\SEOTools\SEOMeta::getNext();
+        }
+        
+        /**
+         * Get alternate languages.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getAlternateLanguages()
+        {
+            return \Artesaos\SEOTools\SEOMeta::getAlternateLanguages();
+        }
+        
+        /**
+         * Reset all data.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function reset()
+        {
+            \Artesaos\SEOTools\SEOMeta::reset();
+        }
+         
+    }
+
+    class OpenGraph {
+        
+        /**
+         * Generates open graph tags.
+         *
+         * @param bool $minify
+         * @return string 
+         * @static 
+         */ 
+        public static function generate($minify = false)
+        {
+            return \Artesaos\SEOTools\OpenGraph::generate($minify);
+        }
+        
+        /**
+         * Add or update property.
+         *
+         * @param string $key key of property
+         * @param string|array $value value of property
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function addProperty($key, $value)
+        {
+            return \Artesaos\SEOTools\OpenGraph::addProperty($key, $value);
+        }
+        
+        /**
+         * Set article properties.
+         *
+         * @param array $attributes opengraph article attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setArticle($attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::setArticle($attributes);
+        }
+        
+        /**
+         * Set profile properties.
+         *
+         * @param array $attributes opengraph profile attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setProfile($attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::setProfile($attributes);
+        }
+        
+        /**
+         * Set book properties.
+         *
+         * @param array $attributes opengraph book attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setBook($attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::setBook($attributes);
+        }
+        
+        /**
+         * Set music song properties.
+         *
+         * @param array $attributes opengraph music.song attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setMusicSong($attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::setMusicSong($attributes);
+        }
+        
+        /**
+         * Set music album properties.
+         *
+         * @param array $attributes opengraph music.album attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setMusicAlbum($attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::setMusicAlbum($attributes);
+        }
+        
+        /**
+         * Set music playlist properties.
+         *
+         * @param array $attributes opengraph music.playlist attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setMusicPlaylist($attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::setMusicPlaylist($attributes);
+        }
+        
+        /**
+         * Set music radio station properties.
+         *
+         * @param array $attributes opengraph music.radio_station attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setMusicRadioStation($attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::setMusicRadioStation($attributes);
+        }
+        
+        /**
+         * Set video movie properties.
+         *
+         * @param array $attributes opengraph video.movie attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setVideoMovie($attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::setVideoMovie($attributes);
+        }
+        
+        /**
+         * Set video episode properties.
+         *
+         * @param array $attributes opengraph video.episode attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setVideoEpisode($attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::setVideoEpisode($attributes);
+        }
+        
+        /**
+         * Set video episode properties.
+         *
+         * @param array $attributes opengraph video.other attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setVideoOther($attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::setVideoOther($attributes);
+        }
+        
+        /**
+         * Set video episode properties.
+         *
+         * @param array $attributes opengraph video.tv_show attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setVideoTVShow($attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::setVideoTVShow($attributes);
+        }
+        
+        /**
+         * Add video properties.
+         *
+         * @param string $source url of video source
+         * @param array $attributes opengraph video attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function addVideo($source = null, $attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::addVideo($source, $attributes);
+        }
+        
+        /**
+         * Add audio properties.
+         *
+         * @param string $source url for audio source
+         * @param array $attributes opengraph audio attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function addAudio($source = null, $attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::addAudio($source, $attributes);
+        }
+        
+        /**
+         * Set place properties.
+         *
+         * @param array $attributes opengraph place attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setPlace($attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::setPlace($attributes);
+        }
+        
+        /**
+         * Set product properties.
+         *
+         * @param array $attributes opengraph product attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setProduct($attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::setProduct($attributes);
+        }
+        
+        /**
+         * Remove property.
+         *
+         * @param string $key key
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function removeProperty($key)
+        {
+            return \Artesaos\SEOTools\OpenGraph::removeProperty($key);
+        }
+        
+        /**
+         * Add image to properties.
+         *
+         * @param mixed $source URL of image source
+         * @param array $attributes Object type attributes
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function addImage($source = null, $attributes = array())
+        {
+            return \Artesaos\SEOTools\OpenGraph::addImage($source, $attributes);
+        }
+        
+        /**
+         * Add images to properties.
+         *
+         * @param array $urls array of image urls
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function addImages($urls)
+        {
+            return \Artesaos\SEOTools\OpenGraph::addImages($urls);
+        }
+        
+        /**
+         * Define type property.
+         *
+         * @param string $type set the opengraph type
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setType($type = null)
+        {
+            return \Artesaos\SEOTools\OpenGraph::setType($type);
+        }
+        
+        /**
+         * Define title property.
+         *
+         * @param string $title set the opengraph title
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setTitle($title = null)
+        {
+            return \Artesaos\SEOTools\OpenGraph::setTitle($title);
+        }
+        
+        /**
+         * Define description property.
+         *
+         * @param string $description set the opengraph description
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setDescription($description = null)
+        {
+            return \Artesaos\SEOTools\OpenGraph::setDescription($description);
+        }
+        
+        /**
+         * Define url property.
+         *
+         * @param string $url set the opengraph url
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setUrl($url)
+        {
+            return \Artesaos\SEOTools\OpenGraph::setUrl($url);
+        }
+        
+        /**
+         * Define site_name property.
+         *
+         * @param string $name set the site_name
+         * @return \Artesaos\SEOTools\OpenGraphContract 
+         * @static 
+         */ 
+        public static function setSiteName($name)
+        {
+            return \Artesaos\SEOTools\OpenGraph::setSiteName($name);
+        }
+         
+    }
+
+    class TwitterCard {
+        
+        /**
+         * 
+         *
+         * @param bool $minify
+         * @return string 
+         * @static 
+         */ 
+        public static function generate($minify = false)
+        {
+            return \Artesaos\SEOTools\TwitterCards::generate($minify);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $key
+         * @param string|array $value
+         * @return \Artesaos\SEOTools\TwitterCardsContract 
+         * @static 
+         */ 
+        public static function addValue($key, $value)
+        {
+            return \Artesaos\SEOTools\TwitterCards::addValue($key, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $title
+         * @return \Artesaos\SEOTools\TwitterCardsContract 
+         * @static 
+         */ 
+        public static function setTitle($title)
+        {
+            return \Artesaos\SEOTools\TwitterCards::setTitle($title);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $type
+         * @return \Artesaos\SEOTools\TwitterCardsContract 
+         * @static 
+         */ 
+        public static function setType($type)
+        {
+            return \Artesaos\SEOTools\TwitterCards::setType($type);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $site
+         * @return \Artesaos\SEOTools\TwitterCardsContract 
+         * @static 
+         */ 
+        public static function setSite($site)
+        {
+            return \Artesaos\SEOTools\TwitterCards::setSite($site);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $description
+         * @return \Artesaos\SEOTools\TwitterCardsContract 
+         * @static 
+         */ 
+        public static function setDescription($description)
+        {
+            return \Artesaos\SEOTools\TwitterCards::setDescription($description);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $url
+         * @return \Artesaos\SEOTools\TwitterCardsContract 
+         * @static 
+         */ 
+        public static function setUrl($url)
+        {
+            return \Artesaos\SEOTools\TwitterCards::setUrl($url);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|array $image
+         * @return \Artesaos\SEOTools\TwitterCardsContract 
+         * @deprecated use setImage($image) instead
+         * @static 
+         */ 
+        public static function addImage($image)
+        {
+            return \Artesaos\SEOTools\TwitterCards::addImage($image);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|array $images
+         * @return \Artesaos\SEOTools\TwitterCardsContract 
+         * @deprecated use setImage($image) instead
+         * @static 
+         */ 
+        public static function setImages($images)
+        {
+            return \Artesaos\SEOTools\TwitterCards::setImages($images);
+        }
+        
+        /**
+         * 
+         *
+         * @param $image
+         * @return \Artesaos\SEOTools\TwitterCardsContract 
+         * @static 
+         */ 
+        public static function setImage($image)
+        {
+            return \Artesaos\SEOTools\TwitterCards::setImage($image);
+        }
+         
+    }
+
+    class SEOTools {
+        
+        /**
+         * 
+         *
+         * @return \Artesaos\SEOTools\Contracts\MetaTags 
+         * @static 
+         */ 
+        public static function metatags()
+        {
+            return \Artesaos\SEOTools\SEOTools::metatags();
+        }
+        
+        /**
+         * 
+         *
+         * @return \Artesaos\SEOTools\Contracts\OpenGraph 
+         * @static 
+         */ 
+        public static function opengraph()
+        {
+            return \Artesaos\SEOTools\SEOTools::opengraph();
+        }
+        
+        /**
+         * 
+         *
+         * @return \Artesaos\SEOTools\Contracts\TwitterCards 
+         * @static 
+         */ 
+        public static function twitter()
+        {
+            return \Artesaos\SEOTools\SEOTools::twitter();
+        }
+        
+        /**
+         * Setup title for all seo providers.
+         *
+         * @param string $title
+         * @return \Artesaos\SEOTools\Contracts\SEOTools 
+         * @static 
+         */ 
+        public static function setTitle($title)
+        {
+            return \Artesaos\SEOTools\SEOTools::setTitle($title);
+        }
+        
+        /**
+         * Setup description for all seo providers.
+         *
+         * @param $description
+         * @return \Artesaos\SEOTools\Contracts\SEOTools 
+         * @static 
+         */ 
+        public static function setDescription($description)
+        {
+            return \Artesaos\SEOTools\SEOTools::setDescription($description);
+        }
+        
+        /**
+         * Sets the canonical URL.
+         *
+         * @param string $url
+         * @return \Artesaos\SEOTools\Contracts\SEOTools 
+         * @static 
+         */ 
+        public static function setCanonical($url)
+        {
+            return \Artesaos\SEOTools\SEOTools::setCanonical($url);
+        }
+        
+        /**
+         * 
+         *
+         * @param array|string $urls
+         * @return \Artesaos\SEOTools\Contracts\SEOTools 
+         * @static 
+         */ 
+        public static function addImages($urls)
+        {
+            return \Artesaos\SEOTools\SEOTools::addImages($urls);
+        }
+        
+        /**
+         * Get current title from metatags.
+         *
+         * @param bool $session
+         * @return string 
+         * @static 
+         */ 
+        public static function getTitle($session = false)
+        {
+            return \Artesaos\SEOTools\SEOTools::getTitle($session);
+        }
+        
+        /**
+         * Generate from all seo providers.
+         *
+         * @param bool $minify
+         * @return string 
+         * @static 
+         */ 
+        public static function generate($minify = false)
+        {
+            return \Artesaos\SEOTools\SEOTools::generate($minify);
         }
          
     }
@@ -16824,6 +17772,61 @@ namespace  {
             }
          
             /**
+             * Add a "where JSON contains" clause to the query.
+             *
+             * @param string $column
+             * @param mixed $value
+             * @param string $boolean
+             * @param bool $not
+             * @return $this 
+             * @static 
+             */ 
+            public static function whereJsonContains($column, $value, $boolean = 'and', $not = false)
+            {    
+                return \Illuminate\Database\Query\Builder::whereJsonContains($column, $value, $boolean, $not);
+            }
+         
+            /**
+             * Add a "or where JSON contains" clause to the query.
+             *
+             * @param string $column
+             * @param mixed $value
+             * @return $this 
+             * @static 
+             */ 
+            public static function orWhereJsonContains($column, $value)
+            {    
+                return \Illuminate\Database\Query\Builder::orWhereJsonContains($column, $value);
+            }
+         
+            /**
+             * Add a "where JSON not contains" clause to the query.
+             *
+             * @param string $column
+             * @param mixed $value
+             * @param string $boolean
+             * @return $this 
+             * @static 
+             */ 
+            public static function whereJsonDoesntContain($column, $value, $boolean = 'and')
+            {    
+                return \Illuminate\Database\Query\Builder::whereJsonDoesntContain($column, $value, $boolean);
+            }
+         
+            /**
+             * Add a "or where JSON not contains" clause to the query.
+             *
+             * @param string $column
+             * @param mixed $value
+             * @return $this 
+             * @static 
+             */ 
+            public static function orWhereJsonDoesntContain($column, $value)
+            {    
+                return \Illuminate\Database\Query\Builder::orWhereJsonDoesntContain($column, $value);
+            }
+         
+            /**
              * Handles dynamic "where" clauses to the query.
              *
              * @param string $method
@@ -17043,7 +18046,7 @@ namespace  {
              * Constrain the query to the next "page" of results after a given ID.
              *
              * @param int $perPage
-             * @param int $lastId
+             * @param int|null $lastId
              * @param string $column
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
@@ -17554,6 +18557,14 @@ namespace  {
     class Hashids extends \Vinkla\Hashids\Facades\Hashids {}
 
     class CartBipolar extends \Facades\App\Instances\CartBipolar {}
+
+    class SEOMeta extends \Artesaos\SEOTools\Facades\SEOMeta {}
+
+    class OpenGraph extends \Artesaos\SEOTools\Facades\OpenGraph {}
+
+    class Twitter extends \Artesaos\SEOTools\Facades\TwitterCard {}
+
+    class SEO extends \Artesaos\SEOTools\Facades\SEOTools {}
 
     class Flash extends \Laracasts\Flash\Flash {}
 

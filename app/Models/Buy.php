@@ -42,14 +42,14 @@ class Buy extends Model
 
     public function getSubtotalCurrencyAttribute()
     {
-        $moneySign = \Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN' ? 'S/' : '$';
+        $moneySign = $this->currency === 'PEN' ? 'S/' : '$';
 
         return "{$moneySign} " . intval($this->subtotal);
     }
 
     public function getTotalCurrencyAttribute()
     {
-        $moneySign = \Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN' ? 'S/' : '$';
+        $moneySign = $this->currency === 'PEN' ? 'S/' : '$';
 
         return "{$moneySign} " . intval($this->total);
     }

@@ -6,7 +6,7 @@
 @section('content')
 <?php /** @var \App\Models\Buy $buy */ ?>
 <div class="background-title-image">
-  <h1>Compra</h1>
+  <h1>{{ __('bipolar.confirmation.your_order') }}</h1>
 </div>
 <div class="container">
   <h2>#Orden {{ $buy->id }}</h2>
@@ -79,7 +79,7 @@
   <form name="f1" action="#" id="f1" class="alignet-form-vpos2" method="post">
     <input type="hidden" name="acquirerId" value="{{ $acquirerId }}">
     <input type="hidden" name="idCommerce" value="{{ $idCommerce }}">
-    <input type="hidden" name="language" value="SP">
+    <input type="hidden" name="language" value="{{ __('bipolar.payme_modal_lang') }}">
     <input type="hidden" name="purchaseOperationNumber" value="{{ $purchaseOperationNumber }}">
     <input type="hidden" name="purchaseAmount" value="{{ $purchaseAmount }}">
     <input type="hidden" name="purchaseCurrencyCode" value="{{ $purchaseCurrencyCode }}">
@@ -98,12 +98,12 @@
     <input type="hidden" name="purchaseVerification" value="{{ $purchaseVerification }}" />
     <input type="hidden" name="programmingLanguage" value="PHP">
     <input type="hidden" name="descriptionProducts" value="Pedido en Bipolar.com.pe">
-    <p class="text-center">
-      <a href="#" class="btn btn-dark btn-rounded" onclick="javascript:AlignetVPOS2.openModal('{{ env('PAYME_URL_ALIGNET') }}', '2')">
+    <p class="text-left">
+      <a href="#" class="btn btn-dark btn-rounded" onclick="javascript:AlignetVPOS2.openModal('{{ env('APP_ENV') === "production" ? "" : env('PAYME_URL_ALIGNET') }}', '2')">
         <span class="icon">
           <i class="fa fa-credit-card"></i>
         </span>
-        <span>Realizar pago</span>
+        <span>{{ __('bipolar.confirmation.make_payment') }}</span>
       </a>
     </p>
   </form>
@@ -111,7 +111,7 @@
   <table class="table-order">
     <thead>
       <tr>
-        <th>Producto</th>
+        <th>{{ __('bipolar.confirmation.product') }}</th>
         <th>Total</th>
       </tr>
     </thead>
@@ -119,33 +119,34 @@
       @foreach($buy->details as $buyDetail)
       <tr>
         <td>
+          <img style="margin-right: 10px" src="{{ optional(optional($buyDetail->product->photos)->first())->url }}" width="50" alt="{{ $buyDetail->product->name }}">
           <span>{{ $buyDetail->product->name }} x {{ $buyDetail->quantity }}</span>
           @if($buyDetail->stock)
-            <span>Talla: {{ $buyDetail->stock->size->name }}</span>
+            <span>{{ __('bipolar.confirmation.shipping') }}: {{ $buyDetail->stock->size->name }}</span>
           @endif
         </td>
         <td><span class="price">{{ $buyDetail->total_currency }}</span></td>
       </tr>
       @endforeach
       <tr>
-        <td>Subtotal:</td>
+        <td class="total-title">Subtotal:</td>
         <td><span class="price">{{ $buy->subtotal_currency }}</span></td>
       </tr>
       <tr>
-        <td>Envío:</td>
-        <td><span class="price">{{ $buy->showroom ? 'Recoger del showroom' : $buy->shipping_fee_currency }}</span></td>
+        <td class="total-title">{{ __('bipolar.confirmation.shipping') }}:</td>
+        <td><span class="price">{{ $buy->showroom ? __('bipolar.confirmation.pick_showroom') : $buy->shipping_fee_currency }}</span></td>
       </tr>
       <tr>
-        <td>Forma de pago:</td>
-        <td>Tarjeta de crédito o de débito</td>
+        <td class="total-title">{{ __('bipolar.confirmation.payment') }}:</td>
+        <td class="total-title">{{ __('bipolar.confirmation.credit_card') }}</td>
       </tr>
       <tr>
-        <td>Total:</td>
+        <td class="total-title">Total:</td>
         <td><span class="price">{{ $buy->total_currency }}</span></td>
       </tr>
     </tbody>
   </table>
-  <h2>Detalles del cliente</h2>
+  <h2>{{ __('bipolar.confirmation.customer_info') }}</h2>
   <table class="customer-details">
     <tbody>
       <tr>
@@ -157,7 +158,7 @@
   <div class="row">
     @if($buy->billing_address)
     <div class="col-md-6">
-      <h2>Dirección de facturación</h2>
+      <h2>{{ __('bipolar.confirmation.billing_address') }}</h2>
       <address>
         <strong>{{ $buy->billing_address->name }} {{ $buy->billing_address->lastname }}</strong><br>
         {{ $buy->billing_address->address }}<br>
@@ -168,7 +169,7 @@
     @endif
     @if($buy->shipping_address)
     <div class="col-md-6">
-      <h2>Dirección de envío</h2>
+      <h2>{{ __('bipolar.confirmation.shipping_address') }}</h2>
       <address>
         <strong>{{ $buy->shipping_address->name }} {{ $buy->shipping_address->lastname }}</strong><br>
         {{ $buy->shipping_address->address }}<br>

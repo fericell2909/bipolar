@@ -118,8 +118,8 @@
         <div class="col-sm-6 col-md-5">
           <div class="bipolar-action-button-container">
             <span class="text-uppercase">Compártelo:</span>
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-envelope-o"></i></a>
+            <a href="#" onclick="window.open('https://www.facebook.com/sharer.php?s=100&p[url]={{ urlencode(URL::current()) }}','sharer', 'toolbar=0,status=0,width=620,height=280');"><i class="fa fa-facebook"></i></a>
+            <a href="mailto:bipolar@bipolar.com.pe"><i class="fa fa-envelope-o"></i></a>
           </div>
         </div>
       </div>
@@ -140,13 +140,16 @@
         </div>
       @endif
     </div>
-    <div class="modal fade" id="testingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-            <img src="https://bipolar-peru.s3.amazonaws.com/assets/guia-de-tallas.jpg" alt="Guia de tallas Bipolar" class="img-responsive">
-          </div>
+@endsection
+@push('js_plus')
+  {{-- Don't move! This code is here for prevent a modal z-index problem --}}
+  <div class="modal fade" id="testingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img src="https://bipolar-peru.s3.amazonaws.com/assets/guia-de-tallas.jpg" alt="Guia de tallas Bipolar" class="img-responsive">
         </div>
       </div>
     </div>
-@endsection
+  </div>
+@endpush

@@ -27307,7 +27307,10 @@ $(function () {
   $('.address-billing-option').click(function () {
     var addressId = $(this).val();
 
-    $.post('ajax/address/' + addressId + '/main').done(function () {
+    $.post('ajax/address/' + addressId + '/main').done(function (response) {
+      if (response['shipping_fee'] !== undefined && response['shipping_name'] !== undefined) {
+        $('#checkout-shipping-fee').html('<span>' + response['shipping_name'] + '</span><span>' + response['shipping_fee'] + '</span>');
+      }
       $('#sectionCollapseOne').collapse('hide');
       $('#sectionCollapseTwo').collapse('show');
     });
@@ -27316,7 +27319,10 @@ $(function () {
   $('.address-shipping-option').click(function () {
     var addressId = $(this).val();
 
-    $.post('ajax/address/' + addressId + '/main').done(function () {
+    $.post('ajax/address/' + addressId + '/main').done(function (response) {
+      if (response['shipping_fee'] !== undefined && response['shipping_name'] !== undefined) {
+        $('#checkout-shipping-fee').html('<span>' + response['shipping_name'] + '</span><span>' + response['shipping_fee'] + '</span>');
+      }
       $('#sectionCollapseTwo').collapse('hide');
       $('#sectionCollapseThree').collapse('show');
     });
@@ -27358,12 +27364,37 @@ $(function () {
     $('#sectionCollapseThree').collapse('show');
   });
 
+  $('#sectionCollapseOne, #sectionCollapseTwo, #sectionCollapseThree').on('show.bs.collapse', function (event) {
+    var headingId = $(event.currentTarget).attr('aria-labelledby');
+    var heading = $('#' + headingId);
+    heading.removeClass('content-collapsed');
+    heading.children('.panel-icon').html("<i class='fa fa-chevron-up'></i>");
+  }).on('hide.bs.collapse', function (event) {
+    var headingId = $(event.currentTarget).attr('aria-labelledby');
+    var heading = $('#' + headingId);
+    heading.addClass('content-collapsed');
+    heading.children('.panel-icon').html("<i class='fa fa-chevron-down'></i>");
+  });
+
+  // Submit the checkout form
   $('#checkout-form').submit(function (event) {
+    var $hiddenShipping = $('input[name="showroom_pick"]');
+    if (!$hiddenShipping.val()) {
+      $('#shipping-check').show();
+      return event.preventDefault();
+    }
+
     var terms = $('input[name="terms"]');
     if (terms.is(':checked') === false) {
       $('#terms-check').show();
       return event.preventDefault();
     }
+  });
+
+  // Change the shipping for the form
+  $('input[name="shipping_pick"]').change(function (event) {
+    $('#shipping-check').hide();
+    return $('input[name="showroom_pick"]').val(event.target.value);
   });
 });
 

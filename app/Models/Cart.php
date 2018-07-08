@@ -23,6 +23,15 @@ class Cart extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getSubtotalCurrencyAttribute()
+    {
+        if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {
+            return "S/ " . intval($this->subtotal);
+        } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
+            return "$ " . intval($this->subtotal_dolar);
+        }
+    }
+
     public function getTotalCurrencyAttribute()
     {
         if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {

@@ -1,6 +1,18 @@
 <?php
 
 return [
+    'form_fields' => [
+        'firstname' => 'First name',
+        'lastname' => 'Last name',
+        'email' => 'Email address',
+        'phone' => 'Phone',
+        'country' => 'Country',
+        'city' => 'Town / City',
+        'address' => 'Address',
+        'zip' => 'Postcode / Zip',
+        'birthdate' => 'Birth date',
+    ],
+    'payme_modal_lang' => 'EN',
     'size_abbr' => 'Size',
     'navbar' => [
         'change_currency' => 'Change currency',
@@ -57,8 +69,16 @@ return [
         'order_pricedown' => 'SORT BY PRICE: HIGH TO LOW',
     ],
     'mails' => [
+        'buy_received_subject' => 'Thank you for your purchase!',
         'questions' => 'Questions?',
-        'write_us'  => 'Email us at shop@bipolar.com.pe or call us at (+51) 965.367.385',
+        'write_us'  => 'Email us at <a href="mailto:shop@bipolar.com.pe" style="color: #000000">shop@bipolar.com.pe</a> or call us at <a href="tel:+51965367385" style="color: #000000">(+51) 965.367.385</a>',
+        'your_data' => 'YOUR DATA',
+        'order_number' => 'Order number',
+        'shipping_method' => 'Shipping method',
+        'shipping_to' => 'Shipping to',
+        'billing_to' => 'Billing to',
+        'shipping_method_showroom' => 'Pick at showroom',
+        'shipping_method_local' => 'Local',
     ],
     'shipping' => [
         'title' => 'Shipping',
@@ -97,8 +117,88 @@ return [
         'opening' => 'Opening hours',
         'location' => 'Location',
         'schedule' => 'Monday-Saturday 11:00am-8:30pm',
-        'about' => 'Nuestro Showroom se encuentra en San Isidro, Lima – Perú. <br>
-        Buscamos darle a nuestras clientas una atención personalizada por lo que atendemos a puerta cerrada. <br>
-        Para más información, escríbenos a shop@bipolar.com.pe o al (+51) 965.367.385.',
+        'about' => 'Our Showroom is located in San Isidro, Lima – Peru.
+        We seek to give our clients personalized attention so we work behind closed doors.
+        For more information, please write us at shop@bipolar.com.pe or call us at (+51) 965.367.385.',
+    ],
+    'care_tips' => [
+        'title' => 'Care tips',
+        'content' => "
+            <p>Bipolar products are handmade with leather carefully chosen for their quality, color and texture. Genuine leather is a natural product so little imperfections as well as slight color changes show its authenticity and origin..</p>
+            <p>Some of our products are very delicate so you must treat them with care and keep them away from water or direct sunlight so they can remain in perfect conditions for a long time.</p>
+            <p><strong><br>Here are some care tips you may find useful:<br> </strong></p>
+            <hr>
+            <p><strong>1.</strong>  Transport and store your shoes inside it´s box. Avoid carrying them in bags as they could lose their original form, or accessories may be damaged.</p>
+            <hr>
+            <p><strong>2.</strong> Avoid extreme temperatures, water and direct sunlight for long periods.</p>
+            <hr>
+            <p><strong>3.</strong> If they get wet from the rain, let them dry naturally.</p>
+            <hr>
+            <p><strong>4.</strong> Avoid sharp objects and rough surfaces that may damage leather.</p>
+            <hr>
+            <p><strong>5.</strong> Use a small brush to remove dust from your suede shoes every time you wear them.</p>
+            <hr>
+            <p><strong>6.</strong> Use a dry cloth to clean your classic leather or patent leather shoes.</p>
+            <hr>
+            <p><strong>7.</strong> If you had a light stain, use a cloth with benzine and clean them without rubbing. Try it on a small area first.</p>
+            <hr>
+            <p><strong>8.</strong> If the stain persists or if your shoes need a deep cleaning, take them to the nearest shoe repair shop.</p>
+            <hr>
+            <p>If you have any questions about your bipolars, please contact us at <strong>bipolar@bipolar.com.pe.</strong></p>
+        ",
+    ],
+    'confirmation' => [
+        'your_order' => 'Your order',
+        'product' => 'Product',
+        'shipping' => 'Shipping',
+        'pick_showroom' => 'Pick at the showroom',
+        'size' => 'Size',
+        'payment' => 'Payment method',
+        'credit_card' => 'Credit or debit card',
+        'make_payment' => 'Make payment',
+        'billing_address' => 'Billing Address',
+        'shipping_address' => 'Shipping Address',
+        'customer_info' => 'Customer info',
+    ],
+    'checkout' => [
+        'coupon' => 'Coupon',
+        'remove' => 'Remove',
+        'have_coupon' => '¿Have a coupon?',
+        'coupon_code' => 'Coupon code',
+        'apply_coupon' => 'Apply coupon',
+        'billing_address' => 'Billing address',
+        'shipping_address' => 'Shipping address',
+        'your_order' => 'Your order',
+        'shipping' => 'Shipping',
+        'showroom_shipping' => 'Pick at showroom',
+        'terms_check' => 'You need to check the terms to continue',
+        'terms_accept' => 'I have read the <a href="{{ route(\'landings.exchange\') }}" target="_blank">terms and conditions</a>',
+        'shipping_check' => 'You need to choose a shipping option',
+        'continue' => 'Continue',
+        'select' => 'SELECT',
+        'another_address' => 'Ship to a different address?',
+    ],
+    'profile_edit' => [
+        'my_account' => 'My account',
+        'account_info' => 'Account info',
+        'password_change' => 'Change your password',
+        'update' => 'Update',
+        'old_password' => 'Old Password (leave blank to not make changes)',
+        'new_password' => 'New Password (leave blank to not make changes)',
+        'new_password_confirmation' => 'Confirm your new Password (leave blank to not make changes)',
+    ],
+    'password_recovery' => [
+        'my_account' => 'My account',
+        'lost_question' => 'Did you lost your account? Please fill your username or email. You will receive a link in your email.',
+        'email' => 'Email',
+        'recovery_password' => 'Recovery password',
+    ],
+    'password_email' => [
+        'reset' => 'Password reset',
+        'explain' => 'You are receiving this email because we received a password reset request for your account',
+        'prevent' => 'If you did not request a password reset, no further action is required',
+    ],
+    'suscription_email' => [
+        'desuscribe' => 'If you wish to unsubscribe from our list, you can do <a href="https://bipolar.us12.list-manage.com/unsubscribe?u=d616f5c8cc9cff44a6ae9337a&id=914e120268">here</a>',
     ],
 ];

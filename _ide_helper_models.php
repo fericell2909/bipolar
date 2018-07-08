@@ -51,7 +51,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $user_id
- * @property int $coupon_id
+ * @property int|null $coupon_id
  * @property int $billing_address_id
  * @property int $shipping_address_id
  * @property int|null $buy_number
@@ -61,10 +61,11 @@ namespace App\Models{
  * @property string $currency
  * @property string|null $payed
  * @property int $showroom
+ * @property string|null $bsale_document_url
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\Address $billing_address
- * @property-read \App\Models\Coupon $coupon
+ * @property-read \App\Models\Coupon|null $coupon
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $details
  * @property-read string $hash_id
  * @property-read mixed $shipping_fee_currency
@@ -78,6 +79,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy currentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy otherCurrentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBsaleDocumentUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBuyNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCouponId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCreatedAt($value)
@@ -293,12 +295,14 @@ namespace App\Models{
  * @property float|null $discount_coupon_pen
  * @property float|null $discount_coupon_usd
  * @property float $subtotal
+ * @property float $subtotal_dolar
  * @property float $total
  * @property float $total_dolar
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\Coupon|null $coupon
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CartDetail[] $details
+ * @property-read mixed $subtotal_currency
  * @property-read mixed $total_currency
  * @property-read mixed $total_discount_coupon
  * @property-read \App\Models\User|null $user
@@ -309,6 +313,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSessionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSubtotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSubtotalDolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereTotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereTotalDolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereUpdatedAt($value)
@@ -538,7 +543,7 @@ namespace App\Models{
  * @property string $email
  * @property string $phone
  * @property string $address
- * @property string $zip
+ * @property string|null $zip
  * @property int $main
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
@@ -846,6 +851,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Address[] $addresses
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereName($value)
  */

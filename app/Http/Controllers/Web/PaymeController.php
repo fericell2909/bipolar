@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Http\Services\BSale;
+use App\Mail\BuyConfirmation;
 use App\Models\Buy;
 use App\Models\Payment;
 use App\Models\Settings;
@@ -18,17 +20,19 @@ class PaymeController extends Controller
 
         $this->authorize('view', $buy);
 
+        $buy->load(['details.product.photos', 'details.stock.size', 'details.product']);
+
         $buy->buy_number = $this->getCurrentBuyNumber();
         $buy->save();
 
-        $tokenUsuario = $this->getOrRegisterInWallet($request);
+        $tokenUsuario = $this->getOrRegisterInWallet($request, $buy->currency);
 
         $acquirerId = env('PAYME_ACQUIRER_ID');
-        $idCommerce = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_COMMERCE_ID_ENGLISH') : env('PAYME_COMMERCE_ID');
+        $idCommerce = $buy->currency === 'USD' ? env('PAYME_COMMERCE_ID_ENGLISH') : env('PAYME_COMMERCE_ID');
         $purchaseOperationNumber = sprintf('%06d', $buy->buy_number);
         $purchaseAmount = intval($buy->total * 100);
-        $purchaseCurrencyCode = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? '840' : '604';
-        $claveVPOS = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_VPOS_COMMERCE_SECRET_ENGLISH') : env('PAYME_VPOS_COMMERCE_SECRET');
+        $purchaseCurrencyCode = $buy->currency === 'USD' ? '840' : '604';
+        $claveVPOS = $buy->currency === 'USD' ? env('PAYME_VPOS_COMMERCE_SECRET_ENGLISH') : env('PAYME_VPOS_COMMERCE_SECRET');
 
         $purchaseVerification = openssl_digest($acquirerId . $idCommerce . $purchaseOperationNumber . $purchaseAmount . $purchaseCurrencyCode . $claveVPOS, 'sha512');
 
@@ -61,6 +65,7 @@ class PaymeController extends Controller
         }
 
         $this->authorize('view', $buy);
+        $buy->load(['details.product.photos', 'details.stock.size', 'details.product']);
         //abort_if($buy->tipo_pago_id == config('constants.TIPO_PAGO_MEMBRESIA_ID'), 403);
 
         // Comprobando si el pago fue realizado correctamente
@@ -72,14 +77,14 @@ class PaymeController extends Controller
             $buy->buy_number = $this->getCurrentBuyNumber();
             $buy->save();
 
-            $tokenUsuario = $this->getOrRegisterInWallet($request);
+            $tokenUsuario = $this->getOrRegisterInWallet($request, $buy->currency);
 
             $acquirerId = env('PAYME_ACQUIRER_ID');
-            $idCommerce = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_COMMERCE_ID_ENGLISH') : env('PAYME_COMMERCE_ID');
+            $idCommerce = $buy->currency === 'USD' ? env('PAYME_COMMERCE_ID_ENGLISH') : env('PAYME_COMMERCE_ID');
             $purchaseOperationNumber = sprintf('%06d', $buy->buy_number);
             $purchaseAmount = intval(number_format($buy->total, 2) * 100);
-            $purchaseCurrencyCode = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? '840' : '604';
-            $claveVPOS = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_VPOS_COMMERCE_SECRET_ENGLISH') : env('PAYME_VPOS_COMMERCE_SECRET');
+            $purchaseCurrencyCode = $buy->currency === 'USD' ? '840' : '604';
+            $claveVPOS = $buy->currency === 'USD' ? env('PAYME_VPOS_COMMERCE_SECRET_ENGLISH') : env('PAYME_VPOS_COMMERCE_SECRET');
 
             $purchaseVerification = openssl_digest($acquirerId . $idCommerce . $purchaseOperationNumber . $purchaseAmount . $purchaseCurrencyCode . $claveVPOS, 'sha512');
         }
@@ -124,6 +129,13 @@ class PaymeController extends Controller
             $buy->payed = now()->toDateTimeString();
             $buy->save();
             $buy->setStatus(config('constants.BUY_PROCESSING_STATUS'), 'Pago exitoso');
+            \Mail::to($request->user())->send(new BuyConfirmation($buy));
+            $response = BSale::documentCreate($buy);
+            if ($response->isSuccess()) {
+                $content = $response->json();
+                $buy->bsale_document_url = array_get($content, 'urlPdf');
+                $buy->save();
+            }
         } elseif ($request->input('authorizationResult') == '01') {
             $payment->auth_result_text = 'Operación Denegada';
         } elseif ($request->input('authorizationResult') == '05') {
@@ -149,7 +161,7 @@ class PaymeController extends Controller
      * @param Request $request
      * @return bool
      */
-    private function getOrRegisterInWallet(Request $request)
+    private function getOrRegisterInWallet(Request $request, string $currency)
     {
         /** @var User $user */
         $user = $request->user();
@@ -166,9 +178,9 @@ class PaymeController extends Controller
             ]);
 
             //Creación de Arreglo para el almacenamiento y envío de parametros.
-            $idEntCommerce = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_WALLET_COMMERCE_ID') : env('PAYME_WALLET_COMMERCE_ID_ENGLISH');
+            $idEntCommerce = $currency === 'USD' ? env('PAYME_WALLET_COMMERCE_ID') : env('PAYME_WALLET_COMMERCE_ID_ENGLISH');
             $codCardHolderCommerce = $user->id;
-            $claveSecretaWallet = \Session::get('BIPOLAR_CURRENCY') === 'USD' ? env('PAYME_WALLET_COMMERCE_SECRET') : env('PAYME_WALLET_COMMERCE_SECRET_ENGLISH');
+            $claveSecretaWallet = $currency === 'USD' ? env('PAYME_WALLET_COMMERCE_SECRET') : env('PAYME_WALLET_COMMERCE_SECRET_ENGLISH');
             $emailUser = $user->email;
             $registerVerification = openssl_digest($idEntCommerce . $codCardHolderCommerce . $emailUser . $claveSecretaWallet, 'sha512');
 
@@ -202,11 +214,13 @@ class PaymeController extends Controller
         $setting = Settings::first();
 
         // Primera numero de operacion
-        if (empty($setting->current_buy)) {
-            return 1;
+        if (intval($setting->current_buy) === 0) {
+            $setting->current_buy = 1;
+        } else {
+            $setting->current_buy = $setting->current_buy + 1;
+            $setting->save();
         }
-
-        $setting->current_buy = $setting->current_buy + 1;
+        
         $setting->save();
 
         return $setting->current_buy;
