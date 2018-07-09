@@ -10,6 +10,7 @@ use App\Models\Banner;
 use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Http\Request;
 use App\Models\Historic;
+use App\Models\Post;
 
 class LandingsController extends Controller
 {
@@ -78,6 +79,13 @@ class LandingsController extends Controller
         return view('web.landings.contact');
     }
 
+    public function blog()
+    {
+        $posts = Post::orderByDesc('created_at')->paginate(10);
+
+        return view('web.blog.index', compact('posts'));
+    }
+
     public function contactProcess(Request $request)
     {
         $this->validate($request, [
@@ -93,7 +101,8 @@ class LandingsController extends Controller
                 $request->input('name'),
                 $request->input('email'),
                 $request->input('message')
-            ));
+            )
+        );
 
         return redirect()->back();
     }

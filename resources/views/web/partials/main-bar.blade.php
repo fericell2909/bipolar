@@ -156,6 +156,12 @@
 					</a>
 				</li>
 				<li class="bipolar-item">
+					<a href="{{ route('landings.blog') }}">
+						<div class="item-text">Blog</div>
+						<div class="the-line"></div>
+					</a>
+				</li>
+				<li class="bipolar-item">
 					<a href="{{ route('landings.contacto') }}">
 						<div class="item-text">{{ __('bipolar.navbar.contact_us') }}</div>
 						<div class="the-line"></div>

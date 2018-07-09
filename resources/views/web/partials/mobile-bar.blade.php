@@ -89,5 +89,6 @@
   <li><a href="{{ route('landings.showroom') }}"><span>Showroom</span></a></li>
   <li><a href="{{ route('shop') }}"><span>Shop</span></a></li>
   <li><a href="{{ route('landings.newsletter') }}"><span>Newsletter</span></a></li>
+  <li><a href="{{ route('landings.blog') }}"><span>Blog</span></a></li>
   <li><a href="{{ route('landings.contacto') }}"><span>{{ __('bipolar.navbar.contact_us') }}</span></a></li>
 </ul>

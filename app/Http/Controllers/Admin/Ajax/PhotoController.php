@@ -56,6 +56,26 @@ class PhotoController extends Controller
         return response()->json(compact('path'));
     }
 
+    public function postUpload(Request $request)
+    {
+        $this->validate($request, ['image' => 'required|image']);
+
+        $image = $request->file('image');
+
+        if ($image->isValid()) {
+            $imagePath = $this->uploadPhoto($image, 'posts', 'post-image-' . time());
+            $amazonPath = $this->getAmazonPath($imagePath) ?? "";
+
+            $photo = new Photo;
+            $photo->url = $amazonPath;
+            $photo->relative_url = $imagePath;
+            $photo->order = 0;
+            $photo->save();
+        }
+
+        return response()->json(['data' => ['link' => $amazonPath]]);
+    }
+
     public function orderPhotos(Request $request)
     {
         $this->validate($request, ['newOrder' => 'required|array']);
