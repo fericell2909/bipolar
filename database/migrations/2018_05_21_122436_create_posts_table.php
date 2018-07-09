@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->text('main_photo')->nullable();
             $table->unsignedInteger('state_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('posts', function (Blueprint $table) {

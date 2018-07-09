@@ -13,8 +13,8 @@ $factory->define(Post::class, function (Faker $faker) {
 
     return [
         'title' => [
-            'es' => $faker->paragraph,
-            'en' => $faker->paragraph,
+            'es' => $faker->sentence(4),
+            'en' => $faker->sentence(4),
         ],
         'content' => [
             'es' => $faker->paragraphs(3),
