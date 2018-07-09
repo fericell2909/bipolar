@@ -16362,92 +16362,129 @@ $(function () {
   var thumbs = 5;
   var duration = 300;
 
-  var owlMain = $('.owl-carousel-main').owlCarousel({
+  var owlMain = $(".owl-carousel-main").owlCarousel({
     items: 1,
     onDragged: draggedOwlMain
   });
-  var owlThumbnail = $('.owl-carousel-thumbnails').owlCarousel({
+  var owlThumbnail = $(".owl-carousel-thumbnails").owlCarousel({
     margin: 10,
     items: thumbs
   });
 
   function draggedOwlMain(event) {
-    owlMain.trigger('to.owl.carousel', [event.item.index, duration, true]);
+    owlMain.trigger("to.owl.carousel", [event.item.index, duration, true]);
   }
 
-  owlThumbnail.on('click', '.owl-item', function () {
+  owlThumbnail.on("click", ".owl-item", function () {
     var index = $(this).index();
-    owlMain.trigger('to.owl.carousel', [index, duration, true]);
-    owlThumbnail.trigger('to.owl.carousel', [index, duration, true]);
+    owlMain.trigger("to.owl.carousel", [index, duration, true]);
+    owlThumbnail.trigger("to.owl.carousel", [index, duration, true]);
   });
 
   // Historic change image
-  $('#showHistoricModal').on('show.bs.modal', function (event) {
+  $("#showHistoricModal").on("show.bs.modal", function (event) {
     var $button = $(event.relatedTarget);
-    var imageUrl = $button.data('imageUrl');
+    var imageUrl = $button.data("imageUrl");
 
-    $('.image-historic-preview').attr('src', imageUrl);
+    $(".image-historic-preview").attr("src", imageUrl);
   });
 
   // Scroll header function
   $(function () {
     $(document).scroll(function () {
-      var $transparentHeader = $('.bipolar-header-desktop');
+      var $transparentHeader = $(".bipolar-header-desktop");
       var $grandHeader = $(".bipolar-grand-header");
-      var $bipolarNavigation = $grandHeader.children('.bipolar-navigation');
-      var $container = $bipolarNavigation.children('.container');
-      var $logoInHeader = $container.find('.bipolar-logo');
+      var $bipolarNavigation = $grandHeader.children(".bipolar-navigation");
+      var $container = $bipolarNavigation.children(".container");
+      var $logoInHeader = $container.find(".bipolar-logo");
       //let $grandHeaderAlternate = $('.bipolar-alternate-grand-header');
       var isLongScroll = $(this).scrollTop() > $grandHeader.height();
       var homeIsLongScroll = $(this).scrollTop() > $transparentHeader.height();
       if (isLongScroll === true || homeIsLongScroll === true) {
-        $transparentHeader.addClass('hidden');
-        $grandHeader.addClass('bipolar-grand-header-hidden');
-        $logoInHeader.removeClass('hidden');
-        $container.removeClass('resized-container');
-        $bipolarNavigation.addClass('has-shadow').addClass('has-background');
+        $transparentHeader.addClass("hidden");
+        $grandHeader.addClass("bipolar-grand-header-hidden");
+        $logoInHeader.removeClass("hidden");
+        $container.removeClass("resized-container");
+        $bipolarNavigation.addClass("has-shadow").addClass("has-background");
         //$grandHeaderAlternate.removeClass('hidden');
       } else {
-        $transparentHeader.removeClass('hidden');
-        $grandHeader.removeClass('bipolar-grand-header-hidden');
-        $logoInHeader.addClass('hidden');
-        $container.addClass('resized-container');
-        $bipolarNavigation.removeClass('has-shadow').removeClass('has-background');
+        $transparentHeader.removeClass("hidden");
+        $grandHeader.removeClass("bipolar-grand-header-hidden");
+        $logoInHeader.addClass("hidden");
+        $container.addClass("resized-container");
+        $bipolarNavigation.removeClass("has-shadow").removeClass("has-background");
         //$grandHeaderAlternate.addClass('hidden');
       }
     });
   });
 
-  $('.bipolar-item').hover(function () {
-    $(this).children('a').children('.the-line').addClass('is-active');
+  $(".bipolar-item").hover(function () {
+    $(this).children("a").children(".the-line").addClass("is-active");
   }, function () {
-    $(this).children('a').children('.the-line').removeClass('is-active');
+    $(this).children("a").children(".the-line").removeClass("is-active");
   });
 
   // Bootstrap tooltip
   $('[data-toggle="tooltip"]').tooltip();
 
-  if ($('.bipolar-counts-title').length) {
-    var $firstCounter = $('#bipolar-first-counter');
-    var $secondCounter = $('#bipolar-second-counter');
-    var $instagramCounter = $('#bipolar-instagram-counter');
+  if ($(".bipolar-counts-title").length) {
+    var $firstCounter = $("#bipolar-first-counter");
+    var $secondCounter = $("#bipolar-second-counter");
+    var $instagramCounter = $("#bipolar-instagram-counter");
     var counterOptions = {
       useEasing: true,
       useGrouping: true,
-      separator: '',
-      decimal: '.'
+      separator: "",
+      decimal: "."
     };
 
-    $.get('https://graph.facebook.com/bipolar.zapatos/?fields=fan_count&access_token=100210840716931|hxQGZTOgdjwE1zG8tDKwyN7Fvy0').done(function (response) {
-      var firstCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a('bipolar-first-counter', 0, $firstCounter.data('number'), 0, 2.5, counterOptions);
-      var instagramCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a('bipolar-instagram-counter', 0, $instagramCounter.data('number'), 0, 2.5, counterOptions);
-      var secondCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a('bipolar-second-counter', 0, response['fan_count'], 0, 2.5, counterOptions);
+    $.get("https://graph.facebook.com/bipolar.zapatos/?fields=fan_count&access_token=100210840716931|hxQGZTOgdjwE1zG8tDKwyN7Fvy0").done(function (response) {
+      var firstCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a("bipolar-first-counter", 0, $firstCounter.data("number"), 0, 2.5, counterOptions);
+      var instagramCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a("bipolar-instagram-counter", 0, $instagramCounter.data("number"), 0, 2.5, counterOptions);
+      var secondCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a("bipolar-second-counter", 0, response["fan_count"], 0, 2.5, counterOptions);
 
       firstCounter.start();
       secondCounter.start();
       instagramCounter.start();
     });
   }
+
+  // Convert SVG to InlineSVG
+  document.querySelectorAll("img.svg").forEach(function (img) {
+    var imgID = img.id;
+    var imgClass = img.className;
+    var imgURL = img.src;
+
+    fetch(imgURL).then(function (response) {
+      return response.text();
+    }).then(function (text) {
+      var parser = new DOMParser();
+      var xmlDoc = parser.parseFromString(text, "text/xml");
+
+      // Get the SVG tag, ignore the rest
+      var svg = xmlDoc.getElementsByTagName("svg")[0];
+
+      // Add replaced image's ID to the new SVG
+      if (typeof imgID !== "undefined") {
+        svg.setAttribute("id", imgID);
+      }
+      // Add replaced image's classes to the new SVG
+      if (typeof imgClass !== "undefined") {
+        svg.setAttribute("class", imgClass + " replaced-svg");
+      }
+
+      // Remove any invalid XML tags as per http://validator.w3.org
+      svg.removeAttribute("xmlns:a");
+
+      // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
+      if (!svg.getAttribute("viewBox") && svg.getAttribute("height") && svg.getAttribute("width")) {
+        svg.setAttribute("viewBox", "0 0 " + svg.getAttribute("height") + " " + svg.getAttribute("width"));
+      }
+
+      // Replace image with new SVG
+      img.parentNode.replaceChild(svg, img);
+    });
+  });
 });
 
 /***/ }),

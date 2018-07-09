@@ -1,29 +1,29 @@
 // Fonts
 @font-face {
-  font-family: 'BauerBodoniStd';
-  src: url('../../fonts/Bodoni/BauerBodoniStd Roman.otf');
+  font-family: "BauerBodoniStd";
+  src: url("../../fonts/Bodoni/BauerBodoniStd Roman.otf");
 }
 @font-face {
-  font-family: 'BauerBodoniStdBold';
-  src: url('../../fonts/Bodoni/BauerBodoniStd Bold.otf');
+  font-family: "BauerBodoniStdBold";
+  src: url("../../fonts/Bodoni/BauerBodoniStd Bold.otf");
 }
 @font-face {
-  font-family: 'SaharaBodoni';
-  src: url('../../fonts/Sahara Bodoni/SaharaBodoni.otf');
+  font-family: "SaharaBodoni";
+  src: url("../../fonts/Sahara Bodoni/SaharaBodoni.otf");
 }
 @font-face {
-  font-family: 'GothamLight';
-  src: url('../../fonts/Gotham/Gotham-Light.otf');
+  font-family: "GothamLight";
+  src: url("../../fonts/Gotham/Gotham-Light.otf");
 }
 @font-face {
-  font-family: 'GothamBold';
-  src: url('../../fonts/Gotham/Gotham-Bold.otf');
+  font-family: "GothamBold";
+  src: url("../../fonts/Gotham/Gotham-Bold.otf");
 }
 
 // Important general styles
 // Remove arrows from input['number']
-input[type='number'] {
-  -moz-appearance:textfield;
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 input::-webkit-outer-spin-button,
@@ -47,7 +47,7 @@ input::-webkit-clear-button {
 @import "~owl.carousel/dist/assets/owl.carousel.css";
 // Pretty Checkbox
 $pretty--color-primary: $bipolar-black;
-@import '~pretty-checkbox/src/pretty-checkbox.scss';
+@import "~pretty-checkbox/src/pretty-checkbox.scss";
 // Material Design Icons
 @import "~mdi/scss/materialdesignicons";
 // Photoswipe
@@ -81,3 +81,4 @@ $pretty--color-primary: $bipolar-black;
 @import "steps";
 @import "shipping_landing";
 @import "exchange_landing";
+@import "blog";
