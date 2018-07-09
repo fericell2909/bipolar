@@ -23,15 +23,15 @@ class PostNew extends React.Component {
   };
 
   checkCategory = event => {
-    const categoryId = event.target.value;
+    const categoryHashId = event.target.value;
     let selectedCategories = this.state.selectedCategories;
 
     if (event.target.checked) {
-      selectedCategories.push(categoryId);
+      selectedCategories.push(categoryHashId);
     } else {
       selectedCategories = removeFromSimpleArray(
         selectedCategories,
-        categoryId
+        categoryHashId
       );
     }
 

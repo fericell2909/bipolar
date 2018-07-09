@@ -5,6 +5,9 @@ import htmlToDraft from "html-to-draftjs";
 import draftToHtml from "draftjs-to-html";
 import { Editor } from "react-draft-wysiwyg";
 import axios from "axios";
+import PostCategories from "./partials/PostCategories";
+import PostTags from "./partials/PostTags";
+import { removeFromSimpleArray } from "../helpers";
 
 class PostEdit extends React.Component {
   state = {
@@ -15,7 +18,25 @@ class PostEdit extends React.Component {
     stateSelected: "",
     editorState: EditorState.createEmpty(),
     editorStateEnglish: EditorState.createEmpty(),
-    states: []
+    states: [],
+    selectedCategories: [],
+    selectedTags: []
+  };
+
+  checkCategory = event => {
+    const categoryHashId = event.target.value;
+    let selectedCategories = this.state.selectedCategories;
+
+    if (event.target.checked) {
+      selectedCategories.push(categoryHashId);
+    } else {
+      selectedCategories = removeFromSimpleArray(
+        selectedCategories,
+        categoryHashId
+      );
+    }
+
+    return this.setState({ selectedCategories });
   };
 
   handleEditorDescription = editorState => {
@@ -85,12 +106,17 @@ class PostEdit extends React.Component {
         editorStateEnglish = EditorState.createWithContent(contentStateEnglish);
       }
 
+      const categories = post.categories.map(category => category["hash_id"]);
+      const tags = post.tags.map(tag => tag["hash_id"]);
+
       this.setState({
         title: post["title_es"],
         titleEnglish: post["title_en"],
         stateSelected: post["state"]["id"],
         editorState,
-        editorStateEnglish
+        editorStateEnglish,
+        selectedCategories: categories,
+        selectedTags: tags
       });
     });
   }
@@ -196,18 +222,11 @@ class PostEdit extends React.Component {
           </div>
         </div>
         <div className="col-md-3">
-          <div className="card">
-            <div className="card-header bg-dark">
-              <h4 className="text-white">Categorías</h4>
-            </div>
-            <div className="card-body">Categorías</div>
-          </div>
-          <div className="card">
-            <div className="card-header bg-dark">
-              <h4 className="text-white">Tags</h4>
-            </div>
-            <div className="card-body">Tags</div>
-          </div>
+          <PostCategories
+            selected={this.state.selectedCategories}
+            checked={this.checkCategory}
+          />
+          <PostTags selected={this.state.selectedTags} />
         </div>
       </div>
     );

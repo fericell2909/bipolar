@@ -107872,13 +107872,13 @@ var PostNew = function (_React$Component) {
       selectedCategories: [],
       selectedTags: []
     }, _this.checkCategory = function (event) {
-      var categoryId = event.target.value;
+      var categoryHashId = event.target.value;
       var selectedCategories = _this.state.selectedCategories;
 
       if (event.target.checked) {
-        selectedCategories.push(categoryId);
+        selectedCategories.push(categoryHashId);
       } else {
-        selectedCategories = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["c" /* removeFromSimpleArray */])(selectedCategories, categoryId);
+        selectedCategories = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["c" /* removeFromSimpleArray */])(selectedCategories, categoryHashId);
       }
 
       return _this.setState({ selectedCategories: selectedCategories });
@@ -108095,6 +108095,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_draft_wysiwyg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react_draft_wysiwyg__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_axios__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__partials_PostCategories__ = __webpack_require__(552);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__partials_PostTags__ = __webpack_require__(551);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__helpers__ = __webpack_require__(21);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 
@@ -108157,6 +108160,9 @@ function _inherits(subClass, superClass) {
 
 
 
+
+
+
 var PostEdit = function (_React$Component) {
   _inherits(PostEdit, _React$Component);
 
@@ -108180,7 +108186,20 @@ var PostEdit = function (_React$Component) {
       stateSelected: "",
       editorState: __WEBPACK_IMPORTED_MODULE_3_draft_js__["EditorState"].createEmpty(),
       editorStateEnglish: __WEBPACK_IMPORTED_MODULE_3_draft_js__["EditorState"].createEmpty(),
-      states: []
+      states: [],
+      selectedCategories: [],
+      selectedTags: []
+    }, _this.checkCategory = function (event) {
+      var categoryHashId = event.target.value;
+      var selectedCategories = _this.state.selectedCategories;
+
+      if (event.target.checked) {
+        selectedCategories.push(categoryHashId);
+      } else {
+        selectedCategories = Object(__WEBPACK_IMPORTED_MODULE_10__helpers__["c" /* removeFromSimpleArray */])(selectedCategories, categoryHashId);
+      }
+
+      return _this.setState({ selectedCategories: selectedCategories });
     }, _this.handleEditorDescription = function (editorState) {
       var htmlText = __WEBPACK_IMPORTED_MODULE_5_draftjs_to_html___default()(Object(__WEBPACK_IMPORTED_MODULE_3_draft_js__["convertToRaw"])(editorState.getCurrentContent()));
       _this.setState({
@@ -108265,12 +108284,21 @@ var PostEdit = function (_React$Component) {
           editorStateEnglish = __WEBPACK_IMPORTED_MODULE_3_draft_js__["EditorState"].createWithContent(contentStateEnglish);
         }
 
+        var categories = post.categories.map(function (category) {
+          return category["hash_id"];
+        });
+        var tags = post.tags.map(function (tag) {
+          return tag["hash_id"];
+        });
+
         _this3.setState({
           title: post["title_es"],
           titleEnglish: post["title_en"],
           stateSelected: post["state"]["id"],
           editorState: editorState,
-          editorStateEnglish: editorStateEnglish
+          editorStateEnglish: editorStateEnglish,
+          selectedCategories: categories,
+          selectedTags: tags
         });
       });
     }
@@ -108351,7 +108379,10 @@ var PostEdit = function (_React$Component) {
         value: this.state.stateSelected,
         className: "form-control",
         required: true
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, "Categor\xEDas")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", { className: "text-white" }, "Tags")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, "Tags"))));
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__partials_PostCategories__["a" /* default */], {
+        selected: this.state.selectedCategories,
+        checked: this.checkCategory
+      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__partials_PostTags__["a" /* default */], { selected: this.state.selectedTags })));
     }
   }]);
 
