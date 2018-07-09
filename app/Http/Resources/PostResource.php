@@ -26,7 +26,7 @@ class PostResource extends JsonResource
             'content_en' => $post->getTranslation('content', 'en'),
             'categories' => $this->whenLoaded('categories', CategoryResource::collection($post->categories)),
             'tags' => $this->whenLoaded('tags', TagResource::collection($post->tags)),
-            'state' => $this->whenLoaded('state', $post->state),
+            'state' => $this->whenLoaded('state', new State($post->state)),
         ];
     }
 }

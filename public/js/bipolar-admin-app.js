@@ -107883,13 +107883,13 @@ var PostNew = function (_React$Component) {
 
       return _this.setState({ selectedCategories: selectedCategories });
     }, _this.checkTag = function (event) {
-      var categoryId = event.target.value;
+      var tagHashId = event.target.value;
       var selectedTags = _this.state.selectedTags;
 
       if (event.target.checked) {
-        selectedTags.push(categoryId);
+        selectedTags.push(tagHashId);
       } else {
-        selectedTags = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["c" /* removeFromSimpleArray */])(selectedTags, categoryId);
+        selectedTags = Object(__WEBPACK_IMPORTED_MODULE_9__helpers__["c" /* removeFromSimpleArray */])(selectedTags, tagHashId);
       }
 
       return _this.setState({ selectedTags: selectedTags });
@@ -108200,6 +108200,17 @@ var PostEdit = function (_React$Component) {
       }
 
       return _this.setState({ selectedCategories: selectedCategories });
+    }, _this.checkTag = function (event) {
+      var tagHashId = event.target.value;
+      var selectedTags = _this.state.selectedTags;
+
+      if (event.target.checked) {
+        selectedTags.push(tagHashId);
+      } else {
+        selectedTags = Object(__WEBPACK_IMPORTED_MODULE_10__helpers__["c" /* removeFromSimpleArray */])(selectedTags, tagHashId);
+      }
+
+      return _this.setState({ selectedTags: selectedTags });
     }, _this.handleEditorDescription = function (editorState) {
       var htmlText = __WEBPACK_IMPORTED_MODULE_5_draftjs_to_html___default()(Object(__WEBPACK_IMPORTED_MODULE_3_draft_js__["convertToRaw"])(editorState.getCurrentContent()));
       _this.setState({
@@ -108216,7 +108227,7 @@ var PostEdit = function (_React$Component) {
       return _this.setState({ title: event.target.value });
     }, _this.handleChangeEnglishTitle = function (event) {
       return _this.setState({ titleEnglish: event.target.value });
-    }, _this.handleSubmit = function () {
+    }, _this.updatePost = function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(event) {
         var savePost;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
@@ -108225,18 +108236,22 @@ var PostEdit = function (_React$Component) {
               case 0:
                 event.preventDefault();
                 _context.next = 3;
-                return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.post("/ajax-admin/post/new", {
+                return __WEBPACK_IMPORTED_MODULE_7_axios___default.a.put("/ajax-admin/post/" + _this.props.postId + "/update", {
                   title: _this.state.title,
                   title_english: _this.state.titleEnglish,
                   content: _this.state.content,
                   content_english: _this.state.contentEnglish,
-                  state: _this.state.stateSelected
+                  state: _this.state.stateSelected,
+                  categories: _this.state.selectedCategories,
+                  tags: _this.state.selectedTags
                 }).catch(console.error);
 
               case 3:
                 savePost = _context.sent;
 
-                window.location.href = savePost.data["redirect_url"];
+                if (savePost.data["redirect_url"]) {
+                  window.location.href = savePost.data["redirect_url"];
+                }
 
               case 5:
               case "end":
@@ -108294,7 +108309,7 @@ var PostEdit = function (_React$Component) {
         _this3.setState({
           title: post["title_es"],
           titleEnglish: post["title_en"],
-          stateSelected: post["state"]["id"],
+          stateSelected: post["state"]["hash_id"],
           editorState: editorState,
           editorStateEnglish: editorStateEnglish,
           selectedCategories: categories,
@@ -108352,7 +108367,7 @@ var PostEdit = function (_React$Component) {
         return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { key: state["hash_id"], value: state["hash_id"] }, state["name"]);
       });
 
-      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-9" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { onSubmit: this.handleSubmit }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "T\xEDtulo de la publicaci\xF3n"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", {
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-9" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("form", { onSubmit: this.updatePost }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-row" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-6" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "form-group" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", null, "T\xEDtulo de la publicaci\xF3n"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("input", {
         value: this.state.title,
         onChange: this.handleChangeTitle,
         type: "text",
@@ -108382,7 +108397,10 @@ var PostEdit = function (_React$Component) {
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("option", { value: "", disabled: true }, "Seleccione"), statesOptions)))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", { type: "submit", className: "btn btn-dark btn-rounded" }, "Guardar"))))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", { className: "col-md-3" }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__partials_PostCategories__["a" /* default */], {
         selected: this.state.selectedCategories,
         checked: this.checkCategory
-      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__partials_PostTags__["a" /* default */], { selected: this.state.selectedTags })));
+      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__partials_PostTags__["a" /* default */], {
+        selected: this.state.selectedTags,
+        checked: this.checkTag
+      })));
     }
   }]);
 

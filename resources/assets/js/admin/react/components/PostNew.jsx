@@ -39,13 +39,13 @@ class PostNew extends React.Component {
   };
 
   checkTag = event => {
-    const categoryId = event.target.value;
+    const tagHashId = event.target.value;
     let selectedTags = this.state.selectedTags;
 
     if (event.target.checked) {
-      selectedTags.push(categoryId);
+      selectedTags.push(tagHashId);
     } else {
-      selectedTags = removeFromSimpleArray(selectedTags, categoryId);
+      selectedTags = removeFromSimpleArray(selectedTags, tagHashId);
     }
 
     return this.setState({ selectedTags });

@@ -39,6 +39,19 @@ class PostEdit extends React.Component {
     return this.setState({ selectedCategories });
   };
 
+  checkTag = event => {
+    const tagHashId = event.target.value;
+    let selectedTags = this.state.selectedTags;
+
+    if (event.target.checked) {
+      selectedTags.push(tagHashId);
+    } else {
+      selectedTags = removeFromSimpleArray(selectedTags, tagHashId);
+    }
+
+    return this.setState({ selectedTags });
+  };
+
   handleEditorDescription = editorState => {
     const htmlText = draftToHtml(convertToRaw(editorState.getCurrentContent()));
     this.setState({
@@ -62,18 +75,22 @@ class PostEdit extends React.Component {
   handleChangeEnglishTitle = event =>
     this.setState({ titleEnglish: event.target.value });
 
-  handleSubmit = async event => {
+  updatePost = async event => {
     event.preventDefault();
     const savePost = await axios
-      .post("/ajax-admin/post/new", {
+      .put(`/ajax-admin/post/${this.props.postId}/update`, {
         title: this.state.title,
         title_english: this.state.titleEnglish,
         content: this.state.content,
         content_english: this.state.contentEnglish,
-        state: this.state.stateSelected
+        state: this.state.stateSelected,
+        categories: this.state.selectedCategories,
+        tags: this.state.selectedTags
       })
       .catch(console.error);
-    window.location.href = savePost.data["redirect_url"];
+    if (savePost.data["redirect_url"]) {
+      window.location.href = savePost.data["redirect_url"];
+    }
   };
 
   handleChangeSelect = event =>
@@ -112,7 +129,7 @@ class PostEdit extends React.Component {
       this.setState({
         title: post["title_es"],
         titleEnglish: post["title_en"],
-        stateSelected: post["state"]["id"],
+        stateSelected: post["state"]["hash_id"],
         editorState,
         editorStateEnglish,
         selectedCategories: categories,
@@ -151,7 +168,7 @@ class PostEdit extends React.Component {
         <div className="col-md-9">
           <div className="card">
             <div className="card-body">
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={this.updatePost}>
                 <div className="form-row">
                   <div className="col-md-6">
                     <div className="form-group">
@@ -226,7 +243,10 @@ class PostEdit extends React.Component {
             selected={this.state.selectedCategories}
             checked={this.checkCategory}
           />
-          <PostTags selected={this.state.selectedTags} />
+          <PostTags
+            selected={this.state.selectedTags}
+            checked={this.checkTag}
+          />
         </div>
       </div>
     );
