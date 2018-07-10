@@ -17,8 +17,8 @@ $factory->define(Post::class, function (Faker $faker) {
             'en' => $faker->sentence(4),
         ],
         'content' => [
-            'es' => $faker->paragraphs(3),
-            'en' => $faker->paragraphs(3),
+            'es' => "{$faker->sentence(30)}",
+            'en' => "{$faker->sentence(30)}",
         ],
         'state_id' => $states[$stateIndex],
     ];
