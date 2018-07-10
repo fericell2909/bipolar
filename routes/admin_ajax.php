@@ -43,13 +43,15 @@ Route::prefix('home-posts')->group(function () {
     Route::post('photos/order', 'Admin\Ajax\PhotoController@orderPhotos');
 });
 
+Route::prefix('post')->group(function () {
+    Route::post('new', 'Admin\Ajax\PostController@store');
+    Route::post('{postId}/photos', 'Admin\Ajax\PhotoController@postUpload')->name('post.photo.upload');
+    Route::get('{postId}/show', 'Admin\Ajax\PostController@show');
+    Route::put('{postId}/update', 'Admin\Ajax\PostController@update');
+});
+
 Route::get('categories', 'Admin\Ajax\CategoryController@index');
 Route::post('categories', 'Admin\Ajax\CategoryController@store');
-
-Route::post('post/new', 'Admin\Ajax\PostController@store');
-Route::post('post/photos', 'Admin\Ajax\PhotoController@postUpload');
-Route::get('post/{postId}/show', 'Admin\Ajax\PostController@show');
-Route::put('post/{postId}/update', 'Admin\Ajax\PostController@update');
 
 Route::post('historics/order', 'Admin\Ajax\HistoricsController@order');
 

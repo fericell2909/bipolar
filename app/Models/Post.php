@@ -29,6 +29,11 @@ class Post extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
     public function state()
     {
         return $this->belongsTo(State::class, 'state_id');

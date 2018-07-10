@@ -26,4 +26,18 @@ class BlogController extends Controller
 
         return view('admin.blog.edit', compact('post'));
     }
+
+    public function photos($postId)
+    {
+        $post = Post::findOrFail($postId);
+
+        return view('admin.blog.photos', compact('post'));
+    }
+
+    public function order()
+    {
+        $post = Post::findOrFail($postId);
+
+        return view('admin.blog.order', compact('post'));
+    }
 }

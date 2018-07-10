@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Ajax;
 use App\Models\HomePost;
 use App\Models\Photo;
 use App\Models\Product;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\UploadedFile;
@@ -39,7 +40,6 @@ class PhotoController extends Controller
 
         $product = Product::findByHash($productHashId);
         $image = $request->file('file');
-        debug($request->file());
 
         if ($image->isValid()) {
             $imagePath = $this->uploadPhoto($image, 'products', $product->slug);
@@ -53,27 +53,29 @@ class PhotoController extends Controller
             $photo->save();
         }
 
-        return response()->json(compact('path'));
+        return response()->json(compact('amazonPath'));
     }
 
-    public function postUpload(Request $request)
+    public function postUpload(Request $request, $postHashId)
     {
-        $this->validate($request, ['image' => 'required|image']);
+        $this->validate($request, ['file' => 'required|image']);
 
-        $image = $request->file('image');
+        $post = Post::findByHash($postHashId);
+        $image = $request->file('file');
 
         if ($image->isValid()) {
-            $imagePath = $this->uploadPhoto($image, 'posts', 'post-image-' . time());
+            $imagePath = $this->uploadPhoto($image, 'posts', $post->slug);
             $amazonPath = $this->getAmazonPath($imagePath) ?? "";
 
             $photo = new Photo;
             $photo->url = $amazonPath;
             $photo->relative_url = $imagePath;
             $photo->order = 0;
+            $photo->post()->associate($post);
             $photo->save();
         }
 
-        return response()->json(['data' => ['link' => $amazonPath]]);
+        return response()->json(compact('amazonPath'));
     }
 
     public function orderPhotos(Request $request)

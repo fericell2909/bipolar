@@ -7,5 +7,6 @@
   </script>
 @endpush
 @section('content')
+  @include('admin.partials.post_header_steps', ['active' => 1])
   <div id="bipolar-edit-post"></div>
 @endsection
