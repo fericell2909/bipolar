@@ -18,8 +18,8 @@
               <header><a href="#">{{ $post->title }}</a></header>
               <nav class="meta">
                 <span><img class="svg" src="{{ asset('/images/users.svg') }}" alt="Author"> Bipolar</span>
-                <span><img class="svg" src="{{ asset('/images/clock.svg') }}" alt="Author"> 15 March 2019</span>
-                <span><img class="svg" src="{{ asset('/images/ribbon.svg') }}" alt="Author"> Sample Text, XD</span>
+                <span><img class="svg" src="{{ asset('/images/clock.svg') }}" alt="Author"> {{ $post->created_at->format('j F Y') }}</span>
+                <span><img class="svg" src="{{ asset('/images/ribbon.svg') }}" alt="Author"> {{ $post->categories->implode('name', ', ') }}</span>
               </nav>
               <section class="post-images">
                 <img class="img-responsive" src="https://placehold.it/1238x812/000000/ffffff" alt="{{ $post->title }}">
@@ -31,8 +31,40 @@
           @endforeach
           {!! $posts->links() !!}
         </section>
-        <aside class="col-md-3 hidden-sm hidden-xs">
-          This is the side bar
+        <aside class="post-sidebars col-md-3 hidden-sm hidden-xs">
+          <article>
+            <header>Recent posts</header>
+            @if($lastPosts->count() > 0)
+              <ul>
+                @foreach($lastPosts as $post)
+                  <li><a href="#">{{ $post->title }}</a></li>
+                @endforeach
+              </ul>
+            @endif
+          </article>
+          <article>
+            <header>Archives</header>
+          </article>
+          <article>
+            <header>Categories</header>
+            @if($categories->count() > 0)
+              <ul>
+                @foreach($categories as $category)
+                  <li><a href="#">{{ $category->name }}</a></li>
+                @endforeach
+              </ul>
+            @endif
+          </article>
+          <article>
+            <header>Tags</header>
+            @if($tags->count() > 0)
+              <div class="tags">
+                @foreach($tags as $tag)
+                  <a href="#">{{ $tag->name }}</a>
+                @endforeach
+              </div>
+            @endif
+          </article>
         </aside>
       </section>
     </section>

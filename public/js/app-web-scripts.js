@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 280);
+/******/ 	return __webpack_require__(__webpack_require__.s = 282);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10437,20 +10437,20 @@ return jQuery;
 
 /***/ }),
 
-/***/ 280:
+/***/ 282:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(281);
+module.exports = __webpack_require__(283);
 
 
 /***/ }),
 
-/***/ 281:
+/***/ 283:
 /***/ (function(module, exports, __webpack_require__) {
 
 try {
     window.$ = window.jQuery = __webpack_require__(23);
-    __webpack_require__(282);
+    __webpack_require__(284);
 } catch (e) {}
 
 var token = document.head.querySelector('meta[name="csrf-token"]');
@@ -10496,18 +10496,18 @@ $('.text-heading-account').click(function () {
     $('.bipolar-dropdown-menu.in-mobile').toggle();
 });
 
-__webpack_require__(283);
-__webpack_require__(284);
-__webpack_require__(287);
-__webpack_require__(290);
+__webpack_require__(285);
+__webpack_require__(286);
+__webpack_require__(289);
 __webpack_require__(292);
 __webpack_require__(294);
-__webpack_require__(295);
+__webpack_require__(296);
+__webpack_require__(297);
 //require('./react/app-react-scripts');
 
 /***/ }),
 
-/***/ 282:
+/***/ 284:
 /***/ (function(module, exports) {
 
 /*!
@@ -12891,7 +12891,7 @@ if (typeof jQuery === 'undefined') {
 
 /***/ }),
 
-/***/ 283:
+/***/ 285:
 /***/ (function(module, exports) {
 
 /**
@@ -16346,16 +16346,16 @@ if (typeof jQuery === 'undefined') {
 
 /***/ }),
 
-/***/ 284:
+/***/ 286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countup_js__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countup_js__ = __webpack_require__(287);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countup_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_countup_js__);
 
 
-__webpack_require__(286);
+__webpack_require__(288);
 
 $(function () {
   // Owl Carousel scripts
@@ -16489,7 +16489,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 285:
+/***/ 287:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(a,n){ true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (n),
@@ -16500,7 +16500,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(a,n)
 
 /***/ }),
 
-/***/ 286:
+/***/ 288:
 /***/ (function(module, exports) {
 
 /*!
@@ -17016,11 +17016,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(a,n)
 
 /***/ }),
 
-/***/ 287:
+/***/ 289:
 /***/ (function(module, exports, __webpack_require__) {
 
-var PhotoSwipe = __webpack_require__(288);
-var PhotoSwipeUI = __webpack_require__(289);
+var PhotoSwipe = __webpack_require__(290);
+var PhotoSwipeUI = __webpack_require__(291);
 
 $(function () {
     if ($('.image-photoswipe-trigger').length && window.hasOwnProperty('BipolarProductPhotos')) {
@@ -17079,7 +17079,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 288:
+/***/ 290:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe - v4.1.2 - 2017-04-05
@@ -17093,7 +17093,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe
 
 /***/ }),
 
-/***/ 289:
+/***/ 291:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe Default UI - 4.1.2 - 2017-04-05
@@ -17107,14 +17107,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe
 
 /***/ }),
 
-/***/ 290:
+/***/ 292:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert2__);
-var tippy = __webpack_require__(291);
+var tippy = __webpack_require__(293);
 
 
 $(function () {
@@ -17196,7 +17196,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 291:
+/***/ 293:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -21489,10 +21489,10 @@ return tippy;
 
 /***/ }),
 
-/***/ 292:
+/***/ 294:
 /***/ (function(module, exports, __webpack_require__) {
 
-var select2 = __webpack_require__(293);
+var select2 = __webpack_require__(295);
 
 $(function () {
   var countrySelect = $('.select-2-countries').select2({ width: '100%' });
@@ -21546,7 +21546,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 293:
+/***/ 295:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/*!
@@ -27302,7 +27302,7 @@ S2.define('jquery.select2',[
 
 /***/ }),
 
-/***/ 294:
+/***/ 296:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27437,7 +27437,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 295:
+/***/ 297:
 /***/ (function(module, exports) {
 
 $(document).click(function (event) {
