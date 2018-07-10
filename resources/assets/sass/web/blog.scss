@@ -4,6 +4,8 @@ $meta-bg: #f5f5f5;
 $meta-text-color: #878787;
 $link-text-color: #9b9b9a;
 $tags-background: #f5f5f5;
+$pagination-text: #1f1f1f;
+$pagination-background: #f5f5f5;
 @import "../mixins";
 
 .bipolar-blog-page {
@@ -166,6 +168,42 @@ $tags-background: #f5f5f5;
             text-decoration: none;
             background-color: $bipolar-color;
           }
+        }
+      }
+    }
+  }
+
+  ul.pagination-blog {
+    display: block;
+    list-style: none;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      + li {
+        margin-left: 3px;
+      }
+
+      a.page-number {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 42px;
+        height: 42px;
+        font-size: 14px;
+        border-radius: 100%;
+        color: $pagination-text;
+        background-color: $pagination-background;
+        text-decoration: none;
+
+        &:hover {
+          background: $bipolar-color;
+          color: white;
+        }
+
+        &.active {
+          background: $bipolar-color;
+          color: white;
         }
       }
     }

@@ -23063,3 +23063,46 @@ table.table-buys tbody td.order-actions {
   background-color: #fcbeb9;
 }
 
+.bipolar-blog-page ul.pagination-blog {
+  display: block;
+  list-style: none;
+  text-align: center;
+}
+
+.bipolar-blog-page ul.pagination-blog li {
+  display: inline-block;
+}
+
+.bipolar-blog-page ul.pagination-blog li + li {
+  margin-left: 3px;
+}
+
+.bipolar-blog-page ul.pagination-blog li a.page-number {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 42px;
+  height: 42px;
+  font-size: 14px;
+  border-radius: 100%;
+  color: #1f1f1f;
+  background-color: #f5f5f5;
+  text-decoration: none;
+}
+
+.bipolar-blog-page ul.pagination-blog li a.page-number:hover {
+  background: #fcbeb9;
+  color: white;
+}
+
+.bipolar-blog-page ul.pagination-blog li a.page-number.active {
+  background: #fcbeb9;
+  color: white;
+}
+

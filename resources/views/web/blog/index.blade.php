@@ -29,7 +29,7 @@
               </footer>
             </article>
           @endforeach
-          {!! $posts->links() !!}
+          {!! $posts->links('web.partials.pagination-blog') !!}
         </section>
         <aside class="post-sidebars col-md-3 hidden-sm hidden-xs">
           <article>
