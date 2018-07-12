@@ -135,6 +135,8 @@ class PaymeController extends Controller
                 $content = $response->json();
                 $buy->bsale_document_url = array_get($content, 'urlPdf');
                 $buy->save();
+            } else {
+                \Log::warning((string)$response->json());
             }
         } elseif ($request->input('authorizationResult') == '01') {
             $payment->auth_result_text = 'Operación Denegada';

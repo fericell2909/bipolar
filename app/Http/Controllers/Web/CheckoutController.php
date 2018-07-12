@@ -125,6 +125,8 @@ class CheckoutController extends Controller
                 $content = $response->json();
                 $buy->bsale_document_url = array_get($content, 'urlPdf');
                 $buy->save();
+            } else {
+                \Log::warning((string)$response->json());
             }
         }
 
