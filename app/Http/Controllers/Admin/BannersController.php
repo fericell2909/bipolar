@@ -38,14 +38,14 @@ class BannersController extends Controller
         /** @var State $state */
         $state = State::findOrFail($request->input('state'));
 
-        $begin = $request->filled('begin') ? $request->input('begin') : now()->format('Y-m-d H:i');
-        $end = $request->filled('end') ? $request->input('end') : '2099-12-31 23:59';
+        $begin = $request->filled('begin') ? $request->input('begin') : now()->format('d/m/Y');
+        $end = $request->filled('end') ? $request->input('end') : '31-12-2100';
 
         $banner = new Banner;
         $banner->url = $amazonPath;
         $banner->relative_url = $imagePath;
-        $banner->begin_date = Carbon::createFromFormat('Y-m-d H:i', $begin);
-        $banner->end_date = Carbon::createFromFormat('Y-m-d H:i', $end);
+        $banner->begin_date = Carbon::createFromFormat('d/m/Y', $begin);
+        $banner->end_date = Carbon::createFromFormat('d/m/Y', $end);
         $banner->state()->associate($state);
         $banner->save();
 
