@@ -1,0 +1,211 @@
+$breadcrumb-bg: #f5f5f5;
+$breadcrumb-text-color: #25282c;
+$meta-bg: #f5f5f5;
+$meta-text-color: #878787;
+$link-text-color: #9b9b9a;
+$tags-background: #f5f5f5;
+$pagination-text: #1f1f1f;
+$pagination-background: #f5f5f5;
+@import "../mixins";
+
+.bipolar-blog-page {
+  .breadcrumb-wrapper {
+    background-color: $breadcrumb-bg;
+
+    ul.breadcrumbs {
+      list-style: none;
+      margin: 20px 0;
+
+      li {
+        color: $breadcrumb-text-color;
+        display: inline-block;
+
+        + li::before {
+          content: "\00bb";
+          display: inline-block;
+          font-family: times, serif;
+          font-size: 20px;
+          padding: 0 10px;
+        }
+
+        span {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+  .posts-wrapper {
+    margin: 50px 0;
+
+    .posts {
+      article {
+        padding-bottom: 50px;
+        margin-bottom: 50px;
+        border-bottom: 1px solid #ddd;
+
+        header {
+          @include bodoni_bold_font;
+          font-size: 38px;
+          letter-spacing: 3px;
+          margin-bottom: 20px;
+
+          a {
+            text-transform: uppercase;
+
+            &:hover {
+              text-decoration: none;
+              outline: none;
+              color: $bipolar-color;
+            }
+          }
+        }
+
+        nav.meta {
+          display: flex;
+          align-items: center;
+          border-radius: 36px;
+          background-color: $meta-bg;
+          color: $meta-text-color;
+          padding: 6px 15px;
+          margin-bottom: 30px;
+
+          span {
+            @include gotham_light_font;
+            display: inline-flex;
+            align-items: center;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-right: 30px;
+
+            .svg {
+              display: inline-block;
+              width: 24px;
+              height: 24px;
+              margin-right: 5px;
+              path {
+                fill: $meta-text-color;
+              }
+            }
+
+            &:hover {
+              color: $bipolar-color;
+
+              .svg path {
+                fill: $bipolar-color;
+              }
+            }
+          }
+        }
+
+        section.post-images {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+
+  .post-sidebars {
+    article {
+      + article {
+        margin-top: 40px;
+      }
+
+      header {
+        @include bodoni_bold_font;
+        color: $bipolar-black;
+        font-size: 15px;
+        border-bottom: 1px solid $bipolar-black;
+        letter-spacing: 2.3px;
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+          display: block;
+          margin-bottom: 10px;
+
+          + li {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+          }
+
+          a {
+            @include bodoni_bold_font;
+            display: block;
+            letter-spacing: 2.3px;
+            color: $link-text-color;
+            text-transform: uppercase;
+            font-size: 15px;
+            &:hover {
+              text-decoration: none;
+              color: $bipolar-color;
+            }
+          }
+        }
+      }
+
+      .tags {
+        a {
+          @include gotham_light_font;
+          display: inline-block;
+          transition: all 0.2s ease-out;
+          text-transform: uppercase;
+          background-color: $tags-background;
+          padding: 2px 10px;
+          margin: 3px 0 5px;
+          font-size: 10px;
+          line-height: 16px;
+          border-radius: 20px;
+          color: #777;
+          &:hover {
+            text-decoration: none;
+            background-color: $bipolar-color;
+          }
+        }
+      }
+    }
+  }
+
+  ul.pagination-blog {
+    display: block;
+    list-style: none;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      + li {
+        margin-left: 3px;
+      }
+
+      a.page-number {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 42px;
+        height: 42px;
+        font-size: 14px;
+        border-radius: 100%;
+        color: $pagination-text;
+        background-color: $pagination-background;
+        text-decoration: none;
+
+        &:hover {
+          background: $bipolar-color;
+          color: white;
+        }
+
+        &.active {
+          background: $bipolar-color;
+          color: white;
+        }
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Http\Services\BSale;
 use App\Mail\BuyConfirmation;
 use App\Models\Buy;
 use App\Models\Payment;
@@ -18,6 +19,8 @@ class PaymeController extends Controller
         $buy = Buy::findOrFail($buyId);
 
         $this->authorize('view', $buy);
+
+        $buy->load(['details.product.photos', 'details.stock.size', 'details.product']);
 
         $buy->buy_number = $this->getCurrentBuyNumber();
         $buy->save();
@@ -62,6 +65,7 @@ class PaymeController extends Controller
         }
 
         $this->authorize('view', $buy);
+        $buy->load(['details.product.photos', 'details.stock.size', 'details.product']);
         //abort_if($buy->tipo_pago_id == config('constants.TIPO_PAGO_MEMBRESIA_ID'), 403);
 
         // Comprobando si el pago fue realizado correctamente
@@ -126,6 +130,14 @@ class PaymeController extends Controller
             $buy->save();
             $buy->setStatus(config('constants.BUY_PROCESSING_STATUS'), 'Pago exitoso');
             \Mail::to($request->user())->send(new BuyConfirmation($buy));
+            $response = BSale::documentCreate($buy);
+            if ($response->isSuccess()) {
+                $content = $response->json();
+                $buy->bsale_document_url = array_get($content, 'urlPdf');
+                $buy->save();
+            } else {
+                \Log::warning((string)$response->json());
+            }
         } elseif ($request->input('authorizationResult') == '01') {
             $payment->auth_result_text = 'Operación Denegada';
         } elseif ($request->input('authorizationResult') == '05') {

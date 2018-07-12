@@ -39,6 +39,11 @@
                     <td class="align-middle">{{ $buy->total }} {{ $buy->currency }}</td>
                     <td class="text-center align-middle">{!! $buy->showroom ? "<i class='fa fa-check'></i>" : null !!}</td>
                     <td class="align-middle">
+                      @if($buy->bsale_document_url)
+                        <a href="{{ $buy->bsale_document_url }}" target="_blank" class="btn btn-dark btn-sm btn-rounded">
+                          Ver boleta
+                        </a>
+                      @endif
                       <button class="btn btn-dark btn-sm btn-rounded" data-target="#payments_{{ $buy->id }}" data-toggle="modal">
                         <i class="fa fa-credit-card"></i> Intentos de pago
                       </button>

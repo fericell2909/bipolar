@@ -1,7 +1,10 @@
 .btn {
   font-family: $gotham-bold-font;
   font-size: 11px;
-  &:hover, &:focus, &:active, &.active {
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
     outline: none;
   }
 }
@@ -13,7 +16,10 @@
   font-family: $gotham-bold-font;
   font-size: 11px;
   text-transform: uppercase;
-  &:hover, &:focus, &:active, &.active {
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
     color: white;
     background-color: $bipolar-black;
     border-color: $bipolar-black;
@@ -23,12 +29,13 @@
 
 .open .dropdown-toggle.btn-dark {
   color: white;
-  background-color: #312E36;
+  background-color: #312e36;
   border-color: $bipolar-black;
 }
 
 .btn-dark {
-  &:active, &.active {
+  &:active,
+  &.active {
     background-image: none;
   }
 }
@@ -38,7 +45,8 @@
 }
 
 .btn-dark {
-  &.disabled, &[disabled] {
+  &.disabled,
+  &[disabled] {
     background-color: $bipolar-black;
     border-color: $bipolar-black;
   }
@@ -50,7 +58,8 @@ fieldset[disabled] .btn-dark {
 }
 
 .btn-dark {
-  &.disabled:hover, &[disabled]:hover {
+  &.disabled:hover,
+  &[disabled]:hover {
     background-color: $bipolar-black;
     border-color: $bipolar-black;
   }
@@ -62,7 +71,8 @@ fieldset[disabled] .btn-dark:hover {
 }
 
 .btn-dark {
-  &.disabled:focus, &[disabled]:focus {
+  &.disabled:focus,
+  &[disabled]:focus {
     background-color: $bipolar-black;
     border-color: $bipolar-black;
   }
@@ -74,7 +84,8 @@ fieldset[disabled] .btn-dark:focus {
 }
 
 .btn-dark {
-  &.disabled:active, &[disabled]:active {
+  &.disabled:active,
+  &[disabled]:active {
     background-color: $bipolar-black;
     border-color: $bipolar-black;
   }
@@ -86,7 +97,8 @@ fieldset[disabled] .btn-dark:active {
 }
 
 .btn-dark {
-  &.disabled.active, &[disabled].active {
+  &.disabled.active,
+  &[disabled].active {
     background-color: $bipolar-black;
     border-color: $bipolar-black;
   }
@@ -128,6 +140,7 @@ fieldset[disabled] .btn-dark.active {
 
 .btn-dark-rounded {
   @extend .btn-add-cart;
+  transition: all 0.5s ease-out;
 }
 
 .btn-bipolar-rounded {
@@ -155,7 +168,7 @@ fieldset[disabled] .btn-dark.active {
     right: 7px;
   }
 
-  >.btn-number {
+  > .btn-number {
     position: absolute;
     width: 14px;
     height: 14px;

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 279);
+/******/ 	return __webpack_require__(__webpack_require__.s = 282);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10437,20 +10437,20 @@ return jQuery;
 
 /***/ }),
 
-/***/ 279:
+/***/ 282:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(280);
+module.exports = __webpack_require__(283);
 
 
 /***/ }),
 
-/***/ 280:
+/***/ 283:
 /***/ (function(module, exports, __webpack_require__) {
 
 try {
     window.$ = window.jQuery = __webpack_require__(23);
-    __webpack_require__(281);
+    __webpack_require__(284);
 } catch (e) {}
 
 var token = document.head.querySelector('meta[name="csrf-token"]');
@@ -10496,18 +10496,18 @@ $('.text-heading-account').click(function () {
     $('.bipolar-dropdown-menu.in-mobile').toggle();
 });
 
-__webpack_require__(282);
-__webpack_require__(283);
+__webpack_require__(285);
 __webpack_require__(286);
 __webpack_require__(289);
-__webpack_require__(291);
-__webpack_require__(293);
+__webpack_require__(292);
 __webpack_require__(294);
+__webpack_require__(296);
+__webpack_require__(297);
 //require('./react/app-react-scripts');
 
 /***/ }),
 
-/***/ 281:
+/***/ 284:
 /***/ (function(module, exports) {
 
 /*!
@@ -12891,7 +12891,7 @@ if (typeof jQuery === 'undefined') {
 
 /***/ }),
 
-/***/ 282:
+/***/ 285:
 /***/ (function(module, exports) {
 
 /**
@@ -16346,113 +16346,150 @@ if (typeof jQuery === 'undefined') {
 
 /***/ }),
 
-/***/ 283:
+/***/ 286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countup_js__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countup_js__ = __webpack_require__(287);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countup_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_countup_js__);
 
 
-__webpack_require__(285);
+__webpack_require__(288);
 
 $(function () {
   // Owl Carousel scripts
   var thumbs = 5;
   var duration = 300;
 
-  var owlMain = $('.owl-carousel-main').owlCarousel({
+  var owlMain = $(".owl-carousel-main").owlCarousel({
     items: 1,
     onDragged: draggedOwlMain
   });
-  var owlThumbnail = $('.owl-carousel-thumbnails').owlCarousel({
+  var owlThumbnail = $(".owl-carousel-thumbnails").owlCarousel({
     margin: 10,
     items: thumbs
   });
 
   function draggedOwlMain(event) {
-    owlMain.trigger('to.owl.carousel', [event.item.index, duration, true]);
+    owlMain.trigger("to.owl.carousel", [event.item.index, duration, true]);
   }
 
-  owlThumbnail.on('click', '.owl-item', function () {
+  owlThumbnail.on("click", ".owl-item", function () {
     var index = $(this).index();
-    owlMain.trigger('to.owl.carousel', [index, duration, true]);
-    owlThumbnail.trigger('to.owl.carousel', [index, duration, true]);
+    owlMain.trigger("to.owl.carousel", [index, duration, true]);
+    owlThumbnail.trigger("to.owl.carousel", [index, duration, true]);
   });
 
   // Historic change image
-  $('#showHistoricModal').on('show.bs.modal', function (event) {
+  $("#showHistoricModal").on("show.bs.modal", function (event) {
     var $button = $(event.relatedTarget);
-    var imageUrl = $button.data('imageUrl');
+    var imageUrl = $button.data("imageUrl");
 
-    $('.image-historic-preview').attr('src', imageUrl);
+    $(".image-historic-preview").attr("src", imageUrl);
   });
 
   // Scroll header function
   $(function () {
     $(document).scroll(function () {
-      var $transparentHeader = $('.bipolar-header-desktop');
+      var $transparentHeader = $(".bipolar-header-desktop");
       var $grandHeader = $(".bipolar-grand-header");
-      var $bipolarNavigation = $grandHeader.children('.bipolar-navigation');
-      var $container = $bipolarNavigation.children('.container');
-      var $logoInHeader = $container.find('.bipolar-logo');
+      var $bipolarNavigation = $grandHeader.children(".bipolar-navigation");
+      var $container = $bipolarNavigation.children(".container");
+      var $logoInHeader = $container.find(".bipolar-logo");
       //let $grandHeaderAlternate = $('.bipolar-alternate-grand-header');
       var isLongScroll = $(this).scrollTop() > $grandHeader.height();
       var homeIsLongScroll = $(this).scrollTop() > $transparentHeader.height();
       if (isLongScroll === true || homeIsLongScroll === true) {
-        $transparentHeader.addClass('hidden');
-        $grandHeader.addClass('bipolar-grand-header-hidden');
-        $logoInHeader.removeClass('hidden');
-        $container.removeClass('resized-container');
-        $bipolarNavigation.addClass('has-shadow').addClass('has-background');
+        $transparentHeader.addClass("hidden");
+        $grandHeader.addClass("bipolar-grand-header-hidden");
+        $logoInHeader.removeClass("hidden");
+        $container.removeClass("resized-container");
+        $bipolarNavigation.addClass("has-shadow").addClass("has-background");
         //$grandHeaderAlternate.removeClass('hidden');
       } else {
-        $transparentHeader.removeClass('hidden');
-        $grandHeader.removeClass('bipolar-grand-header-hidden');
-        $logoInHeader.addClass('hidden');
-        $container.addClass('resized-container');
-        $bipolarNavigation.removeClass('has-shadow').removeClass('has-background');
+        $transparentHeader.removeClass("hidden");
+        $grandHeader.removeClass("bipolar-grand-header-hidden");
+        $logoInHeader.addClass("hidden");
+        $container.addClass("resized-container");
+        $bipolarNavigation.removeClass("has-shadow").removeClass("has-background");
         //$grandHeaderAlternate.addClass('hidden');
       }
     });
   });
 
-  $('.bipolar-item').hover(function () {
-    $(this).children('a').children('.the-line').addClass('is-active');
+  $(".bipolar-item").hover(function () {
+    $(this).children("a").children(".the-line").addClass("is-active");
   }, function () {
-    $(this).children('a').children('.the-line').removeClass('is-active');
+    $(this).children("a").children(".the-line").removeClass("is-active");
   });
 
   // Bootstrap tooltip
   $('[data-toggle="tooltip"]').tooltip();
 
-  if ($('.bipolar-counts-title').length) {
-    var $firstCounter = $('#bipolar-first-counter');
-    var $secondCounter = $('#bipolar-second-counter');
-    var $instagramCounter = $('#bipolar-instagram-counter');
+  if ($(".bipolar-counts-title").length) {
+    var $firstCounter = $("#bipolar-first-counter");
+    var $secondCounter = $("#bipolar-second-counter");
+    var $instagramCounter = $("#bipolar-instagram-counter");
     var counterOptions = {
       useEasing: true,
       useGrouping: true,
-      separator: '',
-      decimal: '.'
+      separator: "",
+      decimal: "."
     };
 
-    $.get('https://graph.facebook.com/bipolar.zapatos/?fields=fan_count&access_token=100210840716931|hxQGZTOgdjwE1zG8tDKwyN7Fvy0').done(function (response) {
-      var firstCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a('bipolar-first-counter', 0, $firstCounter.data('number'), 0, 2.5, counterOptions);
-      var instagramCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a('bipolar-instagram-counter', 0, $instagramCounter.data('number'), 0, 2.5, counterOptions);
-      var secondCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a('bipolar-second-counter', 0, response['fan_count'], 0, 2.5, counterOptions);
+    $.get("https://graph.facebook.com/bipolar.zapatos/?fields=fan_count&access_token=100210840716931|hxQGZTOgdjwE1zG8tDKwyN7Fvy0").done(function (response) {
+      var firstCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a("bipolar-first-counter", 0, $firstCounter.data("number"), 0, 2.5, counterOptions);
+      var instagramCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a("bipolar-instagram-counter", 0, $instagramCounter.data("number"), 0, 2.5, counterOptions);
+      var secondCounter = new __WEBPACK_IMPORTED_MODULE_0_countup_js___default.a("bipolar-second-counter", 0, response["fan_count"], 0, 2.5, counterOptions);
 
       firstCounter.start();
       secondCounter.start();
       instagramCounter.start();
     });
   }
+
+  // Convert SVG to InlineSVG
+  document.querySelectorAll("img.svg").forEach(function (img) {
+    var imgID = img.id;
+    var imgClass = img.className;
+    var imgURL = img.src;
+
+    fetch(imgURL).then(function (response) {
+      return response.text();
+    }).then(function (text) {
+      var parser = new DOMParser();
+      var xmlDoc = parser.parseFromString(text, "text/xml");
+
+      // Get the SVG tag, ignore the rest
+      var svg = xmlDoc.getElementsByTagName("svg")[0];
+
+      // Add replaced image's ID to the new SVG
+      if (typeof imgID !== "undefined") {
+        svg.setAttribute("id", imgID);
+      }
+      // Add replaced image's classes to the new SVG
+      if (typeof imgClass !== "undefined") {
+        svg.setAttribute("class", imgClass + " replaced-svg");
+      }
+
+      // Remove any invalid XML tags as per http://validator.w3.org
+      svg.removeAttribute("xmlns:a");
+
+      // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
+      if (!svg.getAttribute("viewBox") && svg.getAttribute("height") && svg.getAttribute("width")) {
+        svg.setAttribute("viewBox", "0 0 " + svg.getAttribute("height") + " " + svg.getAttribute("width"));
+      }
+
+      // Replace image with new SVG
+      img.parentNode.replaceChild(svg, img);
+    });
+  });
 });
 
 /***/ }),
 
-/***/ 284:
+/***/ 287:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(a,n){ true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (n),
@@ -16463,7 +16500,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(a,n)
 
 /***/ }),
 
-/***/ 285:
+/***/ 288:
 /***/ (function(module, exports) {
 
 /*!
@@ -16979,11 +17016,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(a,n)
 
 /***/ }),
 
-/***/ 286:
+/***/ 289:
 /***/ (function(module, exports, __webpack_require__) {
 
-var PhotoSwipe = __webpack_require__(287);
-var PhotoSwipeUI = __webpack_require__(288);
+var PhotoSwipe = __webpack_require__(290);
+var PhotoSwipeUI = __webpack_require__(291);
 
 $(function () {
     if ($('.image-photoswipe-trigger').length && window.hasOwnProperty('BipolarProductPhotos')) {
@@ -17042,7 +17079,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 287:
+/***/ 290:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe - v4.1.2 - 2017-04-05
@@ -17056,7 +17093,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe
 
 /***/ }),
 
-/***/ 288:
+/***/ 291:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe Default UI - 4.1.2 - 2017-04-05
@@ -17070,14 +17107,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe
 
 /***/ }),
 
-/***/ 289:
+/***/ 292:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert2__);
-var tippy = __webpack_require__(290);
+var tippy = __webpack_require__(293);
 
 
 $(function () {
@@ -17159,7 +17196,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 290:
+/***/ 293:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -21452,10 +21489,10 @@ return tippy;
 
 /***/ }),
 
-/***/ 291:
+/***/ 294:
 /***/ (function(module, exports, __webpack_require__) {
 
-var select2 = __webpack_require__(292);
+var select2 = __webpack_require__(295);
 
 $(function () {
   var countrySelect = $('.select-2-countries').select2({ width: '100%' });
@@ -21509,7 +21546,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 292:
+/***/ 295:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/*!
@@ -27265,7 +27302,7 @@ S2.define('jquery.select2',[
 
 /***/ }),
 
-/***/ 293:
+/***/ 296:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27307,7 +27344,10 @@ $(function () {
   $('.address-billing-option').click(function () {
     var addressId = $(this).val();
 
-    $.post('ajax/address/' + addressId + '/main').done(function () {
+    $.post('ajax/address/' + addressId + '/main').done(function (response) {
+      if (response['shipping_fee'] !== undefined && response['shipping_name'] !== undefined) {
+        $('#checkout-shipping-fee').html('<span>' + response['shipping_name'] + '</span><span>' + response['shipping_fee'] + '</span>');
+      }
       $('#sectionCollapseOne').collapse('hide');
       $('#sectionCollapseTwo').collapse('show');
     });
@@ -27316,7 +27356,10 @@ $(function () {
   $('.address-shipping-option').click(function () {
     var addressId = $(this).val();
 
-    $.post('ajax/address/' + addressId + '/main').done(function () {
+    $.post('ajax/address/' + addressId + '/main').done(function (response) {
+      if (response['shipping_fee'] !== undefined && response['shipping_name'] !== undefined) {
+        $('#checkout-shipping-fee').html('<span>' + response['shipping_name'] + '</span><span>' + response['shipping_fee'] + '</span>');
+      }
       $('#sectionCollapseTwo').collapse('hide');
       $('#sectionCollapseThree').collapse('show');
     });
@@ -27394,7 +27437,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 294:
+/***/ 297:
 /***/ (function(module, exports) {
 
 $(document).click(function (event) {

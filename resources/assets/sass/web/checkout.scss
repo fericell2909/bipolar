@@ -173,6 +173,14 @@
               input[type="radio"] {
                 margin-right: 5px;
               }
+
+              .shipping-explanation {
+                display: inline-block;
+                span:last-child {
+                  @include bodoni_bold_font;
+                  font-size: 17px;
+                }
+              }
             }
           }
         }

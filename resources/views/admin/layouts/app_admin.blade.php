@@ -139,6 +139,16 @@
               </li>
               <li>
                 <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                  <i class="fab fa-fw fa-blogger-b"></i>
+                  <span class="hide-menu"> Blog</span>
+                </a>
+                <ul aria-expanded="false" class="collapse">
+                  <li><a href="{{ route('blog.create') }}">Nueva publicación</a></li>
+                  <li><a href="{{ route('blog.index') }}">Listar publicaciones</a></li>
+                </ul>
+              </li>
+              <li>
+                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                   <i class="fas fa-fw fa-history"></i>
                   <span class="hide-menu"> Histórico</span>
                 </a>

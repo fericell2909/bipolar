@@ -43,6 +43,16 @@ Route::prefix('home-posts')->group(function () {
     Route::post('photos/order', 'Admin\Ajax\PhotoController@orderPhotos');
 });
 
+Route::prefix('post')->group(function () {
+    Route::post('new', 'Admin\Ajax\PostController@store');
+    Route::post('{postId}/photos', 'Admin\Ajax\PhotoController@postUpload')->name('post.photo.upload');
+    Route::get('{postId}/show', 'Admin\Ajax\PostController@show');
+    Route::put('{postId}/update', 'Admin\Ajax\PostController@update');
+});
+
+Route::get('categories', 'Admin\Ajax\CategoryController@index');
+Route::post('categories', 'Admin\Ajax\CategoryController@store');
+
 Route::post('historics/order', 'Admin\Ajax\HistoricsController@order');
 
 Route::post('banners/order', 'Admin\Ajax\BannersController@order');
@@ -52,6 +62,9 @@ Route::post('buys/{buyId}/sent', 'Admin\Ajax\BuysController@sent');
 
 Route::get('coupons/{coupon}', 'Admin\Ajax\CouponsController@show');
 Route::post('coupons/{coupon}/types-subtypes', 'Admin\Ajax\CouponsController@saveTypesAndSubtypes');
+
+Route::get('tags', 'Admin\Ajax\TagsController@index');
+Route::post('tags', 'Admin\Ajax\TagsController@store');
 
 Route::get('discount-tasks', 'Admin\Ajax\DiscountController@index');
 Route::post('discount-tasks', 'Admin\Ajax\DiscountController@store');

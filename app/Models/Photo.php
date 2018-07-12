@@ -16,6 +16,11 @@ class Photo extends Model
         return $this->belongsTo(HomePost::class);
     }
 
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');

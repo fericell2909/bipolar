@@ -186,7 +186,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									{!! Form::label(__('bipolar.form_fields.zip')) !!}
-									{!! Form::text('zip', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+									{!! Form::text('zip', null, ['class' => 'form-control', 'autocomplete' => 'off']) !!}
 								</div>
 							</div>
               <div class="text-center">
@@ -247,7 +247,13 @@
 										<td class="total">{{ __('bipolar.checkout.shipping') }}</td>
 										<td class="shipping-pickers">
 											<div class="picker">{!! Form::radio('shipping_pick', 'free', false, ['required']) !!} {{ __('bipolar.checkout.showroom_shipping') }}</div>
-											<div class="picker">{!! Form::radio('shipping_pick', 'pay', false, ['required']) !!} Pagar</div>
+											<div class="picker">
+												{!! Form::radio('shipping_pick', 'pay', false, ['required']) !!}
+                        <div class="shipping-explanation">
+                          <span>{{ $shippingName }}:</span>
+                          <span>{{ $shippingFee }}</span>
+                        </div>
+											</div>
 										</td>
 									</tr>
                   <tr>

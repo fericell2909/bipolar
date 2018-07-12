@@ -30,6 +30,24 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Category
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read string $hash_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereUpdatedAt($value)
+ */
+	class Category extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Buy
  *
  * @property int $id
@@ -44,6 +62,7 @@ namespace App\Models{
  * @property string $currency
  * @property string|null $payed
  * @property int $showroom
+ * @property string|null $bsale_document_url
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \App\Models\Address $billing_address
@@ -61,6 +80,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy currentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy otherCurrentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBsaleDocumentUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBuyNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCouponId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCreatedAt($value)
@@ -369,6 +389,42 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Post
+ *
+ * @property int $id
+ * @property array $title
+ * @property array $content
+ * @property string|null $slug
+ * @property string|null $main_photo
+ * @property int|null $state_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories
+ * @property-read string $hash_id
+ * @property-read mixed $status
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
+ * @property-read \App\Models\State|null $state
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post currentStatus($names)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post otherCurrentStatus($names)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereMainPhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUpdatedAt($value)
+ */
+	class Post extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Banner
  *
  * @property int $id
@@ -548,6 +604,20 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Tag
+ *
+ * @property int $id
+ * @property string $name
+ * @property-read string $hash_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereName($value)
+ */
+	class Tag extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @method static User findOrFail($id, array $columns = ['*'])
@@ -670,6 +740,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int|null $product_id
+ * @property int|null $post_id
  * @property int|null $home_post_id
  * @property string $url
  * @property string|null $relative_url
@@ -678,11 +749,13 @@ namespace App\Models{
  * @property \Carbon\Carbon|null $updated_at
  * @property-read string $hash_id
  * @property-read \App\Models\HomePost|null $home_post
+ * @property-read \App\Models\Post|null $post
  * @property-read \App\Models\Product|null $product
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereHomePostId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo wherePostId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereRelativeUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereUpdatedAt($value)
@@ -787,6 +860,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Address[] $addresses
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereName($value)
  */
