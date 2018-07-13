@@ -55,8 +55,8 @@ class BSale
         });
 
         $dataDocument = [
-            'documentTypeId' => env('BSALE_SELL_DOCUMENT_TYPE', 23),
-            'priceListId'    => $buy->currency === 'USD' ? env('BSALE_PRICE_LIST_USD') : env('BSALE_PRICE_LIST_PEN'),
+            'documentTypeId' => strval(env('BSALE_SELL_DOCUMENT_TYPE', 23)),
+            'priceListId'    => $buy->currency === 'USD' ? strval(env('BSALE_PRICE_LIST_USD')) : strval(env('BSALE_PRICE_LIST_PEN')),
             'emissionDate'   => now()->timestamp,
             'expirationDate' => now()->addMonth()->timestamp,
             'declareSii'     => intval(false),
