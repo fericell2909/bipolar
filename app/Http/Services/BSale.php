@@ -71,7 +71,8 @@ class BSale
         ];
 
         if (env('APP_ENV') !== 'production') {
-            array_set($dataDocument, 'client.code', $buy->user->id);
+            //array_set($dataDocument, 'client.code', $buy->user->id);
+            \Log::info(json_encode($dataDocument));
         }
 
         $response = Zttp::asJson()->withHeaders(['access_token' => env('BSALE_TOKEN')])
