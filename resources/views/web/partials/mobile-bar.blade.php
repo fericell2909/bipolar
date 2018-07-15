@@ -47,7 +47,7 @@
       <span class="icon-bar middle-bar"></span>
       <span class="icon-bar bottom-bar"></span>
     </button>
-     <span>MENU</span>
+    <span class="menu-text-header-mobile">MENU</span>
   </div>
   <div class="cart-white-mobile">
     <img src="{{ asset('images/cart-white.svg') }}" width="35">

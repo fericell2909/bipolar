@@ -34,6 +34,11 @@ $(function() {
     $(".image-historic-preview").attr("src", imageUrl);
   });
 
+  // Menu text works like a dropdown in mobile header
+  $('.menu-text-header-mobile').click(() => {
+    $('.bipolar-navbar-toggle').trigger('click');
+  });
+
   // Scroll header function
   $(function() {
     $(document).scroll(function() {
