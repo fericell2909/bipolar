@@ -16,8 +16,9 @@ class BSale
     {
         $response = Zttp::withHeaders(['access_token' => env('BSALE_TOKEN')])
             ->get('https://api.bsale.cl/v1/stocks.json', [
-                'expand' => 'office,variant.product',
-                'limit'  => 100000000,
+                'expand'   => 'office,variant.product',
+                'limit'    => 100000000,
+                'officeid' => env('BSALE_MAIN_OFFICE'),
             ]);
 
         return $response;
@@ -25,6 +26,7 @@ class BSale
 
     /**
      * @param Buy $buy
+     * @return ZttpResponse
      */
     public static function documentCreate(Buy $buy): ZttpResponse
     {
