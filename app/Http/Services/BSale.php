@@ -18,7 +18,7 @@ class BSale
             ->get('https://api.bsale.cl/v1/stocks.json', [
                 'expand'   => 'office,variant.product',
                 'limit'    => 100000000,
-                'officeid' => env('BSALE_MAIN_OFFICE'),
+                'officeid' => env('BSALE_MAIN_OFFICE', 1),
             ]);
 
         return $response;

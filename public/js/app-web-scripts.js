@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 282);
+/******/ 	return __webpack_require__(__webpack_require__.s = 285);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10437,20 +10437,20 @@ return jQuery;
 
 /***/ }),
 
-/***/ 282:
+/***/ 285:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(283);
+module.exports = __webpack_require__(286);
 
 
 /***/ }),
 
-/***/ 283:
+/***/ 286:
 /***/ (function(module, exports, __webpack_require__) {
 
 try {
     window.$ = window.jQuery = __webpack_require__(23);
-    __webpack_require__(284);
+    __webpack_require__(287);
 } catch (e) {}
 
 var token = document.head.querySelector('meta[name="csrf-token"]');
@@ -10496,18 +10496,18 @@ $('.text-heading-account').click(function () {
     $('.bipolar-dropdown-menu.in-mobile').toggle();
 });
 
-__webpack_require__(285);
-__webpack_require__(286);
+__webpack_require__(288);
 __webpack_require__(289);
 __webpack_require__(292);
-__webpack_require__(294);
-__webpack_require__(296);
+__webpack_require__(295);
 __webpack_require__(297);
+__webpack_require__(299);
+__webpack_require__(300);
 //require('./react/app-react-scripts');
 
 /***/ }),
 
-/***/ 284:
+/***/ 287:
 /***/ (function(module, exports) {
 
 /*!
@@ -12891,7 +12891,7 @@ if (typeof jQuery === 'undefined') {
 
 /***/ }),
 
-/***/ 285:
+/***/ 288:
 /***/ (function(module, exports) {
 
 /**
@@ -16346,16 +16346,16 @@ if (typeof jQuery === 'undefined') {
 
 /***/ }),
 
-/***/ 286:
+/***/ 289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countup_js__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countup_js__ = __webpack_require__(290);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_countup_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_countup_js__);
 
 
-__webpack_require__(288);
+__webpack_require__(291);
 
 $(function () {
   // Owl Carousel scripts
@@ -16489,7 +16489,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 287:
+/***/ 290:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(a,n){ true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (n),
@@ -16500,7 +16500,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(a,n)
 
 /***/ }),
 
-/***/ 288:
+/***/ 291:
 /***/ (function(module, exports) {
 
 /*!
@@ -17016,11 +17016,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(a,n)
 
 /***/ }),
 
-/***/ 289:
+/***/ 292:
 /***/ (function(module, exports, __webpack_require__) {
 
-var PhotoSwipe = __webpack_require__(290);
-var PhotoSwipeUI = __webpack_require__(291);
+var PhotoSwipe = __webpack_require__(293);
+var PhotoSwipeUI = __webpack_require__(294);
 
 $(function () {
     if ($('.image-photoswipe-trigger').length && window.hasOwnProperty('BipolarProductPhotos')) {
@@ -17079,7 +17079,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 290:
+/***/ 293:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe - v4.1.2 - 2017-04-05
@@ -17093,7 +17093,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe
 
 /***/ }),
 
-/***/ 291:
+/***/ 294:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe Default UI - 4.1.2 - 2017-04-05
@@ -17107,14 +17107,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe
 
 /***/ }),
 
-/***/ 292:
+/***/ 295:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert2__);
-var tippy = __webpack_require__(293);
+var tippy = __webpack_require__(296);
 
 
 $(function () {
@@ -17196,7 +17196,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 293:
+/***/ 296:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -21489,10 +21489,10 @@ return tippy;
 
 /***/ }),
 
-/***/ 294:
+/***/ 297:
 /***/ (function(module, exports, __webpack_require__) {
 
-var select2 = __webpack_require__(295);
+var select2 = __webpack_require__(298);
 
 $(function () {
   var countrySelect = $('.select-2-countries').select2({ width: '100%' });
@@ -21546,7 +21546,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 295:
+/***/ 298:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/*!
@@ -27302,7 +27302,7 @@ S2.define('jquery.select2',[
 
 /***/ }),
 
-/***/ 296:
+/***/ 299:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27437,7 +27437,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 297:
+/***/ 300:
 /***/ (function(module, exports) {
 
 $(document).click(function (event) {
@@ -27488,7 +27488,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-* sweetalert2 v7.21.1
+* sweetalert2 v7.25.0
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -27747,7 +27747,7 @@ var DismissReason = Object.freeze({
   timer: 'timer'
 });
 
-var version = "7.21.1";
+var version = "7.25.0";
 
 var argsToParams = function argsToParams(args) {
   var params = {};
@@ -27906,7 +27906,7 @@ var getPopup = function getPopup() {
 
 var getIcons = function getIcons() {
   var popup = getPopup();
-  return popup.querySelectorAll('.' + swalClasses.icon);
+  return Array.prototype.slice.call(popup.querySelectorAll('.' + swalClasses.icon));
 };
 
 var getTitle = function getTitle() {
@@ -28047,13 +28047,13 @@ var init = function init(params) {
   checkbox.onchange = resetValidationError;
   textarea.oninput = resetValidationError;
 
-  range.oninput = function () {
-    resetValidationError();
+  range.oninput = function (e) {
+    resetValidationError(e);
     rangeOutput.value = range.value;
   };
 
-  range.onchange = function () {
-    resetValidationError();
+  range.onchange = function (e) {
+    resetValidationError(e);
     range.nextSibling.value = range.value;
   };
 
@@ -28157,22 +28157,23 @@ var undoIOSfix = function undoIOSfix() {
   }
 };
 
+var RESTORE_FOCUS_TIMEOUT = 100;
+
 var globalState = {};
 
 // Restore previous active (focused) element
 var restoreActiveElement = function restoreActiveElement() {
-  if (globalState.previousActiveElement && globalState.previousActiveElement.focus) {
-    var previousActiveElement = globalState.previousActiveElement;
-    globalState.previousActiveElement = null;
-    var x = window.scrollX;
-    var y = window.scrollY;
-    setTimeout(function () {
-      previousActiveElement.focus && previousActiveElement.focus();
-    }, 100); // issues/900
-    if (typeof x !== 'undefined' && typeof y !== 'undefined') {
-      // IE doesn't have scrollX/scrollY support
-      window.scrollTo(x, y);
+  var x = window.scrollX;
+  var y = window.scrollY;
+  globalState.restoreFocusTimeout = setTimeout(function () {
+    if (globalState.previousActiveElement && globalState.previousActiveElement.focus) {
+      globalState.previousActiveElement.focus();
+      globalState.previousActiveElement = null;
     }
+  }, RESTORE_FOCUS_TIMEOUT); // issues/900
+  if (typeof x !== 'undefined' && typeof y !== 'undefined') {
+    // IE doesn't have scrollX/scrollY support
+    window.scrollTo(x, y);
   }
 };
 
@@ -28196,7 +28197,7 @@ var close = function close(onClose, onAfterClose) {
   var removePopupAndResetState = function removePopupAndResetState() {
     if (!isToast()) {
       restoreActiveElement();
-      window.removeEventListener('keydown', globalState.keydownHandler, { capture: true });
+      globalState.keydownTarget.removeEventListener('keydown', globalState.keydownHandler, { capture: globalState.keydownListenerCapture });
       globalState.keydownHandlerAdded = false;
     }
 
@@ -28252,6 +28253,16 @@ var clickCancel = function clickCancel() {
   return getCancelButton().click();
 };
 
+function fire() {
+  var Swal = this;
+
+  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  return new (Function.prototype.bind.apply(Swal, [null].concat(args)))();
+}
+
 /**
  * Extends a Swal class making it able to be instantiated without the `new` keyword (and thus without `Swal.fire`)
  * @param ParentSwal
@@ -28296,6 +28307,8 @@ var defaultParams = {
   allowOutsideClick: true,
   allowEscapeKey: true,
   allowEnterKey: true,
+  stopKeydownPropagation: true,
+  keydownListenerCapture: false,
   showConfirmButton: true,
   showCancelButton: false,
   preConfirm: null,
@@ -28449,9 +28462,8 @@ function withGlobalDefaults(ParentSwal) {
  * @param mixinParams
  */
 function mixin(mixinParams) {
-  var Swal = this;
-  return withNoNewKeyword(function (_Swal) {
-    inherits(MixinSwal, _Swal);
+  return withNoNewKeyword(function (_ref) {
+    inherits(MixinSwal, _ref);
 
     function MixinSwal() {
       classCallCheck(this, MixinSwal);
@@ -28465,7 +28477,7 @@ function mixin(mixinParams) {
       }
     }]);
     return MixinSwal;
-  }(Swal));
+  }(this));
 }
 
 // private global state for the queue feature
@@ -28554,15 +28566,12 @@ var showLoading = function showLoading() {
   popup.focus();
 };
 
-function fire() {
-  var Swal = this;
-
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-
-  return new (Function.prototype.bind.apply(Swal, [null].concat(args)))();
-}
+/**
+ * Show spinner instead of Confirm button and disable Cancel button
+ */
+var getTimerLeft = function getTimerLeft() {
+  return globalState.timeout && globalState.timeout.getTimerLeft();
+};
 
 
 
@@ -28582,12 +28591,14 @@ var staticMethods = Object.freeze({
 	getTitle: getTitle,
 	getContent: getContent,
 	getImage: getImage,
+	getIcons: getIcons,
 	getButtonsWrapper: getButtonsWrapper,
 	getActions: getActions,
 	getConfirmButton: getConfirmButton,
 	getCancelButton: getCancelButton,
 	getFooter: getFooter,
 	isLoading: isLoading,
+	fire: fire,
 	mixin: mixin,
 	queue: queue,
 	getQueueStep: getQueueStep,
@@ -28595,8 +28606,44 @@ var staticMethods = Object.freeze({
 	deleteQueueStep: deleteQueueStep,
 	showLoading: showLoading,
 	enableLoading: showLoading,
-	fire: fire
+	getTimerLeft: getTimerLeft
 });
+
+// https://github.com/Riim/symbol-polyfill/blob/master/index.js
+
+var _Symbol = typeof Symbol === 'function' ? Symbol : function () {
+  var idCounter = 0;
+  function _Symbol(key) {
+    return '__' + key + '_' + Math.floor(Math.random() * 1e9) + '_' + ++idCounter + '__';
+  }
+  _Symbol.iterator = _Symbol('Symbol.iterator');
+  return _Symbol;
+}();
+
+// WeakMap polyfill, needed for Android 4.4
+// Related issue: https://github.com/sweetalert2/sweetalert2/issues/1071
+// http://webreflection.blogspot.fi/2015/04/a-weakmap-polyfill-in-20-lines-of-code.html
+
+var WeakMap$1 = typeof WeakMap === 'function' ? WeakMap : function (s, dP, hOP) {
+  function WeakMap() {
+    dP(this, s, { value: _Symbol('WeakMap') });
+  }
+  WeakMap.prototype = {
+    'delete': function del(o) {
+      delete o[this[s]];
+    },
+    get: function get(o) {
+      return o[this[s]];
+    },
+    has: function has(o) {
+      return hOP.call(o, this[s]);
+    },
+    set: function set(o, v) {
+      dP(o, this[s], { configurable: true, value: v });
+    }
+  };
+  return WeakMap;
+}(_Symbol('WeakMap'), Object.defineProperty, {}.hasOwnProperty);
 
 /**
  * This module containts `WeakMap`s for each effectively-"private  property" that a `swal` has.
@@ -28608,43 +28655,10 @@ var staticMethods = Object.freeze({
  *   then we can use that language feature.
  */
 
-// WeakMap polyfill, needed for Android 4.4
-// Related issue: https://github.com/sweetalert2/sweetalert2/issues/1071
-if (typeof window !== 'undefined' && typeof window.WeakMap !== 'function') {
-  // https://github.com/Riim/symbol-polyfill/blob/master/index.js
-  var idCounter = 0;
-  window.Symbol = function _Symbol(key) {
-    return '__' + key + '_' + Math.floor(Math.random() * 1e9) + '_' + ++idCounter + '__';
-  };
-  Symbol.iterator = Symbol('Symbol.iterator');
-
-  // http://webreflection.blogspot.fi/2015/04/a-weakmap-polyfill-in-20-lines-of-code.html
-  window.WeakMap = function (s, dP, hOP) {
-    function WeakMap() {
-      dP(this, s, { value: Symbol('WeakMap') });
-    }
-    WeakMap.prototype = {
-      'delete': function del(o) {
-        delete o[this[s]];
-      },
-      get: function get(o) {
-        return o[this[s]];
-      },
-      has: function has(o) {
-        return hOP.call(o, this[s]);
-      },
-      set: function set(o, v) {
-        dP(o, this[s], { configurable: true, value: v });
-      }
-    };
-    return WeakMap;
-  }(Symbol('WeakMap'), Object.defineProperty, {}.hasOwnProperty);
-}
-
 var privateProps = {
-  promise: new WeakMap(),
-  innerParams: new WeakMap(),
-  domCache: new WeakMap()
+  promise: new WeakMap$1(),
+  innerParams: new WeakMap$1(),
+  domCache: new WeakMap$1()
 };
 
 /**
@@ -28776,6 +28790,34 @@ function resetValidationError() {
     removeClass(input, swalClasses.inputerror);
   }
 }
+
+var Timer = function Timer(callback, delay) {
+  classCallCheck(this, Timer);
+
+  var id, started, running;
+  var remaining = delay;
+  this.start = function () {
+    running = true;
+    started = new Date();
+    id = setTimeout(callback, remaining);
+  };
+  this.stop = function () {
+    running = false;
+    clearTimeout(id);
+    remaining -= new Date() - started;
+  };
+  this.getTimerLeft = function () {
+    if (running) {
+      this.stop();
+      this.start();
+    }
+    return remaining;
+  };
+  this.getStateRunning = function () {
+    return running;
+  };
+  this.start();
+};
 
 var defaultInputValidators = {
   email: function email(string, extraParams) {
@@ -29117,7 +29159,7 @@ var openPopup = function openPopup(params) {
     fixScrollbar();
     iOSfix();
   }
-  if (!globalState.previousActiveElement) {
+  if (!isToast() && !globalState.previousActiveElement) {
     globalState.previousActiveElement = document.activeElement;
   }
   if (params.onOpen !== null && typeof params.onOpen === 'function') {
@@ -29138,7 +29180,13 @@ function _main(userParams) {
   privateProps.innerParams.set(this, innerParams);
 
   // clear the previous timer
-  clearTimeout(globalState.timeout);
+  if (globalState.timeout) {
+    globalState.timeout.stop();
+    delete globalState.timeout;
+  }
+
+  // clear the restore focus timeout
+  clearTimeout(globalState.restoreFocusTimeout);
 
   var domCache = {
     popup: getPopup(),
@@ -29180,8 +29228,9 @@ function _main(userParams) {
 
     // Close on timer
     if (innerParams.timer) {
-      globalState.timeout = setTimeout(function () {
-        return dismissWith('timer');
+      globalState.timeout = new Timer(function () {
+        dismissWith('timer');
+        delete globalState.timeout;
       }, innerParams.timer);
     }
 
@@ -29410,7 +29459,9 @@ function _main(userParams) {
     };
 
     var keydownHandler = function keydownHandler(e, innerParams) {
-      e.stopPropagation();
+      if (innerParams.stopKeydownPropagation) {
+        e.stopPropagation();
+      }
 
       var arrowKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Left', 'Right', 'Up', 'Down' // IE11
       ];
@@ -29465,7 +29516,7 @@ function _main(userParams) {
     };
 
     if (globalState.keydownHandlerAdded) {
-      window.removeEventListener('keydown', globalState.keydownHandler, { capture: true });
+      globalState.keydownTarget.removeEventListener('keydown', globalState.keydownHandler, { capture: globalState.keydownListenerCapture });
       globalState.keydownHandlerAdded = false;
     }
 
@@ -29473,7 +29524,9 @@ function _main(userParams) {
       globalState.keydownHandler = function (e) {
         return keydownHandler(e, innerParams);
       };
-      window.addEventListener('keydown', globalState.keydownHandler, { capture: true });
+      globalState.keydownTarget = innerParams.keydownListenerCapture ? window : domCache.popup;
+      globalState.keydownListenerCapture = innerParams.keydownListenerCapture;
+      globalState.keydownTarget.addEventListener('keydown', globalState.keydownHandler, { capture: globalState.keydownListenerCapture });
       globalState.keydownHandlerAdded = true;
     }
 

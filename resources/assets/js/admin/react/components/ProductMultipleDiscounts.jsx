@@ -7,7 +7,7 @@ import * as moment from "moment";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import * as swal from "sweetalert2";
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class ProductMultipleDiscounts extends React.Component {
   state = {
