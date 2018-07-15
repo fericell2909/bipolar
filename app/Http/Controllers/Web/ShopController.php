@@ -144,7 +144,7 @@ class ShopController extends Controller
                 /** @var Stock $stock */
                 return !is_null($stock->size_id);
             })
-            //->pluck('size.name', 'hash_id')
+            ->sortBy('name')
             ->transform(function ($stock) {
                 /** @var Stock $stock */
                 return [
