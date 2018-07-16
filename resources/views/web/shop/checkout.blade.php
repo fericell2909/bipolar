@@ -91,7 +91,7 @@
 									</select>
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label(__('bipolar.form_fields.country')) !!}
+									{!! Form::label(__('bipolar.form_fields.city')) !!}
 									{!! Form::select('state', [], null, ['class' => 'form-control select-2-country-states', 'required' => true, 'autocomplete' => 'off']) !!}
 									{!! Form::hidden('country_state_billing_hidden', null, ['id' => 'country_state_billing_hidden']) !!}
 								</div>

@@ -105,7 +105,8 @@
         &::after {
           content: '\00A0';
           position: absolute;
-          left: -7px;
+          left: -9px;
+          top: 9px;
           width: 36px;
           height: 1.8px;
           background: rgba(170,170,170,0.7);
