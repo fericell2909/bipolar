@@ -22267,6 +22267,52 @@ input:focus:-ms-input-placeholder {
   text-align: center;
 }
 
+.background-order-confirmed {
+  height: 300px;
+  margin-bottom: 50px;
+  background-color: #000000;
+}
+
+.background-order-confirmed .content-order-confirmed {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+}
+
+.background-order-confirmed .content-order-confirmed h1 {
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
+  font-size: 30px;
+  color: #fcbeb9;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+}
+
+.background-order-confirmed .content-order-confirmed h2 {
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
+  font-size: 15px;
+  color: #fcbeb9;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.background-order-confirmed .content-order-confirmed h2 span {
+  text-decoration: underline;
+}
+
 .cart-total-inner {
   float: right;
   width: 38%;

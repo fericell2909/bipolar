@@ -1,3 +1,5 @@
+@import "../mixins";
+
 .table-cart {
   width: 100%;
   margin-bottom: 25px;
@@ -101,6 +103,41 @@
     font-size: 40px;
     color: $bipolar-white;
     text-align: center;
+  }
+}
+
+.background-order-confirmed {
+  height: 300px;
+  margin-bottom: 50px;
+  background-color: $bipolar-black;
+  
+  .content-order-confirmed {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+
+    h1 {
+      @include bodoni_bold_font;
+      font-size: 30px;
+      color: $bipolar-color;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0;
+    }
+  
+    h2 {
+      @include bodoni_bold_font;
+      font-size: 15px;
+      color: $bipolar-color;
+      text-transform: uppercase;
+      margin: 0;
+  
+      span {
+        text-decoration: underline;
+      }
+    }
   }
 }
 
