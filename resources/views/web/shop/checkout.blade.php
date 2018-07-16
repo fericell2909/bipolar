@@ -134,7 +134,9 @@
 									<div class="pretty p-default p-round p-thick">
 										{!! Form::radio('address_shipping', $shippingAddress->hash_id, $shippingAddress->main, ['class' => 'address-list-option address-shipping-option']) !!}
 										<div class="state p-primary-o">
-											<label class="address-list-title">{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</label>
+											<label class="address-list-title">
+												<span>{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</span>
+											</label>
 										</div>
 									</div>
 									<div class="address-list-content">
