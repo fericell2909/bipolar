@@ -83,7 +83,7 @@ class LandingsController extends Controller
 
     public function blog()
     {
-        $posts = Post::orderByDesc('created_at')->with('categories')->paginate(10);
+        $posts = Post::orderByDesc('created_at')->with('categories', 'photos')->paginate(10);
         $categories = Category::orderBy('name')->get();
         $lastPosts = Post::orderByDesc('created_at')->take(5)->get();
         $tags = Tag::orderBy('name')->get();

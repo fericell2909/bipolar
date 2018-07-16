@@ -16,6 +16,11 @@ $(function() {
     items: thumbs
   });
 
+  $('.owl-carousel-blog').owlCarousel({
+    items: 1,
+    nav: true,
+  });
+
   function draggedOwlMain(event) {
     owlMain.trigger("to.owl.carousel", [event.item.index, duration, true]);
   }
@@ -32,6 +37,11 @@ $(function() {
     const imageUrl = $button.data("imageUrl");
 
     $(".image-historic-preview").attr("src", imageUrl);
+  });
+
+  // Menu text works like a dropdown in mobile header
+  $('.menu-text-header-mobile').click(() => {
+    $('.bipolar-navbar-toggle').trigger('click');
   });
 
   // Scroll header function

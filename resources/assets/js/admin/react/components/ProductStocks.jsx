@@ -49,7 +49,7 @@ class BipolarProductStocks extends React.Component {
       </tr>;
 
     return (
-      <div className="table-responsive">
+      <div>
         <table className="table">
           <thead>
           <tr>

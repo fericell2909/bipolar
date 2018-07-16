@@ -16,8 +16,9 @@ class BSale
     {
         $response = Zttp::withHeaders(['access_token' => env('BSALE_TOKEN')])
             ->get('https://api.bsale.cl/v1/stocks.json', [
-                'expand' => 'office,variant.product',
-                'limit'  => 100000000,
+                'expand'   => 'office,variant.product',
+                'limit'    => 100000000,
+                'officeid' => env('BSALE_MAIN_OFFICE', 1),
             ]);
 
         return $response;
@@ -25,6 +26,7 @@ class BSale
 
     /**
      * @param Buy $buy
+     * @return ZttpResponse
      */
     public static function documentCreate(Buy $buy): ZttpResponse
     {
@@ -55,8 +57,8 @@ class BSale
         });
 
         $dataDocument = [
-            'documentTypeId' => env('BSALE_SELL_DOCUMENT_TYPE', 23),
-            'priceListId'    => $buy->currency === 'USD' ? env('BSALE_PRICE_LIST_USD') : env('BSALE_PRICE_LIST_PEN'),
+            'documentTypeId' => strval(env('BSALE_SELL_DOCUMENT_TYPE', 23)),
+            'priceListId'    => $buy->currency === 'USD' ? strval(env('BSALE_PRICE_LIST_USD')) : strval(env('BSALE_PRICE_LIST_PEN')),
             'emissionDate'   => now()->timestamp,
             'expirationDate' => now()->addMonth()->timestamp,
             'declareSii'     => intval(false),
@@ -71,7 +73,8 @@ class BSale
         ];
 
         if (env('APP_ENV') !== 'production') {
-            array_set($dataDocument, 'client.code', $buy->user->id);
+            //array_set($dataDocument, 'client.code', $buy->user->id);
+            \Log::info(json_encode($dataDocument));
         }
 
         $response = Zttp::asJson()->withHeaders(['access_token' => env('BSALE_TOKEN')])

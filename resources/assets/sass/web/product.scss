@@ -52,6 +52,10 @@
     margin-bottom: 20px;
 
     .product-size {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px;
       width: 38px;
       height: 38px;
       border-radius: 50%;
@@ -70,12 +74,8 @@
       }
 
       .product-size-text {
-        width: 100%;
-        height: 0;
         display: inline-block;
-        line-height: 0;
         position: relative;
-        vertical-align: middle;
         font-size: 15px;
       }
     }

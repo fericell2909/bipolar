@@ -80,7 +80,7 @@
         </div>
       </div>
       <div class="col-md-9">
-        <div class="bipolar-shop-results-filter">
+        <div class="bipolar-shop-results-filter hidden-xs">
           <span class="text-uppercase">{{ __('bipolar.shop.show_results', ['total' => $products->total()]) }}</span>
           {!! Form::select('orderBy', $orderOptions, $selectedOrderOption, ['id' => 'shop-sort-by', 'class' => 'select-orders']) !!}
         </div>
