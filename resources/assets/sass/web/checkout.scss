@@ -273,6 +273,25 @@
     margin-top: 15px;
     margin-bottom: 15px;
 
+    .pretty {
+      margin-right: 0;
+      white-space: normal;
+
+      .state label {
+        text-indent: 0;
+  
+        > span {
+          display: inline-block;
+          padding-left: 1.7em;
+          line-height: 1.3em;
+        }
+  
+        &::after, &::before {
+          top: 1px;
+        }
+      }
+    }
+
     .address-list-title {
       text-transform: uppercase;
       font-family: $bodoni-bold-font;

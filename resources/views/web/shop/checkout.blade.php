@@ -47,7 +47,9 @@
 									<div class="pretty p-default p-round p-thick">
 										{!! Form::radio('address_billing', $billingAddress->hash_id, $billingAddress->main, ['class' => 'address-list-option address-billing-option']) !!}
 										<div class="state p-primary-o">
-											<label class="address-list-title">{{ $billingAddress->name }} {{ $billingAddress->lastname }}</label>
+											<label class="address-list-title">
+												<span>{{ $billingAddress->name }} {{ $billingAddress->lastname }}</span>
+											</label>
 										</div>
 									</div>
 									<div class="address-list-content">
