@@ -47,7 +47,9 @@
 									<div class="pretty p-default p-round p-thick">
 										{!! Form::radio('address_billing', $billingAddress->hash_id, $billingAddress->main, ['class' => 'address-list-option address-billing-option']) !!}
 										<div class="state p-primary-o">
-											<label class="address-list-title">{{ $billingAddress->name }} {{ $billingAddress->lastname }}</label>
+											<label class="address-list-title">
+												<span>{{ $billingAddress->name }} {{ $billingAddress->lastname }}</span>
+											</label>
 										</div>
 									</div>
 									<div class="address-list-content">
@@ -91,7 +93,7 @@
 									</select>
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label(__('bipolar.form_fields.country')) !!}
+									{!! Form::label(__('bipolar.form_fields.city')) !!}
 									{!! Form::select('state', [], null, ['class' => 'form-control select-2-country-states', 'required' => true, 'autocomplete' => 'off']) !!}
 									{!! Form::hidden('country_state_billing_hidden', null, ['id' => 'country_state_billing_hidden']) !!}
 								</div>
@@ -132,7 +134,9 @@
 									<div class="pretty p-default p-round p-thick">
 										{!! Form::radio('address_shipping', $shippingAddress->hash_id, $shippingAddress->main, ['class' => 'address-list-option address-shipping-option']) !!}
 										<div class="state p-primary-o">
-											<label class="address-list-title">{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</label>
+											<label class="address-list-title">
+												<span>{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</span>
+											</label>
 										</div>
 									</div>
 									<div class="address-list-content">

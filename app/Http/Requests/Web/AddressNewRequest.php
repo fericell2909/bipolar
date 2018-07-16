@@ -31,7 +31,7 @@ class AddressNewRequest extends FormRequest
             'country'  => 'required',
             'state'    => 'required',
             'address'  => 'required|between:1,255',
-            'zip'      => 'between:1,255',
+            'zip'      => 'nullable|between:1,255',
         ];
     }
 }

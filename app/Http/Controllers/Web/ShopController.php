@@ -144,7 +144,7 @@ class ShopController extends Controller
                 /** @var Stock $stock */
                 return !is_null($stock->size_id);
             })
-            ->sortBy('name')
+            ->sortBy('size.name')
             ->transform(function ($stock) {
                 /** @var Stock $stock */
                 return [
