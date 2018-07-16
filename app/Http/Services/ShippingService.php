@@ -25,12 +25,16 @@ class ShippingService
             return $address->address_type->name === 'shipping';
         });
 
-        if ($shippingAddresses->count() >= 1) {
-            $shipping = self::getShippingByAddresses($shippingAddresses);
-            $shippingFee = self::calculateShippingByWeight($shipping, $totalWeight, $currency);
-        } elseif ($shippingAddresses->count() === 0 && $billingAddresses->count() >= 1) {
-            $shipping = self::getShippingByAddresses($billingAddresses);
-            $shippingFee = self::calculateShippingByWeight($shipping, $totalWeight, $currency);
+        $activeShippings = Shipping::whereActive(true)->count();
+
+        if ($activeShippings > 0) {
+            if ($shippingAddresses->count() >= 1) {
+                $shipping = self::getShippingByAddresses($shippingAddresses);
+                $shippingFee = self::calculateShippingByWeight($shipping, $totalWeight, $currency);
+            } elseif ($shippingAddresses->count() === 0 && $billingAddresses->count() >= 1) {
+                $shipping = self::getShippingByAddresses($billingAddresses);
+                $shippingFee = self::calculateShippingByWeight($shipping, $totalWeight, $currency);
+            }
         }
 
         return [
