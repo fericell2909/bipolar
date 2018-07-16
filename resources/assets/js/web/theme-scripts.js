@@ -16,6 +16,11 @@ $(function() {
     items: thumbs
   });
 
+  $('.owl-carousel-blog').owlCarousel({
+    items: 1,
+    nav: true,
+  });
+
   function draggedOwlMain(event) {
     owlMain.trigger("to.owl.carousel", [event.item.index, duration, true]);
   }

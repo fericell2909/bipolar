@@ -22,7 +22,11 @@
                 <span><img class="svg" src="{{ asset('/images/ribbon.svg') }}" alt="Author"> {{ $post->categories->implode('name', ', ') }}</span>
               </nav>
               <section class="post-images">
-                <img class="img-responsive" src="https://placehold.it/1238x812/000000/ffffff" alt="{{ $post->title }}">
+                <div class="owl-carousel-blog owl-carousel owl-theme">
+                  @foreach($post->photos as $photo)
+                    <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $post->title }}">
+                  @endforeach
+                </div>
               </section>
               <footer>
                 <a class="btn btn-dark-rounded">Leer más</a>

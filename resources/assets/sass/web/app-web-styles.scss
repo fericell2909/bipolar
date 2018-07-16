@@ -44,7 +44,9 @@ input::-webkit-clear-button {
 // Bootstrap 3 Custom
 @import "bootstrap";
 // Owl Carousel
-@import "~owl.carousel/dist/assets/owl.carousel.css";
+//@import "~owl.carousel/dist/assets/owl.carousel.css";
+@import "~owl.carousel/src/scss/owl.carousel";
+@import "~owl.carousel/src/scss/owl.theme.default";
 // Pretty Checkbox
 $pretty--color-primary: $bipolar-black;
 @import "~pretty-checkbox/src/pretty-checkbox.scss";
