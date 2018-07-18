@@ -95,7 +95,14 @@ class ShopController extends Controller
                 /** @var Collection $products */
                 return $products->filter(function ($product) use ($request) {
                     /** @var Product $product */
-                    return $product->stocks->whereIn('size.slug', $request->input('sizes'))->count() > 0;
+                    return $product->stocks
+                        ->filter(function ($stock) use ($request) {
+                            return $stock->whereIn('size.slug', $request->input('sizes'));
+                        })
+                        ->filter(function ($stock) {
+                            return $stock->quantity > 0;
+                        })
+                        ->count() > 0;
                 });
             })
             ->when($request->filled('subtypes'), function ($products) use ($request) {
