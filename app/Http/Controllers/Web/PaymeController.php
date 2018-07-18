@@ -87,6 +87,8 @@ class PaymeController extends Controller
             $claveVPOS = $buy->currency === 'USD' ? env('PAYME_VPOS_COMMERCE_SECRET_ENGLISH') : env('PAYME_VPOS_COMMERCE_SECRET');
 
             $purchaseVerification = openssl_digest($acquirerId . $idCommerce . $purchaseOperationNumber . $purchaseAmount . $purchaseCurrencyCode . $claveVPOS, 'sha512');
+        } elseif ($paymeCode === "00") {
+            return view('web.shop.confirmation_payed', compact('buy'));
         }
 
         /** @var User $user */
