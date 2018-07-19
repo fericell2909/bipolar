@@ -191,6 +191,12 @@ class BipolarProductEdit extends React.Component {
       return <option key={state['hash_id']} value={state['hash_id']}>{state['name']}</option>
     });
 
+    const toolbarEditor = {
+      fontFamily: {
+        options: ['Verdana', 'GothamLight'],
+      },
+    };
+
     return (
       <div className="row">
         <div className="col-md-9">
@@ -221,11 +227,11 @@ class BipolarProductEdit extends React.Component {
                 </div>
                 <div className="form-group">
                   <label>Descripción (Opcional)</label>
-                  <Editor editorState={this.state.editorState} onEditorStateChange={this.handleEditorDescription} editorClassName="demo-editor-content"/>
+                  <Editor toolbar={toolbarEditor} editorState={this.state.editorState} onEditorStateChange={this.handleEditorDescription} editorClassName="demo-editor-content"/>
                 </div>
                 <div className="form-group">
                   <label>Descripción en inglés (Opcional)</label>
-                  <Editor editorState={this.state.editorStateEnglish} onEditorStateChange={this.handleEditorDescriptionEnglish} editorClassName="demo-editor-content"/>
+                  <Editor toolbar={toolbarEditor} editorState={this.state.editorStateEnglish} onEditorStateChange={this.handleEditorDescriptionEnglish} editorClassName="demo-editor-content"/>
                 </div>
                 <div className="form-row">
                   <div className="col-md-6">

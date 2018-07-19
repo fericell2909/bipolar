@@ -140,6 +140,9 @@ class PostEdit extends React.Component {
 
   render() {
     const toolbarEditor = {
+      fontFamily: {
+        options: ['Verdana', 'GothamLight'],
+      },
       image: {
         urlEnabled: true,
         uploadEnabled: true,
