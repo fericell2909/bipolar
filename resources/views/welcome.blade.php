@@ -81,6 +81,44 @@
                 </div>
             </div>
             @endif
+            <div class="bipolar-blog-preview">
+              <div class="first-zone">
+                <h2>Blog</h2>
+                <h4>More bipolar</h4>
+              </div>
+              <div class="second-zone">
+                <div class="container">
+                  @foreach($posts as $post)
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <div class="row">
+                        <div class="col-md-6">
+                          @if($post->photos->count() > 0)
+                            <div class="owl-carousel-blog owl-carousel owl-theme">
+                              @foreach($post->photos as $photo)
+                                <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $post->title }}">
+                              @endforeach
+                            </div>
+                          @else
+                            <img class="img-responsive" src="https://placehold.it/300x100" alt="Title">
+                          @endif
+                        </div>
+                        <div class="col-md-6">
+                          <a href="#" class="title-link">{{ $post->title }}</a>
+                          @if($post->tags)
+                            <ul>
+                              @foreach($post->tags as $tag)
+                                <li>{{ $tag->name }}</li>
+                              @endforeach
+                            </ul>
+                          @endif
+                          <a href="#">Read more</a>
+                        </div>
+                      </div>
+                    </div>
+                  @endforeach
+                </div>
+              </div>
+            </div>
             @include('web.partials.newsletter')
     </div>
     @include('web.partials.footer')

@@ -20515,7 +20515,8 @@ fieldset[disabled] .active.btn-bipolar-rounded {
 }
 
 body {
-  font-family: "GothamLight", Verdana;
+  font-family: "GothamLight", sans-serif;
+  font-weight: normal;
   font-size: 13px;
   color: #706f6f;
   padding-top: 224px;
@@ -20560,9 +20561,10 @@ button:active {
 }
 
 .bipolar-the-content h2 {
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
   font-size: 26px;
   margin-bottom: 20px;
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   text-transform: uppercase;
   letter-spacing: 3px;
   color: #000000;
@@ -20599,19 +20601,85 @@ button:active {
 }
 
 .bipolar-counts-container .bipolar-counts .bipolar-counts-title {
-  font-family: "SaharaBodoni";
+  font-family: "SaharaBodoni", monospace;
   font-size: 60px;
   line-height: 1.2;
   color: #000000;
 }
 
 .bipolar-counts-container .bipolar-counts .bipolar-counts-subtitle {
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
   font-size: 15px;
   color: #000000;
   line-height: 1.4;
   margin-top: 12px;
   letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.bipolar-blog-preview {
+  background-color: white;
+  padding-top: 50px;
+}
+
+.bipolar-blog-preview .first-zone {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.bipolar-blog-preview .first-zone h2 {
+  font-family: "SaharaBodoni", monospace;
+  font-size: 60px;
+  text-transform: uppercase;
+  margin: 0;
+  color: #000000;
+  letter-spacing: 3px;
+}
+
+.bipolar-blog-preview .first-zone h4 {
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
+  font-size: 15px;
+  padding: 0;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding-top: 14px;
+}
+
+.bipolar-blog-preview .second-zone {
+  margin-top: 30px;
+  padding-bottom: 60px;
+}
+
+.bipolar-blog-preview .second-zone .title-link {
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
+  letter-spacing: 3px;
+  font-size: 25px;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.bipolar-blog-preview .second-zone .title-link:hover {
+  text-decoration: none;
+  color: #fcbeb9;
+}
+
+.bipolar-blog-preview .second-zone a {
+  font-family: "GothamBold", sans-serif;
+  font-weight: normal;
+  font-size: 11px;
+  color: #6d6e71;
   text-transform: uppercase;
 }
 
@@ -20651,7 +20719,8 @@ a:hover {
 }
 
 .content-newsletter .container-content .newsletter-title {
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-size: 30px;
@@ -20659,7 +20728,8 @@ a:hover {
 }
 
 .content-newsletter .container-content .newsletter-subtitle {
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
   font-size: 13px;
   letter-spacing: 3px;
   text-transform: uppercase;

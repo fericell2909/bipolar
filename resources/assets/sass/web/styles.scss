@@ -1,7 +1,7 @@
-@import "mixins";
+@import "../mixins";
 
 body {
-  font-family: $gotham-light-font;
+  @include gotham_light_font;
   font-size: 13px;
   color: $bipolar-text-gray;
   padding-top: 224px;
@@ -45,9 +45,9 @@ button {
   background-color: $bipolar-white;
 
   h2 {
+    @include bodoni_bold_font;
     font-size: 26px;
     margin-bottom: 20px;
-    font-family: $bodoni-bold-font;
     text-transform: uppercase;
     letter-spacing: 3px;
     color: #000000;
@@ -79,19 +79,74 @@ button {
     }
 
     .bipolar-counts-title {
-      font-family: $sahari-bodoni-font;
+      @include sahari_bodoni_font;
       font-size: 60px;
       line-height: 1.2;
       color: $bipolar-black;
     }
 
     .bipolar-counts-subtitle {
-      font-family: $bodoni-bold-font;
+      @include bodoni_bold_font;
       font-size: 15px;
       color: $bipolar-black;
       line-height: 1.4;
       margin-top: 12px;
       letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.bipolar-blog-preview {
+  background-color: white;
+  padding-top: 50px;
+
+  .first-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      @include sahari_bodoni_font;
+      font-size: 60px;
+      text-transform: uppercase;
+      margin: 0;
+      color: $bipolar-black;
+      letter-spacing: 3px;
+    }
+
+    h4 {
+      @include bodoni_bold_font;
+      font-size: 15px;
+      padding: 0;
+      color: $bipolar-black;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      padding-top: 14px;
+    }
+  }
+
+  .second-zone {
+    margin-top: 30px;
+    padding-bottom: 60px;
+
+    .title-link {
+      @include bodoni_bold_font;
+      letter-spacing: 3px;
+      font-size: 25px;
+      text-transform: uppercase;
+      color: $bipolar-black;
+
+      &:hover {
+        text-decoration: none;
+        color: $bipolar-color;
+      }
+    }
+
+    a {
+      @include gotham_bold_font;
+      font-size: 11px;
+      color: #6d6e71;
       text-transform: uppercase;
     }
   }
@@ -130,7 +185,7 @@ a {
     margin-right: auto;
 
     .newsletter-title {
-      font-family: $bodoni-bold-font;
+      @include bodoni_bold_font;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       font-size: 30px;
@@ -138,7 +193,7 @@ a {
     }
 
     .newsletter-subtitle {
-      font-family: $bodoni-bold-font;
+      @include bodoni_bold_font;
       font-size: 13px;
       letter-spacing: 3px;
       text-transform: uppercase;
