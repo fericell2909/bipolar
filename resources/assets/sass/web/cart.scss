@@ -142,9 +142,26 @@
 
 .cart-total-inner {
   float: right;
-  width: 38%;
   padding: 0 15px;
   margin-bottom: 50px;
+
+  @include xxs {
+    width: 100%;
+  }
+
+  @include sm {
+    width: 38%;
+  }
+
+  .checkout-button {
+    @include xxs {
+      margin-top: 15px;
+    }
+
+    @include sm {
+      margin-top: 0;
+    }
+  }
 
   > h2 {
     font-family: $bodoni-bold-font;
@@ -183,11 +200,5 @@
       color: $bipolar-black;
       font-weight: normal;
     }
-  }
-}
-
-@media (max-width: 768px) {
-  .cart-total-inner {
-    width: 100%;
   }
 }

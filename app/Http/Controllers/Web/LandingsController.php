@@ -33,6 +33,7 @@ class LandingsController extends Controller
             }, 'post_type'])
             ->orderBy('order')
             ->get();
+        $posts = Post::orderByDesc('id')->take(2)->get();
 
         $settings = Settings::first();
         $banners = Banner::orderBy('order')
@@ -40,7 +41,7 @@ class LandingsController extends Controller
             ->where('end_date', '>=', now())
             ->get();
 
-        return view('welcome', compact('banners', 'homePosts', 'settings'));
+        return view('welcome', compact('banners', 'homePosts', 'settings', 'posts'));
     }
 
     public function changeCurrency(Request $request)

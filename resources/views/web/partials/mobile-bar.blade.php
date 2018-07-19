@@ -1,9 +1,17 @@
 <section class="container visible-xs-block visible-sm-block">
 	<p class="text-center text-heading-mobile">
     <span>{{ Auth::check() ? __('bipolar.navbar.welcome') : __('bipolar.navbar.hi') }}</span>
-    <a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">{{ __('bipolar.navbar.enter') }}</a>
-    <span>{{ __('bipolar.navbar.or') }}</span>
-		<a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">{{ __('bipolar.navbar.register') }}</a>
+    @guest
+      <a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">{{ __('bipolar.navbar.enter') }}</a>
+      <span>{{ __('bipolar.navbar.or') }}</span>
+      <a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">{{ __('bipolar.navbar.register') }}</a>
+    @endguest
+    @auth
+      <span>{{ Auth::user()->name }}</span>
+      <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+        <i class="fa fa-power-off"></i> {{ __('bipolar.navbar.logout') }}
+      </a>
+    @endauth
   </p>
   <div class="text-heading-account">
     {{ Auth::check() ? Auth::user()->name : __('bipolar.navbar.my_settings') }}
@@ -72,7 +80,7 @@
         </div>
         <div class="buttons">
           <a href="{{ route('cart') }}" class="btn btn-dark btn-rounded">{{ __('bipolar.navbar.see_cart') }}</a>
-          <a href="#" class="btn btn-dark btn-rounded">Checkout</a>
+          <a href="{{ route('checkout') }}" class="btn btn-dark btn-rounded">Checkout</a>
         </div>
       @else
         <div class="empty-cart">
