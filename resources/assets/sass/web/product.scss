@@ -1,15 +1,17 @@
+@import "../mixins";
+
 .product-content {
   margin-top: 33px;
 
   .product-title {
-    font-family: $sahari-bodoni-font;
+    @include sahari_bodoni_font;
     font-size: 75px;
     color: $bipolar-black;
   }
 
   .product-subtitle {
+    @include bodoni_bold_font;
     text-transform: uppercase;
-    font-family: $bodoni-bold-font;
     font-size: 15px;
     color: $bipolar-black;
     letter-spacing: 0.2em;
@@ -26,16 +28,16 @@
   .product-price {
     margin-bottom: 30px;
     .product-amount {
+      @include bodoni_bold_font;
       color: $bipolar-black;
-      font-family: $bodoni-bold-font;
       font-size: 36px;
       letter-spacing: 5px;
     }
 
     .product-original-amount {
+      @include bodoni_bold_font;
       color: $bipolar-black;
       opacity: .5;
-      font-family: $bodoni-bold-font;
       text-decoration: line-through;
       font-size: 36px;
       letter-spacing: 5px;
@@ -129,8 +131,6 @@
     outline: none;
     padding: 0 25px;
     font-size: 15px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     height: 35px;
     background-image: url(../../img/arrow_down.png);
@@ -161,6 +161,17 @@
   }
 
   .btn-sizes-modal {
+
+    @include xxs {
+      display: block;
+      margin-top: 15px;
+    }
+
+    @include sm {
+      display: inline-block;
+      margin-top: 0;
+    }
+
     background-color: #f5f5f5;
     text-transform: uppercase;
     border-radius: 42px;
@@ -178,6 +189,11 @@
   .bipolar-button-description-container {
     display: flex;
     align-items: center;
+    margin-top: 15px;
+
+    @include sm {
+      margin-top: 0;
+    }
 
     > a {
       display: flex;
@@ -214,7 +230,9 @@
 
   .bipolar-action-button-container {
     > a {
-      display: inline-block;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
       width: 36px;
       height: 36px;
       background-color: $bipolar-gray;

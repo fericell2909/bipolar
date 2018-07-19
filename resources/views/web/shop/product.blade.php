@@ -2,7 +2,7 @@
 @section('content')
   <?php /** @var \App\Models\Product $product */ ?>
   @include('web.partials.photoswipe', ['product' => $product])
-    <div class="breadcrumb visible-md-block visible-lg-block">
+    <div class="breadcrumb">
       <div class="breadcrumb-content container">
         <i class="fa fa-home"></i> &raquo; <a href="#">Shop</a> &raquo; {{ $product->name }}
       </div>
@@ -51,9 +51,9 @@
               <span class="product-amount">{{ $product->price_currency }}</span>
             @endif
           </p>
-          <p class="product-description">
+          <div class="product-description">
             {!! $product->description !!}
-          </p>
+          </div>
           {!! Form::open(['id' => 'product-add-cart']) !!}
           {!! Form::hidden('product_id', $product->hash_id) !!}
           @if(count($stockWithSizes))
