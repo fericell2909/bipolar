@@ -124,19 +124,21 @@
         </div>
       </div>
       @if($product->recommendeds->count() > 0)
-        <h3>Te recomendamos</h3>
-        <div class="row" style="padding-left: 10px; margin-bottom: 25px;">
-          @foreach($product->recommendeds as $recommended)
-            <div class="col-md-2" style="padding-left:5px; padding-right: 5px;">
-              @if(count($recommended->photos))
-                <a href="{{ route('shop.product', $recommended->slug) }}">
-                  <img src="{{ $recommended->photos->first()->url }}" class="img-responsive" alt="{{ $recommended->name }}">
-                </a>
-              @else
-                <img src="https://placehold.it/320x200" class="img-responsive" alt="{{ $recommended->name }}">
-              @endif
-            </div>
-          @endforeach
+        <div class="recommended-products">
+          <h3>Te recomendamos</h3>
+          <div class="row">
+            @foreach($product->recommendeds as $recommended)
+              <div class="col-xs-6 col-md-2" style="padding-left:5px; padding-right: 5px;">
+                @if(count($recommended->photos))
+                  <a href="{{ route('shop.product', $recommended->slug) }}">
+                    <img src="{{ $recommended->photos->first()->url }}" class="img-responsive" alt="{{ $recommended->name }}">
+                  </a>
+                @else
+                  <img src="https://placehold.it/320x200" class="img-responsive" alt="{{ $recommended->name }}">
+                @endif
+              </div>
+            @endforeach
+          </div>
         </div>
       @endif
     </div>
