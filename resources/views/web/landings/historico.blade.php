@@ -15,14 +15,16 @@
     </div>
     @php($inverse = !$inverse)
   @endforeach
-
-  <div class="modal fade" id="showHistoricModal" tabindex="-1" role="dialog" aria-labelledby="showHistoricModal">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-body text-center">
-          <img src="https://placehold.it/794x527" alt="Bipolar" class="image-historic-preview">
-        </div>
+@endsection
+{{-- Don't move. This is here for prevent z-index issue --}}
+@push('js_plus')
+<div class="modal fade" id="showHistoricModal" tabindex="-1" role="dialog" aria-labelledby="showHistoricModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <img src="https://placehold.it/794x527" alt="Bipolar" class="image-historic-preview">
       </div>
     </div>
   </div>
-@endsection
+</div>
+@endpush
