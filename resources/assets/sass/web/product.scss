@@ -262,6 +262,31 @@
     font-weight: 400;
     letter-spacing: 2px;
   }
+
+  .recommended-products {
+    h3 {
+      @include bodoni_bold_font;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    > .row {
+      @include sm {
+        padding-left: 10px; 
+        margin-bottom: 25px;
+      }
+
+      .img-responsive {
+        @include xxs {
+          padding: 3px;
+        }
+
+        @include sm {
+          padding: 0;
+        }
+      }
+    }
+  }
 }
 
 .product-below-content {
