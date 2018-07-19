@@ -14,7 +14,7 @@
     @endauth
   </p>
   <div class="text-heading-account">
-    {{ Auth::check() ? Auth::user()->name : __('bipolar.navbar.my_settings') }}
+    {{ __('bipolar.navbar.my_settings') }}
     <i class="fa fa-chevron-down"></i>
   </div>
   <ul class="bipolar-dropdown-menu in-mobile hidden-md hidden-lg">
