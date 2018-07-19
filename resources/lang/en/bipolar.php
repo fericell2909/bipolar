@@ -12,6 +12,10 @@ return [
         'zip' => 'Postcode / Zip',
         'birthdate' => 'Birth date',
     ],
+    'cart' => [
+        'update' => 'Update cart',
+        'checkout' => 'Go to checkout',
+    ],
     'payme_modal_lang' => 'EN',
     'size_abbr' => 'Size',
     'navbar' => [

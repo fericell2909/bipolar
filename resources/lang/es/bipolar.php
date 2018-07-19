@@ -12,6 +12,10 @@ return [
         'zip' => 'Código zip',
         'birthdate' => 'Fecha de cumpleaños',
     ],
+    'cart' => [
+        'update' => 'Actualizar carrito',
+        'checkout' => 'Ir a la caja',
+    ],
     'payme_modal_lang' => 'SP',
     'size_abbr' => 'Talla',
     'navbar' => [

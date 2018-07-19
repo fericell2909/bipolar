@@ -22459,9 +22459,32 @@ input:focus:-ms-input-placeholder {
 
 .cart-total-inner {
   float: right;
-  width: 38%;
   padding: 0 15px;
   margin-bottom: 50px;
+}
+
+@media only screen and (min-width: 320px) {
+  .cart-total-inner {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .cart-total-inner {
+    width: 38%;
+  }
+}
+
+@media only screen and (min-width: 320px) {
+  .cart-total-inner .checkout-button {
+    margin-top: 15px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .cart-total-inner .checkout-button {
+    margin-top: 0;
+  }
 }
 
 .cart-total-inner > h2 {
@@ -22497,12 +22520,6 @@ input:focus:-ms-input-placeholder {
   font-size: 17px;
   color: #000000;
   font-weight: normal;
-}
-
-@media (max-width: 768px) {
-  .cart-total-inner {
-    width: 100%;
-  }
 }
 
 .bipolar-checkout .form-coupon {

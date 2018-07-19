@@ -80,7 +80,7 @@
         </div>
         <div class="buttons">
           <a href="{{ route('cart') }}" class="btn btn-dark btn-rounded">{{ __('bipolar.navbar.see_cart') }}</a>
-          <a href="#" class="btn btn-dark btn-rounded">Checkout</a>
+          <a href="{{ route('checkout') }}" class="btn btn-dark btn-rounded">Checkout</a>
         </div>
       @else
         <div class="empty-cart">
