@@ -39,6 +39,13 @@
   font-family: $sahari-bodoni-font;
   color: $bipolar-black;
   font-size: 40px;
+  width: 100%;
+  text-align: center;
+
+  a {
+    display: inline-block;
+    width: 100%;
+  }
 }
 
 .overlay-shop-color-text {

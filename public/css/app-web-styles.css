@@ -21739,7 +21739,7 @@ input:focus:-ms-input-placeholder {
 
 .shop-discount-container {
   position: absolute;
-  top: 3%;
+  top: 5%;
   right: 5%;
   z-index: 4;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
@@ -22311,6 +22311,13 @@ input:focus:-ms-input-placeholder {
   font-family: "SaharaBodoni";
   color: #000000;
   font-size: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+.overlay-shop-text a {
+  display: inline-block;
+  width: 100%;
 }
 
 .overlay-shop-color-text,
