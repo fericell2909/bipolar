@@ -149,6 +149,56 @@ button {
       color: #6d6e71;
       text-transform: uppercase;
     }
+
+    .post {
+      @include xxs {
+        margin-bottom: 30px;
+      }
+
+      @include sm {
+        margin-bottom: 0;
+      }
+
+      .img-responsive {
+        @include xxs {
+          margin-bottom: 20px;
+        }
+
+        @include sm {
+          margin: 0;
+        }
+      }
+
+      .content {
+        @include xxs {
+          text-align: center;
+        }
+
+        @include sm {
+          text-align: left;
+        }
+      }
+
+      .tags {
+        a {
+          @include gotham_light_font;
+          display: inline-block;
+          transition: all 0.2s ease-out;
+          text-transform: uppercase;
+          background-color: $bipolar-color;
+          padding: 2px 10px;
+          margin: 3px 0 5px;
+          font-size: 10px;
+          line-height: 16px;
+          border-radius: 20px;
+          color: #777;
+          &:hover {
+            text-decoration: none;
+            background-color: $bipolar-color;
+          }
+        }
+      }
+    }
   }
 }
 
