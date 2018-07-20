@@ -278,62 +278,74 @@
   }
 
   .address-list {
+    display: flex;
+    justify-content: space-between;
     border: 1px solid #eee;
     border-radius: 20px;
     padding: 20px;
     margin-top: 15px;
     margin-bottom: 15px;
 
-    .pretty {
-      margin-right: 0;
-      white-space: normal;
+    .first-part {
+      flex: 1;
+      cursor: pointer;
 
-      .state label {
-        text-indent: 0;
+      .pretty {
+        margin-right: 0;
+        white-space: normal;
   
-        > span {
-          display: inline-block;
-          padding-left: 1.7em;
-          line-height: 1.3em;
-        }
-  
-        &::after, &::before {
-          top: 1px;
+        .state label {
+          text-indent: 0;
+    
+          > span {
+            display: inline-block;
+            padding-left: 1.7em;
+            line-height: 1.3em;
+          }
+    
+          &::after, &::before {
+            top: 1px;
+          }
         }
       }
-    }
-
-    .address-list-title {
-      text-transform: uppercase;
-      font-family: $bodoni-bold-font;
-      color: $bipolar-black;
-      font-size: 17px;
-      letter-spacing: 2.5px;
-      margin-left: 10px;
-      margin-top: 1px;
-    }
-
-    .address-list-content {
-      display: flex;
-      justify-content: space-between;
-
-      .address-list-of-lists {
-        list-style: none;
-        padding-left: 38px;
-
-        > li {
-          @include gotham_bold_font;
-          text-transform: uppercase;
-          font-size: 11px;
-          color: $bipolar-black;
-        }
+  
+      .address-list-title {
+        text-transform: uppercase;
+        font-family: $bodoni-bold-font;
+        color: $bipolar-black;
+        font-size: 17px;
+        letter-spacing: 2.5px;
+        margin-left: 10px;
+        margin-top: 1px;
       }
-
-      .trash-icon {
-        cursor: pointer;
+  
+      .address-list-content {
         display: flex;
-        align-items: flex-end;
+        justify-content: space-between;
+  
+        .address-list-of-lists {
+          list-style: none;
+          padding-left: 38px;
+  
+          > li {
+            @include gotham_bold_font;
+            text-transform: uppercase;
+            font-size: 11px;
+            color: $bipolar-black;
+          }
+        }
+  
+        .trash-icon {
+          cursor: pointer;
+          display: flex;
+          align-items: flex-end;
+        }
       }
+    }
+
+    .second-part {
+      display: flex;
+      align-items: flex-end;
     }
   }
 }

@@ -22917,6 +22917,12 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-checkout .address-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   border: 1px solid #eee;
   border-radius: 20px;
   padding: 20px;
@@ -22924,27 +22930,34 @@ input:focus:-ms-input-placeholder {
   margin-bottom: 15px;
 }
 
-.bipolar-checkout .address-list .pretty {
+.bipolar-checkout .address-list .first-part {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  cursor: pointer;
+}
+
+.bipolar-checkout .address-list .first-part .pretty {
   margin-right: 0;
   white-space: normal;
 }
 
-.bipolar-checkout .address-list .pretty .state label {
+.bipolar-checkout .address-list .first-part .pretty .state label {
   text-indent: 0;
 }
 
-.bipolar-checkout .address-list .pretty .state label > span {
+.bipolar-checkout .address-list .first-part .pretty .state label > span {
   display: inline-block;
   padding-left: 1.7em;
   line-height: 1.3em;
 }
 
-.bipolar-checkout .address-list .pretty .state label::after,
-.bipolar-checkout .address-list .pretty .state label::before {
+.bipolar-checkout .address-list .first-part .pretty .state label::after,
+.bipolar-checkout .address-list .first-part .pretty .state label::before {
   top: 1px;
 }
 
-.bipolar-checkout .address-list .address-list-title {
+.bipolar-checkout .address-list .first-part .address-list-title {
   text-transform: uppercase;
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   color: #000000;
@@ -22954,7 +22967,7 @@ input:focus:-ms-input-placeholder {
   margin-top: 1px;
 }
 
-.bipolar-checkout .address-list .address-list-content {
+.bipolar-checkout .address-list .first-part .address-list-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -22963,12 +22976,12 @@ input:focus:-ms-input-placeholder {
           justify-content: space-between;
 }
 
-.bipolar-checkout .address-list .address-list-content .address-list-of-lists {
+.bipolar-checkout .address-list .first-part .address-list-content .address-list-of-lists {
   list-style: none;
   padding-left: 38px;
 }
 
-.bipolar-checkout .address-list .address-list-content .address-list-of-lists > li {
+.bipolar-checkout .address-list .first-part .address-list-content .address-list-of-lists > li {
   font-family: "GothamBold", sans-serif;
   font-weight: normal;
   text-transform: uppercase;
@@ -22976,8 +22989,17 @@ input:focus:-ms-input-placeholder {
   color: #000000;
 }
 
-.bipolar-checkout .address-list .address-list-content .trash-icon {
+.bipolar-checkout .address-list .first-part .address-list-content .trash-icon {
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.bipolar-checkout .address-list .second-part {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

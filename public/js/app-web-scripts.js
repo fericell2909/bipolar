@@ -27321,6 +27321,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert2__);
 
 
+var clickedBillingAddress = function clickedBillingAddress(addressId) {
+  return $.post('ajax/address/' + addressId + '/main').done(function (response) {
+    if (response['shipping_fee'] !== undefined && response['shipping_name'] !== undefined) {
+      $('#checkout-shipping-fee').html('<span>' + response['shipping_name'] + '</span><span>' + response['shipping_fee'] + '</span>');
+    }
+    $('#sectionCollapseOne').collapse('hide');
+    $('#sectionCollapseTwo').collapse('show');
+  });
+};
+
+var clickedShippingAddress = function clickedShippingAddress(addressId) {
+  return $.post('ajax/address/' + addressId + '/main').done(function (response) {
+    if (response['shipping_fee'] !== undefined && response['shipping_name'] !== undefined) {
+      $('#checkout-shipping-fee').html('<span>' + response['shipping_name'] + '</span><span>' + response['shipping_fee'] + '</span>');
+    }
+    $('#sectionCollapseTwo').collapse('hide');
+    $('#sectionCollapseThree').collapse('show');
+  });
+};
+
 $(function () {
   $('#form-coupon').submit(function (event) {
     event.preventDefault();
@@ -27353,26 +27373,23 @@ $(function () {
 
   $('.address-billing-option').click(function () {
     var addressId = $(this).val();
-
-    $.post('ajax/address/' + addressId + '/main').done(function (response) {
-      if (response['shipping_fee'] !== undefined && response['shipping_name'] !== undefined) {
-        $('#checkout-shipping-fee').html('<span>' + response['shipping_name'] + '</span><span>' + response['shipping_fee'] + '</span>');
-      }
-      $('#sectionCollapseOne').collapse('hide');
-      $('#sectionCollapseTwo').collapse('show');
-    });
+    clickedBillingAddress(addressId);
   });
 
   $('.address-shipping-option').click(function () {
     var addressId = $(this).val();
+    clickedShippingAddress(addressId);
+  });
 
-    $.post('ajax/address/' + addressId + '/main').done(function (response) {
-      if (response['shipping_fee'] !== undefined && response['shipping_name'] !== undefined) {
-        $('#checkout-shipping-fee').html('<span>' + response['shipping_name'] + '</span><span>' + response['shipping_fee'] + '</span>');
-      }
-      $('#sectionCollapseTwo').collapse('hide');
-      $('#sectionCollapseThree').collapse('show');
-    });
+  $('.first-part').click(function () {
+    var addressBillingRadio = $(this).find('.address-billing-option');
+    var addressShippingRadio = $(this).find('.address-shipping-option');
+    if (addressBillingRadio.length) {
+      clickedBillingAddress(addressBillingRadio.val());
+    }
+    if (addressShippingRadio.length) {
+      clickedShippingAddress(addressShippingRadio.val());
+    }
   });
 
   $('input[name="send-distinct-address"]').click(function () {

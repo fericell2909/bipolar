@@ -44,21 +44,25 @@
 						<div class="panel-body">
 							@foreach($billingAddresses as $billingAddress)
 								<div class="address-list">
-									<div class="pretty p-default p-round p-thick">
-										{!! Form::radio('address_billing', $billingAddress->hash_id, $billingAddress->main, ['class' => 'address-list-option address-billing-option']) !!}
-										<div class="state p-primary-o">
-											<label class="address-list-title">
-												<span>{{ $billingAddress->name }} {{ $billingAddress->lastname }}</span>
-											</label>
+									<div class="first-part">
+										<div class="pretty p-default p-round p-thick">
+											{!! Form::radio('address_billing', $billingAddress->hash_id, $billingAddress->main, ['class' => 'address-list-option address-billing-option']) !!}
+											<div class="state p-primary-o">
+												<label class="address-list-title">
+													<span>{{ $billingAddress->name }} {{ $billingAddress->lastname }}</span>
+												</label>
+											</div>
+										</div>
+										<div class="address-list-content">
+											<ul class="address-list-of-lists">
+												<li>{{ $billingAddress->address }}</li>
+												<li>{{ $billingAddress->country_state->name }}</li>
+												<li>{{ $billingAddress->country_state->country->name }}</li>
+												<li>{{ $billingAddress->phone }}</li>
+											</ul>
 										</div>
 									</div>
-									<div class="address-list-content">
-										<ul class="address-list-of-lists">
-											<li>{{ $billingAddress->address }}</li>
-											<li>{{ $billingAddress->country_state->name }}</li>
-											<li>{{ $billingAddress->country_state->country->name }}</li>
-											<li>{{ $billingAddress->phone }}</li>
-										</ul>
+									<div class="second-part">
 										<div class="trash-icon" data-address-hash-id="{{ $billingAddress->hash_id }}">
 											<a><img src="{{ asset('images/trash.svg') }}" width="20" alt="Eliminar"></a>
 										</div>
@@ -132,21 +136,25 @@
               </div>
 							@foreach($shippingAddresses as $shippingAddress)
 								<div class="address-list">
-									<div class="pretty p-default p-round p-thick">
-										{!! Form::radio('address_shipping', $shippingAddress->hash_id, $shippingAddress->main, ['class' => 'address-list-option address-shipping-option']) !!}
-										<div class="state p-primary-o">
-											<label class="address-list-title">
-												<span>{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</span>
-											</label>
+									<div class="first-part">
+										<div class="pretty p-default p-round p-thick">
+											{!! Form::radio('address_shipping', $shippingAddress->hash_id, $shippingAddress->main, ['class' => 'address-list-option address-shipping-option']) !!}
+											<div class="state p-primary-o">
+												<label class="address-list-title">
+													<span>{{ $shippingAddress->name }} {{ $shippingAddress->lastname }}</span>
+												</label>
+											</div>
+										</div>
+										<div class="address-list-content">
+											<ul class="address-list-of-lists">
+												<li>{{ $shippingAddress->address }}</li>
+												<li>{{ $shippingAddress->country_state->name }}</li>
+												<li>{{ $shippingAddress->country_state->country->name }}</li>
+												<li>{{ $shippingAddress->phone }}</li>
+											</ul>
 										</div>
 									</div>
-									<div class="address-list-content">
-										<ul class="address-list-of-lists">
-											<li>{{ $shippingAddress->address }}</li>
-											<li>{{ $shippingAddress->country_state->name }}</li>
-											<li>{{ $shippingAddress->country_state->country->name }}</li>
-											<li>{{ $shippingAddress->phone }}</li>
-										</ul>
+									<div class="second-part">
 										<div class="trash-icon">
 											<a href="#"><img src="{{ asset('images/trash.svg') }}" width="20" alt="Eliminar"></a>
 										</div>
