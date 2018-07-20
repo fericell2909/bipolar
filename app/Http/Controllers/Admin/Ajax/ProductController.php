@@ -335,7 +335,7 @@ class ProductController extends Controller
             'discount_pen'         => 'required|numeric',
             'discount_usd'         => 'required|numeric',
             'price_usd_discount'   => 'required|numeric',
-            'price_dolar_discount' => 'required|numeric',
+            'price_pen_discount' => 'required|numeric',
         ]);
 
         $product = Product::findByHash($productHashId);

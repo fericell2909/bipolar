@@ -68,7 +68,7 @@
                     {{ $salient->colors->first()->name }}
                   </div>
                 @endif
-                @if($salient->discount)
+                @if($salient->discount_pen || $salient->discount_usd)
                   <span class="bipolar-relevants-subtitle">{{ $salient->price_discount_currency }}</span>
                   <span class="bipolar-relevants-discount">{{ $salient->price_currency }}</span>
                 @else
@@ -90,10 +90,10 @@
             <div class="col-md-4 bipolar-product">
               <a class="product-link" href="{{ route('shop.product', $product->slug) }}"></a>
               <div class="overlay-shop-container">
-                @if($product->discount)
+                @if($product->discount_pen && $product->discount_usd)
                   <div class="shop-discount-preview-container">
                     <div class="shop-discount">
-                      <span>{{ $product->discount }}%</span>
+                      <span>{{ $product->discount_amount }}%</span>
                     </div>
                   </div>
                 @endif
@@ -112,7 +112,7 @@
                       {{ $product->colors->first()->name }}
                     </div>
                   @endif
-                  @if($product->discount)
+                  @if($product->discount_pen && $product->discount_usd)
                     <div class="overlay-discount-container">
                       <span class="overlay-shop-color-text">{{ $product->price_discount_currency }}</span>
                       <span class="overlay-shop-discount-text">{{ $product->price_currency }}</span>
@@ -150,39 +150,43 @@
     </div>
   </div>
   {!! Form::close() !!}
-  @foreach($products as $product)
-    <div class="modal fade modal-product-detail-{{ $product->hash_id }}" tabindex="-1" role="dialog"
-         aria-labelledby="shopModalDetail">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="container-fluid">
-            <div class="bipolar-product-in-modal">
-              @if(count($product->photos))
-                <div>
-                  {{--  <div class="shop-discount-container">
-                      <div class="shop-discount">
-                          <span>30%</span>
-                      </div>
-                  </div>  --}}
-                  <div class="owl-carousel-main owl-carousel owl-theme">
-                    @foreach($product->photos as $photo)
-                      <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive">
-                    @endforeach
+@endsection
+@push('js_plus')
+@foreach($products as $product)
+  <div class="modal fade modal-product-detail-{{ $product->hash_id }}" tabindex="-1" role="dialog"
+        aria-labelledby="shopModalDetail">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="container-fluid">
+          <div class="bipolar-product-in-modal">
+            @if(count($product->photos))
+              <div>
+                @if($product->discount_pen && $product->discount_usd)
+                  <div class="shop-discount-container">
+                    <div class="shop-discount">
+                      <span>{{ $product->discount_amount }}%</span>
+                    </div>
                   </div>
-                  <div class="owl-carousel-thumbnails owl-carousel owl-theme">
-                    @foreach($product->photos as $photo)
-                      <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $product->name }}">
-                    @endforeach
-                  </div>
-                  <p class="text-right" style="margin-top:10px;">
-                    <a href="{{ route('shop.product', $product->slug) }}" class="btn btn-dark btn-rounded">Ver más</a>
-                  </p>
+                @endif
+                <div class="owl-carousel-main owl-carousel owl-theme">
+                  @foreach($product->photos as $photo)
+                    <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive">
+                  @endforeach
                 </div>
-              @endif
-            </div>
+                <div class="owl-carousel-thumbnails owl-carousel owl-theme">
+                  @foreach($product->photos as $photo)
+                    <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $product->name }}">
+                  @endforeach
+                </div>
+                <p class="text-right" style="margin-top:10px;">
+                  <a href="{{ route('shop.product', $product->slug) }}" class="btn btn-dark btn-rounded">Ver más</a>
+                </p>
+              </div>
+            @endif
           </div>
         </div>
       </div>
     </div>
-  @endforeach
-@endsection
+  </div>
+@endforeach
+@endpush

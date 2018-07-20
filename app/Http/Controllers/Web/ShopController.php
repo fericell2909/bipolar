@@ -47,11 +47,13 @@ class ShopController extends Controller
 
         $sizes = Size::with(['stocks' => function ($withStocks) {
             /** @var Builder $withStocks */
-            $withStocks->whereHas('product', function ($whereHasProduct) {
-                /** @var Builder $whereHasProduct */
-                $whereHasProduct->where('state_id', config('constants.STATE_ACTIVE_ID'));
-            })
-                ->whereNotNull('active');
+            $withStocks
+                ->whereHas('product', function ($whereHasProduct) {
+                    /** @var Builder $whereHasProduct */
+                    $whereHasProduct->where('state_id', config('constants.STATE_ACTIVE_ID'));
+                })
+                ->whereNotNull('active')
+                ->where('quantity', '>', 0);
         }, 'stocks.product'])
             ->orderBy('name')
             ->get();
@@ -95,9 +97,10 @@ class ShopController extends Controller
                 /** @var Collection $products */
                 return $products->filter(function ($product) use ($request) {
                     /** @var Product $product */
+                    // if product has the size and have quantity
                     return $product->stocks
                         ->filter(function ($stock) use ($request) {
-                            return $stock->whereIn('size.slug', $request->input('sizes'));
+                            return in_array($stock->size->slug, $request->input('sizes'));
                         })
                         ->filter(function ($stock) {
                             return $stock->quantity > 0;

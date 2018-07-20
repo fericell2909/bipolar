@@ -267,7 +267,9 @@
     h3 {
       @include bodoni_bold_font;
       text-transform: uppercase;
-      letter-spacing: 3px;
+      font-size: 15px;
+      color: $bipolar-black;
+      letter-spacing: 0.2em;
     }
 
     > .row {

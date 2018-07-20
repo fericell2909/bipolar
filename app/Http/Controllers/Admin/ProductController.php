@@ -143,7 +143,7 @@ class ProductController extends Controller
             $quantities[$number] = $number;
         }
 
-        return view('web.shop.preview', compact('product', 'stockWithSizes', 'quantities'));
+        return view('web.shop.product', compact('product', 'stockWithSizes', 'quantities'));
     }
 
     public function stock($productSlug)

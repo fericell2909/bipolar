@@ -90,7 +90,7 @@
                 <div class="container">
                   @foreach($posts as $post)
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                      <div class="row">
+                      <div class="row post">
                         <div class="col-md-6">
                           @if($post->photos->count() > 0)
                             <div class="owl-carousel-blog owl-carousel owl-theme">
@@ -102,16 +102,16 @@
                             <img class="img-responsive" src="https://placehold.it/300x100" alt="Title">
                           @endif
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 content">
                           <a href="#" class="title-link">{{ $post->title }}</a>
                           @if($post->tags)
-                            <ul>
+                            <div class="tags">
                               @foreach($post->tags as $tag)
-                                <li>{{ $tag->name }}</li>
+                                <a href="#">{{ $tag->name }}</a>
                               @endforeach
-                            </ul>
+                            </div>
                           @endif
-                          <a href="#">Read more</a>
+                        <a href="#">Read more</a>                            
                         </div>
                       </div>
                     </div>
