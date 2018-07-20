@@ -1,6 +1,17 @@
 @import "../mixins";
 
 .bipolar-checkout {
+
+  #button-add-billing-address {
+    @include xxs {
+      margin-bottom: 15px;
+    }
+
+    @include sm {
+      margin: 0;
+    }
+  }
+
   .form-coupon {
     border: 3px solid #eee;
     padding: 20px;

@@ -20387,7 +20387,9 @@ fieldset[disabled] .active.btn-bipolar-rounded {
   border: 1px solid #fcbeb9;
 }
 
-.btn-bipolar-rounded:hover {
+.btn-bipolar-rounded:hover,
+.btn-bipolar-rounded:active,
+.btn-bipolar-rounded:focus {
   color: white;
   background: #fcbeb9;
   border: 1px solid #fcbeb9;
@@ -22605,6 +22607,18 @@ input:focus:-ms-input-placeholder {
   font-size: 17px;
   color: #000000;
   font-weight: normal;
+}
+
+@media only screen and (min-width: 320px) {
+  .bipolar-checkout #button-add-billing-address {
+    margin-bottom: 15px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .bipolar-checkout #button-add-billing-address {
+    margin: 0;
+  }
 }
 
 .bipolar-checkout .form-coupon {

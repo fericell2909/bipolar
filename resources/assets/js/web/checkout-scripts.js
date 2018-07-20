@@ -126,4 +126,8 @@ $(function() {
     $('#shipping-check').hide();
     return $('input[name="showroom_pick"]').val(event.target.value);
   });
+
+  $('#button-add-billing-address').click(function () {
+    $('#form-add-billing-address').toggle();
+  });
 });

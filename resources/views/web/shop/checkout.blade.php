@@ -66,49 +66,50 @@
 								</div>
 							@endforeach
 							{!! Form::open(['url' => route('address.add', 'billing')]) !!}
-							<div class="row">
-								<div class="form-group col-md-6">
-									{!! Form::label(__('bipolar.form_fields.firstname')) !!}
-									{!! Form::text('name', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+								<div id="form-add-billing-address" style="display:none" class="row">
+									<div class="form-group col-md-6">
+										{!! Form::label(__('bipolar.form_fields.firstname')) !!}
+										{!! Form::text('name', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+									</div>
+									<div class="form-group col-md-6">
+										{!! Form::label(__('bipolar.form_fields.lastname')) !!}
+										{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+									</div>
+									<div class="form-group col-md-6">
+										{!! Form::label(__('bipolar.form_fields.email')) !!}
+										{!! Form::text('email', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+									</div>
+									<div class="form-group col-md-6">
+										{!! Form::label(__('bipolar.form_fields.phone')) !!}
+										{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+									</div>
+									<div class="form-group col-md-6">
+										{!! Form::label(__('bipolar.form_fields.country')) !!}
+										<select name="country" id="" class="form-control select-2-countries" autocomplete="off">
+											<option disabled selected>{{ __('bipolar.checkout.select') }}</option>
+											@foreach($countries as $countryId => $countryName)
+												<option value="{{ $countryId }}">{{ $countryName }}</option>
+											@endforeach
+										</select>
+									</div>
+									<div class="form-group col-md-6">
+										{!! Form::label(__('bipolar.form_fields.city')) !!}
+										{!! Form::select('state', [], null, ['class' => 'form-control select-2-country-states', 'required' => true, 'autocomplete' => 'off']) !!}
+										{!! Form::hidden('country_state_billing_hidden', null, ['id' => 'country_state_billing_hidden']) !!}
+									</div>
+									<div class="form-group col-md-6">
+										{!! Form::label(__('bipolar.form_fields.address')) !!}
+										{!! Form::text('address', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+									</div>
+									<div class="form-group col-md-6">
+										{!! Form::label(__('bipolar.form_fields.zip')) !!}
+										{!! Form::text('zip', null, ['class' => 'form-control', 'autocomplete' => 'off']) !!}
+									</div>
 								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label(__('bipolar.form_fields.lastname')) !!}
-									{!! Form::text('lastname', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+								<div class="text-center">
+									<button type="button" id="button-add-billing-address" class="btn btn-bipolar-rounded">Agregar otra dirección</button>
+									<button type="submit" id="checkoutContinuePartTwo" class="btn btn-dark-rounded">{{ __('bipolar.checkout.continue') }}</button>
 								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label(__('bipolar.form_fields.email')) !!}
-									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
-								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label(__('bipolar.form_fields.phone')) !!}
-									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
-								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label(__('bipolar.form_fields.country')) !!}
-									<select name="country" id="" class="form-control select-2-countries" autocomplete="off">
-										<option disabled selected>{{ __('bipolar.checkout.select') }}</option>
-										@foreach($countries as $countryId => $countryName)
-											<option value="{{ $countryId }}">{{ $countryName }}</option>
-										@endforeach
-									</select>
-								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label(__('bipolar.form_fields.city')) !!}
-									{!! Form::select('state', [], null, ['class' => 'form-control select-2-country-states', 'required' => true, 'autocomplete' => 'off']) !!}
-									{!! Form::hidden('country_state_billing_hidden', null, ['id' => 'country_state_billing_hidden']) !!}
-								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label(__('bipolar.form_fields.address')) !!}
-									{!! Form::text('address', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
-								</div>
-								<div class="form-group col-md-6">
-									{!! Form::label(__('bipolar.form_fields.zip')) !!}
-									{!! Form::text('zip', null, ['class' => 'form-control', 'autocomplete' => 'off']) !!}
-								</div>
-							</div>
-							<div class="text-center">
-								<button type="submit" id="checkoutContinuePartTwo" class="btn btn-dark-rounded">{{ __('bipolar.checkout.continue') }}</button>
-							</div>
 							{!! Form::close() !!}
 						</div>
 					</div>

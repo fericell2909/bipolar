@@ -147,7 +147,7 @@ fieldset[disabled] .btn-dark.active {
   @extend .btn-add-cart;
   background-color: $bipolar-color;
   border: 1px solid $bipolar-color;
-  &:hover {
+  &:hover, &:active, &:focus {
     color: $bipolar-white;
     background: $bipolar-color;
     border: 1px solid $bipolar-color;
