@@ -12,7 +12,7 @@
         <i class="fa fa-home"></i> &raquo; <a href="#">Shop</a> &raquo; {{ $product->name }}
       </div>
     </div>
-    @includeWhen(\Session::has('success_add_product'), 'web.partials.success', ['product' => \Session::has('success_add_product')])
+    @includeWhen(\Session::has('success_add_product'), 'web.partials.success', ['product' => \Session::get('success_add_product')])
     <div class="bipolar-container product-content">
       <div class="row">
         <div class="col-sm-6 col-md-6">
