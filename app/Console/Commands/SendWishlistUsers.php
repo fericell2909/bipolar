@@ -38,7 +38,6 @@ class SendWishlistUsers extends Command
      */
     public function handle()
     {
-        $users = User::has('wishlists')
-            ->with('wishlists')->get();
+        $users = User::has('wishlists')->with('wishlists')->get();
     }
 }

@@ -39,7 +39,7 @@
                 {!! Form::checkbox('sizes[]', $size->slug) !!}
                 <div class="state p-primary">
                   <i class="icon mdi mdi-check"></i>
-                  <label>{{ $size->name }} ({{ $size->product_count }})</label>
+                  <label>{{ $size->name }}</label>
                 </div>
               </div>
             @endforeach
