@@ -25,6 +25,20 @@ class BSale
     }
 
     /**
+     * @return ZttpResponse
+     */
+    public static function stocksForSync(): ZttpResponse
+    {
+        $response = Zttp::withHeaders(['access_token' => env('BSALE_TOKEN')])
+            ->get('https://api.bsale.cl/v1/stocks.json', [
+                'limit'    => 100000000,
+                'officeid' => env('BSALE_MAIN_OFFICE', 1),
+            ]);
+
+        return $response;
+    }
+
+    /**
      * @param Buy $buy
      * @return ZttpResponse
      */

@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\SyncBsaleStocks;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -26,6 +27,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('tasks:execute')->daily();
         $schedule->command('carts:unbuyed')->daily();
+        $schedule->command(SyncBsaleStocks::class)->everyMinute();
     }
 
     /**
