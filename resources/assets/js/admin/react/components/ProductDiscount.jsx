@@ -27,9 +27,10 @@ class ProductDiscount extends React.Component {
 
     if (discount === "" || discount === '-') {
       discount = 0;
+    } else {
+      discount = parseFloat(event.target.value);
     }
 
-    discount = parseFloat(event.target.value);
 
     if (discount <= 0) {
       return this.setState({
@@ -58,9 +59,10 @@ class ProductDiscount extends React.Component {
 
     if (discount === "" || discount === '-') {
       discount = 0;
+    } else {
+      discount = parseFloat(event.target.value);
     }
 
-    discount = parseFloat(event.target.value);
 
     if (discount <= 0) {
       return this.setState({
@@ -127,6 +129,24 @@ class ProductDiscount extends React.Component {
           return swal('Hecho', 'Guardado con éxito', 'success');
         }
       });
+  };
+
+  removeDiscount = () => {
+    const confirmation = confirm('Quitar descuento del producto?');
+    if (confirmation) {
+      return axios.post(`/ajax-admin/products/${this.props.productHashId}/discount`, {
+        discount_pen: 0,
+        discount_usd: 0,
+        price_pen_discount: 0,
+        price_usd_discount: 0,
+      })
+        .then(response => {
+          if (response.data['mensaje']) {
+            this.getProduct();
+            return swal('Hecho', 'Guardado con éxito', 'success');
+          }
+        });
+    }
   };
 
   render() {
@@ -209,6 +229,7 @@ class ProductDiscount extends React.Component {
               </div>
             </div>
             <button type="submit" className="btn btn-dark btn-rounded">Guardar</button>
+            <button onClick={this.removeDiscount} type="button" className="btn btn-dark btn-rounded ml-1">Remover descuento</button>
           </form>
         </div>
       </div>
