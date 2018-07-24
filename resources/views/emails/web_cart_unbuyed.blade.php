@@ -11,11 +11,11 @@
           <tbody>
             <tr>
               <td>
-                @if(\LaravelLocalization::getCurrentLocale() === 'es')
+               {{-- @if(\LaravelLocalization::getCurrentLocale() === 'es')
                 <img src="https://bipolar-peru.s3.amazonaws.com/assets/mails/pedido-recibido-esp.jpg" style="max-width: 100%" alt="Bipolar">
                 @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
                 <img src="https://bipolar-peru.s3.amazonaws.com/assets/mails/pedido-recibido-eng.jpg" style="max-width: 100%" alt="Bipolar">
-                @endif
+                @endif--}}
               </td>
             </tr>
             <tr>
@@ -30,7 +30,7 @@
                           <p class="mb_xs imgr" style="font-family: Arial, Helvetica, sans-serif;font-size: 0;color: #757575;line-height: 100%;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;width: 100%;height: auto;clear: both;"><img class="bra" role="img" src="{{ $detail->product->photos->first()->url }}" width="140" height="140" alt="image description" style="max-width: 140px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;width: 100%;height: auto;font-size: 0;margin-left: auto;margin-right: auto;"></p>
                           <p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;"><a href="#" style="line-height: inherit;text-decoration: none;color: #000000;"><span style="line-height: inherit;color: #000000;"><strong>{{ $detail->product->name }}</strong></span></a></p>
                           <p class="mb_xs tm" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;">
-                              {{ $detail->stock ? __('bipolar.size_abbr') . ". " . $detail->stock->size->name : null }}
+                            {{ $detail->stock ? __('bipolar.size_abbr') . ". " . $detail->stock->size->name : null }}
                           </p>
                           <p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;">{{ $detail->total_currency }}</p>
                         </td>
