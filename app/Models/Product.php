@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Spatie\Translatable\HasTranslations;
 
+/** @mixin \Eloquent */
 class Product extends Model
 {
     use Hashable, Sluggable, SluggableScopeHelpers, SoftDeletes, HasTranslations;

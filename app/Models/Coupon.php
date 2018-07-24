@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/** @mixin \Eloquent */
 class Coupon extends Model
 {
     protected $dates = ['begin', 'end'];

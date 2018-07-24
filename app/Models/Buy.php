@@ -6,6 +6,7 @@ use App\Traits\Hashable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\ModelStatus\HasStatuses;
 
+/** @mixin \Eloquent */
 class Buy extends Model
 {
     use Hashable, HasStatuses;

@@ -7,9 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-/**
- * @method static User findOrFail($id, array $columns = ['*'])
- */
+/** @mixin \Eloquent */
 class User extends Authenticatable
 {
     use Notifiable;

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/** @mixin \Eloquent */
 class ShippingExclude extends Model
 {
     protected $table = 'shipping_excludes';

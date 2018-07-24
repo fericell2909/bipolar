@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/** @mixin \Eloquent */
 class AddressType extends Model
 {
     protected $table = 'address_types';

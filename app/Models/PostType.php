@@ -7,6 +7,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
+/** @mixin \Eloquent */
 class PostType extends Model
 {
     use Hashable, Sluggable, SluggableScopeHelpers;

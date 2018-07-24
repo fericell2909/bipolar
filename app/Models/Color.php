@@ -6,6 +6,7 @@ use App\Traits\Hashable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
+/** @mixin \Eloquent */
 class Color extends Model
 {
     use Hashable, HasTranslations;
