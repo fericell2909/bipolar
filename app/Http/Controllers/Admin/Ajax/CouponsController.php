@@ -54,4 +54,29 @@ class CouponsController extends Controller
 
         return response()->json(['message' => 'Guardado con éxito']);
     }
+
+    public function destroy($couponId)
+    {
+        /** @var Coupon $coupon */
+        $coupon = Coupon::findOrFail($couponId);
+
+        $coupon->load(['buys', 'carts']);
+
+        if ($coupon->buys->count() > 0) {
+            return response()->json(['success' => false, 'message' => 'No se pueden eliminar cupones usados en compras']);
+        }
+
+        if ($coupon->carts->count() > 0) {
+            \DB::table('cart_details')->whereIn('cart_id', $coupon->carts->pluck('id')->toArray())->delete();
+            \DB::table('carts')->whereIn('id', $coupon->carts->pluck('id')->toArray())->delete();
+        }
+
+        try {
+            $coupon->delete();
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Algo fue mal']);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Cupón eliminado con éxito']);
+    }
 }

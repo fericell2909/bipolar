@@ -12,6 +12,7 @@ namespace App\Models{
 /**
  * App\Models\Wishlist
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int $user_id
  * @property int $product_id
@@ -32,6 +33,7 @@ namespace App\Models{
 /**
  * App\Models\Category
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property string $name
  * @property \Carbon\Carbon|null $created_at
@@ -50,6 +52,7 @@ namespace App\Models{
 /**
  * App\Models\Buy
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int $user_id
  * @property int|null $coupon_id
@@ -102,6 +105,7 @@ namespace App\Models{
 /**
  * App\Models\PostType
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property string $name
  * @property string|null $slug
@@ -119,6 +123,7 @@ namespace App\Models{
 /**
  * App\Models\CartDetail
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int $cart_id
  * @property int $product_id
@@ -146,6 +151,7 @@ namespace App\Models{
 /**
  * App\Models\BuyDetail
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int $buy_id
  * @property int $product_id
@@ -170,6 +176,7 @@ namespace App\Models{
 /**
  * App\Models\Size
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property string $name
  * @property string|null $slug
@@ -187,6 +194,7 @@ namespace App\Models{
 /**
  * App\Models\HomePost
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int|null $post_type_id
  * @property int|null $state_id
@@ -218,6 +226,7 @@ namespace App\Models{
 /**
  * App\Models\DiscountTask
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property string $name
  * @property int $discount_pen
@@ -252,6 +261,7 @@ namespace App\Models{
 /**
  * App\Models\Settings
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property float $dolar_change
  * @property int $free_shipping
@@ -272,6 +282,7 @@ namespace App\Models{
 /**
  * App\Models\Type
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property array $name
  * @property string|null $slug
@@ -289,6 +300,7 @@ namespace App\Models{
 /**
  * App\Models\Cart
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int|null $user_id
  * @property string|null $session_id
@@ -327,6 +339,7 @@ namespace App\Models{
 /**
  * App\Models\Product
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int|null $state_id
  * @property array $name
@@ -391,6 +404,7 @@ namespace App\Models{
 /**
  * App\Models\Post
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property array $title
  * @property array $content
@@ -427,6 +441,7 @@ namespace App\Models{
 /**
  * App\Models\Banner
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int $state_id
  * @property int $order
@@ -454,6 +469,7 @@ namespace App\Models{
 /**
  * App\Models\Shipping
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property string $title
  * @property int $active
@@ -522,6 +538,7 @@ namespace App\Models{
 /**
  * App\Models\Country
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property string $sortname
  * @property string $name
@@ -539,6 +556,7 @@ namespace App\Models{
 /**
  * App\Models\Address
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int $user_id
  * @property int $address_type_id
@@ -577,6 +595,7 @@ namespace App\Models{
 /**
  * App\Models\Stock
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int $product_id
  * @property int|null $size_id
@@ -606,6 +625,7 @@ namespace App\Models{
 /**
  * App\Models\Tag
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property string $name
  * @property-read string $hash_id
@@ -620,7 +640,7 @@ namespace App\Models{
 /**
  * App\Models\User
  *
- * @method static User findOrFail($id, array $columns = ['*'])
+ * @mixin \Eloquent
  * @property int $id
  * @property string $email
  * @property string $name
@@ -659,6 +679,7 @@ namespace App\Models{
 /**
  * App\Models\Role
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property string $name
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereId($value)
@@ -671,6 +692,7 @@ namespace App\Models{
 /**
  * App\Models\ShippingInclude
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int $shipping_id
  * @property int|null $country_id
@@ -692,6 +714,7 @@ namespace App\Models{
 /**
  * App\Models\Payment
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int $buy_id
  * @property string|null $auth_result
@@ -723,6 +746,7 @@ namespace App\Models{
 /**
  * App\Models\CountryState
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property string $name
  * @property int $country_id
@@ -738,6 +762,7 @@ namespace App\Models{
 /**
  * App\Models\Photo
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int|null $product_id
  * @property int|null $post_id
@@ -768,6 +793,7 @@ namespace App\Models{
 /**
  * App\Models\State
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property string $name
  * @property string $color
@@ -784,6 +810,7 @@ namespace App\Models{
 /**
  * App\Models\Color
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property array $name
  * @property-read string $hash_id
@@ -798,6 +825,7 @@ namespace App\Models{
 /**
  * App\Models\ShippingExclude
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int $shipping_id
  * @property int|null $country_id
@@ -817,6 +845,7 @@ namespace App\Models{
 /**
  * App\Models\Subtype
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int $type_id
  * @property array $name
@@ -837,6 +866,7 @@ namespace App\Models{
 /**
  * App\Models\Manager
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int|null $role_id
  * @property string $email
@@ -858,6 +888,7 @@ namespace App\Models{
 /**
  * App\Models\AddressType
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property string $name
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Address[] $addresses
@@ -871,6 +902,7 @@ namespace App\Models{
 /**
  * App\Models\CouponType
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property string $name
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Coupon[] $coupons
@@ -884,6 +916,7 @@ namespace App\Models{
 /**
  * App\Models\Coupon
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property int $type_id
  * @property string $code
@@ -900,6 +933,8 @@ namespace App\Models{
  * @property int $discounted_products
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Buy[] $buys
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Cart[] $carts
  * @property-read mixed $discount_format
  * @property-read \App\Models\CouponType $type
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereAmountPen($value)
@@ -926,6 +961,7 @@ namespace App\Models{
 /**
  * App\Models\Historic
  *
+ * @mixin \Eloquent
  * @property int $id
  * @property string $name
  * @property string $photo

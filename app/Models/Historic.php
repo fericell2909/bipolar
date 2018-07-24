@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/** @mixin \Eloquent */
 class Historic extends Model
 {
     use SoftDeletes;

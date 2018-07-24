@@ -87,36 +87,7 @@ class DiscountController extends Controller
         /** @var DiscountTask $discount */
         $discount = DiscountTask::findOrFail($discountTaskId);
 
-        $mainParams = [
-            'discount_pen'   => $discount->discount_pen,
-            'discount_usd'   => $discount->discount_usd,
-            'begin_discount' => $discount->begin,
-            'end_discount'   => $discount->end,
-        ];
-    
-        if ($discount->product_types) {
-            $types = Type::find($discount->product_types);
-            foreach ($types as $type) {
-                foreach ($type->subtypes as $subtype) {
-                    $subtype->products->each($this->assignMassiveDiscount($discount->discount_pen, $discount->discount_usd, $mainParams, false));
-                }
-            }
-        }
-
-        if ($discount->product_subtypes) {
-            $subtypes = Subtype::find($discount->product_subtypes);
-            foreach ($subtypes as $subtype) {
-                $subtype->products->each($this->assignMassiveDiscount($discount->discount_pen, $discount->discount_usd, $mainParams, false));
-            }
-        }
-
-        if ($discount->products) {
-            $products = Product::find($discount->products);
-            $products->each($this->assignMassiveDiscount($discount->discount_pen, $discount->discount_usd, $mainParams, false));
-        }
-
-        $discount->executed = true;
-        $discount->save();
+        \Artisan::call('tasks:execute', ['--discount' => $discount->id]);
 
         return response()->json(['success' => true]);
     }
@@ -126,52 +97,8 @@ class DiscountController extends Controller
         /** @var DiscountTask $discount */
         $discount = DiscountTask::findOrFail($discountTaskId);
 
-        $mainParams = [
-            'discount_pen'   => null,
-            'discount_usd'   => null,
-            'begin_discount' => null,
-            'end_discount'   => null,
-        ];
-
-        if (count($discount->product_types)) {
-            $types = Type::find($discount->product_types);
-            foreach ($types as $type) {
-                foreach ($type->subtypes as $subtype) {
-                    $subtype->products->each($this->assignMassiveDiscount(0, 0, $mainParams, true));
-                }
-            }
-        }
-
-        if (count($discount->product_subtypes)) {
-            $subtypes = Subtype::find($discount->product_subtypes);
-            foreach ($subtypes as $subtype) {
-                $subtype->products->each($this->assignMassiveDiscount(0, 0, $mainParams, true));
-            }
-        }
-
-        if (count($discount->products) > 0) {
-            $products = Product::find($discount->products);
-            $products->each($this->assignMassiveDiscount(0, 0, $mainParams, true));
-        }
-
-        $discount->executed = false;
-        $discount->save();
+        \Artisan::call('tasks:revert', ['--discount' => $discount->id]);
 
         return response()->json(['success' => true]);
-    }
-
-    private function assignMassiveDiscount($discountPEN, $discountUSD, $mainParams, $convertToNull)
-    {
-        return function ($product) use ($discountPEN, $discountUSD, $mainParams, $convertToNull) {
-            /** @var Product $product */
-            $specificParams = [
-                'price_pen_discount' => $convertToNull ? null : $product->price - calculate_percentage($product->price, $discountPEN),
-                'price_usd_discount' => $convertToNull ? null : $product->price_dolar - calculate_percentage($product->price_dolar, $discountUSD),
-            ];
-
-            $updateParams = array_merge($mainParams, $specificParams);
-
-            $product->update($updateParams);
-        };
     }
 }

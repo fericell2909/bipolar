@@ -8,6 +8,7 @@ use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
+/** @mixin \Eloquent */
 class Subtype extends Model
 {
     use Hashable, Sluggable, SluggableScopeHelpers, HasTranslations;

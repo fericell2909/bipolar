@@ -9,6 +9,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use App\Traits\Hashable;
 
+/** @mixin \Eloquent */
 class Post extends Model
 {
     use HasTranslations, HasStatuses, Sluggable, SluggableScopeHelpers, Hashable;

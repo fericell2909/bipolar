@@ -46,6 +46,10 @@
                   <a href="{{ route('coupon.edit', $coupon->id) }}" class="btn btn-dark btn-sm btn-rounded">
                     <i class="fas fa-fw fa-edit"></i> Editar
                   </a>
+                  <button class="btn btn-sm btn-dark btn-rounded delete-coupon" data-coupon-id="{{ $coupon->id }}">
+                    <i class="fas fa-fw fa-times"></i>
+                    Eliminar
+                  </button>
                 </div>
               </td>
             </tr>

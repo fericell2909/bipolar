@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/** @mixin \Eloquent */
 class Coupon extends Model
 {
     protected $dates = ['begin', 'end'];
@@ -12,6 +13,16 @@ class Coupon extends Model
         'product_types'    => 'array',
         'products'         => 'array',
     ];
+
+    public function buys()
+    {
+        return $this->hasMany(Buy::class, 'coupon_id');
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'coupon_id');
+    }
 
     public function type()
     {

@@ -6,21 +6,21 @@ use App\Models\DiscountTask;
 use App\Models\Product;
 use Illuminate\Console\Command;
 
-class ExecuteDiscountTasks extends Command
+class RevertDiscountTasks extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'tasks:execute {--discount=}';
+    protected $signature = 'tasks:revert {--discount=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Execute available tasks';
+    protected $description = 'Revert all tasks';
 
     /**
      * Create a new command instance.
@@ -42,27 +42,26 @@ class ExecuteDiscountTasks extends Command
         if ($this->option('discount')) {
             $discountTasks = DiscountTask::whereKey($this->option('discount'))->get();
         } else {
-            $discountTasks = DiscountTask::whereDate('begin', '<=', now()->toDateString())
-                ->whereDate('end', '>=', now()->toDateString())
+            $discountTasks = DiscountTask::whereDate('end', '<', now()->toDateString())
                 ->where('available', true)
-                ->where('executed', false)
+                ->where('executed', true)
                 ->get();
         }
 
         $discountTasks->each(function ($discount) {
             /** @var DiscountTask $discount */
             $mainParams = [
-                'discount_pen'   => $discount->discount_pen,
-                'discount_usd'   => $discount->discount_usd,
-                'begin_discount' => $discount->begin,
-                'end_discount'   => $discount->end,
+                'discount_pen'   => null,
+                'discount_usd'   => null,
+                'begin_discount' => null,
+                'end_discount'   => null,
             ];
 
             if ($discount->product_types) {
                 $types = Type::find($discount->product_types);
                 foreach ($types as $type) {
                     foreach ($type->subtypes as $subtype) {
-                        $subtype->products->each($this->assignMassiveDiscount($discount->discount_pen, $discount->discount_usd, $mainParams, false));
+                        $subtype->products->each($this->assignMassiveDiscount(0, 0, $mainParams, true));
                     }
                 }
             }
@@ -70,16 +69,16 @@ class ExecuteDiscountTasks extends Command
             if ($discount->product_subtypes) {
                 $subtypes = Subtype::find($discount->product_subtypes);
                 foreach ($subtypes as $subtype) {
-                    $subtype->products->each($this->assignMassiveDiscount($discount->discount_pen, $discount->discount_usd, $mainParams, false));
+                    $subtype->products->each($this->assignMassiveDiscount(0, 0, $mainParams, true));
                 }
             }
 
             if ($discount->products) {
                 $products = Product::find($discount->products);
-                $products->each($this->assignMassiveDiscount($discount->discount_pen, $discount->discount_usd, $mainParams, false));
+                $products->each($this->assignMassiveDiscount(0, 0, $mainParams, true));
             }
 
-            $discount->executed = true;
+            $discount->executed = false;
             $discount->save();
         });
 

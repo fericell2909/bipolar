@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Hashable;
 use Illuminate\Database\Eloquent\Model;
 
+/** @mixin \Eloquent */
 class CartDetail extends Model
 {
     use Hashable;
