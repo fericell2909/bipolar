@@ -13,7 +13,7 @@ class ExecuteDiscountTasks extends Command
      *
      * @var string
      */
-    protected $signature = 'tasks:execute';
+    protected $signature = 'tasks:execute {--discount=}';
 
     /**
      * The console command description.
@@ -39,11 +39,20 @@ class ExecuteDiscountTasks extends Command
      */
     public function handle()
     {
-        $discountTasks = DiscountTask::whereDate('begin', '<=', now()->toDateString())
-            ->whereDate('end', '>=', now()->toDateString())
-            ->where('available', true)
-            ->where('executed', false)
-            ->get();
+        if ($this->option('discount')) {
+            $discountTasks = DiscountTask::whereKey($this->option('discount'))
+                ->whereDate('begin', '<=', now()->toDateString())
+                ->whereDate('end', '>=', now()->toDateString())
+                ->where('available', true)
+                ->where('executed', false)
+                ->get();
+        } else {
+            $discountTasks = DiscountTask::whereDate('begin', '<=', now()->toDateString())
+                ->whereDate('end', '>=', now()->toDateString())
+                ->where('available', true)
+                ->where('executed', false)
+                ->get();
+        }
 
         $discountTasks->each(function ($discount) {
             /** @var DiscountTask $discount */
