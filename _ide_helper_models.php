@@ -933,6 +933,8 @@ namespace App\Models{
  * @property int $discounted_products
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Buy[] $buys
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Cart[] $carts
  * @property-read mixed $discount_format
  * @property-read \App\Models\CouponType $type
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereAmountPen($value)

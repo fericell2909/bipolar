@@ -29,3 +29,4 @@ require('./settings-scripts');
 require('./order-scripts');
 require('./banner-scripts');
 require('./buys-scripts');
+require('./coupon-scripts');

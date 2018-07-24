@@ -14,6 +14,16 @@ class Coupon extends Model
         'products'         => 'array',
     ];
 
+    public function buys()
+    {
+        return $this->hasMany(Buy::class, 'coupon_id');
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'coupon_id');
+    }
+
     public function type()
     {
         return $this->belongsTo(CouponType::class, 'type_id');
