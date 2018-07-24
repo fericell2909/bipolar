@@ -25,8 +25,8 @@ class BannerEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'begin' => 'required|date_format:Y-m-d H:i',
-            'end'   => 'required|date_format:Y-m-d H:i',
+            'begin' => 'nullable|date_format:d/m/Y',
+            'end'   => 'nullable|date_format:d/m/Y',
             'photo' => 'nullable|image|max:2000',
             'state' => [
                 'required',

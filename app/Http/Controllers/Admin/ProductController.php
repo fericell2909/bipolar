@@ -119,7 +119,11 @@ class ProductController extends Controller
         /** @var Product $product */
         $product = Product::findBySlugOrFail($productSlug);
 
-        $product->load('stocks.size');
+        $product->load(['stocks.size', 'photos' => function ($withPhotos) {
+            return $withPhotos->orderBy('order');
+        }, 'recommendeds.photos' => function ($withPhotos) {
+            return $withPhotos->orderBy('order');
+        }]);
 
         $stockWithSizes = $product->stocks
             ->filter(function ($stock) {
