@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\ExecuteDiscountTasks;
+use App\Console\Commands\RevertDiscountTasks;
 use App\Console\Commands\SendNoBuyedCarts;
 use App\Console\Commands\SyncBsaleStocks;
 use Illuminate\Console\Scheduling\Schedule;
@@ -28,6 +29,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command(ExecuteDiscountTasks::class)->daily();
+        $schedule->command(RevertDiscountTasks::class)->daily();
         $schedule->command(SendNoBuyedCarts::class)->daily();
         $schedule->command(SyncBsaleStocks::class)->everyMinute();
     }
