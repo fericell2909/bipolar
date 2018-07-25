@@ -27,6 +27,7 @@ class ShippingService
 
         $activeShippings = Shipping::whereActive(true)->count();
 
+        
         if ($activeShippings > 0) {
             if ($shippingAddresses->count() >= 1) {
                 $shipping = self::getShippingByAddresses($shippingAddresses);
@@ -36,12 +37,16 @@ class ShippingService
                 $shippingFee = self::calculateShippingByWeight($shipping, $totalWeight, $currency);
             }
         }
+        
+        $showroomPickup = !is_null($shipping) ? boolval($shipping->allow_showroom) : false;
 
         return [
             // Shipping
             $shipping->title ?? 'General',
             // Shipping Fee
             $currency === 'USD' ? "$ {$shippingFee}" : "S/ {$shippingFee}",
+            // Showroom pickup
+            $showroomPickup,
         ];
     }
 
@@ -56,19 +61,31 @@ class ShippingService
         $shipping = Shipping::with(['includes', 'excludes'])
             ->whereHas('includes', function ($whereIncludes) use ($address) {
                 /** @var \Illuminate\Database\Query\Builder $whereIncludes */
-                $whereIncludes->where('country_state_id', $address->country_state_id);
+                $whereIncludes->where('country_state_id', $address->country_state_id)
+                    ->orWhere('country_id', $address->country_state->country_id);
             })
             ->whereDoesntHave('excludes', function ($whereDoesntHaveExcluded) use ($address) {
                 /** @var \Illuminate\Database\Query\Builder $whereDoesntHaveExcluded */
                 $whereDoesntHaveExcluded->where('country_state_id', $address->country_state_id)
                     ->orWhere('country_id', $address->country_state->country_id);
             })
+                ->whereActive(true)
+                ->first();
+                
+        if (is_null($shipping)) {
+            $shipping = Shipping::with(['includes', 'excludes'])
+            ->whereHas('includes', function ($whereIncludes) use ($address) {
+                /** @var \Illuminate\Database\Query\Builder $whereIncludes */
+                $whereIncludes->where('all_countries', true);
+            })
             ->whereActive(true)
             ->first();
+        }
 
         if (is_null($shipping)) {
             $shipping = Shipping::whereActive(true)->first();
         }
+
 
         return $shipping;
     }

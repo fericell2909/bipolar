@@ -26,6 +26,10 @@
           <label>Título</label>
           {!! Form::text('title', $shipping->title, ['class' => 'form-control', 'required' => true]) !!}
         </div>
+        <div class="col-md-12 form-group">
+          {!! Form::checkbox('allow_showroom', 1, boolval($shipping->allow_showroom)) !!}
+          Permitir recojo en showroom junto a este envío
+        </div>
       </div>
     </div>
   </div>

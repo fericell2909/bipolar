@@ -60,6 +60,11 @@ class ShippingController extends Controller
             $includeCountry->save();
         }
 
+        if ($request->filled('allow_showroom')) {
+            $shipping->allow_showroom = true;
+            $shipping->save();
+        }
+
         if ($request->filled('include_countries')) {
             $this->saveIncludedCountries($request->input('include_countries'), $shipping);
         }
@@ -158,6 +163,14 @@ class ShippingController extends Controller
                 $includeCountry->all_countries = true;
                 $includeCountry->save();
             }
+        }
+
+        if ($request->filled('allow_showroom')) {
+            $shipping->allow_showroom = true;
+            $shipping->save();
+        } else {
+            $shipping->allow_showroom = false;
+            $shipping->save();
         }
 
         if ($request->filled('include_countries')) {
