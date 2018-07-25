@@ -55,6 +55,7 @@ class ShippingController extends Controller
 
         if ($request->filled('all_countries')) {
             $includeCountry = new ShippingInclude;
+            $includeCountry->shipping()->associate($shipping);
             $includeCountry->all_countries = true;
             $includeCountry->save();
         }
@@ -153,6 +154,7 @@ class ShippingController extends Controller
             });
             if ($hasAllWorldSelected === false) {
                 $includeCountry = new ShippingInclude;
+                $includeCountry->shipping()->associate($shipping);
                 $includeCountry->all_countries = true;
                 $includeCountry->save();
             }
