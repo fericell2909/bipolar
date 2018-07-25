@@ -86,10 +86,7 @@ class BSale
             ],
         ];
 
-        if (env('APP_ENV') !== 'production') {
-            //array_set($dataDocument, 'client.code', $buy->user->id);
-            \Log::info(json_encode($dataDocument));
-        }
+        \Log::debug(json_encode($dataDocument));
 
         $response = Zttp::asJson()->withHeaders(['access_token' => env('BSALE_TOKEN')])
             ->post('https://api.bsale.cl/v1/documents.json', $dataDocument);
