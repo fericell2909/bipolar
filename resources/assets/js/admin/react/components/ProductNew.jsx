@@ -188,7 +188,7 @@ class BipolarProductNew extends React.Component {
                     <div className="form-group">
                       <label>Peso (kg)</label>
                       <input value={this.state.weight} onChange={this.handleInputChange} name="weight" type="number" step="any"
-                             className="form-control" placeholder="Opcional"/>
+                             className="form-control" placeholder="Opcional" required/>
                     </div>
                   </div>
                 </div>
