@@ -72,8 +72,8 @@ class BannersController extends Controller
         $begin = $request->filled('begin') ? $request->input('begin') : now()->format('Y-m-d H:i');
         $end = $request->filled('end') ? $request->input('end') : '2099-12-31 23:59';
 
-        $banner->begin_date = Carbon::createFromFormat('Y-m-d H:i', $begin);
-        $banner->end_date = Carbon::createFromFormat('Y-m-d H:i', $end);
+        $banner->begin_date = Carbon::createFromFormat('d/m/Y', $begin);
+        $banner->end_date = Carbon::createFromFormat('d/m/Y', $end);
         $banner->state()->associate($state);
 
         if ($request->file('photo')) {

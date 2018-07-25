@@ -103,7 +103,7 @@
                           @endif
                         </div>
                         <div class="col-md-6 content">
-                          <a href="#" class="title-link">{{ $post->title }}</a>
+                          <a href="{{ route('landings.blog') }}" class="title-link">{{ $post->title }}</a>
                           @if($post->tags)
                             <div class="tags">
                               @foreach($post->tags as $tag)
