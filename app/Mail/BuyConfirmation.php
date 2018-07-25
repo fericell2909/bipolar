@@ -33,7 +33,10 @@ class BuyConfirmation extends Mailable
     {
         $shippingMethod = $this->buy->showroom ? __('bipolar.mails.shipping_method_showroom') : __('bipolar.mails.shipping_method_local');
 
-        return $this->subject(__('bipolar.mails.buy_received_subject'))
+        $subjectConfirmation = env('APP_ENV') !== 'production' ? '[BETA] ' . __('bipolar.mails.buy_received_subject') : __('bipolar.mails.buy_received_subject');
+
+        return $this->cc('shop@bipolar.com.pe')
+            ->subject($subjectConfirmation)
             ->view('emails.web_buy_confirmation')
             ->with('shipping_method', $shippingMethod);
     }

@@ -155,8 +155,8 @@
 										</div>
 									</div>
 									<div class="second-part">
-										<div class="trash-icon">
-											<a href="#"><img src="{{ asset('images/trash.svg') }}" width="20" alt="Eliminar"></a>
+										<div class="trash-icon" data-address-hash-id="{{ $shippingAddress->hash_id }}">
+											<a><img src="{{ asset('images/trash.svg') }}" width="20" alt="Eliminar"></a>
 										</div>
 									</div>
 								</div>
