@@ -38,15 +38,16 @@ class CheckoutController extends Controller
             return $address->address_type->name == 'shipping';
         });
 
-        list($shipping, $shippingFee) = ShippingService::calculateShippingByCart($cart, $addresses, \Session::get('BIPOLAR_CURRENCY'));
+        list($shipping, $shippingFee, $hasShowroomPickup) = ShippingService::calculateShippingByCart($cart, $addresses, \Session::get('BIPOLAR_CURRENCY'));
 
         return view('web.shop.checkout', [
-            'cart'              => $cart,
-            'countries'         => $countries,
-            'billingAddresses'  => $billingAddresses,
-            'shippingAddresses' => $shippingAddresses,
-            'shippingName'      => $shipping,
-            'shippingFee'       => $shippingFee,
+            'cart'               => $cart,
+            'countries'          => $countries,
+            'billingAddresses'   => $billingAddresses,
+            'shippingAddresses'  => $shippingAddresses,
+            'shippingName'       => $shipping,
+            'shippingFee'        => $shippingFee,
+            'hasShowroomPickup'  => $hasShowroomPickup
         ]);
     }
 
@@ -151,7 +152,8 @@ class CheckoutController extends Controller
             $shipping = Shipping::with(['includes', 'excludes'])
                 ->whereHas('includes', function ($whereIncludes) use ($buy) {
                     /** @var \Illuminate\Database\Query\Builder $whereIncludes */
-                    $whereIncludes->where('country_id', $buy->shipping_address->country_state->country_id);
+                    $whereIncludes->where('country_id', $buy->shipping_address->country_state->country_id)
+                        ->orWhere('country_id', $buy->shipping_address->country_state->country_id);
                 })
                 ->whereDoesntHave('excludes', function ($whereDoesntHaveExcluded) use ($buy) {
                     /** @var \Illuminate\Database\Query\Builder $whereDoesntHaveExcluded */

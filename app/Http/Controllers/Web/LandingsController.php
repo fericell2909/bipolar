@@ -37,6 +37,7 @@ class LandingsController extends Controller
 
         $settings = Settings::first();
         $banners = Banner::orderBy('order')
+            ->where('state_id', config('constants.STATE_ACTIVE_ID'))
             ->where('begin_date', '<=', now())
             ->where('end_date', '>=', now())
             ->get();

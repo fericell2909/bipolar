@@ -259,7 +259,9 @@
 									<tr>
 										<td class="total">{{ __('bipolar.checkout.shipping') }}</td>
 										<td class="shipping-pickers">
-											<div class="picker">{!! Form::radio('shipping_pick', 'free', false, ['required']) !!} {{ __('bipolar.checkout.showroom_shipping') }}</div>
+											@if($hasShowroomPickup)
+												<div class="picker">{!! Form::radio('shipping_pick', 'free', false, ['required']) !!} {{ __('bipolar.checkout.showroom_shipping') }}</div>
+											@endif
 											<div class="picker">
 												{!! Form::radio('shipping_pick', 'pay', false, ['required']) !!}
                         <div class="shipping-explanation">

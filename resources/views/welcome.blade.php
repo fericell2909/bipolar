@@ -74,7 +74,7 @@
                             <div class="bipolar-counts-subtitle">Instagram fans</div>
                         </div>
                         <div class="col-md-4 bipolar-counts">
-                            <div id="bipolar-second-counter" class="bipolar-counts-title"></div>
+                        <div id="bipolar-second-counter" class="bipolar-counts-title" data-number="{{ $settings->facebook_counts }}"></div>
                             <div class="bipolar-counts-subtitle">Facebook Fans</div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                           @endif
                         </div>
                         <div class="col-md-6 content">
-                          <a href="#" class="title-link">{{ $post->title }}</a>
+                          <a href="{{ route('landings.blog') }}" class="title-link">{{ $post->title }}</a>
                           @if($post->tags)
                             <div class="tags">
                               @foreach($post->tags as $tag)

@@ -17,7 +17,8 @@
               <th>Título</th>
               <th>Enviar a</th>
               <th>Excepto a</th>
-              <th>Activa</th>
+              <th class="text-center">Showroom pickup</th>
+              <th class="text-center">Activa</th>
               <th><i class="fas fa-fw fa-cog"></i></th>
             </tr>
           </thead>
@@ -36,8 +37,7 @@
                       @if($shippingInclude->country)
                         <li>{{ $shippingInclude->country->name }}</li>
                       @elseif($shippingInclude->country_state)
-                        <li>{{ $shippingInclude->country_state->country->name }}
-                          - {{ $shippingInclude->country_state->name }}</li>
+                        <li>{{ $shippingInclude->country_state->country->name }} - {{ $shippingInclude->country_state->name }}</li>
                       @endif
                     @endforeach
                   </ul>
@@ -48,13 +48,19 @@
                       @if($shippingExclude->country)
                         <li>{{ $shippingExclude->country->name }}</li>
                       @elseif($shippingExclude->country_state)
-                        <li>{{ $shippingExclude->country_state->country->name }}
-                          - {{ $shippingExclude->country_state->name }}</li>
+                        <li>{{ $shippingExclude->country_state->country->name }} - {{ $shippingExclude->country_state->name }}</li>
                       @endif
                     @endforeach
                   </ul>
                 </td>
-                <td class="align-middle">
+                <td class="align-middle text-center">
+                  @if($shipping->allow_showroom)
+                    <i class="fas fa-fw fa-check"></i>
+                  @else
+                    <i class="fas fa-fw fa-times"></i>
+                  @endif
+                </td>
+                <td class="align-middle text-center">
                   @if($shipping->active)
                     <i class="fas fa-fw fa-check"></i>
                   @else

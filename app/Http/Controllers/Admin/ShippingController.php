@@ -55,8 +55,14 @@ class ShippingController extends Controller
 
         if ($request->filled('all_countries')) {
             $includeCountry = new ShippingInclude;
+            $includeCountry->shipping()->associate($shipping);
             $includeCountry->all_countries = true;
             $includeCountry->save();
+        }
+
+        if ($request->filled('allow_showroom')) {
+            $shipping->allow_showroom = true;
+            $shipping->save();
         }
 
         if ($request->filled('include_countries')) {
@@ -153,9 +159,18 @@ class ShippingController extends Controller
             });
             if ($hasAllWorldSelected === false) {
                 $includeCountry = new ShippingInclude;
+                $includeCountry->shipping()->associate($shipping);
                 $includeCountry->all_countries = true;
                 $includeCountry->save();
             }
+        }
+
+        if ($request->filled('allow_showroom')) {
+            $shipping->allow_showroom = true;
+            $shipping->save();
+        } else {
+            $shipping->allow_showroom = false;
+            $shipping->save();
         }
 
         if ($request->filled('include_countries')) {

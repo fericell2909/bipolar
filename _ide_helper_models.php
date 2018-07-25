@@ -266,11 +266,13 @@ namespace App\Models{
  * @property float $dolar_change
  * @property int $free_shipping
  * @property int $bipolar_counts
+ * @property int $facebook_counts
  * @property int $instagram_counts
  * @property int $current_buy
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBipolarCounts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereCurrentBuy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDolarChange($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFacebookCounts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFreeShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereInstagramCounts($value)
@@ -472,6 +474,7 @@ namespace App\Models{
  * @mixin \Eloquent
  * @property int $id
  * @property string $title
+ * @property int $allow_showroom
  * @property int $active
  * @property float|null $g200
  * @property float|null $g200_dolar
@@ -504,6 +507,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $included_states
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingInclude[] $includes
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereAllowShowroom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG200($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG200Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG500($value)

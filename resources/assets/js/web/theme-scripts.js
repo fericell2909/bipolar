@@ -16,9 +16,9 @@ $(function() {
     items: thumbs
   });
 
-  $('.owl-carousel-blog').owlCarousel({
+  $(".owl-carousel-blog").owlCarousel({
     items: 1,
-    nav: true,
+    nav: true
   });
 
   function draggedOwlMain(event) {
@@ -40,8 +40,8 @@ $(function() {
   });
 
   // Menu text works like a dropdown in mobile header
-  $('.menu-text-header-mobile').click(() => {
-    $('.bipolar-navbar-toggle').trigger('click');
+  $(".menu-text-header-mobile").click(() => {
+    $(".bipolar-navbar-toggle").trigger("click");
   });
 
   // Scroll header function
@@ -105,38 +105,34 @@ $(function() {
       decimal: "."
     };
 
-    $.get(
-      "https://graph.facebook.com/bipolar.zapatos/?fields=fan_count&access_token=100210840716931|hxQGZTOgdjwE1zG8tDKwyN7Fvy0"
-    ).done(response => {
-      const firstCounter = new CountUp(
-        "bipolar-first-counter",
-        0,
-        $firstCounter.data("number"),
-        0,
-        2.5,
-        counterOptions
-      );
-      const instagramCounter = new CountUp(
-        "bipolar-instagram-counter",
-        0,
-        $instagramCounter.data("number"),
-        0,
-        2.5,
-        counterOptions
-      );
-      const secondCounter = new CountUp(
-        "bipolar-second-counter",
-        0,
-        response["fan_count"],
-        0,
-        2.5,
-        counterOptions
-      );
+    const firstCounter = new CountUp(
+      "bipolar-first-counter",
+      0,
+      $firstCounter.data("number"),
+      0,
+      2.5,
+      counterOptions
+    );
+    const instagramCounter = new CountUp(
+      "bipolar-instagram-counter",
+      0,
+      $instagramCounter.data("number"),
+      0,
+      2.5,
+      counterOptions
+    );
+    const secondCounter = new CountUp(
+      "bipolar-second-counter",
+      0,
+      $secondCounter.data("number"),
+      0,
+      2.5,
+      counterOptions
+    );
 
-      firstCounter.start();
-      secondCounter.start();
-      instagramCounter.start();
-    });
+    firstCounter.start();
+    secondCounter.start();
+    instagramCounter.start();
   }
 
   // Convert SVG to InlineSVG
