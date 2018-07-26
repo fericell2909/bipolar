@@ -56,6 +56,7 @@ namespace App\Models{
  * @property int $id
  * @property int $user_id
  * @property int|null $coupon_id
+ * @property int|null $shipping_id
  * @property int $billing_address_id
  * @property int $shipping_address_id
  * @property int|null $buy_number
@@ -77,6 +78,7 @@ namespace App\Models{
  * @property-read mixed $subtotal_currency
  * @property-read mixed $total_currency
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment[] $payments
+ * @property-read \App\Models\Shipping|null $shipping
  * @property-read \App\Models\Address $shipping_address
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
  * @property-read \App\Models\User $user
@@ -92,6 +94,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy wherePayed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShowroom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereSubtotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereTotal($value)
@@ -500,6 +503,7 @@ namespace App\Models{
  * @property float|null $kg9_dolar
  * @property float|null $kg10
  * @property float|null $kg10_dolar
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Buy[] $buys
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Country[] $excluded_countries
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $excluded_states
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingExclude[] $excludes

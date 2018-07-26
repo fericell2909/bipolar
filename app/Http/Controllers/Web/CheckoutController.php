@@ -113,6 +113,7 @@ class CheckoutController extends Controller
 
         if ($request->input('showroom_pick') === 'free') {
             $buy->showroom = true;
+            $buy->shipping_id = config('constants.SHIPPING_SHOWROOM_PICKUP_ID');
             $buy->save();
         } elseif ($request->input('showroom_pick') === 'pay') {
             $this->shippingFeeByBuy($buy);
@@ -152,7 +153,7 @@ class CheckoutController extends Controller
             $shipping = Shipping::with(['includes', 'excludes'])
                 ->whereHas('includes', function ($whereIncludes) use ($buy) {
                     /** @var \Illuminate\Database\Query\Builder $whereIncludes */
-                    $whereIncludes->where('country_id', $buy->shipping_address->country_state->country_id)
+                    $whereIncludes->where('country_state_id', $buy->shipping_address->country_state_id)
                         ->orWhere('country_id', $buy->shipping_address->country_state->country_id);
                 })
                 ->whereDoesntHave('excludes', function ($whereDoesntHaveExcluded) use ($buy) {
@@ -177,6 +178,7 @@ class CheckoutController extends Controller
 
         $buy->shipping_fee = $totalShipping;
         $buy->total = floatval($buy->subtotal + $totalShipping);
+        $buy->shipping()->associate($shipping);
         $buy->save();
 
         return $buy->shipping_fee ?? 0;

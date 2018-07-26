@@ -9,6 +9,11 @@ class Shipping extends Model
 {
     public $timestamps = false;
 
+    public function buys()
+    {
+        return $this->hasMany(Buy::class, 'shipping_id');
+    }
+
     public function includes()
     {
         return $this->hasMany(ShippingInclude::class);

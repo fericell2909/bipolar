@@ -36,6 +36,11 @@ class Buy extends Model
         return $this->hasMany(Payment::class);
     }
 
+    public function shipping()
+    {
+        return $this->belongsTo(Shipping::class, 'shipping_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
