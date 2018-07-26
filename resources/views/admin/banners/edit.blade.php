@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="col-md-6 form-group">
-          <label>Imagen</label>
+          <label>Imagen (medidas: 1700x1133)</label>
           <a href="#" class="btn btn-xs btn-dark btn-rounded" data-target="#banner_preview_{{ $banner->id }}" data-toggle="modal">Ver actual</a>
           {!! Form::file('photo', ['class' => 'form-control']) !!}
         </div>
