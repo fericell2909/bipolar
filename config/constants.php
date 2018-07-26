@@ -21,5 +21,5 @@ return [
     'PERCENTAGE_DISCOUNT_ID'   => 1,
     'QUANTITY_DISCOUNT_ID'     => 2,
     // Shipping type
-    'SHOWROOM_PICKUP_ID'       => 2,
+    'SHIPPING_SHOWROOM_PICKUP_ID' => 2,
 ];

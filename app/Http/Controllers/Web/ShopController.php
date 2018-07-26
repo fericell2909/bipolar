@@ -147,11 +147,18 @@ class ShopController extends Controller
         /** @var Product $product */
         $product = Product::findBySlugOrFail($slugProduct);
 
-        $product->load(['stocks.size', 'photos' => function ($withPhotos) {
+        $product->load([
+            'stocks.size', 
+            'photos' => function ($withPhotos) {
+                return $withPhotos->orderBy('order');
+            },
+            'recommendeds' => function ($withRecommendeds) {
+                return $withRecommendeds->where('state_id', config('constants.STATE_ACTIVE_ID'));
+            }, 
+            'recommendeds.photos' => function ($withPhotos) {
             return $withPhotos->orderBy('order');
-        }, 'recommendeds.photos' => function ($withPhotos) {
-            return $withPhotos->orderBy('order');
-        }]);
+            }
+        ]);
 
         $stockWithSizes = $product->stocks
             ->filter(function ($stock) {

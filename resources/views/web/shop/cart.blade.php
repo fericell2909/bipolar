@@ -30,7 +30,11 @@
           @endif
 				</td>
 				<td class="product-price" data-title="Precio">
-          <span class="amount">{{ $cartDetail->product->discount ? $cartDetail->product->price_discount_currency : $cartDetail->product->price_currency }}</span>
+          @if($cartDetail->discount_pen || $cartDetail->discount_usd)
+            <span class="amount">{{ $cartDetail->product->price_currency }}</span>
+          @else
+            <span class="amount">{{ $cartDetail->product->price_discount_currency }}</span>
+          @endif
         </td>
 				<td data-title="Cantidad">
           <div class="quantity-content">

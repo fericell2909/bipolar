@@ -11,6 +11,7 @@ class BuysController extends Controller
     {
         $buys = Buy::orderByDesc('id')
             ->with([
+                'shipping',
                 'user',
                 'details.product',
                 'details.buy',

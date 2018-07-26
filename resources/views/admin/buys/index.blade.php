@@ -12,6 +12,7 @@
                   <th class="align-middle">#</th>
                   <th class="align-middle">Nombre</th>
                   <th class="align-middle">Correo</th>
+                  <th class="align-middle">Shipping</th>
                   <th class="align-middle">Comprado</th>
                   <th class="align-middle">Enviar a</th>
                   <th class="align-middle">Estado</th>
@@ -29,6 +30,7 @@
                     <td class="align-middle">{{ $buy->id }}</td>
                     <td class="align-middle">{{ $buy->user->name }}</td>
                     <td class="align-middle">{{ $buy->user->email }}</td>
+                    <td class="align-middle">{{ $buy->shipping->title ?? '--' }}</td>
                     <td class="align-middle">{{ $buy->details->count() }} artículos</td>
                     <td class="align-middle">
                       {{ $buy->shipping_address->address }} {{ $buy->shipping_address->country_state->name }} {{ $buy->shipping_address->country_state->country->name }}
