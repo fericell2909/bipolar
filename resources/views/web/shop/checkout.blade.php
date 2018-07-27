@@ -176,7 +176,7 @@
 									{!! Form::text('email', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
-									{!! Form::label(__('bipolar.form_fields.email')) !!}
+									{!! Form::label(__('bipolar.form_fields.phone')) !!}
 									{!! Form::text('phone', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
 								</div>
 								<div class="form-group col-md-6">
