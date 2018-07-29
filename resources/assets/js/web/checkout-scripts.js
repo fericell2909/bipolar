@@ -1,13 +1,17 @@
 import swal from "sweetalert2";
 
+const showCheckoutPartTwo = () => {
+  $('#sectionCollapseOne').collapse('hide');
+  $('#sectionCollapseTwo').collapse('show');
+};
+
 const clickedBillingAddress = addressId => {
   return $.post(`ajax/address/${addressId}/main`)
     .done(response => {
       if (response['shipping_fee'] !== undefined && response['shipping_name'] !== undefined) {
         $('#checkout-shipping-fee').html(`<span>${response['shipping_name']}</span><span>${response['shipping_fee']}</span>`);
       }
-      $('#sectionCollapseOne').collapse('hide');
-      $('#sectionCollapseTwo').collapse('show');
+      showCheckoutPartTwo();
     });
 };
 
@@ -23,6 +27,15 @@ const clickedShippingAddress = addressId => {
 };
 
 $(function() {
+  // If press Continue button submit the form or continue to the second zone
+  $('#checkoutContinuePartTwo').click(event => {
+    const formIsVisible = $('#form-add-billing-address').is(':visible');
+    if (!formIsVisible) {
+      event.preventDefault();
+      showCheckoutPartTwo();
+    }
+  });
+
   $('#form-coupon').submit(function (event) {
     event.preventDefault();
     const params = $(this).serializeArray();
@@ -109,6 +122,7 @@ $(function() {
     $('#sectionCollapseThree').collapse('show');
   });
 
+  // Effects for the headers of the collapsers
   $('#sectionCollapseOne, #sectionCollapseTwo, #sectionCollapseThree')
     .on('show.bs.collapse', event => {
       const headingId = $(event.currentTarget).attr('aria-labelledby');
