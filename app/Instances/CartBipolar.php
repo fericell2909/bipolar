@@ -242,6 +242,8 @@ class CartBipolar
     public function removeCoupon()
     {
         $this->cart->coupon()->dissociate();
+        $this->cart->total = $this->cart->subtotal;
+        $this->cart->total_dolar = $this->cart->subtotal_dolar;
         return $this->cart->save();
     }
 

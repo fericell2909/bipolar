@@ -67,8 +67,11 @@ Route::delete('coupons/{coupon}', 'Admin\Ajax\CouponsController@destroy');
 Route::get('tags', 'Admin\Ajax\TagsController@index');
 Route::post('tags', 'Admin\Ajax\TagsController@store');
 
-Route::get('discount-tasks', 'Admin\Ajax\DiscountController@index');
-Route::post('discount-tasks', 'Admin\Ajax\DiscountController@store');
-Route::post('discount-tasks/{discountTaskId}/execute', 'Admin\Ajax\DiscountController@execute');
-Route::post('discount-tasks/{discountTaskId}/revert', 'Admin\Ajax\DiscountController@revert');
-Route::put('discount-tasks/{discountTaskId}', 'Admin\Ajax\DiscountController@update');
+Route::prefix('discount-tasks')->group(function () {
+    Route::get('/', 'Admin\Ajax\DiscountController@index');
+    Route::post('/', 'Admin\Ajax\DiscountController@store');
+    Route::post('/{discountTaskId}/execute', 'Admin\Ajax\DiscountController@execute');
+    Route::post('/{discountTaskId}/revert', 'Admin\Ajax\DiscountController@revert');
+    Route::put('/{discountTaskId}', 'Admin\Ajax\DiscountController@update');
+    Route::delete('/{discountTaskId}', 'Admin\Ajax\DiscountController@destroy');
+});

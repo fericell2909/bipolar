@@ -44,6 +44,20 @@ $('.text-heading-account').click(function () {
   $('.bipolar-dropdown-menu.in-mobile').toggle();
 });
 
+// Delete buy
+$('.bipolar-delete-buy').click(function () {
+    const confirmation = confirm($(this).data('confirmation'));
+    if (!confirmation) {
+        return false;
+    }
+    const buyHashId = $(this).data('buyHashId');
+    $.post(`/ajax/buy/${buyHashId}/delete`).done(response => {
+        if (response['success']) {
+            return location.reload();
+        }
+    });
+});
+
 require('owl.carousel/dist/owl.carousel');
 require('./theme-scripts');
 require('./shop-scripts');

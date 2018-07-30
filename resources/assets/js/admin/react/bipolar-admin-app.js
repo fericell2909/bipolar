@@ -21,6 +21,6 @@ require('./components/ProductList');
 require('./components/ProductStocks');
 require('./components/ProductDiscount');
 require('./components/CouponAssociation');
-require('./components/ProductMultipleDiscounts');
+require('./components/discounts/MultipleDiscountsNew');
 require('./components/PostNew');
 require('./components/PostEdit');

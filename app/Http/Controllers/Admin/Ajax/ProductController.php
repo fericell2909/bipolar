@@ -68,9 +68,15 @@ class ProductController extends Controller
     public function get(Request $request)
     {
         $products = Product::orderByDesc('id')
-            ->with(['photos' => function ($withPhotos) {
-                $withPhotos->orderBy('order');
-            }, 'subtypes', 'state', 'stocks.size'])
+            ->with([
+                'photos' => function ($withPhotos) {
+                    $withPhotos->orderBy('order');
+                },
+                'subtypes', 
+                'state',
+                'stocks.size',
+                'colors',
+            ])
             ->get();
 
         return response()->json(new ProductCollection($products));
@@ -172,7 +178,7 @@ class ProductController extends Controller
 
         if ($request->filled('sizes')) {
             $requestSizes = Size::findByManyHash($request->input('sizes'))->pluck('id')->toArray();
-            $currentSizes = $product->sizes()->pluck('id')->toArray();
+            $currentSizes = $product->sizes_mapped()->pluck('id')->toArray();
 
             // Remove the unused products
             $unusedSizes = array_diff($currentSizes, $requestSizes);

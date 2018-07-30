@@ -29,7 +29,9 @@
           <td>{{ $buy->status }}</td>
           <td><span class="price">{{ $buy->totalCurrency }}</span> por {{ $buy->details->count() }} items</td>
           <td class="order-actions">
-            <a href="#" class="btn btn-dark-rounded">Cancelar</a>
+            @if($buy->status === config('constants.BUY_INCOMPLETE_STATUS'))
+              <button class="btn btn-dark-rounded bipolar-delete-buy" data-confirmation="{{ __('bipolar.buy.delete_question') }}" data-buy-hash-id="{{ $buy->hash_id }}">Cancelar</button>
+            @endif
             <a href="{{ route('confirmation', $buy->id) }}" class="btn btn-dark-rounded">Ver</a>
           </td>
         </tr>

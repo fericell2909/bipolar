@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DiscountTask;
 use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Stock;
@@ -164,8 +165,10 @@ class ProductController extends Controller
         return view('admin.products.discount', compact('product'));
     }
 
-    public function multipleDiscount()
+    public function multipleDiscountEdit($discountTaskId)
     {
-        return view('admin.products.multiple_discounts');
+        $discount = DiscountTask::findOrFail($discountTaskId);
+
+        return view('admin.products.multiple_discounts_edit', compact('discount'));
     }
 }

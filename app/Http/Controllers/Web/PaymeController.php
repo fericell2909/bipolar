@@ -69,7 +69,7 @@ class PaymeController extends Controller
         //abort_if($buy->tipo_pago_id == config('constants.TIPO_PAGO_MEMBRESIA_ID'), 403);
 
         // Comprobando si el pago fue realizado correctamente
-        $paymeCode = $buy->payments->first()->auth_result ?? null;
+        $paymeCode = $buy->payments->sortByDesc('id')->first()->auth_result ?? null;
         //$esCompraOnline = $buy->tipo_pago_id == config('constants.TIPO_PAGO_ONLINE') ? true : false;
         $tokenUsuario = null;
 
@@ -115,7 +115,12 @@ class PaymeController extends Controller
     {
         /** @var Buy $buy */
         $buy = Buy::whereUserId($request->user()->id)->latest('id')->firstOrFail();
-        //event(new IntentoPagoRealizado($request->user(), $request->all()));
+
+        // Redirect if has a successful payment (prevent many payments)
+        $paymeCode = $buy->payments->sortByDesc('id')->first()->auth_result ?? null;
+        if ($paymeCode === "00") {
+            return redirect(route('reconfirmation', $buy->id));
+        }
 
         $payment = new Payment;
         $payment->buy()->associate($buy);

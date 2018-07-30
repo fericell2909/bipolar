@@ -42,6 +42,11 @@ class Product extends Model
         return $this->belongsToMany(Product::class, 'recommendeds', 'parent_product_id', 'recommended_product_id');
     }
 
+    public function sizes_active()
+    {
+        return $this->belongsToMany(Size::class, 'stocks', 'product_id', 'size_id')->wherePivot('quantity', '>', 0)->as('stocks_pivot');
+    }
+
     public function state()
     {
         return $this->belongsTo(State::class, 'state_id');
@@ -76,7 +81,7 @@ class Product extends Model
      * This function get all the sizes finded in stocks, always return a collection
      * @return Collection
      */
-    public function sizes(): Collection
+    public function sizes_mapped(): Collection
     {
         $sizes = $this->stocks->filter(function ($stock) {
             return $stock->size !== null;

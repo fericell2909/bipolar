@@ -84,8 +84,9 @@
           <span class="text-uppercase">{{ __('bipolar.shop.show_results', ['total' => $products->total()]) }}</span>
           {!! Form::select('orderBy', $orderOptions, $selectedOrderOption, ['id' => 'shop-sort-by', 'class' => 'select-orders']) !!}
         </div>
-        <div class="row">
-          @forelse($products as $product)
+        @forelse($products->chunk(3) as $productChunk)
+          <div class="row">
+          @foreach($productChunk as $product)
             <?php /** @var \App\Models\Product $product */ ?>
             <div class="col-md-4 bipolar-product">
               <a class="product-link" href="{{ route('shop.product', $product->slug) }}"></a>
@@ -139,10 +140,15 @@
                 </div>
               </div>
             </div>
-          @empty
-            <h3>No se encontraron productos, cambie sus parámetros de búsqueda</h3>
-          @endforelse
-        </div>
+          @endforeach
+          </div>
+        @empty
+          <div class="row">
+            <div class="col-md-12">
+              <h3>No se encontraron productos, cambie sus parámetros de búsqueda</h3>
+            </div>
+          </div>
+        @endforelse
         <div class="text-center">
           {{ $products->links('web.partials.pagination-web') }}
         </div>
