@@ -27439,6 +27439,13 @@ $(function () {
     $('#sectionCollapseThree').collapse('show');
   });
 
+  // Prevent third zone to open if there is no address
+  $('#headingThree').click(function (event) {
+    if ($('.address-list').length === 0) {
+      return event.stopPropagation();
+    }
+  });
+
   // Effects for the headers of the collapsers
   $('#sectionCollapseOne, #sectionCollapseTwo, #sectionCollapseThree').on('show.bs.collapse', function (event) {
     var headingId = $(event.currentTarget).attr('aria-labelledby');

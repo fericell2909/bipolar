@@ -122,6 +122,13 @@ $(function() {
     $('#sectionCollapseThree').collapse('show');
   });
 
+  // Prevent third zone to open if there is no address
+  $('#headingThree').click(event => {
+    if ($('.address-list').length === 0) {
+      return event.stopPropagation();
+    }
+  });
+
   // Effects for the headers of the collapsers
   $('#sectionCollapseOne, #sectionCollapseTwo, #sectionCollapseThree')
     .on('show.bs.collapse', event => {
