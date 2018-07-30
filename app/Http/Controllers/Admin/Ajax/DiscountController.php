@@ -21,7 +21,7 @@ class DiscountController extends Controller
         $typesIds = $discountTasks->pluck('product_types')->flatten()->toArray();
         $subtypesIds = $discountTasks->pluck('product_subtypes')->flatten()->toArray();
         
-        $products = Product::find($productsIds);
+        $products = Product::whereIn('id', $productsIds)->with(['stocks.size', 'colors'])->get();
         $types = Type::find($typesIds);
         $subtypes = Subtype::find($subtypesIds);
 

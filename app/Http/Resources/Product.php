@@ -49,7 +49,7 @@ class Product extends Resource
             'subtypes'              => Subtype::collection($this->whenLoaded('subtypes')),
             'state'                 => new State($this->whenLoaded('state')),
             'colors'                => Color::collection($this->whenLoaded('colors')),
-            'sizes'                 => Size::collection($product->sizes()),
+            'sizes'                 => Size::collection($product->sizes_mapped()),
             'created_at_month_year' => $product->created_at->format('n-Y'),
         ];
     }
