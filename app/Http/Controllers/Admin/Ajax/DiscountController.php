@@ -101,4 +101,14 @@ class DiscountController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function destroy($discountTaskId)
+    {
+        /** @var DiscountTask $discount */
+        $discount = DiscountTask::findOrFail($discountTaskId);
+
+        $discount->delete();
+
+        return response()->json(['success' => true]);
+    }
 }

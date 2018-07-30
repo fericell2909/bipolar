@@ -102874,47 +102874,69 @@ var ProductMultipleDiscounts = function (_React$Component) {
           qtyDiscountUSD: 0
         });
       }).then(_this.getTasks).catch(console.warn);
+    }, _this.handleDeleteDiscount = function (taskId) {
+      return __WEBPACK_IMPORTED_MODULE_9_sweetalert2__({
+        title: '¿Eliminar tarea de descuento?',
+        showCancelButton: true,
+        confirmButtonColor: '#000',
+        cancelButtonColor: '#000',
+        confirmButtonText: 'Sí, eliminar'
+      }).then(function () {
+        var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(result) {
+          return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+            while (1) {
+              switch (_context4.prev = _context4.next) {
+                case 0:
+                  if (!result.value) {
+                    _context4.next = 5;
+                    break;
+                  }
+
+                  _context4.next = 3;
+                  return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/ajax-admin/discount-tasks/' + taskId).catch(console.warn);
+
+                case 3:
+                  _this.getTasks();
+                  __WEBPACK_IMPORTED_MODULE_9_sweetalert2__({
+                    title: 'Tarea eliminada',
+                    type: 'success',
+                    toast: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000
+                  });
+
+                case 5:
+                case 'end':
+                  return _context4.stop();
+              }
+            }
+          }, _callee4, _this2);
+        }));
+
+        return function (_x4) {
+          return _ref5.apply(this, arguments);
+        };
+      }());
     }, _this.filterProductsWithDiscount = function (product) {
       if (product['discount_pen'] && product['discount_usd'] && product['price_pen_discount'] && product['price_usd_discount'] && product['begin_discount'] && product['end_discount']) {
         return true;
       }
-    }, _this.getTasks = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
-      var _ref6, data;
-
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              _context4.next = 2;
-              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/discount-tasks').catch(console.warn);
-
-            case 2:
-              _ref6 = _context4.sent;
-              data = _ref6.data;
-
-              _this.setState({ tasks: data['data'] });
-
-            case 5:
-            case 'end':
-              return _context4.stop();
-          }
-        }
-      }, _callee4, _this2);
-    })), _this.getProducts = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
-      var _ref8, data;
+    }, _this.getTasks = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+      var _ref7, data;
 
       return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
               _context5.next = 2;
-              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/products').catch(console.warn);
+              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/discount-tasks').catch(console.warn);
 
             case 2:
-              _ref8 = _context5.sent;
-              data = _ref8.data;
+              _ref7 = _context5.sent;
+              data = _ref7.data;
 
-              _this.setState({ products: data['data'], productsCopy: data['data'] });
+              _this.setState({ tasks: data['data'] });
 
             case 5:
             case 'end':
@@ -102922,22 +102944,44 @@ var ProductMultipleDiscounts = function (_React$Component) {
           }
         }
       }, _callee5, _this2);
-    })), _this.getData = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
-      var dataTypes, dataSubtypes;
+    })), _this.getProducts = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
+      var _ref9, data;
+
       return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
         while (1) {
           switch (_context6.prev = _context6.next) {
             case 0:
               _context6.next = 2;
+              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/products').catch(console.warn);
+
+            case 2:
+              _ref9 = _context6.sent;
+              data = _ref9.data;
+
+              _this.setState({ products: data['data'], productsCopy: data['data'] });
+
+            case 5:
+            case 'end':
+              return _context6.stop();
+          }
+        }
+      }, _callee6, _this2);
+    })), _this.getData = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
+      var dataTypes, dataSubtypes;
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              _context7.next = 2;
               return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/types').catch(console.warn);
 
             case 2:
-              dataTypes = _context6.sent;
-              _context6.next = 5;
+              dataTypes = _context7.sent;
+              _context7.next = 5;
               return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/subtypes').catch(console.warn);
 
             case 5:
-              dataSubtypes = _context6.sent;
+              dataSubtypes = _context7.sent;
 
               _this.setState({
                 subtypes: dataSubtypes['data']['data'],
@@ -102946,10 +102990,10 @@ var ProductMultipleDiscounts = function (_React$Component) {
 
             case 7:
             case 'end':
-              return _context6.stop();
+              return _context7.stop();
           }
         }
-      }, _callee6, _this2);
+      }, _callee7, _this2);
     })), _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -103017,7 +103061,9 @@ var ProductMultipleDiscounts = function (_React$Component) {
           executable = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'times' });
         }
 
-        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('tr', { key: task['id'] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['name']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['discount_pen']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['discount_usd']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['begin']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['end']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, types), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, subtypes), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, products), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, available), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, executable), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'button-group' }, buttonActivate, buttonExecute)));
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('tr', { key: task['id'] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['name']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['discount_pen']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['discount_usd']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['begin']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['end']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, types), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, subtypes), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, products), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, available), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, executable), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'button-group' }, buttonActivate, buttonExecute, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { onClick: function onClick() {
+            return _this3.handleDeleteDiscount(task['id']);
+          }, className: 'btn btn-sm btn-dark btn-rounded' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'trash' }), ' Eliminar'))));
       });
 
       var errorMessage = this.state.showErrorMessage ? __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'alert alert-danger' }, 'Por favor llene todos los campos necesarios') : null;

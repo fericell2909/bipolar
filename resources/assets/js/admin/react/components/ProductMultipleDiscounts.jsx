@@ -156,6 +156,29 @@ class ProductMultipleDiscounts extends React.Component {
       .catch(console.warn);
   };
 
+  handleDeleteDiscount = taskId => {
+    return swal({
+      title: '¿Eliminar tarea de descuento?',
+      showCancelButton: true,
+      confirmButtonColor: '#000',
+      cancelButtonColor: '#000',
+      confirmButtonText: 'Sí, eliminar',
+    }).then(async result => {
+      if (result.value) {
+        await axios.delete(`/ajax-admin/discount-tasks/${taskId}`).catch(console.warn);
+        this.getTasks();
+        swal({
+          title: 'Tarea eliminada',
+          type: 'success',
+          toast: true,
+          position: 'top-right',
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
+    });
+  };
+
   filterProductsWithDiscount = product => {
     if (
       product['discount_pen'] &&
@@ -266,6 +289,9 @@ class ProductMultipleDiscounts extends React.Component {
             <div className="button-group">
               {buttonActivate}
               {buttonExecute}
+              <button onClick={() => this.handleDeleteDiscount(task['id'])} className="btn btn-sm btn-dark btn-rounded">
+                <FontAwesomeIcon icon="trash"/> Eliminar
+              </button>
             </div>
           </td>
         </tr>
