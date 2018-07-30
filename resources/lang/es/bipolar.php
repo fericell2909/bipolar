@@ -16,6 +16,9 @@ return [
         'update' => 'Actualizar carrito',
         'checkout' => 'Ir a la caja',
     ],
+    'buy' => [
+        'delete_question' => '¿Desea eliminar esta compra?',
+    ],
     'payme_modal_lang' => 'SP',
     'size_abbr' => 'Talla',
     'navbar' => [

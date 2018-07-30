@@ -10496,6 +10496,20 @@ $('.text-heading-account').click(function () {
     $('.bipolar-dropdown-menu.in-mobile').toggle();
 });
 
+// Delete buy
+$('.bipolar-delete-buy').click(function () {
+    var confirmation = confirm($(this).data('confirmation'));
+    if (!confirmation) {
+        return false;
+    }
+    var buyHashId = $(this).data('buyHashId');
+    $.post('/ajax/buy/' + buyHashId + '/delete').done(function (response) {
+        if (response['success']) {
+            return location.reload();
+        }
+    });
+});
+
 __webpack_require__(289);
 __webpack_require__(290);
 __webpack_require__(293);

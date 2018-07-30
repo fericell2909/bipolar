@@ -16,6 +16,9 @@ return [
         'update' => 'Update cart',
         'checkout' => 'Go to checkout',
     ],
+    'buy' => [
+        'delete_question' => 'Delete this buy?',
+    ],
     'payme_modal_lang' => 'EN',
     'size_abbr' => 'Size',
     'navbar' => [

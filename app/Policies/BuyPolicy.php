@@ -14,4 +14,9 @@ class BuyPolicy
     {
         return $buy->user_id === $user->id;
     }
+
+    public function destroy(User $user, Buy $buy)
+    {
+        return $buy->user_id === $user->id;
+    }
 }
