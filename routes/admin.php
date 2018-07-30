@@ -35,7 +35,8 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('{product}/stocks', 'Admin\ProductController@stock')->name('products.stock');
         Route::post('stocks/{stock}/quantity', 'Admin\ProductController@stockSave')->name('products.stock.save');
         Route::get('{slug}/discount', 'Admin\ProductController@discount')->name('products.discount');
-        Route::get('multiple-discounts', 'Admin\ProductController@multipleDiscount')->name('products.multiple-discounts');
+        Route::view('multiple-discounts', 'admin.products.multiple_discounts')->name('products.multiple-discounts');
+        Route::get('multiple-discounts/edit/{task}', 'Admin\ProductController@multipleDiscountEdit')->name('products.multiple-discounts.edit');
     });
 
     Route::prefix('home-posts')->group(function () {

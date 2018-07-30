@@ -47722,7 +47722,7 @@ __webpack_require__(475);
 __webpack_require__(477);
 __webpack_require__(495);
 __webpack_require__(496);
-__webpack_require__(509);
+__webpack_require__(550);
 __webpack_require__(521);
 __webpack_require__(522);
 
@@ -102571,515 +102571,7 @@ var AnimatedValueContainer = function AnimatedValueContainer(WrappedComponent) {
 exports.default = AnimatedValueContainer;
 
 /***/ }),
-/* 509 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_select__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated__ = __webpack_require__(252);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_moment__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_datetime__ = __webpack_require__(510);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_datetime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react_datetime__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_datetime_css_react_datetime_css__ = __webpack_require__(517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_datetime_css_react_datetime_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_react_datetime_css_react_datetime_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_sweetalert2__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_sweetalert2__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fortawesome_react_fontawesome__ = __webpack_require__(519);
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-
-
-var _createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-  };
-}();
-
-function _asyncToGenerator(fn) {
-  return function () {
-    var gen = fn.apply(this, arguments);return new Promise(function (resolve, reject) {
-      function step(key, arg) {
-        try {
-          var info = gen[key](arg);var value = info.value;
-        } catch (error) {
-          reject(error);return;
-        }if (info.done) {
-          resolve(value);
-        } else {
-          return Promise.resolve(value).then(function (value) {
-            step("next", value);
-          }, function (err) {
-            step("throw", err);
-          });
-        }
-      }return step("next");
-    });
-  };
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-var ProductMultipleDiscounts = function (_React$Component) {
-  _inherits(ProductMultipleDiscounts, _React$Component);
-
-  function ProductMultipleDiscounts() {
-    var _ref,
-        _this2 = this;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, ProductMultipleDiscounts);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProductMultipleDiscounts.__proto__ || Object.getPrototypeOf(ProductMultipleDiscounts)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      showErrorMessage: false,
-      // data from ajax
-      productsCopy: [],
-      products: [],
-      subtypes: [],
-      types: [],
-      tasks: [],
-      // selected from selects
-      selectedSubtypes: [],
-      selectedTypes: [],
-      selectedProducts: [],
-      // form data
-      name: '',
-      qtyDiscountPEN: 0,
-      qtyDiscountUSD: 0,
-      beginDate: __WEBPACK_IMPORTED_MODULE_6_moment__().format('DD/MM/YYYY'),
-      endDate: __WEBPACK_IMPORTED_MODULE_6_moment__().format('DD/MM/YYYY')
-    }, _this.handleUpdateSubtype = function (values) {
-      return _this.setState({ selectedSubtypes: values });
-    }, _this.handleUpdateType = function (values) {
-      return _this.setState({ selectedTypes: values });
-    }, _this.handleUpdateProducts = function (values) {
-      return _this.setState({ selectedProducts: values });
-    }, _this.handleChangeBeginDate = function (date) {
-      _this.setState({ beginDate: date.format('DD/MM/YYYY') });
-    }, _this.handleChangeEndDate = function (date) {
-      _this.setState({ endDate: date.format('DD/MM/YYYY') });
-    }, _this.handleChangeDiscountPEN = function (event) {
-      return _this.setState({ qtyDiscountPEN: event.target.value });
-    }, _this.handleChangeDiscountUSD = function (event) {
-      return _this.setState({ qtyDiscountUSD: event.target.value });
-    }, _this.handleNameChange = function (event) {
-      return _this.setState({ name: event.target.value });
-    }, _this.handleAvailableToggle = function (taskId, available) {
-      return __WEBPACK_IMPORTED_MODULE_9_sweetalert2__({
-        title: '¿Cambiar disponibilidad de la tarea?',
-        text: "Cambiarla a activa hará que esté disponible para ejecutarse automáticamente",
-        showCancelButton: true,
-        confirmButtonColor: '#000',
-        cancelButtonColor: '#000',
-        confirmButtonText: 'Sí, cambiar'
-      }).then(function () {
-        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(result) {
-          return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  if (!result.value) {
-                    _context.next = 5;
-                    break;
-                  }
-
-                  _context.next = 3;
-                  return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('/ajax-admin/discount-tasks/' + taskId, { available: available }).catch(console.warn);
-
-                case 3:
-                  _this.getTasks();
-                  __WEBPACK_IMPORTED_MODULE_9_sweetalert2__({
-                    title: 'Actualizado',
-                    type: 'success',
-                    toast: true,
-                    position: 'top-right',
-                    showConfirmButton: false,
-                    timer: 3000
-                  });
-
-                case 5:
-                case 'end':
-                  return _context.stop();
-              }
-            }
-          }, _callee, _this2);
-        }));
-
-        return function (_x) {
-          return _ref2.apply(this, arguments);
-        };
-      }());
-    }, _this.handleExecuteTask = function (taskId) {
-      return __WEBPACK_IMPORTED_MODULE_9_sweetalert2__({
-        title: '¿Ejecutar tarea?',
-        text: "Esta tarea se ejecutará ahora, se aplicarán descuentos a los productos",
-        showCancelButton: true,
-        confirmButtonColor: '#000',
-        cancelButtonColor: '#000',
-        confirmButtonText: 'Sí, ejecutar'
-      }).then(function () {
-        var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(result) {
-          return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
-            while (1) {
-              switch (_context2.prev = _context2.next) {
-                case 0:
-                  if (!result.value) {
-                    _context2.next = 5;
-                    break;
-                  }
-
-                  _context2.next = 3;
-                  return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/ajax-admin/discount-tasks/' + taskId + '/execute').catch(console.warn);
-
-                case 3:
-                  _this.getTasks();
-                  __WEBPACK_IMPORTED_MODULE_9_sweetalert2__({
-                    title: 'Tarea ejecutada',
-                    type: 'success',
-                    toast: true,
-                    position: 'top-right',
-                    showConfirmButton: false,
-                    timer: 3000
-                  });
-
-                case 5:
-                case 'end':
-                  return _context2.stop();
-              }
-            }
-          }, _callee2, _this2);
-        }));
-
-        return function (_x2) {
-          return _ref3.apply(this, arguments);
-        };
-      }());
-    }, _this.handleRevertTask = function (taskId) {
-      return __WEBPACK_IMPORTED_MODULE_9_sweetalert2__({
-        title: '¿Revertir tarea?',
-        text: "La reversión se ejecutará ahora, se removerán descuentos a los productos",
-        showCancelButton: true,
-        confirmButtonColor: '#000',
-        cancelButtonColor: '#000',
-        confirmButtonText: 'Sí, revertir'
-      }).then(function () {
-        var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(result) {
-          return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
-            while (1) {
-              switch (_context3.prev = _context3.next) {
-                case 0:
-                  if (!result.value) {
-                    _context3.next = 5;
-                    break;
-                  }
-
-                  _context3.next = 3;
-                  return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/ajax-admin/discount-tasks/' + taskId + '/revert').catch(console.warn);
-
-                case 3:
-                  _this.getTasks();
-                  __WEBPACK_IMPORTED_MODULE_9_sweetalert2__({
-                    title: 'Tarea revertida',
-                    type: 'success',
-                    toast: true,
-                    position: 'top-right',
-                    showConfirmButton: false,
-                    timer: 3000
-                  });
-
-                case 5:
-                case 'end':
-                  return _context3.stop();
-              }
-            }
-          }, _callee3, _this2);
-        }));
-
-        return function (_x3) {
-          return _ref4.apply(this, arguments);
-        };
-      }());
-    }, _this.handleSaveDiscount = function (event) {
-      event.preventDefault();
-      var selectedTypes = _this.state.selectedTypes;
-      var selectedSubtypes = _this.state.selectedSubtypes;
-      var selectedProducts = _this.state.selectedProducts;
-
-      if (selectedSubtypes.length === 0 && selectedTypes.length === 0 && selectedProducts.length === 0) {
-        return _this.setState({ showErrorMessage: true });
-      }
-
-      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/ajax-admin/discount-tasks', {
-        name: _this.state.name,
-        types: selectedTypes,
-        subtypes: selectedSubtypes,
-        products: selectedProducts,
-        beginDiscount: _this.state.beginDate,
-        endDiscount: _this.state.endDate,
-        discountPEN: _this.state.qtyDiscountPEN,
-        discountUSD: _this.state.qtyDiscountUSD
-      }).then(function () {
-        _this.setState({
-          name: '',
-          selectedSubtypes: [],
-          selectedTypes: [],
-          selectedProducts: [],
-          qtyDiscountPEN: 0,
-          qtyDiscountUSD: 0
-        });
-      }).then(_this.getTasks).catch(console.warn);
-    }, _this.handleDeleteDiscount = function (taskId) {
-      return __WEBPACK_IMPORTED_MODULE_9_sweetalert2__({
-        title: '¿Eliminar tarea de descuento?',
-        showCancelButton: true,
-        confirmButtonColor: '#000',
-        cancelButtonColor: '#000',
-        confirmButtonText: 'Sí, eliminar'
-      }).then(function () {
-        var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(result) {
-          return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
-            while (1) {
-              switch (_context4.prev = _context4.next) {
-                case 0:
-                  if (!result.value) {
-                    _context4.next = 5;
-                    break;
-                  }
-
-                  _context4.next = 3;
-                  return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.delete('/ajax-admin/discount-tasks/' + taskId).catch(console.warn);
-
-                case 3:
-                  _this.getTasks();
-                  __WEBPACK_IMPORTED_MODULE_9_sweetalert2__({
-                    title: 'Tarea eliminada',
-                    type: 'success',
-                    toast: true,
-                    position: 'top-right',
-                    showConfirmButton: false,
-                    timer: 3000
-                  });
-
-                case 5:
-                case 'end':
-                  return _context4.stop();
-              }
-            }
-          }, _callee4, _this2);
-        }));
-
-        return function (_x4) {
-          return _ref5.apply(this, arguments);
-        };
-      }());
-    }, _this.filterProductsWithDiscount = function (product) {
-      if (product['discount_pen'] && product['discount_usd'] && product['price_pen_discount'] && product['price_usd_discount'] && product['begin_discount'] && product['end_discount']) {
-        return true;
-      }
-    }, _this.getTasks = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
-      var _ref7, data;
-
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
-        while (1) {
-          switch (_context5.prev = _context5.next) {
-            case 0:
-              _context5.next = 2;
-              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/discount-tasks').catch(console.warn);
-
-            case 2:
-              _ref7 = _context5.sent;
-              data = _ref7.data;
-
-              _this.setState({ tasks: data['data'] });
-
-            case 5:
-            case 'end':
-              return _context5.stop();
-          }
-        }
-      }, _callee5, _this2);
-    })), _this.getProducts = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
-      var _ref9, data;
-
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
-        while (1) {
-          switch (_context6.prev = _context6.next) {
-            case 0:
-              _context6.next = 2;
-              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/products').catch(console.warn);
-
-            case 2:
-              _ref9 = _context6.sent;
-              data = _ref9.data;
-
-              _this.setState({ products: data['data'], productsCopy: data['data'] });
-
-            case 5:
-            case 'end':
-              return _context6.stop();
-          }
-        }
-      }, _callee6, _this2);
-    })), _this.getData = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
-      var dataTypes, dataSubtypes;
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
-        while (1) {
-          switch (_context7.prev = _context7.next) {
-            case 0:
-              _context7.next = 2;
-              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/types').catch(console.warn);
-
-            case 2:
-              dataTypes = _context7.sent;
-              _context7.next = 5;
-              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/subtypes').catch(console.warn);
-
-            case 5:
-              dataSubtypes = _context7.sent;
-
-              _this.setState({
-                subtypes: dataSubtypes['data']['data'],
-                types: dataTypes['data']['data']
-              });
-
-            case 7:
-            case 'end':
-              return _context7.stop();
-          }
-        }
-      }, _callee7, _this2);
-    })), _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(ProductMultipleDiscounts, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.getProducts();
-      this.getTasks();
-      this.getData();
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      var optionTypes = this.state.types.length ? this.state.types.map(function (type) {
-        return { value: type['id'], label: type["name"] };
-      }) : [];
-      var optionProducts = this.state.productsCopy.length ? this.state.productsCopy.map(function (product) {
-        return { value: product['id'], label: product["fullname"] + ' - PEN: ' + product['price'] + ' / USD: ' + product["price_dolar"] };
-      }) : [];
-      var optionSubtypes = this.state.subtypes.length ? this.state.subtypes.map(function (product) {
-        return { value: product['id'], label: product["name"] };
-      }) : [];
-
-      var tasks = this.state.tasks.map(function (task) {
-        var subtypes = task['product_subtypes_full'] ? task['product_subtypes_full'].map(function (type) {
-          return type['name'];
-        }).join(',') : '';
-        var types = task['product_types_full'] ? task['product_types_full'].map(function (type) {
-          return type['name'];
-        }).join(',') : '';
-        var products = task['products_full'] ? task['products_full'].map(function (product) {
-          return product['fullname'];
-        }).join(',') : '';
-        var executable = void 0;
-        var available = void 0;
-        var buttonExecute = void 0;
-        var buttonActivate = void 0;
-
-        if (task['available']) {
-          available = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'check' });
-          buttonActivate = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { onClick: function onClick() {
-              return _this3.handleAvailableToggle(task['id'], false);
-            }, className: 'btn btn-sm btn-dark btn-rounded' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'times' }), ' Desactivar');
-        } else {
-          available = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'times' });
-          buttonActivate = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { onClick: function onClick() {
-              return _this3.handleAvailableToggle(task['id'], true);
-            }, className: 'btn btn-sm btn-dark btn-rounded' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'check' }), ' Activar');
-        }
-
-        if (task['available'] && !task['executed']) {
-          buttonExecute = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { onClick: function onClick() {
-              return _this3.handleExecuteTask(task['id']);
-            }, className: 'btn btn-sm btn-dark btn-rounded' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'play' }), ' Ejecutar');
-        }
-
-        if (task['executed']) {
-          executable = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'check' });
-          buttonExecute = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { onClick: function onClick() {
-              return _this3.handleRevertTask(task['id']);
-            }, className: 'btn btn-sm btn-dark btn-rounded' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'undo-alt' }), ' Revertir');
-        } else {
-          executable = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'times' });
-        }
-
-        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('tr', { key: task['id'] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['name']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['discount_pen']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['discount_usd']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['begin']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['end']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, types), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, subtypes), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, products), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, available), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, executable), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'button-group' }, buttonActivate, buttonExecute, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { onClick: function onClick() {
-            return _this3.handleDeleteDiscount(task['id']);
-          }, className: 'btn btn-sm btn-dark btn-rounded' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'trash' }), ' Eliminar'))));
-      });
-
-      var errorMessage = this.state.showErrorMessage ? __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'alert alert-danger' }, 'Por favor llene todos los campos necesarios') : null;
-
-      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react__["Fragment"], null, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card-body' }, errorMessage, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('form', { onSubmit: this.handleSaveDiscount }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'row' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Porcentaje descuento soles'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { value: this.state.qtyDiscountPEN, onChange: this.handleChangeDiscountPEN, type: 'number', max: 100, className: 'form-control', required: true }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group-append' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'input-group-text' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('i', { className: 'fas fa-fw fa-percent' })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'help-block' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('small', null, '0: Sin descuento, >= 0: Aplica descuento')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Porcentaje descuento d\xF3lares'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { value: this.state.qtyDiscountUSD, onChange: this.handleChangeDiscountUSD, type: 'number', max: 100, className: 'form-control', required: true }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group-append' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'input-group-text' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('i', { className: 'fas fa-fw fa-percent' })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'help-block' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('small', null, '0: Sin descuento, >= 0: Aplica descuento')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Inicio de descuento'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_datetime___default.a, { dateFormat: 'DD/MM/YYYY', onChange: this.handleChangeBeginDate, timeFormat: false, defaultValue: this.state.beginDate }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Fin de descuento'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_datetime___default.a, { dateFormat: 'DD/MM/YYYY', onChange: this.handleChangeEndDate, timeFormat: false, defaultValue: this.state.endDate })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'row' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Nombre descriptivo'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { type: 'text', onChange: this.handleNameChange, value: this.state.name, className: 'form-control', placeholder: 'Ej: Descuentos Cyber Day', maxLength: '250', required: true }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a tipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_select__["a" /* default */], { components: __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default.a, onChange: this.handleUpdateType, options: optionTypes, value: this.state.selectedTypes, isMulti: true, closeMenuOnSelect: false }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a subtipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_select__["a" /* default */], { components: __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default.a, onChange: this.handleUpdateSubtype, options: optionSubtypes, value: this.state.selectedSubtypes, isMulti: true, closeMenuOnSelect: false }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a productos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_select__["a" /* default */], { components: __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default.a, onChange: this.handleUpdateProducts, options: optionProducts, value: this.state.selectedProducts, isMulti: true, closeMenuOnSelect: false })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { type: 'submit', className: 'btn btn-sm btn-dark btn-rounded' }, 'Crear tarea')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'alert alert-info' }, 'Disponible: Los descuentos estar\xE1n disponibles para aplicarse autom\xE1ticamente, Ejecutada: el descuento ya fue activado.'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card-body' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('h4', { className: 'card-title' }, 'Tareas de descuento pendientes'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'table-responsive' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('table', { className: 'table table-hover color-table dark-table' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('thead', null, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Nombre'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Desc. S/'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Desc. $'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Inicio'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Fin'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Tipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Subtipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Productos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Disponible'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Ejecutada'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Acciones'))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('tbody', null, tasks))))));
-    }
-  }]);
-
-  return ProductMultipleDiscounts;
-}(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
-
-if (document.getElementById('bipolar-product-multiple-discounts')) {
-  __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(ProductMultipleDiscounts, null), document.getElementById('bipolar-product-multiple-discounts'));
-}
-
-/***/ }),
+/* 509 */,
 /* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -108206,6 +107698,642 @@ if (document.getElementById("bipolar-edit-post")) {
   var elem = document.getElementById("bipolar-edit-post");
   __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(PostEdit, { postId: postId }), elem);
 }
+
+/***/ }),
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_select__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_moment__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_datetime__ = __webpack_require__(510);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_datetime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react_datetime__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_datetime_css_react_datetime_css__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_datetime_css_react_datetime_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_react_datetime_css_react_datetime_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__MultipleDiscountsList__ = __webpack_require__(551);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+
+
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var gen = fn.apply(this, arguments);return new Promise(function (resolve, reject) {
+      function step(key, arg) {
+        try {
+          var info = gen[key](arg);var value = info.value;
+        } catch (error) {
+          reject(error);return;
+        }if (info.done) {
+          resolve(value);
+        } else {
+          return Promise.resolve(value).then(function (value) {
+            step("next", value);
+          }, function (err) {
+            step("throw", err);
+          });
+        }
+      }return step("next");
+    });
+  };
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+
+
+
+
+
+
+
+
+
+
+var MultipleDiscountsNew = function (_React$Component) {
+  _inherits(MultipleDiscountsNew, _React$Component);
+
+  function MultipleDiscountsNew() {
+    var _ref,
+        _this2 = this;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, MultipleDiscountsNew);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MultipleDiscountsNew.__proto__ || Object.getPrototypeOf(MultipleDiscountsNew)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      showErrorMessage: false,
+      // data from ajax
+      productsCopy: [],
+      products: [],
+      subtypes: [],
+      types: [],
+      tasks: [],
+      // selected from selects
+      selectedSubtypes: [],
+      selectedTypes: [],
+      selectedProducts: [],
+      // form data
+      name: '',
+      qtyDiscountPEN: 0,
+      qtyDiscountUSD: 0,
+      beginDate: __WEBPACK_IMPORTED_MODULE_6_moment__().format('DD/MM/YYYY'),
+      endDate: __WEBPACK_IMPORTED_MODULE_6_moment__().format('DD/MM/YYYY')
+    }, _this.handleUpdateSubtype = function (values) {
+      return _this.setState({ selectedSubtypes: values });
+    }, _this.handleUpdateType = function (values) {
+      return _this.setState({ selectedTypes: values });
+    }, _this.handleUpdateProducts = function (values) {
+      return _this.setState({ selectedProducts: values });
+    }, _this.handleChangeBeginDate = function (date) {
+      _this.setState({ beginDate: date.format('DD/MM/YYYY') });
+    }, _this.handleChangeEndDate = function (date) {
+      _this.setState({ endDate: date.format('DD/MM/YYYY') });
+    }, _this.handleChangeDiscountPEN = function (event) {
+      return _this.setState({ qtyDiscountPEN: event.target.value });
+    }, _this.handleChangeDiscountUSD = function (event) {
+      return _this.setState({ qtyDiscountUSD: event.target.value });
+    }, _this.handleNameChange = function (event) {
+      return _this.setState({ name: event.target.value });
+    }, _this.handleSaveDiscount = function (event) {
+      event.preventDefault();
+      var selectedTypes = _this.state.selectedTypes;
+      var selectedSubtypes = _this.state.selectedSubtypes;
+      var selectedProducts = _this.state.selectedProducts;
+
+      if (selectedSubtypes.length === 0 && selectedTypes.length === 0 && selectedProducts.length === 0) {
+        return _this.setState({ showErrorMessage: true });
+      }
+
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.post('/ajax-admin/discount-tasks', {
+        name: _this.state.name,
+        types: selectedTypes,
+        subtypes: selectedSubtypes,
+        products: selectedProducts,
+        beginDiscount: _this.state.beginDate,
+        endDiscount: _this.state.endDate,
+        discountPEN: _this.state.qtyDiscountPEN,
+        discountUSD: _this.state.qtyDiscountUSD
+      }).then(function () {
+        _this.setState({
+          name: '',
+          selectedSubtypes: [],
+          selectedTypes: [],
+          selectedProducts: [],
+          qtyDiscountPEN: 0,
+          qtyDiscountUSD: 0
+        });
+      }).then(_this.getTasks).catch(console.warn);
+    }, _this.filterProductsWithDiscount = function (product) {
+      if (product['discount_pen'] && product['discount_usd'] && product['price_pen_discount'] && product['price_usd_discount'] && product['begin_discount'] && product['end_discount']) {
+        return true;
+      }
+    }, _this.getTasks = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+      var _ref3, data;
+
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/discount-tasks').catch(console.warn);
+
+            case 2:
+              _ref3 = _context.sent;
+              data = _ref3.data;
+
+              _this.setState({ tasks: data['data'] });
+
+            case 5:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, _this2);
+    })), _this.getProducts = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+      var _ref5, data;
+
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/products').catch(console.warn);
+
+            case 2:
+              _ref5 = _context2.sent;
+              data = _ref5.data;
+
+              _this.setState({ products: data['data'], productsCopy: data['data'] });
+
+            case 5:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, _this2);
+    })), _this.getData = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+      var dataTypes, dataSubtypes;
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/types').catch(console.warn);
+
+            case 2:
+              dataTypes = _context3.sent;
+              _context3.next = 5;
+              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/subtypes').catch(console.warn);
+
+            case 5:
+              dataSubtypes = _context3.sent;
+
+              _this.setState({
+                subtypes: dataSubtypes['data']['data'],
+                types: dataTypes['data']['data']
+              });
+
+            case 7:
+            case 'end':
+              return _context3.stop();
+          }
+        }
+      }, _callee3, _this2);
+    })), _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(MultipleDiscountsNew, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.getProducts();
+      this.getTasks();
+      this.getData();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var optionTypes = this.state.types.length ? this.state.types.map(function (type) {
+        return { value: type['id'], label: type["name"] };
+      }) : [];
+      var optionProducts = this.state.productsCopy.length ? this.state.productsCopy.map(function (product) {
+        return { value: product['id'], label: product["fullname"] + ' - PEN: ' + product['price'] + ' / USD: ' + product["price_dolar"] };
+      }) : [];
+      var optionSubtypes = this.state.subtypes.length ? this.state.subtypes.map(function (product) {
+        return { value: product['id'], label: product["name"] };
+      }) : [];
+
+      var errorMessage = this.state.showErrorMessage ? __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'alert alert-danger' }, 'Por favor llene todos los campos necesarios') : null;
+
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react__["Fragment"], null, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card-body' }, errorMessage, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('form', { onSubmit: this.handleSaveDiscount }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'row' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Porcentaje descuento soles'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { value: this.state.qtyDiscountPEN, onChange: this.handleChangeDiscountPEN, type: 'number', max: 100, className: 'form-control', required: true }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group-append' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'input-group-text' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('i', { className: 'fas fa-fw fa-percent' })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'help-block' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('small', null, '0: Sin descuento, >= 0: Aplica descuento')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Porcentaje descuento d\xF3lares'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { value: this.state.qtyDiscountUSD, onChange: this.handleChangeDiscountUSD, type: 'number', max: 100, className: 'form-control', required: true }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group-append' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'input-group-text' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('i', { className: 'fas fa-fw fa-percent' })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'help-block' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('small', null, '0: Sin descuento, >= 0: Aplica descuento')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Inicio de descuento'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_datetime___default.a, { dateFormat: 'DD/MM/YYYY', onChange: this.handleChangeBeginDate, timeFormat: false, defaultValue: this.state.beginDate }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Fin de descuento'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_datetime___default.a, { dateFormat: 'DD/MM/YYYY', onChange: this.handleChangeEndDate, timeFormat: false, defaultValue: this.state.endDate })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'row' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Nombre descriptivo'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { type: 'text', onChange: this.handleNameChange, value: this.state.name, className: 'form-control', placeholder: 'Ej: Descuentos Cyber Day', maxLength: '250', required: true }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a tipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_select__["a" /* default */], { components: __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default.a, onChange: this.handleUpdateType, options: optionTypes, value: this.state.selectedTypes, isMulti: true, closeMenuOnSelect: false }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a subtipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_select__["a" /* default */], { components: __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default.a, onChange: this.handleUpdateSubtype, options: optionSubtypes, value: this.state.selectedSubtypes, isMulti: true, closeMenuOnSelect: false }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a productos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_select__["a" /* default */], { components: __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default.a, onChange: this.handleUpdateProducts, options: optionProducts, value: this.state.selectedProducts, isMulti: true, closeMenuOnSelect: false })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { type: 'submit', className: 'btn btn-sm btn-dark btn-rounded' }, 'Crear tarea')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'alert alert-info' }, 'Disponible: Los descuentos estar\xE1n disponibles para aplicarse autom\xE1ticamente, Ejecutada: el descuento ya fue activado.'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__MultipleDiscountsList__["a" /* default */], { tasks: this.state.tasks, onUpdateTasks: this.getTasks }));
+    }
+  }]);
+
+  return MultipleDiscountsNew;
+}(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
+
+if (document.getElementById('bipolar-product-multiple-discounts')) {
+  __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(MultipleDiscountsNew, null), document.getElementById('bipolar-product-multiple-discounts'));
+}
+
+/***/ }),
+/* 551 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_sweetalert2__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_sweetalert2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__ = __webpack_require__(519);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_axios__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_axios__);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+
+
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var gen = fn.apply(this, arguments);return new Promise(function (resolve, reject) {
+      function step(key, arg) {
+        try {
+          var info = gen[key](arg);var value = info.value;
+        } catch (error) {
+          reject(error);return;
+        }if (info.done) {
+          resolve(value);
+        } else {
+          return Promise.resolve(value).then(function (value) {
+            step("next", value);
+          }, function (err) {
+            step("throw", err);
+          });
+        }
+      }return step("next");
+    });
+  };
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+
+
+
+
+
+var MultipleDiscountsList = function (_React$Component) {
+  _inherits(MultipleDiscountsList, _React$Component);
+
+  function MultipleDiscountsList() {
+    var _ref,
+        _this2 = this;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, MultipleDiscountsList);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MultipleDiscountsList.__proto__ || Object.getPrototypeOf(MultipleDiscountsList)).call.apply(_ref, [this].concat(args))), _this), _this.toggleAvailability = function (taskId, available) {
+      return __WEBPACK_IMPORTED_MODULE_2_sweetalert2__({
+        title: '¿Cambiar disponibilidad de la tarea?',
+        text: "Cambiarla a activa hará que esté disponible para ejecutarse automáticamente",
+        showCancelButton: true,
+        confirmButtonColor: '#000',
+        cancelButtonColor: '#000',
+        confirmButtonText: 'Sí, cambiar'
+      }).then(function () {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(result) {
+          return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  if (!result.value) {
+                    _context.next = 5;
+                    break;
+                  }
+
+                  _context.next = 3;
+                  return __WEBPACK_IMPORTED_MODULE_4_axios___default.a.put('/ajax-admin/discount-tasks/' + taskId, { available: available }).catch(console.warn);
+
+                case 3:
+                  __WEBPACK_IMPORTED_MODULE_2_sweetalert2__({
+                    title: 'Actualizado',
+                    type: 'success',
+                    toast: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000
+                  });
+                  _this.props.onUpdateTasks();
+
+                case 5:
+                case 'end':
+                  return _context.stop();
+              }
+            }
+          }, _callee, _this2);
+        }));
+
+        return function (_x) {
+          return _ref2.apply(this, arguments);
+        };
+      }());
+    }, _this.executeTask = function (taskId) {
+      return __WEBPACK_IMPORTED_MODULE_2_sweetalert2__({
+        title: '¿Ejecutar tarea?',
+        text: "Esta tarea se ejecutará ahora, se aplicarán descuentos a los productos",
+        showCancelButton: true,
+        confirmButtonColor: '#000',
+        cancelButtonColor: '#000',
+        confirmButtonText: 'Sí, ejecutar'
+      }).then(function () {
+        var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(result) {
+          return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  if (!result.value) {
+                    _context2.next = 5;
+                    break;
+                  }
+
+                  _context2.next = 3;
+                  return __WEBPACK_IMPORTED_MODULE_4_axios___default.a.post('/ajax-admin/discount-tasks/' + taskId + '/execute').catch(console.warn);
+
+                case 3:
+                  __WEBPACK_IMPORTED_MODULE_2_sweetalert2__({
+                    title: 'Tarea ejecutada',
+                    type: 'success',
+                    toast: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000
+                  });
+                  _this.props.onUpdateTasks();
+
+                case 5:
+                case 'end':
+                  return _context2.stop();
+              }
+            }
+          }, _callee2, _this2);
+        }));
+
+        return function (_x2) {
+          return _ref3.apply(this, arguments);
+        };
+      }());
+    }, _this.revertTask = function (taskId) {
+      return __WEBPACK_IMPORTED_MODULE_2_sweetalert2__({
+        title: '¿Revertir tarea?',
+        text: "La reversión se ejecutará ahora, se removerán descuentos a los productos",
+        showCancelButton: true,
+        confirmButtonColor: '#000',
+        cancelButtonColor: '#000',
+        confirmButtonText: 'Sí, revertir'
+      }).then(function () {
+        var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(result) {
+          return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  if (!result.value) {
+                    _context3.next = 5;
+                    break;
+                  }
+
+                  _context3.next = 3;
+                  return __WEBPACK_IMPORTED_MODULE_4_axios___default.a.post('/ajax-admin/discount-tasks/' + taskId + '/revert').catch(console.warn);
+
+                case 3:
+                  __WEBPACK_IMPORTED_MODULE_2_sweetalert2__({
+                    title: 'Tarea revertida',
+                    type: 'success',
+                    toast: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000
+                  });
+                  _this.props.onUpdateTasks();
+
+                case 5:
+                case 'end':
+                  return _context3.stop();
+              }
+            }
+          }, _callee3, _this2);
+        }));
+
+        return function (_x3) {
+          return _ref4.apply(this, arguments);
+        };
+      }());
+    }, _this.deleteDiscount = function (taskId) {
+      return __WEBPACK_IMPORTED_MODULE_2_sweetalert2__({
+        title: '¿Eliminar tarea de descuento?',
+        showCancelButton: true,
+        confirmButtonColor: '#000',
+        cancelButtonColor: '#000',
+        confirmButtonText: 'Sí, eliminar'
+      }).then(function () {
+        var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(result) {
+          return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+            while (1) {
+              switch (_context4.prev = _context4.next) {
+                case 0:
+                  if (!result.value) {
+                    _context4.next = 5;
+                    break;
+                  }
+
+                  _context4.next = 3;
+                  return __WEBPACK_IMPORTED_MODULE_4_axios___default.a.delete('/ajax-admin/discount-tasks/' + taskId).catch(console.warn);
+
+                case 3:
+                  __WEBPACK_IMPORTED_MODULE_2_sweetalert2__({
+                    title: 'Tarea eliminada',
+                    type: 'success',
+                    toast: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    timer: 3000
+                  });
+                  _this.props.onUpdateTasks();
+
+                case 5:
+                case 'end':
+                  return _context4.stop();
+              }
+            }
+          }, _callee4, _this2);
+        }));
+
+        return function (_x4) {
+          return _ref5.apply(this, arguments);
+        };
+      }());
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(MultipleDiscountsList, [{
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var tasks = this.props.tasks.map(function (task) {
+        var subtypes = task['product_subtypes_full'] ? task['product_subtypes_full'].map(function (type) {
+          return type['name'];
+        }).join(',') : '';
+        var types = task['product_types_full'] ? task['product_types_full'].map(function (type) {
+          return type['name'];
+        }).join(',') : '';
+        var products = task['products_full'] ? task['products_full'].map(function (product) {
+          return product['fullname'];
+        }).join(',') : '';
+        var executable = void 0;
+        var available = void 0;
+        var buttonExecute = void 0;
+        var buttonActivate = void 0;
+
+        if (task['available']) {
+          available = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'check' });
+          buttonActivate = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { onClick: function onClick() {
+              return _this3.toggleAvailability(task['id'], false);
+            }, className: 'btn btn-sm btn-dark btn-rounded' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'times' }), ' Desactivar');
+        } else {
+          available = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'times' });
+          buttonActivate = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { onClick: function onClick() {
+              return _this3.toggleAvailability(task['id'], true);
+            }, className: 'btn btn-sm btn-dark btn-rounded' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'check' }), ' Activar');
+        }
+
+        if (task['available'] && !task['executed']) {
+          buttonExecute = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { onClick: function onClick() {
+              return _this3.executeTask(task['id']);
+            }, className: 'btn btn-sm btn-dark btn-rounded' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'play' }), ' Ejecutar');
+        }
+
+        if (task['executed']) {
+          executable = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'check' });
+          buttonExecute = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { onClick: function onClick() {
+              return _this3.revertTask(task['id']);
+            }, className: 'btn btn-sm btn-dark btn-rounded' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'undo-alt' }), ' Revertir');
+        } else {
+          executable = __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'times' });
+        }
+
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('tr', { key: task['id'] }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['name']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['discount_pen']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['discount_usd']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['begin']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, task['end']), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, types), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, subtypes), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, products), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, available), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, executable), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('td', { className: 'align-middle text-center' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'button-group' }, buttonActivate, buttonExecute, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('a', { href: task['edit_route'], className: 'btn btn-sm btn-dark btn-rounded' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'edit' }), ' Editar'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { onClick: function onClick() {
+            return _this3.deleteDiscount(task['id']);
+          }, className: 'btn btn-sm btn-dark btn-rounded' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__fortawesome_react_fontawesome__["a" /* FontAwesomeIcon */], { icon: 'trash' }), ' Eliminar'))));
+      });
+
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card-body' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('h4', { className: 'card-title' }, 'Tareas de descuento pendientes'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'table-responsive' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('table', { className: 'table table-hover color-table dark-table' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('thead', null, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('tr', null, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Nombre'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Desc. S/'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Desc. $'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Inicio'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Fin'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Tipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Subtipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Productos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Disponible'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Ejecutada'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('th', { className: 'text-center' }, 'Acciones'))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('tbody', null, tasks)))));
+    }
+  }]);
+
+  return MultipleDiscountsList;
+}(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (MultipleDiscountsList);
 
 /***/ })
 /******/ ]);

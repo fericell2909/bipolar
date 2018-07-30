@@ -17,6 +17,21 @@ class DiscountController extends Controller
     {
         $discountTasks = DiscountTask::all();
 
+        $productsIds = $discountTasks->pluck('products')->flatten()->toArray();
+        $typesIds = $discountTasks->pluck('product_types')->flatten()->toArray();
+        $subtypesIds = $discountTasks->pluck('product_subtypes')->flatten()->toArray();
+        
+        $products = Product::find($productsIds);
+        $types = Type::find($typesIds);
+        $subtypes = Subtype::find($subtypesIds);
+
+        $discountTasks = $discountTasks->map(function ($discountTask) use ($products, $types, $subtypes) {
+            $discountTask->products_model = $products->whereIn('id', $discountTask->products);
+            $discountTask->types_model = $types->whereIn('id', $discountTask->product_types);
+            $discountTask->subtypes_model = $subtypes->whereIn('id', $discountTask->product_subtypes);
+            return $discountTask;
+        });
+
         return DiscountTaskResource::collection($discountTasks);
     }
 
