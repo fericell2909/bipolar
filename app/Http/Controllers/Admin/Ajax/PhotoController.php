@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\UploadedFile;
+use App\Http\Services\UploadFileS3;
 
 class PhotoController extends Controller
 {
@@ -20,8 +20,9 @@ class PhotoController extends Controller
         $image = $request->file('file');
 
         if ($image->isValid()) {
-            $imagePath = $this->uploadPhoto($image, 'homeposts', $homePost->slug);
-            $amazonPath = $this->getAmazonPath($imagePath) ?? "";
+            $s3 = new UploadFileS3;
+            $imagePath = $s3->uploadPhoto($image, 'homeposts', $homePost->slug);
+            $amazonPath = $s3->getAmazonPath($imagePath) ?? "";
 
             $photo = new Photo;
             $photo->home_post()->associate($homePost);
@@ -42,8 +43,9 @@ class PhotoController extends Controller
         $image = $request->file('file');
 
         if ($image->isValid()) {
-            $imagePath = $this->uploadPhoto($image, 'products', $product->slug);
-            $amazonPath = $this->getAmazonPath($imagePath) ?? "";
+            $s3 = new UploadFileS3;
+            $imagePath = $s3->uploadPhoto($image, 'products', $product->slug);
+            $amazonPath = $s3->getAmazonPath($imagePath) ?? "";
 
             $photo = new Photo;
             $photo->product()->associate($product);
@@ -64,8 +66,9 @@ class PhotoController extends Controller
         $image = $request->file('file');
 
         if ($image->isValid()) {
-            $imagePath = $this->uploadPhoto($image, 'posts', $post->slug);
-            $amazonPath = $this->getAmazonPath($imagePath) ?? "";
+            $s3 = new UploadFileS3;
+            $imagePath = $s3->uploadPhoto($image, 'posts', $post->slug);
+            $amazonPath = $s3->getAmazonPath($imagePath) ?? "";
 
             $photo = new Photo;
             $photo->url = $amazonPath;
@@ -91,24 +94,5 @@ class PhotoController extends Controller
         }
 
         return response()->json(['success' => true]);
-    }
-
-    private function uploadPhoto(UploadedFile $image, string $folder, string $imageName): string
-    {
-        $now = now();
-        $randomString = str_random(3);
-        $fullNameImage = "{$imageName}_{$now->timestamp}_{$randomString}.{$image->extension()}";
-
-        return $image->storePubliclyAs($folder, $fullNameImage, [
-            'CacheControl' => 'max-age=31536000',
-            'disk'         => 's3',
-        ]);
-    }
-
-    private function getAmazonPath($imageRelativePath)
-    {
-        $bucket = env('AWS_BUCKET');
-
-        return "https://s3.amazonaws.com/{$bucket}/{$imageRelativePath}";
     }
 }

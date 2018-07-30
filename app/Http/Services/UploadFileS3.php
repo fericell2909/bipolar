@@ -9,7 +9,8 @@ class UploadFileS3
     public function uploadPhoto(UploadedFile $image, string $folder, string $imageName): string
     {
         $now = now();
-        $fullNameImage = "{$imageName}_{$now->timestamp}.{$image->extension()}";
+        $randomString = str_random(3);
+        $fullNameImage = "{$imageName}_{$now->timestamp}_{$randomString}.{$image->extension()}";
 
         return $image->storePubliclyAs($folder, $fullNameImage, [
             'CacheControl' => 'max-age=31536000',
