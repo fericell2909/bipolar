@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'lifetime' => 10000,
+    'lifetime' => 40000,
 
     'expire_on_close' => false,
 
@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'connection' => null,
+    'connection' => env('SESSION_CONNECTION', null),
 
     /*
     |--------------------------------------------------------------------------
