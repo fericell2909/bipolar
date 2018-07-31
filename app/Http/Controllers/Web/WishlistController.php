@@ -11,15 +11,7 @@ class WishlistController extends Controller
     {
         $wishlists = [];
         if (\Auth::check()) {
-            if (\Auth::user()->wishlists->count() === 0) {
-                return redirect()->to('/');
-            }
-
             $wishlists = Wishlist::whereUserId(\Auth::id())->with('product.photos')->get();
-        }
-
-        if (empty(\Session::get('BIPOLAR_WISHLIST'))) {
-            return redirect()->to('/');
         }
 
         return view('web.shop.wishlist', compact('wishlists'));
