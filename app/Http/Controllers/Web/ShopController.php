@@ -39,11 +39,19 @@ class ShopController extends Controller
             ->get();
 
         $types = Type::with([
-            'subtypes',
+            'subtypes' => function ($withSubtypes) {
+                $withSubtypes->whereHas('products', function ($whereProducts) {
+                    $whereProducts->where('state_id', config('constants.STATE_ACTIVE_ID'));
+                });
+            },
             'subtypes.products' => function ($withProducts) {
                 $withProducts->where('state_id', config('constants.STATE_ACTIVE_ID'));
             },
-        ])->get();
+        ])
+            ->get()
+            ->filter(function ($type) {
+                return $type->subtypes->count() > 0;
+            });
 
         $sizes = Size::with(['stocks' => function ($withStocks) {
             /** @var Builder $withStocks */
@@ -58,16 +66,11 @@ class ShopController extends Controller
             ->orderBy('name')
             ->get();
 
-        $sizes = $sizes->each(function (&$size) {
+        $sizes = $sizes->map(function (&$size) {
             /** @var Size $size */
-            $productsArray = [];
-
-            $size->stocks->each(function ($stock) use (&$productsArray) {
-                /** @var Stock $stock */
-                $productsArray[] = $stock->product->id;
-            });
-
-            $size->product_count = count($productsArray);
+            $productsArray = $size->stocks->pluck('product.id');
+            $size->product_count = $productsArray->count();
+            return $size;
         });
 
         $orderOptions = [
@@ -148,15 +151,15 @@ class ShopController extends Controller
         $product = Product::findBySlugOrFail($slugProduct);
 
         $product->load([
-            'stocks.size', 
+            'stocks.size',
             'photos' => function ($withPhotos) {
                 return $withPhotos->orderBy('order');
             },
             'recommendeds' => function ($withRecommendeds) {
                 return $withRecommendeds->where('state_id', config('constants.STATE_ACTIVE_ID'));
-            }, 
+            },
             'recommendeds.photos' => function ($withPhotos) {
-            return $withPhotos->orderBy('order');
+                return $withPhotos->orderBy('order');
             }
         ]);
 
@@ -196,5 +199,17 @@ class ShopController extends Controller
             ->addImage($image, ['width'  => 1024, 'height' => 680]);
 
         return view('web.shop.product', compact('product', 'stockWithSizes', 'quantities'));
+    }
+
+    private function productHasStock($product)
+    {
+        return function ($product) {
+            /** @var Product $product */
+            return $product->stocks
+                ->filter(function ($stock) {
+                    return $stock->quantity > 0;
+                })
+                ->count() > 0;
+        };
     }
 }

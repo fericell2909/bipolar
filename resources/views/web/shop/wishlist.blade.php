@@ -36,7 +36,7 @@
 						</td>
 					</tr>
 				@endforeach
-			@else
+			@elseif(Session::has('BIPOLAR_WISHLIST'))
 				@foreach(Session::get('BIPOLAR_WISHLIST') as $product)
 				<tr>
 					<td><a href="{{ route('wishlist.remove', $product->slug) }}"><img src="{{ asset('images/close.svg') }}" width="20"></a></td>

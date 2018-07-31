@@ -39,17 +39,28 @@
         </div>
       </div>
     @endif
-    {!! Form::open(['route' => 'password.email']) !!}
+    {!! Form::open(['id' => 'recover-password', 'route' => 'password.email']) !!}
     <p>{{ __('bipolar.password_recovery.lost_question') }}</p>
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
           {!! Form::label(__('bipolar.password_recovery.email'), null, ['class' => 'text-uppercase text-label']) !!} <span class="text-danger">*</span>
-          {!! Form::email('email', null, ['class' => 'form-control', 'required' => true]) !!}
+          {!! Form::email('email', null, ['class' => 'form-control', 'required']) !!}
         </div>
       </div>
     </div>
-    {!! Form::submit(__('bipolar.password_recovery.recovery_password'), ['class' => 'btn btn-dark-rounded']) !!}
+    {!! Form::button(__('bipolar.password_recovery.recovery_password'), ['class' => 'btn btn-dark-rounded btn-submit-recover']) !!}
     {!! Form::close() !!}
   </div>
 @endsection
+@push('js_plus')
+<script>
+  $('.btn-submit-recover').click(function () {
+    const emailInput = $('#recover-password').find('input[name="email"]');
+    if (emailInput.val().length) {
+      $('.btn-submit-recover').attr('disabled', 'disabled');
+      $('#recover-password').submit();
+    }
+  });
+</script>
+@endpush
