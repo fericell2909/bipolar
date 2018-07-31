@@ -23,6 +23,7 @@
       </div>
     </div>
     @include('web.partials.footer')
+    @include('web.partials.googletagmanager')
     <script src="{{ mix('js/app-web-scripts.js') }}"></script>
     @stack('js_plus')
 </body>
