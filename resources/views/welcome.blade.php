@@ -111,7 +111,7 @@
                               @endforeach
                             </div>
                           @endif
-                        <a href="#">Read more</a>                            
+                        <a href="{{ route('landings.blog') }}">Read more</a>                            
                         </div>
                       </div>
                     </div>
