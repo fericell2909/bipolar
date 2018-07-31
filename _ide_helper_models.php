@@ -372,6 +372,7 @@ namespace App\Models{
  * @property-read mixed $price_discount_currency
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommendeds
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Size[] $sizes_active
  * @property-read \App\Models\State|null $state
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Stock[] $stocks
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
