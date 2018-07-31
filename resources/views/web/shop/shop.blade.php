@@ -159,8 +159,7 @@
 @endsection
 @push('js_plus')
 @foreach($products as $product)
-  <div class="modal fade modal-product-detail-{{ $product->hash_id }}" tabindex="-1" role="dialog"
-        aria-labelledby="shopModalDetail">
+  <div class="modal fade modal-product-detail-{{ $product->hash_id }}" tabindex="-1" role="dialog" aria-labelledby="shopModalDetail">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="container-fluid">
