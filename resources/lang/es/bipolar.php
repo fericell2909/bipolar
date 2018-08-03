@@ -208,4 +208,12 @@ return [
     'suscription_email' => [
         'desuscribe' => 'Si deseas desuscribirte de nuestra lista puedes hacerlo desde <a href="https://bipolar.us12.list-manage.com/unsubscribe?u=d616f5c8cc9cff44a6ae9337a&id=914e120268">aquí</a>',
     ],
+    'blog' => [
+        'blog_posts' => 'Publicaciones de blog',
+        'read_more' => 'Leer más',
+        'recent_posts' => 'Publicaciones recientes',
+        'archives' => 'Archivos',
+        'categories' => 'Categorías',
+        'tags' => 'Etiquetas',
+    ]
 ];
