@@ -36,7 +36,7 @@
       <!-- ============================================================== -->
       <header class="topbar">
         <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-          <div class="navbar-header">
+          <div class="navbar-header d-none d-sm-block">
             <div class="navbar-brand">
               <span>
                 <img src="{{ asset('images/logo-linea.png') }}" class="light-logo" alt="home" style="max-width: 100%;"/>
@@ -52,6 +52,11 @@
               <!-- This is  -->
               <li class="nav-item">
                 <a class="nav-link sidebartoggler d-none d-lg-block d-md-block waves-effect waves-dark" href="javascript:void(0)">
+                  <i class="fas fa-fw fa-bars"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="javascript:void(0)" class="nav-link nav-toggler d-block d-md-none waves-effect waves-dark">
                   <i class="fas fa-fw fa-bars"></i>
                 </a>
               </li>

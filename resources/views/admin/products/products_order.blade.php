@@ -14,7 +14,7 @@
             <div class="media-body">
               <h5 class="mt-0 mb-1">{{ $product->name }} {!! $product->state->getAdminHtml() !!}</h5>
               <p>
-                {{ $product->description }}
+                {!! $product->description !!}
               </p>
             </div>
           </li>

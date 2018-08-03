@@ -109,6 +109,7 @@ class ProductController extends Controller
             config('constants.STATE_PREVIEW_ID'),
         ])
             ->orderBy('order')
+            ->orderByDesc('id')
             ->with('photos', 'state')
             ->get();
 

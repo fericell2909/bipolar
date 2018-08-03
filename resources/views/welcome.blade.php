@@ -111,7 +111,7 @@
                               @endforeach
                             </div>
                           @endif
-                        <a href="{{ route('landings.blog') }}">Read more</a>                            
+                        <a href="{{ route('landings.blog') }}">{{ __('bipolar.blog.read_more') }}</a>                            
                         </div>
                       </div>
                     </div>

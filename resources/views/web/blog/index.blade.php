@@ -5,7 +5,7 @@
     <div class="container">
       <ul class="breadcrumbs">
         <li><a href="#"><i class="fa fa-home"></i></a></li>
-        <li><span>Blog posts</span></li>
+        <li><span>{{ __('bipolar.blog.blog_posts') }}</span></li>
       </ul>
     </div>
   </div>
@@ -29,7 +29,7 @@
                 </div>
               </section>
               <footer>
-                <a class="btn btn-dark-rounded">Leer más</a>
+                <a class="btn btn-dark-rounded">{{ __('bipolar.blog.read_more') }}</a>
               </footer>
             </article>
           @endforeach
@@ -37,7 +37,7 @@
         </section>
         <aside class="post-sidebars col-md-3 hidden-sm hidden-xs">
           <article>
-            <header>Recent posts</header>
+            <header>{{ __('bipolar.blog.recent_posts') }}</header>
             @if($lastPosts->count() > 0)
               <ul>
                 @foreach($lastPosts as $post)
@@ -47,10 +47,10 @@
             @endif
           </article>
           <article>
-            <header>Archives</header>
+            <header>{{ __('bipolar.blog.archives') }}</header>
           </article>
           <article>
-            <header>Categories</header>
+            <header>{{ __('bipolar.blog.categories') }}</header>
             @if($categories->count() > 0)
               <ul>
                 @foreach($categories as $category)
@@ -60,7 +60,7 @@
             @endif
           </article>
           <article>
-            <header>Tags</header>
+            <header>{{ __('bipolar.blog.tags') }}</header>
             @if($tags->count() > 0)
               <div class="tags">
                 @foreach($tags as $tag)
