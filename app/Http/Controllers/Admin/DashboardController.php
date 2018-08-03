@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Newsletter;
 
 class DashboardController extends Controller
 {
@@ -29,7 +30,12 @@ class DashboardController extends Controller
             ->whereDate('created_at', '>=', now()->startOfWeek())
             ->whereDate('created_at', '<=', now()->endOfWeek())
             ->count();
+        $newsletterUsersInWeek = Newsletter::getApi()->get('lists/' . env('MAILCHIMP_LIST_ID') . '/members', [
+            'since_timestamp_opt' => now()->startOfWeek()->toIso8601String(),
+            'before_timestamp_opt' => now()->endOfWeek()->toIso8601String(),
+        ]);
+        $newsletterUsersInWeek = array_get($newsletterUsersInWeek, 'total_items', 0);
 
-        return view('admin.home', compact('usersInWeek', 'firstBuyUsers', 'sumTotalBuys', 'productsBuyWeek', 'cartsInWeek', 'usersTotal'));
+        return view('admin.home', compact('usersInWeek', 'firstBuyUsers', 'sumTotalBuys', 'productsBuyWeek', 'cartsInWeek', 'usersTotal', 'newsletterUsersInWeek'));
     }
 }
