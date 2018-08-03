@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command(ExecuteDiscountTasks::class)->daily();
         $schedule->command(RevertDiscountTasks::class)->daily();
-        $schedule->command(SendNoBuyedCarts::class)->daily();
+        //$schedule->command(SendNoBuyedCarts::class)->daily();
         $schedule->command(CopyFacebookFansToSettings::class)->daily();
         $schedule->command(SyncBsaleStocks::class)->everyMinute();
     }
