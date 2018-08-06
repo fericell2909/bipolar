@@ -36947,42 +36947,42 @@ function _inherits(subClass, superClass) {
 var ProductColors = function (_React$Component) {
   _inherits(ProductColors, _React$Component);
 
-  function ProductColors(props) {
+  function ProductColors() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, ProductColors);
 
-    var _this = _possibleConstructorReturn(this, (ProductColors.__proto__ || Object.getPrototypeOf(ProductColors)).call(this, props));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProductColors.__proto__ || Object.getPrototypeOf(ProductColors)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       searchedColors: [],
       textSearchColors: ""
-    };
-
-    _this.handleSearchColors = _this.handleSearchColors.bind(_this);
-    return _this;
-  }
-
-  _createClass(ProductColors, [{
-    key: "handleSearchColors",
-    value: function handleSearchColors(event) {
+    }, _this.stylesColors = { height: 300, overflowY: 'scroll' }, _this.handleSearchColors = function (event) {
       var search = event.target.value.toLowerCase();
 
       if (search.length === 0) {
-        return this.setState({
+        return _this.setState({
           searchedColors: [],
           textSearchColors: ''
         });
       }
 
-      var filtered = this.props.colors.filter(function (color) {
+      var filtered = _this.props.colors.filter(function (color) {
         return color.name.toLowerCase().search(search) !== -1;
       });
 
-      return this.setState({
+      return _this.setState({
         searchedColors: filtered,
         textSearchColors: search
       });
-    }
-  }, {
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(ProductColors, [{
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -36994,7 +36994,7 @@ var ProductColors = function (_React$Component) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { key: color['hash_id'], className: "checkbox" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox", checked: isSelected, value: color['hash_id'], onChange: _this2.props.toggleCheck }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", null, " ", color['name']));
       });
 
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4", { className: "text-white" }, "Colores")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "card-body" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { value: this.state.textSearchColors, onChange: this.handleSearchColors, type: "text",
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "card" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "card-header bg-dark" }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4", { className: "text-white" }, "Colores")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "card-body", style: this.stylesColors }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { value: this.state.textSearchColors, onChange: this.handleSearchColors, type: "text",
         className: "form-control mb-3", placeholder: "Buscar color" }), colorsRender.length ? colorsRender : 'No hay colores'));
     }
   }]);
