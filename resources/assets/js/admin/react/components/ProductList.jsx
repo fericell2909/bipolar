@@ -139,6 +139,12 @@ class BipolarProductList extends React.Component {
               .then(this.getAllProducts);
             break;
           }
+          case "change_reviewed": {
+            axios
+              .post("/ajax-admin/products/state/reviewed", { products })
+              .then(this.getAllProducts);
+            break;
+          }
           case "activate_salient": {
             axios
               .post("/ajax-admin/products/salient/1", { products })
@@ -340,6 +346,7 @@ class BipolarProductList extends React.Component {
                         <option value="change_pending">
                           Cambiar a pendiente de revisión
                         </option>
+                        <option value="change_reviewed">Cambiar a revisado</option>
                       </optgroup>
                       <optgroup label="Destacado">
                         <option value="activate_salient">

@@ -256,13 +256,16 @@ class ProductController extends Controller
 
         switch ($stateOption) {
             case "draft":
-                $state = State::find(1);
+                $state = State::find(config('constants.STATE_PREVIEW_ID'));
                 break;
             case "pending":
-                $state = State::find(2);
+                $state = State::find(config('constants.STATE_WAITING_ID'));
                 break;
             case "published":
-                $state = State::find(3);
+                $state = State::find(config('constants.STATE_ACTIVE_ID'));
+                break;
+            case "reviewed":
+                $state = State::find(config('constants.STATE_REVIEW_ID'));
                 break;
             default:
                 $state = State::first();
