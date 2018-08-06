@@ -21108,6 +21108,11 @@ Login register and recover password Page
   height: 100%;
 }
 
+@font-face {
+  font-family: "GothamLight";
+  src: url(/fonts/Gotham-Light.otf?bceda3fae660177ae570735feec62811);
+}
+
 @-webkit-keyframes swal2-show {
   0% {
     -webkit-transform: scale(0.7);
