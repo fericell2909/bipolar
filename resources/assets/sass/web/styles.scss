@@ -136,6 +136,7 @@ button {
       font-size: 25px;
       text-transform: uppercase;
       color: $bipolar-black;
+      line-height: 28px;
 
       &:hover {
         text-decoration: none;
@@ -355,4 +356,16 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 .row.no-gutters [class*=" col-"] {
   padding-right: 0;
   padding-left: 0;
+}
+
+.row.no-gutters-in-xss {
+  @include xxs {
+    margin-right: 0;
+    margin-left: 0;
+
+    [class^="col-"], [class*=" col-"] {
+      padding-right: 0;
+      padding-left: 0;
+    }    
+  }
 }
