@@ -52453,6 +52453,7 @@ var createSortable = function createSortable(elementId, urlToSave) {
   if ($(elementId).length) {
     var elem = document.querySelector(elementId);
     var sortable = new Sortable(elem, {
+      scroll: true,
       onEnd: function onEnd() {
         __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
           text: 'Cargando.',

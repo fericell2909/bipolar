@@ -110,7 +110,7 @@ class ProductController extends Controller
         ])
             ->orderBy('order')
             ->orderByDesc('id')
-            ->with('photos', 'state')
+            ->with('photos', 'state', 'colors')
             ->get();
 
         return view('admin.products.products_order', compact('products'));

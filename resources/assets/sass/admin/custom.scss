@@ -24,6 +24,11 @@ input[type="checkbox"] {
   border-radius: 2px;
 }
 
+#sortable-products {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
 /*
 .swal2-popup {
   font-size: 1.6rem !important;

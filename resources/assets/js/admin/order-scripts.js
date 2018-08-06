@@ -5,6 +5,7 @@ const createSortable = (elementId, urlToSave) => {
   if ($(elementId).length) {
     const elem = document.querySelector(elementId);
     const sortable = new Sortable(elem, {
+      scroll: true,
       onEnd() {
         swal({
           text: 'Cargando.',
