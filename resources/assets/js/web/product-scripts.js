@@ -49,8 +49,8 @@ $(function () {
     let quantity = parseInt($quantity.val());
     if (operation === 'minus') {
       let newValue = quantity - 1;
-      if (newValue <= 0) {
-        newValue = 1;
+      if (newValue < 0) {
+        newValue = 0;
       }
       $quantity.val(newValue);
     } else if (operation === 'plus') {

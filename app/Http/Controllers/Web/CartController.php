@@ -21,6 +21,10 @@ class CartController extends Controller
 
         foreach ($request->input('quantity') as $detailHashId => $quantity) {
             $cartDetail = CartDetail::findByHash($detailHashId);
+            if (intval($quantity) === 0) {
+                $cartDetail->delete();
+                continue;
+            }
             $pricePEN = $cartDetail->product->discount_pen ? $cartDetail->product->price_pen_discount : $cartDetail->product->price;
             $priceUSD = $cartDetail->product->discount_usd ? $cartDetail->product->price_usd_discount : $cartDetail->product->price_dolar;
             $cartDetail->quantity = $quantity;
