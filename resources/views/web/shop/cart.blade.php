@@ -39,7 +39,7 @@
 				<td data-title="Cantidad">
           <div class="quantity-content">
             <button type="button" class="btn-number" data-type="minus"><i class="fa fa-minus"></i></button>
-            <input type="number" name="quantity[{{ $cartDetail->hash_id }}]" value="{{ $cartDetail->quantity }}" class="quantity-number" size="4" min="1" readonly>
+            <input type="number" name="quantity[{{ $cartDetail->hash_id }}]" value="{{ $cartDetail->quantity }}" class="quantity-number" size="4" min="0" readonly>
             <button type="button" class="btn-number" data-type="plus"><i class="fa fa-plus"></i></button>
           </div>
         </td>
