@@ -1,3 +1,5 @@
+@import "../mixins";
+
 .shop-container {
   margin-top: 70px;
 
@@ -28,7 +30,7 @@
       background-image: url(../../img/arrow_down.png);
       background-repeat: no-repeat;
       background-position: calc(100% - 10px);
-      max-width: 100%;
+      width: 270px;
     }
   }
 
@@ -47,15 +49,22 @@
   }
 }
 
-.bipolar-filter-title {
-  font-size: 15px;
-  font-family: $bodoni-bold-font;
-  color: $bipolar-black;
-  text-transform: uppercase;
-  padding-bottom: 10px;
-  border-bottom: 1px solid $bipolar-black;
-  letter-spacing: 2.3px;
-  margin-top: 15px;
+.filters-container {
+  > .bipolar-filter-title {
+    font-size: 15px;
+    font-family: $bodoni-bold-font;
+    color: $bipolar-black;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $bipolar-black;
+    letter-spacing: 2.3px;
+    margin-top: 15px;
+    margin-bottom: 18px;
+
+    &:first-of-type {
+      margin-top: 22px;
+    }
+  }
 }
 
 .bipolar-search-button {
@@ -66,7 +75,13 @@
 }
 
 .bipolar-product {
-  margin-bottom: 30px;
+  @include xxs {
+    margin-bottom: 18px;
+  }
+  
+  @include sm {
+    margin-bottom: 30px;
+  }
 }
 
 .bipolar-product-showed {
@@ -115,7 +130,8 @@
       line-height: 30px;
       width: 42px;
       height: 42px;
-      margin-left: 12px;
+      margin-left: 8px;
+      margin-top: 8px;
 
       &.active, &:hover {
         background: $bipolar-black;
@@ -170,12 +186,12 @@
 }
 
 .owl-carousel-thumbnails {
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .shop-discount-container {
   position: absolute;
-  top: 5%;
+  top: 3%;
   right: 5%;
   z-index: $z-index-shop-discount;
   font-family: $bodoni-bold-font;
@@ -184,7 +200,7 @@
     background-color: $bipolar-black;
     color: $bipolar-color;
     text-align: center;
-    line-height: 45px;
+    line-height: 48px;
     width: 44px;
     height: 44px;
     font-size: 15px;
@@ -195,7 +211,7 @@
 .shop-discount-preview-container {
   position: absolute;
   top: 5%;
-  right: 9%;
+  right: 8%;
   z-index: $z-index-shop-discount;
   font-family: $bodoni-bold-font;
 

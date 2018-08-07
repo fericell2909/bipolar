@@ -3,17 +3,13 @@ import {existInArray} from "../../helpers";
 
 export default class ProductColors extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchedColors: [],
-      textSearchColors: "",
-    };
+  state = {
+    searchedColors: [],
+    textSearchColors: "",
+  };
+  stylesColors = { height: 300, overflowY: 'scroll' };
 
-    this.handleSearchColors = this.handleSearchColors.bind(this);
-  }
-
-  handleSearchColors(event) {
+  handleSearchColors = event => {
     const search = event.target.value.toLowerCase();
 
     if (search.length === 0) {
@@ -51,9 +47,9 @@ export default class ProductColors extends React.Component {
         <div className="card-header bg-dark">
           <h4 className="text-white">Colores</h4>
         </div>
-        <div className="card-body">
+        <div className="card-body" style={this.stylesColors}>
           <input value={this.state.textSearchColors} onChange={this.handleSearchColors} type="text"
-                 className="form-control mb-3" placeholder="Buscar color"/>
+            className="form-control mb-3" placeholder="Buscar color" />
           {colorsRender.length ? colorsRender : 'No hay colores'}
         </div>
       </div>

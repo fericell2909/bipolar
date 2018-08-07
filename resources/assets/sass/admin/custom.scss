@@ -1,5 +1,10 @@
 // In this scss you can overwrite all our scss, we suggested you to add your scss into this, so whenever the update comes it will not affect your code.
 
+@font-face {
+  font-family: "GothamLight";
+  src: url("../../fonts/Gotham/Gotham-Light.otf");
+}
+
 // Plugins
 @import "~sweetalert2/src/sweetalert2";
 @import "~select2/dist/css/select2";
@@ -22,6 +27,11 @@ input[type="checkbox"] {
   height: 275px;
   padding: 5px;
   border-radius: 2px;
+}
+
+#sortable-products {
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 /*

@@ -119,67 +119,60 @@ class BipolarProductList extends React.Component {
     }).then(result => {
       if (result.value) {
         const products = this.state.selectedProducts;
+        let actionUrl;
 
         switch (optionSelected) {
           case "change_published": {
-            axios
-              .post("/ajax-admin/products/state/published", { products })
-              .then(this.getAllProducts);
+            actionUrl = "/ajax-admin/products/state/published"; 
             break;
           }
           case "change_draft": {
-            axios
-              .post("/ajax-admin/products/state/draft", { products })
-              .then(this.getAllProducts);
+            actionUrl = "/ajax-admin/products/state/draft";
             break;
           }
           case "change_pending": {
-            axios
-              .post("/ajax-admin/products/state/pending", { products })
-              .then(this.getAllProducts);
+            actionUrl = "/ajax-admin/products/state/pending";
+            break;
+          }
+          case "change_reviewed": {
+            actionUrl = "/ajax-admin/products/state/reviewed";
             break;
           }
           case "activate_salient": {
-            axios
-              .post("/ajax-admin/products/salient/1", { products })
-              .then(this.getAllProducts);
+            actionUrl = "/ajax-admin/products/salient/1";
             break;
           }
           case "deactivate_salient": {
-            axios
-              .post("/ajax-admin/products/salient/0", { products })
-              .then(this.getAllProducts);
+            actionUrl = "/ajax-admin/products/salient/0";
             break;
           }
           case "activate_free": {
-            axios
-              .post("/ajax-admin/products/freeshipping/1", { products })
-              .then(this.getAllProducts);
+            actionUrl = "/ajax-admin/products/freeshipping/1";
             break;
           }
           case "deactivate_free": {
-            axios
-              .post("/ajax-admin/products/freeshipping/0", { products })
-              .then(this.getAllProducts);
+            actionUrl = "/ajax-admin/products/freeshipping/0";
             break;
           }
           case "dolar_price": {
-            axios
-              .post("/ajax-admin/products/dolar-price", { products })
-              .then(this.getAllProducts);
+            actionUrl = "/ajax-admin/products/dolar-price";
             break;
           }
         }
 
-        swal({
-          title: "Hecho",
-          type: "success",
-          toast: true,
-          position: "top-right",
-          showConfirmButton: false,
-          timer: 5000
-        });
-        this.setState({ selectedProducts: [] });
+        axios.post(actionUrl, { products })
+          .then(this.getAllProducts)
+          .then(() => {
+            swal({
+              title: "Hecho",
+              type: "success",
+              toast: true,
+              position: "top-right",
+              showConfirmButton: false,
+              timer: 5000
+            });
+            this.setState({ selectedProducts: [] });
+          });
       }
     });
   }
@@ -340,6 +333,7 @@ class BipolarProductList extends React.Component {
                         <option value="change_pending">
                           Cambiar a pendiente de revisión
                         </option>
+                        <option value="change_reviewed">Cambiar a revisado</option>
                       </optgroup>
                       <optgroup label="Destacado">
                         <option value="activate_salient">

@@ -2,11 +2,20 @@
 
 .product-content {
   margin-top: 33px;
+  font-size: 12px;
 
   .product-title {
     @include sahari_bodoni_font;
     font-size: 75px;
     color: $bipolar-black;
+
+    @include xxs {
+      margin-top: 26px;
+    }
+
+    @include sm {
+      margin-top: 0;
+    }
   }
 
   .product-subtitle {
@@ -15,7 +24,7 @@
     font-size: 15px;
     color: $bipolar-black;
     letter-spacing: 0.2em;
-    margin-bottom: 50px;
+    margin-bottom: 41px;
   }
 
   .product-colors {
@@ -30,7 +39,7 @@
     .product-amount {
       @include bodoni_bold_font;
       color: $bipolar-black;
-      font-size: 36px;
+      font-size: 33px;
       letter-spacing: 5px;
     }
 
@@ -129,7 +138,7 @@
     -moz-border-radius: 42px;
     border-radius: 42px;
     outline: none;
-    padding: 0 25px;
+    padding: 0 20px;
     font-size: 15px;
     appearance: none;
     height: 35px;
@@ -187,7 +196,7 @@
   }
 
   .bipolar-button-description-container {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     margin-top: 15px;
 
@@ -264,27 +273,58 @@
   }
 
   .recommended-products {
+    border-top: 1px solid #999999;
+    margin-top: 50px;
+
     h3 {
       @include bodoni_bold_font;
       text-transform: uppercase;
       font-size: 15px;
       color: $bipolar-black;
       letter-spacing: 0.2em;
+      margin-bottom: 16px;
     }
 
     > .row {
+      margin-left: 0;
+      margin-right: 0;
+
       @include sm {
-        padding-left: 10px; 
         margin-bottom: 25px;
       }
 
-      .img-responsive {
+      .recommended {
+        padding-left: 0;
+        padding-right: 0;
+
         @include xxs {
-          padding: 3px;
+          padding-bottom: 10px;
+
+          &:nth-child(odd) {
+            padding-right: 5px;
+          }
+
+          &:nth-child(even) {
+            padding-left: 5px;
+          }
         }
 
         @include sm {
-          padding: 0;
+          padding-bottom: 0;
+
+          &:nth-child(odd) {
+            padding-right: 5px;
+            padding-left: 5px;
+          }
+          
+          &:nth-child(even) {
+            padding-right: 5px;
+            padding-left: 5px;
+          }
+
+          &:first-child {
+            padding-left: 0;
+          }
         }
       }
     }
@@ -294,6 +334,8 @@
 .product-below-content {
   margin-top: 20px;
   vertical-align: middle;
+  display: flex;
+  align-items: flex-end;
 }
 
 // This is for the tooltip

@@ -1,5 +1,6 @@
 import React from "react";
 import { existInArray } from "../../helpers";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ProductRow = props => {
   const isSelected = existInArray(props.selectedProducts, props.hashId);
@@ -25,6 +26,8 @@ const ProductRow = props => {
   if (props.discountPEN && props.discountUSD) {
     discountText = `${props.discountPEN}%/${props.discountUSD}%`;
   }
+  const iconFreeShipping = props.freeShipping ? <FontAwesomeIcon icon="check" /> : <FontAwesomeIcon icon="times"/>;
+  const iconSalient = props.isSalient !== null ? <FontAwesomeIcon icon="check" /> : <FontAwesomeIcon icon="times"/>;
 
   return (
     <tr>
@@ -46,12 +49,8 @@ const ProductRow = props => {
       <td className="align-middle text-center">{discountText}</td>
       <td className="align-middle text-right">{priceDiscountText}</td>
       <td className="align-middle text-center">{state}</td>
-      <td className="align-middle text-center">
-        {props.freeShipping ? <i className="fas fa-fw fa-check" /> : null}
-      </td>
-      <td className="align-middle text-center">
-        {props.isSalient !== null ? <i className="fas fa-fw fa-check" /> : null}
-      </td>
+      <td className="align-middle text-center">{iconFreeShipping}</td>
+      <td className="align-middle text-center">{iconSalient}</td>
       <td className="align-middle">
         <div className="button-group">
           <a

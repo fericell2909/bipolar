@@ -1,6 +1,6 @@
 @extends('admin.layouts.app_admin')
 <?php /** @var \App\Models\Product $product */ ?>
-@section('title', "Editar producto {$product->name}")
+@section('title', "Editar producto {$product->name} " . $product->colors->implode('name', ', '))
 @push('before_scripts')
   <script>
     window.BipolarProductId = "{{ $product->hash_id }}";

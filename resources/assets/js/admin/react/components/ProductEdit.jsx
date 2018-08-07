@@ -193,7 +193,10 @@ class BipolarProductEdit extends React.Component {
 
     const toolbarEditor = {
       fontFamily: {
-        options: ['Verdana', 'GothamLight'],
+        options: ['GothamLight'],
+      },
+      fontSize: {
+        options: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 24, 30, 36, 48],
       },
     };
 
@@ -227,11 +230,11 @@ class BipolarProductEdit extends React.Component {
                 </div>
                 <div className="form-group">
                   <label>Descripción (Opcional)</label>
-                  <Editor toolbar={toolbarEditor} editorState={this.state.editorState} onEditorStateChange={this.handleEditorDescription} editorClassName="demo-editor-content"/>
+                  <Editor toolbar={toolbarEditor} stripPastedStyles={true} editorState={this.state.editorState} onEditorStateChange={this.handleEditorDescription} editorClassName="demo-editor-content"/>
                 </div>
                 <div className="form-group">
                   <label>Descripción en inglés (Opcional)</label>
-                  <Editor toolbar={toolbarEditor} editorState={this.state.editorStateEnglish} onEditorStateChange={this.handleEditorDescriptionEnglish} editorClassName="demo-editor-content"/>
+                  <Editor toolbar={toolbarEditor} stripPastedStyles={true} editorState={this.state.editorStateEnglish} onEditorStateChange={this.handleEditorDescriptionEnglish} editorClassName="demo-editor-content"/>
                 </div>
                 <div className="form-row">
                   <div className="col-md-6">

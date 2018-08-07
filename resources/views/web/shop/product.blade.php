@@ -87,13 +87,11 @@
             </div>
           @endif
           <div class="row" style="margin-bottom: 20px">
-            <div class="col-sm-6 col-md-6">
+            <div class="col-sm-6 col-md-12">
               {!! Form::select('quantity', $quantities, null, ['class' => 'quantity-select']) !!}
               <button class="btn btn-add-cart">
                 Añadir al carrito
               </button>
-            </div>
-            <div class="col-sm-6">
               <div class="bipolar-button-description-container">
                 <a class="wishlist-add" data-product-id="{{ $product->hash_id }}">
                   <i class="fa fa-heart-o"></i>
@@ -102,25 +100,23 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <span class="text-uppercase">Cambia de moneda</span>
-              {!! Form::select('currency_change',
-                  ['PEN' => 'SOLES PERUANOS (PEN)', 'USD' => 'DÓLAR AMERICANO (USD)'],
-                  Session::get('BIPOLAR_CURRENCY'),
-                  ['id' => 'product-currency-select', 'class' => 'product-currency-select']) !!}
-            </div>
-          </div>
           {!! Form::close() !!}
         </div>
       </div>
       <div class="row product-below-content">
-        <div class="col-sm-6 col-md-5">
+        <div class="col-sm-6 col-md-6">
           <div class="bipolar-action-button-container">
             <span class="text-uppercase">Compártelo:</span>
             <a href="#" onclick="window.open('https://www.facebook.com/sharer.php?s=100&p[url]={{ urlencode(URL::current()) }}','sharer', 'toolbar=0,status=0,width=620,height=280');"><i class="fa fa-facebook"></i></a>
             <a href="mailto:bipolar@bipolar.com.pe"><i class="fa fa-envelope-o"></i></a>
           </div>
+        </div>
+        <div class="col-sm-6 col-md-6">
+          <span class="text-uppercase">Cambia de moneda</span>
+          {!! Form::select('currency_change',
+              ['PEN' => 'SOLES PERUANOS (PEN)', 'USD' => 'DÓLAR AMERICANO (USD)'],
+              Session::get('BIPOLAR_CURRENCY'),
+              ['id' => 'product-currency-select', 'class' => 'product-currency-select']) !!}
         </div>
       </div>
       @if($product->recommendeds->count() > 0)
@@ -128,7 +124,7 @@
           <h3>Te recomendamos</h3>
           <div class="row">
             @foreach($product->recommendeds as $recommended)
-              <div class="col-xs-6 col-md-2" style="padding-left:5px; padding-right: 5px;">
+              <div class="col-xs-6 col-md-2 recommended">
                 @if(count($recommended->photos))
                   <a href="{{ route('shop.product', $recommended->slug) }}">
                     <img src="{{ $recommended->photos->first()->url }}" class="img-responsive" alt="{{ $recommended->name }}">

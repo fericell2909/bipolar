@@ -19,6 +19,6 @@ if (mix.inProduction()) {
 }
 
 mix.browserSync({
-  proxy: "bipolar.wtf",
+  proxy: "bipolar.test",
   open: false
 });
