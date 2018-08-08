@@ -26,14 +26,14 @@
 				<td class="product-name" data-title="Producto">
 					<a href="{{ route('shop.product', $cartDetail->product->slug) }}">{{ $cartDetail->product->name }}</a>
           @if($cartDetail->stock)
-            <dt class="product-variation">TALLA: {{ $cartDetail->stock->size->name }}</dt>
+            <dt class="product-variation">{{ __('bipolar.size_abbr') }}: {{ $cartDetail->stock->size->name }}</dt>
           @endif
 				</td>
 				<td class="product-price" data-title="Precio">
-          @if($cartDetail->discount_pen || $cartDetail->discount_usd)
-            <span class="amount">{{ $cartDetail->product->price_currency }}</span>
-          @else
+          @if($cartDetail->product->discount_pen || $cartDetail->product->discount_usd)
             <span class="amount">{{ $cartDetail->product->price_discount_currency }}</span>
+          @else
+            <span class="amount">{{ $cartDetail->product->price_currency }}</span>
           @endif
         </td>
 				<td data-title="Cantidad">
