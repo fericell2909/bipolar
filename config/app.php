@@ -229,6 +229,7 @@ return [
         'Twitter'   => Artesaos\SEOTools\Facades\TwitterCard::class,
         // or
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
+        'GeoIP' => Torann\GeoIP\Facades\GeoIP::class,
     ],
 
 ];

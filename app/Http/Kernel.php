@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\LocalizationDetection;
 use App\Http\Middleware\RemoveEmptyUserCarts;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -20,7 +21,6 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
-        \App\Http\Middleware\SetShopCurrency::class,
     ];
 
     /**
@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'localeSessionRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
         'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         'removeEmptyCarts' => RemoveEmptyUserCarts::class,
+        'location.detect' => LocalizationDetection::class,
     ];
 }
