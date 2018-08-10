@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-07-31 08:11:21.
+    * Generated on 2018-08-09 19:58:14.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -57,6 +57,7 @@ namespace PHPSTORM_META {
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
         'hashids.connection' => \Hashids\Hashids::class,
@@ -223,6 +224,7 @@ namespace PHPSTORM_META {
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
         'hashids.connection' => \Hashids\Hashids::class,
@@ -389,6 +391,7 @@ namespace PHPSTORM_META {
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
         'hashids.connection' => \Hashids\Hashids::class,
@@ -555,6 +558,7 @@ namespace PHPSTORM_META {
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
         'hashids.connection' => \Hashids\Hashids::class,
@@ -721,6 +725,7 @@ namespace PHPSTORM_META {
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
         'hashids.connection' => \Hashids\Hashids::class,
@@ -887,6 +892,7 @@ namespace PHPSTORM_META {
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
         'hashids.connection' => \Hashids\Hashids::class,
@@ -1053,6 +1059,7 @@ namespace PHPSTORM_META {
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
         'hashids.connection' => \Hashids\Hashids::class,
