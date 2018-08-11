@@ -32,8 +32,8 @@ class ProductController extends Controller
     {
         $photo = Photo::findByHash($photoHashId);
 
-        if (\Storage::disk('s3')->exists($photo->relative_url)) {
-            \Storage::disk('s3')->delete($photo->relative_url);
+        if (\Storage::disk('public')->exists($photo->relative_url)) {
+            \Storage::disk('public')->delete($photo->relative_url);
         }
 
         $photo->delete();
@@ -89,8 +89,8 @@ class ProductController extends Controller
         });
         $product->photos->each(function ($photo) {
             /** @var Photo $photo */
-            if (\Storage::disk('s3')->exists($photo->relative_url)) {
-                \Storage::disk('s3')->delete($photo->relative_url);
+            if (\Storage::disk('public')->exists($photo->relative_url)) {
+                \Storage::disk('public')->delete($photo->relative_url);
             }
             $photo->delete();
         });
