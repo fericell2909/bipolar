@@ -20,7 +20,7 @@ class LandingsController extends Controller
 
     public function __construct()
     {
-        $imageUrl = asset('bipolar-images/assets/jeringas-rosado.jpg');
+        $imageUrl = asset('storage/bipolar-images/assets/jeringas-rosado.jpg');
         $this->seo()->opengraph()->addImage($imageUrl);
         $this->seo()->twitter()->addImage($imageUrl);
     }

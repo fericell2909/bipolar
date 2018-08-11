@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\BannerEditRequest;
-use App\Http\Services\UploadFileS3;
+use App\Http\Services\UploadFilePublic;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\State;
@@ -28,11 +28,11 @@ class BannersController extends Controller
 
     public function store(BannerNewRequest $request)
     {
-        $amazonPath = $imagePath = null;
+        $fullPath = $imagePath = null;
         if ($request->file('photo')->isValid()) {
-            $s3 = new UploadFileS3;
-            $imagePath = $s3->uploadPhoto($request->file('photo'), "banners", "banner");
-            $amazonPath = $s3->getAmazonPath($imagePath);
+            $photoService = new UploadFilePublic;
+            $imagePath = $photoService->uploadPhoto($request->file('photo'), "banners", "banner");
+            $fullPath = $photoService->getFullUrl($imagePath);
         }
 
         /** @var State $state */
@@ -42,7 +42,7 @@ class BannersController extends Controller
         $end = $request->filled('end') ? $request->input('end') : '31-12-2100';
 
         $banner = new Banner;
-        $banner->url = $amazonPath;
+        $banner->url = $fullPath;
         $banner->relative_url = $imagePath;
         $banner->begin_date = Carbon::createFromFormat('d/m/Y', $begin);
         $banner->end_date = Carbon::createFromFormat('d/m/Y', $end);
@@ -77,10 +77,10 @@ class BannersController extends Controller
         $banner->state()->associate($state);
 
         if ($request->file('photo')) {
-            $s3 = new UploadFileS3;
-            $imagePath = $s3->uploadPhoto($request->file('photo'), "banners", "banner");
-            $amazonPath = $s3->getAmazonPath($imagePath);
-            $banner->url = $amazonPath;
+            $photoService = new UploadFilePublic;
+            $imagePath = $photoService->uploadPhoto($request->file('photo'), "banners", "banner");
+            $fullPath = $photoService->getFullUrl($imagePath);
+            $banner->url = $fullPath;
             $banner->relative_url = $imagePath;
         }
 

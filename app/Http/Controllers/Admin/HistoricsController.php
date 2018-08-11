@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Historic;
-use App\Http\Services\UploadFileS3;
+use App\Http\Services\UploadFilePublic;
 use App\Http\Requests\Admin\HistoricNewRequest;
 use App\Http\Requests\Admin\HistoricEditRequest;
 
@@ -26,15 +25,15 @@ class HistoricsController extends Controller
     public function store(HistoricNewRequest $request)
     {
         if ($request->file('photo')->isValid()) {
-            $s3 = new UploadFileS3;
-            $imagePath = $s3->uploadPhoto($request->file('photo'), "historicos", "historico");
-            $amazonPath = $s3->getAmazonPath($imagePath);
+            $photoService = new UploadFilePublic;
+            $imagePath = $photoService->uploadPhoto($request->file('photo'), "historicos", "historico");
+            $fullPath = $photoService->getFullUrl($imagePath);
         }
 
         $historic = new Historic;
         $historic->name = $request->input('name');
         $historic->order = Historic::count() + 1;
-        $historic->photo = $amazonPath;
+        $historic->photo = $fullPath;
         $historic->photo_relative = $imagePath;
         $historic->save();
 
@@ -54,9 +53,9 @@ class HistoricsController extends Controller
         $historic = Historic::findOrFail($historicId);
 
         if ($request->file('photo')) {
-            $s3 = new UploadFileS3;
-            $imagePath = $s3->uploadPhoto($request->file('photo'), "historicos", "historic");
-            $amazonPath = $s3->getAmazonPath($imagePath);
+            $photoService = new UploadFilePublic;
+            $imagePath = $photoService->uploadPhoto($request->file('photo'), "historicos", "historic");
+            $amazonPath = $photoService->getFullUrl($imagePath);
             $historic->photo = $amazonPath;
             $historic->photo_relative = $imagePath;
         }
@@ -112,8 +111,8 @@ class HistoricsController extends Controller
         $historic = Historic::onlyTrashed()->whereId($historicId)->firstOrFail();
 
         try {
-            if (\Storage::disk('s3')->exists($historic->photo_relative)) {
-                \Storage::disk('s3')->delete($historic->photo_relative);
+            if (\Storage::disk('public')->exists($historic->photo_relative)) {
+                \Storage::disk('public')->delete($historic->photo_relative);
             }
             $historic->forceDelete();
         } catch (\Exception $e) {

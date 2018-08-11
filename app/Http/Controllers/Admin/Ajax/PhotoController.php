@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Services\UploadFileS3;
+use App\Http\Services\UploadFilePublic;
 
 class PhotoController extends Controller
 {
@@ -20,13 +20,13 @@ class PhotoController extends Controller
         $image = $request->file('file');
 
         if ($image->isValid()) {
-            $s3 = new UploadFileS3;
-            $imagePath = $s3->uploadPhoto($image, 'homeposts', $homePost->slug);
-            $amazonPath = $s3->getAmazonPath($imagePath) ?? "";
+            $photoService = new UploadFilePublic;
+            $imagePath = $photoService->uploadPhoto($image, 'homeposts', $homePost->slug);
+            $fullPath = $photoService->getFullUrl($imagePath) ?? "";
 
             $photo = new Photo;
             $photo->home_post()->associate($homePost);
-            $photo->url = $amazonPath;
+            $photo->url = $fullPath;
             $photo->relative_url = $imagePath;
             $photo->order = 0;
             $photo->save();
@@ -43,13 +43,13 @@ class PhotoController extends Controller
         $image = $request->file('file');
 
         if ($image->isValid()) {
-            $s3 = new UploadFileS3;
-            $imagePath = $s3->uploadPhoto($image, 'products', $product->slug);
-            $amazonPath = $s3->getAmazonPath($imagePath) ?? "";
+            $photoService = new UploadFilePublic;
+            $imagePath = $photoService->uploadPhoto($image, 'products', $product->slug);
+            $fullPath = $photoService->getFullUrl($imagePath) ?? "";
 
             $photo = new Photo;
             $photo->product()->associate($product);
-            $photo->url = $amazonPath;
+            $photo->url = $fullPath;
             $photo->relative_url = $imagePath;
             $photo->order = 0;
             $photo->save();
@@ -66,12 +66,12 @@ class PhotoController extends Controller
         $image = $request->file('file');
 
         if ($image->isValid()) {
-            $s3 = new UploadFileS3;
-            $imagePath = $s3->uploadPhoto($image, 'posts', $post->slug);
-            $amazonPath = $s3->getAmazonPath($imagePath) ?? "";
+            $photoService = new UploadFilePublic;
+            $imagePath = $photoService->uploadPhoto($image, 'posts', $post->slug);
+            $fullPath = $photoService->getFullUrl($imagePath) ?? "";
 
             $photo = new Photo;
-            $photo->url = $amazonPath;
+            $photo->url = $fullPath;
             $photo->relative_url = $imagePath;
             $photo->order = 0;
             $photo->post()->associate($post);
