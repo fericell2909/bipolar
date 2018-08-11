@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Banner;
+use App\Models\Historic;
 use Illuminate\Console\Command;
 use App\Models\Photo;
 
@@ -51,6 +52,13 @@ class MoveS3PhotoLinks extends Command
         $banners->each(function ($banner) {
             $banner->url = str_replace('https://s3.amazonaws.com/bipolar-peru', env('APP_URL') . '/storage/bipolar-images', $banner->url);
             $banner->save();
+        });
+
+        $historics = Historic::all();
+
+        $historics->each(function ($historic) {
+            $historic->photo = str_replace('https://s3.amazonaws.com/bipolar-peru', env('APP_URL') . '/storage/bipolar-images', $historic->photo);
+            $historic->save();
         });
 
         $this->info('Changed');
