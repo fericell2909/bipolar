@@ -12,9 +12,9 @@
             <tr>
               <td>
                 @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                <img src="https://bipolar-peru.s3.amazonaws.com/assets/mails/pedido-recibido-esp.jpg" style="max-width: 100%" alt="Bipolar">
+                <img src="{{ asset('bipolar-images/assets/mails/pedido-recibido-esp.jpg') }}" style="max-width: 100%" alt="Bipolar">
                 @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                <img src="https://bipolar-peru.s3.amazonaws.com/assets/mails/pedido-recibido-eng.jpg" style="max-width: 100%" alt="Bipolar">
+                <img src="{{ asset('bipolar-images/assets/mails/pedido-recibido-eng.jpg') }}" style="max-width: 100%" alt="Bipolar">
                 @endif
               </td>
             </tr>
