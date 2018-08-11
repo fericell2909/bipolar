@@ -28,8 +28,8 @@ class BannersController extends Controller
         /** @var Banner $banner */
         $banner = Banner::findOrFail($bannerId);
 
-        if (\Storage::disk('s3')->exists($banner->relative_url)) {
-            \Storage::disk('s3')->delete($banner->relative_url);
+        if (\Storage::disk('public')->exists($banner->relative_url)) {
+            \Storage::disk('public')->delete($banner->relative_url);
         }
 
         try {
