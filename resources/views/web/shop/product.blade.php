@@ -145,7 +145,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-body">
-          <img src="https://bipolar-peru.s3.amazonaws.com/assets/guia-de-tallas.jpg" alt="Guia de tallas Bipolar" class="img-responsive">
+          <img src="{{ asset('storage/bipolar-images/assets/guia-de-tallas.jpg') }}" alt="Guia de tallas Bipolar" class="img-responsive">
         </div>
       </div>
     </div>

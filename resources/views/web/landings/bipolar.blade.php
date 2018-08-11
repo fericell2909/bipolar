@@ -1,6 +1,6 @@
 @extends('web.layouts.app_web')
 @section('content')
-    <img src="https://bipolar-peru.s3.amazonaws.com/assets/jeringas-rosado.jpg" style="width: 100%;" class="img-responsive" alt="Bipolar">
+    <img src="{{ asset('storage/bipolar-images/assets/jeringas-rosado.jpg') }}" style="width: 100%;" class="img-responsive" alt="Bipolar">
     <div class="bipolar-container">
         <p class="title-text-content">BIPOLAR</p>
         <p>

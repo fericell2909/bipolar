@@ -64,7 +64,8 @@ button {
 }
 
 .bipolar-counts-container {
-  background: url(https://bipolar-peru.s3.amazonaws.com/assets/jeringas_close.jpg) no-repeat center;
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
 
   .bipolar-counts {
@@ -225,7 +226,8 @@ a {
 
 .content-newsletter {
   color: $bipolar-black;
-  background: url(https://bipolar-peru.s3.amazonaws.com/assets/huevos.jpg) no-repeat center;
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   text-align: center;
   padding: 30px;

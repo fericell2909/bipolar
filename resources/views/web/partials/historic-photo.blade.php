@@ -11,7 +11,7 @@
 @if($inverse)
   <div class="col-md-3 col-xs-12 visible-xs-block visible-sm-block" style="display: none">
     <div class="container-title-product">
-      <img src="https://bipolar-peru.s3.amazonaws.com/assets/transparencia.png" width="317" height="210" alt="Bipolar" class="img-transparency">
+      <img src="{{ asset('storage/bipolar-images/assets/transparencia.png') }}" width="317" height="210" alt="Bipolar" class="img-transparency">
       <span class="product-name">{{ $name }}</span>
     </div>
   </div>

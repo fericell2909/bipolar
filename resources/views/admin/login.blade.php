@@ -18,7 +18,7 @@
   </head>
 
   <body>
-    <section id="wrapper" class="login-register login-sidebar" style="background-image: url('https://bipolar-peru.s3.amazonaws.com/assets/bipolar-gold.png');">
+    <section id="wrapper" class="login-register login-sidebar" style="background-image: url({{ asset('storage/bipolar-images/assets/bipolar-gold.png') }});">
       <div class="login-box card">
         <div class="card-body">
           {!! Form::open(['url' => route('login.admin.post'),'class' => 'form-horizontal form-material']) !!}
