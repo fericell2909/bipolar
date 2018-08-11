@@ -1,4 +1,4 @@
-<div class="content-newsletter" style="background-image: url({{ asset('bipolar-images/assets/huevos.jpg') }});">
+<div class="content-newsletter" style="background-image: url({{ asset('storage/bipolar-images/assets/huevos.jpg') }});">
   <div class="container-content">
       <div class="text-center">
           <i class="fa fa-2x fa-envelope-o"></i>

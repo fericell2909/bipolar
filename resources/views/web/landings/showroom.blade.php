@@ -1,6 +1,6 @@
 @extends('web.layouts.app_web')
 @section('content')
-    <img src="{{ asset('bipolar-images/assets/bipolar-showroom.jpg') }}" class="img-responsive" alt="Bipolar">
+    <img src="{{ asset('storage/bipolar-images/assets/bipolar-showroom.jpg') }}" class="img-responsive" alt="Bipolar">
     <div class="bipolar-container">
         <div class="row">
             <div class="col-md-8">
