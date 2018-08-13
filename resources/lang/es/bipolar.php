@@ -86,6 +86,9 @@ return [
         'billing_to' => 'Facturar a',
         'shipping_method_showroom' => 'Recoger en showroom',
         'shipping_method_local' => 'Local',
+        'here' => 'aquí',
+        'unsuscribe_newsletter' => 'Si deseas desuscribirte de nuestra lista puedes hacerlo desde',
+        'thankyou_newsletter' => 'Gracias por suscribirte a nuestro newsletter',
     ],
     'shipping' => [
         'title' => 'Envíos',

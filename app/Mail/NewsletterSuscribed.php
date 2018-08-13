@@ -29,7 +29,7 @@ class NewsletterSuscribed extends Mailable
      */
     public function build()
     {
-        return $this->subject('Gracias por suscribirte a nuestro newsletter')
+        return $this->subject(__('bipolar.mails.thankyou_newsletter'))
             ->view('emails.web_newsletter_suscribed');
     }
 }

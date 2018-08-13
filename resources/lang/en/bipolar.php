@@ -86,6 +86,9 @@ return [
         'billing_to' => 'Billing to',
         'shipping_method_showroom' => 'Pick at showroom',
         'shipping_method_local' => 'Local',
+        'here' => 'here',
+        'unsuscribe_newsletter' => 'If you want to unsuscribe from our list, you can do it',
+        'thankyou_newsletter' => 'Thank your for suscribing to our newsletter',
     ],
     'shipping' => [
         'title' => 'Shipping',
