@@ -4,12 +4,12 @@
   @include('web.partials.photoswipe', ['product' => $product])
     <div class="breadcrumb">
       <div class="breadcrumb-content container">
-        <i class="fa fa-home"></i> &raquo; <a href="#">Shop</a> &raquo; {{ $product->name }}
+        <i class="fa fa-home"></i> &raquo; <a href="{{ route('shop') }}">Shop</a> &raquo; {{ $product->name }}
       </div>
     </div>
     <div class="breadcrumb-without-padding visible-sm-block">
       <div class="breadcrumb-content container">
-        <i class="fa fa-home"></i> &raquo; <a href="#">Shop</a> &raquo; {{ $product->name }}
+        <i class="fa fa-home"></i> &raquo; <a href="{{ route('shop') }}">Shop</a> &raquo; {{ $product->name }}
       </div>
     </div>
     @includeWhen(\Session::has('success_add_product'), 'web.partials.success', ['product' => \Session::get('success_add_product')])
