@@ -4,12 +4,12 @@
   @include('web.partials.photoswipe', ['product' => $product])
     <div class="breadcrumb">
       <div class="breadcrumb-content container">
-        <i class="fa fa-home"></i> &raquo; <a href="#">Shop</a> &raquo; {{ $product->name }}
+        <i class="fa fa-home"></i> &raquo; <a href="{{ route('shop') }}">Shop</a> &raquo; {{ $product->name }}
       </div>
     </div>
     <div class="breadcrumb-without-padding visible-sm-block">
       <div class="breadcrumb-content container">
-        <i class="fa fa-home"></i> &raquo; <a href="#">Shop</a> &raquo; {{ $product->name }}
+        <i class="fa fa-home"></i> &raquo; <a href="{{ route('shop') }}">Shop</a> &raquo; {{ $product->name }}
       </div>
     </div>
     @includeWhen(\Session::has('success_add_product'), 'web.partials.success', ['product' => \Session::get('success_add_product')])
@@ -60,11 +60,11 @@
             <div class="bipolar-alert-message" style="display: none">
               <i class="fa fa-times-circle-o"></i>
               <div class="success-content">
-                <span>Necesita seleccionar una talla para continuar</span>
+                <span>{{ __('bipolar.shop.select_size') }}</span>
               </div>
             </div>
             <div class="product-sizes">
-              <h6 class="text-uppercase">Selecciona tu talla</h6>
+              <h6 class="text-uppercase">{{ __('bipolar.shop.select_your_size') }}</h6>
               @foreach($stockWithSizes as $stock)
                 @if($stock['quantity'] === 0)
                   <button type="button" class="product-size-disabled">
@@ -81,7 +81,7 @@
                 @endif
               @endforeach
               <button type="button" class="btn btn-default btn-sizes-modal" data-toggle="modal" data-target="#testingModal">
-                Ver guía de tallas
+                {{ __('bipolar.shop.see_size_guide') }}
               </button>
               {!! Form::hidden('size', null, ['id' => 'size-selected']) !!}
             </div>
@@ -90,7 +90,7 @@
             <div class="col-sm-6 col-md-12">
               {!! Form::select('quantity', $quantities, null, ['class' => 'quantity-select']) !!}
               <button class="btn btn-add-cart">
-                Añadir al carrito
+                {{ __('bipolar.shop.add_to_cart') }}
               </button>
               <div class="bipolar-button-description-container">
                 <a class="wishlist-add" data-product-id="{{ $product->hash_id }}">
@@ -106,22 +106,22 @@
       <div class="row product-below-content">
         <div class="col-sm-6 col-md-6">
           <div class="bipolar-action-button-container">
-            <span class="text-uppercase">Compártelo:</span>
+            <span class="text-uppercase">{{ __('bipolar.shop.share') }}:</span>
             <a href="#" onclick="window.open('https://www.facebook.com/sharer.php?s=100&p[url]={{ urlencode(URL::current()) }}','sharer', 'toolbar=0,status=0,width=620,height=280');"><i class="fa fa-facebook"></i></a>
             <a href="mailto:bipolar@bipolar.com.pe"><i class="fa fa-envelope-o"></i></a>
           </div>
         </div>
         <div class="col-sm-6 col-md-6">
-          <span class="text-uppercase">Cambia de moneda</span>
+          <span class="text-uppercase">{{ __('bipolar.shop.change_your_currency') }}</span>
           {!! Form::select('currency_change',
-              ['PEN' => 'SOLES PERUANOS (PEN)', 'USD' => 'DÓLAR AMERICANO (USD)'],
+              ['PEN' => mb_strtoupper(__('bipolar.shop.pen_currency')), 'USD' => mb_strtoupper(__('bipolar.shop.usd_currency'))],
               Session::get('BIPOLAR_CURRENCY'),
               ['id' => 'product-currency-select', 'class' => 'product-currency-select']) !!}
         </div>
       </div>
       @if($product->recommendeds->count() > 0)
         <div class="recommended-products">
-          <h3>Te recomendamos</h3>
+          <h3>{{ __('bipolar.shop.recommended') }}</h3>
           <div class="row">
             @foreach($product->recommendeds as $recommended)
               <div class="col-xs-6 col-md-2 recommended">

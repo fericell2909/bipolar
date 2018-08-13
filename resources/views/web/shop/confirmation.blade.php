@@ -122,7 +122,7 @@
           <img style="margin-right: 10px" src="{{ optional(optional($buyDetail->product->photos)->first())->url }}" width="50" alt="{{ $buyDetail->product->name }}">
           <span>{{ $buyDetail->product->name }} x {{ $buyDetail->quantity }}</span>
           @if($buyDetail->stock)
-            <span>{{ __('bipolar.confirmation.shipping') }}: {{ $buyDetail->stock->size->name }}</span>
+            <span>{{ __('bipolar.confirmation.size') }}: {{ $buyDetail->stock->size->name }}</span>
           @endif
         </td>
         <td><span class="price">{{ $buyDetail->total_currency }}</span></td>
