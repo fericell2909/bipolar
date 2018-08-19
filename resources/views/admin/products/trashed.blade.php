@@ -7,16 +7,18 @@
   </div>
   <div class="card">
     <div class="card-body">
+      <div class="d-flex justify-content-center">
+        {!! $products->links() !!}
+      </div>
       <div class="table-responsive">
         <table class="table table-hover color-table dark-table">
           <thead>
             <tr>
               <th>#</th>
               <th>Nombre</th>
-              <th>Precio</th>
+              <th>S/ | $</th>
               <th>Estado</th>
-              <th>Envío gratis</th>
-              <th>Destacado</th>
+              <th>Descartado</th>
               <th><i class="fas fa-fw fa-cog"></i></th>
             </tr>
           </thead>
@@ -24,16 +26,22 @@
             @forelse($products as $product)
               <?php /** @var \App\Models\Product $product */  ?>
               <tr>
-                <td>{{ $product->id }}</td>
-                <td>{{ $product->name }}</td>
-                <td>{{ $product->price }}</td>
-                <td>{{ optional($product->state)->name }}</td>
-                <td>{!! $product->free_shipping ? "<i class='fas fa-fw fa-check'></i>" : "" !!}</td>
-                <td>{!! $product->is_salient !== null ? "<i class='fas fa-fw fa-check'></i>" : "" !!}</td>
-                <td>
-                  <button class="btn btn-rounded btn-dark btn-sm" data-toggle="modal" data-target="#destroyProduct_{{ $product->id }}">
-                    <i class="fas fa-fw fa-times"></i> Destruir
-                  </button>
+                <td class="align-middle">{{ $product->id }}</td>
+                <td class="align-middle">{{ $product->name }} <span class="text-primary">({{ $product->colors->implode('name', ', ') }})</span></td>
+                <td class="align-middle">{{ $product->price }} | {{ $product->price_dolar }}</td>
+                <td class="align-middle">
+                  <span class="badge badge-pill badge-{{ $product->state->color }} text-white">{{ $product->state->name }}</span>
+                </td>
+                <td class="align-middle">{{ $product->deleted_at->toDayDateTimeString() }}</td>
+                <td class="align-middle">
+                  <div class="button-group">
+                    <a href="{{ route('products.restore', $product->hash_id) }}" class="btn btn-rounded btn-dark btn-sm">
+                      <i class="fas fa-fw fa-undo-alt"></i> Restaurar
+                    </a>
+                    <button class="btn btn-rounded btn-outline-danger btn-sm" data-toggle="modal" data-target="#destroyProduct_{{ $product->id }}">
+                      <i class="fas fa-fw fa-times"></i> Destruir
+                    </button>
+                  </div>
                 </td>
               </tr>
               <div class="modal fade" id="destroyProduct_{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -69,6 +77,9 @@
             @endforelse
           </tbody>
         </table>
+      </div>
+      <div class="d-flex justify-content-center">
+        {!! $products->links() !!}
       </div>
     </div>
   </div>

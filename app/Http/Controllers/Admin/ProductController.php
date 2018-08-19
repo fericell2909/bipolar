@@ -72,7 +72,7 @@ class ProductController extends Controller
 
     public function trashed()
     {
-        $products = Product::onlyTrashed()->get();
+        $products = Product::onlyTrashed()->orderByDesc('id')->with(['state', 'colors'])->paginate(20);
 
         return view('admin.products.trashed', compact('products'));
     }
@@ -100,6 +100,16 @@ class ProductController extends Controller
         flash()->success("Se eliminaron todos los datos del producto correctamente");
 
         return redirect()->back();
+    }
+
+    public function restore($productHashId)
+    {
+        $product = Product::findByHashTrashed($productHashId);
+        $product->restore();
+
+        flash()->success("Produto {$product->name} (ID: #{$product->id}) restaurado");
+
+        return back();
     }
 
     public function order()

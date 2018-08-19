@@ -32,6 +32,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('{slug}/recommended', 'Admin\ProductController@recommended')->name('products.recommended');
         Route::get('trashed', 'Admin\ProductController@trashed')->name('products.trashed');
         Route::post('{productHashId}/hard-delete', 'Admin\ProductController@deletehard')->name('products.harddelete');
+        Route::get('{productHashId}/restore', 'Admin\ProductController@restore')->name('products.restore');
         Route::get('{product}/stocks', 'Admin\ProductController@stock')->name('products.stock');
         Route::post('stocks/{stock}/quantity', 'Admin\ProductController@stockSave')->name('products.stock.save');
         Route::get('{slug}/discount', 'Admin\ProductController@discount')->name('products.discount');
