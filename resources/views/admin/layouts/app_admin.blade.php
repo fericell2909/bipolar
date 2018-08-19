@@ -67,9 +67,10 @@
                   <span class="hidden-md-down">{{ Auth::user()->name }} &nbsp;<i class="fas fa-angle-down"></i></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right animated flipInY">
-                  <a href="{{ route('admin.dashboard') }}" class="dropdown-item"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                  <a href="{{ route('admin.dashboard') }}" class="dropdown-item"><i class="fas fa-fw fa-tachometer-alt"></i> Dashboard</a>
+                  <a href="{{ route('settings.passwords') }}" class="dropdown-item"><i class="fas fa-fw fa-lock"></i> Seguridad</a>
                   <div class="dropdown-divider"></div>
-                  <a href="javascript:void(0)" onclick="document.getElementById('logout-form').submit()" class="dropdown-item"><i class="fas fa-power-off"></i> Cerrar sesión</a>
+                  <a href="javascript:void(0)" onclick="document.getElementById('logout-form').submit()" class="dropdown-item"><i class="fas fa-fw fa-power-off"></i> Cerrar sesión</a>
                   {!! Form::open(['id' => 'logout-form', 'url' => '/logout', 'method' => 'post', 'style' => 'display:none']) !!}
                   {!! Form::close() !!}
                 </div>

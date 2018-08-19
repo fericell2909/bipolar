@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AdminChangedPassword;
+use App\Models\Manager;
 use App\Models\Size;
 use App\Models\Settings;
 use Illuminate\Http\Request;
@@ -91,5 +93,31 @@ class SettingsController extends Controller
         flash()->success('Eliminado correctamente');
 
         return response()->json(['message' => 'Eliminado correctamente']);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $this->validate($request, [
+            'old_password'              => 'required',
+            'new_password'              => 'required|confirmed',
+            'new_password_confirmation' => 'required',
+        ]);
+
+        /** @var Manager $user */
+        $user = \Auth::guard('admin')->user();
+
+        if (!\Hash::check($request->input('old_password'), $user->password)) {
+            flash()->error('Tu contraseña actual no es la correcta');
+            return back();
+        }
+
+        $user->password = bcrypt($request->input('new_password'));
+        $user->save();
+
+        flash()->success('Se ha cambiado la contraseña y se ha enviado un correo de confirmación');
+
+        \Mail::to($user)->send(new AdminChangedPassword($user->email, now()->toDayDateTimeString()));
+
+        return redirect()->route('settings.passwords');
     }
 }
