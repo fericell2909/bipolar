@@ -193,6 +193,7 @@
                 </a>
                 <ul aria-expanded="false" class="collapse">
                   <li><a href="{{ route('settings.general') }}">General</a></li>
+                  <li><a href="{{ route('backgrounds.all') }}">Fondos</a></li>
                   <li><a href="{{ route('settings.sizes') }}">Tallas</a></li>
                   <li><a href="{{ route('settings.colors') }}">Colores</a></li>
                   <li><a href="{{ route('settings.types') }}">Tipos</a></li>

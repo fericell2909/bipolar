@@ -2,8 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {!! SEO::generate(true) !!}
     <link rel="stylesheet" href="{{ mix('css/app-web-styles.css') }}">
@@ -43,7 +42,7 @@
       </section>
       <div class="row no-gutters">
         @foreach($homePosts as $homePost)
-              <?php /** @var \App\Models\HomePost $homePost */ ?>
+          <?php /** @var \App\Models\HomePost $homePost */ ?>
           @if($homePost->photos->count() > 0)
             <a href="{{ $homePost->redirection_link }}" class="col-sm-6 col-md-3 overlay-container">
               <img src="{{ $homePost->photos->first()->url }}" alt="{{ $homePost->name }}" class="img-responsive full-image">
@@ -61,6 +60,7 @@
           @endif
         @endforeach
       </div>
+      <?php /** @var \App\Models\Settings $settings */ ?>
       @if($settings)
         <div class="bipolar-counts-container" style="background-image: url({{ asset('storage/bipolar-images/assets/jeringas_close.jpg') }});">
           <div class="container">
@@ -119,7 +119,7 @@
           </div>
         </div>
       </div>
-      @include('web.partials.newsletter')
+      @include('web.partials.newsletter', ['settings' => $settings, 'showBackground' => true])
     </div>
     @include('web.partials.footer')
     @include('web.partials.googletagmanager')
