@@ -6,27 +6,25 @@
     <div class="col-md-12">
       @include('admin.partials.product_header_steps', ['active' => 3])
     </div>
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-body">
-          <div id="sortable-items" class="list-group">
-            @foreach($product->photos as $photo)
-              <div class="list-group-item" data-id="{{ $photo->hash_id }}">
-                <img class="img-thumbnail mr-3" width="200" src="{{ $photo->url }}" alt="{{ $product->name }}">
-                <button class="btn btn-danger btn-rounded photo-delete" data-photo-id="{{ $photo->hash_id }}">
-                  <i class="fas fa-fw fa-times"></i> Eliminar
-                </button>
-              </div>
-            @endforeach
+  </div>
+  <div class="row" id="sortable-items">
+    @foreach($product->photos as $photo)
+      <div class="col-4 col-md-1" data-id="{{ $photo->hash_id }}">
+        <img src="{{ $photo->url  }}" alt="" class="card-img-top">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">{{ $product->name }}</h4>
+            <button class="btn btn-sm btn-outline-danger btn-rounded photo-delete" data-photo-id="{{ $photo->hash_id }}">
+              <i class="fas fa-fw fa-times"></i> Eliminar
+            </button>
           </div>
-          <hr>
-          <p class="text-center">
-            <a href="{{ route('products.recommended', $product->slug) }}" class="btn btn-rounded btn-dark">
-              Seleccionar recomendados
-            </a>
-          </p>
         </div>
       </div>
-    </div>
+    @endforeach
   </div>
+  <p class="text-center">
+    <a href="{{ route('products.recommended', $product->slug) }}" class="btn btn-rounded btn-dark">
+      Continuar a recomendados &raquo;
+    </a>
+  </p>
 @endsection
