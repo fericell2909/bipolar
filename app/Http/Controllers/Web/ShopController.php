@@ -132,6 +132,16 @@ class ShopController extends Controller
                 return $products;
             });
 
+        if ($request->anyFilled(['search', 'sizes', 'subtypes', 'orderBy']) && $products->count() > 0) {
+            /** @var Product $seoProduct */
+            $seoProduct = $products->first();
+            \SEO::twitter()->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'));
+            \SEO::opengraph()->setType('article')->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024, 'height' => 680]);
+        } else {
+            \SEO::twitter()->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'));
+            \SEO::opengraph()->setType('article')->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024, 'height' => 680]);
+        }
+
         $products = $this->getPaginatedProducts($products, LengthAwarePaginator::resolveCurrentPage(), $request->fullUrl());
 
         return view('web.shop.shop', compact(
