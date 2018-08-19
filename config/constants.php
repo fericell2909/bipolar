@@ -23,5 +23,5 @@ return [
     // Shipping type
     'SHIPPING_SHOWROOM_PICKUP_ID' => 2,
     // URL's
-    'SEO_IMAGE_DEFAULT_URL'       => 'https://www.bipolar.com.pe/images/logo-linea.png',
+    'SEO_IMAGE_DEFAULT_URL'       => 'https://www.bipolar.com.pe/storage/bipolar-images/assets/bipolar-gold-resized.jpg',
 ];
