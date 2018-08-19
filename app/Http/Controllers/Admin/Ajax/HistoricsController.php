@@ -16,9 +16,9 @@ class HistoricsController extends Controller
 
         $historics = Historic::all();
 
-        foreach ($newOrder as $orderKey => $historicId) {
-            $historic = $historics->filter(function ($historic) use ($historicId) {
-                return $historic->id == $historicId;
+        foreach ($newOrder as $orderKey => $historicHashId) {
+            $historic = $historics->filter(function ($historic) use ($historicHashId) {
+                return $historic->hash_id === $historicHashId;
             })->first();
             $historic->order = $orderKey;
             $historic->save();
