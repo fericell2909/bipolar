@@ -1,5 +1,6 @@
 @extends('admin.layouts.app_admin')
 @section('title', "Editar zona de envío {$shipping->name}")
+<?php /** @var \App\Models\Shipping $shipping */ ?>
 @section('content')
   <div class="row">
     <div class="col-md">
@@ -22,15 +23,19 @@
     <div class="card-header">Nombre</div>
     <div class="card-body">
       <div class="form-row">
-        <div class="col-md-12 form-group">
-          <label>Título</label>
-          {!! Form::text('title', $shipping->title, ['class' => 'form-control', 'required' => true]) !!}
+        <div class="col-md-6 form-group">
+          <label>Título (ESP)</label>
+          {!! Form::text('title_spa', $shipping->getTranslation('title', 'es'), ['class' => 'form-control', 'required' => true]) !!}
         </div>
-        <div class="col-md-12 form-group">
-          {!! Form::checkbox('allow_showroom', 1, boolval($shipping->allow_showroom)) !!}
-          Permitir recojo en showroom junto a este envío
+        <div class="col-md-6 form-group">
+          <label>Título (ENG)</label>
+          {!! Form::text('title_eng', $shipping->getTranslation('title', 'en'), ['class' => 'form-control', 'required' => true]) !!}
         </div>
       </div>
+    </div>
+    <div class="card-footer text-muted">
+      {!! Form::checkbox('allow_showroom', 1, boolval($shipping->allow_showroom)) !!}
+      Permitir recojo en showroom junto a este envío
     </div>
   </div>
   <div class="card">

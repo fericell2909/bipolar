@@ -50,6 +50,10 @@ class ShippingController extends Controller
     {
         $shipping = new Shipping;
         $shipping->title = $request->input('title');
+        $shipping->setTranslations('title', [
+            'en' => $request->input('title_eng'),
+            'es' => $request->input('title_spa'),
+        ]);
         $shipping->active = false;
         $shipping->save();
 
@@ -150,7 +154,10 @@ class ShippingController extends Controller
     public function update(ShippingNewRequest $request, $shippingId)
     {
         $shipping = Shipping::findOrFail($shippingId);
-        $shipping->title = $request->input('title');
+        $shipping->setTranslations('title', [
+            'en' => $request->input('title_eng'),
+            'es' => $request->input('title_spa'),
+        ]);
         $shipping->save();
 
         if ($request->filled('all_countries')) {

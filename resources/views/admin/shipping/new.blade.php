@@ -22,15 +22,19 @@
     <div class="card-header">Nueva zona de envío</div>
     <div class="card-body">
       <div class="form-row">
-        <div class="col-md-12 form-group">
-          <label>Título</label>
-          {!! Form::text('title', null, ['class' => 'form-control', 'required' => true]) !!}
+        <div class="col-md-6 form-group">
+          <label>Título (ESP)</label>
+          {!! Form::text('title_spa', null, ['class' => 'form-control', 'required' => true]) !!}
         </div>
-        <div class="col-md-12 form-group">
-          {!! Form::checkbox('allow_showroom', 1) !!}
-          Permitir recojo en showroom junto a este envío
+        <div class="col-md-6 form-group">
+          <label>Título (ENG)</label>
+          {!! Form::text('title_eng', null, ['class' => 'form-control', 'required' => true]) !!}
         </div>
       </div>
+    </div>
+    <div class="card-footer text-muted">
+      {!! Form::checkbox('allow_showroom', 1) !!}
+      Permitir recojo en showroom junto a este envío
     </div>
   </div>
   <div class="card">
