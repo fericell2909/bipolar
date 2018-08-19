@@ -129,4 +129,9 @@ Route::middleware('auth:admin')->group(function () {
         Route::view('password', 'admin.settings.password')->name('settings.passwords');
         Route::post('password', 'Admin\SettingsController@changePassword');
     });
+
+    Route::prefix('backgrounds')->name('backgrounds.')->group(function () {
+        Route::get('all', 'Admin\BackgroundController@collection')->name('all');
+        Route::post('suscribe', 'Admin\BackgroundController@suscribe')->name('suscribe');
+    });
 });

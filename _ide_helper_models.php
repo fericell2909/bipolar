@@ -272,6 +272,8 @@ namespace App\Models{
  * @property int $facebook_counts
  * @property int $instagram_counts
  * @property int $current_buy
+ * @property string|null $background_suscribe
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBackgroundSuscribe($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBipolarCounts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereCurrentBuy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDolarChange($value)
