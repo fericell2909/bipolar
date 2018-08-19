@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.28 on 2018-08-09 19:58:14.
+ * Generated for Laravel 5.6.28 on 2018-08-19 03:47:59.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -15807,6 +15807,85 @@ namespace Artesaos\SEOTools\Facades {
  
 }
 
+namespace Torann\GeoIP\Facades { 
+
+    class GeoIP {
+        
+        /**
+         * Get the location from the provided IP.
+         *
+         * @param string $ip
+         * @return \Torann\GeoIP\Location 
+         * @static 
+         */ 
+        public static function getLocation($ip = null)
+        {
+            return \Torann\GeoIP\GeoIP::getLocation($ip);
+        }
+        
+        /**
+         * Get the currency code from ISO.
+         *
+         * @param string $iso
+         * @return string 
+         * @static 
+         */ 
+        public static function getCurrency($iso)
+        {
+            return \Torann\GeoIP\GeoIP::getCurrency($iso);
+        }
+        
+        /**
+         * Get service instance.
+         *
+         * @return \Torann\GeoIP\Contracts\ServiceInterface 
+         * @throws Exception
+         * @static 
+         */ 
+        public static function getService()
+        {
+            return \Torann\GeoIP\GeoIP::getService();
+        }
+        
+        /**
+         * Get cache instance.
+         *
+         * @return \Torann\GeoIP\Cache 
+         * @static 
+         */ 
+        public static function getCache()
+        {
+            return \Torann\GeoIP\GeoIP::getCache();
+        }
+        
+        /**
+         * Get the client IP address.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getClientIP()
+        {
+            return \Torann\GeoIP\GeoIP::getClientIP();
+        }
+        
+        /**
+         * Get configuration value.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return mixed 
+         * @static 
+         */ 
+        public static function config($key, $default = null)
+        {
+            return \Torann\GeoIP\GeoIP::config($key, $default);
+        }
+         
+    }
+ 
+}
+
 namespace Laracasts\Flash { 
 
     class Flash {
@@ -16074,85 +16153,6 @@ namespace Spatie\Newsletter {
         public static function lastActionSucceeded()
         {
             return \Spatie\Newsletter\Newsletter::lastActionSucceeded();
-        }
-         
-    }
- 
-}
-
-namespace Torann\GeoIP\Facades { 
-
-    class GeoIP {
-        
-        /**
-         * Get the location from the provided IP.
-         *
-         * @param string $ip
-         * @return \Torann\GeoIP\Location 
-         * @static 
-         */ 
-        public static function getLocation($ip = null)
-        {
-            return \Torann\GeoIP\GeoIP::getLocation($ip);
-        }
-        
-        /**
-         * Get the currency code from ISO.
-         *
-         * @param string $iso
-         * @return string 
-         * @static 
-         */ 
-        public static function getCurrency($iso)
-        {
-            return \Torann\GeoIP\GeoIP::getCurrency($iso);
-        }
-        
-        /**
-         * Get service instance.
-         *
-         * @return \Torann\GeoIP\Contracts\ServiceInterface 
-         * @throws Exception
-         * @static 
-         */ 
-        public static function getService()
-        {
-            return \Torann\GeoIP\GeoIP::getService();
-        }
-        
-        /**
-         * Get cache instance.
-         *
-         * @return \Torann\GeoIP\Cache 
-         * @static 
-         */ 
-        public static function getCache()
-        {
-            return \Torann\GeoIP\GeoIP::getCache();
-        }
-        
-        /**
-         * Get the client IP address.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getClientIP()
-        {
-            return \Torann\GeoIP\GeoIP::getClientIP();
-        }
-        
-        /**
-         * Get configuration value.
-         *
-         * @param string $key
-         * @param mixed $default
-         * @return mixed 
-         * @static 
-         */ 
-        public static function config($key, $default = null)
-        {
-            return \Torann\GeoIP\GeoIP::config($key, $default);
         }
          
     }
@@ -18686,11 +18686,11 @@ namespace  {
 
     class SEO extends \Artesaos\SEOTools\Facades\SEOTools {}
 
+    class GeoIP extends \Torann\GeoIP\Facades\GeoIP {}
+
     class Flash extends \Laracasts\Flash\Flash {}
 
     class Newsletter extends \Spatie\Newsletter\NewsletterFacade {}
-
-    class GeoIP extends \Torann\GeoIP\Facades\GeoIP {}
 
     class Iseed extends \Orangehill\Iseed\Facades\Iseed {}
  
