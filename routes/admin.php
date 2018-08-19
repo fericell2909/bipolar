@@ -124,5 +124,8 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('shipping/{shippingId}/prices', 'Admin\ShippingController@editPriceShipping')->name('settings.shipping.edit.price');
         Route::post('shipping/{shippingId}/prices', 'Admin\ShippingController@updatePriceShipping');
         Route::get('shipping/{shippingId}/activate/{indicator}', 'Admin\ShippingController@activate')->name('settings.shipping.activate');
+        // Passwords
+        Route::view('password', 'admin.settings.password')->name('settings.passwords');
+        Route::post('password', 'Admin\SettingsController@changePassword');
     });
 });
