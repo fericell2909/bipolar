@@ -477,7 +477,7 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
- * @property string $title
+ * @property array $title
  * @property int $allow_showroom
  * @property int $active
  * @property float|null $g200

@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 /** @mixin \Eloquent */
 class Shipping extends Model
 {
+    use HasTranslations;
     public $timestamps = false;
+    protected $translatable = ['title'];
 
     public function buys()
     {

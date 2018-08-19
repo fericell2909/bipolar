@@ -24,7 +24,8 @@ class ShippingNewRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'             => 'required|between:1,255',
+            'title_spa'         => 'required|between:1,255',
+            'title_eng'         => 'required|between:1,255',
             'include_countries' => 'nullable|array',
             'include_states'    => 'nullable|array',
             'exclude_countries' => 'nullable|array',
