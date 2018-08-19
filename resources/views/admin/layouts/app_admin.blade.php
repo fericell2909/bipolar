@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="caffeinated" content="false">
     <!-- Favicon icon -->
     <title>@yield('title') - Bipolar Administrador</title>
     <!-- Custom CSS -->

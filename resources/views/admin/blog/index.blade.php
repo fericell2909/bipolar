@@ -17,6 +17,7 @@
         </thead>
         <tbody>
           @foreach($posts as $post)
+            <?php /** @var \App\Models\Post $post */ ?>
             <tr>
               <td class="align-middle">{{ $post->id }}</td>
               <td class="align-middle">{{ str_limit($post->getTranslation('title', 'es'), 60) }}</td>

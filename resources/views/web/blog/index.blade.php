@@ -14,6 +14,7 @@
       <section class="row clearfix">
         <section class="col-md-9 posts">
           @foreach($posts as $post)
+            <?php /** @var \App\Models\Post $post */ ?>
             <article>
               <header><a href="#">{{ $post->title }}</a></header>
               <nav class="meta">
@@ -29,7 +30,10 @@
                 </div>
               </section>
               <footer>
-                <a class="btn btn-dark-rounded">{{ __('bipolar.blog.read_more') }}</a>
+                {{ str_limit(strip_tags($post->content), 50) }}
+                @if (strlen(strip_tags($post->content)) > 50)
+                  <a class="btn btn-dark-rounded">{{ __('bipolar.blog.read_more') }}</a>
+                @endif
               </footer>
             </article>
           @endforeach
