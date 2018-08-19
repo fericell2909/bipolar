@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -12,117 +12,117 @@
     <link rel="icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
     {{-- Script de Font Awesome --}}
     <script src="https://use.fontawesome.com/d71cf672b2.js"></script>
-</head>
-<body class="no-top">
+  </head>
+  <body class="no-top">
     <div class="bipolar-wrapper">
-            @include('web.partials.main-bar', ['background' => false])
-            @include('web.partials.mobile-bar')
-            <div>
-                <div class="carousel slide carousel-home" data-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
-                        @foreach($banners as $banner)
-                            <div class="item {{ $loop->first ? 'active' : null }}">
-                                <img style="width: 100%" src="{{ $banner->url }}" alt="Bipolar">
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            @include('flash::message')
-            <section class="header-worldwide-shipping">
-                {{ __('bipolar.home.worldwide_shipping') }}
-            </section>
-            <div class="row no-gutters">
-                @foreach($homePosts as $homePost)
-                    <?php /** @var \App\Models\HomePost $homePost */ ?>
-                    @if($homePost->photos->count() > 0)
-                        <a href="{{ $homePost->redirection_link }}" class="col-sm-6 col-md-3 overlay-container">
-                            <img src="{{ $homePost->photos->first()->url }}" alt="{{ $homePost->name }}" class="img-responsive full-image">
-                            <div class="overlay-image">
-                                <div class="overlay-text">
-                                    {{ $homePost->name }}
-                                </div>
-                                @if($homePost->post_type)
-                                <div class="overlay-text-description">
-                                    {{ $homePost->post_type->name }}
-                                </div>
-                                @endif
-                            </div>
-                        </a>
-                    @endif
-                @endforeach
-            </div>
-            @if($settings)
-            <div class="bipolar-counts-container" style="background-image: url({{ asset('storage/bipolar-images/assets/jeringas_close.jpg') }});">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 bipolar-counts"> 
-                            <div id="bipolar-first-counter" class="bipolar-counts-title" data-number="{{ $settings->bipolar_counts }}"></div>
-                            <div class="bipolar-counts-subtitle">Bipolares</div>
-                        </div>
-                        <div class="col-md-4 bipolar-counts">
-                            <div id="bipolar-instagram-counter" class="bipolar-counts-title" data-number="{{ $settings->instagram_counts }}"></div>
-                            <div class="bipolar-counts-subtitle">Instagram fans</div>
-                        </div>
-                        <div class="col-md-4 bipolar-counts">
-                        <div id="bipolar-second-counter" class="bipolar-counts-title" data-number="{{ $settings->facebook_counts }}"></div>
-                            <div class="bipolar-counts-subtitle">Facebook Fans</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endif
-            <div class="bipolar-blog-preview">
-              <div class="first-zone">
-                <h2>Blog</h2>
-                <h4>More bipolar</h4>
+      @include('web.partials.main-bar', ['background' => false])
+      @include('web.partials.mobile-bar')
+      <div>
+        <div class="carousel slide carousel-home" data-ride="carousel">
+          <div class="carousel-inner" role="listbox">
+            @foreach($banners as $banner)
+              <div class="item {{ $loop->first ? 'active' : null }}">
+                <img style="width: 100%" src="{{ $banner->url }}" alt="Bipolar">
               </div>
-              <div class="second-zone">
-                <div class="container">
-                  @foreach($posts as $post)
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                      <div class="row post">
-                        <div class="col-md-6">
-                          @if($post->photos->count() > 0)
-                            <div class="owl-carousel-blog owl-carousel owl-theme">
-                              @foreach($post->photos as $photo)
-                                <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $post->title }}">
-                              @endforeach
-                            </div>
-                          @else
-                            <img class="img-responsive" src="https://placehold.it/300x100" alt="Title">
-                          @endif
-                        </div>
-                        <div class="col-md-6 content">
-                          <a href="{{ route('landings.blog') }}" class="title-link">{{ $post->title }}</a>
-                          @if($post->tags)
-                            <div class="tags">
-                              @foreach($post->tags as $tag)
-                                <a href="#">{{ $tag->name }}</a>
-                              @endforeach
-                            </div>
-                          @endif
-                        <a href="{{ route('landings.blog') }}">{{ __('bipolar.blog.read_more') }}</a>                            
-                        </div>
+            @endforeach
+          </div>
+        </div>
+      </div>
+      @if ($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+      @include('flash::message')
+      <section class="header-worldwide-shipping">
+        {{ __('bipolar.home.worldwide_shipping') }}
+      </section>
+      <div class="row no-gutters">
+        @foreach($homePosts as $homePost)
+              <?php /** @var \App\Models\HomePost $homePost */ ?>
+          @if($homePost->photos->count() > 0)
+            <a href="{{ $homePost->redirection_link }}" class="col-sm-6 col-md-3 overlay-container">
+              <img src="{{ $homePost->photos->first()->url }}" alt="{{ $homePost->name }}" class="img-responsive full-image">
+              <div class="overlay-image">
+                <div class="overlay-text">
+                  {{ $homePost->name }}
+                </div>
+                @if($homePost->post_type)
+                  <div class="overlay-text-description">
+                    {{ $homePost->post_type->name }}
+                  </div>
+                @endif
+              </div>
+            </a>
+          @endif
+        @endforeach
+      </div>
+      @if($settings)
+        <div class="bipolar-counts-container" style="background-image: url({{ asset('storage/bipolar-images/assets/jeringas_close.jpg') }});">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4 bipolar-counts">
+                <div id="bipolar-first-counter" class="bipolar-counts-title" data-number="{{ $settings->bipolar_counts }}"></div>
+                <div class="bipolar-counts-subtitle">Bipolares</div>
+              </div>
+              <div class="col-md-4 bipolar-counts">
+                <div id="bipolar-instagram-counter" class="bipolar-counts-title" data-number="{{ $settings->instagram_counts }}"></div>
+                <div class="bipolar-counts-subtitle">Instagram fans</div>
+              </div>
+              <div class="col-md-4 bipolar-counts">
+                <div id="bipolar-second-counter" class="bipolar-counts-title" data-number="{{ $settings->facebook_counts }}"></div>
+                <div class="bipolar-counts-subtitle">Facebook Fans</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      @endif
+      <div class="bipolar-blog-preview">
+        <div class="first-zone">
+          <h2>Blog</h2>
+          <h4>More bipolar</h4>
+        </div>
+        <div class="second-zone">
+          <div class="container">
+            @foreach($posts as $post)
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="row post">
+                  <div class="col-md-6">
+                    @if($post->photos->count() > 0)
+                      <div class="owl-carousel-blog owl-carousel owl-theme">
+                        @foreach($post->photos as $photo)
+                          <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $post->title }}">
+                        @endforeach
                       </div>
-                    </div>
-                  @endforeach
+                    @else
+                      <img class="img-responsive" src="https://placehold.it/300x100" alt="Title">
+                    @endif
+                  </div>
+                  <div class="col-md-6 content">
+                    <a href="{{ route('landings.blog') }}" class="title-link">{{ $post->title }}</a>
+                    @if($post->tags)
+                      <div class="tags">
+                        @foreach($post->tags as $tag)
+                          <a href="#">{{ $tag->name }}</a>
+                        @endforeach
+                      </div>
+                    @endif
+                    <a href="{{ route('landings.blog') }}">{{ __('bipolar.blog.read_more') }}</a>
+                  </div>
                 </div>
               </div>
-            </div>
-            @include('web.partials.newsletter')
+            @endforeach
+          </div>
+        </div>
+      </div>
+      @include('web.partials.newsletter')
     </div>
     @include('web.partials.footer')
     @include('web.partials.googletagmanager')
     <script src="{{ mix('js/app-web-scripts.js') }}"></script>
-</body>
+  </body>
 </html>
