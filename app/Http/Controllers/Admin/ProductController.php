@@ -104,11 +104,7 @@ class ProductController extends Controller
 
     public function order()
     {
-        $products = Product::whereIn('state_id', [
-            config('constants.STATE_ACTIVE_ID'),
-            config('constants.STATE_PREVIEW_ID'),
-        ])
-            ->orderBy('order')
+        $products = Product::orderBy('order')
             ->orderByDesc('id')
             ->with('photos', 'state', 'colors')
             ->get();
