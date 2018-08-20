@@ -103,6 +103,16 @@ class CartBipolar
             return [];
         }
 
+        $this->cart->details->each(function ($detail) {
+            /** @var CartDetail $detail */
+            if (blank($detail->product)) {
+                return $detail->delete();
+            }
+            return;
+        });
+
+        $this->recalculate();
+
         return $this->cart->details;
     }
 
