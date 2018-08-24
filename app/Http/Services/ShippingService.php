@@ -12,10 +12,15 @@ class ShippingService
     public static function calculateShippingByCart(Cart $cart, Collection $addresses, string $currency)
     {
         $shipping = null;
-        $totalWeight = $cart->details->sum(function ($detail) {
-            /** @var \App\Models\CartDetail $detail */
-            return $detail->product->weight ?? 0;
-        });
+        $totalWeight = $cart->details
+            ->reject(function ($detail) {
+                /** @var \App\Models\CartDetail $detail */
+                return boolval($detail->product->free_shipping);
+            })
+            ->sum(function ($detail) {
+                /** @var \App\Models\CartDetail $detail */
+                return $detail->product->weight ?? 0;
+            });
         $shippingFee = 0;
 
         $billingAddresses = $addresses->filter(function ($address) {
