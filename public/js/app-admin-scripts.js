@@ -52403,7 +52403,7 @@ $(function () {
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true
         }).then(function (result) {
-            if (result) {
+            if (result.value) {
                 var photoId = $(_this4).data('photoId');
                 $.ajax({
                     method: 'DELETE',
@@ -52488,6 +52488,7 @@ $(function () {
   createSortable('#sortable-home-posts-photos', '/ajax-admin/home-posts/photos/order');
   createSortable('#sortable-banners', '/ajax-admin/banners/order');
   createSortable('#sortable-historics', '/ajax-admin/historics/order');
+  createSortable('#sortable-post-photos', '/ajax-admin/post/photos/order');
 });
 
 /***/ }),

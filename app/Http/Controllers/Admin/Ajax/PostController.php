@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Ajax;
 
+use App\Models\Photo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
@@ -74,6 +75,7 @@ class PostController extends Controller
 
         $state = State::findByHash($request->input('state'));
 
+        /** @var Post $post */
         $post = Post::findOrFail($postId);
         $post->setTranslations('title', [
             'es' => $request->input('title'),
@@ -103,5 +105,20 @@ class PostController extends Controller
         return response()->json([
             'redirect_url' => route('blog.index'),
         ]);
+    }
+
+    public function order(Request $request)
+    {
+        $this->validate($request, ['newOrder' => 'required|array']);
+
+        $newOrder = $request->input('newOrder');
+
+        foreach ($newOrder as $orderKey => $bannerId) {
+            $banner = Photo::findByHash($bannerId);
+            $banner->order = $orderKey;
+            $banner->save();
+        }
+
+        return response()->json(['success' => true]);
     }
 }

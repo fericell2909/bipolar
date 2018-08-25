@@ -60,6 +60,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('new', 'Admin\BlogController@create')->name('blog.create');
         Route::get('/edit/{postId}', 'Admin\BlogController@edit')->name('blog.edit');
         Route::get('edit/{postId}/photos', 'Admin\BlogController@photos')->name('blog.photos');
+        Route::get('edit/{postId}/photos-order', 'Admin\BlogController@order')->name('blog.photos.order');
     });
 
     Route::prefix('banners')->group(function () {

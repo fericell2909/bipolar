@@ -48,6 +48,7 @@ Route::prefix('post')->group(function () {
     Route::post('{postId}/photos', 'Admin\Ajax\PhotoController@postUpload')->name('post.photo.upload');
     Route::get('{postId}/show', 'Admin\Ajax\PostController@show');
     Route::put('{postId}/update', 'Admin\Ajax\PostController@update');
+    Route::post('photos/order', 'Admin\Ajax\PostController@order');
 });
 
 Route::get('categories', 'Admin\Ajax\CategoryController@index');
