@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Http\Services\BSale;
 use App\Models\Stock;
 use Illuminate\Console\Command;
-use Zttp\Zttp;
 
 class SyncBsaleStocks extends Command
 {

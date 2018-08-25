@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Events\SaleSuccessful;
 use App\Http\Controllers\Controller;
-use App\Http\Services\BSale;
 use App\Http\Services\ShippingService;
-use App\Mail\BuyConfirmation;
 use App\Models\Cart;
 use App\Models\CartDetail;
 use App\Models\Country;
@@ -121,15 +120,7 @@ class CheckoutController extends Controller
 
         // The email only sends in not a production environment
         if (env('APP_ENV') !== 'production') {
-            \Mail::to($request->user())->send(new BuyConfirmation($buy));
-            $response = BSale::documentCreate($buy);
-            if ($response->isSuccess()) {
-                $content = $response->json();
-                $buy->bsale_document_url = array_get($content, 'urlPdf');
-                $buy->save();
-            } else {
-                \Log::warning($response->body());
-            }
+            event(new SaleSuccessful($buy));
         }
 
         return redirect()->route('confirmation', $buy->id);

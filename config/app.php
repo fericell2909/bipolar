@@ -223,11 +223,9 @@ return [
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
         'CartBipolar' => Facades\App\Instances\CartBipolar::class,
-        // other Facades ommited
         'SEOMeta'   => Artesaos\SEOTools\Facades\SEOMeta::class,
         'OpenGraph' => Artesaos\SEOTools\Facades\OpenGraph::class,
         'Twitter'   => Artesaos\SEOTools\Facades\TwitterCard::class,
-        // or
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
         'GeoIP' => Torann\GeoIP\Facades\GeoIP::class,
     ],
