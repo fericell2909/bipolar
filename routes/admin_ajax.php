@@ -70,6 +70,7 @@ Route::post('tags', 'Admin\Ajax\TagsController@store');
 Route::prefix('discount-tasks')->group(function () {
     Route::get('/', 'Admin\Ajax\DiscountController@index');
     Route::post('/', 'Admin\Ajax\DiscountController@store');
+    Route::get('/{discountTaskId}/edit', 'Admin\Ajax\DiscountController@edit');
     Route::post('/{discountTaskId}/execute', 'Admin\Ajax\DiscountController@execute');
     Route::post('/{discountTaskId}/revert', 'Admin\Ajax\DiscountController@revert');
     Route::put('/{discountTaskId}', 'Admin\Ajax\DiscountController@update');

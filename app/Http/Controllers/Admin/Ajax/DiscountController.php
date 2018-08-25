@@ -59,11 +59,6 @@ class DiscountController extends Controller
         $discountUSD = $request->input('discountUSD');
         $beginDiscount = Carbon::createFromFormat('d/m/Y', $request->input('beginDiscount'))->startOfDay();
         $endDiscount = Carbon::createFromFormat('d/m/Y', $request->input('endDiscount'))->endOfDay();
-        $convertToNull = false;
-
-        if (intval($discountPEN) === 0 && intval($discountUSD) === 0) {
-            $convertToNull = true;
-        }
 
         $typesArray = $types->pluck('id')->toArray();
         $subtypesArray = $subtypes->pluck('id')->toArray();
@@ -83,18 +78,62 @@ class DiscountController extends Controller
         return response()->json(['message' => 'Creado']);
     }
 
-    public function update(Request $request, $discountTaskId)
+    public function edit($discountTaskId)
     {
-        /** @var DiscountTask $discount */
-        $discount = DiscountTask::findOrFail($discountTaskId);
-
-        if ($request->filled('available')) {
-            $discount->available = $request->input('available');
-        }
-
-        $discount->save();
+        $discount = DiscountTask::find($discountTaskId);
 
         return new DiscountTaskResource($discount);
+    }
+
+    public function update(Request $request, $discountTaskId)
+    {
+        /** @var DiscountTask $discountTask */
+        $discountTask = DiscountTask::findOrFail($discountTaskId);
+
+        $products = collect([]);
+        $types = collect([]);
+        $subtypes = collect([]);
+        if ($request->filled('products')) {
+            $products = Product::find(array_map(function ($element) {
+                return $element["value"];
+            }, $request->input('products')));
+        }
+        if ($request->filled('types')) {
+            $types = Type::find(array_map(function ($element) {
+                return $element["value"];
+            }, $request->input('types')));
+        }
+        if ($request->filled('subtypes')) {
+            $subtypes = Subtype::find(array_map(function ($element) {
+                return $element["value"];
+            }, $request->input('subtypes')));
+        }
+
+        if ($request->filled('available')) {
+            $discountTask->available = $request->input('available');
+        } else {
+            $discountPEN = $request->input('discountPEN');
+            $discountUSD = $request->input('discountUSD');
+            $beginDiscount = Carbon::createFromFormat('d/m/Y', $request->input('beginDiscount'))->startOfDay();
+            $endDiscount = Carbon::createFromFormat('d/m/Y', $request->input('endDiscount'))->endOfDay();
+
+            $typesArray = $types->pluck('id')->toArray();
+            $subtypesArray = $subtypes->pluck('id')->toArray();
+            $productsArray = $products->pluck('id')->toArray();
+
+            $discountTask->name = $request->input('name');
+            $discountTask->begin = $beginDiscount;
+            $discountTask->end = $endDiscount;
+            $discountTask->discount_pen = $discountPEN;
+            $discountTask->discount_usd = $discountUSD;
+            $discountTask->products = count($productsArray) === 0 ? null : $productsArray;
+            $discountTask->product_types = count($typesArray) === 0 ? null : $typesArray;
+            $discountTask->product_subtypes = count($subtypesArray) === 0 ? null : $subtypesArray;
+        }
+
+        $discountTask->save();
+
+        return new DiscountTaskResource($discountTask);
     }
 
     public function execute($discountTaskId)

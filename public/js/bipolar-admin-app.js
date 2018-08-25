@@ -48141,6 +48141,7 @@ __webpack_require__(480);
 __webpack_require__(497);
 __webpack_require__(498);
 __webpack_require__(511);
+__webpack_require__(551);
 __webpack_require__(522);
 __webpack_require__(523);
 
@@ -105216,7 +105217,7 @@ var MultipleDiscountsNew = function (_React$Component) {
 
       var errorMessage = this.state.showErrorMessage ? __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'alert alert-danger' }, 'Por favor llene todos los campos necesarios') : null;
 
-      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react__["Fragment"], null, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card-body' }, errorMessage, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('form', { onSubmit: this.handleSaveDiscount }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'row' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Porcentaje descuento soles'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { value: this.state.qtyDiscountPEN, onChange: this.handleChangeDiscountPEN, type: 'number', max: 100, className: 'form-control', required: true }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group-append' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'input-group-text' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('i', { className: 'fas fa-fw fa-percent' })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'help-block' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('small', null, '0: Sin descuento, >= 0: Aplica descuento')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Porcentaje descuento d\xF3lares'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { value: this.state.qtyDiscountUSD, onChange: this.handleChangeDiscountUSD, type: 'number', max: 100, className: 'form-control', required: true }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group-append' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'input-group-text' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('i', { className: 'fas fa-fw fa-percent' })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'help-block' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('small', null, '0: Sin descuento, >= 0: Aplica descuento')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Inicio de descuento'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_datetime___default.a, { dateFormat: 'DD/MM/YYYY', onChange: this.handleChangeBeginDate, timeFormat: false, defaultValue: this.state.beginDate }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Fin de descuento'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_datetime___default.a, { dateFormat: 'DD/MM/YYYY', onChange: this.handleChangeEndDate, timeFormat: false, defaultValue: this.state.endDate })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'row' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Nombre descriptivo'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { type: 'text', onChange: this.handleNameChange, value: this.state.name, className: 'form-control', placeholder: 'Ej: Descuentos Cyber Day', maxLength: '250', required: true }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a tipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_select__["a" /* default */], { components: __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default.a, onChange: this.handleUpdateType, options: optionTypes, value: this.state.selectedTypes, isMulti: true, closeMenuOnSelect: false }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a subtipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_select__["a" /* default */], { components: __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default.a, onChange: this.handleUpdateSubtype, options: optionSubtypes, value: this.state.selectedSubtypes, isMulti: true, closeMenuOnSelect: false }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a productos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_select__["a" /* default */], { components: __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default.a, onChange: this.handleUpdateProducts, options: optionProducts, value: this.state.selectedProducts, isMulti: true, closeMenuOnSelect: false })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { type: 'submit', className: 'btn btn-sm btn-dark btn-rounded' }, 'Crear tarea')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'alert alert-info' }, 'Disponible: Los descuentos estar\xE1n disponibles para aplicarse autom\xE1ticamente, Ejecutada: el descuento ya fue activado.'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__MultipleDiscountsList__["a" /* default */], { tasks: this.state.tasks, onUpdateTasks: this.getTasks }));
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react__["Fragment"], null, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card-body' }, errorMessage, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('form', { onSubmit: this.handleSaveDiscount }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'row' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Porcentaje descuento soles'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { value: this.state.qtyDiscountPEN, onChange: this.handleChangeDiscountPEN, type: 'number', max: 100, className: 'form-control', required: true }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group-append' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'input-group-text' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('i', { className: 'fas fa-fw fa-percent' })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'help-block' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('small', null, '0: Sin descuento, >= 0: Aplica descuento')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Porcentaje descuento d\xF3lares'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { value: this.state.qtyDiscountUSD, onChange: this.handleChangeDiscountUSD, type: 'number', max: 100, className: 'form-control', required: true }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group-append' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'input-group-text' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('i', { className: 'fas fa-fw fa-percent' })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'help-block' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('small', null, '0: Sin descuento, >= 0: Aplica descuento')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Inicio de descuento'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_datetime___default.a, { dateFormat: 'DD/MM/YYYY', onChange: this.handleChangeBeginDate, timeFormat: false, defaultValue: this.state.beginDate }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Fin de descuento'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_datetime___default.a, { dateFormat: 'DD/MM/YYYY', onChange: this.handleChangeEndDate, timeFormat: false, defaultValue: this.state.endDate })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'row' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Nombre descriptivo'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { type: 'text', onChange: this.handleNameChange, value: this.state.name, className: 'form-control', placeholder: 'Ej: Descuentos Cyber Day', maxLength: '250', required: true }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a tipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Deshabilitado, l\xEDnea oculta en el c\xF3digo', disabled: true }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a subtipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_select__["a" /* default */], { components: __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default.a, onChange: this.handleUpdateSubtype, options: optionSubtypes, value: this.state.selectedSubtypes, isMulti: true, closeMenuOnSelect: false }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a productos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_select__["a" /* default */], { components: __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default.a, onChange: this.handleUpdateProducts, options: optionProducts, value: this.state.selectedProducts, isMulti: true, closeMenuOnSelect: false })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { type: 'submit', className: 'btn btn-sm btn-dark btn-rounded' }, 'Crear tarea')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'alert alert-info' }, 'Disponible: Los descuentos estar\xE1n disponibles para aplicarse autom\xE1ticamente, Ejecutada: el descuento ya fue activado.'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__MultipleDiscountsList__["a" /* default */], { tasks: this.state.tasks, onUpdateTasks: this.getTasks }));
     }
   }]);
 
@@ -108327,6 +108328,325 @@ if (document.getElementById("bipolar-edit-post")) {
   var postId = window.BipolarPostId;
   var elem = document.getElementById("bipolar-edit-post");
   __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(PostEdit, { postId: postId }), elem);
+}
+
+/***/ }),
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_select__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_moment__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_datetime__ = __webpack_require__(512);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_datetime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react_datetime__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_sweetalert2__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_sweetalert2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_react_datetime_css_react_datetime_css__ = __webpack_require__(519);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_react_datetime_css_react_datetime_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_react_datetime_css_react_datetime_css__);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+
+
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var gen = fn.apply(this, arguments);return new Promise(function (resolve, reject) {
+      function step(key, arg) {
+        try {
+          var info = gen[key](arg);var value = info.value;
+        } catch (error) {
+          reject(error);return;
+        }if (info.done) {
+          resolve(value);
+        } else {
+          return Promise.resolve(value).then(function (value) {
+            step("next", value);
+          }, function (err) {
+            step("throw", err);
+          });
+        }
+      }return step("next");
+    });
+  };
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+
+
+
+
+
+
+
+
+
+
+var MultipleDiscountsEdit = function (_React$Component) {
+  _inherits(MultipleDiscountsEdit, _React$Component);
+
+  function MultipleDiscountsEdit() {
+    var _ref,
+        _this2 = this;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, MultipleDiscountsEdit);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MultipleDiscountsEdit.__proto__ || Object.getPrototypeOf(MultipleDiscountsEdit)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      showErrorMessage: false,
+      // data from ajax
+      productsCopy: [],
+      products: [],
+      subtypes: [],
+      types: [],
+      // selected from selects
+      selectedSubtypes: [],
+      selectedTypes: [],
+      selectedProducts: [],
+      // form data
+      name: '',
+      qtyDiscountPEN: 0,
+      qtyDiscountUSD: 0,
+      beginDate: __WEBPACK_IMPORTED_MODULE_6_moment__().format('DD/MM/YYYY'),
+      endDate: __WEBPACK_IMPORTED_MODULE_6_moment__().format('DD/MM/YYYY')
+    }, _this.handleUpdateSubtype = function (values) {
+      return _this.setState({ selectedSubtypes: values });
+    }, _this.handleUpdateType = function (values) {
+      return _this.setState({ selectedTypes: values });
+    }, _this.handleUpdateProducts = function (values) {
+      return _this.setState({ selectedProducts: values });
+    }, _this.handleChangeBeginDate = function (date) {
+      _this.setState({ beginDate: date.format('DD/MM/YYYY') });
+    }, _this.handleChangeEndDate = function (date) {
+      _this.setState({ endDate: date.format('DD/MM/YYYY') });
+    }, _this.handleChangeDiscountPEN = function (event) {
+      return _this.setState({ qtyDiscountPEN: event.target.value });
+    }, _this.handleChangeDiscountUSD = function (event) {
+      return _this.setState({ qtyDiscountUSD: event.target.value });
+    }, _this.handleNameChange = function (event) {
+      return _this.setState({ name: event.target.value });
+    }, _this.handleSaveDiscount = function (event) {
+      event.preventDefault();
+      var selectedTypes = _this.state.selectedTypes;
+      var selectedSubtypes = _this.state.selectedSubtypes;
+      var selectedProducts = _this.state.selectedProducts;
+
+      if (selectedSubtypes.length === 0 && selectedTypes.length === 0 && selectedProducts.length === 0) {
+        return _this.setState({ showErrorMessage: true });
+      }
+
+      __WEBPACK_IMPORTED_MODULE_3_axios___default.a.put('/ajax-admin/discount-tasks/' + _this.props.taskId, {
+        name: _this.state.name,
+        types: selectedTypes,
+        subtypes: selectedSubtypes,
+        products: selectedProducts,
+        beginDiscount: _this.state.beginDate,
+        endDiscount: _this.state.endDate,
+        discountPEN: _this.state.qtyDiscountPEN,
+        discountUSD: _this.state.qtyDiscountUSD
+      }).then(function () {
+        return __WEBPACK_IMPORTED_MODULE_8_sweetalert2___default()('Actualizado', '', 'success');
+      }).then(_this.getData).catch(console.warn);
+    }, _this.filterProductsWithDiscount = function (product) {
+      if (product['discount_pen'] && product['discount_usd'] && product['price_pen_discount'] && product['price_usd_discount'] && product['begin_discount'] && product['end_discount']) {
+        return true;
+      }
+    }, _this.getDiscountTask = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+      var _ref3, data, task;
+
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/discount-tasks/' + _this.props.taskId + '/edit').catch(console.warn);
+
+            case 2:
+              _ref3 = _context.sent;
+              data = _ref3.data;
+              task = data['data'];
+
+              _this.setState({
+                qtyDiscountPEN: task['discount_pen'],
+                qtyDiscountUSD: task['discount_usd'],
+                beginDate: __WEBPACK_IMPORTED_MODULE_6_moment__(task['begin']).format('DD/MM/YYYY'),
+                endDate: __WEBPACK_IMPORTED_MODULE_6_moment__(task['end']).format('DD/MM/YYYY'),
+                name: task['name']
+              });
+
+            case 6:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, _callee, _this2);
+    })), _this.getData = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+      var dataTypes, dataSubtypes, dataProducts, subtypes, types, products, _ref5, data, task, selectedSubtypes, selectedTypes, selectedProducts;
+
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/types').catch(console.warn);
+
+            case 2:
+              dataTypes = _context2.sent;
+              _context2.next = 5;
+              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/subtypes').catch(console.warn);
+
+            case 5:
+              dataSubtypes = _context2.sent;
+              _context2.next = 8;
+              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/products').catch(console.warn);
+
+            case 8:
+              dataProducts = _context2.sent;
+              subtypes = dataSubtypes['data']['data'];
+              types = dataTypes['data']['data'];
+              products = dataProducts['data']['data'];
+              _context2.next = 14;
+              return __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/ajax-admin/discount-tasks/' + _this.props.taskId + '/edit').catch(console.warn);
+
+            case 14:
+              _ref5 = _context2.sent;
+              data = _ref5.data;
+              task = data['data'];
+              selectedSubtypes = subtypes.filter(function (subtype) {
+                return task['product_subtypes'].includes(subtype['id']);
+              }).map(_this.mapSubtypes);
+              selectedTypes = types.filter(function (subtype) {
+                return task['product_types'].includes(subtype['id']);
+              }).map(_this.mapTypes);
+              selectedProducts = products.filter(function (product) {
+                return task['products'].includes(product['id']);
+              }).map(_this.mapProducts);
+
+              _this.setState({
+                subtypes: subtypes,
+                types: types,
+                products: products,
+                productsCopy: products,
+                selectedSubtypes: selectedSubtypes,
+                selectedTypes: selectedTypes,
+                selectedProducts: selectedProducts,
+                // task data
+                qtyDiscountPEN: task['discount_pen'],
+                qtyDiscountUSD: task['discount_usd'],
+                beginDate: __WEBPACK_IMPORTED_MODULE_6_moment__(task['begin'], 'DD-MM-YYYY').format('DD/MM/YYYY'),
+                endDate: __WEBPACK_IMPORTED_MODULE_6_moment__(task['end'], 'DD-MM-YYYY').format('DD/MM/YYYY'),
+                name: task['name']
+              });
+
+            case 21:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, _this2);
+    })), _this.mapTypes = function (type) {
+      return { value: type['id'], label: type["name"] };
+    }, _this.mapProducts = function (product) {
+      return { value: product['id'], label: product["fullname"] + ' - PEN: ' + product['price'] + ' / USD: ' + product["price_dolar"] };
+    }, _this.mapSubtypes = function (subtype) {
+      return { value: subtype['id'], label: subtype["name"] };
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(MultipleDiscountsEdit, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.getData();
+      this.getDiscountTask();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var optionTypes = this.state.types.length ? this.state.types.map(this.mapTypes) : [];
+      var optionProducts = this.state.productsCopy.length ? this.state.productsCopy.map(this.mapProducts) : [];
+      var optionSubtypes = this.state.subtypes.length ? this.state.subtypes.map(this.mapSubtypes) : [];
+
+      var errorMessage = this.state.showErrorMessage ? __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'alert alert-danger' }, 'Por favor llene todos los campos necesarios') : null;
+
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react__["Fragment"], null, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'card-body' }, errorMessage, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('form', { onSubmit: this.handleSaveDiscount }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'row' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Porcentaje descuento soles'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { value: this.state.qtyDiscountPEN, onChange: this.handleChangeDiscountPEN, type: 'number', max: 100, className: 'form-control', required: true }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group-append' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'input-group-text' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('i', { className: 'fas fa-fw fa-percent' })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'help-block' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('small', null, '0: Sin descuento, >= 0: Aplica descuento')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Porcentaje descuento d\xF3lares'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { value: this.state.qtyDiscountUSD, onChange: this.handleChangeDiscountUSD, type: 'number', max: 100, className: 'form-control', required: true }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'input-group-append' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'input-group-text' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('i', { className: 'fas fa-fw fa-percent' })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { className: 'help-block' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('small', null, '0: Sin descuento, >= 0: Aplica descuento')))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Inicio de descuento'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_datetime___default.a, { dateFormat: 'DD/MM/YYYY', onChange: this.handleChangeBeginDate, timeFormat: false, value: this.state.beginDate, defaultValue: this.state.beginDate }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Fin de descuento'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_datetime___default.a, { dateFormat: 'DD/MM/YYYY', onChange: this.handleChangeEndDate, timeFormat: false, value: this.state.endDate, defaultValue: this.state.endDate })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'row' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Nombre descriptivo'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { type: 'text', onChange: this.handleNameChange, value: this.state.name, className: 'form-control', placeholder: 'Ej: Descuentos Cyber Day', maxLength: '250', required: true }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a tipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Deshabilitado, l\xEDnea oculta en el c\xF3digo', disabled: true }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a subtipos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_select__["a" /* default */], { components: __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default.a, onChange: this.handleUpdateSubtype, options: optionSubtypes, value: this.state.selectedSubtypes, isMulti: true, closeMenuOnSelect: false }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'col-md' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('label', null, 'Aplicar a productos'), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_select__["a" /* default */], { components: __WEBPACK_IMPORTED_MODULE_5_react_select_lib_animated___default.a, onChange: this.handleUpdateProducts, options: optionProducts, value: this.state.selectedProducts, isMulti: true, closeMenuOnSelect: false })))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('button', { type: 'submit', className: 'btn btn-sm btn-dark btn-rounded' }, 'Actualizar tarea de descuento')))));
+    }
+  }]);
+
+  return MultipleDiscountsEdit;
+}(__WEBPACK_IMPORTED_MODULE_1_react___default.a.Component);
+
+if (document.getElementById('bipolar-product-multiple-discounts-edit')) {
+  var BipolarTaskId = window.BipolarDiscountTaskId;
+  __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(MultipleDiscountsEdit, { taskId: BipolarTaskId }), document.getElementById('bipolar-product-multiple-discounts-edit'));
 }
 
 /***/ })

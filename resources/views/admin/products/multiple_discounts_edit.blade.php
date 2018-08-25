@@ -1,5 +1,5 @@
 @extends('admin.layouts.app_admin')
-@section('title', "Editar descuento (Trabajando...)")
+@section('title', "Editar descuento")
 @push('before_scripts')
   <script>
     window.BipolarDiscountTaskId = "{{ $discount->id }}";
