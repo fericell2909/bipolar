@@ -273,6 +273,8 @@ namespace App\Models{
  * @property int $instagram_counts
  * @property int $current_buy
  * @property string|null $background_suscribe
+ * @property string|null $background_counter
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBackgroundCounter($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBackgroundSuscribe($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBipolarCounts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereCurrentBuy($value)
