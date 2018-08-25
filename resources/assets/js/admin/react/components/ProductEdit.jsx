@@ -26,6 +26,8 @@ class BipolarProductEdit extends React.Component {
         description_english: "",
         free_shipping: false,
         salient: false,
+        previewUrl: '',
+        shopUrl: '',
         selectedState: "",
         selectedColors: [],
         selectedSizes: [],
@@ -228,6 +230,24 @@ class BipolarProductEdit extends React.Component {
                     </div>
                   </div>
                 </div>
+                <div className="form-row">
+                  <div className="col-6">
+                    <div className="input-group mb-3">
+                      <div className="input-group-prepend">
+                        <span className="input-group-text">URL Shop</span>
+                      </div>
+                      <input type="text" value={this.state.product.shopUrl} className="form-control" readOnly={true}/>
+                    </div>
+                  </div>
+                  <div className="col-6">
+                    <div className="input-group mb-3">
+                      <div className="input-group-prepend">
+                        <span className="input-group-text">URL Preview</span>
+                      </div>
+                      <input type="text" value={this.state.product.previewUrl} className="form-control" readOnly={true}/>
+                    </div>
+                  </div>
+                </div>
                 <div className="form-group">
                   <label>Descripción (Opcional)</label>
                   <Editor toolbar={toolbarEditor} stripPastedStyles={true} editorState={this.state.editorState} onEditorStateChange={this.handleEditorDescription} editorClassName="demo-editor-content"/>
@@ -311,6 +331,8 @@ class BipolarProductEdit extends React.Component {
         productInState.description_english = product.description_english !== null ? product.description_english : "";
         productInState.free_shipping = product['free_shipping'];
         productInState.salient = product['is_salient'] !== null;
+        productInState.shopUrl = product['shop_route'];
+        productInState.previewUrl = product['preview_route'];
         productInState.selectedState = get(product, 'state.hash_id', "");
         productInState.selectedColors = product.colors.map(color => color['hash_id']);
         productInState.selectedSubtypes = product.subtypes.map(subtype => subtype['hash_id']);
