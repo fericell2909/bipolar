@@ -97541,7 +97541,7 @@ var BipolarProductList = function (_React$Component) {
           selectedProducts: _this3.state.selectedProducts,
           hashId: product["hash_id"],
           imageUrl: product["firstImageUrl"],
-          name: product["name"],
+          name: product["fullname"],
           subtypes: product["subtypes"],
           price: product["price"],
           priceDolar: product["price_dolar"],

@@ -54,23 +54,23 @@ class BipolarProductList extends React.Component {
         });
       }
     });
-  }
+  };
 
   handleSearch = event => {
     this.setState({ searchText: event.target.value }, this.filterProducts);
-  }
+  };
 
   handleStateChange = event => {
     this.setState({ stateSelected: event.target.value }, this.filterProducts);
-  }
+  };
 
   handleSubtypeChange = event => {
     this.setState({ subtypeSelected: event.target.value }, this.filterProducts);
-  }
+  };
 
   handleCreationDateChange = event => {
     this.setState({ creationDateSelected: event.target.value }, this.filterProducts);
-  }
+  };
 
   handleProductSelect = event => {
     const productHashId = event.target.value;
@@ -83,7 +83,7 @@ class BipolarProductList extends React.Component {
     }
 
     return this.setState({ selectedProducts: selected });
-  }
+  };
 
   handleSelectAllProducts = event => {
     let allProductsIds = [];
@@ -94,7 +94,7 @@ class BipolarProductList extends React.Component {
     }
 
     this.setState({ selectedProducts: [...allProductsIds] });
-  }
+  };
 
   handleMassiveSelection(event) {
     const optionSelected = event.target.value;
@@ -179,7 +179,7 @@ class BipolarProductList extends React.Component {
 
   toggleFilters = () => {
     this.setState({ showFilters: !this.state.showFilters });
-  }
+  };
 
   filterProducts = () => {
     let products = this.state.products;
@@ -213,7 +213,7 @@ class BipolarProductList extends React.Component {
     }
 
     this.setState({filteredProducts: products});
-  }
+  };
 
   render() {
     const productsSource = this.state.filteredProducts;
@@ -274,7 +274,7 @@ class BipolarProductList extends React.Component {
           selectedProducts={this.state.selectedProducts}
           hashId={product["hash_id"]}
           imageUrl={product["firstImageUrl"]}
-          name={product["name"]}
+          name={product["fullname"]}
           subtypes={product["subtypes"]}
           price={product["price"]}
           priceDolar={product["price_dolar"]}
