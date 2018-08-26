@@ -122,10 +122,10 @@ class ShopController extends Controller
                 /** @var Collection $products */
                 switch ($request->input('orderBy')) {
                     case 'priceup':
-                        $products = $products->sortBy('price');
+                        $products = $products->sortBy($this->sortProductByPrice());
                         break;
                     case 'pricedown':
-                        $products = $products->sortByDesc('price');
+                        $products = $products->sortByDesc($this->sortProductByPrice());
                         break;
                 }
 
@@ -153,6 +153,18 @@ class ShopController extends Controller
             'orderOptions',
             'selectedOrderOption'
         ));
+    }
+
+    private function sortProductByPrice()
+    {
+        return function ($product) {
+            /** @var Product $product */
+            if (\Session::get('BIPOLAR_CURRENCY', 'USD') === "USD") {
+                return $product->price_usd_discount ?? $product->price_dolar;
+            }
+
+            return $product->price_pen_discount ?? $product->price;
+        };
     }
 
     public function product($slugProduct)
