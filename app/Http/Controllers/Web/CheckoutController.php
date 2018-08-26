@@ -169,10 +169,15 @@ class CheckoutController extends Controller
             return 0;
         }
 
-        $totalWeight = $buy->details->sum(function ($detail) {
-            /** @var BuyDetail $detail */
-            return $detail->product->weight ?? 0;
-        });
+        $totalWeight = $buy->details
+            ->reject(function ($detail) {
+                /** @var BuyDetail $detail */
+                return boolval($detail->product->free_shipping);
+            })
+            ->sum(function ($detail) {
+                /** @var BuyDetail $detail */
+                return $detail->product->weight ?? 0;
+            });
 
         $totalShipping = ShippingService::calculateShippingByWeight($shipping, floatval($totalWeight), \Session::get('BIPOLAR_CURRENCY'));
 
