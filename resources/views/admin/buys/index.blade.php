@@ -41,6 +41,9 @@
                     <td class="align-middle">{{ $buy->total }} {{ $buy->currency }}</td>
                     <td class="text-center align-middle">{!! $buy->showroom ? "<i class='fa fa-check'></i>" : null !!}</td>
                     <td class="align-middle">
+                      <a href="{{ route('buys.edit', $buy->id) }}" class="btn btn-dark btn-sm btn-rounded">
+                        <i class="fas fa-fw fa-edit"></i> Editar
+                      </a>
                       @if($buy->bsale_document_url)
                         <a href="{{ $buy->bsale_document_url }}" target="_blank" class="btn btn-dark btn-sm btn-rounded">
                           Ver boleta
