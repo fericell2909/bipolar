@@ -16,7 +16,7 @@
     </div>
   </a>
   <footer>
-    {{ str_limit(strip_tags($post->content), 50) }}
+    <p>{{ str_limit(strip_tags($post->content), 50) }}</p>
   </footer>
 </article>
 @endsection
