@@ -20573,6 +20573,10 @@ button:active {
   background-color: #fcbeb9;
 }
 
+.w-100 {
+  width: 100%;
+}
+
 .bipolar-the-content {
   background-color: white;
 }
