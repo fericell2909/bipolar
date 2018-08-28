@@ -63,7 +63,7 @@
       </div>
       <?php /** @var \App\Models\Settings $settings */ ?>
       @if($settings)
-        <div class="bipolar-counts-container" style="background-image: url({{ asset('storage/bipolar-images/assets/jeringas_close.jpg') }});">
+        <div class="bipolar-counts-container" style="background-image: url({{ $settings->background_counter }});">
           <div class="container">
             <div class="row">
               <div class="col-md-4 bipolar-counts">

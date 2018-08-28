@@ -24,17 +24,17 @@
 						<i class="fa fa-chevron-down"></i>
 					</a>
 					<ul class="bipolar-dropdown-menu in-desktop hidden-xs hidden-sm">
-						<li><a href="{{ route('myaccount') }}"><i class="fa fa-user"></i> {{ __('bipolar.navbar.my_account') }}</a></li>
-						<li><a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
-						<li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Shopping cart</a></li>
-						<li><a href="{{ route('checkout') }}"><i class="fa fa-share"></i> Checkout</a></li>
-						<li><a><i class="fa fa-usd"></i> {{ __('bipolar.navbar.change_currency') }}</a></li>
-						<li><a href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a></li>
-						<li><a href="{{ route('change-currency', ['currency' => 'USD']) }}">Dólares (USD)</a></li>
-						<li><a><i class="fa fa-language"></i> {{ __('bipolar.navbar.language') }}</a></li>
+						<li><a href="{{ route('myaccount') }}"><i class="fa fa-fw fa-user"></i> {{ __('bipolar.navbar.my_account') }}</a></li>
+						<li><a href="{{ route('wishlist') }}"><i class="fa fa-fw fa-heart"></i> Wishlist</a></li>
+						<li><a href="{{ route('cart') }}"><i class="fa fa-fw fa-shopping-cart"></i> Shopping cart</a></li>
+						<li><a href="{{ route('checkout') }}"><i class="fa fa-fw fa-share"></i> Checkout</a></li>
+						<li><a><i class="fa fa-fw fa-usd"></i> {{ __('bipolar.navbar.change_currency') }}</a></li>
+						<li><a class="inside" href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a></li>
+						<li><a class="inside" href="{{ route('change-currency', ['currency' => 'USD']) }}">Dólares (USD)</a></li>
+						<li><a><i class="fa fa-fw fa-language"></i> {{ __('bipolar.navbar.language') }}</a></li>
 						@foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
 						<li>
-							<a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+							<a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item inside" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
 								{{ ucfirst($properties['native']) }}
 							</a>
 						</li>

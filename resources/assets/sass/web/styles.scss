@@ -41,6 +41,10 @@ button {
   background-color: $bipolar-color;
 }
 
+.w-100 {
+  width: 100%;
+}
+
 .bipolar-the-content {
   background-color: $bipolar-white;
 
@@ -54,13 +58,51 @@ button {
   }
 }
 
-.title-text-content {
-  font-family: $bodoni-bold-font;
-  font-size: 26px;
-  font-weight: 400;
-  color: $bipolar-black;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+.bipolar-page-container {
+  @extend .container;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+
+  h1 {
+    @include bodoni_bold_font;
+    font-size: 26px;
+    font-weight: 400;
+    color: $bipolar-black;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 40px 0;
+  }
+
+  h6 {
+    @include bodoni_bold_font;
+    font-size: 12px;
+    color: $bipolar-black;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  p {
+    @include gotham_light_font;
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.6;
+
+    &:last-of-type {
+      margin-bottom: 40px;
+    }
+  }
+
+  .table > tbody > tr > td {
+    vertical-align: middle;
+    padding-left: 0;
+  }
+
+  a.special-link {
+    @include gotham_bold_font;
+    color: $bipolar-color;
+    text-decoration: underline;
+  }
 }
 
 .bipolar-counts-container {
@@ -308,6 +350,15 @@ a {
   margin-top: 20px;
   margin-bottom: 20px;
   padding-bottom: 20px;
+
+  .title-text-content {
+    font-family: $bodoni-bold-font;
+    font-size: 26px;
+    font-weight: 400;
+    color: $bipolar-black;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
 }
 
 .breadcrumb-without-padding {

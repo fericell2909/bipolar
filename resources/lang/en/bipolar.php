@@ -227,5 +227,17 @@ return [
         'archives' => 'Archives',
         'categories' => 'Categories',
         'tags' => 'Tags',
+    ],
+    'my_account' => [
+        'title' => 'My account',
+        'hello' => 'Hi :username (¿Not :username?',
+        'logout' => 'logout',
+        'from_your_account' => 'From your account dashboard you can view your recent orders, manage your shipping and billing addresses and',
+        'edit' => 'edit your password and account details',
+        'order' => 'Order',
+        'date' => 'Date',
+        'state' => 'State',
+        'cancel' => 'Cancel',
+        'view' => 'View',
     ]
 ];

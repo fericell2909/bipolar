@@ -1,8 +1,8 @@
 @extends('web.layouts.app_web')
 @section('content')
     <img src="{{ asset('storage/bipolar-images/assets/jeringas-rosado.jpg') }}" style="width: 100%;" class="img-responsive" alt="Bipolar">
-    <div class="bipolar-container">
-        <p class="title-text-content">BIPOLAR</p>
+    <div class="bipolar-page-container">
+        <h1>BIPOLAR</h1>
         <p>
             Nos encanta la dualidad y que no todo sea lo que parece. <br>
             Nos gusta la línea que divide lo femenino y dulce, de lo secreto y provocador. <br>
@@ -16,7 +16,7 @@
             para jugar o conquistar el mundo. <br>
         </p>
         <p>
-            <a href="{{ route('landings.historico') }}">Aquí</a> un recorrido por todos nuestros bipolares desde el inicio!
+            <a class="special-link" href="{{ route('landings.historico') }}">Aquí</a> un recorrido por todos nuestros bipolares desde el inicio!
         </p>
     </div>
 @endsection

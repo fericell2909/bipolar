@@ -35,7 +35,7 @@
                     <a href="{{ route('banners.edit', $banner->id) }}" class="btn btn-dark btn-rounded btn-sm">
                       <i class="fas fa-fw fa-edit"></i> Editar
                     </a>
-                    <button class="btn btn-dark btn-rounded btn-sm delete-banner" data-banner-id="{{ $banner->id }}">
+                    <button class="btn btn-outline-danger btn-rounded btn-sm delete-banner" data-banner-id="{{ $banner->id }}">
                       <i class="fas fa-fw fa-times"></i> Eliminar
                     </button>
                   </div>

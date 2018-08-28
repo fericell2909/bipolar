@@ -22,7 +22,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-body text-center">
-        <img src="https://placehold.it/794x527" alt="Bipolar" class="image-historic-preview">
+        <img src="https://placehold.it/794x527" alt="Bipolar" class="image-historic-preview w-100">
       </div>
     </div>
   </div>

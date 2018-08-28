@@ -21,16 +21,21 @@
               <tr>
                 <td class="align-middle">{{ $homePost->id }}</td>
                 <td class="align-middle text-center">
-                  <img src="{{ optional($homePost->photos->first())->url ?? 'https://placehold.it/100x50' }}" width="100">
+                  <img src="{{ optional($homePost->photos->first())->url ?? 'https://placehold.it/757x503/000000/ffffff' }}" width="100">
                 </td>
                 <td class="align-middle">{{ $homePost->name }}</td>
                 <td class="align-middle">{{ $homePost->post_type->name ?? '--' }}</td>
                 <td class="align-middle">{!! $homePost->state->getAdminHtml() !!}</td>
                 <td class="align-middle">
-                  <a href="{{ route('homepost.edit', $homePost->slug) }}" class="btn btn-dark btn-sm btn-rounded">
-                    <i class="fas fa-fw fa-edit"></i>
-                    Editar
-                  </a>
+                  <div class="button-group">
+                    <a href="{{ route('homepost.edit', $homePost->slug) }}" class="btn btn-dark btn-sm btn-rounded">
+                      <i class="fas fa-fw fa-edit"></i>
+                      Editar
+                    </a>
+                    <a href="#" class="btn btn-outline-danger btn-sm btn-rounded home-post-delete" data-home-post-id="{{ $homePost->id }}">
+                      <i class="fas fa-fw fa-times"></i> Eliminar
+                    </a>
+                  </div>
                 </td>
               </tr>
             @endforeach

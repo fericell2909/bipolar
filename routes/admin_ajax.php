@@ -41,6 +41,7 @@ Route::prefix('home-posts')->group(function () {
     Route::post('order', 'Admin\Ajax\HomePostController@order');
     Route::post('{hashId}/photos', 'Admin\Ajax\PhotoController@homePostUpload')->name('homepost.photo.upload');
     Route::post('photos/order', 'Admin\Ajax\PhotoController@orderPhotos');
+    Route::delete('{homePostId}', 'Admin\Ajax\HomePostController@destroy');
 });
 
 Route::prefix('post')->group(function () {
