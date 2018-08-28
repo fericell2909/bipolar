@@ -83,6 +83,8 @@ button {
   }
 
   p {
+    @include gotham_light_font;
+    font-size: 13px;
     margin: 0;
     line-height: 1.6;
 
@@ -94,6 +96,12 @@ button {
   .table > tbody > tr > td {
     vertical-align: middle;
     padding-left: 0;
+  }
+
+  a.special-link {
+    @include gotham_bold_font;
+    color: $bipolar-color;
+    text-decoration: underline;
   }
 }
 

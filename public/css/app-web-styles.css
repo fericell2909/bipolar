@@ -20618,6 +20618,9 @@ button:active {
 }
 
 .bipolar-page-container p {
+  font-family: "GothamLight", sans-serif;
+  font-weight: normal;
+  font-size: 13px;
   margin: 0;
   line-height: 1.6;
 }
@@ -20629,6 +20632,13 @@ button:active {
 .bipolar-page-container .table > tbody > tr > td {
   vertical-align: middle;
   padding-left: 0;
+}
+
+.bipolar-page-container a.special-link {
+  font-family: "GothamBold", sans-serif;
+  font-weight: normal;
+  color: #fcbeb9;
+  text-decoration: underline;
 }
 
 .bipolar-counts-container {

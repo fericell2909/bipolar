@@ -16,7 +16,7 @@
             para jugar o conquistar el mundo. <br>
         </p>
         <p>
-            <a href="{{ route('landings.historico') }}">Aquí</a> un recorrido por todos nuestros bipolares desde el inicio!
+            <a class="special-link" href="{{ route('landings.historico') }}">Aquí</a> un recorrido por todos nuestros bipolares desde el inicio!
         </p>
     </div>
 @endsection
