@@ -41,23 +41,25 @@
                     <td class="align-middle">{{ $buy->total }} {{ $buy->currency }}</td>
                     <td class="text-center align-middle">{!! $buy->showroom ? "<i class='fa fa-check'></i>" : null !!}</td>
                     <td class="align-middle">
-                      <a href="{{ route('buys.edit', $buy->id) }}" class="btn btn-dark btn-sm btn-rounded">
-                        <i class="fas fa-fw fa-edit"></i> Editar
-                      </a>
-                      @if($buy->bsale_document_url)
-                        <a href="{{ $buy->bsale_document_url }}" target="_blank" class="btn btn-dark btn-sm btn-rounded">
-                          Ver boleta
+                      <div class="button-group">
+                        <a href="{{ route('buys.edit', $buy->id) }}" class="btn btn-dark btn-sm btn-rounded">
+                          <i class="fas fa-fw fa-edit"></i> Editar
                         </a>
-                      @endif
-                      <button class="btn btn-dark btn-sm btn-rounded" data-target="#payments_{{ $buy->id }}" data-toggle="modal">
-                        <i class="fa fa-credit-card"></i> Intentos de pago
-                      </button>
-                      <button class="btn btn-dark btn-rounded btn-sm change-to-sent-status" data-buy-id="{{ $buy->id }}">
-                        <i class="fa fa-check"></i> Marcar como enviado
-                      </button>
-                      <button class="btn btn-dark btn-rounded btn-sm" data-target="#buy_details_{{ $buy->id }}" data-toggle="modal">
-                        <i class="fa fa-eye"></i> Ver
-                      </button>
+                        @if($buy->bsale_document_url)
+                          <a href="{{ $buy->bsale_document_url }}" target="_blank" class="btn btn-dark btn-sm btn-rounded">
+                            Ver boleta
+                          </a>
+                        @endif
+                        <button class="btn btn-dark btn-sm btn-rounded" data-target="#payments_{{ $buy->id }}" data-toggle="modal">
+                          <i class="fa fa-credit-card"></i> Intentos de pago
+                        </button>
+                        <button class="btn btn-dark btn-rounded btn-sm change-to-sent-status" data-buy-id="{{ $buy->id }}">
+                          <i class="fa fa-check"></i> Marcar como enviado
+                        </button>
+                        <button class="btn btn-dark btn-rounded btn-sm" data-target="#buy_details_{{ $buy->id }}" data-toggle="modal">
+                          <i class="fa fa-eye"></i> Ver
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 @endforeach
