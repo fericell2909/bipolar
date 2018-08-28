@@ -21337,7 +21337,7 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-dropdown-menu.in-mobile {
-  top: 10%;
+  top: 2%;
 }
 
 .bipolar-dropdown-menu li {
@@ -21358,7 +21358,6 @@ input:focus:-ms-input-placeholder {
   display: block;
   padding: 10px;
   text-transform: uppercase;
-  vertical-align: middle;
   font-size: 12px;
   color: #000000;
   word-spacing: 1px;
@@ -21369,6 +21368,10 @@ input:focus:-ms-input-placeholder {
 .bipolar-dropdown-menu li a:active {
   text-decoration: none;
   outline: none;
+}
+
+.bipolar-dropdown-menu li a.inside {
+  margin-left: 20px;
 }
 
 .bipolar-dropdown-menu li a > .fa {

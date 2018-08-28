@@ -370,7 +370,7 @@
   z-index: 10;
 
   &.in-mobile {
-    top: 10%;
+    top: 2%;
   }
 
   li {
@@ -390,13 +390,16 @@
       display: block;
       padding: 10px;
       text-transform: uppercase;
-      vertical-align: middle;
       font-size: 12px;
       color: $bipolar-black;
       word-spacing: 1px;
       &:hover, &:focus, &:active {
         text-decoration: none;
         outline: none;
+      }
+
+      &.inside {
+        margin-left: 20px;
       }
 
       > .fa {
