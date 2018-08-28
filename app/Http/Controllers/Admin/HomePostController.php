@@ -80,7 +80,7 @@ class HomePostController extends Controller
 
     public function order()
     {
-        $homePosts = HomePost::whereStateId(config('constants.STATE_ACTIVE_ID'))
+        $homePosts = HomePost::with('post_type', 'state', 'photos')
             ->orderBy('order')
             ->get();
 
