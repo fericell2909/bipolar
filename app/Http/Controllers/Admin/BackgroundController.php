@@ -30,7 +30,7 @@ class BackgroundController extends Controller
         $setting = Settings::first();
 
         if (!$request->file('suscribe_image')->isValid()) {
-            flash()->error('Hubo un problema con la imagne, intenta nuevamente');
+            flash()->error('Hubo un problema con la imagen, intenta nuevamente');
             return back();
         }
 
@@ -41,6 +41,37 @@ class BackgroundController extends Controller
         $imageService = new UploadFilePublic();
         $path = $imageService->uploadPhoto($request->file('suscribe_image'), 'assets', 'suscribe');
         $setting->background_suscribe = $imageService->getFullUrl($path);
+        $setting->save();
+
+        flash()->success('Guardado');
+
+        return back();
+    }
+
+    public function counter(Request $request)
+    {
+        $this->validate($request, [
+            'counter_image' => [
+                'required',
+                'image',
+                Rule::dimensions()->width(1920)->height(799),
+            ],
+        ]);
+
+        $setting = Settings::first();
+
+        if (!$request->file('counter_image')->isValid()) {
+            flash()->error('Hubo un problema con la imagen, intenta nuevamente');
+            return back();
+        }
+
+        if ($setting->background_counter) {
+            \Storage::disk('public')->delete($setting->background_counter);
+        }
+
+        $imageService = new UploadFilePublic();
+        $path = $imageService->uploadPhoto($request->file('counter_image'), 'assets', 'counter');
+        $setting->background_counter = $imageService->getFullUrl($path);
         $setting->save();
 
         flash()->success('Guardado');

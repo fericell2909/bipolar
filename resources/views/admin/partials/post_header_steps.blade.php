@@ -38,7 +38,7 @@
       </div>
     </div>
   </a>
-  <a href="#" class="col-md">
+  <a href="{{ route('blog.photos.order', $post->id) }}" class="col-md">
     <div class="card text-center {{ $active === 3 ? 'text-white bg-primary' : null }}">
       <div class="card-body">
         <h4 class="card-text">3. Ordenar</h4>

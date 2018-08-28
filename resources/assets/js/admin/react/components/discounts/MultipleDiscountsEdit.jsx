@@ -5,10 +5,10 @@ import ReactSelect from "react-select";
 import Animated from 'react-select/lib/animated';
 import * as moment from "moment";
 import Datetime from "react-datetime";
+import swal from 'sweetalert2';
 import "react-datetime/css/react-datetime.css";
-import MultipleDiscountList from './MultipleDiscountsList';
 
-class MultipleDiscountsNew extends React.Component {
+class MultipleDiscountsEdit extends React.Component {
   state = {
     showErrorMessage: false,
     // data from ajax
@@ -16,7 +16,6 @@ class MultipleDiscountsNew extends React.Component {
     products: [],
     subtypes: [],
     types: [],
-    tasks: [],
     // selected from selects
     selectedSubtypes: [],
     selectedTypes: [],
@@ -59,7 +58,7 @@ class MultipleDiscountsNew extends React.Component {
       return this.setState({ showErrorMessage: true });
     }
 
-    axios.post('/ajax-admin/discount-tasks', {
+    axios.put(`/ajax-admin/discount-tasks/${this.props.taskId}`, {
       name: this.state.name,
       types: selectedTypes,
       subtypes: selectedSubtypes,
@@ -69,17 +68,8 @@ class MultipleDiscountsNew extends React.Component {
       discountPEN: this.state.qtyDiscountPEN,
       discountUSD: this.state.qtyDiscountUSD,
     })
-      .then(() => {
-        this.setState({ 
-          name: '',
-          selectedSubtypes: [],
-          selectedTypes: [],
-          selectedProducts: [], 
-          qtyDiscountPEN: 0,
-          qtyDiscountUSD: 0,
-        });
-      })
-      .then(this.getTasks)
+      .then(() => (swal('Actualizado', '', 'success')))
+      .then(this.getData)
       .catch(console.warn);
   };
 
@@ -96,42 +86,65 @@ class MultipleDiscountsNew extends React.Component {
     }
   };
 
-  getTasks = async () => {
-    const {data} = await axios.get('/ajax-admin/discount-tasks').catch(console.warn);
-    this.setState({tasks: data['data']});
-  };
+  getDiscountTask = async () => {
+    const {data} = await axios.get(`/ajax-admin/discount-tasks/${this.props.taskId}/edit`).catch(console.warn);
+    const task = data['data'];
 
-  getProducts = async () => {
-    const {data} = await axios.get('/ajax-admin/products').catch(console.warn);
-    this.setState({products: data['data'], productsCopy: data['data']});
+    this.setState({
+      qtyDiscountPEN: task['discount_pen'],
+      qtyDiscountUSD: task['discount_usd'],
+      beginDate: moment(task['begin']).format('DD/MM/YYYY'),
+      endDate: moment(task['end']).format('DD/MM/YYYY'),
+      name: task['name'],
+    });
   };
 
   getData = async () => {
     const dataTypes = await axios.get('/ajax-admin/types').catch(console.warn);
     const dataSubtypes = await axios.get('/ajax-admin/subtypes').catch(console.warn);
+    const dataProducts = await axios.get('/ajax-admin/products').catch(console.warn);
+    const subtypes = dataSubtypes['data']['data'];
+    const types = dataTypes['data']['data'];
+    const products = dataProducts['data']['data'];
+    const {data} = await axios.get(`/ajax-admin/discount-tasks/${this.props.taskId}/edit`).catch(console.warn);
+    const task = data['data'];
+
+    const selectedSubtypes = subtypes.filter(subtype => (task['product_subtypes'].includes(subtype['id']))).map(this.mapSubtypes);
+    const selectedTypes = types.filter(subtype => (task['product_types'].includes(subtype['id']))).map(this.mapTypes);
+    const selectedProducts = products.filter(product => (task['products'].includes(product['id']))).map(this.mapProducts);
 
     this.setState({
-      subtypes: dataSubtypes['data']['data'],
-      types: dataTypes['data']['data'],
+      subtypes,
+      types,
+      products,
+      productsCopy: products,
+      selectedSubtypes,
+      selectedTypes,
+      selectedProducts,
+      // task data
+      qtyDiscountPEN: task['discount_pen'],
+      qtyDiscountUSD: task['discount_usd'],
+      beginDate: moment(task['begin'], 'DD-MM-YYYY').format('DD/MM/YYYY'),
+      endDate: moment(task['end'], 'DD-MM-YYYY').format('DD/MM/YYYY'),
+      name: task['name'],
     });
   };
 
   componentDidMount() {
-    this.getProducts();
-    this.getTasks();
     this.getData();
+    this.getDiscountTask();
   }
 
+  mapTypes = type => ({value: type['id'], label: type["name"]});
+
+  mapProducts = product => ({value: product['id'], label: `${product["fullname"]} - PEN: ${product['price']} / USD: ${product["price_dolar"]}`});
+
+  mapSubtypes = subtype => ({value: subtype['id'], label: subtype["name"]});
+
   render() {
-    const optionTypes = this.state.types.length ? this.state.types.map(type => {
-      return {value: type['id'], label: type["name"]};
-    }) : [];
-    const optionProducts = this.state.productsCopy.length ? this.state.productsCopy.map(product => {
-      return {value: product['id'], label: `${product["fullname"]} - PEN: ${product['price']} / USD: ${product["price_dolar"]}`};
-    }) : [];
-    const optionSubtypes = this.state.subtypes.length ? this.state.subtypes.map(product => {
-      return {value: product['id'], label: product["name"]};
-    }) : [];
+    const optionTypes = this.state.types.length ? this.state.types.map(this.mapTypes) : [];
+    const optionProducts = this.state.productsCopy.length ? this.state.productsCopy.map(this.mapProducts) : [];
+    const optionSubtypes = this.state.subtypes.length ? this.state.subtypes.map(this.mapSubtypes) : [];
 
     const errorMessage = this.state.showErrorMessage ? (
       <div className="alert alert-danger">
@@ -181,13 +194,13 @@ class MultipleDiscountsNew extends React.Component {
                 <div className="col-md">
                   <div className="form-group">
                     <label>Inicio de descuento</label>
-                    <Datetime dateFormat="DD/MM/YYYY" onChange={this.handleChangeBeginDate} timeFormat={false} defaultValue={this.state.beginDate}/>
+                    <Datetime dateFormat="DD/MM/YYYY" onChange={this.handleChangeBeginDate} timeFormat={false} value={this.state.beginDate} defaultValue={this.state.beginDate}/>
                   </div>
                 </div>
                 <div className="col-md">
                   <div className="form-group">
                     <label>Fin de descuento</label>
-                    <Datetime dateFormat="DD/MM/YYYY" onChange={this.handleChangeEndDate} timeFormat={false} defaultValue={this.state.endDate}/>
+                    <Datetime dateFormat="DD/MM/YYYY" onChange={this.handleChangeEndDate} timeFormat={false} value={this.state.endDate} defaultValue={this.state.endDate}/>
                   </div>
                 </div>
               </div>
@@ -218,19 +231,16 @@ class MultipleDiscountsNew extends React.Component {
                   </div>
                 </div>
               </div>
-              <button type="submit" className="btn btn-sm btn-dark btn-rounded">Crear tarea</button>
+              <button type="submit" className="btn btn-sm btn-dark btn-rounded">Actualizar tarea de descuento</button>
             </form>
           </div>
         </div>
-        <div className="alert alert-info">
-          Disponible: Los descuentos estarán disponibles para aplicarse automáticamente, Ejecutada: el descuento ya fue activado.
-        </div>
-        <MultipleDiscountList tasks={this.state.tasks} onUpdateTasks={this.getTasks}/>
       </Fragment>
     );
   }
 }
 
-if (document.getElementById('bipolar-product-multiple-discounts')) {
-  ReactDOM.render(<MultipleDiscountsNew/>, document.getElementById('bipolar-product-multiple-discounts'));
+if (document.getElementById('bipolar-product-multiple-discounts-edit')) {
+  const BipolarTaskId = window.BipolarDiscountTaskId;
+  ReactDOM.render(<MultipleDiscountsEdit taskId={BipolarTaskId}/>, document.getElementById('bipolar-product-multiple-discounts-edit'));
 }

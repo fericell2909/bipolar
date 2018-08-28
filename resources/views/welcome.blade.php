@@ -94,17 +94,17 @@
                 <div class="row post">
                   <div class="col-md-6">
                     @if($post->photos->count() > 0)
-                      <div class="owl-carousel-blog owl-carousel owl-theme">
+                      <a href="{{ route('landings.blog.post', $post->slug) }}" class="owl-carousel-blog owl-carousel owl-theme">
                         @foreach($post->photos as $photo)
                           <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $post->title }}">
                         @endforeach
-                      </div>
+                      </a>
                     @else
                       <img class="img-responsive" src="https://placehold.it/300x100" alt="Title">
                     @endif
                   </div>
                   <div class="col-md-6 content">
-                    <a href="{{ route('landings.blog') }}" class="title-link">{{ $post->title }}</a>
+                    <a href="{{ route('landings.blog.post', $post->slug) }}" class="title-link">{{ $post->title }}</a>
                     @if($post->tags)
                       <div class="tags">
                         @foreach($post->tags as $tag)
@@ -112,7 +112,8 @@
                         @endforeach
                       </div>
                     @endif
-                    <a href="{{ route('landings.blog') }}">{{ __('bipolar.blog.read_more') }}</a>
+                    <p>{{ str_limit(strip_tags($post->content), 50) }}</p>
+                    <a href="{{ route('landings.blog.post', $post->slug) }}">{{ __('bipolar.blog.read_more') }}</a>
                   </div>
                 </div>
               </div>

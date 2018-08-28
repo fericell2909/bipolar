@@ -67,7 +67,7 @@ $(function () {
             cancelButtonText: "Cancelar",
             showLoaderOnConfirm: true,
         }).then(result => {
-            if (result) {
+            if (result.value) {
                 const photoId = $(this).data('photoId');
                 $.ajax({
                     method: 'DELETE',

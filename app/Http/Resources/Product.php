@@ -45,6 +45,7 @@ class Product extends Resource
             'is_salient'            => $product->is_salient,
             'preview_route'         => $this->when(\Auth::guard('admin')->check(), route('products.preview', $product->slug)),
             'edit_route'            => $this->when(\Auth::guard('admin')->check(), route('products.photos', $product->slug)),
+            'shop_route'            => $this->when(\Auth::guard('admin')->check(), route('shop.product', $product->slug)),
             'photos'                => Photo::collection($this->whenLoaded('photos')),
             'subtypes'              => Subtype::collection($this->whenLoaded('subtypes')),
             'state'                 => new State($this->whenLoaded('state')),

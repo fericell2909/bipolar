@@ -9,7 +9,7 @@
   </div>
   <div class="row" id="sortable-items">
     @foreach($product->photos as $photo)
-      <div class="col-4 col-md-1" data-id="{{ $photo->hash_id }}">
+      <div class="col-3" data-id="{{ $photo->hash_id }}">
         <img src="{{ $photo->url  }}" alt="" class="card-img-top">
         <div class="card">
           <div class="card-body">

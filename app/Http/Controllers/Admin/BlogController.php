@@ -34,9 +34,13 @@ class BlogController extends Controller
         return view('admin.blog.photos', compact('post'));
     }
 
-    public function order()
+    public function order($postId)
     {
         $post = Post::findOrFail($postId);
+
+        $post->load(['photos' => function ($withPhotos) {
+            return $withPhotos->orderBy('order');
+        }]);
 
         return view('admin.blog.order', compact('post'));
     }

@@ -85,12 +85,52 @@ class LandingsController extends Controller
 
     public function blog()
     {
-        $posts = Post::orderByDesc('created_at')->with('categories', 'photos')->paginate(10);
+        $posts = Post::orderByDesc('created_at')->with([
+            'categories',
+            'photos' => function ($withPhotos) {
+                return $withPhotos->orderBy('order');
+            }
+        ])
+            ->where('state_id', config('constants.STATE_ACTIVE_ID'))
+            ->paginate(10);
         $categories = Category::orderBy('name')->get();
         $lastPosts = Post::orderByDesc('created_at')->take(5)->get();
         $tags = Tag::orderBy('name')->get();
 
         return view('web.blog.index', compact('posts', 'categories', 'lastPosts', 'tags'));
+    }
+
+    public function seeBlogPost($postSlug)
+    {
+        /** @var Post $post */
+        $post = Post::findBySlugOrFail($postSlug);
+
+        abort_if($post->state_id !== config('constants.STATE_ACTIVE_ID'), 404);
+
+        $post->load([
+            'categories',
+            'photos' => function ($withPhotos) {
+                return $withPhotos->orderBy('order');
+            }
+        ]);
+        $categories = Category::orderBy('name')->get();
+        $lastPosts = Post::orderByDesc('created_at')->take(5)->get();
+        $tags = Tag::orderBy('name')->get();
+
+        $seoDescription = !empty($post->content) ? $post->content : 'Zapatos de diseñador hechos a mano en Perú. Designer shoes handmade in Peru';
+        $image = optional($post->photos->first())->url;
+        \SEO::metatags()->setTitle("{$post->title}")->setDescription($seoDescription);
+        \SEO::twitter()
+            ->setTitle("{$post->title} - Bipolar")
+            ->setDescription($seoDescription)
+            ->addImage($image);
+        \SEO::opengraph()
+            ->setType('article')
+            ->setTitle("{$post->title} - Bipolar")
+            ->setDescription($seoDescription)
+            ->addImage($image, ['width'  => 1024, 'height' => 680]);
+
+        return view('web.blog.post', compact('post', 'categories', 'lastPosts', 'tags'));
     }
 
     public function contactProcess(Request $request)
