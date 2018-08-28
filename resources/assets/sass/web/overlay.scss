@@ -1,3 +1,5 @@
+@import "../mixins";
+
 .overlay-container {
   position: relative;
 
@@ -48,9 +50,8 @@
 }
 
 .overlay-text-description {
-  font-family: $bodoni-font;
+  @include bodoni_bold_font;
   font-size: 15px;
-  font-weight: bold;
   letter-spacing: 0.2em;
   color: $bipolar-black;
   text-transform: uppercase;
