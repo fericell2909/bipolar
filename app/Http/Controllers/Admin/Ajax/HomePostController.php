@@ -22,4 +22,19 @@ class HomePostController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function destroy($homePostId)
+    {
+        $homePost = HomePost::findOrFail($homePostId);
+
+        foreach ($homePost->photos as $photo) {
+            if (\Storage::disk('public')->exists($photo->relative_url)) {
+                \Storage::disk('public')->delete($photo->relative_url);
+            }
+        }
+
+        $homePost->delete();
+
+        return response()->json(['success' => true]);
+    }
 }

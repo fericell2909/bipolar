@@ -32,7 +32,7 @@
                       <i class="fas fa-fw fa-edit"></i>
                       Editar
                     </a>
-                    <a href="#" class="btn btn-outline-danger btn-sm btn-rounded" data-home-post-id="{{ $homePost->id }}">
+                    <a href="#" class="btn btn-outline-danger btn-sm btn-rounded home-post-delete" data-home-post-id="{{ $homePost->id }}">
                       <i class="fas fa-fw fa-times"></i> Eliminar
                     </a>
                   </div>
