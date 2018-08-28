@@ -13,11 +13,11 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td><strong>{{ __('bipolar.showroom.opening') }}</strong></td>
+                                <td><h6 class="text-uppercase">{{ __('bipolar.showroom.opening') }}</h6></td>
                                 <td>{{ __('bipolar.showroom.schedule') }}</td>
                             </tr>
                             <tr>
-                                <td><strong>{{ __('bipolar.showroom.location') }}</strong></td>
+                                <td><h6 class="text-uppercase">{{ __('bipolar.showroom.location') }}</h6></td>
                                 <td>San Isidro</td>
                             </tr>
                         </tbody>

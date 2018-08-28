@@ -61,13 +61,21 @@ button {
   padding-bottom: 20px;
 
   h1 {
-    font-family: $bodoni-bold-font;
+    @include bodoni_bold_font;
     font-size: 26px;
     font-weight: 400;
     color: $bipolar-black;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     margin: 40px 0;
+  }
+
+  h6 {
+    @include bodoni_bold_font;
+    font-size: 12px;
+    color: $bipolar-black;
+    margin: 0;
+    letter-spacing: 1px;
   }
 
   p {
@@ -77,6 +85,11 @@ button {
     &:last-of-type {
       margin-bottom: 40px;
     }
+  }
+
+  .table > tbody > tr > td {
+    vertical-align: middle;
+    padding-left: 0;
   }
 }
 
