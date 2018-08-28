@@ -2042,6 +2042,7 @@ pre code {
 }
 
 .container,
+.bipolar-page-container,
 .bipolar-container {
   margin-right: auto;
   margin-left: auto;
@@ -2050,20 +2051,24 @@ pre code {
 }
 
 .container:before,
+.bipolar-page-container:before,
 .bipolar-container:before,
 .container:after,
+.bipolar-page-container:after,
 .bipolar-container:after {
   content: " ";
   display: table;
 }
 
 .container:after,
+.bipolar-page-container:after,
 .bipolar-container:after {
   clear: both;
 }
 
 @media (min-width: 768px) {
   .container,
+  .bipolar-page-container,
   .bipolar-container {
     width: 750px;
   }
@@ -2071,6 +2076,7 @@ pre code {
 
 @media (min-width: 992px) {
   .container,
+  .bipolar-page-container,
   .bipolar-container {
     width: 970px;
   }
@@ -2078,6 +2084,7 @@ pre code {
 
 @media (min-width: 1200px) {
   .container,
+  .bipolar-page-container,
   .bipolar-container {
     width: 1200px;
   }
@@ -5416,8 +5423,10 @@ tbody.collapse.in {
 }
 
 .container > .navbar-header,
+.bipolar-page-container > .navbar-header,
 .bipolar-container > .navbar-header,
 .container > .navbar-collapse,
+.bipolar-page-container > .navbar-collapse,
 .bipolar-container > .navbar-collapse,
 .container-fluid > .navbar-header,
 .container-fluid > .navbar-collapse {
@@ -5427,8 +5436,10 @@ tbody.collapse.in {
 
 @media (min-width: 768px) {
   .container > .navbar-header,
+  .bipolar-page-container > .navbar-header,
   .bipolar-container > .navbar-header,
   .container > .navbar-collapse,
+  .bipolar-page-container > .navbar-collapse,
   .bipolar-container > .navbar-collapse,
   .container-fluid > .navbar-header,
   .container-fluid > .navbar-collapse {
@@ -5493,6 +5504,7 @@ tbody.collapse.in {
 
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand,
+  .navbar > .bipolar-page-container .navbar-brand,
   .navbar > .bipolar-container .navbar-brand,
   .navbar > .container-fluid .navbar-brand {
     margin-left: -15px;
@@ -6335,6 +6347,7 @@ a.badge:focus {
 }
 
 .container .jumbotron,
+.bipolar-page-container .jumbotron,
 .bipolar-container .jumbotron,
 .container-fluid .jumbotron {
   border-radius: 6px;
@@ -6343,6 +6356,7 @@ a.badge:focus {
 }
 
 .jumbotron .container,
+.jumbotron .bipolar-page-container,
 .jumbotron .bipolar-container {
   max-width: 100%;
 }
@@ -6354,6 +6368,7 @@ a.badge:focus {
   }
 
   .container .jumbotron,
+  .bipolar-page-container .jumbotron,
   .bipolar-container .jumbotron,
   .container-fluid .jumbotron {
     padding-left: 60px;
@@ -20572,13 +20587,29 @@ button:active {
   color: #000000;
 }
 
-.title-text-content {
+.bipolar-page-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.bipolar-page-container h1 {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
   font-size: 26px;
   font-weight: 400;
   color: #000000;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  margin: 40px 0;
+}
+
+.bipolar-page-container p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.bipolar-page-container p:last-of-type {
+  margin-bottom: 40px;
 }
 
 .bipolar-counts-container {
@@ -20852,6 +20883,15 @@ a:hover {
   padding-bottom: 20px;
 }
 
+.bipolar-container .title-text-content {
+  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
+  font-size: 26px;
+  font-weight: 400;
+  color: #000000;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .breadcrumb-without-padding,
 .breadcrumb {
   background-color: #F5F5F5;
@@ -20962,6 +21002,8 @@ input:focus:-ms-input-placeholder {
 
 .bipolar-grand-header .bipolar-navigation .container.resized-container,
 .bipolar-alternate-grand-header .bipolar-navigation .container.resized-container,
+.bipolar-grand-header .bipolar-navigation .resized-container.bipolar-page-container,
+.bipolar-alternate-grand-header .bipolar-navigation .resized-container.bipolar-page-container,
 .bipolar-grand-header .bipolar-navigation .resized-container.bipolar-container,
 .bipolar-alternate-grand-header .bipolar-navigation .resized-container.bipolar-container {
   max-width: 900px;

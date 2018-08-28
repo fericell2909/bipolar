@@ -54,13 +54,30 @@ button {
   }
 }
 
-.title-text-content {
-  font-family: $bodoni-bold-font;
-  font-size: 26px;
-  font-weight: 400;
-  color: $bipolar-black;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+.bipolar-page-container {
+  @extend .container;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+
+  h1 {
+    font-family: $bodoni-bold-font;
+    font-size: 26px;
+    font-weight: 400;
+    color: $bipolar-black;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 40px 0;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.6;
+
+    &:last-of-type {
+      margin-bottom: 40px;
+    }
+  }
 }
 
 .bipolar-counts-container {
@@ -308,6 +325,15 @@ a {
   margin-top: 20px;
   margin-bottom: 20px;
   padding-bottom: 20px;
+
+  .title-text-content {
+    font-family: $bodoni-bold-font;
+    font-size: 26px;
+    font-weight: 400;
+    color: $bipolar-black;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
 }
 
 .breadcrumb-without-padding {
