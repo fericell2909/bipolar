@@ -227,5 +227,17 @@ return [
         'archives' => 'Archivos',
         'categories' => 'Categorías',
         'tags' => 'Etiquetas',
+    ],
+    'my_account' => [
+        'title' => 'Mi cuenta',
+        'hello' => 'Hola :username (¿no eres :username?',
+        'logout' => 'Cerrar sesión',
+        'from_your_account' => 'Desde tu página de cuenta, puedes ver tus pedidos recientes, gestionar la dirección de envío, la dirección de facturación y',
+        'edit' => 'cambiar la información de la cuenta y la contraseña',
+        'order' => 'Pedido',
+        'date' => 'Fecha',
+        'state' => 'Estado',
+        'cancel' => 'Cancelar',
+        'view' => 'Ver',
     ]
 ];
