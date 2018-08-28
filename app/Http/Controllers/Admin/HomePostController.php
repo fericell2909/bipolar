@@ -13,7 +13,7 @@ class HomePostController extends Controller
 {
     public function index()
     {
-        $homePosts = HomePost::orderByDesc('id')->with('photos', 'state')->get();
+        $homePosts = HomePost::orderByDesc('id')->with('photos', 'state', 'post_type')->get();
 
         return view('admin.home_posts.list', compact('homePosts'));
     }
