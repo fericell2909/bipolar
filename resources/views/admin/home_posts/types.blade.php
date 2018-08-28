@@ -5,9 +5,15 @@
     <div class="card-body">
       <h4 class="card-title">Nuevo tipo de publicación</h4>
       {!! Form::open() !!}
-        <div class="form-group">
-          {!! Form::label('Nombre de publicación') !!}
-          {!! Form::text('name', null, ['class' => 'form-control', 'required', 'placeholder' => 'Ej: Otoño / Invierno']) !!}
+        <div class="row">
+          <div class="col-6 form-group">
+            {!! Form::label('Nombre de publicación (SPA)') !!}
+            {!! Form::text('name_spa', null, ['class' => 'form-control', 'required', 'placeholder' => 'Ej: Otoño / Invierno']) !!}
+          </div>
+          <div class="col-6 form-group">
+            {!! Form::label('Nombre de publicación (ENG)') !!}
+            {!! Form::text('name_eng', null, ['class' => 'form-control', 'required', 'placeholder' => 'Ej: Fall / Winter']) !!}
+          </div>
         </div>
         <button type="submit" class="btn btn-sm btn-dark btn-rounded">Guardar</button>
       {!! Form::close() !!}
@@ -25,7 +31,7 @@
             </tr>
             @foreach($postTypes as $type)
               <tr>
-                <td class="align-middle">{{ $type->name }}</td>
+                <td class="align-middle">{{ $type->getTranslation('name', 'es') }} / {{ $type->getTranslation('name', 'en') }}</td>
                 <td class="align-middle">
                   <div class="button-group">
                     <a href="{{ route('homepost.types.edit', $type->id) }}" class="btn btn-sm btn-dark btn-rounded">

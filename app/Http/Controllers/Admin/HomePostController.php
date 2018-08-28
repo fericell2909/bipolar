@@ -110,10 +110,16 @@ class HomePostController extends Controller
 
     public function storeType(Request $request)
     {
-        $this->validate($request, ['name' => 'required|between:1,255']);
+        $this->validate($request, [
+            'name_spa' => 'required|between:1,255',
+            'name_eng' => 'required|between:1,255',
+        ]);
 
         $homePostType = new PostType;
-        $homePostType->name = $request->input('name');
+        $homePostType->setTranslations('name', [
+            'en' => $request->input('name_eng'),
+            'es' => $request->input('name_spa'),
+        ]);
         $homePostType->save();
 
         flash()->success('Guardado correctamente');
@@ -130,10 +136,16 @@ class HomePostController extends Controller
 
     public function updateType($postTypeId, Request $request)
     {
-        $this->validate($request, ['name' => 'required|between:1,255']);
+        $this->validate($request, [
+            'name_spa' => 'required|between:1,255',
+            'name_eng' => 'required|between:1,255',
+        ]);
         
         $postType = PostType::findOrFail($postTypeId);
-        $postType->name = $request->input('name');
+        $postType->setTranslations('name', [
+            'en' => $request->input('name_eng'),
+            'es' => $request->input('name_spa'),
+        ]);
         $postType->save();
 
         flash()->success('Actualizado correctamente');

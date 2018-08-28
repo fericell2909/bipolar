@@ -6,11 +6,14 @@ use App\Traits\Hashable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 /** @mixin \Eloquent */
 class PostType extends Model
 {
-    use Hashable, Sluggable, SluggableScopeHelpers;
+    use Hashable, Sluggable, SluggableScopeHelpers, HasTranslations;
+
+    protected $translatable = ['name'];
 
     public $timestamps = false;
 
