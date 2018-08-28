@@ -10,6 +10,8 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::prefix('buys')->group(function () {
         Route::get('/', 'Admin\BuysController@index')->name('buys.index');
+        Route::get('{buyId}/edit', 'Admin\BuysController@edit')->name('buys.edit');
+        Route::post('{buyId}/edit', 'Admin\BuysController@update');
     });
 
     Route::prefix('users')->group(function () {
