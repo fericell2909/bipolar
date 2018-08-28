@@ -110,7 +110,7 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
- * @property string $name
+ * @property array $name
  * @property string|null $slug
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\HomePost[] $home_posts
