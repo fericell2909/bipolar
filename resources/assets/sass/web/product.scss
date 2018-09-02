@@ -336,6 +336,26 @@
   vertical-align: middle;
   display: flex;
   align-items: flex-end;
+
+  @include xxs {
+    flex-direction: column-reverse;
+  }
+
+  @include sm {
+    flex-direction: row;
+  }
+
+  > * {
+    @include xxs {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    @include sm {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
 }
 
 // This is for the tooltip
