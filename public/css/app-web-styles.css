@@ -22374,15 +22374,15 @@ input:focus:-ms-input-placeholder {
           justify-content: center;
   background: #000000;
   color: #fcbeb9;
-  padding: 1.2em;
+  padding: 0;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
 }
 
 .overlay-container .overlay-links a img,
 .overlay-container .overlay-links button img {
-  width: 20px;
+  width: 25px;
 }
 
 .overlay-image {
