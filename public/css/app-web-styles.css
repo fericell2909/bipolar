@@ -21780,7 +21780,8 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-product-in-modal {
-  margin: 14px 0;
+  position: relative;
+  margin: 14px;
 }
 
 .pagination li a.page-number {
@@ -21852,7 +21853,8 @@ input:focus:-ms-input-placeholder {
   margin-top: 10px;
 }
 
-.shop-discount-container {
+.shop-discount-container,
+.shop-discount-container-in-modal {
   position: absolute;
   top: 3%;
   right: 5%;
@@ -21860,7 +21862,8 @@ input:focus:-ms-input-placeholder {
   font-family: "BauerBodoniStdBold", "Times New Roman Bold";
 }
 
-.shop-discount-container .shop-discount {
+.shop-discount-container .shop-discount,
+.shop-discount-container-in-modal .shop-discount {
   background-color: #000000;
   color: #fcbeb9;
   text-align: center;
@@ -21869,6 +21872,10 @@ input:focus:-ms-input-placeholder {
   height: 44px;
   font-size: 15px;
   border-radius: 100%;
+}
+
+.shop-discount-container-in-modal {
+  right: 3%;
 }
 
 .shop-discount-preview-container {

@@ -117,7 +117,8 @@
 }
 
 .bipolar-product-in-modal {
-  margin: 14px 0;
+  position: relative;
+  margin: 14px;
 }
 
 .pagination {
@@ -206,6 +207,11 @@
     font-size: 15px;
     border-radius: 100%;
   }
+}
+
+.shop-discount-container-in-modal {
+  @extend .shop-discount-container;
+  right: 3%;
 }
 
 .shop-discount-preview-container {
