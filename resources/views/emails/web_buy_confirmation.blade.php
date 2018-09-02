@@ -95,7 +95,7 @@
                 </tr>
                 <tr>
                   <td class="column_cell px tr switch_tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 16px;padding-right: 16px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: right;line-height: inherit;">
-                    <h3 class="mb" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 16px;color: #4d4d4d;font-size: 20px;line-height: 23px;">TOTAL <span class="tp" style="font-size: 25px; line-height: inherit; color: #000000">{{ $buy->total_currency }}</span></h3>
+                    <h3 class="mb" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 16px;color: #000000;font-size: 20px;line-height: 23px;">TOTAL <span class="tp" style="font-size: 25px; line-height: inherit; color: #000000">{{ $buy->total_currency }}</span></h3>
                   </td>
                 </tr>
                 </tbody>
@@ -190,7 +190,7 @@
                     </p>
                     <h4 class="mte" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 32px;margin-bottom: 8px;color: #f8beb6;font-size: 14px;line-height: 18px;">{{ __('bipolar.mails.order_number') }}</h4>
                     <p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 15px;color: #000000;line-height: 25px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;">
-                      <a href="{{ route('confirmation', $buy->id) }}" style="color: #000000">#{{ $buy->id }}</a>
+                      <a href="{{ route('confirmation', $buy->id) }}" style="color: #000000; text-decoration:underline;">#{{ $buy->id }}</a>
                     </p>
                   </td>
                 </tr>
