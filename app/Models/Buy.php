@@ -66,4 +66,11 @@ class Buy extends Model
 
         return "{$moneySign} " . number_format($this->shipping_fee, 2);
     }
+
+    public function getDiscountCouponCurrencyAttribute()
+    {
+        $moneySign = $this->currency === 'PEN' ? 'S/' : '$';
+
+        return "{$moneySign} " . number_format($this->discount_coupon, 2);
+    }
 }

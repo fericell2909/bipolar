@@ -32,7 +32,7 @@ class CartBipolar
             dd($e);
         }
 
-        $this->cart->load(['details', 'details.product.subtypes']);
+        $this->cart->loadMissing(['details', 'details.product.subtypes']);
     }
 
     /**
@@ -41,7 +41,7 @@ class CartBipolar
      * @param null $stockId
      * @return CartDetail
      */
-    public function add(int $quantity, Product $product, $stockId = null) : CartDetail
+    public function add(int $quantity, Product $product, $stockId = null): CartDetail
     {
         /** @var CartDetail $cartDetail */
         $cartDetail = CartDetail::firstOrCreate([
@@ -75,7 +75,7 @@ class CartBipolar
     /**
      * @return Cart
      */
-    public function model() : Cart
+    public function model(): Cart
     {
         return $this->cart;
     }
@@ -108,6 +108,7 @@ class CartBipolar
             if (blank($detail->product)) {
                 return $detail->delete();
             }
+
             return;
         });
 
@@ -148,20 +149,22 @@ class CartBipolar
             $this->cart->subtotal_dolar = 0;
             $this->cart->total = 0;
             $this->cart->total_dolar = 0;
+
             return $this->cart->save();
         }
 
-        $total = $this->cart->details->sum(function ($detail) {
-            return $detail->total;
-        });
-        $totalDolar = $this->cart->details->sum(function ($detail) {
-            return $detail->total_dolar;
-        });
+        if ($this->hasCoupon()) {
+            return $this->recalculateWithCoupon($this->cart->coupon);
+        }
+
+        $total = $this->cart->details->sum('total');
+        $totalDolar = $this->cart->details->sum('total_dolar');
 
         $this->cart->subtotal = $total;
         $this->cart->subtotal_dolar = $totalDolar;
         $this->cart->total = $total;
         $this->cart->total_dolar = $totalDolar;
+
         return $this->cart->save();
     }
 
@@ -189,12 +192,12 @@ class CartBipolar
         return true;
     }
 
-    public function getSubtotalBySessionCurrency() : float
+    public function getSubtotalBySessionCurrency(): float
     {
         return \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->subtotal_dolar : $this->cart->subtotal;
     }
 
-    public function getTotalBySessionCurrency() : float
+    public function getTotalBySessionCurrency(): float
     {
         return \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->total_dolar : $this->cart->total;
     }
@@ -203,10 +206,8 @@ class CartBipolar
      * @param Coupon $coupon
      * @return Cart|\Illuminate\Database\Eloquent\Model
      */
-    public function addCoupon(Coupon $coupon)
+    private function recalculateWithCoupon(Coupon $coupon)
     {
-        $this->cart->coupon()->associate($coupon);
-
         $discountPEN = 0;
         $discountUSD = 0;
         if ($coupon->type_id === config('constants.PERCENTAGE_DISCOUNT_ID')) {
@@ -224,12 +225,27 @@ class CartBipolar
             $discountUSD = $detailsInCoupon->sum('total_dolar') - $coupon->amount_usd > 0 ? $coupon->amount_usd : $detailsInCoupon->sum('total_dolar');
         }
 
+        $total = $this->cart->details->sum('total');
+        $totalDolar = $this->cart->details->sum('total_dolar');
+
         $this->cart->discount_coupon_pen = $discountPEN;
         $this->cart->discount_coupon_usd = $discountUSD;
-        $this->cart->total = $this->cart->total - $discountPEN;
-        $this->cart->total_dolar = $this->cart->total_dolar - $discountUSD;
+        $this->cart->total = $total - $discountPEN;
+        $this->cart->total_dolar = $totalDolar - $discountUSD;
         $this->cart->save();
+
         return $this->cart;
+    }
+
+    /**
+     * @param Coupon $coupon
+     * @return Cart|\Illuminate\Database\Eloquent\Model
+     */
+    public function addCoupon(Coupon $coupon)
+    {
+        $this->cart->coupon()->associate($coupon);
+
+        return $this->recalculateWithCoupon($coupon);
     }
 
     /**
@@ -245,6 +261,7 @@ class CartBipolar
             $detailInCouponProducts = in_array($detail->product_id, $coupon->products ?? []);
             $detailInCouponSubtypes = count(array_intersect($coupon->product_subtypes ?? [], $detail->product->subtypes->pluck('id')->toArray())) > 0;
             $detailInCouponTypes = count(array_intersect($coupon->product_types ?? [], $detail->product->subtypes->groupBy('type_id')->keys()->toArray())) > 0;
+
             return $detailInCouponProducts || $detailInCouponSubtypes || $detailInCouponTypes;
         };
     }
@@ -254,11 +271,40 @@ class CartBipolar
         $this->cart->coupon()->dissociate();
         $this->cart->total = $this->cart->subtotal;
         $this->cart->total_dolar = $this->cart->subtotal_dolar;
+
         return $this->cart->save();
     }
 
     public function hasCoupon()
     {
         return !is_null($this->cart->coupon_id);
+    }
+
+    /**
+     * @return Coupon|bool
+     */
+    public function getCoupon()
+    {
+        if (!$this->hasCoupon()) {
+            return false;
+        }
+
+        return $this->cart->coupon;
+    }
+
+    public function getCouponDiscountByCurrency(string $currency)
+    {
+        $couponDiscount = null;
+
+        switch ($currency) {
+            case 'USD';
+                $couponDiscount = $this->cart->discount_coupon_usd;
+                break;
+            case 'PEN';
+                $couponDiscount = $this->cart->discount_coupon_pen;
+                break;
+        }
+
+        return $couponDiscount;
     }
 }

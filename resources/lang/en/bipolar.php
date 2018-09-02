@@ -178,6 +178,7 @@ return [
         'billing_address' => 'Billing Address',
         'shipping_address' => 'Shipping Address',
         'customer_info' => 'Customer info',
+        'coupon' => 'Coupon',
     ],
     'checkout' => [
         'coupon' => 'Coupon',

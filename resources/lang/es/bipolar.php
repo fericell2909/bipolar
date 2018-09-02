@@ -178,6 +178,7 @@ return [
         'billing_address' => 'Dirección de facturación',
         'shipping_address' => 'Dirección de envío',
         'customer_info' => 'Detalles del cliente',
+        'coupon' => 'Cupón',
     ],
     'checkout' => [
         'coupon' => 'Cupón',

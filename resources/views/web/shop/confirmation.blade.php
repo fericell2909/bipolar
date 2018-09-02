@@ -132,6 +132,12 @@
         <td class="total-title">Subtotal:</td>
         <td><span class="price">{{ $buy->subtotal_currency }}</span></td>
       </tr>
+      @if($buy->coupon_id)
+      <tr>
+        <td class="total-title">{{ __('bipolar.confirmation.coupon') }}:</td>
+        <td><span class="price">- {{ $buy->discount_coupon_currency }}</span></td>
+      </tr>
+      @endif
       <tr>
         <td class="total-title">{{ __('bipolar.confirmation.shipping') }}:</td>
         <td><span class="price">{{ $buy->showroom ? __('bipolar.confirmation.pick_showroom') : $buy->shipping_fee_currency }}</span></td>
