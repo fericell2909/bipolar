@@ -47,12 +47,13 @@
 </div>
 
 @push('js_plus')
+{{-- If you want to increase the image size visit: https://red-route.org/code/image-resizing-calculator --}}
 <script>
   const BipolarProductPagePhotos = @json($product->photos->map(function ($photo) { return $photo->url; }));
   window.BipolarProductPhotos = BipolarProductPagePhotos.map(photo => {
     return {
-      w: 757,
-      h: 503,
+      w: 870.55,
+      h: 578.45,
       src: photo,
     };
   });

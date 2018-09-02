@@ -13,7 +13,12 @@ $(function () {
             var options = {
                 // optionName: 'option value'
                 // for example:
-                index: 0 // start at first slide
+                index: 0, // start at first slide
+                zoomEl: true,
+                arrowEl: true,
+                shareEl: false,
+                tapToClose: false,
+                clickToCloseNonZoomable: false,
             };
 
             // Initializes and opens PhotoSwipe
