@@ -13,7 +13,7 @@ class Buy extends Model
 
     public function billing_address()
     {
-        return $this->belongsTo(Address::class, 'billing_address_id');
+        return $this->belongsTo(Address::class, 'billing_address_id')->withTrashed();
     }
 
     public function coupon()
@@ -23,7 +23,7 @@ class Buy extends Model
     
     public function shipping_address()
     {
-        return $this->belongsTo(Address::class, 'shipping_address_id');
+        return $this->belongsTo(Address::class, 'shipping_address_id')->withTrashed();
     }
 
     public function details()

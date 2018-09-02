@@ -583,14 +583,19 @@ namespace App\Models{
  * @property int $main
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property \Carbon\Carbon|null $deleted_at
  * @property-read \App\Models\AddressType $address_type
  * @property-read \App\Models\CountryState $country_state
  * @property-read string $hash_id
  * @property-read \App\Models\User $user
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Address onlyTrashed()
+ * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddressTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereCountryStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereLastname($value)
@@ -600,6 +605,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereZip($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Address withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Address withoutTrashed()
  */
 	class Address extends \Eloquent {}
 }
