@@ -5,7 +5,7 @@
   <div class="content-order-confirmed">
   <img src="{{ asset('storage/bipolar-images/assets/bag.png') }}">
     <h1>Gracias,<br> hemos recibido <br> tu pedido</h1>
-    <h2>Tu número de orden es el <span>{{ $buy->id }}</span></h2>
+    <h2>Tu número de orden es el <a href="{{ route('confirmation', $buy->id) }}">{{ $buy->id }}</a></h2>
   </div>
 </div>
 @endsection

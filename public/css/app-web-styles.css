@@ -22718,8 +22718,9 @@ input:focus:-ms-input-placeholder {
   margin: 0;
 }
 
-.background-order-confirmed .content-order-confirmed h2 span {
+.background-order-confirmed .content-order-confirmed h2 a {
   text-decoration: underline;
+  color: inherit;
 }
 
 .cart-total-inner {
