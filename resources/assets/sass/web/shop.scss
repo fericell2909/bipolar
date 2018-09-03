@@ -122,6 +122,10 @@
 }
 
 .pagination {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
   li {
     a.page-number {
       background: $bipolar-gray;
