@@ -1,4 +1,4 @@
-@import "../mixins";
+@import "../../mixins";
 
 .product-content {
   margin-top: 33px;
@@ -142,7 +142,7 @@
     font-size: 15px;
     appearance: none;
     height: 35px;
-    background-image: url(../../img/arrow_down.png);
+    background-image: url(../../../img/arrow_down.png);
     background-repeat: no-repeat;
     background-position: calc(100% - 10px);
   }

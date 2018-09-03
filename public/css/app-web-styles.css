@@ -23378,39 +23378,6 @@ table.table-buys tbody td.order-actions {
   border-top: 1px solid #ddd;
 }
 
-.bipolar-historic img.img-product {
-  max-width: 100%;
-}
-
-.bipolar-historic .container-title-product {
-  max-width: 100%;
-  background-color: #000000;
-}
-
-.bipolar-historic .container-title-product .img-transparency {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-}
-
-.bipolar-historic .container-title-product .product-name {
-  display: block;
-  position: absolute;
-  color: #fcbeb9;
-  text-align: center;
-  letter-spacing: 0.25px;
-  height: 100px;
-  font-family: "SaharaBodoni";
-  font-size: 95px;
-  font-weight: normal;
-  line-height: 1;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-}
-
 .bipolar-contact-form {
   text-align: center;
 }
@@ -23604,6 +23571,39 @@ table.table-buys tbody td.order-actions {
   font-weight: normal;
   font-style: italic;
   font-size: 13px;
+}
+
+.bipolar-historic img.img-product {
+  max-width: 100%;
+}
+
+.bipolar-historic .container-title-product {
+  max-width: 100%;
+  background-color: #000000;
+}
+
+.bipolar-historic .container-title-product .img-transparency {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+.bipolar-historic .container-title-product .product-name {
+  display: block;
+  position: absolute;
+  color: #fcbeb9;
+  text-align: center;
+  letter-spacing: 0.25px;
+  height: 100px;
+  font-family: "SaharaBodoni";
+  font-size: 95px;
+  font-weight: normal;
+  line-height: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
 }
 
 .bipolar-blog-page .breadcrumb-wrapper {
@@ -23821,5 +23821,27 @@ table.table-buys tbody td.order-actions {
 .bipolar-blog-page ul.pagination-blog li a.page-number.active {
   background: #fcbeb9;
   color: white;
+}
+
+.password-reset p {
+  margin-top: 20px;
+}
+
+.password-reset label {
+  font-size: 11px;
+  font-family: "GothamLight", sans-serif;
+  font-weight: normal;
+}
+
+.password-reset input[type="password"],
+.password-reset input[type="email"] {
+  width: 350px;
+  margin: 0 auto;
+}
+
+.password-reset .container,
+.password-reset .bipolar-page-container,
+.password-reset .bipolar-container {
+  padding-bottom: 40px;
 }
 
