@@ -1,4 +1,4 @@
-@import "../mixins";
+@import "../../mixins";
 
 .shop-container {
   margin-top: 70px;
@@ -27,7 +27,7 @@
       -webkit-appearance: none;
       -moz-appearance: none;
       height: 35px;
-      background-image: url(../../img/arrow_down.png);
+      background-image: url(../../../img/arrow_down.png);
       background-repeat: no-repeat;
       background-position: calc(100% - 10px);
       width: 270px;
@@ -117,10 +117,15 @@
 }
 
 .bipolar-product-in-modal {
-  margin: 14px 0;
+  position: relative;
+  margin: 14px;
 }
 
 .pagination {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
   li {
     a.page-number {
       background: $bipolar-gray;
@@ -206,6 +211,11 @@
     font-size: 15px;
     border-radius: 100%;
   }
+}
+
+.shop-discount-container-in-modal {
+  @extend .shop-discount-container;
+  right: 3%;
 }
 
 .shop-discount-preview-container {

@@ -13,6 +13,8 @@ use App\Models\Buy;
 use App\Models\BuyDetail;
 use App\Models\Shipping;
 use Illuminate\Http\Request;
+use App\Instances\CartBipolar;
+use Illuminate\Http\Response;
 
 class CheckoutController extends Controller
 {
@@ -52,7 +54,9 @@ class CheckoutController extends Controller
 
     public function buy(Request $request)
     {
-        if (\CartBipolar::count() === 0) {
+        $cart = new CartBipolar;
+
+        if ($cart->count() === 0) {
             return redirect()->back();
         }
 
@@ -84,13 +88,19 @@ class CheckoutController extends Controller
         $buy->user()->associate(\Auth::user());
         $buy->billing_address()->associate($billingAddress);
         $buy->shipping_address()->associate($shippingAddress);
-        $buy->subtotal = \CartBipolar::getSubtotalBySessionCurrency();
-        $buy->total = \CartBipolar::getTotalBySessionCurrency();
-        $buy->currency = \Session::get('BIPOLAR_CURRENCY', 'USD');
+        $buy->subtotal = $cart->getSubtotalBySessionCurrency();
+        $buy->total = $cart->getTotalBySessionCurrency();
+        $buy->currency = $request->session()->get('BIPOLAR_CURRENCY', 'USD');
 
-        abort_if(!$buy->save(), 500);
+        if ($cart->hasCoupon()) {
+            $buy->coupon()->associate($cart->getCoupon());
+            $buy->discount_coupon = $cart->getCouponDiscountByCurrency($request->session()->get('BIPOLAR_CURRENCY', 'USD'));
+        }
 
-        foreach (\CartBipolar::content() as $cartDetail) {
+        abort_if(!$buy->save(), Response::HTTP_INTERNAL_SERVER_ERROR);
+
+        $cartContent = $cart->content();
+        foreach ($cartContent as $cartDetail) {
             /** @var CartDetail $cartDetail */
             $buyDetail = new BuyDetail;
             $buyDetail->buy()->associate($buy);
@@ -102,11 +112,11 @@ class CheckoutController extends Controller
                 $buyDetail->stock->save();
             }
             $buyDetail->quantity = $cartDetail->quantity;
-            $buyDetail->total = \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $cartDetail->total_dolar : $cartDetail->total;
+            $buyDetail->total = $request->session()->get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $cartDetail->total_dolar : $cartDetail->total;
             $buyDetail->save();
         }
 
-        \CartBipolar::destroy();
+        $cart->destroy();
 
         $buy->setStatus(config('constants.BUY_INCOMPLETE_STATUS'));
 
@@ -173,7 +183,7 @@ class CheckoutController extends Controller
         $totalShipping = ShippingService::calculateShippingByWeight($shipping, floatval($totalWeight), \Session::get('BIPOLAR_CURRENCY'));
 
         $buy->shipping_fee = $totalShipping;
-        $buy->total = floatval($buy->subtotal + $totalShipping);
+        $buy->total = floatval($buy->total + $totalShipping);
         $buy->shipping()->associate($shipping);
         $buy->save();
 

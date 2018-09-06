@@ -133,8 +133,9 @@
       text-transform: uppercase;
       margin: 0;
   
-      span {
+      a {
         text-decoration: underline;
+        color: inherit;
       }
     }
   }

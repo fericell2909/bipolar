@@ -104,14 +104,14 @@
         </div>
       </div>
       <div class="row product-below-content">
-        <div class="col-sm-6 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="bipolar-action-button-container">
             <span class="text-uppercase">{{ __('bipolar.shop.share') }}:</span>
             <a href="#" onclick="window.open('https://www.facebook.com/sharer.php?s=100&p[url]={{ urlencode(URL::current()) }}','sharer', 'toolbar=0,status=0,width=620,height=280');"><i class="fa fa-facebook"></i></a>
             <a href="mailto:bipolar@bipolar.com.pe"><i class="fa fa-envelope-o"></i></a>
           </div>
         </div>
-        <div class="col-sm-6 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-6">
           <span class="text-uppercase">{{ __('bipolar.shop.change_your_currency') }}</span>
           {!! Form::select('currency_change',
               ['PEN' => mb_strtoupper(__('bipolar.shop.pen_currency')), 'USD' => mb_strtoupper(__('bipolar.shop.usd_currency'))],

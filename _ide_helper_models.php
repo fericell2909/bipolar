@@ -60,6 +60,7 @@ namespace App\Models{
  * @property int $billing_address_id
  * @property int $shipping_address_id
  * @property int|null $buy_number
+ * @property float|null $discount_coupon
  * @property float $subtotal
  * @property float|null $shipping_fee
  * @property float $total
@@ -72,6 +73,7 @@ namespace App\Models{
  * @property-read \App\Models\Address $billing_address
  * @property-read \App\Models\Coupon|null $coupon
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $details
+ * @property-read mixed $discount_coupon_currency
  * @property-read string $hash_id
  * @property-read mixed $shipping_fee_currency
  * @property-read mixed $status
@@ -90,6 +92,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCouponId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCurrency($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereDiscountCoupon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy wherePayed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingAddressId($value)
@@ -583,14 +586,19 @@ namespace App\Models{
  * @property int $main
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property \Carbon\Carbon|null $deleted_at
  * @property-read \App\Models\AddressType $address_type
  * @property-read \App\Models\CountryState $country_state
  * @property-read string $hash_id
  * @property-read \App\Models\User $user
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Address onlyTrashed()
+ * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddressTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereCountryStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereLastname($value)
@@ -600,6 +608,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereZip($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Address withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Address withoutTrashed()
  */
 	class Address extends \Eloquent {}
 }

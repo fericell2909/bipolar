@@ -162,12 +162,11 @@
   <div class="modal fade modal-product-detail-{{ $product->hash_id }}" tabindex="-1" role="dialog" aria-labelledby="shopModalDetail">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="container-fluid">
           <div class="bipolar-product-in-modal">
             @if(count($product->photos))
               <div>
                 @if($product->discount_pen && $product->discount_usd)
-                  <div class="shop-discount-container">
+                  <div class="shop-discount-container-in-modal">
                     <div class="shop-discount">
                       <span>{{ $product->discount_amount }}%</span>
                     </div>
@@ -189,7 +188,6 @@
               </div>
             @endif
           </div>
-        </div>
       </div>
     </div>
   </div>

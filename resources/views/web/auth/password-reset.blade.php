@@ -1,27 +1,9 @@
 @extends('web.layouts.app_web')
-@push('css_plus')
-  <style>
-    p {
-      margin-top: 20px;
-    }
-    label {
-      font-size: 11px;
-      font-family: 'GothamLight', sans-serif;
-    }
-    input[type="password"], input[type="email"] {
-      width: 350px;
-      margin: 0 auto;
-    }
-    .container {
-      padding-bottom: 40px;
-    }
-  </style>
-@endpush
 @section('content')
   <div class="background-title-image">
     <h1>Mi cuenta</h1>
   </div>
-  <div class="container text-center">
+  <div class="container text-center password-reset">
     @if ($errors->any())
       <div class="alert alert-danger">
         <ul>

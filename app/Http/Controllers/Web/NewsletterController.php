@@ -18,7 +18,7 @@ class NewsletterController extends Controller
 
         $name = $request->input('name');
 
-        Newsletter::subscribeOrUpdate($request->input('email'), ['firstName' => $name]);
+        Newsletter::subscribeOrUpdate($request->input('email'), ['firstName' => $name], '', ['state' => 'pending']);
 
         \Mail::to($request->input('email'))->send(new NewsletterSuscribed($name));
 
