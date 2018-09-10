@@ -108,7 +108,9 @@ class PostEdit extends React.Component {
       let contentBlock,
         contentBlockEnglish = null;
 
+      let content, contentEnglish = null;
       if (post["content_es"] !== null) {
+        content = post['content_es'];
         contentBlock = htmlToDraft(post["content_es"]);
         const contentState = ContentState.createFromBlockArray(
           contentBlock.contentBlocks
@@ -116,6 +118,7 @@ class PostEdit extends React.Component {
         editorState = EditorState.createWithContent(contentState);
       }
       if (post["content_en"] !== null) {
+        contentEnglish = post['content_en'];
         contentBlockEnglish = htmlToDraft(post["content_en"]);
         const contentStateEnglish = ContentState.createFromBlockArray(
           contentBlockEnglish.contentBlocks
@@ -133,7 +136,9 @@ class PostEdit extends React.Component {
         editorState,
         editorStateEnglish,
         selectedCategories: categories,
-        selectedTags: tags
+        selectedTags: tags,
+        content,
+        contentEnglish,
       });
     });
   }
@@ -201,6 +206,7 @@ class PostEdit extends React.Component {
                 <div className="form-group">
                   <label>Contenido (Opcional)</label>
                   <Editor
+                    stripPastedStyles={true}
                     editorState={this.state.editorState}
                     toolbar={toolbarEditor}
                     onEditorStateChange={this.handleEditorDescription}
@@ -210,6 +216,7 @@ class PostEdit extends React.Component {
                 <div className="form-group">
                   <label>Contenido en inglés (Opcional)</label>
                   <Editor
+                    stripPastedStyles={true}
                     editorState={this.state.editorStateEnglish}
                     toolbar={toolbarEditor}
                     onEditorStateChange={this.handleEditorDescriptionEnglish}
