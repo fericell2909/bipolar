@@ -197,6 +197,7 @@ return [
         'continue' => 'Continue',
         'select' => 'SELECT',
         'another_address' => 'Ship to a different address?',
+        'add_address' => 'Add address',
     ],
     'profile_edit' => [
         'my_account' => 'My account',

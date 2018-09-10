@@ -70,7 +70,7 @@
 								</div>
 							@endforeach
 							{!! Form::open(['url' => route('address.add', 'billing')]) !!}
-								<div id="form-add-billing-address" style="display:none" class="row">
+								<div id="form-add-billing-address" {!! $billingAddresses->count() === 0 ? null : 'style="display:none"' !!}  class="row">
 									<div class="form-group col-md-6">
 										{!! Form::label(__('bipolar.form_fields.firstname')) !!}
 										{!! Form::text('name', null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
@@ -111,7 +111,9 @@
 									</div>
 								</div>
 								<div class="text-center">
-									<button type="button" id="button-add-billing-address" class="btn btn-bipolar-rounded">Agregar otra dirección</button>
+									@if($billingAddresses->count() > 0)
+										<button type="button" id="button-add-billing-address" class="btn btn-bipolar-rounded">{{ __('bipolar.checkout.add_address') }}</button>
+									@endif
 									<button type="submit" id="checkoutContinuePartTwo" class="btn btn-dark-rounded">{{ __('bipolar.checkout.continue') }}</button>
 								</div>
 							{!! Form::close() !!}
