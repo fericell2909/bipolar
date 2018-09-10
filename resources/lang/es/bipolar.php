@@ -197,6 +197,7 @@ return [
         'continue' => 'Continuar',
         'select' => 'SELECCIONAR',
         'another_address' => '¿Enviar a una dirección diferente?',
+        'add_address' => 'Agregar otra dirección',
     ],
     'profile_edit' => [
         'my_account' => 'Mi cuenta',
