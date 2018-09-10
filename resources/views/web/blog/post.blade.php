@@ -8,13 +8,13 @@
     <span><img class="svg" src="{{ asset('/images/clock.svg') }}" alt="Author"> {{ $post->created_at->format('j F Y') }}</span>
     <span><img class="svg" src="{{ asset('/images/ribbon.svg') }}" alt="Author"> {{ $post->categories->implode('name', ', ') }}</span>
   </nav>
-  <a href="{{ route('landings.blog.post', $post->slug) }}" class="post-images">
     <div class="owl-carousel-blog owl-carousel owl-theme">
       @foreach($post->photos as $photo)
-        <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $post->title }}">
+        <a href="{{ route('landings.blog.post', $post->slug) }}">
+          <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $post->title }}">
+        </a>
       @endforeach
     </div>
-  </a>
   <footer>
     <p>{{ str_limit(strip_tags($post->content), 50) }}</p>
   </footer>
