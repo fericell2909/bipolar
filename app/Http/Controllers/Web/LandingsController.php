@@ -33,7 +33,11 @@ class LandingsController extends Controller
             }, 'post_type'])
             ->orderBy('order')
             ->get();
-        $posts = Post::orderByDesc('id')->take(2)->get();
+        $posts = Post::orderByDesc('id')->with(['photos' => function ($withPhotos) {
+            $withPhotos->orderBy('order');
+        }])
+            ->take(2)
+            ->get();
 
         $settings = Settings::first();
         $banners = Banner::orderBy('order')
