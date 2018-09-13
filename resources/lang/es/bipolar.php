@@ -83,6 +83,7 @@ return [
         'recommended' => 'Te recomendamos',
         'pen_currency' => 'Soles Peruanos (PEN)',
         'usd_currency' => 'Dólares americanos (USD)',
+        'size_guide_url' => 'storage/bipolar-images/assets/size_esp_20180913.png',
     ],
     'mails' => [
         'buy_received_subject' => 'Gracias por tu compra!',

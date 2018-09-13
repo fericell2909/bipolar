@@ -83,6 +83,7 @@ return [
         'recommended' => 'Recommended',
         'pen_currency' => 'Peruvian Soles (PEN)',
         'usd_currency' => 'US Dollars (USD)',
+        'size_guide_url' => 'storage/bipolar-images/assets/size_eng_20180913.png',
     ],
     'mails' => [
         'buy_received_subject' => 'Thank you for your purchase!',
