@@ -8,6 +8,46 @@
         </button>
       </div>
       <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            <h5>Datos de facturación</h5>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><strong>Nombre - Apellido</strong></td>
+                  <td>{{ $buy->billing_address->name }} {{ $buy->billing_address->lastname }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Correo - Teléfono</strong></td>
+                  <td>{{ $buy->billing_address->email }} - {{ $buy->billing_address->phone }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Dirección - Zip</strong></td>
+                  <td>{{ $buy->billing_address->address }} - {{ $buy->billing_address->zip }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-6">
+            <h5>Datos de envío</h5>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><strong>Nombre - Apellido</strong></td>
+                  <td>{{ $buy->shipping_address->name }} {{ $buy->shipping_address->lastname }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Correo - Teléfono</strong></td>
+                  <td>{{ $buy->shipping_address->email }} - {{ $buy->shipping_address->phone }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Dirección - Zip</strong></td>
+                  <td>{{ $buy->shipping_address->address }} - {{ $buy->shipping_address->zip }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <table class="table">
           <thead>
             <tr>

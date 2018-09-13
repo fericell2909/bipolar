@@ -19,6 +19,8 @@ class BuysController extends Controller
                 'details.stock.size',
                 'details.product.colors',
                 'shipping_address.country_state.country',
+                'shipping_address',
+                'billing_address',
                 'payments',
             ])
             ->paginate(20);
