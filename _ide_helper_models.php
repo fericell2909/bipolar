@@ -36,13 +36,16 @@ namespace App\Models{
  * @mixin \Eloquent
  * @property int $id
  * @property string $name
+ * @property string $slug
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereUpdatedAt($value)
  */
 	class Category extends \Eloquent {}

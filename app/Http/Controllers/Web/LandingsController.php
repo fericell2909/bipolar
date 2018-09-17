@@ -87,7 +87,7 @@ class LandingsController extends Controller
         return view('web.landings.contact');
     }
 
-    public function blog()
+    public function blog(Request $request)
     {
         $posts = Post::orderByDesc('created_at')->with([
             'categories',
@@ -96,6 +96,11 @@ class LandingsController extends Controller
             }
         ])
             ->where('state_id', config('constants.STATE_ACTIVE_ID'))
+            ->when($request->filled('category'), function ($wherePosts) use ($request) {
+                return $wherePosts->whereHas('categories', function ($whereCategory) use ($request) {
+                    return $whereCategory->where('slug', $request->input('category'));
+                });
+            })
             ->paginate(10);
         $categories = Category::orderBy('name')->get();
         $lastPosts = Post::orderByDesc('created_at')->take(5)->get();

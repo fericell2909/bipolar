@@ -34,7 +34,8 @@
               @if($categories->count() > 0)
                 <ul>
                   @foreach($categories as $category)
-                    <li><a href="#">{{ $category->name }}</a></li>
+                    <?php /** @var \App\Models\Category $category */ ?>
+                    <li><a href="{{ route('landings.blog', ['category' => $category->slug]) }}">{{ $category->name }}</a></li>
                   @endforeach
                 </ul>
               @endif
