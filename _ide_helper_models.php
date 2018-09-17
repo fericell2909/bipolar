@@ -654,10 +654,13 @@ namespace App\Models{
  * @mixin \Eloquent
  * @property int $id
  * @property string $name
+ * @property string $slug
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereSlug($value)
  */
 	class Tag extends \Eloquent {}
 }

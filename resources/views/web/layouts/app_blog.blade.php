@@ -45,7 +45,8 @@
               @if($tags->count() > 0)
                 <div class="tags">
                   @foreach($tags as $tag)
-                    <a href="#">{{ $tag->name }}</a>
+                    <?php /** @var \App\Models\Tag $tag */ ?>
+                    <a href="{{ route('landings.blog', ['tags' => $tag->slug]) }}">{{ $tag->name }}</a>
                   @endforeach
                 </div>
               @endif

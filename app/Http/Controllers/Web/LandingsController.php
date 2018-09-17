@@ -101,6 +101,11 @@ class LandingsController extends Controller
                     return $whereCategory->where('slug', $request->input('category'));
                 });
             })
+            ->when($request->filled('tags'), function ($wherePosts) use ($request) {
+                return $wherePosts->whereHas('tags', function ($whereTag) use ($request) {
+                    return $whereTag->where('slug', $request->input('tags'));
+                });
+            })
             ->paginate(10);
         $categories = Category::orderBy('name')->get();
         $lastPosts = Post::orderByDesc('created_at')->take(5)->get();
