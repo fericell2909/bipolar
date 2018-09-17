@@ -58,6 +58,10 @@ $('.bipolar-delete-buy').click(function () {
     });
 });
 
+$('#archive-selector').change(function () {
+    $('#form-archive-selector').submit();
+});
+
 require('owl.carousel/dist/owl.carousel');
 require('./theme-scripts');
 require('./shop-scripts');

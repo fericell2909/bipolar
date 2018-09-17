@@ -12,6 +12,7 @@
         "doctrine/dbal": "^2.6",
         "fideloper/proxy": "~4.0",
         "genealabs/laravel-caffeine": "^0.6.12",
+        "jenssegers/date": "^3.4",
         "kitetail/zttp": "^0.3.0",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.6.*",

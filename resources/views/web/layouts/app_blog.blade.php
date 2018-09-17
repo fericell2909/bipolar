@@ -21,20 +21,24 @@
               @if($lastPosts->count() > 0)
                 <ul>
                   @foreach($lastPosts as $post)
-                    <li><a href="#">{{ $post->title }}</a></li>
+                    <li><a href="{{ route('landings.blog.post', $post->slug) }}">{{ $post->title }}</a></li>
                   @endforeach
                 </ul>
               @endif
             </article>
             <article>
               <header>{{ __('bipolar.blog.archives') }}</header>
+              {!! Form::open(['id' => 'form-archive-selector', 'url' => route('landings.blog'), 'method' => 'GET']) !!}
+                {!! Form::select('archive', $yearMonthSelect, null, ['id' => 'archive-selector', 'class' => 'form-control']) !!}
+              {!! Form::close() !!}
             </article>
             <article>
               <header>{{ __('bipolar.blog.categories') }}</header>
               @if($categories->count() > 0)
                 <ul>
                   @foreach($categories as $category)
-                    <li><a href="#">{{ $category->name }}</a></li>
+                    <?php /** @var \App\Models\Category $category */ ?>
+                    <li><a href="{{ route('landings.blog', ['category' => $category->slug]) }}">{{ $category->name }}</a></li>
                   @endforeach
                 </ul>
               @endif
@@ -44,7 +48,8 @@
               @if($tags->count() > 0)
                 <div class="tags">
                   @foreach($tags as $tag)
-                    <a href="#">{{ $tag->name }}</a>
+                    <?php /** @var \App\Models\Tag $tag */ ?>
+                    <a href="{{ route('landings.blog', ['tags' => $tag->slug]) }}">{{ $tag->name }}</a>
                   @endforeach
                 </div>
               @endif

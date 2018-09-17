@@ -230,6 +230,7 @@ return [
         'archives' => 'Archivos',
         'categories' => 'Categorías',
         'tags' => 'Etiquetas',
+        'select_month' => 'Seleccione mes',
     ],
     'my_account' => [
         'title' => 'Mi cuenta',
