@@ -13,6 +13,7 @@ use App\Models\Historic;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use Jenssegers\Date\Date;
 
 class LandingsController extends Controller
 {
@@ -93,7 +94,7 @@ class LandingsController extends Controller
             'categories',
             'photos' => function ($withPhotos) {
                 return $withPhotos->orderBy('order');
-            }
+            },
         ])
             ->where('state_id', config('constants.STATE_ACTIVE_ID'))
             ->when($request->filled('category'), function ($wherePosts) use ($request) {
@@ -106,12 +107,20 @@ class LandingsController extends Controller
                     return $whereTag->where('slug', $request->input('tags'));
                 });
             })
+            ->when($request->filled('archive'), function ($wherePosts) use ($request) {
+                $date = explode('-', $request->input('archive'));
+                $year = array_first($date);
+                $month = array_last($date);
+                return $wherePosts->whereYear('created_at', $year)->whereMonth('created_at', $month);
+            })
             ->paginate(10);
+
         $categories = Category::orderBy('name')->get();
         $lastPosts = Post::orderByDesc('created_at')->take(5)->get();
         $tags = Tag::orderBy('name')->get();
+        $yearMonthSelect = $this->getDateAndMonthFromPosts();
 
-        return view('web.blog.index', compact('posts', 'categories', 'lastPosts', 'tags'));
+        return view('web.blog.index', compact('posts', 'categories', 'lastPosts', 'tags', 'yearMonthSelect'));
     }
 
     public function seeBlogPost($postSlug)
@@ -125,11 +134,12 @@ class LandingsController extends Controller
             'categories',
             'photos' => function ($withPhotos) {
                 return $withPhotos->orderBy('order');
-            }
+            },
         ]);
         $categories = Category::orderBy('name')->get();
         $lastPosts = Post::orderByDesc('created_at')->take(5)->get();
         $tags = Tag::orderBy('name')->get();
+        $yearMonthSelect = $this->getDateAndMonthFromPosts();
 
         $seoDescription = !empty($post->content) ? $post->content : 'Zapatos de diseñador hechos a mano en Perú. Designer shoes handmade in Peru';
         $image = optional($post->photos->first())->url;
@@ -142,9 +152,9 @@ class LandingsController extends Controller
             ->setType('article')
             ->setTitle("{$post->title} - Bipolar")
             ->setDescription($seoDescription)
-            ->addImage($image, ['width'  => 1024, 'height' => 680]);
+            ->addImage($image, ['width' => 1024, 'height' => 680]);
 
-        return view('web.blog.post', compact('post', 'categories', 'lastPosts', 'tags'));
+        return view('web.blog.post', compact('post', 'categories', 'lastPosts', 'tags', 'yearMonthSelect'));
     }
 
     public function contactProcess(Request $request)
@@ -166,5 +176,21 @@ class LandingsController extends Controller
         );
 
         return redirect()->back();
+    }
+
+    private function getDateAndMonthFromPosts()
+    {
+        $yearMonths = \DB::table('posts')
+            ->selectRaw("YEAR(created_at) AS year_post, MONTH(created_at) AS month_post")
+            ->groupBy('year_post', 'month_post')
+            ->orderBy('year_post')
+            ->get();
+        Date::setLocale(\LaravelLocalization::getCurrentLocale());
+        $yearMonthSelect = $yearMonths->mapWithKeys(function ($element) {
+            $dateMonth = Date::createFromFormat('Y-m', "{$element->year_post}-{$element->month_post}");
+            return ["{$element->year_post}-{$element->month_post}" => mb_strtoupper($dateMonth->format('F Y'))];
+        })->prepend(__('bipolar.blog.select_month'), '');
+
+        return $yearMonthSelect;
     }
 }

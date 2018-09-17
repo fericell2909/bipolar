@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.28 on 2018-08-27 23:28:15.
+ * Generated for Laravel 5.6.28 on 2018-09-17 00:26:38.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -14922,6 +14922,27 @@ namespace Facades\App\Instances {
         {
             return \App\Instances\CartBipolar::hasCoupon();
         }
+        
+        /**
+         * 
+         *
+         * @return \App\Instances\Coupon|bool 
+         * @static 
+         */ 
+        public static function getCoupon()
+        {
+            return \App\Instances\CartBipolar::getCoupon();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getCouponDiscountByCurrency($currency)
+        {
+            return \App\Instances\CartBipolar::getCouponDiscountByCurrency($currency);
+        }
          
     }
  
@@ -15881,6 +15902,14 @@ namespace Torann\GeoIP\Facades {
         {
             return \Torann\GeoIP\GeoIP::config($key, $default);
         }
+         
+    }
+ 
+}
+
+namespace Jenssegers\Date { 
+
+    class Date {
          
     }
  
@@ -18687,6 +18716,8 @@ namespace  {
     class SEO extends \Artesaos\SEOTools\Facades\SEOTools {}
 
     class GeoIP extends \Torann\GeoIP\Facades\GeoIP {}
+
+    class Date extends \Jenssegers\Date\Date {}
 
     class Flash extends \Laracasts\Flash\Flash {}
 

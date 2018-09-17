@@ -28,6 +28,9 @@
             </article>
             <article>
               <header>{{ __('bipolar.blog.archives') }}</header>
+              {!! Form::open(['id' => 'form-archive-selector', 'url' => route('landings.blog'), 'method' => 'GET']) !!}
+                {!! Form::select('archive', $yearMonthSelect, null, ['id' => 'archive-selector', 'class' => 'form-control']) !!}
+              {!! Form::close() !!}
             </article>
             <article>
               <header>{{ __('bipolar.blog.categories') }}</header>

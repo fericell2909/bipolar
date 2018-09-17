@@ -230,6 +230,7 @@ return [
         'archives' => 'Archives',
         'categories' => 'Categories',
         'tags' => 'Tags',
+        'select_month' => 'Select month',
     ],
     'my_account' => [
         'title' => 'My account',
