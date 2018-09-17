@@ -21,7 +21,7 @@
               @if($lastPosts->count() > 0)
                 <ul>
                   @foreach($lastPosts as $post)
-                    <li><a href="#">{{ $post->title }}</a></li>
+                    <li><a href="{{ route('landings.blog.post', $post->slug) }}">{{ $post->title }}</a></li>
                   @endforeach
                 </ul>
               @endif
