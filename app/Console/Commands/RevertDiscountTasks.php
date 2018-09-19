@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use App\Models\DiscountTask;
 use App\Models\Product;
+use App\Models\Subtype;
+use App\Models\Type;
 use Illuminate\Console\Command;
 
 class RevertDiscountTasks extends Command
