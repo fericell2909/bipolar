@@ -17,7 +17,7 @@
       @endforeach
     </div>
     <footer>
-      <p>{{ str_limit(strip_tags($post->content), 50) }}</p>
+      <p>{!! str_limit(strip_tags($post->content), 50) !!}</p>
       <a href="{{ route('landings.blog.post', $post->slug) }}" class="btn btn-dark-rounded">{{ __('bipolar.blog.read_more') }}</a>
     </footer>
   </article>
