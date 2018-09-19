@@ -16,7 +16,7 @@
       @endforeach
     </div>
   <footer>
-    <p>{{ str_limit(strip_tags($post->content), 50) }}</p>
+    <p>{!! $post->content !!}</p>
   </footer>
 </article>
 @endsection
