@@ -52,8 +52,8 @@
   const BipolarProductPagePhotos = @json($product->photos->map(function ($photo) { return $photo->url; }));
   window.BipolarProductPhotos = BipolarProductPagePhotos.map(photo => {
     return {
-      w: 870.55,
-      h: 578.45,
+      w: 1920,
+      h: 1080,
       src: photo,
     };
   });
