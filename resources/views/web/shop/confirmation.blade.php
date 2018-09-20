@@ -64,6 +64,54 @@
     </div>
   </div>
 </div>
+<section class="container">
+  <section class="bipolar-steps">
+    <article class="bipolar-steps__one">
+      <header class="bipolar-steps__one__line">
+        <img src="{{ asset('images/circle-on-hard-line.svg') }}" alt="">
+      </header>
+      <footer class="bipolar-steps__one__title">Procesando orden</footer>
+      <footer class="bipolar-steps__one__date">15/05/2018</footer>
+    </article>
+    <article class="bipolar-steps__one">
+      <header class="bipolar-steps__one__line">
+        <img src="{{ asset('images/circle-on-hard-line.svg') }}" alt="">
+      </header>
+      <footer class="bipolar-steps__one__title">Pedido listo para ser recogido</footer>
+      <footer class="bipolar-steps__one__date">15/05/2018</footer>
+    </article>
+    <article class="bipolar-steps__one">
+      <header class="bipolar-steps__one__line">
+        <img src="{{ asset('images/circle-on.svg') }}" alt="">
+      </header>
+      <footer class="bipolar-steps__one__title">Entregado</footer>
+      <footer class="bipolar-steps__one__date">15/05/2018</footer>
+    </article>
+  </section>
+  <section class="bipolar-steps">
+    <article class="bipolar-steps__one">
+      <header class="bipolar-steps__one__line">
+        <img src="{{ asset('images/circle-on-soft-line.svg') }}" alt="">
+      </header>
+      <footer class="bipolar-steps__one__title">Procesando orden</footer>
+      <footer class="bipolar-steps__one__date">15/05/2018</footer>
+    </article>
+    <article class="bipolar-steps__one">
+      <header class="bipolar-steps__one__line">
+        <img src="{{ asset('images/circle-off-soft-line.svg') }}" alt="">
+      </header>
+      <footer class="bipolar-steps__one__title bipolar-steps__one__title--disabled">Pedido listo para ser recogido</footer>
+      <footer class="bipolar-steps__one__date bipolar-steps__one__date--disabled">--/--/--</footer>
+    </article>
+    <article class="bipolar-steps__one">
+      <header class="bipolar-steps__one__line">
+        <img src="{{ asset('images/circle-off.svg') }}" alt="">
+      </header>
+      <footer class="bipolar-steps__one__title bipolar-steps__one__title--disabled">Entregado</footer>
+      <footer class="bipolar-steps__one__date bipolar-steps__one__date--disabled">--/--/--</footer>
+    </article>
+  </section>
+</section>
 <div class="container bipolar-detail-order">
   @if(isset($paymeCode))
     @if($paymeCode !== '00')
