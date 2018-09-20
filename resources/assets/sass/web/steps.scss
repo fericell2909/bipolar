@@ -1,9 +1,13 @@
+@import "../mixins";
+
+$color-disabled: #6e6e6e;
 $color_1: #595959;
 $color_2: #999;
 $background_color_1: #f5f5f5;
 
 /*Form Wizard*/
 /*END Form Wizard*/
+/** TODO: Remover cuando se implemente los otros steps **/
 .bs-wizard {
   margin: 40px 0;
   padding: 0 0 10px 0;
@@ -106,6 +110,51 @@ $background_color_1: #f5f5f5;
     }
     a.bs-wizard-dot {
       pointer-events: none;
+    }
+  }
+}
+
+.bipolar-steps {
+  display: flex;
+  margin: 20px 0;
+
+  &__one {
+    display: inline-block;
+    max-width: 200px;
+
+    &__line {
+      margin-bottom: 20px;
+      height: 34px;
+
+      img {
+        max-width: 200px;
+        height: 100%;
+      }
+    }
+
+    &__title {
+      @include bodoni_bold_font;
+      color: $bipolar-black;
+      font-size: 17px;
+      text-transform: uppercase;
+      letter-spacing: 2.55px;
+      margin-bottom: 20px;
+
+      &--disabled {
+        color: $color-disabled;
+      }
+    }
+
+    &__date {
+      @include bodoni_bold_font;
+      color: $bipolar-black;
+      font-size: 17px;
+      text-transform: uppercase;
+      letter-spacing: 2.55px;
+
+      &--disabled {
+        color: $color-disabled;
+      }
     }
   }
 }
