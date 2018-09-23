@@ -13,6 +13,12 @@ class CartBipolar
 {
     /** @var \Illuminate\Database\Eloquent\Model|Cart $cart */
     private $cart;
+    private $relationships = [
+        'details',
+        'details.product.subtypes',
+        'details.product.photos',
+        'details.stock.size',
+    ];
 
     public function __construct()
     {
@@ -32,7 +38,7 @@ class CartBipolar
             dd($e);
         }
 
-        $this->cart->loadMissing(['details', 'details.product.subtypes']);
+        $this->cart->loadMissing($this->relationships);
     }
 
     /**
@@ -113,6 +119,8 @@ class CartBipolar
         });
 
         $this->recalculate();
+
+        $this->cart->loadMissing($this->relationships);
 
         return $this->cart->details;
     }
