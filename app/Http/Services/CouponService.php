@@ -13,7 +13,6 @@ class CouponService
     private $currency;
     const NOT_EXIST = 1;
     const OUT_OF_DATES = 2;
-    const NOT_ALLOW_DISCOUNTED_PRODUCTS = 3;
     const DOESNT_HAVE_MINIMUN = 4;
     const DOESNT_HAVE_PRODUCTS_OR_TYPES_OR_SUBTYPES = 5;
     const CANT_USE_FOR_FREQUENCY = 6;
@@ -36,10 +35,6 @@ class CouponService
             return self::OUT_OF_DATES;
         }
 
-        if (!$this->allowDiscountedProducts()) {
-            return self::NOT_ALLOW_DISCOUNTED_PRODUCTS;
-        }
-        
         if (!$this->hasMinimunInCart()) {
             return self::DOESNT_HAVE_MINIMUN;
         }
@@ -73,24 +68,6 @@ class CouponService
     private function isBetweenDates() : bool
     {
         return now()->greaterThanOrEqualTo($this->coupon->begin) && now()->lessThanOrEqualTo($this->coupon->end);
-    }
-
-    private function allowDiscountedProducts() : bool
-    {
-        $hasDiscountedProducts = $this->cart->details->contains(function ($detail) {
-            /** @var \App\Models\CartDetail $detail */
-            return !is_null($detail->product->discount_usd) && !is_null($detail->product->discount_pen);
-        });
-
-        if (!$hasDiscountedProducts) {
-            return true;
-        } else if ($this->coupon->discounted_products && $hasDiscountedProducts) {
-            return true;
-        } elseif (!boolval($this->coupon->discounted_products) && $hasDiscountedProducts) {
-            return false;
-        }
-
-        return true;
     }
 
     private function hasMinimunInCart() : bool

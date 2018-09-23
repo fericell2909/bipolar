@@ -88,6 +88,11 @@ class Product extends Model
         return $sizes;
     }
 
+    public function hasOwnDiscount()
+    {
+        return (!is_null($this->discount_pen) && !is_null($this->discount_usd));
+    }
+
     public function getPriceCurrencyAttribute()
     {
         if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {

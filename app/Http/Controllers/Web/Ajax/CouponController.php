@@ -32,9 +32,6 @@ class CouponController extends Controller
             case $couponService::OUT_OF_DATES:
                 return $this->errorResponse("El cupón se encuentra fuera del rango de fechas");
                 break;
-            case $couponService::NOT_ALLOW_DISCOUNTED_PRODUCTS:
-                return $this->errorResponse("Este cupón no permite que haya productos con descuento");
-                break;
             case $couponService::DOESNT_HAVE_MINIMUN:
                 return $this->errorResponse("Para usar este cupón necesita un mínimo de {$couponService->getMinimum()} en el carrito");
                 break;

@@ -258,6 +258,13 @@ class CartBipolar
     {
         return function ($detail) use ($coupon) {
             /** @var CartDetail $detail */
+            // Check if coupon has discount and remove if it doesn't support
+            if (boolval($coupon->discounted_products) === false) {
+                if ($detail->product->hasOwnDiscount()) {
+                    return false;
+                }
+            }
+
             $detailInCouponProducts = in_array($detail->product_id, $coupon->products ?? []);
             $detailInCouponSubtypes = count(array_intersect($coupon->product_subtypes ?? [], $detail->product->subtypes->pluck('id')->toArray())) > 0;
             $detailInCouponTypes = count(array_intersect($coupon->product_types ?? [], $detail->product->subtypes->groupBy('type_id')->keys()->toArray())) > 0;
