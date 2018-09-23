@@ -29,7 +29,7 @@
               <td>{{ $buy->status }}</td>
               <td><span class="price">{{ $buy->totalCurrency }}</span> por {{ $buy->details->count() }} items</td>
               <td class="order-actions">
-                @if($buy->status === config('constants.BUY_INCOMPLETE_STATUS'))
+                @if($buy->status === config('constants.BUY_INCOMPLETE_STATUS') || $buy->status === config('constants.BUY_PROCESSING_STATUS'))
                   <button class="btn btn-dark-rounded bipolar-delete-buy" data-confirmation="{{ __('bipolar.buy.delete_question') }}" data-buy-hash-id="{{ $buy->hash_id }}">
                     {{ __('bipolar.my_account.cancel') }}
                   </button>
