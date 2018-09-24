@@ -24,7 +24,7 @@ class PaymeController extends Controller
             $statuses[config('constants.BUY_PICKUP_STATUS')] = $buy->latestStatus(config('constants.BUY_PICKUP_STATUS'));
         } else {
             $statuses[config('constants.BUY_SENT_STATUS')] = $buy->latestStatus(config('constants.BUY_SENT_STATUS'));
-            $statuses[config('constants.BUY_ON_WAY_STATUS')] = $buy->latestStatus(config('constants.BUY_ON_WAY_STATUS'));
+            $statuses[config('constants.BUY_TRANSIT_STATUS')] = $buy->latestStatus(config('constants.BUY_TRANSIT_STATUS'));
         }
 
         return $statuses;

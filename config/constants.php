@@ -16,7 +16,7 @@ return [
     'BUY_INCOMPLETE_STATUS'       => 'incomplete',
     'BUY_PROCESSING_STATUS'       => 'processing',
     'BUY_SENT_STATUS'             => 'sent',
-    'BUY_ON_WAY_STATUS'           => 'on the way',
+    'BUY_TRANSIT_STATUS'          => 'transit',
     'BUY_CULMINATED_STATUS'       => 'culminated',
     'BUY_PICKUP_STATUS'           => 'pickup',
     // Discount type

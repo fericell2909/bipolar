@@ -42,7 +42,7 @@
       @if($buyStatus = array_get($buyStatuses, config('constants.BUY_SENT_STATUS')))
         <article class="bipolar-steps__one">
           <header class="bipolar-steps__one__line">
-            <img src="{{ !is_null(array_get($buyStatuses, config('constants.BUY_ON_WAY_STATUS'))) ? asset('images/circle-on-hard-line.svg') : asset('images/circle-on-soft-line.svg') }}" alt="">
+            <img src="{{ !is_null(array_get($buyStatuses, config('constants.BUY_TRANSIT_STATUS'))) ? asset('images/circle-on-hard-line.svg') : asset('images/circle-on-soft-line.svg') }}" alt="">
           </header>
           <footer class="bipolar-steps__one__title">{{ __('bipolar.buy.statuses.sent') }}</footer>
           <footer class="bipolar-steps__one__date">{{ $buyStatus->created_at->format('d/m/Y') }}</footer>
@@ -56,7 +56,7 @@
           <footer class="bipolar-steps__one__date bipolar-steps__one__date--disabled">--/--/--</footer>
         </article>
       @endif
-      @if($buyStatus = array_get($buyStatuses, config('constants.BUY_ON_WAY_STATUS')))
+      @if($buyStatus = array_get($buyStatuses, config('constants.BUY_TRANSIT_STATUS')))
         <article class="bipolar-steps__one">
           <header class="bipolar-steps__one__line">
             <img src="{{ !is_null(array_get($buyStatuses, config('constants.BUY_CULMINATED_STATUS'))) ? asset('images/circle-on-hard-line.svg') : asset('images/circle-on-soft-line.svg') }}" alt="">
