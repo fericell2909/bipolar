@@ -54107,36 +54107,10 @@ $(function () {
 
 /***/ }),
 /* 285 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert2__);
-
-
-$(function () {
-  $('.change-to-sent-status').click(function () {
-    var buyId = $(this).data('buyId');
-    __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default()({
-      title: 'Marcar como enviado',
-      text: 'Seguro que desea cambiar el estado',
-      type: 'question',
-      showCancelButton: true,
-      cancelButtonText: "Cancelar",
-      showLoaderOnConfirm: true
-    }).then(function (result) {
-      if (result.value) {
-        $.ajax({
-          method: 'POST',
-          url: '/ajax-admin/buys/' + buyId + '/sent'
-        }).done(function () {
-          return location.reload();
-        });
-      }
-    });
-  });
-});
+//import swal from 'sweetalert2';
 
 /***/ }),
 /* 286 */

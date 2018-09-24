@@ -30,9 +30,21 @@ class BuysController extends Controller
 
     public function edit($buyId)
     {
+        /** @var Buy $buy */
         $buy = Buy::findOrFail($buyId);
 
-        return view('admin.buys.edit', compact('buy'));
+        $statuses[config('constants.BUY_PROCESSING_STATUS')] = __('bipolar.buy.statuses.processing');
+
+        if ($buy->showroom) {
+            $statuses[config('constants.BUY_PICKUP_STATUS')] = __('bipolar.buy.statuses.pickup');
+        } else {
+            $statuses[config('constants.BUY_SENT_STATUS')] = __('bipolar.buy.statuses.sent');
+            $statuses[config('constants.BUY_TRANSIT_STATUS')] = __('bipolar.buy.statuses.transit');
+        }
+
+        $statuses[config('constants.BUY_CULMINATED_STATUS')] = __('bipolar.buy.statuses.culminated');
+
+        return view('admin.buys.edit', compact('buy', 'statuses'));
     }
 
     public function update(Request $request, $buyId)
@@ -47,6 +59,9 @@ class BuysController extends Controller
 
         $buy->shipping_fee = $request->input('shipping_fee');
         $buy->total = $request->input('total');
+        if ($buy->isDirty()) {
+            $buy->setStatus($request->input('status'));
+        }
         $buy->save();
 
         flash()->success('Actualizado con éxito');

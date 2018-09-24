@@ -53,9 +53,6 @@
                         <button class="btn btn-dark btn-sm btn-rounded" data-target="#payments_{{ $buy->id }}" data-toggle="modal">
                           <i class="fa fa-credit-card"></i> Intentos de pago
                         </button>
-                        <button class="btn btn-dark btn-rounded btn-sm change-to-sent-status" data-buy-id="{{ $buy->id }}">
-                          <i class="fa fa-check"></i> Marcar como enviado
-                        </button>
                         <button class="btn btn-dark btn-rounded btn-sm" data-target="#buy_details_{{ $buy->id }}" data-toggle="modal">
                           <i class="fa fa-eye"></i> Ver
                         </button>
