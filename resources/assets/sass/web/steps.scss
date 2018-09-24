@@ -1,111 +1,59 @@
+@import "../mixins";
+
+$color-disabled: lighten(#6e6e6e, 20);
 $color_1: #595959;
 $color_2: #999;
 $background_color_1: #f5f5f5;
 
-/*Form Wizard*/
-/*END Form Wizard*/
-.bs-wizard {
-  margin: 40px 0;
-  padding: 0 0 10px 0;
-  >.bs-wizard-step {
-    padding: 0;
-    position: relative;
-    .bs-wizard-stepnum {
-      color: $color_1;
-      font-family: $bodoni-bold-font;
+.bipolar-steps {
+  @include xxs {
+    display: none;
+  }
+
+  @include sm {
+    display: flex;
+  }
+
+  margin: 20px 0;
+
+  &__one {
+    display: inline-block;
+    max-width: 200px;
+
+    &__line {
+      margin-bottom: 20px;
+      height: 34px;
+
+      img {
+        max-width: 200px;
+        height: 100%;
+      }
+    }
+
+    &__title {
+      @include bodoni_bold_font;
+      color: $bipolar-black;
+      font-size: 17px;
       text-transform: uppercase;
-      font-size: 16px;
-      margin-bottom: 5px;
-    }
-    .bs-wizard-info {
-      color: $color_2;
-      font-size: 14px;
-    }
-    >.bs-wizard-dot {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      display: block;
-      background: #121618;
-      top: 45px;
-      //left: 50%;
-      margin-top: -15px;
-      //margin-left: -15px;
-      border-radius: 50%;
-      &:after {
-        content: ' ';
-        width: 22px;
-        height: 22px;
-        background: $bipolar-color;
-        border-radius: 50px;
-        position: absolute;
-        top: 4px;
-        left: 4px;
+      letter-spacing: 2.55px;
+      margin-bottom: 20px;
+      line-height: 23px;
+
+      &--disabled {
+        color: $color-disabled;
       }
     }
-    >.progress {
-      position: relative;
-      border-radius: 0;
-      height: 8px;
-      box-shadow: none;
-      margin: 20px 0;
-      left: -50%;
-      >.progress-bar {
-        width: 0;
-        box-shadow: none;
-        background: #121618;
+
+    &__date {
+      @include bodoni_bold_font;
+      color: $bipolar-black;
+      font-size: 17px;
+      text-transform: uppercase;
+      letter-spacing: 2.55px;
+
+      &--disabled {
+        color: $color-disabled;
       }
-    }
-    &:first-child.active {
-      >.progress {
-        >.progress-bar {
-          width: 0%;
-        }
-      }
-    }
-    &:last-child.active {
-      >.progress {
-        >.progress-bar {
-          width: 100%;
-        }
-      }
-    }
-    &:first-child {
-      >.progress {
-        //left: 50%;
-        left: 0;
-        width: 50%;
-      }
-    }
-    &:last-child {
-      >.progress {
-        width: 50%;
-      }
-    }
-  }
-  >.bs-wizard-step.complete {
-    >.progress {
-      >.progress-bar {
-        width: 100%;
-      }
-    }
-  }
-  >.bs-wizard-step.active {
-    >.progress {
-      >.progress-bar {
-        width: 50%;
-      }
-    }
-  }
-  >.bs-wizard-step.disabled {
-    >.bs-wizard-dot {
-      background-color: $background_color_1;
-      &:after {
-        opacity: 0;
-      }
-    }
-    a.bs-wizard-dot {
-      pointer-events: none;
     }
   }
 }

@@ -203,7 +203,7 @@ class ShopController extends Controller
             ->toArray();
 
         $quantities = [];
-        foreach (range(1, 10) as $number) {
+        foreach (range(1, 5) as $number) {
             $quantities[$number] = $number;
         }
 

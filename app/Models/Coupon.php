@@ -32,7 +32,7 @@ class Coupon extends Model
     public function getDiscountFormatAttribute()
     {
         if ($this->type_id === config('constants.PERCENTAGE_DISCOUNT_ID')) {
-            return \Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN' ? "%{$this->amount_pen}" : "%{$this->amount_usd}";
+            return \Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN' ? "%" . intval($this->amount_pen) : "%" . intval($this->amount_usd);
         } elseif ($this->type_id === config('constants.QUANTITY_DISCOUNT_ID')) {
             return \Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN' ? "S/{$this->amount_pen}" : "\${$this->amount_usd}";
         }

@@ -12,11 +12,13 @@ return [
     // Address Type
     'ADDRESS_TYPE_BILLING_ID'     => 1,
     'ADDRESS_TYPE_SHIPPING_ID'    => 2,
-    // Buy status
+    // Buy statuses
     'BUY_INCOMPLETE_STATUS'       => 'incomplete',
     'BUY_PROCESSING_STATUS'       => 'processing',
     'BUY_SENT_STATUS'             => 'sent',
+    'BUY_TRANSIT_STATUS'          => 'transit',
     'BUY_CULMINATED_STATUS'       => 'culminated',
+    'BUY_PICKUP_STATUS'           => 'pickup',
     // Discount type
     'PERCENTAGE_DISCOUNT_ID'      => 1,
     'QUANTITY_DISCOUNT_ID'        => 2,

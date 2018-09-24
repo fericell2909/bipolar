@@ -18,6 +18,13 @@ return [
     ],
     'buy' => [
         'delete_question' => 'Delete this buy?',
+        'statuses' => [
+            'processing' => 'Processing order',
+            'sent' => 'Order sent',
+            'transit' => 'Order in transit',
+            'culminated' => 'Order completed',
+            'pickup' => 'Order ready to be picked up',
+        ],
     ],
     'payme_modal_lang' => 'EN',
     'size_abbr' => 'Size',

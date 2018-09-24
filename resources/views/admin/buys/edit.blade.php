@@ -14,6 +14,10 @@
             <label>Total (compra hecha en {{ $buy->currency }})</label>
             {!! Form::text('total', $buy->total, ['class' => 'form-control']) !!}
           </div>
+          <div class="col-6 form-group">
+            <label>Estado de la orden</label>
+            {!! Form::select('status', $statuses, $buy->status, ['class' => 'form-control']) !!}
+          </div>
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-sm btn-dark btn-rounded">Guardar</button>

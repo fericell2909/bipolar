@@ -13,6 +13,12 @@ class CartBipolar
 {
     /** @var \Illuminate\Database\Eloquent\Model|Cart $cart */
     private $cart;
+    private $relationships = [
+        'details',
+        'details.product.subtypes',
+        'details.product.photos',
+        'details.stock.size',
+    ];
 
     public function __construct()
     {
@@ -32,7 +38,7 @@ class CartBipolar
             dd($e);
         }
 
-        $this->cart->loadMissing(['details', 'details.product.subtypes']);
+        $this->cart->loadMissing($this->relationships);
     }
 
     /**
@@ -113,6 +119,8 @@ class CartBipolar
         });
 
         $this->recalculate();
+
+        $this->cart->loadMissing($this->relationships);
 
         return $this->cart->details;
     }
@@ -258,6 +266,13 @@ class CartBipolar
     {
         return function ($detail) use ($coupon) {
             /** @var CartDetail $detail */
+            // Check if coupon has discount and remove if it doesn't support
+            if (boolval($coupon->discounted_products) === false) {
+                if ($detail->product->hasOwnDiscount()) {
+                    return false;
+                }
+            }
+
             $detailInCouponProducts = in_array($detail->product_id, $coupon->products ?? []);
             $detailInCouponSubtypes = count(array_intersect($coupon->product_subtypes ?? [], $detail->product->subtypes->pluck('id')->toArray())) > 0;
             $detailInCouponTypes = count(array_intersect($coupon->product_types ?? [], $detail->product->subtypes->groupBy('type_id')->keys()->toArray())) > 0;

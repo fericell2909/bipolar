@@ -10,60 +10,8 @@
 </div>
 <div class="container">
   <h2>#Orden {{ $buy->id }}</h2>
-  <div class="row bs-wizard hidden-xs">
-    @if($buy->status === config('constants.BUY_INCOMPLETE_STATUS'))
-      @php($firstClass = 'active')
-    @elseif(!is_null($buy->latestStatus([config('constants.BUY_PROCESSING_STATUS'), config('constants.BUY_CULMINATED_STATUS'), config('constants.BUY_SENT_STATUS')])))
-      @php($firstClass = 'complete')
-    @else
-      @php($firstClass = 'disabled')
-    @endif
-    <div class="col-xs-2 bs-wizard-step {{ $firstClass }}">
-      <div class="bs-wizard-stepnum">Comprado</div>
-      <div class="progress">
-        <div class="progress-bar"></div>
-      </div>
-      <a class="bs-wizard-dot"></a>
-      <div class="bs-wizard-info text-center"></div>
-    </div>
-    @if($buy->status === config('constants.BUY_PROCESSING_STATUS'))
-      @php($secondClass = 'active')
-    @elseif(!is_null($buy->latestStatus([config('constants.BUY_CULMINATED_STATUS'), config('constants.BUY_SENT_STATUS')])))
-      @php($secondClass = 'complete')
-    @else
-      @php($secondClass = 'disabled')
-    @endif
-    <div class="col-xs-2 bs-wizard-step {{ $secondClass }}">
-      <div class="bs-wizard-stepnum">Pagado</div>
-      <div class="progress">
-        <div class="progress-bar"></div>
-      </div>
-      <a class="bs-wizard-dot"></a>
-      <div class="bs-wizard-info text-center"></div>
-    </div>
-    @if($buy->status === config('constants.BUY_SENT_STATUS'))
-      @php($thirdClass = 'active')
-    @elseif($buy->status === config('constants.BUY_CULMINATED_STATUS'))
-      @php($thirdClass = 'complete')
-    @else
-      @php($thirdClass = 'disabled')
-    @endif
-    <div class="col-xs-2 bs-wizard-step {{ $thirdClass }}">
-      <div class="bs-wizard-stepnum">Enviado</div>
-      <div class="progress">
-        <div class="progress-bar"></div>
-      </div>
-      <a class="bs-wizard-dot"></a>
-      <div class="bs-wizard-info text-center"></div>
-    </div>
-    <div class="col-xs-2 bs-wizard-step {{ $buy->status === config('constants.BUY_CULMINATED_STATUS') ? 'active' : 'disabled' }}">
-      <div class="bs-wizard-stepnum">Culminado</div>
-      <div class="progress"><div class="progress-bar"></div></div>
-      <a class="bs-wizard-dot"></a>
-      <div class="bs-wizard-info text-center"></div>
-    </div>
-  </div>
 </div>
+@include('web.partials.buy-steps', compact('buyStatuses'))
 <div class="container bipolar-detail-order">
   @if(isset($paymeCode))
     @if($paymeCode !== '00')
