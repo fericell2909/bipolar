@@ -158,7 +158,10 @@ class PaymeController extends Controller
             $payment->auth_result_text = 'Operación Autorizada';
             $buy->payed = now()->toDateTimeString();
             $buy->save();
-            $buy->setStatus(config('constants.BUY_PROCESSING_STATUS'), 'Pago exitoso');
+            $buy->setStatus(config('constants.BUY_PROCESSING_STATUS'));
+            if ($buy->showroom) {
+                $buy->setStatus(config('constants.BUY_PICKUP_STATUS'));
+            }
             event(new SaleSuccessful($buy));
         } elseif ($request->input('authorizationResult') == '01') {
             $payment->auth_result_text = 'Operación Denegada';

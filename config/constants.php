@@ -12,7 +12,7 @@ return [
     // Address Type
     'ADDRESS_TYPE_BILLING_ID'     => 1,
     'ADDRESS_TYPE_SHIPPING_ID'    => 2,
-    // Buy status, Incomplete is a legacy status
+    // Buy statuses
     'BUY_INCOMPLETE_STATUS'       => 'incomplete',
     'BUY_PROCESSING_STATUS'       => 'processing',
     'BUY_SENT_STATUS'             => 'sent',

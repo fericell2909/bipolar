@@ -118,7 +118,7 @@ class CheckoutController extends Controller
 
         $cart->destroy();
 
-        $buy->setStatus(config('constants.BUY_PROCESSING_STATUS'));
+        $buy->setStatus(config('constants.BUY_INCOMPLETE_STATUS'));
 
         if ($request->input('showroom_pick') === 'free') {
             $buy->showroom = true;
