@@ -60,7 +60,12 @@ class BuysController extends Controller
         $buy->shipping_fee = $request->input('shipping_fee');
         $buy->total = $request->input('total');
         if ($buy->isDirty()) {
-            $buy->setStatus($request->input('status'));
+            if ($request->input('status') === config('constants.BUY_SENT_STATUS') || $request->input('status') === config('constants.BUY_TRANSIT_STATUS')) {
+                $buy->setStatus(config('constants.BUY_SENT_STATUS'));
+                $buy->setStatus(config('constants.BUY_TRANSIT_STATUS'));
+            } else {
+                $buy->setStatus($request->input('status'));
+            }
         }
         $buy->save();
 
