@@ -18,6 +18,13 @@ return [
     ],
     'buy' => [
         'delete_question' => '¿Desea eliminar esta compra?',
+        'statuses' => [
+            'processing' => 'Procesando pedido',
+            'sent' => 'Pedido enviado',
+            'transit' => 'Pedido en tránsito',
+            'culminated' => 'Pedido entregado',
+            'pickup' => 'Pedido listo para ser recogido',
+        ],
     ],
     'payme_modal_lang' => 'SP',
     'size_abbr' => 'Talla',

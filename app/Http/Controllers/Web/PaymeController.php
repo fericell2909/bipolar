@@ -12,6 +12,24 @@ use App\Http\Controllers\Controller;
 
 class PaymeController extends Controller
 {
+    private function generateStepStatuses(Buy $buy): array
+    {
+        $statuses = [
+            config('constants.BUY_INCOMPLETE_STATUS') => $buy->latestStatus(config('constants.BUY_INCOMPLETE_STATUS')),
+            config('constants.BUY_PROCESSING_STATUS') => $buy->latestStatus(config('constants.BUY_PROCESSING_STATUS')),
+            config('constants.BUY_CULMINATED_STATUS') => $buy->latestStatus(config('constants.BUY_CULMINATED_STATUS')),
+        ];
+
+        if ($buy->showroom) {
+            $statuses[config('constants.BUY_PICKUP_STATUS')] = $buy->latestStatus(config('constants.BUY_PICKUP_STATUS'));
+        } else {
+            $statuses[config('constants.BUY_SENT_STATUS')] = $buy->latestStatus(config('constants.BUY_SENT_STATUS'));
+            $statuses[config('constants.BUY_ON_WAY_STATUS')] = $buy->latestStatus(config('constants.BUY_ON_WAY_STATUS'));
+        }
+
+        return $statuses;
+    }
+
     public function pagoPayme(Request $request, $buyId)
     {
         /** @var Buy $buy */
@@ -40,6 +58,8 @@ class PaymeController extends Controller
         $codCardHolderCommerce = $user->id;
         $userPaymeCode = $tokenUsuario;
 
+        $buyStatuses = $this->generateStepStatuses($buy);
+
         return view('web.shop.confirmation', compact(
             'user',
             'buy',
@@ -50,7 +70,8 @@ class PaymeController extends Controller
             'purchaseOperationNumber',
             'purchaseVerification',
             'purchaseCurrencyCode',
-            'userPaymeCode'
+            'userPaymeCode',
+            'buyStatuses'
         ));
     }
 
@@ -95,6 +116,8 @@ class PaymeController extends Controller
         $codCardHolderCommerce = $user->id;
         $userPaymeCode = $tokenUsuario;
 
+        $buyStatuses = $this->generateStepStatuses($buy);
+
         return view('web.shop.confirmation', compact(
             'user',
             'buy',
@@ -106,7 +129,8 @@ class PaymeController extends Controller
             'purchaseVerification',
             'purchaseCurrencyCode',
             'userPaymeCode',
-            'paymeCode'
+            'paymeCode',
+            'buyStatuses'
         ));
     }
 
