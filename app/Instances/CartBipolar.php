@@ -238,6 +238,8 @@ class CartBipolar
 
         $this->cart->discount_coupon_pen = $discountPEN;
         $this->cart->discount_coupon_usd = $discountUSD;
+        $this->cart->subtotal = $total - $discountPEN;
+        $this->cart->subtotal_dolar = $totalDolar - $discountUSD;
         $this->cart->total = $total - $discountPEN;
         $this->cart->total_dolar = $totalDolar - $discountUSD;
         $this->cart->save();
@@ -284,10 +286,8 @@ class CartBipolar
     public function removeCoupon()
     {
         $this->cart->coupon()->dissociate();
-        $this->cart->total = $this->cart->subtotal;
-        $this->cart->total_dolar = $this->cart->subtotal_dolar;
 
-        return $this->cart->save();
+        return $this->recalculate();
     }
 
     public function hasCoupon()
