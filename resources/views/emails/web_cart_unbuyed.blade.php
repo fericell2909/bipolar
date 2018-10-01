@@ -13,7 +13,7 @@
                 @if(\LaravelLocalization::getCurrentLocale() === 'es')
                 <img src="{{ $message->embed(public_path() . '/images/cart-unbuyed-spa.png') }}" style="max-width: 100%" alt="Bipolar">
                 @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                <img src="{{ $message->embed(public_path() . 'images/cart-unbuyed-eng.png') }}" style="max-width: 100%" alt="Bipolar">
+                <img src="{{ $message->embed(public_path() . '/images/cart-unbuyed-eng.png') }}" style="max-width: 100%" alt="Bipolar">
                 @endif
               </td>
             </tr>
