@@ -73,4 +73,9 @@ class Buy extends Model
 
         return "{$moneySign} " . number_format($this->discount_coupon, 2);
     }
+
+    public function getCurrentStatusLabel()
+    {
+        return __("bipolar.buy.statuses." . $this->status);
+    }
 }
