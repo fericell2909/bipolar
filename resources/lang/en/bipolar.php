@@ -17,6 +17,8 @@ return [
         'checkout' => 'Go to checkout',
     ],
     'buy' => [
+        'order' => 'Order',
+        'status' => 'Order status',
         'delete_question' => 'Delete this buy?',
         'statuses' => [
             'processing' => 'Processing order',

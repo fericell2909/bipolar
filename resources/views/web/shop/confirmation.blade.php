@@ -9,7 +9,12 @@
   <h1>{{ __('bipolar.confirmation.your_order') }}</h1>
 </div>
 <div class="container">
-  <h2>#Orden {{ $buy->id }}</h2>
+  <h2>#{{ __('bipolar.buy.order') }} {{ $buy->id }}</h2>
+  <div class="bipolar-steps-mobile">
+    <h3 class="bipolar-steps-mobile__title">{{ __('bipolar.buy.status') }}</h2>
+    <h4 class="bipolar-steps-mobile__subtitle">{{ $buy->getCurrentStatusLabel() }}</h3>
+    <h4 class="bipolar-steps-mobile__subtitle">{{ $buy->status()->created_at->format('d/m/Y') }}</h3>
+  </div>
 </div>
 @include('web.partials.buy-steps', compact('buyStatuses'))
 <div class="container bipolar-detail-order">

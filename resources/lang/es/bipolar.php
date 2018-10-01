@@ -17,6 +17,8 @@ return [
         'checkout' => 'Ir a la caja',
     ],
     'buy' => [
+        'order' => 'Orden',
+        'status' => 'Estado del pedido',
         'delete_question' => '¿Desea eliminar esta compra?',
         'statuses' => [
             'processing' => 'Procesando pedido',
