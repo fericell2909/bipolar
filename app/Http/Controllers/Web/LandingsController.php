@@ -47,6 +47,12 @@ class LandingsController extends Controller
             ->where('end_date', '>=', now())
             ->get();
 
+        if ($banners->count()) {
+            $image = $banners->first()->url;
+            \SEO::opengraph()->setType('article')->addImage($image, ['width' => 1024, 'height' => 680]);
+            \SEO::twitter()->addImage($image);
+        }
+
         return view('welcome', compact('banners', 'homePosts', 'settings', 'posts'));
     }
 
