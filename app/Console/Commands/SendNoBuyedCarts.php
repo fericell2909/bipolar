@@ -40,14 +40,62 @@ class SendNoBuyedCarts extends Command
     public function handle()
     {
         $carts = Cart::has('details')
-            ->with('details.product.photos', 'details.stock', 'details.stock.size', 'details.product')
+            ->has('details.product')
+            ->with(['details.product.photos', 'details.stock', 'details.stock.size', 'details.product'])
             ->whereNotNull('user_id')
             ->get();
+
+        $carts = $carts
+            ->filter($this->modifiedYesterday())
+            ->reject($this->removeCartsWithoutDetails());
 
         foreach ($carts as $cart) {
             \Mail::to($cart->user->email)->send(new CartsUnbuyed($cart));
         }
 
         $this->info("Se enviaron correos a {$carts->count()} personas");
+    }
+
+    /**
+     * Only carts updated from 24 hours ago
+     *
+     * @return \Closure
+     */
+    private function modifiedYesterday()
+    {
+        return function ($cart) {
+            /** @var \App\Models\Cart $cart */
+            return $cart->updated_at->isYesterday() && $cart->updated_at->hour === now()->hour;
+        };
+    }
+
+    private function removeCartsWithoutDetails()
+    {
+        return function ($cart) {
+            /** @var \App\Models\Cart $cart */
+            $details = $cart->details->reject($this->removeDetailWithTrashedProducts());
+
+            if ($details->count() === 0) {
+                $cart->delete();
+
+                return true;
+            }
+
+            return false;
+        };
+    }
+
+    private function removeDetailWithTrashedProducts()
+    {
+        return function ($detail) {
+            /** @var \App\Models\CartDetail $detail */
+            if ($detail->product->trashed()) {
+                $detail->delete();
+
+                return true;
+            }
+
+            return false;
+        };
     }
 }

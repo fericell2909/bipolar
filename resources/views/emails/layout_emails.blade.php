@@ -716,7 +716,7 @@
         <tbody>
         <tr>
           <td>
-            <img src="{{ asset('storage/bipolar-images/assets/mails/bipolar-mail-header.png') }}" alt="Cabecera" style="width: 100%; max-width: 100%;">
+            <img src="{{ $message->embed(public_path() . '/storage/bipolar-images/assets/mails/bipolar-mail-header.png') }}" alt="Cabecera" style="width: 100%; max-width: 100%;">
           </td>
         </tr>
         </tbody>
@@ -868,7 +868,7 @@
         <tbody>
         <tr>
           <td>
-            <img src="{{ asset('storage/bipolar-images/assets/mails/bipolar-mail-footer.png') }}" alt="Cabecera" style="width: 100%; max-width: 100%;">
+            <img src="{{ $message->embed(public_path() . '/storage/bipolar-images/assets/mails/bipolar-mail-footer.png') }}" alt="Cabecera" style="width: 100%; max-width: 100%;">
           </td>
         </tr>
         </tbody>
