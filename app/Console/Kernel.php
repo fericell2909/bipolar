@@ -34,6 +34,7 @@ class Kernel extends ConsoleKernel
         //$schedule->command(SendNoBuyedCarts::class)->daily();
         $schedule->command(CopyFacebookFansToSettings::class)->daily();
         $schedule->command(SyncBsaleStocks::class)->everyMinute();
+        $schedule->command('sitemap:generate')->weekly();
     }
 
     /**
