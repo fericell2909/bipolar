@@ -1,5 +1,8 @@
 # Bipolar
 
+## Requirements
+- Don't forget to setup the analytics `json` file at `storage_path('app/analytics/BipolarWeb-2127e4255dbc.json')`
+
 ### Lista de comandos
 Este es un listado de los comandos necesarios y su explicación que se tienen que activar en el servidor.
 

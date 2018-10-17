@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-10-07 21:46:34.
+    * Generated on 2018-10-15 14:45:39.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -57,6 +57,8 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
+        'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
+        'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
         'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,
@@ -225,6 +227,8 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
+        'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
+        'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
         'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,
@@ -393,6 +397,8 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
+        'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
+        'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
         'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,
@@ -561,6 +567,8 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
+        'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
+        'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
         'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,
@@ -729,6 +737,8 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
+        'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
+        'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
         'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,
@@ -897,6 +907,8 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
+        'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
+        'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
         'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,
@@ -1065,6 +1077,8 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'iseed' => \Orangehill\Iseed\Iseed::class,
         'command.iseed' => \Orangehill\Iseed\IseedCommand::class,
+        'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
+        'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
         'geoip' => \Torann\GeoIP\GeoIP::class,
         'hashids.factory' => \Vinkla\Hashids\HashidsFactory::class,

@@ -49,7 +49,7 @@
     <div class="col-md">
       @include('admin.partials.widget', [
         'icon' => 'fas fa-fw fa-chart-area',
-        'quantity' => 999999,
+        'quantity' => $visitorsThisWeek,
         'description' => 'Número de visitas semanal',
       ])
     </div>
