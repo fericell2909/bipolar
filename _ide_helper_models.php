@@ -211,6 +211,7 @@ namespace App\Models{
  * @property string|null $slug
  * @property string|null $redirection_link
  * @property int $order
+ * @property \Carbon\Carbon|null $begin_date
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read string $hash_id
@@ -218,6 +219,7 @@ namespace App\Models{
  * @property-read \App\Models\PostType|null $post_type
  * @property-read \App\Models\State|null $state
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereBeginDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereName($value)

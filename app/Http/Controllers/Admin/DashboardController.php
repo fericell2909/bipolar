@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Buy;
-use App\Models\BuyDetail;
 use App\Models\Cart;
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Newsletter;
+use Spatie\Analytics\Period;
 
 class DashboardController extends Controller
 {
@@ -35,7 +34,8 @@ class DashboardController extends Controller
             'before_timestamp_opt' => now()->endOfWeek()->toIso8601String(),
         ]);
         $newsletterUsersInWeek = array_get($newsletterUsersInWeek, 'total_items', 0);
+        $visitorsThisWeek = \Analytics::fetchVisitorsAndPageViews(Period::create(now()->startOfWeek(), now()->endOfWeek()))->sum('visitors');
 
-        return view('admin.home', compact('usersInWeek', 'firstBuyUsers', 'sumTotalBuys', 'productsBuyWeek', 'cartsInWeek', 'usersTotal', 'newsletterUsersInWeek'));
+        return view('admin.home', compact('usersInWeek', 'firstBuyUsers', 'sumTotalBuys', 'productsBuyWeek', 'cartsInWeek', 'usersTotal', 'newsletterUsersInWeek', 'visitorsThisWeek'));
     }
 }
