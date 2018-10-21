@@ -7,6 +7,7 @@ use App\Models\HomePost;
 use App\Models\PostType;
 use App\Models\State;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomePostController extends Controller
@@ -39,6 +40,9 @@ class HomePostController extends Controller
             $postType = PostType::findOrFail($request->input('post_type'));
             $homePost->post_type()->associate($postType);
         }
+        if ($request->filled('begin_date')) {
+            $homePost->begin_date = Carbon::createFromFormat('d/m/Y', $request->input('begin_date'))->startOfDay();
+        }
 
         $homePost->save();
 
@@ -69,6 +73,11 @@ class HomePostController extends Controller
         if ($request->filled('post_type')) {
             $postType = PostType::findOrFail($request->input('post_type'));
             $homePost->post_type()->associate($postType);
+        }
+        if ($request->filled('begin_date')) {
+            $homePost->begin_date = Carbon::createFromFormat('d/m/Y', $request->input('begin_date'))->startOfDay();
+        } else {
+            $homePost->begin_date = null;
         }
 
         $homePost->save();
