@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 /** @mixin \Eloquent */
 class HomePost extends Model
 {
+    protected $dates = ['begin_date'];
+
     use Hashable, Sluggable, SluggableScopeHelpers;
 
     protected $table = 'home_posts';

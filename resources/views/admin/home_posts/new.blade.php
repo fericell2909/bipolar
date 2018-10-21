@@ -49,6 +49,22 @@
               {!! Form::select('state', $states, null, ['class' => 'form-control']) !!}
             </div>
           </div>
+          <div class="form-row">
+            <div class="col-6 form-group">
+              {!! Form::label('Día de activación (Opcional, si se deja en blanco, se necesita activar manual)') !!}
+              <div class="input-group date" id="datepickerbegin" data-target-input="nearest">
+                {!! Form::text('begin_date', null, [
+                 'class' => 'form-control datetimepicker-input',
+                 'id' => 'datepickerbegin',
+                 'data-target' => "#datepickerbegin",
+                 'required',
+               ]) !!}
+                <div class="input-group-append" data-target="#datepickerbegin" data-toggle="datetimepicker">
+                  <button type="button" class="btn btn-dark"><i class="fas fa-fw fa-calendar"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
           {!! Form::submit('Guardar', ['class' => 'btn btn-dark btn-rounded btn-sm']) !!}
           {!! Form::close() !!}
         </div>

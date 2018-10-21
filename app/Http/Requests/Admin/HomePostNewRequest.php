@@ -25,10 +25,11 @@ class HomePostNewRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'      => 'required|between:1,255',
-            'link'      => 'required|between:1,255|url',
-            'state'     => ['required', Rule::exists('states', 'id')],
-            'post_type' => ['nullable', Rule::exists('post_types', 'id')],
+            'name'       => 'required|between:1,255',
+            'link'       => 'required|between:1,255|url',
+            'state'      => ['required', Rule::exists('states', 'id')],
+            'post_type'  => ['nullable', Rule::exists('post_types', 'id')],
+            'begin_date' => 'nullable|date_format:d/m/Y',
         ];
     }
 }
