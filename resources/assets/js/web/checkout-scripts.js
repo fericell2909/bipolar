@@ -21,8 +21,8 @@ const clickedShippingAddress = addressId => {
       if (response['shipping_fee'] !== undefined && response['shipping_name'] !== undefined) {
         $('#checkout-shipping-fee').html(`<span>${response['shipping_name']}</span><span>${response['shipping_fee']}</span>`);
       }
-      $('#sectionCollapseTwo').collapse('hide');
-      $('#sectionCollapseThree').collapse('show');
+      const urlWithoutQuery = location.href.replace(location.search, '');
+      window.location.href = `${urlWithoutQuery}?part=3`;
     });
 };
 
