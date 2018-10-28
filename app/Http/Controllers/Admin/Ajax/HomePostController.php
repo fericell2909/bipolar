@@ -31,6 +31,7 @@ class HomePostController extends Controller
             if (\Storage::disk('public')->exists($photo->relative_url)) {
                 \Storage::disk('public')->delete($photo->relative_url);
             }
+            $photo->delete();
         }
 
         $homePost->delete();
