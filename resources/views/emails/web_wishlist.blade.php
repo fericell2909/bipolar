@@ -86,4 +86,5 @@
   </tr>
   </tbody>
 </table>
+@include('emails.partials.faq')
 @endsection

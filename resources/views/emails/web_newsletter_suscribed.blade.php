@@ -11,9 +11,9 @@
             <tr>
               <td>
                 @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                <img src="{{ asset('storage/bipolar-images/assets/mails/suscription_esp.png') }}" style="max-width: 100%" alt="Bipolar">
+                <img src="{{ asset('storage/bipolar-images/assets/mails/suscription_esp.jpg') }}" style="max-width: 100%" alt="Bipolar">
                 @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                <img src="{{ asset('storage/bipolar-images/assets/mails/suscription_eng.png') }}" style="max-width: 100%" alt="Bipolar">
+                <img src="{{ asset('storage/bipolar-images/assets/mails/suscription_eng.jpg') }}" style="max-width: 100%" alt="Bipolar">
                 @endif
               </td>
             </tr>
@@ -37,4 +37,5 @@
     </tr>
   </tbody>
 </table>
+@include('emails.partials.faq')
 @endsection

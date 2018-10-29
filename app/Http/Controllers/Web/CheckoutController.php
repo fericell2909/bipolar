@@ -60,6 +60,13 @@ class CheckoutController extends Controller
             return redirect()->back();
         }
 
+        if ($cart->hasCouponExpired()) {
+            $cart->removeCoupon();
+            flash(__('bipolar.checkout.coupon_not_found'), 'danger');
+
+            return back();
+        }
+
         $billingAddress = Address::whereAddressTypeId(config('constants.ADDRESS_TYPE_BILLING_ID'))
             ->where('user_id', \Auth::id())
             ->where('main', true)

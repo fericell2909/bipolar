@@ -2,6 +2,7 @@
 
 .overlay-container {
   position: relative;
+  display: block;
 
   &:hover .overlay-image {
     opacity: 0.9;

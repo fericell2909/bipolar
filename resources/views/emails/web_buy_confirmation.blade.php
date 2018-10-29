@@ -207,4 +207,6 @@
   </tr>
   </tbody>
 </table>
+@includeWhen($buy->showroom, 'emails.partials.address')
+@includeWhen(!$buy->showroom, 'emails.partials.faq')
 @endsection
