@@ -21,6 +21,7 @@ return [
         'status' => 'Estado del pedido',
         'delete_question' => '¿Desea eliminar esta compra?',
         'statuses' => [
+            'incomplete' => 'Procesando pedido',
             'processing' => 'Procesando pedido',
             'sent' => 'Pedido enviado',
             'transit' => 'Pedido en tránsito',

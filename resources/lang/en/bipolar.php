@@ -21,6 +21,7 @@ return [
         'status' => 'Order status',
         'delete_question' => 'Delete this buy?',
         'statuses' => [
+            'incomplete' => 'Processing order',
             'processing' => 'Processing order',
             'sent' => 'Order sent',
             'transit' => 'Order in transit',
