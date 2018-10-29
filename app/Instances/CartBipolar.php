@@ -295,6 +295,17 @@ class CartBipolar
         return !is_null($this->cart->coupon_id);
     }
 
+    public function hasCouponExpired(): bool
+    {
+        if (!$this->hasCoupon()) {
+            return false;
+        }
+
+        $todayBetweenCouponBeginAndEnd = now()->between($this->cart->coupon->begin, $this->cart->coupon->end);
+
+        return !$todayBetweenCouponBeginAndEnd;
+    }
+
     /**
      * @return Coupon|bool
      */
