@@ -109,6 +109,8 @@ return [
         'here' => 'aquí',
         'unsuscribe_newsletter' => 'Si deseas desuscribirte de nuestra lista puedes hacerlo desde',
         'thankyou_newsletter' => 'Gracias por suscribirte a nuestro newsletter',
+        'we_wait' => 'Te esperamos!',
+        'address' => 'Puedes venir a recoger tu pedido en Calle Carolina Vargas 216 San Isidro de lunes a sábado de 11:00 a.m. a 8:30 p.m.',
     ],
     'shipping' => [
         'title' => 'Envíos',
