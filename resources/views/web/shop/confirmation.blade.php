@@ -64,8 +64,8 @@
   <table class="table-order">
     <thead>
       <tr>
-        <th>{{ __('bipolar.confirmation.product') }}</th>
-        <th>Total</th>
+        <th><span>{{ __('bipolar.confirmation.product') }}</span></th>
+        <th><span>Total</span></th>
       </tr>
     </thead>
     <tbody>
@@ -105,7 +105,7 @@
       </tr>
     </tbody>
   </table>
-  <h2>{{ __('bipolar.confirmation.customer_info') }}</h2>
+  <h2 class="customer-details-title">{{ __('bipolar.confirmation.customer_info') }}</h2>
   <table class="customer-details">
     <tbody>
       <tr>
