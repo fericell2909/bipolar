@@ -931,6 +931,29 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Page
+ *
+ * @property int $id
+ * @property string $slug
+ * @property array $title
+ * @property string $body
+ * @property string|null $main_image
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereMainImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereUpdatedAt($value)
+ */
+	class Page extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\CouponType
  *
  * @mixin \Eloquent

@@ -53,6 +53,8 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::post('ajax/address/{addressId}/main', 'Web\Ajax\AddressesController@setMain');
             Route::delete('ajax/address/{addressId}', 'Web\Ajax\AddressesController@remove');
         });
+
+        Route::get('info/{page}', 'HomeController@page')->name('page');
     });
 
 Route::post('ajax/oauth/facebook', 'Web\Auth\LoginController@facebookAuth');

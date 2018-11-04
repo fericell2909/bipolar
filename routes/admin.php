@@ -74,6 +74,13 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('order', 'Admin\BannersController@order')->name('banners.order');
     });
 
+    Route::prefix('pages')->group(function () {
+        Route::get('/', 'Admin\PageController@index')->name('page_admin.index');
+        Route::get('new', 'Admin\PageController@create')->name('page_admin.create');
+        Route::get('{pageId}/image', 'Admin\PageController@image')->name('page_admin.image');
+        Route::post('{pageId}/image', 'Admin\PageController@imageUpload');
+    });
+
     Route::prefix('coupons')->group(function () {
         Route::get('/', 'Admin\CouponController@index')->name('coupons.index');
         Route::get('/new', 'Admin\CouponController@create')->name('coupons.create');

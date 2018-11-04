@@ -189,6 +189,16 @@
               </li>
               <li>
                 <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                  <i class="fas fa-fw fa-file"></i>
+                  <span class="hide-menu"> Páginas</span>
+                </a>
+                <ul aria-expanded="false" class="collapse">
+                  <li><a href="{{ route('page_admin.create') }}">Nueva página</a></li>
+                  <li><a href="{{ route('page_admin.index') }}">Listar páginas</a></li>
+                </ul>
+              </li>
+              <li>
+                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                   <i class="fas fa-fw fa-cogs"></i>
                   <span class="hide-menu"> Configuraciones</span>
                 </a>
