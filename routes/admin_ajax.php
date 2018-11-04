@@ -69,6 +69,10 @@ Route::delete('coupons/{coupon}', 'Admin\Ajax\CouponsController@destroy');
 Route::get('tags', 'Admin\Ajax\TagsController@index');
 Route::post('tags', 'Admin\Ajax\TagsController@store');
 
+Route::post('pages', 'Admin\Ajax\PageController@store');
+Route::get('pages/{pageId}', 'Admin\Ajax\PageController@show');
+Route::put('pages/{pageId}', 'Admin\Ajax\PageController@update');
+
 Route::prefix('discount-tasks')->group(function () {
     Route::get('/', 'Admin\Ajax\DiscountController@index');
     Route::post('/', 'Admin\Ajax\DiscountController@store');

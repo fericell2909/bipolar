@@ -10,10 +10,15 @@
     text-transform: uppercase;
     letter-spacing: 3px;
     color: $bipolar-black;
+
+    &.customer-details-title {
+      margin-top: 60px;
+    }
   }
 
   table.table-order {
     width: 100%;
+    margin-top: 60px;
 
     span.price {
       @include bodoni_bold_font;
@@ -30,6 +35,15 @@
         border-bottom: 1px solid #222;
         padding: 10px 15px;
         letter-spacing: 2.55px;
+        vertical-align: middle;
+
+        span {
+          padding-top: 5px;
+        }
+
+        &:first-child {
+          padding-left: 0;
+        }
       }
     }
 
@@ -38,14 +52,19 @@
         td {
           position: relative;
           border-top: 1px solid rgba(0,0,0,.1);
-          padding: 10px 15px;
+          padding: 15px 15px 10px;
           vertical-align: middle;
           color: $bipolar-black;
+
           &.total-title {
             @include bodoni_bold_font;
             font-size: 17px;
             letter-spacing: 2.55px;
             text-transform: uppercase;
+          }
+
+          &:first-child {
+            padding-left: 0;
           }
         }
       }
@@ -67,6 +86,9 @@
         padding: 8px;
         vertical-align: top;
         border-top: 1px solid #ddd;
+        &:first-child {
+          padding-left: 0;
+        }
       }
     }
   }

@@ -57,7 +57,6 @@
                  'class' => 'form-control datetimepicker-input',
                  'id' => 'datepickerbegin',
                  'data-target' => "#datepickerbegin",
-                 'required',
                ]) !!}
                 <div class="input-group-append" data-target="#datepickerbegin" data-toggle="datetimepicker">
                   <button type="button" class="btn btn-dark"><i class="fas fa-fw fa-calendar"></i></button>

@@ -25,3 +25,5 @@ require('./components/discounts/MultipleDiscountsNew');
 require('./components/discounts/MultipleDiscountsEdit');
 require('./components/PostNew');
 require('./components/PostEdit');
+require('./components/PageNew');
+require('./components/PageEdit');
