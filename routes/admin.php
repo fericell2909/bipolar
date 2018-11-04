@@ -79,6 +79,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('new', 'Admin\PageController@create')->name('page_admin.create');
         Route::get('{pageId}/image', 'Admin\PageController@image')->name('page_admin.image');
         Route::post('{pageId}/image', 'Admin\PageController@imageUpload');
+        Route::get('{pageId}/edit', 'Admin\PageController@edit')->name('page_admin.edit');
     });
 
     Route::prefix('coupons')->group(function () {

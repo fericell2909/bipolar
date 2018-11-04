@@ -51,4 +51,11 @@ class PageController extends Controller
 
         return back();
     }
+
+    public function edit($pageId)
+    {
+        $page = Page::findOrFail($pageId);
+
+        return view('admin.pages.edit', compact('page'));
+    }
 }

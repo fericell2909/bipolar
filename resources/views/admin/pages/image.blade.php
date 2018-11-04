@@ -8,7 +8,7 @@
     <div class="card-body">
       {!! Form::open(['files' => true]) !!}
         <div class="form-group">
-          {!! Form::label('Subir imagen') !!}
+          {!! Form::label('Subir imagen (Recomendada 1923x1083, pero no obligatoria)') !!}
           {!! Form::file('image', ['class' => 'form-control', 'accept' => 'image/*', 'required' => true]) !!}
         </div>
         <button class="btn btn-dark btn-rounded">Subir imagen</button>

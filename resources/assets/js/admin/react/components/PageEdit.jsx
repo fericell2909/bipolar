@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { EditorState, convertToRaw } from "draft-js";
+import {EditorState, convertToRaw, ContentState} from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { Editor } from "react-draft-wysiwyg";
 import axios from "axios";
+import htmlToDraft from "html-to-draftjs";
 
-class PageNew extends React.Component {
+class PageEdit extends React.Component {
   state = {
     title: "",
     titleEnglish: "",
@@ -40,18 +41,54 @@ class PageNew extends React.Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    const savePage = await axios
-      .post("/ajax-admin/pages", {
+    const updatePage = await axios
+      .put(`/ajax-admin/pages/${this.props.pageId}`, {
         title: this.state.title,
         title_english: this.state.titleEnglish,
         content: this.state.content,
         content_english: this.state.contentEnglish,
       })
       .catch(console.error);
-    if (savePage.data["redirect_url"]) {
-      window.location.href = savePage.data["redirect_url"];
+    if (updatePage.data["redirect_url"]) {
+      window.location.href = updatePage.data["redirect_url"];
     }
   };
+
+  componentDidMount() {
+    axios.get(`/ajax-admin/pages/${this.props.pageId}`).then(response => {
+      const page = response.data["data"];
+      let { editorState, editorStateEnglish } = this.state;
+      let contentBlock, contentBlockEnglish = null;
+      let content, contentEnglish = null;
+
+      if (page["body_es"] !== null) {
+        content = page['body_es'];
+        contentBlock = htmlToDraft(page["body_es"]);
+        const contentState = ContentState.createFromBlockArray(
+          contentBlock.contentBlocks
+        );
+        editorState = EditorState.createWithContent(contentState);
+      }
+      if (page["body_en"] !== null) {
+        contentEnglish = page['body_en'];
+        contentBlockEnglish = htmlToDraft(page["body_en"]);
+        const contentStateEnglish = ContentState.createFromBlockArray(
+          contentBlockEnglish.contentBlocks
+        );
+        editorStateEnglish = EditorState.createWithContent(contentStateEnglish);
+      }
+
+
+      this.setState({
+        title: page["title_es"],
+        titleEnglish: page["title_en"],
+        editorState,
+        editorStateEnglish,
+        content,
+        contentEnglish,
+      });
+    });
+  }
 
   render() {
     const toolbarEditor = {
@@ -125,9 +162,7 @@ class PageNew extends React.Component {
                     editorClassName="demo-editor-content"
                   />
                 </div>
-                <button type="submit" className="btn btn-dark btn-rounded">
-                  Guardar
-                </button>
+                <button type="submit" className="btn btn-dark btn-rounded">Actualizar</button>
               </form>
             </div>
           </div>
@@ -137,7 +172,8 @@ class PageNew extends React.Component {
   }
 }
 
-if (document.getElementById("bipolar-create-page")) {
-  const elem = document.getElementById("bipolar-create-page");
-  ReactDOM.render(<PageNew />, elem);
+if (document.getElementById("bipolar-edit-page")) {
+  const pageId = window.BipolarPageId;
+  const elem = document.getElementById("bipolar-edit-page");
+  ReactDOM.render(<PageEdit pageId={pageId}/>, elem);
 }

@@ -22,7 +22,7 @@
                 <td><a href="{{ route('page', $page->slug) }}" target="_blank" class="btn btn-dark btn-sm btn-rounded">Ver enlace</a></td>
                 <td class="text-center">
                   <div class="button-group">
-                    <a href="#" class="btn btn-dark btn-sm btn-rounded">
+                    <a href="{{ route('page_admin.edit', $page->id) }}" class="btn btn-dark btn-sm btn-rounded">
                       <i class="fas fa-fw fa-edit"></i> Editar
                     </a>
                     <a href="{{ route('page_admin.image', $page->id) }}" class="btn btn-dark btn-sm btn-rounded">
