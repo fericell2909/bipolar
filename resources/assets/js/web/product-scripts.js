@@ -28,6 +28,24 @@ $(function () {
       });
   });
 
+  $('.form-suscribe').submit(function (event) {
+    event.preventDefault();
+    $('#newsletter-submit-button').attr('disabled', true);
+    $.post($(this).attr('action'), $(this).serializeArray())
+      .done(response => {
+        $('#newsletter-submit-button').removeAttr('disabled');
+        swal({
+          title: `<span class="color-white">${response['message']}</span>`,
+          background: 'black',
+          toast: true,
+          position: "top-right",
+          showConfirmButton: false,
+          timer: 3000,
+          animation: false,
+        });
+      });
+  });
+
   if ($('.tooltip-container').length) {
     tippy('.tooltip-container', {
       theme: 'bipolar',

@@ -22,8 +22,6 @@ class NewsletterController extends Controller
 
         \Mail::to($request->input('email'))->send(new NewsletterSuscribed($name));
 
-        //flash()->success('Gracias por registrarte a nuestro newsletter. Esperemos disfrutes de las promociones');
-
-        return redirect()->back();
+        return response()->json(['message' => __('bipolar.mails.thankyou_newsletter')]);
     }
 }
