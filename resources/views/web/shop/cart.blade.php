@@ -54,18 +54,12 @@
   </table>
   <div class="cart-total-inner">
     @if(CartBipolar::count() > 0)
-    <div class="row">
-      <div class="col-md-5 update-button">
-        <button type="submit" class="btn btn-dark-rounded">
-          {{ __('bipolar.cart.update') }}
-        </button>
-      </div>
-      <div class="col-md-6 checkout-button">
-        <a href="{{ route('checkout') }}" class="btn btn-dark-rounded">
-            {{ __('bipolar.cart.checkout') }}
-        </a>
-      </div>
-    </div>
+      <button type="submit" class="btn btn-dark-rounded" style="margin-right: 10px;">
+        {{ __('bipolar.cart.update') }}
+      </button>
+      <a href="{{ route('checkout') }}" class="btn btn-dark-rounded">
+        {{ __('bipolar.cart.checkout') }}
+      </a>
     @endif
     <h2>Total</h2>
     <table class="table">

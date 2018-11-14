@@ -13,7 +13,7 @@ return [
         'birthdate' => 'Fecha de cumpleaños',
     ],
     'cart' => [
-        'update' => 'Actualizar carrito',
+        'update' => 'Actualizar',
         'checkout' => 'Ir a la caja',
     ],
     'buy' => [
