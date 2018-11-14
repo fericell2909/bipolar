@@ -12,7 +12,7 @@
     <div class="form-group">
       {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => __('bipolar.home.email'), 'required' => true]) !!}
     </div>
-    <button class="btn btn-dark btn-rounded">{{ __('bipolar.home.send') }}</button>
+    <button id="newsletter-submit-button" class="btn btn-dark btn-rounded">{{ __('bipolar.home.send') }}</button>
     {!! Form::close() !!}
   </div>
 </div>

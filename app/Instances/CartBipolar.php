@@ -285,7 +285,8 @@ class CartBipolar
 
     public function removeCoupon()
     {
-        $this->cart->coupon()->dissociate();
+        $this->cart->coupon_id = null;
+        $this->cart->save();
 
         return $this->recalculate();
     }

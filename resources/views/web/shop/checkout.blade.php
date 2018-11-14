@@ -293,6 +293,7 @@
 							</div>
 							{!! Form::open(['id' => 'checkout-form']) !!}
 								<div class="submit-payment">
+									<a href="{{ route('cart') }}" class="btn btn-gray-rounded">{{ __('bipolar.checkout.edit') }}</a>
 									<button type="submit" class="btn btn-dark-rounded">{{ __('bipolar.checkout.continue') }}</button>
 									{!! Form::hidden('showroom_pick') !!}
 									<p>

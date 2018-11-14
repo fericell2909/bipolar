@@ -176,7 +176,12 @@
       margin-top: 15px;
     }
 
-    @include sm {
+    @include md {
+      display: block;
+      margin-top: 10px;
+    }
+
+    @include lg {
       display: inline-block;
       margin-top: 0;
     }

@@ -143,6 +143,13 @@ fieldset[disabled] .btn-dark.active {
   transition: all 0.5s ease-out;
 }
 
+.btn-gray-rounded {
+  @extend .btn-add-cart;
+  background-color: $bipolar-background-gray;
+  border: 1px solid $bipolar-background-gray;
+  transition: all 0.5s ease-out;
+}
+
 .btn-bipolar-rounded {
   @extend .btn-add-cart;
   background-color: $bipolar-color;
