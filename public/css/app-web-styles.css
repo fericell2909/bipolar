@@ -20200,6 +20200,7 @@ a.pswp__share--download:hover {
 .btn-dark,
 .btn-add-cart,
 .btn-dark-rounded,
+.btn-gray-rounded,
 .btn-bipolar-rounded {
   color: white;
   background-color: #000000;
@@ -20212,18 +20213,22 @@ a.pswp__share--download:hover {
 .btn-dark:hover,
 .btn-add-cart:hover,
 .btn-dark-rounded:hover,
+.btn-gray-rounded:hover,
 .btn-bipolar-rounded:hover,
 .btn-dark:focus,
 .btn-add-cart:focus,
 .btn-dark-rounded:focus,
+.btn-gray-rounded:focus,
 .btn-bipolar-rounded:focus,
 .btn-dark:active,
 .btn-add-cart:active,
 .btn-dark-rounded:active,
+.btn-gray-rounded:active,
 .btn-bipolar-rounded:active,
 .btn-dark.active,
 .active.btn-add-cart,
 .active.btn-dark-rounded,
+.active.btn-gray-rounded,
 .active.btn-bipolar-rounded {
   color: white;
   background-color: #000000;
@@ -20234,6 +20239,7 @@ a.pswp__share--download:hover {
 .open .dropdown-toggle.btn-dark,
 .open .dropdown-toggle.btn-add-cart,
 .open .dropdown-toggle.btn-dark-rounded,
+.open .dropdown-toggle.btn-gray-rounded,
 .open .dropdown-toggle.btn-bipolar-rounded {
   color: white;
   background-color: #312e36;
@@ -20243,10 +20249,12 @@ a.pswp__share--download:hover {
 .btn-dark:active,
 .btn-add-cart:active,
 .btn-dark-rounded:active,
+.btn-gray-rounded:active,
 .btn-bipolar-rounded:active,
 .btn-dark.active,
 .active.btn-add-cart,
 .active.btn-dark-rounded,
+.active.btn-gray-rounded,
 .active.btn-bipolar-rounded {
   background-image: none;
 }
@@ -20254,6 +20262,7 @@ a.pswp__share--download:hover {
 .open .dropdown-toggle.btn-dark,
 .open .dropdown-toggle.btn-add-cart,
 .open .dropdown-toggle.btn-dark-rounded,
+.open .dropdown-toggle.btn-gray-rounded,
 .open .dropdown-toggle.btn-bipolar-rounded {
   background-image: none;
 }
@@ -20261,10 +20270,12 @@ a.pswp__share--download:hover {
 .btn-dark.disabled,
 .disabled.btn-add-cart,
 .disabled.btn-dark-rounded,
+.disabled.btn-gray-rounded,
 .disabled.btn-bipolar-rounded,
 .btn-dark[disabled],
 .btn-add-cart[disabled],
 .btn-dark-rounded[disabled],
+.btn-gray-rounded[disabled],
 .btn-bipolar-rounded[disabled] {
   background-color: #000000;
   border-color: #000000;
@@ -20273,6 +20284,7 @@ a.pswp__share--download:hover {
 fieldset[disabled] .btn-dark,
 fieldset[disabled] .btn-add-cart,
 fieldset[disabled] .btn-dark-rounded,
+fieldset[disabled] .btn-gray-rounded,
 fieldset[disabled] .btn-bipolar-rounded {
   background-color: #000000;
   border-color: #000000;
@@ -20281,10 +20293,12 @@ fieldset[disabled] .btn-bipolar-rounded {
 .btn-dark.disabled:hover,
 .disabled.btn-add-cart:hover,
 .disabled.btn-dark-rounded:hover,
+.disabled.btn-gray-rounded:hover,
 .disabled.btn-bipolar-rounded:hover,
 .btn-dark[disabled]:hover,
 .btn-add-cart[disabled]:hover,
 .btn-dark-rounded[disabled]:hover,
+.btn-gray-rounded[disabled]:hover,
 .btn-bipolar-rounded[disabled]:hover {
   background-color: #000000;
   border-color: #000000;
@@ -20293,6 +20307,7 @@ fieldset[disabled] .btn-bipolar-rounded {
 fieldset[disabled] .btn-dark:hover,
 fieldset[disabled] .btn-add-cart:hover,
 fieldset[disabled] .btn-dark-rounded:hover,
+fieldset[disabled] .btn-gray-rounded:hover,
 fieldset[disabled] .btn-bipolar-rounded:hover {
   background-color: #000000;
   border-color: #000000;
@@ -20301,10 +20316,12 @@ fieldset[disabled] .btn-bipolar-rounded:hover {
 .btn-dark.disabled:focus,
 .disabled.btn-add-cart:focus,
 .disabled.btn-dark-rounded:focus,
+.disabled.btn-gray-rounded:focus,
 .disabled.btn-bipolar-rounded:focus,
 .btn-dark[disabled]:focus,
 .btn-add-cart[disabled]:focus,
 .btn-dark-rounded[disabled]:focus,
+.btn-gray-rounded[disabled]:focus,
 .btn-bipolar-rounded[disabled]:focus {
   background-color: #000000;
   border-color: #000000;
@@ -20313,6 +20330,7 @@ fieldset[disabled] .btn-bipolar-rounded:hover {
 fieldset[disabled] .btn-dark:focus,
 fieldset[disabled] .btn-add-cart:focus,
 fieldset[disabled] .btn-dark-rounded:focus,
+fieldset[disabled] .btn-gray-rounded:focus,
 fieldset[disabled] .btn-bipolar-rounded:focus {
   background-color: #000000;
   border-color: #000000;
@@ -20321,10 +20339,12 @@ fieldset[disabled] .btn-bipolar-rounded:focus {
 .btn-dark.disabled:active,
 .disabled.btn-add-cart:active,
 .disabled.btn-dark-rounded:active,
+.disabled.btn-gray-rounded:active,
 .disabled.btn-bipolar-rounded:active,
 .btn-dark[disabled]:active,
 .btn-add-cart[disabled]:active,
 .btn-dark-rounded[disabled]:active,
+.btn-gray-rounded[disabled]:active,
 .btn-bipolar-rounded[disabled]:active {
   background-color: #000000;
   border-color: #000000;
@@ -20333,6 +20353,7 @@ fieldset[disabled] .btn-bipolar-rounded:focus {
 fieldset[disabled] .btn-dark:active,
 fieldset[disabled] .btn-add-cart:active,
 fieldset[disabled] .btn-dark-rounded:active,
+fieldset[disabled] .btn-gray-rounded:active,
 fieldset[disabled] .btn-bipolar-rounded:active {
   background-color: #000000;
   border-color: #000000;
@@ -20341,10 +20362,12 @@ fieldset[disabled] .btn-bipolar-rounded:active {
 .btn-dark.disabled.active,
 .disabled.active.btn-add-cart,
 .disabled.active.btn-dark-rounded,
+.disabled.active.btn-gray-rounded,
 .disabled.active.btn-bipolar-rounded,
 .btn-dark[disabled].active,
 .btn-add-cart[disabled].active,
 .btn-dark-rounded[disabled].active,
+.btn-gray-rounded[disabled].active,
 .btn-bipolar-rounded[disabled].active {
   background-color: #000000;
   border-color: #000000;
@@ -20353,6 +20376,7 @@ fieldset[disabled] .btn-bipolar-rounded:active {
 fieldset[disabled] .btn-dark.active,
 fieldset[disabled] .active.btn-add-cart,
 fieldset[disabled] .active.btn-dark-rounded,
+fieldset[disabled] .active.btn-gray-rounded,
 fieldset[disabled] .active.btn-bipolar-rounded {
   background-color: #000000;
   border-color: #000000;
@@ -20361,6 +20385,7 @@ fieldset[disabled] .active.btn-bipolar-rounded {
 .btn-dark .badge,
 .btn-add-cart .badge,
 .btn-dark-rounded .badge,
+.btn-gray-rounded .badge,
 .btn-bipolar-rounded .badge {
   color: #000000;
   background-color: white;
@@ -20373,6 +20398,7 @@ fieldset[disabled] .active.btn-bipolar-rounded {
 
 .btn-add-cart,
 .btn-dark-rounded,
+.btn-gray-rounded,
 .btn-bipolar-rounded {
   text-transform: uppercase;
   text-align: center;
@@ -20386,6 +20412,7 @@ fieldset[disabled] .active.btn-bipolar-rounded {
 
 .btn-add-cart:hover,
 .btn-dark-rounded:hover,
+.btn-gray-rounded:hover,
 .btn-bipolar-rounded:hover {
   color: #000000;
   background: white;
@@ -20393,6 +20420,13 @@ fieldset[disabled] .active.btn-bipolar-rounded {
 }
 
 .btn-dark-rounded {
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+.btn-gray-rounded {
+  background-color: #929496;
+  border: 1px solid #929496;
   -webkit-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
 }

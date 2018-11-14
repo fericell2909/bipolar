@@ -212,6 +212,7 @@ return [
         'another_address' => 'Ship to a different address?',
         'add_address' => 'Add address',
         'coupon_not_found' => "The cupon doesn't exist or is expired",
+        'edit' => 'Edit cart',
     ],
     'profile_edit' => [
         'my_account' => 'My account',

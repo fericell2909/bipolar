@@ -212,6 +212,7 @@ return [
         'another_address' => '¿Enviar a una dirección diferente?',
         'add_address' => 'Agregar otra dirección',
         'coupon_not_found' => 'El cupón no existe o ha expirado',
+        'edit' => 'Editar carrito',
     ],
     'profile_edit' => [
         'my_account' => 'Mi cuenta',
