@@ -139,4 +139,15 @@ class LoginController extends Controller
             $cart->destroyCart();
         });
     }
+
+    public function logout(Request $request)
+    {
+        \CartBipolar::removeCoupon();
+
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ? : redirect('/');
+    }
 }
