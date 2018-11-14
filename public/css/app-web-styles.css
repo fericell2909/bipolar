@@ -22126,7 +22126,14 @@ input:focus:-ms-input-placeholder {
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 992px) {
+  .product-content .btn-sizes-modal {
+    display: block;
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
   .product-content .btn-sizes-modal {
     display: inline-block;
     margin-top: 0;
