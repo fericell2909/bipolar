@@ -311,6 +311,7 @@ namespace App\Models{
  * @property int $current_buy
  * @property string|null $background_suscribe
  * @property string|null $background_counter
+ * @property array|null $open_hours
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings query()
@@ -323,6 +324,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFreeShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereInstagramCounts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereOpenHours($value)
  */
 	class Settings extends \Eloquent {}
 }

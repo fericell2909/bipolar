@@ -25,6 +25,8 @@ class SettingsController extends Controller
             'instagram_counts' => 'required|integer|min:0',
             'dolar_price'      => 'required|numeric|min:0',
             'free_shipping'    => 'nullable|boolean',
+            'open_spa'         => 'nullable',
+            'open_eng'         => 'nullable',
         ]);
 
         $settings = Settings::first();
@@ -32,6 +34,10 @@ class SettingsController extends Controller
         $settings->instagram_counts = $request->input('instagram_counts');
         $settings->dolar_change = $request->input('dolar_price');
         $settings->free_shipping = $request->input('free_shipping', false);
+        $settings->setTranslations('open_hours', [
+            'es' => $request->input('open_spa'),
+            'en' => $request->input('open_eng'),
+        ]);
         $settings->save();
 
         flash()->success('Guardado con éxito');
@@ -108,6 +114,7 @@ class SettingsController extends Controller
 
         if (!\Hash::check($request->input('old_password'), $user->password)) {
             flash()->error('Tu contraseña actual no es la correcta');
+
             return back();
         }
 
