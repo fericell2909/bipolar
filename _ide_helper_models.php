@@ -1,4 +1,6 @@
 <?php
+
+// @formatter:off
 /**
  * A helper file for your Eloquent Models
  * Copy the phpDocs from this file to the correct Model,
@@ -16,10 +18,13 @@ namespace App\Models{
  * @property int $id
  * @property int $user_id
  * @property int $product_id
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Product $product
  * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist whereProductId($value)
@@ -37,11 +42,14 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property string $slug
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereName($value)
@@ -71,8 +79,8 @@ namespace App\Models{
  * @property string|null $payed
  * @property int $showroom
  * @property string|null $bsale_document_url
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Address $billing_address
  * @property-read \App\Models\Coupon|null $coupon
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $details
@@ -88,7 +96,10 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy currentStatus($names)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy otherCurrentStatus($names)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBsaleDocumentUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBuyNumber($value)
@@ -121,6 +132,9 @@ namespace App\Models{
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\HomePost[] $home_posts
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType whereSlug($value)
@@ -145,6 +159,9 @@ namespace App\Models{
  * @property-read mixed $total_currency
  * @property-read \App\Models\Product $product
  * @property-read \App\Models\Stock|null $stock
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereCartId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereProductId($value)
@@ -171,6 +188,9 @@ namespace App\Models{
  * @property-read mixed $total_currency
  * @property-read \App\Models\Product $product
  * @property-read \App\Models\Stock|null $stock
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereBuyId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereProductId($value)
@@ -192,6 +212,9 @@ namespace App\Models{
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Stock[] $stocks
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereSlug($value)
@@ -211,14 +234,17 @@ namespace App\Models{
  * @property string|null $slug
  * @property string|null $redirection_link
  * @property int $order
- * @property \Carbon\Carbon|null $begin_date
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $begin_date
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read \App\Models\PostType|null $post_type
  * @property-read \App\Models\State|null $state
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereBeginDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereId($value)
@@ -242,15 +268,18 @@ namespace App\Models{
  * @property string $name
  * @property int $discount_pen
  * @property int $discount_usd
- * @property \Carbon\Carbon $begin
- * @property \Carbon\Carbon $end
- * @property array $products
- * @property array $product_subtypes
- * @property array $product_types
+ * @property \Illuminate\Support\Carbon $begin
+ * @property \Illuminate\Support\Carbon $end
+ * @property array|null $products
+ * @property array|null $product_subtypes
+ * @property array|null $product_types
  * @property int $available
  * @property int $executed
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereAvailable($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereBegin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereCreatedAt($value)
@@ -282,6 +311,9 @@ namespace App\Models{
  * @property int $current_buy
  * @property string|null $background_suscribe
  * @property string|null $background_counter
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBackgroundCounter($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBackgroundSuscribe($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBipolarCounts($value)
@@ -306,6 +338,9 @@ namespace App\Models{
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereSlug($value)
@@ -328,14 +363,17 @@ namespace App\Models{
  * @property float $subtotal_dolar
  * @property float $total
  * @property float $total_dolar
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Coupon|null $coupon
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CartDetail[] $details
  * @property-read mixed $subtotal_currency
  * @property-read mixed $total_currency
  * @property-read mixed $total_discount_coupon
  * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereCouponId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereDiscountCouponPen($value)
@@ -361,11 +399,11 @@ namespace App\Models{
  * @property int|null $state_id
  * @property array $name
  * @property string|null $slug
- * @property array $description
+ * @property array|null $description
  * @property int|null $discount_pen
  * @property int|null $discount_usd
- * @property \Carbon\Carbon|null $begin_discount
- * @property \Carbon\Carbon|null $end_discount
+ * @property \Illuminate\Support\Carbon|null $begin_discount
+ * @property \Illuminate\Support\Carbon|null $end_discount
  * @property float $price
  * @property float|null $price_pen_discount
  * @property float $price_dolar
@@ -374,9 +412,9 @@ namespace App\Models{
  * @property int $order
  * @property int $free_shipping
  * @property string|null $is_salient
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property \Carbon\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
  * @property-read mixed $discount_amount
  * @property-read string $hash_id
@@ -390,7 +428,10 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product findSimilarSlugs($attribute, $config, $slug)
  * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product newQuery()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Product onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product query()
  * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereBeginDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)
@@ -425,12 +466,12 @@ namespace App\Models{
  * @mixin \Eloquent
  * @property int $id
  * @property array $title
- * @property array $content
+ * @property array|null $content
  * @property string|null $slug
  * @property string|null $main_photo
  * @property int|null $state_id
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories
  * @property-read string $hash_id
@@ -441,7 +482,10 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post currentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post otherCurrentStatus($names)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereDeletedAt($value)
@@ -465,11 +509,14 @@ namespace App\Models{
  * @property int $order
  * @property string $url
  * @property string|null $relative_url
- * @property \Carbon\Carbon $begin_date
- * @property \Carbon\Carbon $end_date
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon $begin_date
+ * @property \Illuminate\Support\Carbon $end_date
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\State $state
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereBeginDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereEndDate($value)
@@ -523,6 +570,9 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Country[] $included_countries
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $included_states
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingInclude[] $includes
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereAllowShowroom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG200($value)
@@ -565,6 +615,9 @@ namespace App\Models{
  * @property string $name
  * @property int $phonecode
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $states
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country wherePhonecode($value)
@@ -589,15 +642,18 @@ namespace App\Models{
  * @property string $address
  * @property string|null $zip
  * @property int $main
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property \Carbon\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\AddressType $address_type
  * @property-read \App\Models\CountryState $country_state
  * @property-read string $hash_id
  * @property-read \App\Models\User $user
  * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address newQuery()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Address onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address query()
  * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddressTypeId($value)
@@ -631,11 +687,14 @@ namespace App\Models{
  * @property string $incoming_date
  * @property int $quantity
  * @property string|null $active
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $hash_id
  * @property-read \App\Models\Product $product
  * @property-read \App\Models\Size|null $size
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereBsaleStockId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereCreatedAt($value)
@@ -660,6 +719,9 @@ namespace App\Models{
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereSlug($value)
@@ -683,12 +745,15 @@ namespace App\Models{
  * @property string|null $payme_wallet_token
  * @property string|null $birthday_date
  * @property string|null $remember_token
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Buy[] $buys
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Cart[] $carts
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Wishlist[] $wishlists
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereBirthdayDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
@@ -713,6 +778,9 @@ namespace App\Models{
  * @mixin \Eloquent
  * @property int $id
  * @property string $name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereName($value)
  */
@@ -732,6 +800,9 @@ namespace App\Models{
  * @property-read \App\Models\Country|null $country
  * @property-read \App\Models\CountryState|null $country_state
  * @property-read \App\Models\Shipping $shipping
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereAllCountries($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereCountryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereCountryStateId($value)
@@ -755,9 +826,12 @@ namespace App\Models{
  * @property string|null $card_brand
  * @property string|null $reference
  * @property string|null $verification
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Buy $buy
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereAuthCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereAuthResult($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereAuthResultText($value)
@@ -782,6 +856,9 @@ namespace App\Models{
  * @property string $name
  * @property int $country_id
  * @property-read \App\Models\Country $country
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereCountryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereName($value)
@@ -801,12 +878,15 @@ namespace App\Models{
  * @property string $url
  * @property string|null $relative_url
  * @property int $order
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $hash_id
  * @property-read \App\Models\HomePost|null $home_post
  * @property-read \App\Models\Post|null $post
  * @property-read \App\Models\Product|null $product
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereHomePostId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereId($value)
@@ -830,6 +910,9 @@ namespace App\Models{
  * @property string $color
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereName($value)
@@ -846,6 +929,9 @@ namespace App\Models{
  * @property array $name
  * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereName($value)
  */
@@ -864,6 +950,9 @@ namespace App\Models{
  * @property-read \App\Models\Country|null $country
  * @property-read \App\Models\CountryState|null $country_state
  * @property-read \App\Models\Shipping $shipping
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereCountryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereCountryStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereId($value)
@@ -885,6 +974,9 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @property-read \App\Models\Type $type
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereSlug($value)
@@ -905,6 +997,9 @@ namespace App\Models{
  * @property string $password
  * @property string|null $remember_token
  * @property-read \App\Models\Role|null $role
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereName($value)
@@ -923,6 +1018,9 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Address[] $addresses
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereName($value)
  */
@@ -936,11 +1034,14 @@ namespace App\Models{
  * @property int $id
  * @property string $slug
  * @property array $title
- * @property string $body
+ * @property array $body
  * @property string|null $main_image
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereBody($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereId($value)
@@ -960,6 +1061,9 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Coupon[] $coupons
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponType query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponType whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponType whereName($value)
  */
@@ -979,18 +1083,21 @@ namespace App\Models{
  * @property int $frequency
  * @property float $minimum_pen
  * @property float $minimum_usd
- * @property \Carbon\Carbon $begin
- * @property \Carbon\Carbon $end
- * @property array $products
- * @property array $product_subtypes
- * @property array $product_types
+ * @property \Illuminate\Support\Carbon $begin
+ * @property \Illuminate\Support\Carbon $end
+ * @property array|null $products
+ * @property array|null $product_subtypes
+ * @property array|null $product_types
  * @property int $discounted_products
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Buy[] $buys
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Cart[] $carts
  * @property-read mixed $discount_format
  * @property-read \App\Models\CouponType $type
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereAmountPen($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereAmountUsd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereBegin($value)
@@ -1021,12 +1128,15 @@ namespace App\Models{
  * @property string $photo
  * @property string $photo_relative
  * @property int $order
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property \Carbon\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read string $hash_id
  * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic newQuery()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Historic onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic query()
  * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereDeletedAt($value)
