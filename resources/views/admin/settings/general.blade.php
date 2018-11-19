@@ -1,6 +1,7 @@
 @extends('admin.layouts.app_admin')
 @section('title', 'Configuración general')
 @section('content')
+  <?php /** @var \App\Models\Settings $settings */ ?>
   <div class="card">
     <div class="card-body">
       {!! Form::open() !!}
@@ -25,7 +26,19 @@
         </div>
       </div>
       <div class="form-row">
-        <div class="col-md-6">
+        <div class="col-4">
+          <div class="form-group">
+            {!! Form::label('Horario de atención 🇪🇸') !!}
+            {!! Form::text('open_spa', $settings->getTranslation('open_hours', 'es'), ['class' => 'form-control']) !!}
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            {!! Form::label('Horario de atención 🇺🇸') !!}
+            {!! Form::text('open_eng', $settings->getTranslation('open_hours', 'en'), ['class' => 'form-control']) !!}
+          </div>
+        </div>
+        <div class="col-4">
           <div class="form-group">
             <label class="checkbox-inline">
               {!! Form::checkbox('free_shipping', 1, $settings->free_shipping) !!}

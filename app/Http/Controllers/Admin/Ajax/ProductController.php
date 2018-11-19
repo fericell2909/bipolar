@@ -14,8 +14,6 @@ use App\Models\Stock;
 use App\Models\Subtype;
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Resources\ProductCollection;
-use App\Models\Type;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
