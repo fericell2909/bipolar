@@ -31,6 +31,8 @@ class BuySent extends Mailable
      */
     public function build()
     {
-        return $this->subject('Su pedido está en camino')->view('emails.admin_buy_sent');
+        return $this->bcc('shop@bipolar.com.pe')
+            ->subject(__('bipolar.mails.title_order_sent'))
+            ->view('emails.admin_buy_sent');
     }
 }

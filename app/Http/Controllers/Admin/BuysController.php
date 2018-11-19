@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\BuySent;
 use App\Models\Buy;
 use Illuminate\Http\Request;
 
@@ -59,10 +60,14 @@ class BuysController extends Controller
 
         $buy->shipping_fee = $request->input('shipping_fee');
         $buy->total = $request->input('total');
-        if ($buy->isDirty()) {
+        if ($buy->status !== $request->input('status')) {
             if ($request->input('status') === config('constants.BUY_SENT_STATUS') || $request->input('status') === config('constants.BUY_TRANSIT_STATUS')) {
                 $buy->setStatus(config('constants.BUY_SENT_STATUS'));
                 $buy->setStatus(config('constants.BUY_TRANSIT_STATUS'));
+                $languageOld = \LaravelLocalization::getCurrentLocale();
+                \LaravelLocalization::setLocale($buy->currency === 'PEN' ? 'es' : 'en');
+                \Mail::to($buy->user)->send(new BuySent($buy));
+                \LaravelLocalization::setLocale($languageOld);
             } else {
                 $buy->setStatus($request->input('status'));
             }

@@ -111,6 +111,10 @@ return [
         'thankyou_newsletter' => 'Gracias por suscribirte a nuestro newsletter',
         'we_wait' => 'Te esperamos!',
         'address' => 'Puedes venir a recoger tu pedido en Calle Carolina Vargas 216 San Isidro de lunes a sábado de 11:00 a.m. a 8:30 p.m.',
+        'title_order_sent' => 'Tu pedido ha sido enviado',
+        'sent_order' => 'Tu pedido <br> ha sido enviado!',
+        'confirm_order' => 'Puedes confirmar el estado de tu pedido aquí',
+        'see_order' => 'Ver pedido',
     ],
     'shipping' => [
         'title' => 'Envíos',
@@ -257,5 +261,5 @@ return [
         'state' => 'Estado',
         'cancel' => 'Cancelar',
         'view' => 'Ver',
-    ]
+    ],
 ];
