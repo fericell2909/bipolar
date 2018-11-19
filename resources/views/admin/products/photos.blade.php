@@ -8,7 +8,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header bg-dark">
-          <h4 class="m-b-0 text-white">Medidas (757x503)</h4>
+          <h4 class="m-b-0 text-white">Medidas (757x503 | Pruebas: 1920x1300)</h4>
         </div>
         <div class="card-body">
           <form action="{{ route('products.photo.upload', $product->hash_id) }}" class="dropzone" id="my-awesome-dropzone">
