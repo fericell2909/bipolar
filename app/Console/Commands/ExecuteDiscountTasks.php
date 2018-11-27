@@ -50,6 +50,7 @@ class ExecuteDiscountTasks extends Command
                 ->where('executed', false)
                 ->get();
         }
+        \Log::info("Task #ID executed", $discountTasks->pluck('id')->toArray());
 
         $discountTasks->each(function ($discount) {
             /** @var DiscountTask $discount */
