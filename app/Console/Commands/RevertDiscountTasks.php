@@ -49,6 +49,7 @@ class RevertDiscountTasks extends Command
                 ->where('executed', true)
                 ->get();
         }
+        \Log::info("Task #ID reverted", $discountTasks->pluck('id')->toArray());
 
         $discountTasks->each(function ($discount) {
             /** @var DiscountTask $discount */
