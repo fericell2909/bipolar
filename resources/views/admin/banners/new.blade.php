@@ -34,12 +34,16 @@
           </div>
         </div>
         <div class="col-md-6 form-group">
-          <label>Imagen (medidas: 1700x1133)</label>
+          <label>Imagen (medidas: 1700x1133), peso ideal: < 1MB</label>
           {!! Form::file('photo', ['class' => 'form-control']) !!}
         </div>
         <div class="col-md-6 form-group">
           {!! Form::label('Estado') !!}
           {!! Form::select('state', $states, null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="col-md-6 form-group">
+          {!! Form::label('Texto (Opcional)') !!}
+          {!! Form::text('text', null, ['class' => 'form-control']) !!}
         </div>
       </div>
       {!! Form::submit('Guardar', ['class' => 'btn btn-dark btn-sm btn-rounded']) !!}

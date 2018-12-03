@@ -509,6 +509,7 @@ namespace App\Models{
  * @property int $id
  * @property int $state_id
  * @property int $order
+ * @property string|null $text
  * @property string $url
  * @property string|null $relative_url
  * @property \Illuminate\Support\Carbon $begin_date
@@ -526,6 +527,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereRelativeUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereText($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereUrl($value)
  */

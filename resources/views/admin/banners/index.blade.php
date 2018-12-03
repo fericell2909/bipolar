@@ -10,6 +10,7 @@
               <th>#</th>
               <th>Imagen</th>
               <th>Orden</th>
+              <th>Texto</th>
               <th>Desde</th>
               <th>Hasta</th>
               <th>Estado</th>
@@ -27,6 +28,7 @@
                   </button>
                 </td>
                 <td class="align-middle">{{ $banner->order }}</td>
+                <td class="align-middle">{{ $banner->text }}</td>
                 <td class="align-middle">{{ $banner->begin_date->format('d-m-Y H:i') }}</td>
                 <td class="align-middle">{{ $banner->end_date->format('d-m-Y H:i') }}</td>
                 <td class="align-middle">{!! $banner->state->getAdminHtml() !!}</td>

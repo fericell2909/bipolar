@@ -32,6 +32,7 @@ class BannerEditRequest extends FormRequest
                 'required',
                 Rule::exists('states', 'id'),
             ],
+            'text'  => 'nullable|max:2000',
         ];
     }
 }

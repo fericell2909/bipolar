@@ -383,6 +383,7 @@ a {
       text-align: center;
       padding: 10% 5%;
       margin: 0 auto;
+      text-transform: uppercase;
       
       @include sm {
         font-size: 80px;

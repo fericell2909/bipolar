@@ -46,6 +46,7 @@ class BannersController extends Controller
         $banner->relative_url = $imagePath;
         $banner->begin_date = Carbon::createFromFormat('d/m/Y', $begin);
         $banner->end_date = Carbon::createFromFormat('d/m/Y', $end);
+        $banner->text = filled($request->input('text')) ? $request->input('text') : null;
         $banner->state()->associate($state);
         $banner->save();
 
@@ -74,6 +75,7 @@ class BannersController extends Controller
 
         $banner->begin_date = Carbon::createFromFormat('d/m/Y', $begin);
         $banner->end_date = Carbon::createFromFormat('d/m/Y', $end);
+        $banner->text = filled($request->input('text')) ? $request->input('text') : null;
         $banner->state()->associate($state);
 
         if ($request->file('photo')) {
