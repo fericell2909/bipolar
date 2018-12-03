@@ -20,13 +20,15 @@
       @include('web.partials.mobile-bar')
       <div class="owl-carousel-home owl-carousel">
         @foreach ($banners as $banner)
-          <div class="owl-carousel-home-text-container" style="background-image: url({{ $banner->url }}); background-size: contain;">
-            @if($banner->text)
+          @if($banner->text)
+            <div class="owl-carousel-home-text-container" style="background-image: url({{ $banner->url }}); background-size: contain;">
               <a class="owl-carousel-home-text" href="#">
                {{ $banner->text }} 
               </a>
-            @endif
-          </div>
+            </div>
+          @else
+            <img src="{{ $banner->url }}" alt="Bipolar">
+          @endif
         @endforeach
       </div>
       @if ($errors->any())
