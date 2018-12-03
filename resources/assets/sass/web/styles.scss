@@ -347,6 +347,64 @@ a {
   z-index: $z-index-slider;
 }
 
+.owl-carousel-home {
+  display: block;
+  height: auto;
+  max-height: 800px;
+  z-index: $z-index-slider;
+  background-color: $bipolar-white;
+
+  .owl-stage {
+    display: flex;
+
+    // Fix for white clipping
+    .owl-item {
+      backface-visibility: hidden;
+      transform: translateZ(0) scale(1.0, 1.0);
+    }
+
+    .owl-animated-out {
+      animation-duration: 2000ms;
+    }
+  }
+
+
+  .owl-carousel-home-text-container {
+    height: 100%;
+    background: $bipolar-color;
+    
+    .owl-carousel-home-text {
+      display: block;
+      color: $bipolar-black;
+      @include sahari_bodoni_font;
+      max-width: 1007px;
+      font-weight: 400;
+      font-size: 40px;
+      text-align: center;
+      padding: 10% 5%;
+      margin: 0 auto;
+      
+      @include sm {
+        font-size: 80px;
+      }
+
+      @include md {
+        font-size: 120px;
+        padding: 17% 5%;
+      }
+      
+      @include xxlg {
+        padding: 10% 5%;
+      }
+
+      &:hover, &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+
+}
+
 .header-worldwide-shipping {
   font-family: $bodoni-bold-font;
   color: $bipolar-white;

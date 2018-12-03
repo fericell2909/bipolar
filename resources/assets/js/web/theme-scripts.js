@@ -16,11 +16,6 @@ $(function() {
     items: thumbs
   });
 
-  $(".owl-carousel-blog").owlCarousel({
-    items: 1,
-    nav: true
-  });
-
   function draggedOwlMain(event) {
     owlMain.trigger("to.owl.carousel", [event.item.index, duration, true]);
   }
@@ -29,6 +24,21 @@ $(function() {
     let index = $(this).index();
     owlMain.trigger("to.owl.carousel", [index, duration, true]);
     owlThumbnail.trigger("to.owl.carousel", [index, duration, true]);
+  });
+
+  $(".owl-carousel-blog").owlCarousel({
+    items: 1,
+    nav: true
+  });
+
+  $(".owl-carousel-home").owlCarousel({
+    animateIn: 'slideInRight',
+    animateOut: 'fadeOut',
+    items: 1,
+    nav: false,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    loop: true,
   });
 
   // Historic change image
