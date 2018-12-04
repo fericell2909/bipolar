@@ -43,3 +43,11 @@
 @mixin lg {
   @media only screen and (min-width : 1200px) { @content }
 }
+
+@mixin xlg {
+  @media only screen and (min-width : 1408px) { @content }
+}
+
+@mixin xxlg {
+  @media only screen and (min-width : 2000px) { @content }
+}

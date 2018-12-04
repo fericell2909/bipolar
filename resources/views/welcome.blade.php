@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {!! SEO::generate(true) !!}
     <meta name="caffeinated" content="false">
+    <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ mix('css/app-web-styles.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
@@ -17,16 +18,19 @@
     <div class="bipolar-wrapper">
       @include('web.partials.main-bar', ['background' => false])
       @include('web.partials.mobile-bar')
-      <div>
-        <div class="carousel slide carousel-home" data-ride="carousel">
-          <div class="carousel-inner" role="listbox">
-            @foreach($banners as $banner)
-              <div class="item {{ $loop->first ? 'active' : null }}">
-                <img style="width: 100%" src="{{ $banner->url }}" alt="Bipolar">
+      <div class="owl-carousel-home owl-carousel">
+        @foreach ($banners as $banner)
+          <?php /** @var \App\Models\Banner $banner */ ?>
+          @if($banner->text)
+            <a href="{{ $banner->link ?? '#' }}" class="owl-carousel-home-text-container" style="background-image: url({{ $banner->url }}); background-size: contain;">
+              <div class="owl-carousel-home-text">
+               {{ $banner->text }} 
               </div>
-            @endforeach
-          </div>
-        </div>
+            </a>
+          @else
+            <a href="{{ $banner->link ?? '#' }}"><img src="{{ $banner->url }}" alt="Bipolar"></a>
+          @endif
+        @endforeach
       </div>
       @if ($errors->any())
         <div class="alert alert-danger">

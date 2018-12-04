@@ -53,7 +53,7 @@
   window.BipolarProductPhotos = BipolarProductPagePhotos.map(photo => {
     return {
       w: 1920,
-      h: 1080,
+      h: 1276,
       src: photo,
     };
   });

@@ -12,6 +12,7 @@ mix
   .js("resources/assets/js/web/app-web-scripts.js", "public/js")
   .sass("resources/assets/sass/admin/style.scss", "public/css/app-admin-styles.css")
   .sass("resources/assets/sass/web/app-web-styles.scss", "public/css")
+  .copy("node_modules/animate.css/animate.min.css", "public/css")
   .copyDirectory("resources/assets/img", "public/images");
 
 if (mix.inProduction()) {

@@ -171,6 +171,8 @@ class ShopController extends Controller
     {
         /** @var Product $product */
         $product = Product::findBySlugOrFail($slugProduct);
+        
+        abort_if($product->state_id !== config('constants.STATE_ACTIVE_ID'), 404);
 
         $product->load([
             'stocks.size',

@@ -25,13 +25,16 @@ class BannerEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'begin' => 'nullable|date_format:d/m/Y',
-            'end'   => 'nullable|date_format:d/m/Y',
-            'photo' => 'nullable|image|max:2000',
-            'state' => [
+            'begin'    => 'nullable|date_format:d/m/Y',
+            'end'      => 'nullable|date_format:d/m/Y',
+            'photo'    => 'nullable|image|max:2000',
+            'state'    => [
                 'required',
                 Rule::exists('states', 'id'),
             ],
+            'text_spa' => 'nullable|max:2000',
+            'text_eng' => 'nullable|max:2000',
+            'link'     => 'nullable|url|max:3000',
         ];
     }
 }
