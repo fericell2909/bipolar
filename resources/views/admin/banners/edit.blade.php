@@ -45,8 +45,16 @@
           {!! Form::select('state', $states, $banner->state->id, ['class' => 'form-control']) !!}
         </div>
         <div class="col-md-6 form-group">
-          {!! Form::label('Texto (Opcional)') !!}
-          {!! Form::text('text', $banner->text, ['class' => 'form-control']) !!}
+          {!! Form::label('Texto 🇪🇸 (Opcional)') !!}
+          {!! Form::text('text_spa', $banner->getTranslation('text', 'es'), ['class' => 'form-control']) !!}
+        </div>
+        <div class="col-md-6 form-group">
+          {!! Form::label('Texto 🇺🇸 (Opcional)') !!}
+          {!! Form::text('text_eng', $banner->getTranslation('text', 'en'), ['class' => 'form-control']) !!}
+        </div>
+        <div class="col-6 form-group">
+          {!! Form::label('Enlace') !!}
+          {!! Form::url('link', $banner->link, ['class' => 'form-control']) !!}
         </div>
       </div>
       {!! Form::submit('Actualizar', ['class' => 'btn btn-dark btn-sm btn-rounded']) !!}

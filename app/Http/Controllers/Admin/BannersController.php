@@ -46,7 +46,11 @@ class BannersController extends Controller
         $banner->relative_url = $imagePath;
         $banner->begin_date = Carbon::createFromFormat('d/m/Y', $begin);
         $banner->end_date = Carbon::createFromFormat('d/m/Y', $end);
-        $banner->text = filled($request->input('text')) ? $request->input('text') : null;
+        $banner->setTranslations('text', [
+            'en' => filled($request->input('text_eng')) ? $request->input('text_eng') : null,
+            'es' => filled($request->input('text_spa')) ? $request->input('text_spa') : null,
+        ]);
+        $banner->link = filled($request->input('link')) ? $request->input('link') : null;
         $banner->state()->associate($state);
         $banner->save();
 
@@ -75,7 +79,11 @@ class BannersController extends Controller
 
         $banner->begin_date = Carbon::createFromFormat('d/m/Y', $begin);
         $banner->end_date = Carbon::createFromFormat('d/m/Y', $end);
-        $banner->text = filled($request->input('text')) ? $request->input('text') : null;
+        $banner->setTranslations('text', [
+            'en' => filled($request->input('text_eng')) ? $request->input('text_eng') : null,
+            'es' => filled($request->input('text_spa')) ? $request->input('text_spa') : null,
+        ]);
+        $banner->link = filled($request->input('link')) ? $request->input('link') : null;
         $banner->state()->associate($state);
 
         if ($request->file('photo')) {

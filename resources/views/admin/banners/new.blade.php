@@ -42,8 +42,16 @@
           {!! Form::select('state', $states, null, ['class' => 'form-control']) !!}
         </div>
         <div class="col-md-6 form-group">
-          {!! Form::label('Texto (Opcional)') !!}
-          {!! Form::text('text', null, ['class' => 'form-control']) !!}
+          {!! Form::label('Texto 🇪🇸 (Opcional)') !!}
+          {!! Form::text('text_spa', null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="col-md-6 form-group">
+          {!! Form::label('Texto 🇺🇸 (Opcional)') !!}
+          {!! Form::text('text_eng', null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="col-6 form-group">
+          {!! Form::label('Enlace') !!}
+          {!! Form::url('link', null, ['class' => 'form-control']) !!}
         </div>
       </div>
       {!! Form::submit('Guardar', ['class' => 'btn btn-dark btn-sm btn-rounded']) !!}

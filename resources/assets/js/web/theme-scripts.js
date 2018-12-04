@@ -37,7 +37,7 @@ $(function() {
     items: 1,
     nav: false,
     autoplay: true,
-    autoplayTimeout: 3000,
+    autoplayTimeout: 5000,
     loop: true,
   });
 
