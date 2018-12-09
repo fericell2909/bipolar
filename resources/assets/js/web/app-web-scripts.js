@@ -1,6 +1,7 @@
 try {
     window.$ = window.jQuery = require('jquery');
     require('bootstrap-sass');
+    require('./animate-css');
 } catch (e) {}
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
@@ -69,4 +70,5 @@ require('./product-scripts');
 require('./select2-scripts');
 require('./checkout-scripts');
 require('./click-outside-handler');
+require('./hover-animation-script');
 //require('./react/app-react-scripts');

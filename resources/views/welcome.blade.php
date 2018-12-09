@@ -45,11 +45,11 @@
       <section class="header-worldwide-shipping">
         {{ __('bipolar.home.worldwide_shipping') }}
       </section>
-      <div class="row no-gutters">
+      <div class="row no-gutters" style="overflow-y: hidden">
         @foreach($homePosts as $homePost)
           <?php /** @var \App\Models\HomePost $homePost */ ?>
           @if($homePost->photos->count() > 0)
-            <a href="{{ $homePost->redirection_link }}" class="col-sm-6 col-md-3 overlay-container">
+            <a href="{{ $homePost->redirection_link }}" class="col-sm-6 col-md-3 overlay-container bipolar-hovered-effect">
               <img src="{{ $homePost->photos->first()->url }}" alt="{{ $homePost->name }}" class="img-responsive full-image">
               <div class="overlay-image">
                 <div class="overlay-text">

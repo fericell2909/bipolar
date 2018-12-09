@@ -3,6 +3,7 @@
 .overlay-container {
   position: relative;
   display: block;
+  overflow: hidden;
 
   &:hover .overlay-image {
     opacity: 0.9;
@@ -32,11 +33,6 @@
   height: 100%;
   width: 100%;
   opacity: 0;
-  -webkit-transition: ease .5s;
-  -moz-transition: ease .5s;
-  -ms-transition: ease .5s;
-  -o-transition: ease .5s;
-  transition: ease .5s;
   background-color: $bipolar-color;
   display: flex;
   align-items: center;
