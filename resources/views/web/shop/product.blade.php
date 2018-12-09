@@ -80,9 +80,11 @@
                   </button>
                 @endif
               @endforeach
+              @if($productIsShoeType)
               <button type="button" class="btn btn-default btn-sizes-modal" data-toggle="modal" data-target="#testingModal">
                 {{ __('bipolar.shop.see_size_guide') }}
               </button>
+              @endif
               {!! Form::hidden('size', null, ['id' => 'size-selected']) !!}
             </div>
           @endif

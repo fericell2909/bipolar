@@ -209,6 +209,11 @@ class ShopController extends Controller
             $quantities[$number] = $number;
         }
 
+        $productIsShoeType = false;
+        if ($product->subtypes->count()) {
+            $productIsShoeType = in_array(config('constants.TYPES.SHOES'), $product->subtypes->pluck('type_id')->toArray());
+        }
+
         $seoDescription = !empty($product->description) ? $product->description : 'Zapatos de diseñador hechos a mano en Perú. Designer shoes handmade in Peru';
         $image = optional($product->photos->first())->url;
         \SEO::metatags()->setTitle("{$product->name}")->setDescription($seoDescription);
@@ -222,7 +227,7 @@ class ShopController extends Controller
             ->setDescription($seoDescription)
             ->addImage($image, ['width'  => 1024, 'height' => 680]);
 
-        return view('web.shop.product', compact('product', 'stockWithSizes', 'quantities'));
+        return view('web.shop.product', compact('product', 'stockWithSizes', 'quantities', 'productIsShoeType'));
     }
 
     private function productHasStock($product)
