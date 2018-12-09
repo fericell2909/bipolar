@@ -26,4 +26,6 @@ return [
     'SHIPPING_SHOWROOM_PICKUP_ID' => 2,
     // URL's
     'SEO_IMAGE_DEFAULT_URL'       => 'https://www.bipolar.com.pe/storage/bipolar-images/assets/bipolar-gold-resized.jpg',
+    // Product types
+    'TYPES'                       => ['SHOES' => 1],
 ];
