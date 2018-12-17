@@ -73,6 +73,7 @@ class DiscountController extends Controller
         $discountTask->products = count($productsArray) === 0 ? null : $productsArray;
         $discountTask->product_types = count($typesArray) === 0 ? null : $typesArray;
         $discountTask->product_subtypes = count($subtypesArray) === 0 ? null : $subtypesArray;
+        $discountTask->available = true;
         $discountTask->save();
         
         return response()->json(['message' => 'Creado']);

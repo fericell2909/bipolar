@@ -45,12 +45,15 @@ class ExecuteDiscountTasks extends Command
             $discountTasks = DiscountTask::whereKey($this->option('discount'))->get();
         } else {
             $discountTasks = DiscountTask::whereDate('begin', '<=', now()->toDateString())
-                ->whereDate('end', '>=', now()->toDateString())
+                ->where('end', '>', now()->toDateTimeString())
                 ->where('available', true)
                 ->where('executed', false)
                 ->get();
         }
-        \Log::info("Task #ID executed", $discountTasks->pluck('id')->toArray());
+        if ($discountTasks->isNotEmpty()) {
+            \Log::info("Task #ID executed", $discountTasks->pluck('id')->toArray());
+        }
+        dd($discountTasks);
 
         $discountTasks->each(function ($discount) {
             /** @var DiscountTask $discount */
