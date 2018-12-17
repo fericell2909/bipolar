@@ -23,9 +23,7 @@
               <tr>
                 <td class="align-middle">{{ $banner->id }}</td>
                 <td class="align-middle">
-                  <button class="btn btn-dark btn-rounded btn-sm" data-target="#banner_preview_{{ $banner->id }}" data-toggle="modal">
-                    <i class="fas fa-fw fa-eye"></i> Ver imagen
-                  </button>
+                  <img src="{{ $banner->url }}" width="100" alt="">
                 </td>
                 <td class="align-middle">{{ $banner->order }}</td>
                 <td class="align-middle">{{ $banner->text }}</td>
@@ -46,7 +44,6 @@
                   </div>
                 </td>
               </tr>
-              @include('admin.partials.banner_preview', ['id' => $banner->id, 'image' => $banner->url])
             @endforeach
           </tbody>
         </table>
