@@ -513,6 +513,15 @@ namespace App\Models{
  * @property array|null $text
  * @property string $url
  * @property string|null $relative_url
+ * @property float $font_size_mobile
+ * @property float $font_size_tablet
+ * @property float $font_size_desktop
+ * @property float $line_height_mobile
+ * @property float $line_height_tablet
+ * @property float $line_height_desktop
+ * @property float $letter_spacing_mobile
+ * @property float $letter_spacing_tablet
+ * @property float $letter_spacing_desktop
  * @property \Illuminate\Support\Carbon $begin_date
  * @property \Illuminate\Support\Carbon $end_date
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -524,7 +533,16 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereBeginDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereFontSizeDesktop($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereFontSizeMobile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereFontSizeTablet($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLetterSpacingDesktop($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLetterSpacingMobile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLetterSpacingTablet($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLineHeightDesktop($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLineHeightMobile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLineHeightTablet($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLink($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereRelativeUrl($value)

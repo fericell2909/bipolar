@@ -72,6 +72,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/{banner}/edit', 'Admin\BannersController@edit')->name('banners.edit');
         Route::post('/{banner}/edit', 'Admin\BannersController@update');
         Route::get('order', 'Admin\BannersController@order')->name('banners.order');
+        Route::get('/{banner}/preview', 'Admin\BannersController@preview')->name('banners.preview');
     });
 
     Route::prefix('pages')->group(function () {

@@ -51,6 +51,15 @@ class BannersController extends Controller
             'es' => filled($request->input('text_spa')) ? $request->input('text_spa') : null,
         ]);
         $banner->link = filled($request->input('link')) ? $request->input('link') : null;
+        $banner->font_size_mobile = $request->input('font_size_mobile');
+        $banner->font_size_tablet = $request->input('font_size_tablet');
+        $banner->font_size_desktop = $request->input('font_size_desktop');
+        $banner->line_height_mobile = $request->input('line_height_mobile');
+        $banner->line_height_tablet = $request->input('line_height_tablet');
+        $banner->line_height_desktop = $request->input('line_height_desktop');
+        $banner->letter_spacing_mobile = $request->input('letter_spacing_mobile');
+        $banner->letter_spacing_tablet = $request->input('letter_spacing_tablet');
+        $banner->letter_spacing_desktop = $request->input('letter_spacing_desktop');
         $banner->state()->associate($state);
         $banner->save();
 
@@ -84,6 +93,15 @@ class BannersController extends Controller
             'es' => filled($request->input('text_spa')) ? $request->input('text_spa') : null,
         ]);
         $banner->link = filled($request->input('link')) ? $request->input('link') : null;
+        $banner->font_size_mobile = $request->input('font_size_mobile');
+        $banner->font_size_tablet = $request->input('font_size_tablet');
+        $banner->font_size_desktop = $request->input('font_size_desktop');
+        $banner->line_height_mobile = $request->input('line_height_mobile');
+        $banner->line_height_tablet = $request->input('line_height_tablet');
+        $banner->line_height_desktop = $request->input('line_height_desktop');
+        $banner->letter_spacing_mobile = $request->input('letter_spacing_mobile');
+        $banner->letter_spacing_tablet = $request->input('letter_spacing_tablet');
+        $banner->letter_spacing_desktop = $request->input('letter_spacing_desktop');
         $banner->state()->associate($state);
 
         if ($request->file('photo')) {
@@ -97,7 +115,7 @@ class BannersController extends Controller
         $banner->save();
 
         flash()->success('Se actualizó con éxito');
-        return redirect()->route('banners.index');
+        return redirect()->back();
     }
 
     public function order()
@@ -105,5 +123,12 @@ class BannersController extends Controller
         $banners = Banner::whereStateId(config('constants.STATE_ACTIVE_ID'))->get();
 
         return view('admin.banners.order', compact('banners'));
+    }
+
+    public function preview($bannerId)
+    {
+        $banners = Banner::whereKey($bannerId)->get();
+
+        return view('admin.banners.preview', compact('banners'));
     }
 }

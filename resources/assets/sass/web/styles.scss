@@ -343,7 +343,6 @@ a {
 
 .carousel-home {
   height: auto;
-  max-height: 800px;
   z-index: $z-index-slider;
 }
 
@@ -370,33 +369,47 @@ a {
 
 
   .owl-carousel-home-text-container {
-    display: block;
+    display: flex;
     height: 100%;
     background: $bipolar-color;
-    
+    background-repeat: no-repeat;
+    background-size: cover; 
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+
+    @include mobile {
+      height: 250px;
+    }
+  
+    @include tablet {
+      height: 500px;
+    }
+
+    @include desktop {
+      height: 800px;
+    }
+
     .owl-carousel-home-text {
-      display: block;
+      display: flex;
+      flex-direction: column-reverse;
       color: $bipolar-black;
       @include sahari_bodoni_font;
       max-width: 1007px;
       font-weight: 400;
-      font-size: 40px;
+      font-size: inherit;
+      line-height: inherit;
       text-align: center;
-      padding: 10% 5%;
       margin: 0 auto;
       text-transform: uppercase;
       
-      @include sm {
-        font-size: 80px;
+      @include mobile {
+        justify-content: center;
       }
 
-      @include md {
-        font-size: 120px;
-        padding: 17% 5%;
-      }
-      
-      @include xxlg {
-        padding: 10% 5%;
+      @include tablet {
+        justify-content: flex-start;
       }
 
       &:hover, &:focus {

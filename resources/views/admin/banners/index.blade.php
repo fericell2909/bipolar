@@ -34,6 +34,9 @@
                 <td class="align-middle">{!! $banner->state->getAdminHtml() !!}</td>
                 <td class="align-middle">
                   <div class="button-group">
+                    <a href="{{ route('banners.preview', $banner->id) }}" class="btn btn-dark btn-rounded btn-sm" target="blank">
+                      <i class="fas fa-search"></i> Vista previa
+                    </a>
                     <a href="{{ route('banners.edit', $banner->id) }}" class="btn btn-dark btn-rounded btn-sm">
                       <i class="fas fa-fw fa-edit"></i> Editar
                     </a>
