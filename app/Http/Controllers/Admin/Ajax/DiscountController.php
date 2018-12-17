@@ -15,7 +15,7 @@ class DiscountController extends Controller
 {
     public function index()
     {
-        $discountTasks = DiscountTask::all();
+        $discountTasks = DiscountTask::orderByDesc('id')->get();
 
         $productsIds = $discountTasks->pluck('products')->flatten()->toArray();
         $typesIds = $discountTasks->pluck('product_types')->flatten()->toArray();
