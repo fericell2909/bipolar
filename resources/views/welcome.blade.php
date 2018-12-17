@@ -18,20 +18,7 @@
     <div class="bipolar-wrapper">
       @include('web.partials.main-bar', ['background' => false])
       @include('web.partials.mobile-bar')
-      <div class="owl-carousel-home owl-carousel">
-        @foreach ($banners as $banner)
-          <?php /** @var \App\Models\Banner $banner */ ?>
-          @if($banner->text)
-            <a href="{{ $banner->link ?? '#' }}" class="owl-carousel-home-text-container" style="background-image: url({{ $banner->url }}); background-size: contain;">
-              <div class="owl-carousel-home-text">
-               {{ $banner->text }} 
-              </div>
-            </a>
-          @else
-            <a href="{{ $banner->link ?? '#' }}"><img src="{{ $banner->url }}" alt="Bipolar"></a>
-          @endif
-        @endforeach
-      </div>
+      @include('web.partials.banners', ['banners' => $banners])
       @if ($errors->any())
         <div class="alert alert-danger">
           <ul>

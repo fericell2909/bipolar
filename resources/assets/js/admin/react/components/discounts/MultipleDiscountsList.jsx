@@ -189,7 +189,7 @@ export default class MultipleDiscountsList extends React.Component {
                     <th className="text-center">Tipos</th>
                     <th className="text-center">Subtipos</th>
                     <th className="text-center">Productos</th>
-                    <th className="text-center">Disponible</th>
+                    <th className="text-center">Auto-ejecutar</th>
                     <th className="text-center">Ejecutada</th>
                     <th className="text-center">Acciones</th>
                   </tr>

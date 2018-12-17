@@ -44,12 +44,14 @@ class RevertDiscountTasks extends Command
         if ($this->option('discount')) {
             $discountTasks = DiscountTask::whereKey($this->option('discount'))->get();
         } else {
-            $discountTasks = DiscountTask::whereDate('end', '<', now()->toDateString())
+            $discountTasks = DiscountTask::where('end', '<', now()->toDateTimeString())
                 ->where('available', true)
                 ->where('executed', true)
                 ->get();
         }
-        \Log::info("Task #ID reverted", $discountTasks->pluck('id')->toArray());
+        if ($discountTasks->isNotEmpty()) {
+            \Log::info("Task #ID reverted", $discountTasks->pluck('id')->toArray());
+        }
 
         $discountTasks->each(function ($discount) {
             /** @var DiscountTask $discount */
