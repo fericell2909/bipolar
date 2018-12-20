@@ -53,7 +53,6 @@ class ExecuteDiscountTasks extends Command
         if ($discountTasks->isNotEmpty()) {
             \Log::info("Task #ID executed", $discountTasks->pluck('id')->toArray());
         }
-        dd($discountTasks);
 
         $discountTasks->each(function ($discount) {
             /** @var DiscountTask $discount */
