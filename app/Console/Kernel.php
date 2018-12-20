@@ -35,7 +35,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(ExecuteDiscountTasks::class)->dailyAt($this->tenMinutesAfterMidnight);
         $schedule->command(RevertDiscountTasks::class)->dailyAt($this->tenMinutesAfterMidnight);
         $schedule->command(CopyFacebookFansToSettings::class)->dailyAt($this->tenMinutesAfterMidnight);
-        $schedule->command(HomePostActivation::class)->dailyAt($this->tenMinutesAfterMidnight);
+        $schedule->command(HomePostActivation::class)->hourly();
         $schedule->command(SyncBsaleStocks::class)->everyMinute();
         $schedule->command('sitemap:generate')->weekly();
         //$schedule->command(SendNoBuyedCarts::class)->daily();

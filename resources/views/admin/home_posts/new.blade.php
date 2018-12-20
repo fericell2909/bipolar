@@ -52,13 +52,14 @@
           <div class="form-row">
             <div class="col-6 form-group">
               {!! Form::label('Día de activación (Opcional, si se deja en blanco, se necesita activar manual)') !!}
-              <div class="input-group date" id="datepickerbegin" data-target-input="nearest">
+              <div class="input-group date" id="datetimepickerbegin" data-target-input="nearest">
                 {!! Form::text('begin_date', null, [
-                 'class' => 'form-control datetimepicker-input',
-                 'id' => 'datepickerbegin',
-                 'data-target' => "#datepickerbegin",
-               ]) !!}
-                <div class="input-group-append" data-target="#datepickerbegin" data-toggle="datetimepicker">
+                  'class' => 'form-control datetimepicker-input',
+                  'id' => 'datetimepickerbegin',
+                  'data-target' => "#datetimepickerbegin",
+                  'required',
+                ]) !!}
+                <div class="input-group-append" data-target="#datetimepickerbegin" data-toggle="datetimepicker">
                   <button type="button" class="btn btn-dark"><i class="fas fa-fw fa-calendar"></i></button>
                 </div>
               </div>
