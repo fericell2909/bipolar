@@ -35,6 +35,8 @@ class BannerEditRequest extends FormRequest
             'text_spa'               => 'nullable|max:2000',
             'text_eng'               => 'nullable|max:2000',
             'link'                   => 'nullable|url|max:3000',
+            'font'                   => 'required',
+            'color'                  => 'required',
             'font_size_mobile'       => 'required|min:1',
             'font_size_tablet'       => 'required|min:1',
             'font_size_desktop'      => 'required|min:1',
@@ -44,6 +46,9 @@ class BannerEditRequest extends FormRequest
             'letter_spacing_mobile'  => 'required|min:1',
             'letter_spacing_tablet'  => 'required|min:1',
             'letter_spacing_desktop' => 'required|min:1',
+            'padding_bottom_mobile'   => 'required',
+            'padding_bottom_tablet'   => 'required',
+            'padding_bottom_desktop'  => 'required',
         ];
     }
 }

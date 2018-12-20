@@ -84,6 +84,8 @@ class BannersController extends Controller
             'es' => filled($request->input('text_spa')) ? $request->input('text_spa') : null,
         ]);
         $banner->link = filled($request->input('link')) ? $request->input('link') : null;
+        $banner->font = $request->input('font');
+        $banner->color = $request->input('color');
         $banner->font_size_mobile = $request->input('font_size_mobile');
         $banner->font_size_tablet = $request->input('font_size_tablet');
         $banner->font_size_desktop = $request->input('font_size_desktop');
@@ -93,6 +95,9 @@ class BannersController extends Controller
         $banner->letter_spacing_mobile = $request->input('letter_spacing_mobile');
         $banner->letter_spacing_tablet = $request->input('letter_spacing_tablet');
         $banner->letter_spacing_desktop = $request->input('letter_spacing_desktop');
+        $banner->padding_bottom_mobile = $request->input('padding_bottom_mobile');
+        $banner->padding_bottom_tablet = $request->input('padding_bottom_tablet');
+        $banner->padding_bottom_desktop = $request->input('padding_bottom_desktop');
         $banner->state()->associate($state);
 
         if ($request->file('photo')) {

@@ -18,12 +18,19 @@
     .banner-home-{{ $banner->id }} {
       background-image: url({{ $banner->url }}) !important;
     }
+    .banner-home-{{ $banner->id }} .owl-carousel-home-text {
+      color: {{ $banner->color }} !important;
+      font-family: "{{ $banner->font }}" !important;
+    }
     /* mobile  */
     @media (max-width: 768px) {
       .banner-home-{{ $banner->id }} {
         font-size: {{ $banner->font_size_mobile }}px !important;
         line-height: {{ $banner->line_height_mobile }}px !important;
         letter-spacing: {{ $banner->letter_spacing_mobile }}px !important;
+      }
+      .banner-home-{{ $banner->id }} .owl-carousel-home-text {
+        padding-bottom: {{ $banner->padding_bottom_mobile }}px !important;
       }
     }
     /* tablet */
@@ -33,6 +40,9 @@
         line-height: {{ $banner->line_height_tablet }}px !important;
         letter-spacing: {{ $banner->letter_spacing_tablet }}px !important;
       }
+      .banner-home-{{ $banner->id }} .owl-carousel-home-text {
+        padding-bottom: {{ $banner->padding_bottom_tablet }}px !important;
+      }
     }
     /* desktop */
     @media (min-width: 1025px) {
@@ -41,13 +51,8 @@
         line-height: {{ $banner->line_height_desktop }}px !important;
         letter-spacing: {{ $banner->letter_spacing_desktop }}px !important;
       }
-    }
-    /* FullHD */
-    @media (min-width: 1408px) {
-      .banner-home-{{ $banner->id }} {
-        font-size: {{ $banner->font_size_desktop }}px !important;
-        line-height: {{ $banner->line_height_desktop }}px !important;
-        letter-spacing: {{ $banner->letter_spacing_desktop }}px !important;
+      .banner-home-{{ $banner->id }} .owl-carousel-home-text {
+        padding-bottom: {{ $banner->padding_bottom_desktop }}px !important;
       }
     }
 </style>

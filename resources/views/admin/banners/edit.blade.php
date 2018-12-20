@@ -61,6 +61,14 @@
           {!! Form::label('Enlace') !!}
           {!! Form::url('link', $banner->link, ['class' => 'form-control']) !!}
         </div>
+        <div class="col-4 form-group">
+          {!! Form::label('Color') !!}
+          {!! Form::select('color', ['#000000' => 'Negro', '#ffffff' => 'Blanco', '#fcbeb9' => 'Rosa Bipolar'], $banner->color, ['class' => 'form-control']) !!}
+        </div>
+        <div class="col-4 form-group">
+          {!! Form::label('Fuente') !!}
+          {!! Form::select('font', ['SaharaBodoni' => 'Sahara Bodoni', 'BauerBodoniStdBold' => 'Bodoni Bold'], $banner->font, ['class' => 'form-control']) !!}
+        </div>
         <div class="col-12">
           <div class="alert alert-info">
             <strong>Info</strong>: Si no hay un texto para el banner igual dejar los siguientes valores tal cual como están. 
@@ -142,6 +150,33 @@
           {!! Form::label('Interletrado (Desktop)') !!}
           <div class="input-group">
             {!! Form::number('letter_spacing_desktop', $banner->letter_spacing_desktop, ['class' => 'form-control', 'required' => true]) !!}
+            <div class="input-group-append">
+              <span class="input-group-text">px</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 form-group">
+          {!! Form::label('Espaciado inferior (Mobile)') !!}
+          <div class="input-group">
+            {!! Form::number('padding_bottom_mobile', $banner->padding_bottom_mobile, ['class' => 'form-control', 'required' => true]) !!}
+            <div class="input-group-append">
+              <span class="input-group-text">px</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 form-group">
+          {!! Form::label('Espaciado inferior (Tablet)') !!}
+          <div class="input-group">
+            {!! Form::number('padding_bottom_tablet', $banner->padding_bottom_tablet, ['class' => 'form-control', 'required' => true]) !!}
+            <div class="input-group-append">
+              <span class="input-group-text">px</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 form-group">
+          {!! Form::label('Espaciado inferior (Desktop)') !!}
+          <div class="input-group">
+            {!! Form::number('padding_bottom_desktop', $banner->padding_bottom_desktop, ['class' => 'form-control', 'required' => true]) !!}
             <div class="input-group-append">
               <span class="input-group-text">px</span>
             </div>
