@@ -41,7 +41,7 @@ class HomePostController extends Controller
             $homePost->post_type()->associate($postType);
         }
         if ($request->filled('begin_date')) {
-            $homePost->begin_date = Carbon::createFromFormat('d/m/Y', $request->input('begin_date'))->startOfDay();
+            $homePost->begin_date = Carbon::createFromFormat('d/m/Y H:i', $request->input('begin_date'));
         }
 
         $homePost->save();
@@ -75,7 +75,7 @@ class HomePostController extends Controller
             $homePost->post_type()->associate($postType);
         }
         if ($request->filled('begin_date')) {
-            $homePost->begin_date = Carbon::createFromFormat('d/m/Y', $request->input('begin_date'))->startOfDay();
+            $homePost->begin_date = Carbon::createFromFormat('d/m/Y H:i', $request->input('begin_date'));
         } else {
             $homePost->begin_date = null;
         }

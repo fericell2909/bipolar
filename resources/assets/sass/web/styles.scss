@@ -113,7 +113,7 @@ button {
   .bipolar-counts {
     text-align: center;
 
-    @include xxs() {
+    @include mobile {
       padding: 0;
 
       &:first-child, &:last-child {
@@ -121,7 +121,7 @@ button {
       }
     }
 
-    @include xs() {
+    @include tablet {
       &:first-child, &:last-child {
         padding: 172px 0;
       }
@@ -180,11 +180,11 @@ button {
   .second-zone {
     margin-top: 30px;
     
-    @include xxs {
+    @include mobile {
       padding-bottom: 20px;
     }
     
-    @include sm {
+    @include tablet {
       padding-bottom: 50px;
     }
 
@@ -210,30 +210,30 @@ button {
     }
 
     .post {
-      @include xxs {
+      @include mobile {
         margin-bottom: 30px;
       }
 
-      @include sm {
+      @include desktop {
         margin-bottom: 0;
       }
 
       .img-responsive {
-        @include xxs {
+        @include mobile {
           margin-bottom: 20px;
         }
 
-        @include sm {
+        @include desktop {
           margin: 0;
         }
       }
 
       .content {
-        @include xxs {
+        @include mobile {
           text-align: center;
         }
 
-        @include sm {
+        @include desktop {
           text-align: left;
         }
       }

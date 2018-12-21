@@ -27,7 +27,7 @@
                 <td class="align-middle">{{ $homePost->name }}</td>
                 <td class="align-middle">{{ $homePost->post_type->name ?? '--' }}</td>
                 <td class="align-middle">{!! $homePost->state->getAdminHtml() !!}</td>
-                <td class="align-middle">{{ optional($homePost->begin_date)->format('d/m/Y') ?? '--' }}</td>
+                <td class="align-middle">{{ optional($homePost->begin_date)->format('d/m/Y H:i') ?? '--' }}</td>
                 <td class="align-middle">
                   <div class="button-group">
                     <a href="{{ route('homepost.edit', $homePost->slug) }}" class="btn btn-dark btn-sm btn-rounded">

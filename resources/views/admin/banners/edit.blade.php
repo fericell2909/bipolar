@@ -9,35 +9,34 @@
       <div class="form-row">
         <div class="col-md-6 form-group">
           <label>Fecha de inicio</label>
-          <div class="input-group date" id="datepickerbegin" data-target-input="nearest">
-            {!! Form::text('begin', $banner->begin_date->format("d/m/Y"), [
+          <div class="input-group date" id="datetimepickerbegin" data-target-input="nearest">
+            {!! Form::text('begin', $banner->begin_date->format("d/m/Y H:i"), [
               'class' => 'form-control datetimepicker-input',
-              'id' => 'datepickerbegin',
-              'data-target' => "#datepickerbegin",
+              'id' => 'datetimepickerbegin',
+              'data-target' => "#datetimepickerbegin",
               'required',
             ]) !!}
-            <div class="input-group-append" data-target="#datepickerbegin" data-toggle="datetimepicker">
+            <div class="input-group-append" data-target="#datetimepickerbegin" data-toggle="datetimepicker">
               <button type="button" class="btn btn-dark"><i class="fas fa-fw fa-calendar"></i></button>
             </div>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <label>Fecha de fin</label>
-          <div class="input-group date" id="datepickerend" data-target-input="nearest">
-            {!! Form::text('end', $banner->end_date->format("d/m/Y"), [
+          <div class="input-group date" id="datetimepickerend" data-target-input="nearest">
+            {!! Form::text('end', $banner->end_date->format("d/m/Y H:i"), [
               'class' => 'form-control datetimepicker-input',
-              'id' => 'datepickerend',
-              'data-target' => "#datepickerend",
+              'id' => 'datetimepickerend',
+              'data-target' => "#datetimepickerend",
               'required',
             ]) !!}
-            <div class="input-group-append" data-target="#datepickerend" data-toggle="datetimepicker">
+            <div class="input-group-append" data-target="#datetimepickerend" data-toggle="datetimepicker">
               <button type="button" class="btn btn-dark"><i class="fas fa-fw fa-calendar"></i></button>
             </div>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <label>Imagen (medidas: 1700x1133), peso ideal: < 1MB</label>
-          <a href="#" class="btn btn-xs btn-dark btn-rounded" data-target="#banner_preview_{{ $banner->id }}" data-toggle="modal">Ver actual</a>
           {!! Form::file('photo', ['class' => 'form-control']) !!}
         </div>
         <div class="col-md-6 form-group">
@@ -61,6 +60,14 @@
         <div class="col-4 form-group">
           {!! Form::label('Enlace') !!}
           {!! Form::url('link', $banner->link, ['class' => 'form-control']) !!}
+        </div>
+        <div class="col-4 form-group">
+          {!! Form::label('Color') !!}
+          {!! Form::select('color', ['#000000' => 'Negro', '#ffffff' => 'Blanco', '#fcbeb9' => 'Rosa Bipolar'], $banner->color, ['class' => 'form-control']) !!}
+        </div>
+        <div class="col-4 form-group">
+          {!! Form::label('Fuente') !!}
+          {!! Form::select('font', ['SaharaBodoni' => 'Sahara Bodoni', 'BauerBodoniStdBold' => 'Bodoni Bold'], $banner->font, ['class' => 'form-control']) !!}
         </div>
         <div class="col-12">
           <div class="alert alert-info">
@@ -124,7 +131,7 @@
         <div class="col-4 form-group">
           {!! Form::label('Interletrado (Mobile)') !!}
           <div class="input-group">
-            {!! Form::number('line_height_mobile', $banner->letter_spacing_mobile, ['class' => 'form-control', 'required' => true]) !!}
+            {!! Form::number('letter_spacing_mobile', $banner->letter_spacing_mobile, ['class' => 'form-control', 'required' => true]) !!}
             <div class="input-group-append">
               <span class="input-group-text">px</span>
             </div>
@@ -133,7 +140,7 @@
         <div class="col-4 form-group">
           {!! Form::label('Interletrado (Tablet)') !!}
           <div class="input-group">
-            {!! Form::number('line_height_tablet', $banner->letter_spacing_tablet, ['class' => 'form-control', 'required' => true]) !!}
+            {!! Form::number('letter_spacing_tablet', $banner->letter_spacing_tablet, ['class' => 'form-control', 'required' => true]) !!}
             <div class="input-group-append">
               <span class="input-group-text">px</span>
             </div>
@@ -142,7 +149,34 @@
         <div class="col-4 form-group">
           {!! Form::label('Interletrado (Desktop)') !!}
           <div class="input-group">
-            {!! Form::number('line_height_desktop', $banner->letter_spacing_desktop, ['class' => 'form-control', 'required' => true]) !!}
+            {!! Form::number('letter_spacing_desktop', $banner->letter_spacing_desktop, ['class' => 'form-control', 'required' => true]) !!}
+            <div class="input-group-append">
+              <span class="input-group-text">px</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 form-group">
+          {!! Form::label('Espaciado inferior (Mobile)') !!}
+          <div class="input-group">
+            {!! Form::number('padding_bottom_mobile', $banner->padding_bottom_mobile, ['class' => 'form-control', 'required' => true]) !!}
+            <div class="input-group-append">
+              <span class="input-group-text">px</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 form-group">
+          {!! Form::label('Espaciado inferior (Tablet)') !!}
+          <div class="input-group">
+            {!! Form::number('padding_bottom_tablet', $banner->padding_bottom_tablet, ['class' => 'form-control', 'required' => true]) !!}
+            <div class="input-group-append">
+              <span class="input-group-text">px</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 form-group">
+          {!! Form::label('Espaciado inferior (Desktop)') !!}
+          <div class="input-group">
+            {!! Form::number('padding_bottom_desktop', $banner->padding_bottom_desktop, ['class' => 'form-control', 'required' => true]) !!}
             <div class="input-group-append">
               <span class="input-group-text">px</span>
             </div>
@@ -182,5 +216,4 @@
       </div>
     </div>
   </div>
-  @include('admin.partials.banner_preview', ['id' => $banner->id, 'image' => $banner->url])
 @endsection

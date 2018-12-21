@@ -12,7 +12,7 @@ class HomePostActivation extends Command
      *
      * @var string
      */
-    protected $signature = 'home_post:activate';
+    protected $signature = 'homepost:activate';
 
     /**
      * The console command description.

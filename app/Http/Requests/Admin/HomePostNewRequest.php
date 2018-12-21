@@ -29,7 +29,7 @@ class HomePostNewRequest extends FormRequest
             'link'       => 'required|between:1,255|url',
             'state'      => ['required', Rule::exists('states', 'id')],
             'post_type'  => ['nullable', Rule::exists('post_types', 'id')],
-            'begin_date' => 'nullable|date_format:d/m/Y',
+            'begin_date' => 'nullable|date_format:d/m/Y H:i',
         ];
     }
 }
