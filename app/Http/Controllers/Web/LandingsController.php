@@ -37,6 +37,7 @@ class LandingsController extends Controller
         $posts = Post::orderByDesc('id')->with(['photos' => function ($withPhotos) {
             $withPhotos->orderBy('order');
         }])
+            ->whereStateId(config('constants.STATE_ACTIVE_ID'))
             ->take(2)
             ->get();
 
