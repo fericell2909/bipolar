@@ -72,7 +72,7 @@
       @foreach($buy->details as $buyDetail)
       <tr>
         <td>
-          <img style="margin-right: 10px" src="{{ optional(optional($buyDetail->product->photos)->first())->url }}" width="50" alt="{{ $buyDetail->product->name }}">
+          <img style="margin-right: 10px" src="{{ optional($buyDetail->product->mainPhoto())->url }}" width="50" alt="{{ $buyDetail->product->name }}">
           <span>{{ $buyDetail->product->name }} x {{ $buyDetail->quantity }}</span>
           @if($buyDetail->stock)
             <span>{{ __('bipolar.confirmation.size') }}: {{ $buyDetail->stock->size->name }}</span>

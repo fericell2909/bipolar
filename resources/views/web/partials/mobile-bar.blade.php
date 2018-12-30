@@ -38,7 +38,7 @@
     @endauth
   </ul>
 </section>
-<section class="header-mobile visible-xs-block">
+<section class="header-mobile visible-sm-block">
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
       <a href="{{ route('home') }}">

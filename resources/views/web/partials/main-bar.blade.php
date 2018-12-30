@@ -87,9 +87,10 @@
 							@if(CartBipolar::count() > 0)
 								<ul class="cart-list">
 									@foreach(CartBipolar::content() as $cartDetail)
+									<?php /** @var \App\Models\CartDetail $cartDetail */ ?>
 									<li>
 										<a href="{{ route('shop.product', $cartDetail->product->slug) }}" class="product-link-cart">
-											<img src="{{ optional($cartDetail->product->photos->first())->url ?? 'https://placehold.it/300x300' }}" alt="{{ $cartDetail->product->name }}"> {{ $cartDetail->product->name }}
+											<img src="{{ optional($cartDetail->product->mainPhoto())->url ?? 'https://placehold.it/300x300' }}" alt="{{ $cartDetail->product->name }}"> {{ $cartDetail->product->name }}
 										</a>
 										<span class="quantity">{{ $cartDetail->quantity }} x {{ $cartDetail->total_currency }}</span>
 										<a href="{{ route('cart.remove', $cartDetail->product->slug) }}" class="product-delete-cart">
