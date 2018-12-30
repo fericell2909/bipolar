@@ -93,6 +93,16 @@ class Product extends Model
         return (!is_null($this->discount_pen) && !is_null($this->discount_usd));
     }
 
+    public function mainPhoto()
+    {
+        $this->loadMissing('photos');
+
+        return $this->photos->sortBy(function ($photo) {
+            /** @var Photo $photo */
+            return $photo->order;
+        })->first();
+    }
+
     public function getPriceCurrencyAttribute()
     {
         if (\Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN') {

@@ -21,7 +21,7 @@
 			<tr>
         <td class="product-remove"><a href="{{ route('cart.remove', $cartDetail->product->slug) }}"><img src="{{ asset('images/close.svg') }}" width="20"></a></td>
 				<td class="product-thumbnail">
-					<img src="{{ optional(optional($cartDetail->product->photos)->first())->url }}" width="70">
+					<img src="{{ optional($cartDetail->product->mainPhoto())->url ?? 'https://placehold.it/300x300' }}" width="70">
 				</td>
 				<td class="product-name" data-title="Producto">
 					<a href="{{ route('shop.product', $cartDetail->product->slug) }}">{{ $cartDetail->product->name }}</a>

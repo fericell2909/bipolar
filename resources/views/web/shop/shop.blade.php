@@ -53,7 +53,7 @@
               <div class="col-md-5 ">
                 @if(count($salient->photos))
                   <a href="{{ route('shop.product', $salient->slug) }}">
-                    <img src="{{ $salient->photos->first()->url }}" alt="{{ $salient->name }}" width="90">
+                    <img src="{{ $salient->mainPhoto()->url }}" alt="{{ $salient->name }}" width="90">
                   </a>
                 @else
                   <img src="https://placehold.it/212x141" alt="Shop" width="90">
@@ -99,7 +99,7 @@
                   </div>
                 @endif
                 @if(count($product->photos))
-                  <img src="{{ optional($product->photos)->first()->url }}" alt="{{ $product->name }}" class="img-responsive">
+                  <img src="{{ optional($product->mainPhoto())->url }}" alt="{{ $product->name }}" class="img-responsive">
                 @else
                     <img src="https://placehold.it/317x210" alt="{{ $product->name }}" class="img-responsive">
                 @endif
@@ -173,7 +173,7 @@
                   </div>
                 @endif
                 <div class="owl-carousel-main owl-carousel owl-theme">
-                  @foreach($product->photos as $photo)
+                  @foreach($product->photos->sortBy('order') as $photo)
                     <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive">
                   @endforeach
                 </div>
