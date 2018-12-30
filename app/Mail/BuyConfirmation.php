@@ -31,7 +31,7 @@ class BuyConfirmation extends Mailable
      */
     public function build()
     {
-        $shippingMethod = $this->buy->showroom ? __('bipolar.mails.shipping_method_showroom') : __('bipolar.mails.shipping_method_local');
+        $shippingMethod = $this->buy->showroom ? __('bipolar.mails.shipping_method_showroom') : optional($this->buy->shipping)->title;
 
         $subjectConfirmation = env('APP_ENV') !== 'production' ? '[BETA] ' . __('bipolar.mails.buy_received_subject') : __('bipolar.mails.buy_received_subject');
 
