@@ -66,16 +66,6 @@ class LandingsController extends Controller
         return redirect()->back();
     }
 
-    public function bipolar()
-    {
-        return view('web.landings.bipolar');
-    }
-
-    public function shipping()
-    {
-        return view('web.landings.shipping');
-    }
-
     public function showroom()
     {
         return view('web.landings.showroom');

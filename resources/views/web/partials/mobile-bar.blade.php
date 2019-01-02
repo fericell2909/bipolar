@@ -93,7 +93,9 @@
 </section>
 <ul id="responsive-menu-black" class="responsive-menu-black collapse">
   <li><a href="{{ route('home') }}"><span>Home</span></a></li>
-  <li><a href="{{ route('landings.bipolar') }}"><span>Bipolar</span></a></li>
+  @if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "bipolar"))
+    <li><a href="{{ route('page', $bipolarPage->slug) }}"><span>{{ $bipolarPage->title }}</span></a></li>
+  @endif
   <li><a href="{{ route('landings.showroom') }}"><span>Showroom</span></a></li>
   <li><a href="{{ route('shop') }}"><span>Shop</span></a></li>
   <li><a href="{{ route('landings.newsletter') }}"><span>Newsletter</span></a></li>
