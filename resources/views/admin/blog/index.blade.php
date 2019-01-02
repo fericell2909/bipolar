@@ -30,6 +30,10 @@
                     <i class="fas fa-fw fa-edit"></i>
                     Editar
                   </a>
+                  <button data-blog-post="{{ $post->id }}" class="btn btn-dark btn-sm btn-rounded blog-post-delete">
+                    <i class="fas fa-fw fa-times"></i>
+                    Eliminar
+                  </button>
                 </div>
               </td>
             </tr>

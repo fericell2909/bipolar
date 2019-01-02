@@ -114,4 +114,23 @@ $(function () {
       }
     });
   });
+
+  $('.blog-post-delete').click(function () {
+    swal({
+      title: 'Eliminar post',
+      text: 'Se eliminarán todos los datos y fotos del post',
+      type: 'question',
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      showLoaderOnConfirm: true,
+    }).then(result => {
+      if (result.value) {
+        const blogPostId = $(this).data('blogPost');
+        $.ajax({
+          method: 'DELETE',
+          url: `/ajax-admin/post/${blogPostId}/delete`
+        }).done(() => location.reload());
+      }
+    });
+  });
 });

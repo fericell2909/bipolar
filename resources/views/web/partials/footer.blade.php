@@ -1,3 +1,4 @@
+<?php /** @var \Illuminate\Support\Collection $pagesForFooter */ ?>
 <footer class="bipolar-footer">
 	<div class="container">
 		<div class="row">
@@ -19,15 +20,15 @@
             <span>Info</span>
           </p>
           <ul>
-            <li>
-              <a href="{{ route('landings.shipping') }}">{{ __('bipolar.footer.info.shipping') }}</a>
-            </li>
-            <li>
-              <a href="{{ route('landings.exchange') }}">{{ __('bipolar.footer.info.exchange') }}</a>
-            </li>
-            <li>
-              <a href="{{ route('landings.care_tips') }}">{{ __('bipolar.footer.info.caretips') }}</a>
-            </li>
+            @if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "shipping"))
+              <li><a href="{{ route('page', $bipolarPage->slug) }}">{{ $bipolarPage->title }}</a></li>
+            @endif
+            @if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "exchange-and-return"))
+              <li><a href="{{ route('page', $bipolarPage->slug) }}">{{ $bipolarPage->title }}</a></li>
+            @endif
+            @if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "care-tips"))
+              <li><a href="{{ route('page', $bipolarPage->slug) }}">{{ $bipolarPage->title }}</a></li>
+            @endif
           </ul>
         </div>
 			</div>
@@ -40,20 +41,20 @@
             <li>
               <a href="{{ route('home') }}">Home</a>
             </li>
-            <li>
-              <a href="{{ route('landings.bipolar') }}">Bipolar</a>
-            </li>
-            <li>
-              <a href="{{ route('landings.showroom') }}">Showroom</a>
-            </li>
+            @if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "bipolar"))
+              <li><a href="{{ route('page', $bipolarPage->slug) }}">{{ $bipolarPage->title }}</a></li>
+            @endif
+            @if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "showroom"))
+              <li><a href="{{ route('page', $bipolarPage->slug) }}">{{ $bipolarPage->title }}</a></li>
+            @endif
             <li>
               <a href="{{ route('shop') }}">Shop</a>
             </li>
             <li>
-              <a href="#">Newsletter</a>
+              <a href="{{ route('landings.newsletter') }}">Newsletter</a>
             </li>
             <li>
-              <a href="#">Blog</a>
+              <a href="{{ route('landings.blog') }}">Blog</a>
             </li>
             <li>
               <a href="{{ route('landings.contacto') }}">{{ __('bipolar.contact.contact_us') }}</a>

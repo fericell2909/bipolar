@@ -23,11 +23,12 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::get('wishlist/remove/{productSlug}', 'Web\WishlistController@remove')->name('wishlist.remove');
         Route::get('wishlist', 'Web\WishlistController@view')->name('wishlist');
 
-        Route::get('bipolar', 'Web\LandingsController@bipolar')->name('landings.bipolar');
-        Route::get('shipping', 'Web\LandingsController@shipping')->name('landings.shipping');
-        Route::view('exchange-and-returns', 'web.landings.exchange_returns')->name('landings.exchange');
-        Route::view('care-tips', 'web.landings.care_tips')->name('landings.care_tips');
-        Route::get('showroom', 'Web\LandingsController@showroom')->name('landings.showroom');
+        // Keep this routes as references at least 1 year. Implemented Jan 1, 2019
+        Route::permanentRedirect('bipolar', 'info/bipolar');
+        Route::permanentRedirect('shipping', 'info/shipping');
+        Route::permanentRedirect('exchange-and-returns', 'info/exchange-and-return');
+        Route::permanentRedirect('care-tips', 'info/care_tips');
+        Route::permanentRedirect('showroom', 'info/showroom');
         Route::get('historico', 'Web\LandingsController@historico')->name('landings.historico');
         Route::view('newsletter', 'web.landings.newsletter_landing')->name('landings.newsletter');
         Route::get('blog', 'Web\LandingsController@blog')->name('landings.blog');

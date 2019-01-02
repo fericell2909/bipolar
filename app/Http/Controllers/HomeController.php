@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    use SEOTools;
+
     /**
      * Create a new controller instance.
      *
@@ -14,17 +17,9 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('home');
+        $imageUrl = asset('storage/bipolar-images/assets/jeringas-rosado.jpg');
+        $this->seo()->opengraph()->addImage($imageUrl);
+        $this->seo()->twitter()->addImage($imageUrl);
     }
 
     public function page(string $pageSlug)

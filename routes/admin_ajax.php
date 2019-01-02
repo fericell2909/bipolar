@@ -50,6 +50,7 @@ Route::prefix('post')->group(function () {
     Route::get('{postId}/show', 'Admin\Ajax\PostController@show');
     Route::put('{postId}/update', 'Admin\Ajax\PostController@update');
     Route::post('photos/order', 'Admin\Ajax\PostController@order');
+    Route::delete('{postId}/delete', 'Admin\Ajax\PostController@remove');
 });
 
 Route::get('categories', 'Admin\Ajax\CategoryController@index');

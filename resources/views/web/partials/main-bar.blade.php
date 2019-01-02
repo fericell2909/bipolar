@@ -132,18 +132,22 @@
 						<div class="the-line"></div>
 					</a>
 				</li>
-				<li class="bipolar-item">
-					<a href="{{ route('landings.bipolar') }}">
-						<div class="item-text">Bipolar</div>
-						<div class="the-line"></div>
-					</a>
-				</li>
-				<li class="bipolar-item">
-					<a href="{{ route('landings.showroom') }}">
-						<div class="item-text">Showroom</div>
-						<div class="the-line"></div>
-					</a>
-				</li>
+				@if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "bipolar"))
+					<li class="bipolar-item">
+						<a href="{{ route('page', $bipolarPage->slug) }}">
+							<div class="item-text">{{ $bipolarPage->title }}</div>
+							<div class="the-line"></div>
+						</a>
+					</li>
+				@endif
+				@if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "showroom"))
+					<li class="bipolar-item">
+						<a href="{{ route('page', $bipolarPage->slug) }}">
+							<div class="item-text">{{ $bipolarPage->title }}</div>
+							<div class="the-line"></div>
+						</a>
+					</li>
+				@endif
 				<li class="bipolar-item">
 					<a href="{{ route('shop') }}">
 						<div class="item-text">Shop</div>

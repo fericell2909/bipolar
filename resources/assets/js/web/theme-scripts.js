@@ -2,6 +2,11 @@ import CountUp from "countup.js";
 
 require("icheck");
 
+// After reload, scroll to top
+$(window).on('beforeunload', function(){
+  $(window).scrollTop(0);
+});
+
 $(function() {
   // Owl Carousel scripts
   let thumbs = 5;
