@@ -28,7 +28,7 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::permanentRedirect('shipping', 'info/shipping');
         Route::permanentRedirect('exchange-and-returns', 'info/exchange-and-return');
         Route::permanentRedirect('care-tips', 'info/care_tips');
-        Route::get('showroom', 'Web\LandingsController@showroom')->name('landings.showroom');
+        Route::permanentRedirect('showroom', 'info/showroom');
         Route::get('historico', 'Web\LandingsController@historico')->name('landings.historico');
         Route::view('newsletter', 'web.landings.newsletter_landing')->name('landings.newsletter');
         Route::get('blog', 'Web\LandingsController@blog')->name('landings.blog');

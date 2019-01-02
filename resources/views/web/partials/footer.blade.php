@@ -44,9 +44,9 @@
             @if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "bipolar"))
               <li><a href="{{ route('page', $bipolarPage->slug) }}">{{ $bipolarPage->title }}</a></li>
             @endif
-            <li>
-              <a href="{{ route('landings.showroom') }}">Showroom</a>
-            </li>
+            @if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "showroom"))
+              <li><a href="{{ route('page', $bipolarPage->slug) }}">{{ $bipolarPage->title }}</a></li>
+            @endif
             <li>
               <a href="{{ route('shop') }}">Shop</a>
             </li>
