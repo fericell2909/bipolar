@@ -121,4 +121,20 @@ class PostController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function remove($blogPostId)
+    {
+        $post = Post::findOrFail($blogPostId);
+
+        $post->photos->each(function ($photo) {
+            $photo->delete();
+        });
+
+        $post->categories()->sync([]);
+        $post->tags()->sync([]);
+
+        $post->delete();
+
+        return response()->json(['success' => true]);
+    }
 }
