@@ -130,6 +130,7 @@ namespace App\Models{
  * @property array $name
  * @property string|null $slug
  * @property-read string $hash_id
+ * @property-read mixed $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\HomePost[] $home_posts
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType newModelQuery()
@@ -312,6 +313,7 @@ namespace App\Models{
  * @property string|null $background_suscribe
  * @property string|null $background_counter
  * @property array|null $open_hours
+ * @property-read mixed $translations
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings query()
@@ -338,6 +340,7 @@ namespace App\Models{
  * @property array $name
  * @property string|null $slug
  * @property-read string $hash_id
+ * @property-read mixed $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type newModelQuery()
@@ -422,6 +425,7 @@ namespace App\Models{
  * @property-read string $hash_id
  * @property-read mixed $price_currency
  * @property-read mixed $price_discount_currency
+ * @property-read mixed $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommendeds
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Size[] $sizes_active
@@ -478,6 +482,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories
  * @property-read string $hash_id
  * @property-read mixed $status
+ * @property-read mixed $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read \App\Models\State|null $state
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
@@ -531,6 +536,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon $end_date
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $translations
  * @property-read \App\Models\State $state
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner newQuery()
@@ -601,6 +607,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Country[] $excluded_countries
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $excluded_states
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingExclude[] $excludes
+ * @property-read mixed $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Country[] $included_countries
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $included_states
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingInclude[] $includes
@@ -962,6 +969,7 @@ namespace App\Models{
  * @property int $id
  * @property array $name
  * @property-read string $hash_id
+ * @property-read mixed $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color newQuery()
@@ -1005,6 +1013,7 @@ namespace App\Models{
  * @property array $name
  * @property string|null $slug
  * @property-read string $hash_id
+ * @property-read mixed $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @property-read \App\Models\Type $type
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype findSimilarSlugs($attribute, $config, $slug)
@@ -1072,6 +1081,7 @@ namespace App\Models{
  * @property string|null $main_image
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $translations
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page newQuery()

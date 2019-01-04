@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-11-18 00:29:28.
+    * Generated on 2019-01-04 11:33:00.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -39,6 +39,7 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
@@ -214,6 +215,7 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
@@ -389,6 +391,7 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
@@ -564,6 +567,7 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
@@ -739,6 +743,7 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
@@ -914,6 +919,7 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
@@ -1089,6 +1095,7 @@ namespace PHPSTORM_META {
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Psr\Http\Message\ResponseInterface' => \Zend\Diactoros\Response::class,
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
