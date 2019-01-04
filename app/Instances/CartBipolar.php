@@ -179,7 +179,12 @@ class CartBipolar
     public function remove($productSlug)
     {
         $this->cart->details->each(function ($detail) use ($productSlug) {
-            return $detail->product->slug === $productSlug ? $detail->delete() : false;
+            /** @var \App\Models\CartDetail $detail */
+            if ($detail->product->slug === $productSlug) {
+                $detail->delete();
+            }
+
+            return true;
         });
 
         $this->recalculate();
