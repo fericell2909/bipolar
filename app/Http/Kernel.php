@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckStockAvailability;
 use App\Http\Middleware\LocalizationDetection;
 use App\Http\Middleware\RemoveEmptyUserCarts;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -67,5 +68,6 @@ class Kernel extends HttpKernel
         'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         'removeEmptyCarts' => RemoveEmptyUserCarts::class,
         'location.detect' => LocalizationDetection::class,
+        'checkStockAvailability' => CheckStockAvailability::class,
     ];
 }

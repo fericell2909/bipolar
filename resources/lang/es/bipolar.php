@@ -15,6 +15,10 @@ return [
     'cart' => [
         'update' => 'Actualizar',
         'checkout' => 'Ir a la caja',
+        'product' => 'Producto',
+        'price' => 'Precio',
+        'quantity' => 'Cantidad',
+        'delete_item' => 'El producto :name se encuentra sin stock, quite el producto del carrito pulsando el siguiente botón',
     ],
     'buy' => [
         'order' => 'Orden',
@@ -94,6 +98,7 @@ return [
         'pen_currency' => 'Soles Peruanos (PEN)',
         'usd_currency' => 'Dólares americanos (USD)',
         'size_guide_url' => 'storage/bipolar-images/assets/size_esp_20180913.png',
+        'added' => ':product ha sido agregado al carro',
     ],
     'mails' => [
         'buy_received_subject' => 'Gracias por tu compra!',

@@ -4,14 +4,27 @@
 	<h1>Shopping cart</h1>
 </div>
 <div class="container">
+  @if($detailsWithoutStock = \Session::get('details_without_stock'))
+    @foreach($detailsWithoutStock as $detailWithoutStock)
+      <div class="bipolar-alert-message" style="margin-bottom: 20px">
+        <i class="fa fa-check-circle-o"></i>
+        <div class="success-content">
+          <span>{{ $detailWithoutStock['message'] }}</span>
+          <a href="{{ route('cart.remove', $detailWithoutStock['product_slug']) }}" class="btn btn-dark-rounded">
+            {{ __('bipolar.checkout.remove') }}
+          </a>
+        </div>
+      </div>
+    @endforeach
+  @endif
   {!! Form::open() !!}
 	<table class="table-cart">
 		<thead>
 			<tr>
         <th colspan="2"></th>
-				<th>Producto</th>
-				<th>Precio</th>
-				<th>Cantidad</th>
+				<th>{{ __('bipolar.cart.product') }}</th>
+				<th>{{ __('bipolar.cart.price') }}</th>
+				<th>{{ __('bipolar.cart.quantity') }}</th>
 				<th>Total</th>
 			</tr>
 		</thead>
