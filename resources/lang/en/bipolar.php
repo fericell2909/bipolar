@@ -15,6 +15,10 @@ return [
     'cart' => [
         'update' => 'Update cart',
         'checkout' => 'Go to checkout',
+        'product' => 'Product',
+        'price' => 'Price',
+        'quantity' => 'Quantity',
+        'delete_item' => 'The :name product is out of stock, remove it pressing the following button',
     ],
     'buy' => [
         'order' => 'Order',
@@ -94,6 +98,7 @@ return [
         'pen_currency' => 'Peruvian Soles (PEN)',
         'usd_currency' => 'US Dollars (USD)',
         'size_guide_url' => 'storage/bipolar-images/assets/size_eng_20180913.png',
+        'added' => ':product has been added to the cart',
     ],
     'mails' => [
         'buy_received_subject' => 'Thank you for your purchase!',

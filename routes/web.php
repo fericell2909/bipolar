@@ -41,11 +41,13 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::post('cart', 'Web\CartController@update')->name('cart.update');
 
         Route::middleware('auth:web')->group(function () {
+            Route::middleware('checkStockAvailability')->group(function () {
+                Route::get('checkout', 'Web\CheckoutController@checkout')->name('checkout');
+                Route::post('checkout', 'Web\CheckoutController@buy');
+            });
             Route::get('my-account/buys', 'Web\UserController@myaccount')->name('myaccount');
             Route::get('my-account/edit-account', 'Web\UserController@profile')->name('profile');
             Route::post('my-account/edit-account', 'Web\UserController@updateProfile')->name('profile.update');
-            Route::get('checkout', 'Web\CheckoutController@checkout')->name('checkout');
-            Route::post('checkout', 'Web\CheckoutController@buy');
             Route::post('address/{addressType}/register', 'Web\AddressesController@add')->name('address.add');
             Route::get('confirmation/{buyId}', 'Web\PaymeController@pagoPayme')->name('confirmation');
             Route::post('confirmation-payment', 'Web\PaymeController@reconfirmationPost')->name('confirmation.successful');
