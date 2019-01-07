@@ -43,6 +43,11 @@ class CheckStockAvailability
                 $productName = "{$productName} " . mb_strtolower(__('bipolar.size_abbr')) . " {$detail->stock->size->name}";
             }
 
+            if ($detail->product->colors->count()) {
+                $colors = $detail->product->colors->implode('name', ',');
+                $productName .= " {$colors}";
+            }
+
             return [
                 'message'      => __('bipolar.cart.delete_item', ['name' => $productName]),
                 'product_slug' => $detail->product->slug,
