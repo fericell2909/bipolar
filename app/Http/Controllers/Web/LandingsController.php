@@ -19,7 +19,7 @@ class LandingsController extends Controller
 {
     use SEOTools;
 
-    public function __construct()
+    private function addSeoDefault()
     {
         $imageUrl = asset('storage/bipolar-images/assets/jeringas-rosado.jpg');
         $this->seo()->opengraph()->addImage($imageUrl);
@@ -50,8 +50,10 @@ class LandingsController extends Controller
 
         if ($banners->count()) {
             $image = $banners->first()->url;
-            \SEO::opengraph()->setType('article')->addImage($image, ['width' => 1024, 'height' => 680]);
-            \SEO::twitter()->addImage($image);
+            $this->seo()->opengraph()->setType('article')->addImage($image, ['width' => 1024, 'height' => 680]);
+            $this->seo()->twitter()->addImage($image);
+        } else {
+            $this->addSeoDefault();
         }
 
         return view('welcome', compact('banners', 'homePosts', 'settings', 'posts'));
@@ -66,13 +68,10 @@ class LandingsController extends Controller
         return redirect()->back();
     }
 
-    public function showroom()
-    {
-        return view('web.landings.showroom');
-    }
-
     public function historico()
     {
+        $this->addSeoDefault();
+
         $historics = Historic::orderByDesc('order')->get();
 
         $inverse = false;
@@ -82,11 +81,15 @@ class LandingsController extends Controller
 
     public function contact()
     {
+        $this->addSeoDefault();
+
         return view('web.landings.contact');
     }
 
     public function blog(Request $request)
     {
+        $this->addSeoDefault();
+
         $posts = Post::orderByDesc('created_at')->with([
             'categories',
             'photos' => function ($withPhotos) {
@@ -138,14 +141,14 @@ class LandingsController extends Controller
         $tags = Tag::orderBy('name')->get();
         $yearMonthSelect = $this->getDateAndMonthFromPosts();
 
-        $seoDescription = !empty($post->content) ? $post->content : 'Zapatos de diseñador hechos a mano en Perú. Designer shoes handmade in Peru';
+        $seoDescription = !empty($post->content) ? str_limit(strip_tags($post->content), 200) : 'Zapatos de diseñador hechos a mano en Perú. Designer shoes handmade in Peru';
         $image = optional($post->photos->first())->url;
-        \SEO::metatags()->setTitle("{$post->title}")->setDescription($seoDescription);
-        \SEO::twitter()
+        $this->seo()->metatags()->setTitle("{$post->title}")->setDescription($seoDescription);
+        $this->seo()->twitter()
             ->setTitle("{$post->title} - Bipolar")
             ->setDescription($seoDescription)
             ->addImage($image);
-        \SEO::opengraph()
+        $this->seo()->opengraph()
             ->setType('article')
             ->setTitle("{$post->title} - Bipolar")
             ->setDescription($seoDescription)
