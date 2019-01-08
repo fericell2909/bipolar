@@ -4,27 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use Artesaos\SEOTools\Traits\SEOTools;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     use SEOTools;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $imageUrl = asset('storage/bipolar-images/assets/jeringas-rosado.jpg');
-        $this->seo()->opengraph()->addImage($imageUrl);
-        $this->seo()->twitter()->addImage($imageUrl);
-    }
-
     public function page(string $pageSlug)
     {
+        /** @var Page $page */
         $page = Page::findBySlugOrFail($pageSlug);
+
+        if ($page->main_image) {
+            $this->seo()->opengraph()->addImage($page->main_image);
+            $this->seo()->twitter()->addImage($page->main_image);
+        } else {
+            $imageUrl = asset('storage/bipolar-images/assets/jeringas-rosado.jpg');
+            $this->seo()->opengraph()->addImage($imageUrl);
+            $this->seo()->twitter()->addImage($imageUrl);
+        }
 
         return view('web.landings.pages', compact('page'));
     }
