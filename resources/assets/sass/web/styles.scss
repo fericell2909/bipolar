@@ -354,7 +354,7 @@ a {
   background-color: $bipolar-white;
 
   .owl-stage {
-    display: flex;
+    display: block;
 
     // Fix for white clipping
     .owl-item {
