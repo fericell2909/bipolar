@@ -85,7 +85,7 @@ button {
   p {
     @include gotham_light_font;
     font-size: 13px;
-    margin: 0;
+    margin: 0 0 10px;
     line-height: 1.6;
 
     &:last-of-type {

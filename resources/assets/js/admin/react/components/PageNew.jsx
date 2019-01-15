@@ -56,7 +56,7 @@ class PageNew extends React.Component {
   render() {
     const toolbarEditor = {
       fontFamily: {
-        options: ['Verdana', 'GothamLight'],
+        options: ['Verdana', 'GothamLight', 'GothamBold', 'BauerBodoniStd', 'BauerBodoniStdBold'],
       },
       image: {
         urlEnabled: true,

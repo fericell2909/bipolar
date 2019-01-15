@@ -2,8 +2,33 @@
 
 @font-face {
   font-family: "GothamLight";
+  font-weight: normal;
   src: url("../../fonts/Gotham/Gotham-Light.otf");
 }
+
+@font-face {
+  font-family: 'BauerBodoniStd', 'Times New Roman', sans-serif;
+  font-weight: normal;
+  src: url('../../fonts/Bodoni/BauerBodoniStd Roman.otf');
+}
+
+@font-face {
+  font-family: 'BauerBodoniStdBold', 'Times New Roman Bold', sans-serif;
+  font-weight: normal;
+  src: url('../../fonts/Bodoni/BauerBodoniStd Bold.otf');
+}
+
+@font-face {
+  font-family: "SaharaBodoni", monospace;
+  src: url('../../fonts/Sahara Bodoni/SaharaBodoni.otf');
+}
+
+@font-face {
+  font-family: "GothamBold", sans-serif;
+  font-weight: normal;
+  src: url('../../fonts/Gotham/Gotham-Bold.otf');
+}
+
 
 // Plugins
 @import "~sweetalert2/src/sweetalert2";
