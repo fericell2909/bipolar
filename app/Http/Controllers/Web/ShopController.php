@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\ShopFilterRequest;
+use App\Models\Banner;
 use App\Models\Product;
 use App\Models\Size;
 use App\Models\Stock;
@@ -138,8 +139,15 @@ class ShopController extends Controller
             \SEO::twitter()->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'));
             \SEO::opengraph()->setType('article')->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024, 'height' => 680]);
         } else {
-            \SEO::twitter()->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'));
-            \SEO::opengraph()->setType('article')->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024, 'height' => 680]);
+            /** @var \App\Models\Banner $firstBanner */
+            $firstBanner = Banner::orderBy('order')->first();
+            if ($firstBanner->url) {
+                \SEO::twitter()->addImage($firstBanner->url);
+                \SEO::opengraph()->setType('article')->addImage($firstBanner->url, ['width'  => 1024, 'height' => 680]);
+            } else {
+                \SEO::twitter()->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'));
+                \SEO::opengraph()->setType('article')->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024, 'height' => 680]);
+            }
         }
 
         $products = $this->getPaginatedProducts($products, LengthAwarePaginator::resolveCurrentPage(), $request->fullUrl());
