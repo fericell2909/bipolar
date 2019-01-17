@@ -41,7 +41,7 @@ $(function() {
     animateOut: 'fadeOut',
     items: 1,
     nav: false,
-    autoplay: true,
+    autoplay: false,
     autoplayTimeout: 4000,
     loop: true,
   });

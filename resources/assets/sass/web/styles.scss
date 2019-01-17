@@ -113,7 +113,7 @@ button {
   .bipolar-counts {
     text-align: center;
 
-    @include mobile {
+    @include touch {
       padding: 0;
 
       &:first-child, &:last-child {
@@ -121,7 +121,7 @@ button {
       }
     }
 
-    @include tablet {
+    @include desktop {
       &:first-child, &:last-child {
         padding: 172px 0;
       }
@@ -180,11 +180,11 @@ button {
   .second-zone {
     margin-top: 30px;
     
-    @include mobile {
+    @include touch {
       padding-bottom: 20px;
     }
     
-    @include tablet {
+    @include desktop {
       padding-bottom: 50px;
     }
 
@@ -210,7 +210,7 @@ button {
     }
 
     .post {
-      @include mobile {
+      @include touch {
         margin-bottom: 30px;
       }
 
@@ -219,7 +219,7 @@ button {
       }
 
       .img-responsive {
-        @include mobile {
+        @include touch {
           margin-bottom: 20px;
         }
 
@@ -229,7 +229,7 @@ button {
       }
 
       .content {
-        @include mobile {
+        @include touch {
           text-align: center;
         }
 
@@ -369,49 +369,30 @@ a {
 
 
   .owl-carousel-home-text-container {
-    display: flex;
-    height: 100%;
+    display: block;
+    //height: 100%;
     background: $bipolar-color;
     background-repeat: no-repeat;
-    background-size: cover; 
+    background-size: cover;
+    text-align: center;
 
     &:hover, &:focus {
       text-decoration: none;
     }
 
-    @include mobile {
-      height: 250px;
-    }
-  
-    @include tablet {
-      height: 500px;
-    }
-
-    @include desktop {
-      height: 800px;
-    }
-
     .owl-carousel-home-text {
-      display: flex;
-      flex-direction: column-reverse;
+      position: absolute;
+      bottom: 0;
       color: $bipolar-black;
       @include sahari_bodoni_font;
-      max-width: 1007px;
       font-weight: 400;
       font-size: inherit;
       line-height: inherit;
       text-align: center;
       margin: 0 auto;
       text-transform: uppercase;
+      width: 100%;
       
-      @include mobile {
-        justify-content: center;
-      }
-
-      @include tablet {
-        justify-content: flex-start;
-      }
-
       &:hover, &:focus {
         text-decoration: none;
       }
