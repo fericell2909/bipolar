@@ -181,6 +181,9 @@
               <span class="input-group-text">px</span>
             </div>
           </div>
+          <span class="help-block">
+            <small>Recomendado: 150px en adelante</small>
+          </span>
         </div>
       </div>
       {!! Form::submit('Actualizar', ['class' => 'btn btn-dark btn-sm btn-rounded']) !!}
