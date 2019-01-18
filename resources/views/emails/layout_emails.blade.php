@@ -716,7 +716,11 @@
         <tbody>
         <tr>
           <td>
-            <img src="{{ $message->embed(public_path() . '/storage/bipolar-images/assets/mails/bipolar-mail-header.png') }}" alt="Cabecera" style="width: 100%; max-width: 100%;">
+            @if(env('APP_ENV') !== 'production')
+              <img src="https://www.bipolar.com.pe/storage/bipolar-images/assets/mails/bipolar-mail-header.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
+            @else
+              <img src="{{ $message->embed(public_path() . '/storage/bipolar-images/assets/mails/bipolar-mail-header.png') }}" alt="Cabecera" style="width: 100%; max-width: 100%;">
+            @endif
           </td>
         </tr>
         </tbody>
@@ -839,7 +843,11 @@
         <tbody>
         <tr>
           <td>
-            <img src="{{ $message->embed(public_path() . '/storage/bipolar-images/assets/mails/bipolar-mail-footer.png') }}" alt="Cabecera" style="width: 100%; max-width: 100%;">
+            @if(env('APP_ENV') !== 'production')
+              <img src="https://www.bipolar.com.pe/storage/bipolar-images/assets/mails/bipolar-mail-footer.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
+            @else
+              <img src="{{ $message->embed(public_path() . '/storage/bipolar-images/assets/mails/bipolar-mail-footer.png') }}" alt="Cabecera" style="width: 100%; max-width: 100%;">
+            @endif
           </td>
         </tr>
         </tbody>
