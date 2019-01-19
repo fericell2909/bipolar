@@ -26,7 +26,7 @@
         letter-spacing: {{ $banner->letter_spacing_mobile }}px !important;
       }
       .banner-home-{{ $banner->id }} .owl-carousel-home-text {
-        padding-bottom: {{ $banner->padding_bottom_mobile }}px !important;
+        top: {{ $banner->padding_bottom_mobile }}px !important;
       }
     }
     /* tablet */
@@ -37,7 +37,7 @@
         letter-spacing: {{ $banner->letter_spacing_tablet }}px !important;
       }
       .banner-home-{{ $banner->id }} .owl-carousel-home-text {
-        padding-bottom: {{ $banner->padding_bottom_tablet }}px !important;
+        top: {{ $banner->padding_bottom_tablet }}px !important;
       }
     }
     /* desktop */
@@ -48,7 +48,7 @@
         letter-spacing: {{ $banner->letter_spacing_desktop }}px !important;
       }
       .banner-home-{{ $banner->id }} .owl-carousel-home-text {
-        padding-bottom: {{ $banner->padding_bottom_desktop }}px !important;
+        top: {{ $banner->padding_bottom_desktop }}px !important;
       }
     }
 </style>

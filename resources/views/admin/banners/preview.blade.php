@@ -7,6 +7,7 @@
   <title>Banner demo</title>
   <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
   <link rel="stylesheet" href="{{ mix('css/app-web-styles.css') }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body class="no-top">
   <div class="bipolar-wrapper">

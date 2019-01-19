@@ -156,7 +156,7 @@
           </div>
         </div>
         <div class="col-4 form-group">
-          {!! Form::label('Espaciado inferior (Mobile)') !!}
+          {!! Form::label('Espaciado superior (Mobile)') !!}
           <div class="input-group">
             {!! Form::number('padding_bottom_mobile', $banner->padding_bottom_mobile, ['class' => 'form-control', 'required' => true]) !!}
             <div class="input-group-append">
@@ -165,7 +165,7 @@
           </div>
         </div>
         <div class="col-4 form-group">
-          {!! Form::label('Espaciado inferior (Tablet)') !!}
+          {!! Form::label('Espaciado superior (Tablet)') !!}
           <div class="input-group">
             {!! Form::number('padding_bottom_tablet', $banner->padding_bottom_tablet, ['class' => 'form-control', 'required' => true]) !!}
             <div class="input-group-append">
@@ -174,7 +174,7 @@
           </div>
         </div>
         <div class="col-4 form-group">
-          {!! Form::label('Espaciado inferior (Desktop)') !!}
+          {!! Form::label('Espaciado superior (Desktop)') !!}
           <div class="input-group">
             {!! Form::number('padding_bottom_desktop', $banner->padding_bottom_desktop, ['class' => 'form-control', 'required' => true]) !!}
             <div class="input-group-append">
