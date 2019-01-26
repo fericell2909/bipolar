@@ -55,6 +55,8 @@ $pretty--color-primary: $bipolar-black;
 // Photoswipe
 @import "~photoswipe/src/css/main";
 @import "~photoswipe/src/css/default-skin/default-skin";
+// Video JS
+@import "~video.js/src/css/video-js";
 
 // Select 2
 .select2-container--default .select2-search--dropdown .select2-search__field {

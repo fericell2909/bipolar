@@ -475,6 +475,8 @@ namespace App\Models{
  * @property array|null $content
  * @property string|null $slug
  * @property string|null $main_photo
+ * @property string|null $main_video_photo
+ * @property string|null $main_video
  * @property int|null $state_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -498,6 +500,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereMainPhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereMainVideo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereMainVideoPhoto($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereTitle($value)

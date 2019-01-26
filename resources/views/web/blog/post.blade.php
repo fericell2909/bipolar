@@ -9,11 +9,22 @@
     <span><img class="svg" src="{{ asset('/images/ribbon.svg') }}" alt="Author"> {{ $post->categories->implode('name', ', ') }}</span>
   </nav>
     <div class="owl-carousel-blog owl-carousel owl-theme">
-      @foreach($post->photos as $photo)
-        <a href="{{ route('landings.blog.post', $post->slug) }}">
-          <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $post->title }}">
-        </a>
-      @endforeach
+      @if($post->main_video)
+        <video  
+          class="video-js vjs-default-skin vjs-big-play-centered"
+          width="100%"
+          height="100%" 
+          controls
+          data-setup='{ "techOrder": ["youtube"], "aspectRatio":"16:9", "sources": [{ "type": "video/youtube", "src": "{{ $post->main_video }}"}] }'
+        >
+        </video>
+      @else
+        @foreach($post->photos as $photo)
+          <a href="{{ route('landings.blog.post', $post->slug) }}">
+            <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $post->title }}">
+          </a>
+        @endforeach
+      @endif
     </div>
   <footer>
     <p>{!! $post->content !!}</p>

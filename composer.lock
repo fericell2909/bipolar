@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd7b8bfcfaca861d8cd09d9547065350",
+    "content-hash": "57dd2e193b854364dcbe9d5f8e5a8a3f",
     "packages": [
         {
             "name": "artesaos/seotools",
@@ -4751,6 +4751,55 @@
                 "translate"
             ],
             "time": "2018-12-19T09:46:29+00:00"
+        },
+        {
+            "name": "spatie/regex",
+            "version": "1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/regex.git",
+                "reference": "e33c0260de1461db27c1da0bac5c8c421f2d81de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/regex/zipball/e33c0260de1461db27c1da0bac5c8c421f2d81de",
+                "reference": "e33c0260de1461db27c1da0bac5c8c421f2d81de",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Regex\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A sane interface for php's built in preg_* functions",
+            "homepage": "https://github.com/spatie/regex",
+            "keywords": [
+                "expression",
+                "expressions",
+                "regex",
+                "regular",
+                "spatie"
+            ],
+            "time": "2018-10-29T08:45:57+00:00"
         },
         {
             "name": "spatie/robots-txt",

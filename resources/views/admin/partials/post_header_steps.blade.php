@@ -10,14 +10,21 @@
   <a href="#" class="col-md">
     <div class="card text-center">
       <div class="card-body">
-        <h4 class="card-text">2. Fotos (Slider)</h4>
+        <h4 class="card-text">2. Subir video</h4>        
       </div>
     </div>
   </a>
   <a href="#" class="col-md">
     <div class="card text-center">
       <div class="card-body">
-        <h4 class="card-text">3. Ordenar</h4>
+        <h4 class="card-text">3. Fotos (Slider)</h4>
+      </div>
+    </div>
+  </a>
+  <a href="#" class="col-md">
+    <div class="card text-center">
+      <div class="card-body">
+        <h4 class="card-text">4. Ordenar Fotos</h4>
       </div>
     </div>
   </a>
@@ -27,21 +34,28 @@
   <a href="{{ route('blog.edit', $post->id) }}" class="col-md">
     <div class="card text-center {{ $active === 1 ? 'text-white bg-primary' : null }}">
       <div class="card-body">
-        <h4 class="card-text">1. Nuevo post</h4>
+        <h4 class="card-text">1. Editar post</h4>
       </div>
     </div>
   </a>
+  <a href="{{ route('blog.video', $post->id) }}" class="col-md">
+      <div class="card text-center {{ $active === 2 ? 'text-white bg-primary' : null }}">
+        <div class="card-body">
+          <h4 class="card-text">2. Subir video</h4>
+        </div>
+      </div>
+    </a>
   <a href="{{ route('blog.photos', $post->id) }}" class="col-md">
-    <div class="card text-center {{ $active === 2 ? 'text-white bg-primary' : null }}">
+    <div class="card text-center {{ $active === 3 ? 'text-white bg-primary' : null }}">
       <div class="card-body">
-        <h4 class="card-text">2. Fotos (Slider)</h4>
+        <h4 class="card-text">3. Fotos (Slider)</h4>
       </div>
     </div>
   </a>
   <a href="{{ route('blog.photos.order', $post->id) }}" class="col-md">
-    <div class="card text-center {{ $active === 3 ? 'text-white bg-primary' : null }}">
+    <div class="card text-center {{ $active === 4 ? 'text-white bg-primary' : null }}">
       <div class="card-body">
-        <h4 class="card-text">3. Ordenar</h4>
+        <h4 class="card-text">4. Ordenar</h4>
       </div>
     </div>
   </a>
