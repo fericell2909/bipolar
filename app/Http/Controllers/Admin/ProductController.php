@@ -155,7 +155,12 @@ class ProductController extends Controller
             $quantities[$number] = $number;
         }
 
-        return view('web.shop.product', compact('product', 'stockWithSizes', 'quantities'));
+        $productIsShoeType = false;
+        if ($product->subtypes->count()) {
+            $productIsShoeType = in_array(config('constants.TYPES.SHOES'), $product->subtypes->pluck('type_id')->toArray());
+        }
+
+        return view('web.shop.product', compact('product', 'stockWithSizes', 'quantities', 'productIsShoeType'));
     }
 
     public function stock($productSlug)

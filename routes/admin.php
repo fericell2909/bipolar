@@ -61,6 +61,9 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/', 'Admin\BlogController@index')->name('blog.index');
         Route::get('new', 'Admin\BlogController@create')->name('blog.create');
         Route::get('/edit/{postId}', 'Admin\BlogController@edit')->name('blog.edit');
+        Route::get('/edit/{postId}/videos', 'Admin\BlogController@video')->name('blog.video');
+        Route::post('/edit/{postId}/videos', 'Admin\BlogController@saveVideo');
+        Route::get('/edit/{postId}/videos-remove', 'Admin\BlogController@removeVideo')->name('blog.video.remove');
         Route::get('edit/{postId}/photos', 'Admin\BlogController@photos')->name('blog.photos');
         Route::get('edit/{postId}/photos-order', 'Admin\BlogController@order')->name('blog.photos.order');
     });

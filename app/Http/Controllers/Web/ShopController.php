@@ -175,6 +175,19 @@ class ShopController extends Controller
         };
     }
 
+    private function isOutOfStock(Product $product)
+    {
+        if ($product->stocks->count() === 0) {
+            return false;
+        }
+
+        $emptyStocks = $product->stocks->filter(function ($stock) {
+            return (int)$stock->quantity === 0;
+        })->count();
+
+        return $product->stocks->count() === $emptyStocks;
+    }
+
     public function product($slugProduct)
     {
         /** @var Product $product */
@@ -194,6 +207,11 @@ class ShopController extends Controller
                 return $withPhotos->orderBy('order');
             }
         ]);
+
+        if ($this->isOutOfStock($product)) {
+            $product->state_id = config('constants.STATE_REVIEW_ID');
+            $product->save();
+        }
 
         $stockWithSizes = $product->stocks
             ->filter(function ($stock) {

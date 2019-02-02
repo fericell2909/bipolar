@@ -64,6 +64,8 @@ $('#archive-selector').change(function () {
 });
 
 require('owl.carousel/dist/owl.carousel');
+require('video.js');
+require('videojs-youtube');
 require('./theme-scripts');
 require('./shop-scripts');
 require('./product-scripts');
