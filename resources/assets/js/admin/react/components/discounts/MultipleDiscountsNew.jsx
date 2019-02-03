@@ -209,6 +209,9 @@ class MultipleDiscountsNew extends React.Component {
                   <div className="form-group">
                     <label>Aplicar a subtipos</label>
                     <ReactSelect components={Animated} onChange={this.handleUpdateSubtype} options={optionSubtypes} value={this.state.selectedSubtypes} isMulti closeMenuOnSelect={false}/>
+                    <span className="help-block">
+                      <small><strong>Cuidado:</strong> Esta opción aplicará el descuento a TODOS los productos que sean del subtipo</small>
+                    </span>
                   </div>
                 </div>
                 <div className="col-md">

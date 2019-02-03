@@ -240,7 +240,7 @@ class ShopController extends Controller
             $productIsShoeType = in_array(config('constants.TYPES.SHOES'), $product->subtypes->pluck('type_id')->toArray());
         }
 
-        $seoDescription = !empty($product->description) ? $product->description : 'Zapatos de diseñador hechos a mano en Perú. Designer shoes handmade in Peru';
+        $seoDescription = !empty($product->description) ? strip_tags($product->description) : 'Zapatos de diseñador hechos a mano en Perú. Designer shoes handmade in Peru';
         $image = optional($product->photos->first())->url;
         \SEO::metatags()->setTitle("{$product->name}")->setDescription($seoDescription);
         \SEO::twitter()

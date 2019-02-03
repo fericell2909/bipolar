@@ -10,6 +10,7 @@ use App\Console\Commands\SyncBsaleStocks;
 use App\Console\Commands\CopyFacebookFansToSettings;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\CheckProductStock;
 
 class Kernel extends ConsoleKernel
 {
@@ -38,6 +39,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(HomePostActivation::class)->hourly();
         $schedule->command(SyncBsaleStocks::class)->everyMinute();
         $schedule->command('sitemap:generate')->weekly();
+        $schedule->command(CheckProductStock::class)->dailyAt('03:00:00');
         //$schedule->command(SendNoBuyedCarts::class)->daily();
     }
 
