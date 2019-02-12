@@ -68,7 +68,7 @@ class BSale
                 'quantity'  => $detail->quantity,
                 'comment'   => "{$detail->quantity} x {$detail->stock->product->price_pen_discount}",
             ];
-        });
+        })->toArray();
 
         $dataDocument = [
             'documentTypeId' => strval(env('BSALE_SELL_DOCUMENT_TYPE', 23)),
@@ -86,7 +86,7 @@ class BSale
             ],
         ];
 
-        \Log::debug(json_encode($dataDocument));
+        \Log::info("Documento creado", $dataDocument);
 
         $response = Zttp::asJson()->withHeaders(['access_token' => env('BSALE_TOKEN')])
             ->post('https://api.bsale.cl/v1/documents.json', $dataDocument);

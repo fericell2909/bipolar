@@ -134,10 +134,14 @@ class PaymeController extends Controller
         ));
     }
 
+    /**
+     * Si por algún motivo se repiten las compras consultar la dirección web de respuesta con Payme
+     * a veces hace redirecciones de http a https o de www a no-www
+     */
     public function reconfirmationPost(Request $request)
     {
         /** @var Buy $buy */
-        $buy = Buy::whereUserId($request->user()->id)->latest('id')->firstOrFail();
+        $buy = Buy::whereUserId($request->user()->id)->latest('id')->with('payments')->firstOrFail();
 
         // Redirect if has a successful payment (prevent many payments)
         $paymeCode = $buy->payments->sortByDesc('id')->first()->auth_result ?? null;
@@ -162,6 +166,7 @@ class PaymeController extends Controller
             if ($buy->showroom) {
                 $buy->setStatus(config('constants.BUY_PICKUP_STATUS'));
             }
+            \Log::info('Payment created for buy', ['payment' => $payment]);
             event(new SaleSuccessful($buy));
         } elseif ($request->input('authorizationResult') == '01') {
             $payment->auth_result_text = 'Operación Denegada';
