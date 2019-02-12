@@ -51,7 +51,7 @@ class ExecuteDiscountTasks extends Command
                 ->get();
         }
         if ($discountTasks->isNotEmpty()) {
-            \Log::info("Task #ID executed", $discountTasks->pluck('id')->toArray());
+            \Log::info("Task #ID executed", $discountTasks->pluck('name', 'id')->toArray());
         }
 
         $discountTasks->each(function ($discount) {

@@ -29,7 +29,7 @@ class UpdateProfile extends FormRequest
             'email'    => 'required|string|between:3,255',
             'birthday' => 'nullable|date_format:Y-m-d',
         ];
-debug($this->input('old_password'), $this->filled('old_password'));
+
         if ($this->filled('old_password')) {
             $rules = array_merge($rules, [
                 'old_password'              => 'nullable|string',

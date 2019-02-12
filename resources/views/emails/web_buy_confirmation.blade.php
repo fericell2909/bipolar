@@ -9,15 +9,17 @@
       <!--[if (mso)|(IE)]><table role="presentation" width="640" border="0" cellspacing="0" cellpadding="0" align="center" style="vertical-align:top;width:640px;Margin:0 auto;"><tbody><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
       <table role="presentation" class="content_section" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;max-width: 640px;margin: 0 auto;text-align: center;min-width: 0 !important;">
         <tbody>
-          <tr>
-            <td>
-              @if(\LaravelLocalization::getCurrentLocale() === 'es')
-              <img src="{{ $message->embed(public_path() . '/storage/bipolar-images/assets/mails/pedido-recibido-esp.jpg') }}" style="max-width: 100%" alt="Bipolar">
-              @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-              <img src="{{ $message->embed(public_path() . '/storage/bipolar-images/assets/mails/pedido-recibido-eng.jpg') }}" style="max-width: 100%" alt="Bipolar">
-              @endif
-            </td>
-          </tr>
+          @if(env('APP_ENV') === 'production')
+            <tr>
+              <td>
+                @if(\LaravelLocalization::getCurrentLocale() === 'es')
+                <img src="{{ $message->embed(public_path() . '/storage/bipolar-images/assets/mails/pedido-recibido-esp.jpg') }}" style="max-width: 100%" alt="Bipolar">
+                @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
+                <img src="{{ $message->embed(public_path() . '/storage/bipolar-images/assets/mails/pedido-recibido-eng.jpg') }}" style="max-width: 100%" alt="Bipolar">
+                @endif
+              </td>
+            </tr>
+          @endif
         @foreach($buy->details as $detail)
           <tr>
             <td class="content_cell content_b py bb tc" style="{{ $loop->first ? 'padding-top: 40px !important;' : null }} box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 8px;padding-right: 8px;background-color: #ffffff;text-align: center;padding-top: 16px;padding-bottom: 16px;border-bottom: 1px solid;border-color: #e6e9eb;font-size: 0 !important;">
@@ -27,7 +29,11 @@
                   <tbody>
                   <tr>
                     <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
-                      <p class="mb_0 imgr" style="font-family: Arial, Helvetica, sans-serif;font-size: 0;color: #757575;line-height: 100%;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;width: 100%;height: auto;clear: both;"><img role="img" src="{{ $message->embed(optional($detail->product->photos->first())->url) }}" width="140" height="140" alt="{{ $detail->product->name }}" style="max-width: 140px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;width: 100%;height: auto;font-size: 0;margin-left: auto;margin-right: auto;"></p>
+                      @if(env('APP_ENV') === 'production')
+                        <p class="mb_0 imgr" style="font-family: Arial, Helvetica, sans-serif;font-size: 0;color: #757575;line-height: 100%;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;width: 100%;height: auto;clear: both;"><img role="img" src="{{ $message->embed(optional($detail->product->photos->first())->url) }}" width="140" height="140" alt="{{ $detail->product->name }}" style="max-width: 140px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;width: 100%;height: auto;font-size: 0;margin-left: auto;margin-right: auto;"></p>
+                      @else
+                        <p class="mb_0 imgr" style="font-family: Arial, Helvetica, sans-serif;font-size: 0;color: #757575;line-height: 100%;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;width: 100%;height: auto;clear: both;"><img role="img" src="{{ optional($detail->product->photos->first())->url }}" width="140" height="140" alt="{{ $detail->product->name }}" style="max-width: 140px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;width: 100%;height: auto;font-size: 0;margin-left: auto;margin-right: auto;"></p>
+                      @endif
                     </td>
                   </tr>
                   </tbody>

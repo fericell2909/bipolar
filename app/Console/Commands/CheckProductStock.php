@@ -38,7 +38,7 @@ class CheckProductStock extends Command
      */
     public function handle()
     {
-        $products = Product::has('stocks')->with('stocks');
+        $products = Product::has('stocks')->with('stocks')->get();
 
         $productsWithEmptyStock = $products->filter(function ($product) {
             /** @var Product $product */
