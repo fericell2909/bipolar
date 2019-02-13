@@ -52,7 +52,7 @@ class CheckProductStock extends Command
         });
 
         if ($productsWithEmptyStock->isNotEmpty()) {
-            \Log::info("Se encontraron productos sin stock: ", $productsWithEmptyStock->count());
+            \Log::info("Se encontraron productos sin stock: ", ['products_without_stock' => $productsWithEmptyStock->count()]);
         }
 
         Product::whereIn('id', $productsWithEmptyStock->pluck('id')->toArray())->update(['state_id' => config('constants.STATE_REVIEW_ID')]);

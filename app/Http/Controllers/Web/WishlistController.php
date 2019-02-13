@@ -11,7 +11,19 @@ class WishlistController extends Controller
     {
         $wishlists = [];
         if (\Auth::check()) {
-            $wishlists = Wishlist::whereUserId(\Auth::id())->with('product.photos')->get();
+            $wishlists = Wishlist::whereUserId(\Auth::id())
+                ->with('product.photos')
+                ->get();
+
+            $wishlists == $wishlists->filter(function ($wishlist) {
+                /** @var Wishlist $wishlist */
+                if (blank($wishlist->product)) {
+                    $wishlist->delete();
+                    return false;
+                }
+
+                return true;
+            });
         }
 
         return view('web.shop.wishlist', compact('wishlists'));
