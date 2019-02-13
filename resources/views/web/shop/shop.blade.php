@@ -22,7 +22,7 @@
           <div class="list-unstyled bipolar-filters">
             @foreach($type->subtypes as $subtype)
               <div class="pretty bipolar-filter p-icon p-round">
-                {!! Form::checkbox("subtypes[]", $subtype->slug) !!}
+                {!! Form::checkbox("subtypes[]", $subtype->slug, in_array($subtype->slug, $selectedSubtypes)) !!}
                 <div class="state p-primary">
                   <i class="icon mdi mdi-check"></i>
                   <label>{{ $subtype->name }} ({{ count($subtype->products) }})</label>
@@ -36,7 +36,7 @@
           <div class="list-unstyled bipolar-filters">
             @foreach($sizes as $size)
               <div class="pretty bipolar-filter p-icon p-round">
-                {!! Form::checkbox('sizes[]', $size->slug) !!}
+                {!! Form::checkbox('sizes[]', $size->slug, in_array($size->slug, $selectedSizes)) !!}
                 <div class="state p-primary">
                   <i class="icon mdi mdi-check"></i>
                   <label>{{ $size->name }}</label>

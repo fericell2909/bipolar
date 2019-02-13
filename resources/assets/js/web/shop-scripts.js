@@ -41,13 +41,13 @@ $(function () {
         $('.bipolar-filter.pretty').click(() => {
             setTimeout(function () {
                 $('#shopForm').submit();
-            }, 1000);
-        })
+            }, 500);
+        });
 
         $('#shop-sort-by').change(function () {
             setTimeout(function () {
                 $('#shopForm').submit();
-            }, 1000);
+            }, 500);
         });
     }
 
