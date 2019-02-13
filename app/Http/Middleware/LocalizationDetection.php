@@ -15,7 +15,7 @@ class LocalizationDetection
      */
     public function handle($request, Closure $next)
     {
-        if ($request->session()->has('BIPOLAR_ORIGIN_DETECTED')) {
+        if ($request->session()->has('BIPOLAR_ORIGIN_DETECTED_V2')) {
             return $next($request);
         }
 
@@ -26,16 +26,16 @@ class LocalizationDetection
         session(['BIPOLAR_CURRENCY' => 'USD']);
         \LaravelLocalization::setLocale('en');
 
-        if ($location['iso_code'] === 'PE') {
+        if ($location['country_code2'] === 'PE') {
             session(['BIPOLAR_CURRENCY' => 'PEN']);
             \LaravelLocalization::setLocale('es');
         }
 
-        if (in_array($location['iso_code'], $latamAndSpain)) {
+        if (in_array($location['country_code2'], $latamAndSpain)) {
             \LaravelLocalization::setLocale('es');
         }
 
-        session(['BIPOLAR_ORIGIN_DETECTED' => 1]);
+        session(['BIPOLAR_ORIGIN_DETECTED_V2' => 1]);
 
         return $next($request);
     }

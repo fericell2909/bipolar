@@ -28,6 +28,9 @@ class ShopController extends Controller
 
     public function shop(ShopFilterRequest $request)
     {
+        $selectedSubtypes = [];
+        $selectedSizes = [];
+
         $productsSalient = Product::whereStateId(config('constants.STATE_ACTIVE_ID'))
             ->whereNotNull('is_salient')
             ->with([
@@ -136,6 +139,8 @@ class ShopController extends Controller
         if ($request->anyFilled(['search', 'sizes', 'subtypes', 'orderBy']) && $products->count() > 0) {
             /** @var Product $seoProduct */
             $seoProduct = $products->first();
+            $selectedSubtypes = $request->input('subtypes', []);
+            $selectedSizes = $request->input('sizes', []);
             \SEO::twitter()->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'));
             \SEO::opengraph()->setType('article')->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024, 'height' => 680]);
         } else {
@@ -159,7 +164,9 @@ class ShopController extends Controller
             'sizes',
             'productsSalient',
             'orderOptions',
-            'selectedOrderOption'
+            'selectedOrderOption',
+            'selectedSubtypes',
+            'selectedSizes'
         ));
     }
 
