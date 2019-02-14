@@ -13,7 +13,7 @@ class SendNoBuyedCarts extends Command
      *
      * @var string
      */
-    protected $signature = 'carts:unbuyed';
+    protected $signature = 'tasks:unbought_carts';
 
     /**
      * The console command description.
@@ -47,13 +47,13 @@ class SendNoBuyedCarts extends Command
 
         $carts = $carts
             ->filter($this->modifiedYesterday())
-            ->reject($this->removeCartsWithoutDetails());
+            ->reject($this->removeCartWithoutDetailsAndStock());
 
         foreach ($carts as $cart) {
             \Mail::to($cart->user->email)->send(new CartsUnbuyed($cart));
         }
 
-        $this->info("Se enviaron correos a {$carts->count()} personas");
+        \Log::info("Se enviaron correos a {$carts->count()} personas");
     }
 
     /**
@@ -69,11 +69,12 @@ class SendNoBuyedCarts extends Command
         };
     }
 
-    private function removeCartsWithoutDetails()
+    private function removeCartWithoutDetailsAndStock()
     {
         return function ($cart) {
             /** @var \App\Models\Cart $cart */
             $details = $cart->details->reject($this->removeDetailWithTrashedProducts());
+            $details = $details->reject($this->removeDetailsWithoutStock());
 
             if ($details->count() === 0) {
                 $cart->delete();
@@ -96,6 +97,18 @@ class SendNoBuyedCarts extends Command
             }
 
             return false;
+        };
+    }
+
+    private function removeDetailsWithoutStock()
+    {
+        return function ($detail) {
+            /** @var \App\Models\CartDetail $detail */
+            if (is_null($detail->stock)) {
+                return false;
+            }
+
+            return $detail->stock->quantity === 0;
         };
     }
 }
