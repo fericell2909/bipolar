@@ -6,14 +6,22 @@
     <div class="card-body">
       {!! Form::open() !!}
       <div class="form-row">
-        <div class="col-md-6">
+        <div class="col-md">
           <div class="form-group">
+            {!! Form::label('Nombre 🇪🇸') !!}
             {!! Form::text('name', $type->getTranslation('name', 'es'), ['class' => 'form-control', 'required' => true]) !!}
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md">
           <div class="form-group">
+            {!! Form::label('Nombre 🇺🇸') !!}
             {!! Form::text('name_english', $type->getTranslation('name', 'en'), ['class' => 'form-control', 'required' => true]) !!}
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-group">
+            {!! Form::label('Orden') !!}
+            {!! Form::text('order', $type->order, ['class' => 'form-control', 'required' => true]) !!}
           </div>
         </div>
       </div>

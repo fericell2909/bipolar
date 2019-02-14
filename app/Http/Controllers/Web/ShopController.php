@@ -52,6 +52,7 @@ class ShopController extends Controller
                 $withProducts->where('state_id', config('constants.STATE_ACTIVE_ID'));
             },
         ])
+            ->orderBy('order')
             ->get()
             ->filter(function ($type) {
                 return $type->subtypes->count() > 0;

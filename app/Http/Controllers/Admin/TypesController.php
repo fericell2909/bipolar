@@ -10,7 +10,7 @@ class TypesController extends Controller
 {
     public function index()
     {
-        $types = Type::orderByDesc('id')->get();
+        $types = Type::orderBy('order')->get();
 
         return view('admin.types.list', compact('types'));
     }

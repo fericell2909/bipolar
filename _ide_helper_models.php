@@ -339,6 +339,7 @@ namespace App\Models{
  * @property int $id
  * @property array $name
  * @property string|null $slug
+ * @property int $order
  * @property-read string $hash_id
  * @property-read mixed $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
@@ -348,6 +349,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereSlug($value)
  */
 	class Type extends \Eloquent {}

@@ -34,6 +34,7 @@
           <tr>
             <th>#</th>
             <th>Nombre (ES/EN)</th>
+            <th>Orden</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -43,6 +44,7 @@
             <tr>
               <td>{{ $type->id }}</td>
               <td>{{ $type->getTranslation('name', 'es') }} / {{ $type->getTranslation('name', 'en') }} </td>
+              <td>{{ $type->order }}</td>
               <td>
                 <div class="button-group">
                   <a href="{{ route('settings.types.subtypes', $type->hash_id) }}" class="btn btn-sm btn-rounded btn-dark">
