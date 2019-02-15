@@ -10,11 +10,13 @@
           <tbody>
             <tr>
               <td>
-                @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                <img src="{{ $message->embed(public_path() . '/images/cart-unbuyed-spa.png') }}" style="max-width: 100%" alt="Bipolar">
-                @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                <img src="{{ $message->embed(public_path() . '/images/cart-unbuyed-eng.png') }}" style="max-width: 100%" alt="Bipolar">
-                @endif
+                <a href="{{ route('cart') }}">
+                  @if($cart->user->language === 'es')
+                    <img src="{{ $message->embed(public_path() . '/images/cart-unbuyed-spa.png') }}" style="max-width: 100%" alt="Bipolar">
+                  @elseif($cart->user->language === 'en')
+                    <img src="{{ $message->embed(public_path() . '/images/cart-unbuyed-eng.png') }}" style="max-width: 100%" alt="Bipolar">
+                  @endif
+                </a>
               </td>
             </tr>
             @foreach($cart->details->chunk(2) as $detailChunk)

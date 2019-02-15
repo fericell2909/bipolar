@@ -41,7 +41,7 @@ class SendNoBuyedCarts extends Command
     {
         $carts = Cart::has('details')
             ->has('details.product')
-            ->with(['details.product.photos', 'details.stock', 'details.stock.size', 'details.product'])
+            ->with(['details.product.photos', 'details.stock', 'details.stock.size', 'details.product', 'user'])
             ->whereNotNull('user_id')
             ->get();
 
