@@ -39,7 +39,10 @@ class SendNoBuyedCarts extends Command
      */
     public function handle()
     {
-        $carts = Cart::has('details')
+        $carts = Cart::whereHas('user', function ($whereUser) {
+            return $whereUser->whereNotNull('language');
+        })
+            ->has('details')
             ->has('details.product')
             ->with(['details.product.photos', 'details.stock', 'details.stock.size', 'details.product', 'user'])
             ->whereNotNull('user_id')
