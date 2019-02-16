@@ -15,7 +15,6 @@ class Subtype extends Model
     use Hashable, Sluggable, SluggableScopeHelpers, HasTranslations, LogsActivity;
 
     protected $table = 'subtypes';
-    public $timestamps = false;
     public $translatable = ['name'];
     protected static $logAttributes = ['name', 'slug'];
 

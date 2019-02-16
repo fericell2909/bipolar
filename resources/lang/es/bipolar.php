@@ -79,6 +79,7 @@ return [
         'send' => 'Enviar',
     ],
     'shop' => [
+        'filter_button_text' => 'Filtrar',
         'see_filters' => 'Ver filtros',
         'search' => 'Buscar',
         'filter' => 'Filtrar :type',

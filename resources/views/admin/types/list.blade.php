@@ -42,10 +42,10 @@
           @foreach($types as $type)
             <?php /** @var \App\Models\Type $type */ ?>
             <tr>
-              <td>{{ $type->id }}</td>
-              <td>{{ $type->getTranslation('name', 'es') }} / {{ $type->getTranslation('name', 'en') }} </td>
-              <td>{{ $type->order }}</td>
-              <td>
+              <td class="align-middle">{{ $type->id }}</td>
+              <td class="align-middle">{{ $type->getTranslation('name', 'es') }} / {{ $type->getTranslation('name', 'en') }} </td>
+              <td class="align-middle">{{ $type->order }}</td>
+              <td class="align-middle">
                 <div class="button-group">
                   <a href="{{ route('settings.types.subtypes', $type->hash_id) }}" class="btn btn-sm btn-rounded btn-dark">
                     <i class="fas fa-fw fa-list-alt"></i> Subtipos

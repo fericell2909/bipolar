@@ -79,6 +79,7 @@ return [
         'send' => 'Send',
     ],
     'shop' => [
+        'filter_button_text' => 'Filter',
         'see_filters' => 'See filters',
         'search' => 'Search',
         'filter' => ':type Filter',

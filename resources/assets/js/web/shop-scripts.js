@@ -38,11 +38,11 @@ $(function () {
     }
 
     if ($('#shopForm').length) {
-        $('.bipolar-filter.pretty').click(() => {
-            setTimeout(function () {
-                $('#shopForm').submit();
-            }, 500);
-        });
+        // $('.bipolar-filter.pretty').click(() => {
+        //     setTimeout(function () {
+        //         $('#shopForm').submit();
+        //     }, 500);
+        // });
 
         $('#shop-sort-by').change(function () {
             setTimeout(function () {
