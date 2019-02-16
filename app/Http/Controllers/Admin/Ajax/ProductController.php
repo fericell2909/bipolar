@@ -209,6 +209,8 @@ class ProductController extends Controller
     {
         $product = Product::findByHash($productHashId);
 
+        $product->colors()->sync([]);
+        $product->subtypes()->sync([]);
         $product->delete();
 
         return response()->json(['success' => true]);
