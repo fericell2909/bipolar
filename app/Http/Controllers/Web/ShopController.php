@@ -123,8 +123,6 @@ class ShopController extends Controller
         if ($request->anyFilled(['search', 'sizes', 'subtypes', 'orderBy']) && $products->count() > 0) {
             /** @var Product $seoProduct */
             $seoProduct = $products->first();
-            $selectedSubtypes = $request->input('subtypes', []);
-            $selectedSizes = $request->input('sizes', []);
             \SEO::twitter()->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'));
             \SEO::opengraph()->setType('article')->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024,
                                                                                                                                                        'height' => 680]);
