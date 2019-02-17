@@ -71,14 +71,6 @@ class ShopController extends Controller
             ->orderBy('name')
             ->get();
 
-        $sizes = $sizes->map(function (&$size) {
-            /** @var Size $size */
-            $productsArray = $size->stocks->pluck('product.id');
-            $size->product_count = $productsArray->count();
-
-            return $size;
-        });
-
         $orderOptions = [
             'default'   => __('bipolar.shop.order_default'),
             'priceup'   => __('bipolar.shop.order_priceup'),
