@@ -28,8 +28,8 @@ class ShopController extends Controller
 
     public function shop(ShopFilterRequest $request)
     {
-        $selectedSubtypes = [];
-        $selectedSizes = [];
+        $selectedSubtypes = $request->input('subtypes', []);
+        $selectedSizes = $request->input('sizes', []);
 
         $productsSalient = Product::whereStateId(config('constants.STATE_ACTIVE_ID'))
             ->whereNotNull('is_salient')
@@ -52,11 +52,9 @@ class ShopController extends Controller
                 $withProducts->where('state_id', config('constants.STATE_ACTIVE_ID'));
             },
         ])
+            ->has('subtypes')
             ->orderBy('order')
-            ->get()
-            ->filter(function ($type) {
-                return $type->subtypes->count() > 0;
-            });
+            ->get();
 
         $sizes = Size::with(['stocks' => function ($withStocks) {
             /** @var Builder $withStocks */
