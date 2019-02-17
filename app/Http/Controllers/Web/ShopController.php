@@ -43,7 +43,7 @@ class ShopController extends Controller
             ->get();
 
         $types = Type::with([
-            'subtypes' => function ($withSubtypes) {
+            'subtypes'          => function ($withSubtypes) {
                 $withSubtypes->whereHas('products', function ($whereProducts) {
                     $whereProducts->where('state_id', config('constants.STATE_ACTIVE_ID'));
                 })->orderByDesc('updated_at');
@@ -75,6 +75,7 @@ class ShopController extends Controller
             /** @var Size $size */
             $productsArray = $size->stocks->pluck('product.id');
             $size->product_count = $productsArray->count();
+
             return $size;
         });
 
@@ -107,13 +108,13 @@ class ShopController extends Controller
                     /** @var Product $product */
                     // if product has the size and have quantity
                     return $product->stocks
-                        ->filter(function ($stock) use ($request) {
-                            return in_array($stock->size->slug, $request->input('sizes'));
-                        })
-                        ->filter(function ($stock) {
-                            return $stock->quantity > 0;
-                        })
-                        ->count() > 0;
+                            ->filter(function ($stock) use ($request) {
+                                return in_array($stock->size->slug, $request->input('sizes'));
+                            })
+                            ->filter(function ($stock) {
+                                return $stock->quantity > 0;
+                            })
+                            ->count() > 0;
                 });
             })
             ->when($request->filled('subtypes'), function ($products) use ($request) {
@@ -143,16 +144,18 @@ class ShopController extends Controller
             $selectedSubtypes = $request->input('subtypes', []);
             $selectedSizes = $request->input('sizes', []);
             \SEO::twitter()->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'));
-            \SEO::opengraph()->setType('article')->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024, 'height' => 680]);
+            \SEO::opengraph()->setType('article')->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024,
+                                                                                                                                                       'height' => 680]);
         } else {
             /** @var \App\Models\Banner $firstBanner */
             $firstBanner = Banner::orderBy('order')->first();
             if ($firstBanner->url) {
                 \SEO::twitter()->addImage($firstBanner->url);
-                \SEO::opengraph()->setType('article')->addImage($firstBanner->url, ['width'  => 1024, 'height' => 680]);
+                \SEO::opengraph()->setType('article')->addImage($firstBanner->url, ['width' => 1024, 'height' => 680]);
             } else {
                 \SEO::twitter()->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'));
-                \SEO::opengraph()->setType('article')->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024, 'height' => 680]);
+                \SEO::opengraph()->setType('article')->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024,
+                                                                                                            'height' => 680]);
             }
         }
 
@@ -200,20 +203,20 @@ class ShopController extends Controller
     {
         /** @var Product $product */
         $product = Product::findBySlugOrFail($slugProduct);
-        
+
         abort_if($product->state_id !== config('constants.STATE_ACTIVE_ID'), 404);
 
         $product->load([
             'stocks.size',
-            'photos' => function ($withPhotos) {
+            'photos'              => function ($withPhotos) {
                 return $withPhotos->orderBy('order');
             },
-            'recommendeds' => function ($withRecommendeds) {
+            'recommendeds'        => function ($withRecommendeds) {
                 return $withRecommendeds->where('state_id', config('constants.STATE_ACTIVE_ID'));
             },
             'recommendeds.photos' => function ($withPhotos) {
                 return $withPhotos->orderBy('order');
-            }
+            },
         ]);
 
         if ($this->isOutOfStock($product)) {
@@ -259,7 +262,7 @@ class ShopController extends Controller
             ->setType('article')
             ->setTitle("{$product->name} - Bipolar")
             ->setDescription($seoDescription)
-            ->addImage($image, ['width'  => 1024, 'height' => 680]);
+            ->addImage($image, ['width' => 1024, 'height' => 680]);
 
         return view('web.shop.product', compact('product', 'stockWithSizes', 'quantities', 'productIsShoeType'));
     }
@@ -269,10 +272,10 @@ class ShopController extends Controller
         return function ($product) {
             /** @var Product $product */
             return $product->stocks
-                ->filter(function ($stock) {
-                    return $stock->quantity > 0;
-                })
-                ->count() > 0;
+                    ->filter(function ($stock) {
+                        return $stock->quantity > 0;
+                    })
+                    ->count() > 0;
         };
     }
 }
