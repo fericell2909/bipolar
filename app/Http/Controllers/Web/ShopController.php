@@ -86,27 +86,19 @@ class ShopController extends Controller
                 'stocks.size',
                 'colors',
             ])
-            ->orderBy('order')
-            ->get()
+            ->when($request->filled('subtypes'), function ($whereProducts) {
+                $whereProducts->has('subtypes');
+            })
+            ->when($request->filled('sizes'), function ($whereProducts) {
+                $whereProducts->has('stocks');
+            })
             ->when($request->filled('search'), function ($products) use ($request) {
                 /** @var Collection $products */
-                return $products->where('name', '=', $request->input('search'));
+                return $products->where('name', 'like', "%{$request->input('search')}%");
             })
-            ->when($request->filled('sizes'), function ($products) use ($request) {
-                /** @var Collection $products */
-                return $products->filter(function ($product) use ($request) {
-                    /** @var Product $product */
-                    // if product has the size and have quantity
-                    return $product->stocks
-                            ->filter(function ($stock) use ($request) {
-                                return in_array($stock->size->slug, $request->input('sizes'));
-                            })
-                            ->filter(function ($stock) {
-                                return $stock->quantity > 0;
-                            })
-                            ->count() > 0;
-                });
-            })
+            ->orderBy('order')
+            ->get()
+            ->when($request->filled('sizes'), $this->filterBySize($request))
             ->when($request->filled('subtypes'), function ($products) use ($request) {
                 /** @var Collection $products */
                 return $products->filter(function ($product) use ($request) {
@@ -162,6 +154,25 @@ class ShopController extends Controller
             'selectedSubtypes',
             'selectedSizes'
         ));
+    }
+
+    private function filterBySize(ShopFilterRequest $request)
+    {
+        return function ($products) use ($request) {
+            /** @var Collection $products */
+            return $products->filter(function ($product) use ($request) {
+                /** @var Product $product */
+                // if product has the size and have quantity
+                return $product->stocks
+                        ->filter(function ($stock) use ($request) {
+                            return in_array($stock->size->slug, $request->input('sizes'));
+                        })
+                        ->filter(function ($stock) {
+                            return $stock->quantity > 0;
+                        })
+                        ->count() > 0;
+            });
+        };
     }
 
     private function sortProductByPrice()
