@@ -86,8 +86,10 @@ class ShopController extends Controller
                 'stocks.size',
                 'colors',
             ])
-            ->when($request->filled('subtypes'), function ($whereProducts) {
-                $whereProducts->has('subtypes');
+            ->when($request->filled('subtypes'), function ($whereProducts) use ($selectedSubtypes) {
+                return $whereProducts->whereHas('subtypes', function ($whereSubtype) use ($selectedSubtypes) {
+                    $whereSubtype->whereIn('slug', $selectedSubtypes);
+                });
             })
             ->when($request->filled('sizes'), function ($whereProducts) {
                 $whereProducts->has('stocks');
@@ -98,14 +100,8 @@ class ShopController extends Controller
             })
             ->orderBy('order')
             ->get()
-            ->when($request->filled('sizes'), $this->filterBySize($request))
-            ->when($request->filled('subtypes'), function ($products) use ($request) {
-                /** @var Collection $products */
-                return $products->filter(function ($product) use ($request) {
-                    /** @var Product $product */
-                    return $product->subtypes->whereIn('slug', $request->input('subtypes'))->count() > 0;
-                });
-            })
+            ->when($request->filled('sizes'), $this->filterBySize($selectedSizes))
+            ->when($request->filled('subtypes'), $this->filterBySubtype($selectedSubtypes))
             ->when($request->filled('orderBy'), function ($products) use ($request) {
                 /** @var Collection $products */
                 switch ($request->input('orderBy')) {
@@ -154,16 +150,39 @@ class ShopController extends Controller
         ));
     }
 
-    private function filterBySize(ShopFilterRequest $request)
+    /**
+     * Check if products have all subtypes selected
+     *
+     * @param array $selectedSubtypes
+     * @return \Closure
+     */
+    private function filterBySubtype(array $selectedSubtypes)
     {
-        return function ($products) use ($request) {
+        return function ($products) use ($selectedSubtypes) {
             /** @var Collection $products */
-            return $products->filter(function ($product) use ($request) {
+            return $products->filter(function ($product) use ($selectedSubtypes) {
+                /** @var Product $product */
+                if (count($selectedSubtypes) === 1) {
+                    return $product->subtypes->whereIn('slug', $selectedSubtypes)->count() > 0;
+                }
+
+                $subtypeSlugs = $product->subtypes->pluck('slug')->toArray();
+
+                return count(array_diff($selectedSubtypes, $subtypeSlugs)) === 0;
+            });
+        };
+    }
+
+    private function filterBySize(array $selectedSizes)
+    {
+        return function ($products) use ($selectedSizes) {
+            /** @var Collection $products */
+            return $products->filter(function ($product) use ($selectedSizes) {
                 /** @var Product $product */
                 // if product has the size and have quantity
                 return $product->stocks
-                        ->filter(function ($stock) use ($request) {
-                            return in_array($stock->size->slug, $request->input('sizes'));
+                        ->filter(function ($stock) use ($selectedSizes) {
+                            return in_array($stock->size->slug, $selectedSizes);
                         })
                         ->filter(function ($stock) {
                             return $stock->quantity > 0;
