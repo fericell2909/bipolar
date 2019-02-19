@@ -31,13 +31,13 @@
                       <tr>
                         @if($detail->product)
                           @if($detail->product->photos->count())
-                            <td class="column_cell pte tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;padding-top: 32px;line-height: inherit;">
-                              <p class="mb_xs imgr" style="font-family: Arial, Helvetica, sans-serif;font-size: 0;color: #757575;line-height: 100%;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;width: 100%;height: auto;clear: both;"><img role="img" src="{{ $message->embed(optional($detail->product->photos->first())->url) }}" width="140" height="140" alt="image description" style="max-width: 280px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;width: 100%;height: auto;font-size: 0;margin-left: auto;margin-right: auto;"></p>
-                              <p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;"><a href="#" style="line-height: inherit;text-decoration: none;color: #000000;"><span style="line-height: inherit;color: #000000;"><strong>{{ $detail->product->name }}</strong></span></a></p>
-                              <p class="mb_xs tm" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;">
+                            <td class="column_cell pte tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: 'Times New Roman', Times, serif;font-size: 16px;color: #757575;text-align: center;padding-top: 32px;line-height: inherit;">
+                              <p class="mb_xs imgr" style="font-family: 'Times New Roman', Times, serif;font-size: 0;color: #757575;line-height: 100%;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;width: 100%;height: auto;clear: both;"><img role="img" src="{{ $message->embed(optional($detail->product->photos->first())->url) }}" width="140" height="140" alt="image description" style="max-width: 280px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;width: 100%;height: auto;font-size: 0;margin-left: auto;margin-right: auto;"></p>
+                              <p class="mb_0" style="font-family: 'Times New Roman', Times, serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;"><a href="#" style="line-height: inherit;text-decoration: none;color: #000000;"><span style="line-height: inherit;color: #000000;"><strong>{{ $detail->product->name }}</strong></span></a></p>
+                              <p class="mb_xs tm" style="font-family: 'Times New Roman', Times, serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;">
                                 {{ $detail->stock ? __('bipolar.size_abbr') . ". " . $detail->stock->size->name : null }}
                               </p>
-                              <p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;">{{ $detail->total_currency }}</p>
+                              <p class="mb_0" style="font-family: 'Times New Roman', Times, serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;">{{ $detail->total_currency }}</p>
                             </td>
                           @endif
                         @endif
@@ -55,45 +55,6 @@
         <!--[if (mso)|(IE)]></td></tr></tbody></table><![endif]-->
       </td>
     </tr>
-  </tbody>
-</table>
-<!-- total -->
-<table role="presentation" class="email_table" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
-  <tbody>
-  <tr>
-    <td class="email_body tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: 100%;padding-left: 8px;padding-right: 8px;background-color: #eceff1;text-align: center;font-size: 0 !important;">
-      <!--[if (mso)|(IE)]><table role="presentation" width="640" border="0" cellspacing="0" cellpadding="0" align="center" style="vertical-align:top;width:640px;Margin:0 auto;"><tbody><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-      <table role="presentation" class="content_section" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;max-width: 640px;margin: 0 auto;text-align: center;min-width: 0 !important;">
-        <tbody>
-        <tr>
-          <td class="content_cell content_b py pr_0 pl_0 tr" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;line-height: inherit;padding-left: 0;padding-right: 0;background-color: #ffffff;text-align: right;padding-top: 16px;padding-bottom: 16px;font-size: 0 !important; border-bottom: 1px solid; border-color: #e6e9eb">
-            <!--[if (mso)|(IE)]><table role="presentation" width="192" border="0" cellspacing="0" cellpadding="0" align="right" style="vertical-align:top;width:192px;Margin:0 0 0 auto;"><tbody><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-            <div class="col_12" style="box-sizing: border-box;width: 100%;line-height: inherit;display: inline-block;vertical-align: top;max-width: 192px;min-width: 0 !important;font-size: 0 !important;">
-              <table role="presentation" class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
-                <tbody>
-                <tr>
-                  <td class="column_cell px bb tr switch_tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 16px;padding-right: 16px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #f8beb6;text-align: right;border-bottom: 1px solid;border-color: #e6e9eb;line-height: inherit;">
-                    <p class="mb" style="font-weight: 700;font-size: 16px;color: #f8beb6;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 16px;">
-                      Subtotal {{ $cart->total_currency }}<br>
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="column_cell px tr switch_tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 16px;padding-right: 16px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: right;line-height: inherit;">
-                    <h3 class="mb" style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 16px;margin-bottom: 16px;color: #4d4d4d;font-size: 18px;line-height: 23px;"><span class="tp" style="font-size: 25px; line-height: inherit; color: #000000">{{ $cart->total_currency }}</span></h3>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-            <!--[if (mso)|(IE)]></td></tr></tbody></table><![endif]-->
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <!--[if (mso)|(IE)]></td></tr></tbody></table><![endif]-->
-    </td>
-  </tr>
   </tbody>
 </table>
 @include('emails.partials.faq')
