@@ -10,11 +10,13 @@
           <tbody>
             <tr>
               <td>
-                @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                <img src="{{ $message->embed(public_path() . '/images/cart-unbuyed-spa.png') }}" style="max-width: 100%" alt="Bipolar">
-                @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                <img src="{{ $message->embed(public_path() . '/images/cart-unbuyed-eng.png') }}" style="max-width: 100%" alt="Bipolar">
-                @endif
+                <a href="{{ route('cart') }}">
+                  @if($cart->user->language === 'es')
+                    <img src="{{ $message->embed(public_path() . '/images/cart-unbuyed-spa.png') }}" style="max-width: 100%" alt="Bipolar">
+                  @elseif($cart->user->language === 'en')
+                    <img src="{{ $message->embed(public_path() . '/images/cart-unbuyed-eng.png') }}" style="max-width: 100%" alt="Bipolar">
+                  @endif
+                </a>
               </td>
             </tr>
             @foreach($cart->details->chunk(2) as $detailChunk)
@@ -30,7 +32,7 @@
                         @if($detail->product)
                           @if($detail->product->photos->count())
                             <td class="column_cell pte tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;padding-top: 32px;line-height: inherit;">
-                              <p class="mb_xs imgr" style="font-family: Arial, Helvetica, sans-serif;font-size: 0;color: #757575;line-height: 100%;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;width: 100%;height: auto;clear: both;"><img role="img" src="{{ $message->embed(optional($detail->product->photos->first())->url) }}" width="140" height="140" alt="image description" style="max-width: 140px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;width: 100%;height: auto;font-size: 0;margin-left: auto;margin-right: auto;"></p>
+                              <p class="mb_xs imgr" style="font-family: Arial, Helvetica, sans-serif;font-size: 0;color: #757575;line-height: 100%;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;width: 100%;height: auto;clear: both;"><img role="img" src="{{ $message->embed(optional($detail->product->photos->first())->url) }}" width="140" height="140" alt="image description" style="max-width: 280px;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;line-height: 100%;width: 100%;height: auto;font-size: 0;margin-left: auto;margin-right: auto;"></p>
                               <p class="mb_0" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 0;"><a href="#" style="line-height: inherit;text-decoration: none;color: #000000;"><span style="line-height: inherit;color: #000000;"><strong>{{ $detail->product->name }}</strong></span></a></p>
                               <p class="mb_xs tm" style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 8px;">
                                 {{ $detail->stock ? __('bipolar.size_abbr') . ". " . $detail->stock->size->name : null }}

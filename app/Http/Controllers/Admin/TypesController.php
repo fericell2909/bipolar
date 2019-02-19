@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Subtype;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class TypesController extends Controller
 {
     public function index()
     {
-        $types = Type::orderByDesc('id')->get();
+        $types = Type::orderBy('order')->get();
 
         return view('admin.types.list', compact('types'));
     }
@@ -76,7 +77,20 @@ class TypesController extends Controller
     public function subtypes($typeHashId)
     {
         $type = Type::findByHash($typeHashId);
+        $type->load('subtypes.products');
 
         return view('admin.types.subtypes', compact('type'));
+    }
+
+    public function subtype_delete($subtypeHashId)
+    {
+        $subtype = Subtype::findByHash($subtypeHashId);
+        \DB::table('products_subtypes')->where('subtype_id', $subtype->id)->delete();
+
+        $subtype->delete();
+
+        flash()->success('Subtipo eliminado');
+
+        return response()->json(['success' => true]);
     }
 }

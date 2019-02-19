@@ -35,6 +35,7 @@
             <tr>
               <th>#</th>
               <th>Nombre (ES/EN)</th>
+              <th class="text-right">Productos asociados</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -44,13 +45,14 @@
               <tr>
                 <td class="align-middle">{{ $subtype->id }}</td>
                 <td class="align-middle">{{ $subtype->getTranslation('name', 'es') }} / {{ $subtype->getTranslation('name', 'en') }}</td>
+                <td class="align-middle text-right">{{ $subtype->products->count() }}</td>
                 <td class="align-middle">
                   <div class="button-group">
                     <a href="{{ route('settings.subtypes.edit', $subtype->hash_id) }}"
                        class="btn btn-sm btn-rounded btn-dark">
                       <i class="fas fa-fw fa-edit"></i> Editar
                     </a>
-                    <button class="btn btn-sm btn-rounded btn-dark subtype-delete" data-subtype-id="{{ $subtype->hash_id }}">
+                    <button class="btn btn-sm btn-rounded btn-outline-danger subtype-delete" data-subtype-id="{{ $subtype->hash_id }}">
                       <i class="fas fa-fw fa-trash"></i> Eliminar
                     </button>
                   </div>

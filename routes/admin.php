@@ -7,6 +7,7 @@ Route::post('logout', 'Admin\Auth\LoginController@logout');
 Route::middleware('auth:admin')->group(function () {
     Route::get('/', 'Admin\DashboardController@dashboard')->name('admin.dashboard');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('admin.logs');
+    Route::get('activity-logs', 'Admin\LogController@index')->name('admin.activity_log');
 
     Route::prefix('buys')->group(function () {
         Route::get('/', 'Admin\BuysController@index')->name('buys.index');

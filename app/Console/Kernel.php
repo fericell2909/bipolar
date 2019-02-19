@@ -40,7 +40,8 @@ class Kernel extends ConsoleKernel
         $schedule->command(SyncBsaleStocks::class)->everyMinute();
         $schedule->command('sitemap:generate')->weekly();
         $schedule->command(CheckProductStock::class)->dailyAt('03:00:00');
-        //$schedule->command(SendNoBuyedCarts::class)->daily();
+        $schedule->command('activitylog:clean')->daily();
+        $schedule->command(SendNoBuyedCarts::class)->hourly();
     }
 
     /**

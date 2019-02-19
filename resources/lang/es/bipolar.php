@@ -79,6 +79,7 @@ return [
         'send' => 'Enviar',
     ],
     'shop' => [
+        'filter_button_text' => 'Filtrar',
         'see_filters' => 'Ver filtros',
         'search' => 'Buscar',
         'filter' => 'Filtrar :type',
@@ -245,6 +246,9 @@ return [
     ],
     'suscription_email' => [
         'desuscribe' => 'Si deseas desuscribirte de nuestra lista puedes hacerlo desde <a href="https://bipolar.us12.list-manage.com/unsubscribe?u=d616f5c8cc9cff44a6ae9337a&id=914e120268">aquí</a>',
+    ],
+    'unbought_cart_email' => [
+        'title' => '¿Olvidaste algo?'
     ],
     'blog' => [
         'blog_posts' => 'Publicaciones del blog',

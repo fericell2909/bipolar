@@ -58,6 +58,25 @@ $(function () {
     })
   });
 
+  $('.subtype-delete').click(function () {
+    swal({
+      title: 'Eliminar subtipo',
+      text: 'Seguro que desea eliminar',
+      type: 'question',
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      showLoaderOnConfirm: true,
+    }).then(result => {
+      if (result.value) {
+        const subtypeHashId = $(this).data('subtypeId');
+        $.ajax({
+          method: 'DELETE',
+          url: `/ajax-admin/subtypes/${subtypeHashId}`
+        }).done(() => location.reload());
+      }
+    })
+  });
+
   $('.photo-delete').click(function () {
     swal({
       title: 'Eliminar foto',

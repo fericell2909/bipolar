@@ -21,7 +21,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
   </head>
 
   <body class="skin-red fixed-layout">
@@ -211,6 +211,12 @@
                   <li><a href="{{ route('settings.shipping.index') }}">Shipping rates</a></li>
                   <li><a href="{{ route('admin.logs') }}">Logs (Desarrollador)</a></li>
                 </ul>
+              </li>
+              <li>
+                <a class="waves-effect waves-dark" href="{{ route('admin.activity_log') }}" aria-expanded="false">
+                  <i class="fas fa-fw fa-list-alt"></i>
+                  <span class="hide-menu"> Logs</span>
+                </a>
               </li>
             </ul>
           </div>

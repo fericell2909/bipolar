@@ -339,6 +339,7 @@ namespace App\Models{
  * @property int $id
  * @property array $name
  * @property string|null $slug
+ * @property int $order
  * @property-read string $hash_id
  * @property-read mixed $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
@@ -348,6 +349,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereSlug($value)
  */
 	class Type extends \Eloquent {}
@@ -787,6 +789,7 @@ namespace App\Models{
  * @property string|null $facebook_id
  * @property string|null $payme_wallet_token
  * @property string|null $birthday_date
+ * @property string|null $language
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -803,6 +806,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereFacebookId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereLanguage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereLastname($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)

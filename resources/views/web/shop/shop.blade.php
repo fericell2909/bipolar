@@ -45,7 +45,9 @@
             @endforeach
           </div>
         @endif
-        <div class="hidden-xs">
+        <button type="submit" class="btn btn-dark btn-rounded btn-block bipolar-filters">{{ mb_strtoupper(__('bipolar.shop.filter_button_text')) }}</button>
+        {{-- Oculto hasta nuevo aviso --}}
+        <div class="hidden-xs" style="display: none">
           <h4 class="bipolar-filter-title">{{ __('bipolar.shop.recommendations') }}</h4>
           @foreach($productsSalient as $salient)
             <?php /** @var \App\Models\Product $salient */ ?>

@@ -28,8 +28,8 @@ class ShopController extends Controller
 
     public function shop(ShopFilterRequest $request)
     {
-        $selectedSubtypes = [];
-        $selectedSizes = [];
+        $selectedSubtypes = $request->input('subtypes', []);
+        $selectedSizes = $request->input('sizes', []);
 
         $productsSalient = Product::whereStateId(config('constants.STATE_ACTIVE_ID'))
             ->whereNotNull('is_salient')
@@ -43,19 +43,18 @@ class ShopController extends Controller
             ->get();
 
         $types = Type::with([
-            'subtypes' => function ($withSubtypes) {
+            'subtypes'          => function ($withSubtypes) {
                 $withSubtypes->whereHas('products', function ($whereProducts) {
                     $whereProducts->where('state_id', config('constants.STATE_ACTIVE_ID'));
-                });
+                })->orderByDesc('updated_at');
             },
             'subtypes.products' => function ($withProducts) {
                 $withProducts->where('state_id', config('constants.STATE_ACTIVE_ID'));
             },
         ])
-            ->get()
-            ->filter(function ($type) {
-                return $type->subtypes->count() > 0;
-            });
+            ->has('subtypes')
+            ->orderBy('order')
+            ->get();
 
         $sizes = Size::with(['stocks' => function ($withStocks) {
             /** @var Builder $withStocks */
@@ -69,13 +68,6 @@ class ShopController extends Controller
         }, 'stocks.product'])
             ->orderBy('name')
             ->get();
-
-        $sizes = $sizes->map(function (&$size) {
-            /** @var Size $size */
-            $productsArray = $size->stocks->pluck('product.id');
-            $size->product_count = $productsArray->count();
-            return $size;
-        });
 
         $orderOptions = [
             'default'   => __('bipolar.shop.order_default'),
@@ -94,34 +86,22 @@ class ShopController extends Controller
                 'stocks.size',
                 'colors',
             ])
-            ->orderBy('order')
-            ->get()
+            ->when($request->filled('subtypes'), function ($whereProducts) use ($selectedSubtypes) {
+                return $whereProducts->whereHas('subtypes', function ($whereSubtype) use ($selectedSubtypes) {
+                    $whereSubtype->whereIn('slug', $selectedSubtypes);
+                });
+            })
+            ->when($request->filled('sizes'), function ($whereProducts) {
+                $whereProducts->has('stocks');
+            })
             ->when($request->filled('search'), function ($products) use ($request) {
                 /** @var Collection $products */
-                return $products->where('name', '=', $request->input('search'));
+                return $products->where('name', 'like', "%{$request->input('search')}%");
             })
-            ->when($request->filled('sizes'), function ($products) use ($request) {
-                /** @var Collection $products */
-                return $products->filter(function ($product) use ($request) {
-                    /** @var Product $product */
-                    // if product has the size and have quantity
-                    return $product->stocks
-                        ->filter(function ($stock) use ($request) {
-                            return in_array($stock->size->slug, $request->input('sizes'));
-                        })
-                        ->filter(function ($stock) {
-                            return $stock->quantity > 0;
-                        })
-                        ->count() > 0;
-                });
-            })
-            ->when($request->filled('subtypes'), function ($products) use ($request) {
-                /** @var Collection $products */
-                return $products->filter(function ($product) use ($request) {
-                    /** @var Product $product */
-                    return $product->subtypes->whereIn('slug', $request->input('subtypes'))->count() > 0;
-                });
-            })
+            ->orderBy('order')
+            ->get()
+            ->when($request->filled('sizes'), $this->filterBySize($selectedSizes))
+            ->when($request->filled('subtypes'), $this->filterBySubtype($selectedSubtypes))
             ->when($request->filled('orderBy'), function ($products) use ($request) {
                 /** @var Collection $products */
                 switch ($request->input('orderBy')) {
@@ -139,19 +119,19 @@ class ShopController extends Controller
         if ($request->anyFilled(['search', 'sizes', 'subtypes', 'orderBy']) && $products->count() > 0) {
             /** @var Product $seoProduct */
             $seoProduct = $products->first();
-            $selectedSubtypes = $request->input('subtypes', []);
-            $selectedSizes = $request->input('sizes', []);
             \SEO::twitter()->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'));
-            \SEO::opengraph()->setType('article')->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024, 'height' => 680]);
+            \SEO::opengraph()->setType('article')->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024,
+                                                                                                                                                       'height' => 680]);
         } else {
             /** @var \App\Models\Banner $firstBanner */
             $firstBanner = Banner::orderBy('order')->first();
             if ($firstBanner->url) {
                 \SEO::twitter()->addImage($firstBanner->url);
-                \SEO::opengraph()->setType('article')->addImage($firstBanner->url, ['width'  => 1024, 'height' => 680]);
+                \SEO::opengraph()->setType('article')->addImage($firstBanner->url, ['width' => 1024, 'height' => 680]);
             } else {
                 \SEO::twitter()->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'));
-                \SEO::opengraph()->setType('article')->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024, 'height' => 680]);
+                \SEO::opengraph()->setType('article')->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024,
+                                                                                                            'height' => 680]);
             }
         }
 
@@ -168,6 +148,48 @@ class ShopController extends Controller
             'selectedSubtypes',
             'selectedSizes'
         ));
+    }
+
+    /**
+     * Check if products have all subtypes selected
+     *
+     * @param array $selectedSubtypes
+     * @return \Closure
+     */
+    private function filterBySubtype(array $selectedSubtypes)
+    {
+        return function ($products) use ($selectedSubtypes) {
+            /** @var Collection $products */
+            return $products->filter(function ($product) use ($selectedSubtypes) {
+                /** @var Product $product */
+                if (count($selectedSubtypes) === 1) {
+                    return $product->subtypes->whereIn('slug', $selectedSubtypes)->count() > 0;
+                }
+
+                $subtypeSlugs = $product->subtypes->pluck('slug')->toArray();
+
+                return count(array_diff($selectedSubtypes, $subtypeSlugs)) === 0;
+            });
+        };
+    }
+
+    private function filterBySize(array $selectedSizes)
+    {
+        return function ($products) use ($selectedSizes) {
+            /** @var Collection $products */
+            return $products->filter(function ($product) use ($selectedSizes) {
+                /** @var Product $product */
+                // if product has the size and have quantity
+                return $product->stocks
+                        ->filter(function ($stock) use ($selectedSizes) {
+                            return in_array($stock->size->slug, $selectedSizes);
+                        })
+                        ->filter(function ($stock) {
+                            return $stock->quantity > 0;
+                        })
+                        ->count() > 0;
+            });
+        };
     }
 
     private function sortProductByPrice()
@@ -199,20 +221,20 @@ class ShopController extends Controller
     {
         /** @var Product $product */
         $product = Product::findBySlugOrFail($slugProduct);
-        
+
         abort_if($product->state_id !== config('constants.STATE_ACTIVE_ID'), 404);
 
         $product->load([
             'stocks.size',
-            'photos' => function ($withPhotos) {
+            'photos'              => function ($withPhotos) {
                 return $withPhotos->orderBy('order');
             },
-            'recommendeds' => function ($withRecommendeds) {
+            'recommendeds'        => function ($withRecommendeds) {
                 return $withRecommendeds->where('state_id', config('constants.STATE_ACTIVE_ID'));
             },
             'recommendeds.photos' => function ($withPhotos) {
                 return $withPhotos->orderBy('order');
-            }
+            },
         ]);
 
         if ($this->isOutOfStock($product)) {
@@ -258,7 +280,7 @@ class ShopController extends Controller
             ->setType('article')
             ->setTitle("{$product->name} - Bipolar")
             ->setDescription($seoDescription)
-            ->addImage($image, ['width'  => 1024, 'height' => 680]);
+            ->addImage($image, ['width' => 1024, 'height' => 680]);
 
         return view('web.shop.product', compact('product', 'stockWithSizes', 'quantities', 'productIsShoeType'));
     }
@@ -268,10 +290,10 @@ class ShopController extends Controller
         return function ($product) {
             /** @var Product $product */
             return $product->stocks
-                ->filter(function ($stock) {
-                    return $stock->quantity > 0;
-                })
-                ->count() > 0;
+                    ->filter(function ($stock) {
+                        return $stock->quantity > 0;
+                    })
+                    ->count() > 0;
         };
     }
 }

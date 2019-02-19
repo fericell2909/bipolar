@@ -2,8 +2,9 @@
 // Prefix: ajax-admin, Middleware auth:admin
 Route::delete('sizes/{sizeId}', 'Admin\SettingsController@deleteSize');
 Route::delete('colors/{colorId}', 'Admin\ColorController@delete');
-Route::delete('types/{sizeId}', 'Admin\TypesController@delete');
+Route::delete('types/{typeId}', 'Admin\TypesController@delete');
 Route::delete('photo/{photoId}', 'Admin\ProductController@deletePhoto');
+Route::delete('subtypes/{subtypeId}', 'Admin\TypesController@subtype_delete');
 Route::get('colors', 'Admin\Ajax\ColorController@index');
 Route::get('sizes', 'Admin\Ajax\SizeController@index');
 Route::get('types', 'Admin\Ajax\TypeController@index');
