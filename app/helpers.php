@@ -22,3 +22,14 @@ if (!function_exists('bipolar_get_page_from_slug_in_list')) {
         });
     }
 }
+
+if (!function_exists('bipolar_mail_subject_env_header')) {
+    /**
+     * @param string $subject
+     * @return $string
+     */
+    function bipolar_mail_subject_env_header(string $subject)
+    {
+        return env('APP_ENV') !== 'production' ? '[BETA] ' . $subject : $subject;
+    }
+}

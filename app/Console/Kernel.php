@@ -11,6 +11,7 @@ use App\Console\Commands\CopyFacebookFansToSettings;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\CheckProductStock;
+use App\Console\Commands\SendBuyReminderEmail;
 
 class Kernel extends ConsoleKernel
 {
@@ -42,6 +43,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(CheckProductStock::class)->dailyAt('03:00:00');
         $schedule->command('activitylog:clean')->daily();
         $schedule->command(SendNoBuyedCarts::class)->hourly();
+        $schedule->command(SendBuyReminderEmail::class)->dailyAt('10:30:00');
     }
 
     /**
