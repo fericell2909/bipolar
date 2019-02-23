@@ -33,3 +33,15 @@ if (!function_exists('bipolar_mail_subject_env_header')) {
         return env('APP_ENV') !== 'production' ? '[BETA] ' . $subject : $subject;
     }
 }
+
+if (!function_exists('bipolar_mail_asset_url')) {
+    /**
+     * @param string $url
+     * @param mixed $message
+     * @return $string
+     */
+    function bipolar_mail_asset_url(string $url, $message)
+    {
+        return env('APP_ENV') !== 'production' ? "https://www.bipolar.com.pe/{$url}" : $message->embed($url);
+    }
+}
