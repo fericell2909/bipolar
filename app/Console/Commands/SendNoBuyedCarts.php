@@ -62,7 +62,6 @@ class SendNoBuyedCarts extends Command
     /**
      * Only carts updated from 24 hours ago
      *
-     * @return \Closure
      */
     private function modifiedYesterday()
     {
