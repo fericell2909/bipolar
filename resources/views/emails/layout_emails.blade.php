@@ -859,3 +859,4 @@
 </table>
 </body>
 </html>
+@stack('plus_text')

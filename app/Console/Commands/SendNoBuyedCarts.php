@@ -56,13 +56,12 @@ class SendNoBuyedCarts extends Command
             \Mail::to($cart->user->email)->send(new CartsUnbuyed($cart));
         }
 
-        \Log::info("Se enviaron correos a {$carts->count()} personas");
+        \Log::channel('single')->debug("Carritos no comprados: Se enviaron correos a {$carts->count()} personas");
     }
 
     /**
      * Only carts updated from 24 hours ago
      *
-     * @return \Closure
      */
     private function modifiedYesterday()
     {
