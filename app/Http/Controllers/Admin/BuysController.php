@@ -51,7 +51,7 @@ class BuysController extends Controller
     public function update(Request $request, $buyId)
     {
         $this->validate($request, [
-            'shipping_fee' => 'required',
+            'shipping_fee' => 'required|numeric|between:0,999.99',
             'total'        => 'required',
         ]);
 

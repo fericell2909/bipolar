@@ -7,8 +7,8 @@
       {!! Form::open() !!}
         <div class="row">
           <div class="col-6 form-group">
-            <label>Shipping fee</label>
-            {!! Form::text('shipping_fee', $buy->shipping_fee, ['class' => 'form-control']) !!}
+            <label>Shipping fee (sólo números)</label>
+            {!! Form::number('shipping_fee', $buy->shipping_fee?? 0, ['class' => 'form-control', 'step' => 'any']) !!}
           </div>
           <div class="col-6 form-group">
             <label>Total (compra hecha en {{ $buy->currency }})</label>
