@@ -41,6 +41,20 @@
             </div>
           </div>
         </div>
+        <div class="col-6 form-group">
+          {!! Form::label('Día de desactivación (Día en que se cambia a estado de borrador)') !!}
+          <div class="input-group date" id="datetimepickerend" data-target-input="nearest">
+            {!! Form::text('end_date', optional($homePost->end_date)->format('d/m/Y H:i'), [
+              'class' => 'form-control datetimepicker-input',
+              'id' => 'datetimepickerend',
+              'data-target' => "#datetimepickerend",
+              'required',
+            ]) !!}
+            <div class="input-group-append" data-target="#datetimepickerend" data-toggle="datetimepicker">
+              <button type="button" class="btn btn-dark"><i class="fas fa-fw fa-calendar"></i></button>
+            </div>
+          </div>
+        </div>
       </div>
       {!! Form::submit('Actualizar', ['class' => 'btn btn-dark btn-rounded btn-sm']) !!}
       {!! Form::close() !!}

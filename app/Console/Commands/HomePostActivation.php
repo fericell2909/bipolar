@@ -19,7 +19,7 @@ class HomePostActivation extends Command
      *
      * @var string
      */
-    protected $description = 'Activate all the home posts with begin date';
+    protected $description = 'Enable/Disable all the home posts';
 
     /**
      * Create a new command instance.
@@ -38,19 +38,35 @@ class HomePostActivation extends Command
      */
     public function handle()
     {
-        $homePosts = HomePost::whereNotNull('begin_date')
+        $homePostsToEnable = HomePost::whereNotNull('begin_date')
             ->whereNotIn('state_id', [config('constants.STATE_ACTIVE_ID')])
             ->get();
 
-        $homePosts = $homePosts->filter(function ($homePost) {
+        $homePostsToEnable = $homePostsToEnable->filter(function ($homePost) {
             /** @var HomePost $homePost */
+            if ($homePost->end_date) {
+                return now()->between($homePost->begin_date, $homePost->end_date);
+            }
+
             return now()->greaterThanOrEqualTo($homePost->begin_date);
         });
 
-        if ($homePosts->isEmpty()) {
-            return;
+        if ($homePostsToEnable->isNotEmpty()) {
+            HomePost::whereIn('id', $homePostsToEnable->pluck('id')->toArray())->update(['state_id' => config('constants.STATE_ACTIVE_ID')]);
         }
 
-        HomePost::whereIn('id', $homePosts->pluck('id')->toArray())->update(['state_id' => config('constants.STATE_ACTIVE_ID')]);
+        $homePostToDisable = HomePost::whereNotNull('end_date')
+            ->whereIn('state_id', [config('constants.STATE_ACTIVE_ID')])
+            ->get();
+
+        $homePostToDisable = $homePostToDisable->filter(function ($homePost) {
+            /** @var HomePost $homePost */
+
+            return now()->greaterThanOrEqualTo($homePost->end_date);
+        });
+
+        if ($homePostToDisable->isNotEmpty()) {
+            HomePost::whereIn('id', $homePostToDisable->pluck('id')->toArray())->update(['state_id' => config('constants.STATE_PREVIEW_ID')]);
+        }
     }
 }
