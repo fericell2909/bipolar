@@ -79,6 +79,7 @@ namespace App\Models{
  * @property string|null $payed
  * @property int $showroom
  * @property string|null $bsale_document_url
+ * @property mixed|null $metadata
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Address $billing_address
@@ -108,6 +109,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCurrency($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereDiscountCoupon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereMetadata($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy wherePayed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingFee($value)

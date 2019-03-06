@@ -15,6 +15,7 @@ use App\Models\Shipping;
 use Illuminate\Http\Request;
 use App\Instances\CartBipolar;
 use Illuminate\Http\Response;
+use Jenssegers\Agent\Agent;
 
 class CheckoutController extends Controller
 {
@@ -98,6 +99,14 @@ class CheckoutController extends Controller
         $buy->subtotal = $cart->getSubtotalBySessionCurrency();
         $buy->total = $cart->getTotalBySessionCurrency();
         $buy->currency = $request->session()->get('BIPOLAR_CURRENCY', 'USD');
+
+        $agent = new Agent();
+
+        $buy->metadata = json_encode([
+            'platform' => $agent->platform() ?? '--',
+            'browser' => $agent->browser() ?? '--',
+            'device' => $agent->device() ?? '--',
+        ]);
 
         if ($cart->hasCoupon()) {
             $buy->coupon()->associate($cart->getCoupon());

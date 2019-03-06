@@ -71,6 +71,8 @@
             @endforeach
           </tbody>
         </table>
+        <h6>Browser data</h6>
+        <code>{{ $buy->metadata }}</code>
       </div>
     </div>
   </div>
