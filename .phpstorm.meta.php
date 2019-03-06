@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2019-02-20 22:17:13.
+    * Generated on 2019-03-06 12:25:47.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -45,6 +45,7 @@ namespace PHPSTORM_META {
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'agent' => \Jenssegers\Agent\Agent::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
         'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -224,6 +225,7 @@ namespace PHPSTORM_META {
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'agent' => \Jenssegers\Agent\Agent::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
         'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -403,6 +405,7 @@ namespace PHPSTORM_META {
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'agent' => \Jenssegers\Agent\Agent::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
         'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -582,6 +585,7 @@ namespace PHPSTORM_META {
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'agent' => \Jenssegers\Agent\Agent::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
         'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -761,6 +765,7 @@ namespace PHPSTORM_META {
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'agent' => \Jenssegers\Agent\Agent::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
         'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -940,6 +945,7 @@ namespace PHPSTORM_META {
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'agent' => \Jenssegers\Agent\Agent::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
         'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -1119,6 +1125,7 @@ namespace PHPSTORM_META {
         'Spatie\Analytics\Analytics' => \Spatie\Analytics\Analytics::class,
         'Spatie\Analytics\AnalyticsClient' => \Spatie\Analytics\AnalyticsClient::class,
         'Spatie\Newsletter\Newsletter' => \Spatie\Newsletter\Newsletter::class,
+        'agent' => \Jenssegers\Agent\Agent::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
         'auth.driver' => \Illuminate\Auth\SessionGuard::class,
         'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,

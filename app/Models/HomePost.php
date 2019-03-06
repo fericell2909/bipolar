@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 /** @mixin \Eloquent */
 class HomePost extends Model
 {
-    protected $dates = ['begin_date'];
+    protected $dates = ['begin_date', 'end_date'];
 
     use Hashable, Sluggable, SluggableScopeHelpers;
 

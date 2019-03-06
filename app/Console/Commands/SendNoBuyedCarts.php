@@ -79,6 +79,7 @@ class SendNoBuyedCarts extends Command
             $details = $details->reject($this->removeDetailsWithoutStock());
 
             if ($details->count() === 0) {
+                \DB::table('cart_details')->where('cart_id', $cart->id)->delete();
                 $cart->delete();
 
                 return true;

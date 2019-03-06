@@ -43,6 +43,9 @@ class HomePostController extends Controller
         if ($request->filled('begin_date')) {
             $homePost->begin_date = Carbon::createFromFormat('d/m/Y H:i', $request->input('begin_date'));
         }
+        if ($request->filled('end_date')) {
+            $homePost->end_date = Carbon::createFromFormat('d/m/Y H:i', $request->input('end_date'));
+        }
 
         $homePost->save();
 
@@ -78,6 +81,11 @@ class HomePostController extends Controller
             $homePost->begin_date = Carbon::createFromFormat('d/m/Y H:i', $request->input('begin_date'));
         } else {
             $homePost->begin_date = null;
+        }
+        if ($request->filled('end_date')) {
+            $homePost->end_date = Carbon::createFromFormat('d/m/Y H:i', $request->input('end_date'));
+        } else {
+            $homePost->end_date = null;
         }
 
         $homePost->save();

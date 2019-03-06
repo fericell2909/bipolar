@@ -30,6 +30,7 @@ class HomePostNewRequest extends FormRequest
             'state'      => ['required', Rule::exists('states', 'id')],
             'post_type'  => ['nullable', Rule::exists('post_types', 'id')],
             'begin_date' => 'nullable|date_format:d/m/Y H:i',
+            'end_date'   => 'nullable|date_format:d/m/Y H:i',
         ];
     }
 }

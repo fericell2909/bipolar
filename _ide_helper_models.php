@@ -79,6 +79,7 @@ namespace App\Models{
  * @property string|null $payed
  * @property int $showroom
  * @property string|null $bsale_document_url
+ * @property mixed|null $metadata
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Address $billing_address
@@ -108,6 +109,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCurrency($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereDiscountCoupon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereMetadata($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy wherePayed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingFee($value)
@@ -236,6 +238,7 @@ namespace App\Models{
  * @property string|null $redirection_link
  * @property int $order
  * @property \Illuminate\Support\Carbon|null $begin_date
+ * @property \Illuminate\Support\Carbon|null $end_date
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $hash_id
@@ -248,6 +251,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereBeginDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereEndDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereOrder($value)
@@ -278,6 +282,7 @@ namespace App\Models{
  * @property int $executed
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask query()
@@ -340,6 +345,7 @@ namespace App\Models{
  * @property array $name
  * @property string|null $slug
  * @property int $order
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  * @property-read string $hash_id
  * @property-read mixed $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
@@ -1018,6 +1024,9 @@ namespace App\Models{
  * @property int $type_id
  * @property array $name
  * @property string|null $slug
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  * @property-read string $hash_id
  * @property-read mixed $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
@@ -1026,10 +1035,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereUpdatedAt($value)
  */
 	class Subtype extends \Eloquent {}
 }
