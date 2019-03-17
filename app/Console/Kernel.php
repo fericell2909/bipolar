@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\AutomaticBackgrounds;
 use App\Console\Commands\ExecuteDiscountTasks;
 use App\Console\Commands\HomePostActivation;
 use App\Console\Commands\RevertDiscountTasks;
@@ -44,6 +45,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('activitylog:clean')->daily();
         $schedule->command(SendNoBuyedCarts::class)->hourly();
         $schedule->command(SendBuyReminderEmail::class)->dailyAt('10:30:00');
+        $schedule->command(AutomaticBackgrounds::class)->hourly();
     }
 
     /**
