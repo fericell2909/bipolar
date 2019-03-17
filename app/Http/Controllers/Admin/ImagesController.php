@@ -92,7 +92,7 @@ class ImagesController extends Controller
 
         $imageService = new UploadFilePublic();
 
-        if ($request->filled('suscribe_image')) {
+        if ($request->hasFile('suscribe_image')) {
             if (!$request->file('suscribe_image')->isValid()) {
                 flash()->error('Hubo un problema con la imagen de suscripción, intenta nuevamente');
 
@@ -103,7 +103,7 @@ class ImagesController extends Controller
             $image->background_suscribe = $imageService->getFullUrl($pathSuscribeImage);
         }
 
-        if ($request->filled('counter_image')) {
+        if ($request->hasFile('counter_image')) {
             if (!$request->file('counter_image')->isValid()) {
                 flash()->error('Hubo un problema con la imagen del contador, intenta nuevamente');
 
@@ -120,5 +120,22 @@ class ImagesController extends Controller
         flash()->success('Actualizado');
 
         return redirect()->route('backgrounds.all');
+    }
+
+    public function delete($imageId)
+    {
+        $image = Image::findOrFail($imageId);
+
+        if ($image->background_suscribe) {
+            \Storage::disk('public')->delete($image->background_suscribe);
+        }
+
+        if ($image->background_counter) {
+            \Storage::disk('public')->delete($image->background_counter);
+        }
+
+        $image->delete();
+
+        return response()->json(['success' => true]);
     }
 }

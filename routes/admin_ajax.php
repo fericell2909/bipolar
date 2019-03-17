@@ -75,6 +75,8 @@ Route::post('pages', 'Admin\Ajax\PageController@store');
 Route::get('pages/{pageId}', 'Admin\Ajax\PageController@show');
 Route::put('pages/{pageId}', 'Admin\Ajax\PageController@update');
 
+Route::delete('image/{imageId}', 'Admin\ImagesController@delete');
+
 Route::prefix('discount-tasks')->group(function () {
     Route::get('/', 'Admin\Ajax\DiscountController@index');
     Route::post('/', 'Admin\Ajax\DiscountController@store');
