@@ -35,7 +35,7 @@
                   @endif
                 </td>
                 <td class="align-middle">
-                  <a href="#" class="btn btn-sm btn-dark btn-rounded">Editar</a>
+                  <a href="{{ route('backgrounds.edit', $image->id) }}" class="btn btn-sm btn-dark btn-rounded">Editar</a>
                   <a href="#" class="btn btn-sm btn-rounded btn-outline-danger">Eliminar</a>
                 </td>
               </tr>

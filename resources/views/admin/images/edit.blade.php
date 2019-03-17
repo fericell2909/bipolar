@@ -1,5 +1,6 @@
 @extends('admin.layouts.app_admin')
 @section('title', 'Fondos para areas')
+<? /** @var \App\Models\Image $image */ ?>
 @section('content')
   <div class="row">
     <div class="col">
@@ -7,14 +8,15 @@
         <div class="card-body">
           {!! Form::open(['url' => url()->current(), 'files' => true, 'class' => 'form-row']) !!}
           <div class="col-6">
+            <img src="{{ $image->background_suscribe }}" class="img-responsive">
             <div class="form-group">
               {!! Form::label('Imagen de suscripción (1920x991) | <= 1MB') !!}
-              {!! Form::file('suscribe_image', ['class' => 'form-control', 'required' => true]) !!}
+              {!! Form::file('suscribe_image', ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
               {!! Form::label('Activar desde') !!}
               <div class="input-group date" id="datetimepickerend" data-target-input="nearest">
-                {!! Form::text('start_date', null, [
+                {!! Form::text('start_date', $image->start_time->format('d/m/Y H:i'), [
                   'class' => 'form-control datetimepicker-input',
                   'id' => 'datetimepickerend',
                   'data-target' => "#datetimepickerend",
@@ -28,12 +30,13 @@
             </div>
           </div>
           <div class="col-6">
+            <img src="{{ $image->background_counter }}" class="img-responsive">
             <div class="form-group">
               {!! Form::label('Foto contador (1920x799) | <= 1MB') !!}
-              {!! Form::file('counter_image', ['class' => 'form-control', 'required' => true]) !!}
+              {!! Form::file('counter_image', ['class' => 'form-control']) !!}
             </div>
           </div>
-          {!! Form::submit('Guardar', ['class' => 'btn btn-dark btn-rounded']) !!}
+          {!! Form::submit('Actualizar', ['class' => 'btn btn-dark btn-rounded']) !!}
           {!! Form::close() !!}
         </div>
       </div>

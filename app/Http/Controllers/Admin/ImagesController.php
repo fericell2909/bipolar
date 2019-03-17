@@ -62,4 +62,63 @@ class ImagesController extends Controller
 
         return redirect()->route('backgrounds.all');
     }
+
+    public function edit($imageId)
+    {
+        $image = Image::findOrFail($imageId);
+
+        return view('admin.images.edit', compact('image'));
+    }
+
+    public function update(Request $request, $imageId)
+    {
+        $this->validate($request, [
+            'suscribe_image' => [
+                'nullable',
+                'image',
+                Rule::dimensions()->width(1920)->height(991),
+            ],
+            'counter_image'  => [
+                'nullable',
+                'image',
+                Rule::dimensions()->width(1920)->height(799),
+            ],
+            'start_date'     => 'required|date_format:d/m/Y H:i',
+        ]);
+
+        $image = Image::findOrFail($imageId);
+
+        $startDate = Carbon::createFromFormat('d/m/Y H:i', $request->input('start_date'));
+
+        $imageService = new UploadFilePublic();
+
+        if ($request->filled('suscribe_image')) {
+            if (!$request->file('suscribe_image')->isValid()) {
+                flash()->error('Hubo un problema con la imagen de suscripción, intenta nuevamente');
+
+                return back();
+            }
+
+            $pathSuscribeImage = $imageService->uploadPhoto($request->file('suscribe_image'), 'assets', 'suscribe');
+            $image->background_suscribe = $imageService->getFullUrl($pathSuscribeImage);
+        }
+
+        if ($request->filled('counter_image')) {
+            if (!$request->file('counter_image')->isValid()) {
+                flash()->error('Hubo un problema con la imagen del contador, intenta nuevamente');
+
+                return back();
+            }
+
+            $pathCounterImage = $imageService->uploadPhoto($request->file('counter_image'), 'assets', 'counter');
+            $image->background_counter = $imageService->getFullUrl($pathCounterImage);
+        }
+
+        $image->start_time = $startDate;
+        $image->save();
+
+        flash()->success('Actualizado');
+
+        return redirect()->route('backgrounds.all');
+    }
 }
