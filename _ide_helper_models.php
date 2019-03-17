@@ -1181,6 +1181,31 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Image
+ *
+ * @property int $id
+ * @property string|null $background_suscribe
+ * @property string|null $background_counter
+ * @property \Illuminate\Support\Carbon $start_time
+ * @property int $active
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereBackgroundCounter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereBackgroundSuscribe($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereStartTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereUpdatedAt($value)
+ */
+	class Image extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Historic
  *
  * @mixin \Eloquent
