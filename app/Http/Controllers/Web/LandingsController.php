@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Mail\SendContactMessage;
 use App\Models\HomePost;
+use App\Models\Image;
 use App\Models\Settings;
 use App\Models\Banner;
 use Artesaos\SEOTools\Traits\SEOTools;
@@ -42,6 +43,7 @@ class LandingsController extends Controller
             ->get();
 
         $settings = Settings::first();
+        $imageBackground = Image::whereActive(true)->first();
         $banners = Banner::orderBy('order')
             ->where('state_id', config('constants.STATE_ACTIVE_ID'))
             ->where('begin_date', '<=', now())
@@ -56,7 +58,7 @@ class LandingsController extends Controller
             $this->addSeoDefault();
         }
 
-        return view('welcome', compact('banners', 'homePosts', 'settings', 'posts'));
+        return view('welcome', compact('banners', 'homePosts', 'settings', 'posts', 'imageBackground'));
     }
 
     public function changeCurrency(Request $request)

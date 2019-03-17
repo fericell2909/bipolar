@@ -1,4 +1,4 @@
-<div class="content-newsletter" style="background-image: url({{ $showBackground ? $settings->background_suscribe : '' }});">
+<div class="content-newsletter" style="background-image: url({{ $showBackground ? $imageBackground->background_suscribe : '' }});">
   <div class="container-content">
     <div class="text-center">
       <i class="fa fa-2x fa-envelope-o"></i>

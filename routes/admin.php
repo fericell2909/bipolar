@@ -152,9 +152,5 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('create', 'Admin\ImagesController@store');
         Route::get('edit/{imageId}', 'Admin\ImagesController@edit')->name('edit');
         Route::post('edit/{imageId}', 'Admin\ImagesController@update');
-        // old ones
-        Route::get('all', 'Admin\BackgroundController@collection');
-        Route::post('suscribe', 'Admin\BackgroundController@suscribe')->name('suscribe');
-        Route::post('counter', 'Admin\BackgroundController@counter')->name('counter');
     });
 });

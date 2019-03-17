@@ -52,9 +52,14 @@
           @endif
         @endforeach
       </div>
-      <?php /** @var \App\Models\Settings $settings */ ?>
-      @if($settings)
-        <div class="bipolar-counts-container" style="background-image: url({{ $settings->background_counter }});">
+      <?php
+        /**
+         * @var \App\Models\Settings $settings
+         * @var \App\Models\Image $imageBackground
+         */
+      ?>
+      @if($settings && $imageBackground)
+        <div class="bipolar-counts-container" style="background-image: url({{ $imageBackground->background_counter ?? '' }});">
           <div class="container">
             <div class="row">
               <div class="col-md-4 bipolar-counts">
@@ -114,7 +119,7 @@
           </div>
         </div>
       </div>
-      @include('web.partials.newsletter', ['settings' => $settings, 'showBackground' => true])
+      @include('web.partials.newsletter', ['imageBackground' => $imageBackground, 'showBackground' => true])
     </div>
     @include('web.partials.footer')
     @include('web.partials.googletagmanager')
