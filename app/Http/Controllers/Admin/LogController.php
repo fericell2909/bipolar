@@ -10,7 +10,7 @@ class LogController extends Controller
 {
     public function index()
     {
-        $logs = Activity::orderByDesc('id')->paginate(20);
+        $logs = Activity::orderByDesc('id')->with('causer')->paginate(20);
 
         return view('admin.logs', compact('logs'));
     }

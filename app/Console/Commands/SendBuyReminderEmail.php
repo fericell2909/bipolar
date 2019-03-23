@@ -57,7 +57,7 @@ class SendBuyReminderEmail extends Command
 
         $buys->each(function ($buy) {
             /** @var Buy $buy */
-            \Mail::to($buy->user->email)->send(new BuyReminderToBipolar($buy));
+            \Mail::to('shop@bipolar.com.pe')->send(new BuyReminderToBipolar($buy));
         });
 
         \Log::channel('single')->debug("Mail recordatorio: Se enviaron {$buys->count()} correos");
