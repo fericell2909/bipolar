@@ -34,8 +34,8 @@ class CartBipolar
                 $anotherCart = Cart::whereKeyNot($this->cart->id)->where('user_id', $this->cart->user_id)->first();
                 if ($anotherCart) {
                     CartDetail::whereCartId($anotherCart->id)->delete();
+                    $anotherCart->delete();
                 }
-                $anotherCart->delete();
             }
         } catch (\Exception $e) {
             debug($e);
