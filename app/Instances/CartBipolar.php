@@ -36,7 +36,7 @@ class CartBipolar
                     ->delete();
             }
         } catch (\Exception $e) {
-            dd($e);
+            debug($e);
         }
 
         $this->cart->loadMissing($this->relationships);
