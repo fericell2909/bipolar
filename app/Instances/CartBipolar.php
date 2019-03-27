@@ -25,17 +25,20 @@ class CartBipolar
         if (\Auth::check()) {
             $this->cart = Cart::firstOrCreate(['user_id' => \Auth::id()]);
         } else {
-            $this->cart = Cart::firstOrCreate(['session_id' => \Session::getId()]);
+            $this->cart = Cart::firstOrNew(['session_id' => \Session::getId()]);
         }
 
         // Destroy another instances
         try {
-            Cart::whereKeyNot($this->cart->id)
-                ->where('user_id', $this->cart->user_id)
-                ->where('session_id', $this->cart->session_id)
-                ->delete();
+            if ($this->cart->getKey()) {
+                $anotherCart = Cart::whereKeyNot($this->cart->id)->where('user_id', $this->cart->user_id)->first();
+                if ($anotherCart) {
+                    CartDetail::whereCartId($anotherCart->id)->delete();
+                    $anotherCart->delete();
+                }
+            }
         } catch (\Exception $e) {
-            dd($e);
+            debug($e);
         }
 
         $this->cart->loadMissing($this->relationships);
@@ -49,9 +52,14 @@ class CartBipolar
      */
     public function add(int $quantity, Product $product, $stockId = null): CartDetail
     {
+        $cart = $this->cart;
+        if (empty($cart->getKey())) {
+            $cart->save();
+        }
+
         /** @var CartDetail $cartDetail */
         $cartDetail = CartDetail::firstOrCreate([
-            'cart_id'    => $this->cart->id,
+            'cart_id'    => $cart->id,
             'product_id' => $product->id,
             'stock_id'   => $stockId,
         ]);

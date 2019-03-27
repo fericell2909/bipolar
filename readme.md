@@ -1,13 +1,23 @@
 # Bipolar
 
-## Requirements
-- Don't forget to setup the analytics `json` file at `storage_path('app/analytics/BipolarWeb-2127e4255dbc.json')`
+## Docker development setup
+Run the following commands
 
-### Lista de comandos
-Este es un listado de los comandos necesarios y su explicación que se tienen que activar en el servidor.
+```sh
+cp .env.example .env
+docker-compose run --rm --no-deps bipolar-server composer install
+docker-compose run --rm --no-deps bipolar-server php artisan key:generate
+docker-compose up -d
+```
 
-`php artisan carts:unbuyed`: Enviar un correo a los carros que no han finalizado una compra.
+### Execute Node/Yarn inside of container
+#### Unix shell
+`docker run --rm -it -v $(pwd):/app -w /app node yarn`
+#### Windows
+`MSYS_NO_PATHCONV=1 docker run --rm -it -v /c/Users/USER/ProjectsPHP/bipolar/app:/app -w /app node yarn`
 
-`php artisan user:wishlists`: Enviar un correo a los que tengan agregado un producto al wishlist
 
-`php artisan tasks:execute`: Ejecutar tareas de descuento pendientes entre el rango de fechas
+If you want to connect project to Mysql use the following host
+```ini
+DB_HOST=mysql
+```
