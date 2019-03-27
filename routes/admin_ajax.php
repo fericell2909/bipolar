@@ -34,6 +34,7 @@ Route::prefix('products')->group(function () {
     Route::post('photos/order', 'Admin\Ajax\PhotoController@orderPhotos');
     Route::delete('remove/{productId}', 'Admin\Ajax\ProductController@deletesoft');
     Route::get('{productHashId}/stocks', 'Admin\Ajax\ProductController@stocks');
+    Route::post('publishdate', 'Admin\Ajax\ProductController@publishUpdate');
 });
 
 Route::post('stocks/{stockId}', 'Admin\Ajax\ProductController@updateStock');

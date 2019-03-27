@@ -90407,7 +90407,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/helmer/ProjectsValet/bipolar/resources/assets/js/web/app-web-scripts.js */"./resources/assets/js/web/app-web-scripts.js");
+module.exports = __webpack_require__(/*! /bipolar_inside_node/resources/assets/js/web/app-web-scripts.js */"./resources/assets/js/web/app-web-scripts.js");
 
 
 /***/ }),

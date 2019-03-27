@@ -55847,9 +55847,9 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/helmer/ProjectsValet/bipolar/resources/assets/js/admin/app-admin-scripts.js */"./resources/assets/js/admin/app-admin-scripts.js");
-__webpack_require__(/*! /Users/helmer/ProjectsValet/bipolar/resources/assets/sass/admin/style.scss */"./resources/assets/sass/admin/style.scss");
-module.exports = __webpack_require__(/*! /Users/helmer/ProjectsValet/bipolar/resources/assets/sass/web/app-web-styles.scss */"./resources/assets/sass/web/app-web-styles.scss");
+__webpack_require__(/*! /bipolar_inside_node/resources/assets/js/admin/app-admin-scripts.js */"./resources/assets/js/admin/app-admin-scripts.js");
+__webpack_require__(/*! /bipolar_inside_node/resources/assets/sass/admin/style.scss */"./resources/assets/sass/admin/style.scss");
+module.exports = __webpack_require__(/*! /bipolar_inside_node/resources/assets/sass/web/app-web-styles.scss */"./resources/assets/sass/web/app-web-styles.scss");
 
 
 /***/ })

@@ -25,6 +25,7 @@ class Product extends Model
         'discount_usd',
         'price_pen_discount',
         'price_usd_discount',
+        'publish_date',
     ];
 
     public function colors()

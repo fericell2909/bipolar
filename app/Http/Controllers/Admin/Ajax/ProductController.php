@@ -14,6 +14,7 @@ use App\Models\Stock;
 use App\Models\Subtype;
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Resources\ProductCollection;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -70,7 +71,7 @@ class ProductController extends Controller
                 'photos' => function ($withPhotos) {
                     $withPhotos->orderBy('order');
                 },
-                'subtypes', 
+                'subtypes',
                 'state',
                 'stocks.size',
                 'colors',
@@ -365,9 +366,9 @@ class ProductController extends Controller
     public function updateDiscount(Request $request, $productHashId)
     {
         $this->validate($request, [
-            'discount_pen'         => 'required|numeric',
-            'discount_usd'         => 'required|numeric',
-            'price_usd_discount'   => 'required|numeric',
+            'discount_pen'       => 'required|numeric',
+            'discount_usd'       => 'required|numeric',
+            'price_usd_discount' => 'required|numeric',
             'price_pen_discount' => 'required|numeric',
         ]);
 
@@ -379,5 +380,20 @@ class ProductController extends Controller
         $product->save();
 
         return response()->json(['mensaje' => 'Guardado con éxito']);
+    }
+
+    public function publishUpdate(Request $request)
+    {
+        $this->validate($request, [
+            'productIds'   => 'required|array',
+            'publish_date' => 'date_format:d/m/Y H:i',
+        ]);
+
+        $productIds = $request->input('productIds');
+        $date = Carbon::createFromFormat('d/m/Y H:i', $request->input('publish_date'));
+
+        Product::whereIn('id', $productIds)->update(['publish_date' => $date]);
+
+        return response()->json($request->all());
     }
 }

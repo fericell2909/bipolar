@@ -14,7 +14,7 @@ class BipolarProductMassivePublication extends React.Component {
     selectedProducts: [],
     searchText: '',
     loading: true,
-    beginDate: moment().format('DD/MM/YYYY'),
+    beginDate: moment().format('DD/MM/YYYY HH:mm'),
   };
 
   getAllProducts = async () => {
@@ -39,7 +39,7 @@ class BipolarProductMassivePublication extends React.Component {
     });
   };
 
-  handleChangeBeginDate = date => this.setState({ beginDate: date.format('DD/MM/YYYY') });
+  handleChangeBeginDate = date => this.setState({ beginDate: date.format('DD/MM/YYYY HH:mm') });
 
   handleSearchProduct = event => {
     const searchText = event.target.value;
@@ -64,13 +64,12 @@ class BipolarProductMassivePublication extends React.Component {
   };
 
   unpickProduct = productHashId => {
-    console.log(productHashId);
     let { selectedProducts } = this.state;
     selectedProducts = selectedProducts.filter(product => product['hash_id'] !== productHashId);
     this.setState({ selectedProducts });
   };
 
-  updatePublishDate = product => {
+  updatePublishDate = () => {
     return swal({
       title: '¿Cambiar fecha de publicación?',
       showCancelButton: true,
@@ -79,7 +78,9 @@ class BipolarProductMassivePublication extends React.Component {
       confirmButtonText: 'Sí, cambiar',
     }).then(async result => {
       if (result.value) {
-        // await axios.put(`/ajax-admin/discount-tasks/${taskId}`, { available }).catch(console.warn);
+        const productIds = this.state.selectedProducts.map(product => (product['id']));
+        await axios.post('/ajax-admin/products/publishdate', { productIds, publish_date: this.state.beginDate });
+
         swal({
           title: 'Actualizado',
           type: 'success',
@@ -88,7 +89,10 @@ class BipolarProductMassivePublication extends React.Component {
           showConfirmButton: false,
           timer: 3000,
         });
-        this.getAllProducts();
+        await this.getAllProducts();
+        const updatedSelectedProducts = this.state.originalProducts.filter(product => (productIds.includes(product['id'])));
+
+        this.setState({ selectedProducts: updatedSelectedProducts });
       }
     });
   };
@@ -183,15 +187,15 @@ class BipolarProductMassivePublication extends React.Component {
               <div className="input-group mb-3">
                 <Datetime
                   dateFormat="DD/MM/YYYY"
+                  timeFormat="HH:mm"
                   inputProps={{ className: 'form-control' }}
                   onChange={this.handleChangeBeginDate}
-                  timeFormat={false}
                   value={this.state.beginDate}
                   defaultValue={this.state.beginDate}
                 />
                 <div className="input-group-append">
                   <button onClick={this.updatePublishDate} className="btn btn-dark">
-                    Aplicar
+                    Aplicar fecha
                   </button>
                 </div>
               </div>
