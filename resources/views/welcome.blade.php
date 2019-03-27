@@ -119,7 +119,7 @@
           </div>
         </div>
       </div>
-      @include('web.partials.newsletter', ['imageBackground' => $imageBackground, 'showBackground' => true])
+      @includeWhen(!empty($imageBackground), 'web.partials.newsletter', ['imageBackground' => $imageBackground, 'showBackground' => true])
     </div>
     @include('web.partials.footer')
     @include('web.partials.googletagmanager')
