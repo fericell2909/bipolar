@@ -47,6 +47,7 @@ class SendBuyReminderEmail extends Command
             config('constants.BUY_CULMINATED_STATUS'),
             config('constants.BUY_PICKUP_STATUS'),
         ])
+            ->whereNotNull('payed')
             ->whereDate('created_at', $yesterday->toDateString())
             ->get();
 
