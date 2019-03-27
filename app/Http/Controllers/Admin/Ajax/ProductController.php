@@ -38,7 +38,7 @@ class ProductController extends Controller
         $product->load('photos');
 
         $recommendeds = $product->recommendeds;
-        $recommendeds->load('photos', 'state');
+        $recommendeds->load('photos', 'state', 'stocks.size');
 
         return new ProductCollection($recommendeds);
     }
@@ -75,6 +75,30 @@ class ProductController extends Controller
                 'stocks.size',
                 'colors',
             ])
+            ->when($request->filled('states'), function ($whenRequest) use ($request) {
+                /** @var \Illuminate\Database\Query\Builder $whenRequest */
+                $states = array_map(function ($value) {
+                    $stateId = 0;
+                    switch ($value) {
+                        case "active":
+                            $stateId = config('constants.STATE_ACTIVE_ID');
+                            break;
+                        case "review":
+                            $stateId = config('constants.STATE_REVIEW_ID');
+                            break;
+                        case "preview":
+                            $stateId = config('constants.STATE_PREVIEW_ID');
+                            break;
+                        case "waiting":
+                            $stateId = config('constants.STATE_WAITING_ID');
+                            break;
+                    }
+
+                    return $stateId;
+                }, $request->input('states', []));
+
+                return $whenRequest->whereIn('state_id', $states);
+            })
             ->get();
 
         return response()->json(new ProductCollection($products));

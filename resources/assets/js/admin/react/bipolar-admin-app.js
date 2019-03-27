@@ -20,6 +20,7 @@ require('./components/ProductEdit');
 require('./components/ProductList');
 require('./components/ProductStocks');
 require('./components/ProductDiscount');
+require('./components/ProductMassivePublication');
 require('./components/CouponAssociation');
 require('./components/discounts/MultipleDiscountsNew');
 require('./components/discounts/MultipleDiscountsEdit');

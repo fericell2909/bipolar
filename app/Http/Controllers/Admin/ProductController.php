@@ -183,4 +183,9 @@ class ProductController extends Controller
 
         return view('admin.products.multiple_discounts_edit', compact('discount'));
     }
+
+    public function massive()
+    {
+        return view('admin.products.massive_publication');
+    }
 }

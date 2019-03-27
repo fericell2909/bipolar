@@ -417,6 +417,7 @@ namespace App\Models{
  * @property int|null $discount_usd
  * @property \Illuminate\Support\Carbon|null $begin_discount
  * @property \Illuminate\Support\Carbon|null $end_discount
+ * @property \Illuminate\Support\Carbon|null $publish_date
  * @property float $price
  * @property float|null $price_pen_discount
  * @property float $price_dolar
@@ -463,6 +464,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePriceDolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePricePenDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePriceUsdDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePublishDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
