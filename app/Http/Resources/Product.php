@@ -41,6 +41,7 @@ class Product extends Resource
             'discount_usd'          => (int)$product->discount_usd,
             'begin_discount'        => optional($product->begin_discount)->toDateString(),
             'end_discount'          => optional($product->end_discount)->toDateString(),
+            'publish_date'          => optional($product->publish_date)->toDateTimeString(),
             'free_shipping'         => boolval($product->free_shipping),
             'is_salient'            => $product->is_salient,
             'preview_route'         => $this->when(\Auth::guard('admin')->check(), route('products.preview', $product->slug)),

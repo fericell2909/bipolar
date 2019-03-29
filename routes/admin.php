@@ -41,6 +41,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('{slug}/discount', 'Admin\ProductController@discount')->name('products.discount');
         Route::view('multiple-discounts', 'admin.products.multiple_discounts')->name('products.multiple-discounts');
         Route::get('multiple-discounts/edit/{task}', 'Admin\ProductController@multipleDiscountEdit')->name('products.multiple-discounts.edit');
+        Route::get('massive', 'Admin\ProductController@massive')->name('products.massive-publication');
     });
 
     Route::prefix('home-posts')->group(function () {
@@ -147,8 +148,10 @@ Route::middleware('auth:admin')->group(function () {
     });
 
     Route::prefix('backgrounds')->name('backgrounds.')->group(function () {
-        Route::get('all', 'Admin\BackgroundController@collection')->name('all');
-        Route::post('suscribe', 'Admin\BackgroundController@suscribe')->name('suscribe');
-        Route::post('counter', 'Admin\BackgroundController@counter')->name('counter');
+        Route::get('/', 'Admin\ImagesController@index')->name('all');
+        Route::view('create', 'admin.images.create')->name('create');
+        Route::post('create', 'Admin\ImagesController@store');
+        Route::get('edit/{imageId}', 'Admin\ImagesController@edit')->name('edit');
+        Route::post('edit/{imageId}', 'Admin\ImagesController@update');
     });
 });

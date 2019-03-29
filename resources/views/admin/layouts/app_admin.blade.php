@@ -124,6 +124,7 @@
                   <li><a href="{{ route('products.index') }}">Listar productos</a></li>
                   <li><a href="{{ route('products.trashed') }}">Papelera</a></li>
                   <li><a href="{{ route('products.order') }}">Ordenar</a></li>
+                  <li><a href="{{ route('products.massive-publication') }}">Publicación masiva</a></li>
                 </ul>
               </li>
               <li>

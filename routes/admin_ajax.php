@@ -34,6 +34,7 @@ Route::prefix('products')->group(function () {
     Route::post('photos/order', 'Admin\Ajax\PhotoController@orderPhotos');
     Route::delete('remove/{productId}', 'Admin\Ajax\ProductController@deletesoft');
     Route::get('{productHashId}/stocks', 'Admin\Ajax\ProductController@stocks');
+    Route::post('publishdate', 'Admin\Ajax\ProductController@publishUpdate');
 });
 
 Route::post('stocks/{stockId}', 'Admin\Ajax\ProductController@updateStock');
@@ -74,6 +75,8 @@ Route::post('tags', 'Admin\Ajax\TagsController@store');
 Route::post('pages', 'Admin\Ajax\PageController@store');
 Route::get('pages/{pageId}', 'Admin\Ajax\PageController@show');
 Route::put('pages/{pageId}', 'Admin\Ajax\PageController@update');
+
+Route::delete('image/{imageId}', 'Admin\ImagesController@delete');
 
 Route::prefix('discount-tasks')->group(function () {
     Route::get('/', 'Admin\Ajax\DiscountController@index');

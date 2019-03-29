@@ -14,6 +14,7 @@ use App\Models\Stock;
 use App\Models\Subtype;
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Resources\ProductCollection;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -38,7 +39,7 @@ class ProductController extends Controller
         $product->load('photos');
 
         $recommendeds = $product->recommendeds;
-        $recommendeds->load('photos', 'state');
+        $recommendeds->load('photos', 'state', 'stocks.size');
 
         return new ProductCollection($recommendeds);
     }
@@ -70,11 +71,35 @@ class ProductController extends Controller
                 'photos' => function ($withPhotos) {
                     $withPhotos->orderBy('order');
                 },
-                'subtypes', 
+                'subtypes',
                 'state',
                 'stocks.size',
                 'colors',
             ])
+            ->when($request->filled('states'), function ($whenRequest) use ($request) {
+                /** @var \Illuminate\Database\Query\Builder $whenRequest */
+                $states = array_map(function ($value) {
+                    $stateId = 0;
+                    switch ($value) {
+                        case "active":
+                            $stateId = config('constants.STATE_ACTIVE_ID');
+                            break;
+                        case "review":
+                            $stateId = config('constants.STATE_REVIEW_ID');
+                            break;
+                        case "preview":
+                            $stateId = config('constants.STATE_PREVIEW_ID');
+                            break;
+                        case "waiting":
+                            $stateId = config('constants.STATE_WAITING_ID');
+                            break;
+                    }
+
+                    return $stateId;
+                }, $request->input('states', []));
+
+                return $whenRequest->whereIn('state_id', $states);
+            })
             ->get();
 
         return response()->json(new ProductCollection($products));
@@ -341,9 +366,9 @@ class ProductController extends Controller
     public function updateDiscount(Request $request, $productHashId)
     {
         $this->validate($request, [
-            'discount_pen'         => 'required|numeric',
-            'discount_usd'         => 'required|numeric',
-            'price_usd_discount'   => 'required|numeric',
+            'discount_pen'       => 'required|numeric',
+            'discount_usd'       => 'required|numeric',
+            'price_usd_discount' => 'required|numeric',
             'price_pen_discount' => 'required|numeric',
         ]);
 
@@ -355,5 +380,20 @@ class ProductController extends Controller
         $product->save();
 
         return response()->json(['mensaje' => 'Guardado con éxito']);
+    }
+
+    public function publishUpdate(Request $request)
+    {
+        $this->validate($request, [
+            'productIds'   => 'required|array',
+            'publish_date' => 'date_format:d/m/Y H:i',
+        ]);
+
+        $productIds = $request->input('productIds');
+        $date = Carbon::createFromFormat('d/m/Y H:i', $request->input('publish_date'));
+
+        Product::whereIn('id', $productIds)->update(['publish_date' => $date]);
+
+        return response()->json($request->all());
     }
 }
