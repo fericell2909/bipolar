@@ -88,6 +88,14 @@ class LandingsController extends Controller
         return view('web.landings.contact');
     }
 
+    public function newsletter()
+    {
+        $imageBackground = Image::whereActive(true)->first();
+        $showBackground = !empty($imageBackground);
+
+        return view('web.landings.newsletter_landing', compact('imageBackground', 'showBackground'));
+    }
+
     public function blog(Request $request)
     {
         $this->addSeoDefault();
