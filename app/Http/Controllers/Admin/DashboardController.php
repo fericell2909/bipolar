@@ -34,7 +34,13 @@ class DashboardController extends Controller
             'before_timestamp_opt' => now()->endOfWeek()->toIso8601String(),
         ]);
         $newsletterUsersInWeek = array_get($newsletterUsersInWeek, 'total_items', 0);
-        $visitorsThisWeek = \Analytics::fetchVisitorsAndPageViews(Period::create(now()->startOfWeek(), now()->endOfWeek()))->sum('visitors');
+        $visitorsThisWeek = 0;
+        try {
+            $visitorsThisWeek = \Analytics::fetchVisitorsAndPageViews(Period::create(now()->startOfWeek(), now()->endOfWeek()))->sum('visitors');
+        } catch (\Exception $e) {
+            // Nothing
+            $visitorsThisWeek = 0;
+        }
 
         return view('admin.home', compact('usersInWeek', 'firstBuyUsers', 'sumTotalBuys', 'productsBuyWeek', 'cartsInWeek', 'usersTotal', 'newsletterUsersInWeek', 'visitorsThisWeek'));
     }

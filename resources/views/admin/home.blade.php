@@ -61,4 +61,17 @@
       ])
     </div>
   </div>
+  <div class="card border-dark">
+    <div class="card-header bg-dark">
+      <h4 class="m-b-0 text-white">Bipolar: Cambios 31 Marzo 2019</h4>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li><span class="text-success">NUEVO:</span> Productos: Colocar fecha de activación => <a href="{{ route('products.massive-publication') }}">aquí</a></li>
+        <li><span class="text-success">NUEVO:</span> Fondo contador / suscriptores: Colocar fecha de activación => <a href="{{ route('backgrounds.all') }}">aquí</a></li>
+        <li><span class="text-success">NUEVO:</span> Se pueden ordenar subcategorías</li>
+        <li><span class="text-danger">BUG:</span> Correo recordatorio de compras sin enviar se enviaba desde compras no pagadas</li>
+      </ul>
+    </div>
+  </div>
 @endsection
