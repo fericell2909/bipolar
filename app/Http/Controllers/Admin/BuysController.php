@@ -40,7 +40,6 @@ class BuysController extends Controller
             $statuses[config('constants.BUY_PICKUP_STATUS')] = __('bipolar.buy.statuses.pickup');
         } else {
             $statuses[config('constants.BUY_SENT_STATUS')] = __('bipolar.buy.statuses.sent');
-            $statuses[config('constants.BUY_TRANSIT_STATUS')] = __('bipolar.buy.statuses.transit');
         }
 
         $statuses[config('constants.BUY_CULMINATED_STATUS')] = __('bipolar.buy.statuses.culminated');
@@ -61,7 +60,7 @@ class BuysController extends Controller
         $buy->shipping_fee = $request->input('shipping_fee');
         $buy->total = $request->input('total');
         if ($buy->status !== $request->input('status')) {
-            if ($request->input('status') === config('constants.BUY_SENT_STATUS') || $request->input('status') === config('constants.BUY_TRANSIT_STATUS')) {
+            if ($request->input('status') === config('constants.BUY_SENT_STATUS')) {
                 $buy->setStatus(config('constants.BUY_SENT_STATUS'));
                 $buy->setStatus(config('constants.BUY_TRANSIT_STATUS'));
                 $languageOld = \LaravelLocalization::getCurrentLocale();

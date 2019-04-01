@@ -70,6 +70,7 @@
         <li><span class="text-success">NUEVO:</span> Productos: Colocar fecha de activación => <a href="{{ route('products.massive-publication') }}">aquí</a></li>
         <li><span class="text-success">NUEVO:</span> Fondo contador / suscriptores: Colocar fecha de activación => <a href="{{ route('backgrounds.all') }}">aquí</a></li>
         <li><span class="text-success">NUEVO:</span> Se pueden ordenar subcategorías</li>
+        <li><span class="text-warning">MEJORADO:</span> Pedido enviado / Pedido en tránsito hacían lo mismo. Sólo se dejó en admin para seleccionar Pedido enviado</li>
         <li><span class="text-danger">BUG:</span> Correo recordatorio de compras sin enviar se enviaba desde compras no pagadas</li>
       </ul>
     </div>
