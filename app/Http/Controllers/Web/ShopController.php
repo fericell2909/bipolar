@@ -46,7 +46,7 @@ class ShopController extends Controller
             'subtypes'          => function ($withSubtypes) {
                 $withSubtypes->whereHas('products', function ($whereProducts) {
                     $whereProducts->where('state_id', config('constants.STATE_ACTIVE_ID'));
-                })->orderByDesc('updated_at');
+                })->orderBy('order');
             },
             'subtypes.products' => function ($withProducts) {
                 $withProducts->where('state_id', config('constants.STATE_ACTIVE_ID'));

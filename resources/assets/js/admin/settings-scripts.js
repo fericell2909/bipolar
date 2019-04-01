@@ -20,6 +20,25 @@ $(function () {
     })
   });
 
+  $('.image-delete').click(function () {
+    swal({
+      title: 'Eliminar cambio de imagen de fondo',
+      text: 'Seguro que desea eliminar',
+      type: 'question',
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      showLoaderOnConfirm: true,
+    }).then(result => {
+      if (result.value) {
+        const imageId = $(this).data('imageId');
+        $.ajax({
+          method: 'DELETE',
+          url: `/ajax-admin/image/${imageId}`
+        }).done(() => location.reload());
+      }
+    })
+  });
+
   $('.color-delete').click(function () {
     swal({
       title: 'Eliminar color',

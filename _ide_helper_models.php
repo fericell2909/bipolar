@@ -417,6 +417,7 @@ namespace App\Models{
  * @property int|null $discount_usd
  * @property \Illuminate\Support\Carbon|null $begin_discount
  * @property \Illuminate\Support\Carbon|null $end_discount
+ * @property \Illuminate\Support\Carbon|null $publish_date
  * @property float $price
  * @property float|null $price_pen_discount
  * @property float $price_dolar
@@ -463,6 +464,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePriceDolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePricePenDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePriceUsdDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePublishDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
@@ -1024,6 +1026,7 @@ namespace App\Models{
  * @property int $type_id
  * @property array $name
  * @property string|null $slug
+ * @property int $order
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
@@ -1038,6 +1041,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereUpdatedAt($value)
@@ -1177,6 +1181,31 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereUpdatedAt($value)
  */
 	class Coupon extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Image
+ *
+ * @property int $id
+ * @property string|null $background_suscribe
+ * @property string|null $background_counter
+ * @property \Illuminate\Support\Carbon $start_time
+ * @property int $active
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereBackgroundCounter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereBackgroundSuscribe($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereStartTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereUpdatedAt($value)
+ */
+	class Image extends \Eloquent {}
 }
 
 namespace App\Models{

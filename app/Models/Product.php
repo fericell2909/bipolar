@@ -16,7 +16,7 @@ class Product extends Model
     use Hashable, Sluggable, SluggableScopeHelpers, SoftDeletes, HasTranslations;
 
     protected $table = 'products';
-    protected $dates = ['deleted_at', 'begin_discount', 'end_discount'];
+    protected $dates = ['deleted_at', 'begin_discount', 'end_discount', 'publish_date'];
     protected $translatable = ['name', 'description'];
     protected $fillable = [
         'begin_discount',
@@ -25,6 +25,7 @@ class Product extends Model
         'discount_usd',
         'price_pen_discount',
         'price_usd_discount',
+        'publish_date',
     ];
 
     public function colors()
