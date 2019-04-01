@@ -30,7 +30,7 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::permanentRedirect('care-tips', 'info/care_tips');
         Route::permanentRedirect('showroom', 'info/showroom');
         Route::get('historico', 'Web\LandingsController@historico')->name('landings.historico');
-        Route::view('newsletter', 'web.landings.newsletter_landing')->name('landings.newsletter');
+        Route::get('newsletter', 'Web\LandingsController@newsletter')->name('landings.newsletter');
         Route::get('blog', 'Web\LandingsController@blog')->name('landings.blog');
         Route::get('blog/{postSlug}', 'Web\LandingsController@seeBlogPost')->name('landings.blog.post');
         Route::get('contacto', 'Web\LandingsController@contact')->name('landings.contacto');
