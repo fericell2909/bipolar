@@ -103,8 +103,7 @@ class PublishStuff extends Command
         if ($imageToEnable) {
             $imageToEnable->active = true;
             $imageToEnable->save();
+            Image::whereKeyNot($imageToEnable->id)->update(['active' => false]);
         }
-
-        Image::whereKeyNot($imageToEnable->id)->update(['active' => false]);
     }
 }
