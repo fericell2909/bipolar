@@ -1026,6 +1026,7 @@ namespace App\Models{
  * @property int $type_id
  * @property array $name
  * @property string|null $slug
+ * @property int $order
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
@@ -1040,6 +1041,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereUpdatedAt($value)

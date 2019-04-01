@@ -35,6 +35,7 @@
             <tr>
               <th>#</th>
               <th>Nombre (ES/EN)</th>
+              <th class="text-right">Orden</th>
               <th class="text-right">Productos asociados</th>
               <th>Acciones</th>
             </tr>
@@ -45,6 +46,7 @@
               <tr>
                 <td class="align-middle">{{ $subtype->id }}</td>
                 <td class="align-middle">{{ $subtype->getTranslation('name', 'es') }} / {{ $subtype->getTranslation('name', 'en') }}</td>
+                <td class="align-middle text-right">{{ $subtype->order }}</td>
                 <td class="align-middle text-right">{{ $subtype->products->count() }}</td>
                 <td class="align-middle">
                   <div class="button-group">

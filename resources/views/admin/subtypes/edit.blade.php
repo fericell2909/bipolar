@@ -6,16 +6,22 @@
     <div class="card-body">
       {!! Form::open() !!}
       <div class="form-row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="form-group">
             {!! Form::label('Nombre') !!}
             {!! Form::text('name', $subtype->getTranslation('name', 'es'), ['class' => 'form-control', 'required' => true]) !!}
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="form-group">
             {!! Form::label('Nombre (Inglés)') !!}
             {!! Form::text('name_english', $subtype->getTranslation('name', 'en'), ['class' => 'form-control', 'required' => true]) !!}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            {!! Form::label('Orden') !!}
+            {!! Form::number('order', $subtype->order, ['class' => 'form-control']) !!}
           </div>
         </div>
       </div>

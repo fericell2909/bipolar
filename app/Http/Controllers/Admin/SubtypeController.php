@@ -43,6 +43,7 @@ class SubtypeController extends Controller
         $this->validate($request, [
             'name'         => 'required|between:1,255',
             'name_english' => 'required|between:1,255',
+            'order'        => 'required|between:1,255',
         ]);
 
         $subtype = Subtype::findByHash($subtypeHashId);
@@ -50,6 +51,7 @@ class SubtypeController extends Controller
             'es' => $request->input('name'),
             'en' => $request->input('name_english'),
         ]);
+        $subtype->order = $request->input('order');
         $subtype->save();
 
         flash()->success('Tipo actualizado con éxito');
