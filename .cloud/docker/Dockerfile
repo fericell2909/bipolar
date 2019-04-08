@@ -1,33 +1,69 @@
-FROM php:7.2.16-fpm
-LABEL maintainer="helmer290192@hotmail.com"
+FROM php:7.2-fpm-alpine
 
-# Installing dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    mysql-client \
+# Install dev dependencies
+RUN apk add --no-cache --virtual .build-deps \
+    $PHPIZE_DEPS \
+    curl-dev \
+    imagemagick-dev \
+    libtool \
+    libxml2-dev \
+    postgresql-dev \
+    sqlite-dev
+
+# Install production dependencies
+RUN apk add --no-cache \
+    bash \
+    curl \
+    g++ \
+    gcc \
+    git \
+    imagemagick \
+    libc-dev \
     libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    locales \
+    make \
+    mysql-client \
+    nodejs \
+    nodejs-npm \
+    yarn \
+    openssh-client \
+    postgresql-libs \
+    rsync \
+    zlib-dev \
+    libzip-dev
+
+# Install PECL and PEAR extensions
+RUN pecl install \
+    imagick
+
+# Install and enable php extensions
+RUN docker-php-ext-enable \
+    imagick
+RUN docker-php-ext-configure zip --with-libzip
+RUN docker-php-ext-install \
+    curl \
+    iconv \
+    mbstring \
+    pdo \
+    pdo_mysql \
+    pdo_pgsql \
+    pdo_sqlite \
+    pcntl \
+    tokenizer \
+    xml \
+    gd \
     zip \
-    jpegoptim optipng pngquant gifsicle
+    bcmath
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+# Install composer
+ENV COMPOSER_HOME /composer
+ENV PATH ./vendor/bin:/composer/vendor/bin:$PATH
+ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer
 
-# Installing extensions
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath opcache
-RUN docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
-RUN docker-php-ext-install gd
-
-# Installing composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# Setting locales
-RUN echo en_US.UTF-8 UTF-8 > /etc/locale.gen && locale-gen
-
-# Allow container to write on host
-RUN usermod -u 1000 www-data
+# Cleanup dev dependencies
+RUN apk del -f .build-deps
 
 # Changing Workdir
 WORKDIR /application
+
+RUN yarn install
