@@ -64,6 +64,8 @@ RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/
 RUN apk del -f .build-deps
 
 # Changing Workdir
+ADD . /application
 WORKDIR /application
 
+RUN composer install
 RUN yarn install

@@ -3,7 +3,9 @@ version: '3'
 services:
   bipolar-server:
     container_name: "bipolar-server"
-    build: .docker/docker
+    build:
+      context: .
+      dockerfile: .docker/docker/Dockerfile
     image: bipolar
     depends_on:
       - mysql
