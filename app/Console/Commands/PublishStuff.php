@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Models\HomePost;
 use App\Models\Image;
 use App\Models\Product;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class PublishStuff extends Command
@@ -41,10 +40,8 @@ class PublishStuff extends Command
      */
     public function handle()
     {
-        $today = now()->startOfHour();
-
-        $this->publishBackgrounds($today->copy());
-        $this->publishProducts($today->copy());
+        $this->publishBackgrounds();
+        $this->publishProducts();
         $this->publishHomePosts();
     }
 
@@ -82,22 +79,27 @@ class PublishStuff extends Command
         }
     }
 
-    private function publishProducts(Carbon $today)
+    private function publishProducts()
     {
+        $today = now();
+
         Product::whereNotNull('publish_date')
             ->whereDate('publish_date', $today->toDateString())
-            ->whereTime('publish_date', '>=', $today->toTimeString())
-            ->whereTime('publish_date', '<=', $today->copy()->endOfHour()->toTimeString())
+            ->whereTime('publish_date', '<=', $today->toTimeString())
             ->whereNotIn('state_id', [config('constants.STATE_ACTIVE_ID')])
-            ->update(['state_id' => config('constants.STATE_ACTIVE_ID')]);
+            ->update([
+                'state_id'     => config('constants.STATE_ACTIVE_ID'),
+                'publish_date' => null,
+            ]);
     }
 
-    private function publishBackgrounds(Carbon $today)
+    private function publishBackgrounds()
     {
-        $imageToEnable = Image::whereDate('start_time', $today->toDateString())
-            ->whereTime('start_time', '>=', $today->toTimeString())
-            ->whereTime('start_time', '<=', $today->copy()->endOfHour()->toTimeString())
-            ->where('active', false)
+        $today = now();
+
+        $imageToEnable = Image::where('active', false)
+            ->whereDate('start_time', $today->toDateString())
+            ->whereTime('start_time', '<=', $today->toTimeString())
             ->first();
 
         if ($imageToEnable) {
