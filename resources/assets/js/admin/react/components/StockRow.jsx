@@ -1,70 +1,84 @@
 import React from 'react';
 import axios from 'axios';
-import Select from 'react-select'
+import Select from 'react-select';
+import AsyncSelect from 'react-select/lib/Async';
 
 class StockRow extends React.Component {
   state = {
     selectedBsaleQuantity: 0,
     mappedStocks: [],
-    selectedStock: null,
+    selectedStocks: [],
   };
 
-  handleSelectStock = selectedStock => {
-    this.setState({selectedStock});
+  handleSelectStock = async (selectedStocks = []) => {
+    await this.setState({ selectedStocks });
 
-    if (selectedStock) {
+    if (selectedStocks.length) {
+      let totalQuantity = 0;
+      const selectedStockIds = selectedStocks.map(thisStock => (thisStock.value))
       this.props.stocksBsale.filter(stock => {
-        if (stock.id === parseInt(selectedStock['value'])) {
-          return this.setState({selectedBsaleQuantity: stock.quantity});
+        if (selectedStockIds.includes(stock.id)) {
+          totalQuantity += stock.quantity;
         }
       });
+      return this.setState({ selectedBsaleQuantity: totalQuantity });
     }
   };
 
-  saveStockData = () => {
-    if (this.state.selectedStock === null) {
+  saveStockData = async () => {
+    if (this.state.selectedStocks.length === 0) {
       return alert('No ha seleccionado ningun stock');
     }
 
-    const params = {
-      bsaleStockId: this.state.selectedStock['value'],
-      quantity: this.state.selectedBsaleQuantity,
-    };
+    const bsaleStockIds = this.state.selectedStocks.map(stock => parseInt(stock['value']));
 
-    return axios.post(`/ajax-admin/stocks/${this.props.stock['id']}`, params)
-      .then(() => this.props.onUpdate());
+    await axios.post(`/ajax-admin/stocks/${this.props.stock['id']}`, {
+      bsaleStockIds,
+      quantity: this.state.selectedBsaleQuantity,
+    });
+
+    return this.props.onUpdate();
   };
+
+  // Search product by name
+  // Get variants (stock) by product
+  // Attach stock to product on Bipolar
 
   mapStock = async () => {
-    const stocks = this.props.stocksBsale.map(stock => ({value: stock.id, label: stock.text}));
-    return this.setState({mappedStocks: stocks});
+    const stocks = this.props.stocksBsale.map(stock => ({ value: stock.id, label: stock.text }));
+    return this.setState({ mappedStocks: stocks });
   };
 
-  componentDidMount() {
-    this.mapStock().then(() => {
-      // set the bsale stock id in state
-      if (this.props.stock['bsale_stock_id'] !== null) {
-        this.props.stocksBsale.filter(stock => {
-          if (stock.id === this.props.stock['bsale_stock_id']) {
-            return this.setState({selectedStock: {value: stock.id, label: stock.text}});
-          }
-        });
-      }
-    });
+  async componentDidMount() {
+    await this.mapStock();
+    const bsaleStockIdsFromStock = this.props.stock['bsale_stock_ids'];
+    if (bsaleStockIdsFromStock.length) {
+      const selectedStocks = [];
+      this.props.stocksBsale.filter(stock => {
+        if (bsaleStockIdsFromStock.includes(stock.id)) {
+          selectedStocks.push({ value: stock.id, label: stock.text });
+        }
+      });
+
+      return this.setState({ selectedStocks });
+    }
   }
 
   render() {
     const stock = this.props.stock;
-    const {selectedStock} = this.state;
+    const { selectedStocks } = this.state;
 
     return (
       <tr>
         <td className="align-middle text-center">{stock['size_name']}</td>
         <td className="align-middle text-center">{stock['quantity']}</td>
         <td className="align-middle">
-          <Select onChange={this.handleSelectStock}
-                  options={this.state.mappedStocks}
-                  value={selectedStock}/>
+          <Select
+            isMulti={true}
+            onChange={this.handleSelectStock}
+            options={this.state.mappedStocks}
+            value={selectedStocks}
+          />
         </td>
         <td className="align-middle">
           <button onClick={this.saveStockData} className="btn btn-dark btn-rounded btn-sm">

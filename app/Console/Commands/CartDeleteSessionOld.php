@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Cart;
 use Illuminate\Console\Command;
 
 class CartDeleteSessionOld extends Command

@@ -737,6 +737,7 @@ namespace App\Models{
  * @property int $product_id
  * @property int|null $size_id
  * @property int|null $bsale_stock_id
+ * @property array|null $bsale_stock_ids
  * @property string $incoming_date
  * @property int $quantity
  * @property string|null $active
@@ -750,6 +751,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereBsaleStockId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereBsaleStockIds($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereIncomingDate($value)

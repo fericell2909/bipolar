@@ -350,13 +350,13 @@ class ProductController extends Controller
     public function updateStock(Request $request, $stockId)
     {
         $this->validate($request, [
-            'bsaleStockId' => 'required',
-            'quantity'     => 'required',
+            'bsaleStockIds' => 'required|array',
+            'quantity'      => 'required',
         ]);
 
         /** @var Stock $productStock */
         $productStock = Stock::findOrFail($stockId);
-        $productStock->bsale_stock_id = $request->input('bsaleStockId');
+        $productStock->bsale_stock_ids = $request->input('bsaleStockIds');
         $productStock->quantity = $request->input('quantity');
         $productStock->save();
 

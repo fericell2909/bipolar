@@ -2,7 +2,6 @@ import React from 'react';
 import {existInArray} from "../../helpers";
 
 export default class ProductColors extends React.Component {
-
   state = {
     searchedColors: [],
     textSearchColors: "",
