@@ -40,10 +40,6 @@ class StockRow extends React.Component {
     return this.props.onUpdate();
   };
 
-  // Search product by name
-  // Get variants (stock) by product
-  // Attach stock to product on Bipolar
-
   mapStock = async () => {
     const stocks = this.props.stocksBsale.map(stock => ({ value: stock.id, label: stock.text }));
     return this.setState({ mappedStocks: stocks });
