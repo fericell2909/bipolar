@@ -116,7 +116,7 @@ return [
         'unsuscribe_newsletter' => 'If you want to unsuscribe from our list, you can do it',
         'thankyou_newsletter' => 'Thank your for suscribing to our newsletter',
         'we_wait' => "We'll be waiting for you!",
-        'address' => 'You can pick up your order from Calle Carolina Vargas 216 San Isidro, monday to saturday from 11:00 a.m to 8:30 p.m.',
+        'address' => 'You can pick up your order from Av. Santa Cruz 496 San Isidro, monday to saturday from 11:00 a.m to 8:30 p.m.',
         'title_order_sent' => 'Your order has been sent',
         'sent_order' => 'Your order <br> has been sent!',
         'confirm_order' => 'Confirm the state of your order here',
