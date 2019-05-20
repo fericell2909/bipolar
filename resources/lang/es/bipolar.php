@@ -116,7 +116,7 @@ return [
         'unsuscribe_newsletter' => 'Si deseas desuscribirte de nuestra lista puedes hacerlo desde',
         'thankyou_newsletter' => 'Gracias por suscribirte a nuestro newsletter',
         'we_wait' => 'Te esperamos!',
-        'address' => 'Puedes venir a recoger tu pedido en Av. Santa Cruz 496 San Isidro de lunes a sábado de 11:00 a.m. a 8:30 p.m.',
+        'address' => 'Puedes recoger tu pedido en Av. Santa Cruz 496 San Isidro de lunes a sábado de 11:00 a.m. a 8:30 p.m.',
         'title_order_sent' => 'Tu pedido ha sido enviado',
         'sent_order' => 'Tu pedido <br> ha sido enviado!',
         'confirm_order' => 'Puedes confirmar el estado de tu pedido aquí',
