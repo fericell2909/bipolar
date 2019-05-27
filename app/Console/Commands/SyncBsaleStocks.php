@@ -56,21 +56,21 @@ class SyncBsaleStocks extends Command
         $items = collect($content['items']);
 
         $bsaleItems = $items->filter(function ($bsaleStock) {
-            return array_has($bsaleStock, ['quantityAvailable', 'id']);
+            return array_has($bsaleStock, ['quantityAvailable', 'variant.id']);
         })
             ->map(function ($bsaleStock) {
-                // build arrays like this ["stockId" => 13, "quantity" => 1]
-                $stockId = intval(array_get($bsaleStock, 'id'));
+                // build arrays like this ["stockVariantId" => 13, "quantity" => 1]
+                $stockVariantId = intval(array_get($bsaleStock, 'variant.id'));
                 $quantity = intval(array_get($bsaleStock, 'quantityAvailable', 0));
                 $quantity = $quantity > 0 ? $quantity : 0;
-                return compact('stockId', 'quantity');
+                return compact('stockVariantId', 'quantity');
             });
 
         $stocksWithStock = Stock::whereNotNull('bsale_stock_ids')->get();
         $newStocksWithQuantity = $stocksWithStock->map(function ($stock) use ($bsaleItems) {
             /** @var Stock $stock */
             $bsaleItemsFromThisStock = $bsaleItems->sum(function ($bsaleItem) use ($stock) {
-                if (in_array($bsaleItem['stockId'], $stock->bsale_stock_ids)) {
+                if (in_array($bsaleItem['stockVariantId'], $stock->bsale_stock_ids)) {
                     return $bsaleItem['quantity'];
                 }
             });

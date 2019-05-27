@@ -25,10 +25,10 @@ class BsaleController extends Controller
             $officeName = data_get($item, "office.name", "--");
             $variant = data_get($item, "variant.description", 'Sin variante');
             $quantity = intval($item["quantityAvailable"]) >= 0 ? $item["quantityAvailable"] : 0;
-            $stockId = data_get($item, "id", "0");
+            $stockVariantId = data_get($item, "variant.id", "0");
 
             return [
-                'id'           => $stockId,
+                'id'           => $stockVariantId,
                 'product_name' => $productName,
                 'office_name'  => $officeName,
                 'sku'          => $sku,
