@@ -19,7 +19,7 @@
                   <th class="align-middle">Pagada</th>
                   <th class="align-middle">Fecha</th>
                   <th class="align-middle">Total</th>
-                  <th class="text-center align-middle">Showroom pickup</th>
+                  <th class="text-center align-middle">Store pickup</th>
                   <th class="align-middle">Acciones</th>
                 </tr>
               </thead>

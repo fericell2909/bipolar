@@ -8,7 +8,7 @@
 						<span>{{ __('bipolar.footer.location') }}</span>
 					</p>
 					<ul>
-						<li>SAN ISIDRO, LIMA - PERÚ</li>
+						<li>{{ mb_strtoupper('Av. Santa Cruz 496') }} <br> {{ mb_strtoupper('San Isidro, Lima - Perú') }}</li>
 						<li>(+51) 965.367.385</li>
 						<li>EMAIL: BIPOLAR@BIPOLAR.COM.PE</li>
 					</ul>
