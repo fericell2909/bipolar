@@ -43,7 +43,7 @@ class BsaleDocumentCreation
 
     private function removeBsaleStockIdEmpty(Buy $buy)
     {
-        $buy->loadMissing(['details.product.stock']);
+        $buy->loadMissing(['details.product.stocks']);
         $buy->details
             ->reject(function ($detail) {
                 /** @var BuyDetail $detail */
