@@ -39,7 +39,7 @@ class SyncBsaleStocks extends Command
      */
     public function handle()
     {
-        $stocks = Stock::whereNotNull('bsale_stock_id')->get();
+        $stocks = Stock::whereNotNull('bsale_stock_ids')->get();
 
         if ($stocks->count() === 0) {
             return;
@@ -59,19 +59,30 @@ class SyncBsaleStocks extends Command
             return array_has($bsaleStock, ['quantityAvailable', 'variant.id']);
         })
             ->map(function ($bsaleStock) {
-                // build arrays like this ["variantId" => 13, "quantity" => 0]
-                $variantId = intval(array_get($bsaleStock, 'variant.id'));
+                // build arrays like this ["stockVariantId" => 13, "quantity" => 1]
+                $stockVariantId = intval(array_get($bsaleStock, 'variant.id'));
                 $quantity = intval(array_get($bsaleStock, 'quantityAvailable', 0));
                 $quantity = $quantity > 0 ? $quantity : 0;
-                return compact('variantId', 'quantity');
+                return compact('stockVariantId', 'quantity');
             });
 
+        $stocksWithStock = Stock::whereNotNull('bsale_stock_ids')->get();
+        $newStocksWithQuantity = $stocksWithStock->map(function ($stock) use ($bsaleItems) {
+            /** @var Stock $stock */
+            $bsaleItemsFromThisStock = $bsaleItems->sum(function ($bsaleItem) use ($stock) {
+                if (in_array($bsaleItem['stockVariantId'], $stock->bsale_stock_ids)) {
+                    return $bsaleItem['quantity'];
+                }
+            });
 
-        $bsaleItems = $bsaleItems->groupBy('quantity');
+            return ['bipolarStockId' => $stock->id, 'quantitySum' => $bsaleItemsFromThisStock];
+        })->sortByDesc('quantitySum');
 
-        $bsaleItems->each(function ($bsaleItemsByQuantity, $quantityKey) {
-            $variantIds = array_pluck($bsaleItemsByQuantity, "variantId");
-            Stock::whereIn('bsale_stock_id', $variantIds)->update(['quantity' => $quantityKey]);
+        $newStocksWithQuantity = $newStocksWithQuantity->groupBy('quantitySum');
+
+        $newStocksWithQuantity->each(function ($bipolarStockWithQuantity, $quantityKey) {
+            $stockIds = array_pluck($bipolarStockWithQuantity, "bipolarStockId");
+            Stock::whereIn('id', $stockIds)->update(['quantity' => $quantityKey]);
         });
     }
 }

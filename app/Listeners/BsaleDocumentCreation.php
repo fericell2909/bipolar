@@ -34,41 +34,45 @@ class BsaleDocumentCreation
             $content = $response->json();
             $buy->bsale_document_url = array_get($content, 'urlPdf');
             $buy->save();
+            // Check product detail stocks and delete if is 0
+            $this->removeBsaleStockIdEmpty($buy);
         } else {
             \Log::warning($response->body());
         }
     }
 
-    private function deleteProductWithoutStock(Buy $buy)
+    private function removeBsaleStockIdEmpty(Buy $buy)
     {
-        $buy->loadMissing(['details.product.stock']);
+        $buy->loadMissing(['details.product.stocks']);
         $buy->details
             ->reject(function ($detail) {
                 /** @var BuyDetail $detail */
                 return blank($detail->stock_id);
             })
-            ->each($this->compareProductsStocksWithEmptyStock());
+            ->reject(function ($detail) {
+                /** @var BuyDetail $detail */
+                return blank($detail->stock->bsale_stock_ids);
+            })
+            ->each($this->checkStock());
     }
 
-    private function compareProductsStocksWithEmptyStock()
+    private function checkStock()
     {
         return function ($detail) {
             /** @var BuyDetail $detail */
-            if (blank($detail->product)) {
-                return false;
-            }
+            $stock = $detail->stock;
+            $bsaleStockIds = collect($stock->bsale_stock_ids);
 
-            $stocksPerProduct = $detail->product->stocks->count();
-            $emptyStocksPerProduct = $detail->product->stocks->filter(function ($stock) {
-                /** @var Stock $stock */
-                return $stock->quantity = 0;
-            })->count();
+            $checkedBsaleStocks = $bsaleStockIds->filter(function ($bsaleStockId) {
+                $response = BSale::stocksGet($bsaleStockId);
+                $stockAPIResult = $response->json();
+                $quantity = data_get($stockAPIResult, 'items.0.quantity');
 
-            if ($stocksPerProduct === $emptyStocksPerProduct) {
-                $detail->product->delete();
-            }
+                return intval($quantity) > 0;
+            })->values()->toArray();
 
-            return true;
+            $stock->bsale_stock_ids = $checkedBsaleStocks;
+            $stock->save();
         };
     }
 }

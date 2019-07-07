@@ -67,9 +67,9 @@
     </div>
     <div class="card-body">
       <ul>
-        <li><span class="text-success">NUEVO:</span> Correo recoger en tienda ahora se envía a laura@bipolar.com.pe</li>
+        <li><span class="text-success">NUEVO:</span> Stock con múltiples SKU's</li>
         <li><span class="text-success">NUEVO:</span> Dirección tienda actualizada</li>
-        <li><span class="text-success">NUEVO:</span> Se cambió Showroom pickup a store pickup</li>
+        <li><span class="text-warning">ARREGLADO:</span> Se cambió correo de copia oculta a copia visible, cuando se cambia el estado de compra</li>
       </ul>
     </div>
   </div>
