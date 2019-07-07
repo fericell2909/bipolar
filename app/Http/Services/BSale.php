@@ -72,16 +72,47 @@ class BSale
             return $detail->stock->bsale_stock_ids;
         });
 
-        $buyDetails = $onlyDetailsWithBsaleStock->map(function ($detail) {
+        $bsaleDetails = [];
+        $onlyDetailsWithBsaleStock->each(function ($detail) use (&$bsaleDetails) {
             /** @var BuyDetail $detail */
-            $randomBsaleStockId = array_random($detail->stock->bsale_stock_ids);
+            $quantityToSubstract = $detail->quantity;
 
-            return [
-                'variantId' => $randomBsaleStockId,
-                'quantity'  => $detail->quantity,
-                'comment'   => "{$detail->quantity} x {$detail->stock->product->price_pen_discount}",
-            ];
-        })->toArray();
+            collect($detail->stock->bsale_stock_ids)->map(function ($bsaleStockVariantId) {
+                try {
+                    $bsaleVariantResponse = self::stocksGet($bsaleStockVariantId);
+
+                    $response = $bsaleVariantResponse->json();
+
+                    $variantId = data_get($response, 'items.0.variant.id');
+                    $quantity = data_get($response, 'items.0.quantityAvailable');
+
+                    return compact('variantId', 'quantity');
+                } catch (\Throwable $th) {
+                    \Log::warning("No se puede obtener stock {$bsaleStockVariantId} para reducirlo");
+                }
+            })
+                ->sortBy('quantity')
+                ->each(function ($variantIdAndQuantityObject) use (&$bsaleDetails, &$quantityToSubstract, $detail) {
+                    // Current format ['variantId' => XXXX, 'quantity' => XX]
+                    if ($quantityToSubstract >= $variantIdAndQuantityObject['quantity']) {
+                        $quantityToSubstract = $quantityToSubstract - $variantIdAndQuantityObject['quantity'];
+
+                        return array_push($bsaleDetails, [
+                            'variantId' => $variantIdAndQuantityObject['variantId'],
+                            'quantity'  => $variantIdAndQuantityObject['quantity'],
+                            'comment'   => "{$variantIdAndQuantityObject['quantity']} x {$detail->total_currency}",
+                        ]);
+                    } else {
+                        array_push($bsaleDetails, [
+                            'variantId' => $variantIdAndQuantityObject['variantId'],
+                            'quantity'  => $quantityToSubstract,
+                            'comment'   => "{$quantityToSubstract} x {$detail->total_currency}",
+                        ]);
+
+                        return $quantityToSubstract = 0;
+                    }
+                });
+        });
 
         $dataDocument = [
             'documentTypeId' => strval(env('BSALE_SELL_DOCUMENT_TYPE', 23)),
@@ -89,7 +120,7 @@ class BSale
             'emissionDate'   => now()->timestamp,
             'expirationDate' => now()->addMonth()->timestamp,
             'declareSii'     => intval(false),
-            'details'        => $buyDetails,
+            'details'        => $bsaleDetails,
             'client'         => [
                 'firstName'    => $buy->user->name,
                 'city'         => $buy->shipping_address->country_state->name,
