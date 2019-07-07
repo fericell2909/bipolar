@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Stock extends Model
 {
     use Hashable;
+    protected $casts = [
+        'bsale_stock_ids' => 'array',
+    ];
 
     protected $table = 'stocks';
 

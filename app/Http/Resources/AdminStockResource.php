@@ -10,7 +10,7 @@ class AdminStockResource extends Resource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
@@ -19,10 +19,11 @@ class AdminStockResource extends Resource
         $stock = $this;
 
         return [
-            'id'             => $stock->id,
-            'bsale_stock_id' => $stock->bsale_stock_id,
-            'size_name'      => $stock->size->name ?? '--',
-            'quantity'       => $stock->quantity,
+            'id'              => $stock->id,
+            'bsale_stock_id'  => $stock->bsale_stock_id,
+            'bsale_stock_ids' => $stock->bsale_stock_ids ?? [],
+            'size_name'       => $stock->size->name ?? '--',
+            'quantity'        => $stock->quantity,
         ];
     }
 }

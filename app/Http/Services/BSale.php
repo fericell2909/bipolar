@@ -10,16 +10,27 @@ use Zttp\ZttpResponse;
 class BSale
 {
     /**
+     * @param null $variantId
      * @return ZttpResponse
      */
-    public static function stocksGet(): ZttpResponse
+    public static function stocksGet($variantId = null): ZttpResponse
     {
+        $params = [
+            'expand'   => 'office,variant.product',
+            'limit'    => 100000000,
+            'officeid' => env('BSALE_MAIN_OFFICE', 1),
+        ];
+
+        if (filled($variantId)) {
+            $params = [
+                'limit'     => 1,
+                'officeid'  => env('BSALE_MAIN_OFFICE', 1),
+                'variantid' => $variantId,
+            ];
+        }
+
         $response = Zttp::withHeaders(['access_token' => env('BSALE_TOKEN')])
-            ->get('https://api.bsale.cl/v1/stocks.json', [
-                'expand'   => 'office,variant.product',
-                'limit'    => 100000000,
-                'officeid' => env('BSALE_MAIN_OFFICE', 1),
-            ]);
+            ->get('https://api.bsale.cl/v1/stocks.json', $params);
 
         return $response;
     }
@@ -54,21 +65,54 @@ class BSale
                 return false;
             }
 
-            if (is_null($detail->stock->bsale_stock_id)) {
+            if (is_null($detail->stock->bsale_stock_ids)) {
                 return false;
             }
 
-            return $detail->stock->bsale_stock_id;
+            return $detail->stock->bsale_stock_ids;
         });
 
-        $buyDetails = $onlyDetailsWithBsaleStock->map(function ($detail) {
+        $bsaleDetails = [];
+        $onlyDetailsWithBsaleStock->each(function ($detail) use (&$bsaleDetails) {
             /** @var BuyDetail $detail */
-            return [
-                'variantId' => $detail->stock->bsale_stock_id,
-                'quantity'  => $detail->quantity,
-                'comment'   => "{$detail->quantity} x {$detail->stock->product->price_pen_discount}",
-            ];
-        })->toArray();
+            $quantityToSubstract = $detail->quantity;
+
+            collect($detail->stock->bsale_stock_ids)->map(function ($bsaleStockVariantId) {
+                try {
+                    $bsaleVariantResponse = self::stocksGet($bsaleStockVariantId);
+
+                    $response = $bsaleVariantResponse->json();
+
+                    $variantId = data_get($response, 'items.0.variant.id');
+                    $quantity = data_get($response, 'items.0.quantityAvailable');
+
+                    return compact('variantId', 'quantity');
+                } catch (\Throwable $th) {
+                    \Log::warning("No se puede obtener stock {$bsaleStockVariantId} para reducirlo");
+                }
+            })
+                ->sortBy('quantity')
+                ->each(function ($variantIdAndQuantityObject) use (&$bsaleDetails, &$quantityToSubstract, $detail) {
+                    // Current format ['variantId' => XXXX, 'quantity' => XX]
+                    if ($quantityToSubstract >= $variantIdAndQuantityObject['quantity']) {
+                        $quantityToSubstract = $quantityToSubstract - $variantIdAndQuantityObject['quantity'];
+
+                        return array_push($bsaleDetails, [
+                            'variantId' => $variantIdAndQuantityObject['variantId'],
+                            'quantity'  => $variantIdAndQuantityObject['quantity'],
+                            'comment'   => "{$variantIdAndQuantityObject['quantity']} x {$detail->total_currency}",
+                        ]);
+                    } else {
+                        array_push($bsaleDetails, [
+                            'variantId' => $variantIdAndQuantityObject['variantId'],
+                            'quantity'  => $quantityToSubstract,
+                            'comment'   => "{$quantityToSubstract} x {$detail->total_currency}",
+                        ]);
+
+                        return $quantityToSubstract = 0;
+                    }
+                });
+        });
 
         $dataDocument = [
             'documentTypeId' => strval(env('BSALE_SELL_DOCUMENT_TYPE', 23)),
@@ -76,7 +120,7 @@ class BSale
             'emissionDate'   => now()->timestamp,
             'expirationDate' => now()->addMonth()->timestamp,
             'declareSii'     => intval(false),
-            'details'        => $buyDetails,
+            'details'        => $bsaleDetails,
             'client'         => [
                 'firstName'    => $buy->user->name,
                 'city'         => $buy->shipping_address->country_state->name,

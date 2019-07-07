@@ -12,6 +12,9 @@
     <div class="col-md-12 white-box">
       <div class="card">
         <div class="card-body">
+          <div class="alert alert-info">
+            Info: Para conectar con Bsale debe tener registrado al menos una variación por producto, comúnmente es una talla
+          </div>
           <div id="bipolar-product-stocks"></div>
         </div>
       </div>

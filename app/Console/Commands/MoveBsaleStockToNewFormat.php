@@ -2,23 +2,24 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Stock;
 use Illuminate\Console\Command;
 
-class CartDeleteSessionOld extends Command
+class MoveBsaleStockToNewFormat extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'tasks:cart_delete';
+    protected $signature = 'tasks:bsale_new_format';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Remove session carts';
+    protected $description = 'DELETE THIS AFTER EXECUTE. Move bsale to new format';
 
     /**
      * Create a new command instance.
@@ -37,10 +38,14 @@ class CartDeleteSessionOld extends Command
      */
     public function handle()
     {
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        \DB::table('cart_details')->truncate();
-        \DB::table('carts')->truncate();
-        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        $stocks = Stock::whereNotNull('bsale_stock_id')->get();
 
+        $stocks->each(function ($stock) {
+            /** @var Stock $stock */
+            $stock->bsale_stock_ids = [$stock->bsale_stock_id];
+            $stock->save();
+        });
+
+        $this->info('Done');
     }
 }
