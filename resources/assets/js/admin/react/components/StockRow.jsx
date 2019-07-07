@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import AsyncSelect from 'react-select/lib/Async';
 
 class StockRow extends React.Component {
   state = {
@@ -15,7 +14,7 @@ class StockRow extends React.Component {
 
     if (selectedStocks.length) {
       let totalQuantity = 0;
-      const selectedStockIds = selectedStocks.map(thisStock => (thisStock.value))
+      const selectedStockIds = selectedStocks.map(thisStock => thisStock.value);
       this.props.stocksBsale.filter(stock => {
         if (selectedStockIds.includes(stock.id)) {
           totalQuantity += stock.quantity;
@@ -29,13 +28,22 @@ class StockRow extends React.Component {
     if (this.state.selectedStocks.length === 0) {
       return alert('No ha seleccionado ningun stock');
     }
+    let totalQuantity = 0;
 
     const bsaleStockIds = this.state.selectedStocks.map(stock => parseInt(stock['value']));
 
+    this.props.stocksBsale.filter(stock => {
+      if (bsaleStockIds.includes(stock.id)) {
+        totalQuantity += stock.quantity;
+      }
+    });
+
     await axios.post(`/ajax-admin/stocks/${this.props.stock['id']}`, {
       bsaleStockIds,
-      quantity: this.state.selectedBsaleQuantity,
+      quantity: totalQuantity,
     });
+
+    this.setState({ selectedBsaleQuantity: 0 });
 
     return this.props.onUpdate();
   };
@@ -67,7 +75,10 @@ class StockRow extends React.Component {
     return (
       <tr>
         <td className="align-middle text-center">{stock['size_name']}</td>
-        <td className="align-middle text-center">{stock['quantity']}</td>
+        <td className="align-middle text-center">
+          {stock['quantity']}{' '}
+          {this.state.selectedBsaleQuantity > 0 ? `-> ${this.state.selectedBsaleQuantity}` : ''}
+        </td>
         <td className="align-middle">
           <Select
             isMulti={true}
