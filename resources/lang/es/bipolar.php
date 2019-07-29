@@ -110,7 +110,7 @@ return [
         'shipping_method' => 'Método de envío',
         'shipping_to' => 'Enviar a',
         'billing_to' => 'Facturar a',
-        'shipping_method_showroom' => 'Recoger en showroom',
+        'shipping_method_showroom' => 'Recoger en tienda - Gratis',
         'shipping_method_local' => 'Local',
         'here' => 'aquí',
         'unsuscribe_newsletter' => 'Si deseas desuscribirte de nuestra lista puedes hacerlo desde',
