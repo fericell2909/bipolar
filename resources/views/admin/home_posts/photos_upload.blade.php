@@ -5,7 +5,7 @@
   @include('admin.partials.post_home_steps', ['active' => 2])
   <div class="card">
     <div class="card-header bg-dark">
-      <h4 class="m-b-0 text-white">Medidas (570x460)</h4>
+      <h4 class="m-b-0 text-white">Medidas (1000x664). Recomendado usar <a href="https://tinypng.com" target="_blank">TinyPNG</a></h4>
     </div>
     <div class="card-body">
       <form action="{{ route('homepost.photo.upload', $homePost->hash_id) }}" class="dropzone" id="my-awesome-dropzone">

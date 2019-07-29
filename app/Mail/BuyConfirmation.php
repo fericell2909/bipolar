@@ -38,6 +38,6 @@ class BuyConfirmation extends Mailable
         return $this->cc('shop@bipolar.com.pe')
             ->subject($subjectConfirmation)
             ->view('emails.web_buy_confirmation')
-            ->with('shipping_method', $shippingMethod);
+            ->with('shipping_method',  $shippingMethod);
     }
 }

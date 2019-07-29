@@ -110,7 +110,7 @@ return [
         'shipping_method' => 'Shipping method',
         'shipping_to' => 'Shipping to',
         'billing_to' => 'Billing to',
-        'shipping_method_showroom' => 'Pick at showroom',
+        'shipping_method_showroom' => 'Store pick up - Free',
         'shipping_method_local' => 'Local',
         'here' => 'here',
         'unsuscribe_newsletter' => 'If you want to unsuscribe from our list, you can do it',
