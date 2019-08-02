@@ -4,9 +4,9 @@ namespace App\Listeners;
 
 use App\Events\SaleSuccessful;
 use App\Mail\BuyConfirmation;
-use App\Models\Buy;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SaleEmail
+class SaleEmail implements ShouldQueue
 {
     /**
      * Create the event listener.
