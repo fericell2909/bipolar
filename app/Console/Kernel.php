@@ -44,6 +44,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('activitylog:clean')->daily();
         $schedule->command(SendNoBuyedCarts::class)->hourly();
         $schedule->command(SendBuyReminderEmail::class)->dailyAt('10:30:00');
+        $schedule->command('horizon:snapshot')->everyFiveMinutes();
     }
 
     /**

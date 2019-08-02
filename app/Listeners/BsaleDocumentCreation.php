@@ -6,9 +6,9 @@ use App\Events\SaleSuccessful;
 use App\Http\Services\BSale;
 use App\Models\Buy;
 use App\Models\BuyDetail;
-use App\Models\Stock;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class BsaleDocumentCreation
+class BsaleDocumentCreation implements ShouldQueue
 {
     /**
      * Create the event listener.
