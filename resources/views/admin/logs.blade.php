@@ -22,7 +22,7 @@
                 <td class="align-middle">{{ $log->id }}</td>
                 <td class="align-middle">{{ ucfirst($log->description) }}</td>
                 <td class="align-middle">@dump(class_basename($log->subject))</td>
-                <td class="align-middle"><pre>{{ $log->causer->email }}</pre></td>
+                <td class="align-middle"><pre>{{ optional($log->causer)->email }}</pre></td>
                 <td class="align-middle"><code>@dump($log->changes()->toArray())</code></td>
                 <td class="align-middle">{{ $log->created_at->toDayDateTimeString() }}</td>
               </tr>
