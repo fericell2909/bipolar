@@ -37,8 +37,8 @@ class Kernel extends ConsoleKernel
         $schedule->command(ExecuteDiscountTasks::class)->dailyAt($this->thirtySecondsAfterMidnight);
         $schedule->command(RevertDiscountTasks::class)->dailyAt($this->thirtySecondsAfterMidnight);
         $schedule->command(CopyFacebookFansToSettings::class)->dailyAt($this->thirtySecondsAfterMidnight);
-        $schedule->command(PublishStuff::class)->everyMinute();
-        $schedule->command(SyncBsaleStocks::class)->everyMinute();
+        $schedule->command(PublishStuff::class)->everyMinute()->withoutOverlapping();
+        $schedule->command(SyncBsaleStocks::class)->everyMinute()->withoutOverlapping();
         $schedule->command('sitemap:generate')->weekly();
         $schedule->command(CheckProductStock::class)->dailyAt('03:00:00');
         $schedule->command('activitylog:clean')->daily();
