@@ -16,6 +16,11 @@
     @stack('css_plus')
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLBLW98" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <div class="bipolar-wrapper">
       @include('web.partials.main-bar', ['background' => true])
       @include('web.partials.mobile-bar')
