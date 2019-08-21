@@ -60,7 +60,7 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::get('info/{page}', 'HomeController@page')->name('page');
     });
 
-Route::put('bsale/sync', 'Web\BsaleController@sync');
+Route::post('bsale/sync', 'Web\BsaleController@sync');
 Route::post('ajax/oauth/facebook', 'Web\Auth\LoginController@facebookAuth');
 Route::post('ajax/cart/product', 'Web\Ajax\CartController@add');
 Route::post('ajax/wishlist/add/{productHashId}', 'Web\Ajax\WishlistController@add');
