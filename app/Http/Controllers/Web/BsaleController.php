@@ -9,6 +9,6 @@ class BsaleController extends Controller
 {
     public function sync(Request $request)
     {
-        \Log::info('BSALE: Stock updated', json_encode($request->all()));
+        \Log::info('BSALE: Stock updated', $request->all());
     }
 }
