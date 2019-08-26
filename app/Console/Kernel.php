@@ -38,13 +38,14 @@ class Kernel extends ConsoleKernel
         $schedule->command(RevertDiscountTasks::class)->dailyAt($this->thirtySecondsAfterMidnight);
         $schedule->command(CopyFacebookFansToSettings::class)->dailyAt($this->thirtySecondsAfterMidnight);
         $schedule->command(PublishStuff::class)->everyMinute()->withoutOverlapping();
-        $schedule->command(SyncBsaleStocks::class)->everyMinute()->withoutOverlapping();
         $schedule->command('sitemap:generate')->weekly();
         $schedule->command(CheckProductStock::class)->dailyAt('03:00:00');
         $schedule->command('activitylog:clean')->daily();
         $schedule->command(SendNoBuyedCarts::class)->hourly();
         $schedule->command(SendBuyReminderEmail::class)->dailyAt('10:30:00');
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
+        // TODO: If this command is not used anymore delete on December 2019
+        // $schedule->command(SyncBsaleStocks::class)->everyMinute()->withoutOverlapping();
     }
 
     /**

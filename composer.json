@@ -27,6 +27,7 @@
         "orangehill/iseed": "^2.5",
         "predis/predis": "^1.1",
         "rap2hpoutre/laravel-log-viewer": "^1.0",
+        "shipping-docker/vessel": "^4.0",
         "spatie/laravel-activitylog": "^3.2",
         "spatie/laravel-analytics": "^3.6",
         "spatie/laravel-model-status": "^1.0",
@@ -91,6 +92,11 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "platform": {
+            "ext-pcntl": "7.2",
+            "ext-posix": "7.2",
+            "ext-exif": "7.2"
+        }
     }
 }

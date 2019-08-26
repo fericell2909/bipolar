@@ -1,35 +1,72 @@
-version: '3'
-
+version: '2'
 services:
-  bipolar-server:
-    container_name: "bipolar-server"
+  app:
     build:
-      context: .
-      dockerfile: .docker/docker/Dockerfile
-    image: bipolar
-    depends_on:
-      - mysql
+      context: ./docker/app
+      dockerfile: Dockerfile
+    image: vessel/app
+    ports:
+     - "${APP_PORT}:80"
+    environment:
+      CONTAINER_ENV: "${APP_ENV}"
+      XDEBUG_HOST: "${XDEBUG_HOST}"
+      WWWUSER: "${WWWUSER}"
     volumes:
-      - ./:/application:cached
-
+     - .:/var/www/html
+    networks:
+     - vessel
+  node:
+    build:
+      context: ./docker/node
+      dockerfile: Dockerfile
+      args:
+        uid: "${WWWUSER}"
+    image: vessel/node
+    user: node
+    volumes:
+     - .:/var/www/html
+    networks:
+     - vessel
   mysql:
-    container_name: "bipolar-mysql"
     image: mysql:5.7
     ports:
-      - "3306:3306"
+     - "${MYSQL_PORT}:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=secret
-      - MYSQL_DATABASE=bipolar_db
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_DATABASE: "${DB_DATABASE}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
     volumes:
-      - ./storage/tmp/db:/var/lib/mysql:cached
-
-  nginx:
-    container_name: "bipolar-nginx"
-    image: nginx
-    ports:
-      - "8000:8000"
-    volumes:
-      - .docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:cached
-      - ./:/application:cached
+     - vesselmysql:/var/lib/mysql
+     # - ./docker/mysql/conf.d:/etc/mysql/conf.d
+     # - ./docker/mysql/logs:/var/log/mysql
+    networks:
+     - vessel
+  phpmyadmin:
     depends_on:
-      - bipolar-server
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8080:80'
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+    networks:
+      - vessel
+  redis:
+    image: redis:alpine
+    volumes:
+     - vesselredis:/data
+    networks:
+     - vessel
+networks:
+  vessel:
+    driver: "bridge"
+volumes:
+  vesselmysql:
+    driver: "local"
+  vesselredis:
+    driver: "local"
