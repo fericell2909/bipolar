@@ -42,6 +42,20 @@ services:
      # - ./docker/mysql/logs:/var/log/mysql
     networks:
      - vessel
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8080:80'
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+    networks:
+      - vessel
   redis:
     image: redis:alpine
     volumes:
