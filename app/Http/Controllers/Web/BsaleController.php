@@ -11,7 +11,9 @@ class BsaleController extends Controller
 {
     public function sync(Request $request)
     {
+
         if ($request->input('topic') !== 'stock' || !$request->filled('resourceId')) {
+            \Log::info('BSALE: Event logged', $request->all());
             // We don't need another info
             return;
         }
