@@ -35,6 +35,16 @@ class BSale
         return $response;
     }
 
+    public static function documentGet(int $documentId) : ZttpResponse
+    {
+        $params = ['expand' => '[details]'];
+
+        $response = Zttp::withHeaders(['access_token' => env('BSALE_TOKEN')])
+            ->get("https://api.bsale.cl/v1/documents/{$documentId}.json", $params);
+
+        return $response;
+    }
+
     /**
      * @return ZttpResponse
      */
