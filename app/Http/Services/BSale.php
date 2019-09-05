@@ -30,7 +30,7 @@ class BSale
         }
 
         $response = Zttp::withHeaders(['access_token' => env('BSALE_TOKEN')])
-            ->get('https://api.bsale.cl/v1/stocks.json', $params);
+            ->get('https://api.bsale.com.pe/v1/stocks.json', $params);
 
         return $response;
     }
@@ -40,7 +40,7 @@ class BSale
         $params = ['expand' => '[details]'];
 
         $response = Zttp::withHeaders(['access_token' => env('BSALE_TOKEN')])
-            ->get("https://api.bsale.cl/v1/documents/{$documentId}.json", $params);
+            ->get("https://api.bsale.com.pe/v1/documents/{$documentId}.json", $params);
 
         return $response;
     }
@@ -51,7 +51,7 @@ class BSale
     public static function stocksForSync(): ZttpResponse
     {
         $response = Zttp::withHeaders(['access_token' => env('BSALE_TOKEN')])
-            ->get('https://api.bsale.cl/v1/stocks.json', [
+            ->get('https://api.bsale.com.pe/v1/stocks.json', [
                 'limit'    => 100000000,
                 'officeid' => env('BSALE_MAIN_OFFICE', 1),
             ]);
@@ -143,7 +143,7 @@ class BSale
         \Log::info("Documento creado", $dataDocument);
 
         $response = Zttp::asJson()->withHeaders(['access_token' => env('BSALE_TOKEN')])
-            ->post('https://api.bsale.cl/v1/documents.json', $dataDocument);
+            ->post('https://api.bsale.com.pe/v1/documents.json', $dataDocument);
 
         return $response;
     }
