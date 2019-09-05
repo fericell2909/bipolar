@@ -61,15 +61,20 @@
       ])
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-4">
+      <a href="{{ url('/admin/settings/types/1zyP4KGYeL/subtypes') }}" class="btn btn-dark btn-rounded btn-block">
+        Ordenar colecciones
+      </a>
+    </div>
+  </div>
   <div class="card border-dark">
     <div class="card-header bg-dark">
-      <h4 class="m-b-0 text-white">Bipolar: Cambios 17 Junio 2019</h4>
+      <h4 class="m-b-0 text-white">Bipolar: Cambios Setiembre 2019</h4>
     </div>
     <div class="card-body">
       <ul>
-        <li><span class="text-success">NUEVO:</span> Stock con múltiples SKU's</li>
-        <li><span class="text-success">NUEVO:</span> Dirección tienda actualizada</li>
-        <li><span class="text-warning">ARREGLADO:</span> Se cambió correo de copia oculta a copia visible, cuando se cambia el estado de compra</li>
+        <li><span class="text-success">NUEVO:</span> Botón para ordenar colecciones</li>
       </ul>
     </div>
   </div>
