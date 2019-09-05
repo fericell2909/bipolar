@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\Cart;
 
-class CartsUnbuyed extends Mailable
+class CartsUnbuyed extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
