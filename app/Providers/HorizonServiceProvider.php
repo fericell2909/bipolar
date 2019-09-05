@@ -37,7 +37,7 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
     {
         Gate::define('viewHorizon', function ($user = null) {
             if (\Auth::guard('admin')->check()) {
-                $auth = \Auth::user();
+                $auth = \Auth::guard('admin')->user();
                 
                 return in_array($auth->email, [
                     'info@helmerdavila.com',
