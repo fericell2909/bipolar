@@ -12,7 +12,8 @@ class BsaleController extends Controller
         $response = BSale::stocksGet();
 
         if (!$response->isSuccess()) {
-            return response()->json(['stocks' => []]);
+            \Log::info('Admin: Error getting stock from Bsale', $response->json());
+            return response()->json([]);
         }
 
         $content = $response->json();
