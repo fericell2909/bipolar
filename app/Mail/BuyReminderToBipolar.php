@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\Buy;
 
-class BuyReminderToBipolar extends Mailable
+class BuyReminderToBipolar extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 

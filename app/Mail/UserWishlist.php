@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Collection;
 
-class UserWishlist extends Mailable
+class UserWishlist extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
