@@ -159,7 +159,7 @@ return [
         'opening' => 'Horario',
         'location' => 'Ubicación',
         'schedule' => 'Lunes a Sábado de 11:00am-8:30pm',
-        'about' => 'Nuestro Showroom se encuentra en San Isidro, Lima – Perú. <br>
+        'about' => 'Nuestra trienda se encuentra en San Isidro, Lima – Perú. <br>
         Buscamos darle a nuestras clientas una atención personalizada por lo que atendemos a puerta cerrada. <br>
         Para más información, escríbenos a shop@bipolar.com.pe o al (+51) 965.367.385.',
     ],
@@ -193,7 +193,7 @@ return [
         'your_order' => 'Tu pedido',
         'product' => 'Producto',
         'shipping' => 'Envío',
-        'pick_showroom' => 'Recoger en el showroom',
+        'pick_showroom' => 'Recoger en tienda (gratis)',
         'size' => 'Talla',
         'payment' => 'Forma de pago',
         'credit_card' => 'Tarjeta de crédito o de débito',
@@ -213,7 +213,7 @@ return [
         'shipping_address' => 'Dirección de envío',
         'your_order' => 'Tu pedido',
         'shipping' => 'Envío',
-        'showroom_shipping' => 'Recoger en el showroom',
+        'showroom_shipping' => 'Recoger en tienda (gratis)',
         'terms_check' => 'Necesita aceptar los términos y condiciones para continuar',
         'terms_accept' => 'He leído y acepto los <a href="{{ route(\'landings.exchange\') }}" target="_blank">términos y condiciones</a>',
         'shipping_check' => 'Necesita seleccionar una opción de envío',

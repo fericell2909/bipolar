@@ -159,7 +159,7 @@ return [
         'opening' => 'Opening hours',
         'location' => 'Location',
         'schedule' => 'Monday-Saturday 11:00am-8:30pm',
-        'about' => 'Our Showroom is located in San Isidro, Lima – Peru.
+        'about' => 'Our store is located in San Isidro, Lima – Peru.
         We seek to give our clients personalized attention so we work behind closed doors.
         For more information, please write us at shop@bipolar.com.pe or call us at (+51) 965.367.385.',
     ],
@@ -193,7 +193,7 @@ return [
         'your_order' => 'Your order',
         'product' => 'Product',
         'shipping' => 'Shipping',
-        'pick_showroom' => 'Pick at the showroom',
+        'pick_showroom' => 'Store Pick up - Free',
         'size' => 'Size',
         'payment' => 'Payment method',
         'credit_card' => 'Credit or debit card',
@@ -213,7 +213,7 @@ return [
         'shipping_address' => 'Shipping address',
         'your_order' => 'Your order',
         'shipping' => 'Shipping',
-        'showroom_shipping' => 'Pick at showroom',
+        'showroom_shipping' => 'Store Pick up - Free',
         'terms_check' => 'You need to check the terms to continue',
         'terms_accept' => 'I have read the <a href="{{ route(\'landings.exchange\') }}" target="_blank">terms and conditions</a>',
         'shipping_check' => 'You need to choose a shipping option',
