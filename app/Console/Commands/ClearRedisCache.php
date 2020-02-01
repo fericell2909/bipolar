@@ -18,7 +18,7 @@ class ClearRedisCache extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = "Clear redis cache if it's filled";
 
     /**
      * Create a new command instance.

@@ -6,17 +6,29 @@ use Closure;
 
 class LocalizationDetection
 {
+    private $currentSessionKey = 'BIPOLAR_ORIGIN_DETECTED_V4';
+
     /**
      * Set the currency and the language for the first time
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        if ($request->session()->has('BIPOLAR_ORIGIN_DETECTED_V3')) {
+        if (\Crawler::isCrawler()) {
+            \LaravelLocalization::setLocale('en');
+            session(['BIPOLAR_CURRENCY' => 'USD']);
             return $next($request);
+        }
+
+        if ($request->session()->has($this->currentSessionKey)) {
+            if (\Auth::check() && optional(\Auth::user())->language !== null) {
+                return $next($request);
+            } elseif (\Auth::guest()) {
+                return $next($request);
+            }
         }
 
         $latamAndSpain = ['AR', 'BO', 'BR', 'CO', 'CL', 'EC', 'GY', 'SR', 'UY', 'VE', 'ES'];
@@ -37,7 +49,7 @@ class LocalizationDetection
             \Auth::check() ? \Auth::user()->fill(['language' => 'en'])->save() : null;
         }
 
-        session(['BIPOLAR_ORIGIN_DETECTED_V3' => 1]);
+        session([$this->currentSessionKey => 1]);
 
         return $next($request);
     }

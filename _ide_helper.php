@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.7.28 on 2019-08-25 22:41:47.
+ * Generated for Laravel 5.7.28 on 2020-01-31 21:14:35.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -18306,156 +18306,86 @@ namespace Torann\GeoIP\Facades {
  
 }
 
-namespace Spatie\Analytics { 
+namespace Jaybizzle\LaravelCrawlerDetect\Facades { 
 
     /**
      * 
      *
-     * @see \Spatie\Analytics\Analytics
      */ 
-    class AnalyticsFacade {
+    class LaravelCrawlerDetect {
         
         /**
-         * 
+         * Compile the regex patterns into one regex string.
          *
-         * @param string $viewId
-         * @return \Spatie\Analytics\Analytics 
+         * @param array
+         * @return string 
          * @static 
          */ 
-        public static function setViewId($viewId)
+        public static function compileRegex($patterns)
         {
-                        /** @var \Spatie\Analytics\Analytics $instance */
-                        return $instance->setViewId($viewId);
+                        /** @var \Jaybizzle\CrawlerDetect\CrawlerDetect $instance */
+                        return $instance->compileRegex($patterns);
         }
         
         /**
-         * 
+         * Set HTTP headers.
          *
+         * @param array|null $httpHeaders
          * @static 
          */ 
-        public static function fetchVisitorsAndPageViews($period)
+        public static function setHttpHeaders($httpHeaders)
         {
-                        /** @var \Spatie\Analytics\Analytics $instance */
-                        return $instance->fetchVisitorsAndPageViews($period);
+                        /** @var \Jaybizzle\CrawlerDetect\CrawlerDetect $instance */
+                        return $instance->setHttpHeaders($httpHeaders);
         }
         
         /**
-         * 
+         * Return user agent headers.
          *
+         * @return array 
          * @static 
          */ 
-        public static function fetchTotalVisitorsAndPageViews($period)
+        public static function getUaHttpHeaders()
         {
-                        /** @var \Spatie\Analytics\Analytics $instance */
-                        return $instance->fetchTotalVisitorsAndPageViews($period);
+                        /** @var \Jaybizzle\CrawlerDetect\CrawlerDetect $instance */
+                        return $instance->getUaHttpHeaders();
         }
         
         /**
-         * 
+         * Set the user agent.
          *
+         * @param string $userAgent
          * @static 
          */ 
-        public static function fetchMostVisitedPages($period, $maxResults = 20)
+        public static function setUserAgent($userAgent)
         {
-                        /** @var \Spatie\Analytics\Analytics $instance */
-                        return $instance->fetchMostVisitedPages($period, $maxResults);
+                        /** @var \Jaybizzle\CrawlerDetect\CrawlerDetect $instance */
+                        return $instance->setUserAgent($userAgent);
         }
         
         /**
-         * 
+         * Check user agent string against the regex.
          *
-         * @static 
-         */ 
-        public static function fetchTopReferrers($period, $maxResults = 20)
-        {
-                        /** @var \Spatie\Analytics\Analytics $instance */
-                        return $instance->fetchTopReferrers($period, $maxResults);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function fetchUserTypes($period)
-        {
-                        /** @var \Spatie\Analytics\Analytics $instance */
-                        return $instance->fetchUserTypes($period);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function fetchTopBrowsers($period, $maxResults = 10)
-        {
-                        /** @var \Spatie\Analytics\Analytics $instance */
-                        return $instance->fetchTopBrowsers($period, $maxResults);
-        }
-        
-        /**
-         * Call the query method on the authenticated client.
-         *
-         * @param \Spatie\Analytics\Period $period
-         * @param string $metrics
-         * @param array $others
-         * @return array|null 
-         * @static 
-         */ 
-        public static function performQuery($period, $metrics, $others = array())
-        {
-                        /** @var \Spatie\Analytics\Analytics $instance */
-                        return $instance->performQuery($period, $metrics, $others);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getAnalyticsService()
-        {
-                        /** @var \Spatie\Analytics\Analytics $instance */
-                        return $instance->getAnalyticsService();
-        }
-        
-        /**
-         * Register a custom macro.
-         *
-         * @param string $name
-         * @param object|callable $macro
-         * @return void 
-         * @static 
-         */ 
-        public static function macro($name, $macro)
-        {
-                        \Spatie\Analytics\Analytics::macro($name, $macro);
-        }
-        
-        /**
-         * Mix another object into the class.
-         *
-         * @param object $mixin
-         * @return void 
-         * @throws \ReflectionException
-         * @static 
-         */ 
-        public static function mixin($mixin)
-        {
-                        \Spatie\Analytics\Analytics::mixin($mixin);
-        }
-        
-        /**
-         * Checks if macro is registered.
-         *
-         * @param string $name
+         * @param string|null $userAgent
          * @return bool 
          * @static 
          */ 
-        public static function hasMacro($name)
+        public static function isCrawler($userAgent = null)
         {
-                        return \Spatie\Analytics\Analytics::hasMacro($name);
+                        /** @var \Jaybizzle\CrawlerDetect\CrawlerDetect $instance */
+                        return $instance->isCrawler($userAgent);
+        }
+        
+        /**
+         * Return the matches.
+         *
+         * @return string|null 
+         * @static 
+         */ 
+        public static function getMatches()
+        {
+                        /** @var \Jaybizzle\CrawlerDetect\CrawlerDetect $instance */
+                        return $instance->getMatches();
         }
          
     }
@@ -19259,195 +19189,6 @@ namespace Laravel\Horizon {
      *
      */ 
     class Horizon {
-         
-    }
- 
-}
-
-namespace Spatie\Newsletter { 
-
-    /**
-     * 
-     *
-     */ 
-    class NewsletterFacade {
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function subscribe($email, $mergeFields = array(), $listName = '', $options = array())
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->subscribe($email, $mergeFields, $listName, $options);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function subscribePending($email, $mergeFields = array(), $listName = '', $options = array())
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->subscribePending($email, $mergeFields, $listName, $options);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function subscribeOrUpdate($email, $mergeFields = array(), $listName = '', $options = array())
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->subscribeOrUpdate($email, $mergeFields, $listName, $options);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getMembers($listName = '', $parameters = array())
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->getMembers($listName, $parameters);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getMember($email, $listName = '')
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->getMember($email, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getMemberActivity($email, $listName = '')
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->getMemberActivity($email, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function hasMember($email, $listName = '')
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->hasMember($email, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function isSubscribed($email, $listName = '')
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->isSubscribed($email, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function unsubscribe($email, $listName = '')
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->unsubscribe($email, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function updateEmailAddress($currentEmailAddress, $newEmailAddress, $listName = '')
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->updateEmailAddress($currentEmailAddress, $newEmailAddress, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function delete($email, $listName = '')
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->delete($email, $listName);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function createCampaign($fromName, $replyTo, $subject, $html = '', $listName = '', $options = array(), $contentOptions = array())
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->createCampaign($fromName, $replyTo, $subject, $html, $listName, $options, $contentOptions);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function updateContent($campaignId, $html, $options = array())
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->updateContent($campaignId, $html, $options);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getApi()
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->getApi();
-        }
-        
-        /**
-         * 
-         *
-         * @return array|false 
-         * @static 
-         */ 
-        public static function getLastError()
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->getLastError();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function lastActionSucceeded()
-        {
-                        /** @var \Spatie\Newsletter\Newsletter $instance */
-                        return $instance->lastActionSucceeded();
-        }
          
     }
  
@@ -22266,7 +22007,7 @@ namespace  {
 
     class GeoIP extends \Torann\GeoIP\Facades\GeoIP {}
 
-    class Analytics extends \Spatie\Analytics\AnalyticsFacade {}
+    class Crawler extends \Jaybizzle\LaravelCrawlerDetect\Facades\LaravelCrawlerDetect {}
 
     class Image extends \Intervention\Image\Facades\Image {}
 
@@ -22277,8 +22018,6 @@ namespace  {
     class Flash extends \Laracasts\Flash\Flash {}
 
     class Horizon extends \Laravel\Horizon\Horizon {}
-
-    class Newsletter extends \Spatie\Newsletter\NewsletterFacade {}
 
     class Iseed extends \Orangehill\Iseed\Facades\Iseed {}
  
