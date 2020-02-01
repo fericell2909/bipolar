@@ -42,6 +42,6 @@ if (!function_exists('bipolar_mail_asset_url')) {
      */
     function bipolar_mail_asset_url(string $url, $message)
     {
-        return env('APP_ENV') !== 'production' ? "https://www.bipolar.com.pe/{$url}" : $message->embed($url);
+        return env('APP_ENV') !== 'production' ? "https://www.bipolar.com.pe/{$url}" : $message->embed(public_path() . "/{$url}");
     }
 }
