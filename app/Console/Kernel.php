@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ClearRedisCache;
 use App\Console\Commands\PublishStuff;
 use App\Console\Commands\ExecuteDiscountTasks;
 use App\Console\Commands\RevertDiscountTasks;
@@ -43,6 +44,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(SendNoBuyedCarts::class)->hourly();
         $schedule->command(SendBuyReminderEmail::class)->dailyAt('10:30:00');
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
+        $schedule->command(ClearRedisCache::class)->quarterly();
     }
 
     /**
