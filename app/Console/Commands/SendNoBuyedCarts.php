@@ -48,6 +48,8 @@ class SendNoBuyedCarts extends Command
             ->whereNotNull('user_id')
             ->get();
 
+        dump($carts);
+
         $carts = $carts
             ->filter($this->modifiedYesterday())
             ->reject($this->removeCartWithoutDetailsAndStock());

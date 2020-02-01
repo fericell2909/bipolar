@@ -231,6 +231,7 @@ return [
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
         'GeoIP' => Torann\GeoIP\Facades\GeoIP::class,
         'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
+        'Crawler'   => Jaybizzle\LaravelCrawlerDetect\Facades\LaravelCrawlerDetect::class,
     ],
 
 ];

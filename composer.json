@@ -13,6 +13,7 @@
         "fideloper/proxy": "~4.0",
         "genealabs/laravel-caffeine": "^0.7",
         "guzzlehttp/guzzle": "^6.3",
+        "jaybizzle/laravel-crawler-detect": "^1.2",
         "jenssegers/agent": "^2.6",
         "jenssegers/date": "^3.4",
         "kitetail/zttp": "^0.3.0",

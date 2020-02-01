@@ -62,6 +62,13 @@ services:
      - vesselredis:/data
     networks:
      - vessel
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+    networks:
+      - vessel
 networks:
   vessel:
     driver: "bridge"

@@ -2,11 +2,11 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ClearRedisCache;
 use App\Console\Commands\PublishStuff;
 use App\Console\Commands\ExecuteDiscountTasks;
 use App\Console\Commands\RevertDiscountTasks;
 use App\Console\Commands\SendNoBuyedCarts;
-use App\Console\Commands\SyncBsaleStocks;
 use App\Console\Commands\CopyFacebookFansToSettings;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -44,8 +44,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(SendNoBuyedCarts::class)->hourly();
         $schedule->command(SendBuyReminderEmail::class)->dailyAt('10:30:00');
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
-        // TODO: If this command is not used anymore delete on December 2019
-        // $schedule->command(SyncBsaleStocks::class)->everyMinute()->withoutOverlapping();
+        $schedule->command(ClearRedisCache::class)->quarterly();
     }
 
     /**
