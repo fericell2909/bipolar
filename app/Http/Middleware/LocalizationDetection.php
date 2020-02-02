@@ -33,13 +33,13 @@ class LocalizationDetection
 
         $latamAndSpain = ['AR', 'BO', 'BR', 'CO', 'CL', 'EC', 'GY', 'SR', 'UY', 'VE', 'ES'];
 
-        $location = geoip()->getLocation($request->ip());
+        $location = \IP2LocationLaravel::get($request->ip());
 
-        if ($location['country_code2'] === 'PE') {
+        if ($location['countryCode'] === 'PE') {
             session(['BIPOLAR_CURRENCY' => 'PEN']);
             \LaravelLocalization::setLocale('es');
             \Auth::check() ? \Auth::user()->fill(['language' => 'es'])->save() : null;
-        } elseif (in_array($location['country_code2'], $latamAndSpain)) {
+        } elseif (in_array($location['countryCode'], $latamAndSpain)) {
             session(['BIPOLAR_CURRENCY' => 'USD']);
             \LaravelLocalization::setLocale('es');
             \Auth::check() ? \Auth::user()->fill(['language' => 'es'])->save() : null;

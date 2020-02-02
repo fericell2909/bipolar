@@ -167,6 +167,7 @@ return [
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         Vinkla\Hashids\HashidsServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        Ip2location\IP2LocationLaravel\IP2LocationLaravelServiceProvider::class,
     ],
 
     /*
@@ -229,7 +230,6 @@ return [
         'OpenGraph' => Artesaos\SEOTools\Facades\OpenGraph::class,
         'Twitter'   => Artesaos\SEOTools\Facades\TwitterCard::class,
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
-        'GeoIP' => Torann\GeoIP\Facades\GeoIP::class,
         'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
         'Crawler'   => Jaybizzle\LaravelCrawlerDetect\Facades\LaravelCrawlerDetect::class,
     ],
