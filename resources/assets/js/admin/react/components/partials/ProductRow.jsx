@@ -1,22 +1,20 @@
-import React from "react";
-import { existInArray } from "../../helpers";
+import React from 'react';
+import { existInArray } from '../../helpers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ProductRow = props => {
   const isSelected = existInArray(props.selectedProducts, props.hashId);
   const badgesSubtypes = props.subtypes.map(subtype => {
     return (
-      <span key={subtype["hash_id"]} className="label label-rounded label-inverse">
-        {subtype["name"]}
+      <span key={subtype['hash_id']} className="label label-rounded label-inverse">
+        {subtype['name']}
       </span>
     );
   });
   const state = props.state ? (
-    <span className={`label label-rounded label-${props.state.color}`}>
-      {props.state.name}
-    </span>
+    <span className={`label label-rounded label-${props.state.color}`}>{props.state.name}</span>
   ) : (
-    "--"
+    '--'
   );
   let priceDiscountText;
   let discountText;
@@ -26,8 +24,13 @@ const ProductRow = props => {
   if (props.discountPEN && props.discountUSD) {
     discountText = `${props.discountPEN}%/${props.discountUSD}%`;
   }
-  const iconFreeShipping = props.freeShipping ? <FontAwesomeIcon icon="check" /> : <FontAwesomeIcon icon="times"/>;
-  const iconSalient = props.isSalient !== null ? <FontAwesomeIcon icon="check" /> : <FontAwesomeIcon icon="times"/>;
+  const iconFreeShipping = props.freeShipping ? (
+    <FontAwesomeIcon icon="check" />
+  ) : (
+    <FontAwesomeIcon icon="times" />
+  );
+  const iconSalient =
+    props.isSalient !== null ? <FontAwesomeIcon icon="check" /> : <FontAwesomeIcon icon="times" />;
 
   return (
     <tr>
@@ -40,7 +43,7 @@ const ProductRow = props => {
         />
       </td>
       <td className="align-middle text-center">
-        {props.imageUrl ? <img src={props.imageUrl} width="100" /> : "--"}
+        {props.imageUrl ? <img src={props.imageUrl} width="100" /> : '--'}
       </td>
       <td className="align-middle">{props.name}</td>
       <td className="align-middle">{badgesSubtypes}</td>
@@ -53,23 +56,17 @@ const ProductRow = props => {
       <td className="align-middle text-center">{iconSalient}</td>
       <td className="align-middle">
         <div className="button-group">
-          <a
-            href={props.previewUrl}
-            target="_blank"
-            className="btn btn-sm btn-dark btn-rounded"
-          >
+          <a href={props.previewUrl} target="_blank" className="btn btn-sm btn-dark btn-rounded">
             <i className="fas fa-fw fa-eye" /> Vista previa
           </a>
           <a
             href={`/admin/products/${props.hashId}/edit`}
-            className="btn btn-sm btn-dark btn-rounded"
-          >
+            className="btn btn-sm btn-dark btn-rounded">
             <i className="fas fa-fw fa-edit" /> Editar
           </a>
           <button
             onClick={() => props.clickDelete(props.hashId)}
-            className="btn btn-sm btn-dark btn-rounded"
-          >
+            className="btn btn-sm btn-dark btn-rounded">
             <i className="fas fa-fw fa-trash" /> Descartar
           </button>
         </div>

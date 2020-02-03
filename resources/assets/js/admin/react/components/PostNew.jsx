@@ -1,25 +1,25 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { EditorState, convertToRaw } from "draft-js";
-import draftToHtml from "draftjs-to-html";
-import { Editor } from "react-draft-wysiwyg";
-import axios from "axios";
-import PostTags from "./partials/PostTags";
-import PostCategories from "./partials/PostCategories";
-import { removeFromSimpleArray } from "../helpers";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { EditorState, convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import { Editor } from 'react-draft-wysiwyg';
+import axios from 'axios';
+import PostTags from './partials/PostTags';
+import PostCategories from './partials/PostCategories';
+import { removeFromSimpleArray } from '../helpers';
 
 class PostNew extends React.Component {
   state = {
-    title: "",
-    titleEnglish: "",
-    content: "",
-    contentEnglish: "",
-    stateSelected: "",
+    title: '',
+    titleEnglish: '',
+    content: '',
+    contentEnglish: '',
+    stateSelected: '',
     editorState: EditorState.createEmpty(),
     editorStateEnglish: EditorState.createEmpty(),
     states: [],
     selectedCategories: [],
-    selectedTags: []
+    selectedTags: [],
   };
 
   checkCategory = event => {
@@ -29,10 +29,7 @@ class PostNew extends React.Component {
     if (event.target.checked) {
       selectedCategories.push(categoryHashId);
     } else {
-      selectedCategories = removeFromSimpleArray(
-        selectedCategories,
-        categoryHashId
-      );
+      selectedCategories = removeFromSimpleArray(selectedCategories, categoryHashId);
     }
 
     return this.setState({ selectedCategories });
@@ -55,52 +52,46 @@ class PostNew extends React.Component {
     const htmlText = draftToHtml(convertToRaw(editorState.getCurrentContent()));
     this.setState({
       editorState,
-      content: htmlText
+      content: htmlText,
     });
   };
 
   handleEditorDescriptionEnglish = editorStateEnglish => {
-    const htmlText = draftToHtml(
-      convertToRaw(editorStateEnglish.getCurrentContent())
-    );
+    const htmlText = draftToHtml(convertToRaw(editorStateEnglish.getCurrentContent()));
     this.setState({
       editorStateEnglish,
-      contentEnglish: htmlText
+      contentEnglish: htmlText,
     });
   };
 
   handleChangeTitle = event => this.setState({ title: event.target.value });
 
-  handleChangeEnglishTitle = event =>
-    this.setState({ titleEnglish: event.target.value });
+  handleChangeEnglishTitle = event => this.setState({ titleEnglish: event.target.value });
 
   handleSubmit = async event => {
     event.preventDefault();
     const savePost = await axios
-      .post("/ajax-admin/post/new", {
+      .post('/ajax-admin/post/new', {
         title: this.state.title,
         title_english: this.state.titleEnglish,
         content: this.state.content,
         content_english: this.state.contentEnglish,
         state: this.state.stateSelected,
         categories: this.state.selectedCategories,
-        tags: this.state.selectedTags
+        tags: this.state.selectedTags,
       })
       .catch(console.error);
-    if (savePost.data["redirect_url"]) {
-      window.location.href = savePost.data["redirect_url"];
+    if (savePost.data['redirect_url']) {
+      window.location.href = savePost.data['redirect_url'];
     }
   };
 
-  handleChangeSelect = event =>
-    this.setState({ stateSelected: event.target.value });
+  handleChangeSelect = event => this.setState({ stateSelected: event.target.value });
 
   getData = async () => {
-    const responseStates = await axios
-      .get("/ajax-admin/states")
-      .catch(console.error);
+    const responseStates = await axios.get('/ajax-admin/states').catch(console.error);
     this.setState({
-      states: responseStates.data["data"]
+      states: responseStates.data['data'],
     });
   };
 
@@ -118,21 +109,21 @@ class PostNew extends React.Component {
         uploadEnabled: true,
         uploadCallback: async image => {
           const formData = new FormData();
-          formData.append("image", image);
+          formData.append('image', image);
           const uploadPhoto = await axios
-            .post("/ajax-admin/post/photos", formData)
+            .post('/ajax-admin/post/photos', formData)
             .catch(console.error);
           return uploadPhoto.data;
         },
         previewImage: true,
-        inputAccept: "image/gif,image/jpeg,image/jpg,image/png,image/svg",
-        alt: { present: false, mandatory: false }
-      }
+        inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+        alt: { present: false, mandatory: false },
+      },
     };
 
     const statesOptions = this.state.states.map(state => (
-      <option key={state["hash_id"]} value={state["hash_id"]}>
-        {state["name"]}
+      <option key={state['hash_id']} value={state['hash_id']}>
+        {state['name']}
       </option>
     ));
 
@@ -194,8 +185,7 @@ class PostNew extends React.Component {
                         onChange={this.handleChangeSelect}
                         value={this.state.stateSelected}
                         className="form-control"
-                        required={true}
-                      >
+                        required={true}>
                         <option value="" disabled>
                           Seleccione
                         </option>
@@ -212,21 +202,15 @@ class PostNew extends React.Component {
           </div>
         </div>
         <div className="col-md-3">
-          <PostCategories
-            selected={this.state.selectedCategories}
-            checked={this.checkCategory}
-          />
-          <PostTags
-            selected={this.state.selectedTags}
-            checked={this.checkTag}
-          />
+          <PostCategories selected={this.state.selectedCategories} checked={this.checkCategory} />
+          <PostTags selected={this.state.selectedTags} checked={this.checkTag} />
         </div>
       </div>
     );
   }
 }
 
-if (document.getElementById("bipolar-create-post")) {
-  const elem = document.getElementById("bipolar-create-post");
+if (document.getElementById('bipolar-create-post')) {
+  const elem = document.getElementById('bipolar-create-post');
   ReactDOM.render(<PostNew />, elem);
 }
