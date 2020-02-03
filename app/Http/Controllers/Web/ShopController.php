@@ -94,6 +94,10 @@ class ShopController extends Controller
             ->when($request->filled('sizes'), function ($whereProducts) {
                 $whereProducts->has('stocks');
             })
+            ->when((bool)optional(\Auth::user())->has_showroom_sale === false, function ($products) {
+                /** @var Builder $products */
+                $products->where('is_showroom_sale', false);
+            })
             ->when($request->filled('search'), function ($products) use ($request) {
                 /** @var Collection $products */
                 return $products->where('name', 'like', "%{$request->input('search')}%");

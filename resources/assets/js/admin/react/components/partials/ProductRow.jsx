@@ -24,13 +24,35 @@ const ProductRow = props => {
   if (props.discountPEN && props.discountUSD) {
     discountText = `${props.discountPEN}%/${props.discountUSD}%`;
   }
+
   const iconFreeShipping = props.freeShipping ? (
-    <FontAwesomeIcon icon="check" />
-  ) : (
-    <FontAwesomeIcon icon="times" />
-  );
+    <span
+      className="badge badge-dark"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="Free shipping">
+      <FontAwesomeIcon icon="parachute-box" />
+    </span>
+  ) : null;
   const iconSalient =
-    props.isSalient !== null ? <FontAwesomeIcon icon="check" /> : <FontAwesomeIcon icon="times" />;
+    props.isSalient !== null ? (
+      <span
+        className="badge badge-dark"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Destacado">
+        <FontAwesomeIcon icon="star" />
+      </span>
+    ) : null;
+  const labelShowroomSale = props.isShowroomSale ? (
+    <span
+      className="badge badge-dark"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="Showroom sale (oculto)">
+      <FontAwesomeIcon icon="eye-slash" />
+    </span>
+  ) : null;
 
   return (
     <tr>
@@ -45,15 +67,15 @@ const ProductRow = props => {
       <td className="align-middle text-center">
         {props.imageUrl ? <img src={props.imageUrl} width="100" /> : '--'}
       </td>
-      <td className="align-middle">{props.name}</td>
+      <td className="align-middle">
+        {labelShowroomSale} {iconFreeShipping} {iconSalient} {props.name}
+      </td>
       <td className="align-middle">{badgesSubtypes}</td>
       <td className="align-middle text-right">{parseInt(props.price)}</td>
       <td className="align-middle text-right">{parseInt(props.priceDolar)}</td>
       <td className="align-middle text-center">{discountText}</td>
       <td className="align-middle text-right">{priceDiscountText}</td>
       <td className="align-middle text-center">{state}</td>
-      <td className="align-middle text-center">{iconFreeShipping}</td>
-      <td className="align-middle text-center">{iconSalient}</td>
       <td className="align-middle">
         <div className="button-group">
           <a href={props.previewUrl} target="_blank" className="btn btn-sm btn-dark btn-rounded">

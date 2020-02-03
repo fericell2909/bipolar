@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::orderByDesc('id')->get();
+        $users = User::orderByDesc('id')->paginate(20);
 
         return view('admin.users.list', compact('users'));
     }
@@ -21,7 +21,10 @@ class UserController extends Controller
 
         $searchField = $request->input('searchfield');
 
-        $users = User::where('name', 'LIKE', "%{$searchField}%")->orWhere('name', 'LIKE', "%{$searchField}%")->get();
+        $users = User::where('name', 'LIKE', "%{$searchField}%")
+            ->orWhere('name', 'LIKE', "%{$searchField}%")
+            ->orWhere('email', 'LIKE', "%{$searchField}%")
+            ->get();
 
         return view('admin.users.list', compact('users'));
     }
@@ -38,20 +41,20 @@ class UserController extends Controller
         $user = User::findOrFail($userId);
 
         $this->validate($request, [
-            'name'     => 'required|max:255',
-            'lastname' => 'nullable|max:255',
-            'email'    => 'email|max:255',
-            'birthday' => 'nullable|date_format:Y-m-d',
-            'active'   => 'required|boolean',
+            'name'              => 'required|max:255',
+            'lastname'          => 'nullable|max:255',
+            'email'             => 'email|max:255',
+            'birthday'          => 'nullable|date_format:Y-m-d',
+            'has_showroom_sale' => 'required|boolean',
         ]);
 
         $user->name = $request->input('name');
         $user->lastname = $request->input('lastname');
         $user->email = $request->input('email');
-        if ($request->has('birthday')) {
+        if ($request->filled('birthday')) {
             $user->birthday_date = "{$request->input('birthday')} 00:00:00";
         }
-        $user->active = boolval($request->input('active')) === true ? date('Y-m-d H:i:s') : null;
+        $user->has_showroom_sale = (bool)$request->input('has_showroom_sale');
         $user->save();
 
         flash()->success('Actualizado con éxito');

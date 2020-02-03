@@ -100,6 +100,13 @@
                     </div>
                   </div>
                 @endif
+                @if($product->is_showroom_sale)
+                  <div class="shop-discount-preview-container">
+                    <div class="shop-discount">
+                      <i class="fa fa-eye-slash"></i>
+                    </div>
+                  </div>
+                @endif
                 @if(count($product->photos))
                   <img src="{{ optional($product->mainPhoto())->url }}" alt="{{ $product->name }}" class="img-responsive">
                 @else
@@ -171,6 +178,13 @@
                   <div class="shop-discount-container-in-modal">
                     <div class="shop-discount">
                       <span>{{ $product->discount_amount }}%</span>
+                    </div>
+                  </div>
+                @endif
+                @if($product->is_showroom_sale)
+                  <div class="shop-discount-container-in-modal">
+                    <div class="shop-discount">
+                      <i class="fa fa-eye-slash"></i>
                     </div>
                   </div>
                 @endif

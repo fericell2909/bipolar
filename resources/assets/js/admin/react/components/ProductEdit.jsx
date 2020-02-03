@@ -24,6 +24,7 @@ class BipolarProductEdit extends React.Component {
         description: '',
         description_english: '',
         free_shipping: false,
+        is_showroom_sale: false,
         salient: false,
         previewUrl: '',
         shopUrl: '',
@@ -149,6 +150,7 @@ class BipolarProductEdit extends React.Component {
         description: this.state.product.description,
         description_english: this.state.product.description_english,
         free_shipping: this.state.product.free_shipping,
+        is_showroom_sale: this.state.product.is_showroom_sale,
         salient: this.state.product.salient,
         colors: this.state.product.selectedColors,
         sizes: this.state.product.selectedSizes,
@@ -188,6 +190,15 @@ class BipolarProductEdit extends React.Component {
       product: {
         ...this.state.product,
         selectedState: event.target.value,
+      },
+    });
+  };
+
+  handleHiddenShowroomChange = event => {
+    this.setState({
+      product: {
+        ...this.state.product,
+        is_showroom_sale: event.target.value === 'true',
       },
     });
   };
@@ -311,7 +322,7 @@ class BipolarProductEdit extends React.Component {
                   />
                 </div>
                 <div className="form-row">
-                  <div className="col-md-6">
+                  <div className="col-md-4">
                     <div className="form-group">
                       <label>Estado</label>
                       <select
@@ -326,7 +337,7 @@ class BipolarProductEdit extends React.Component {
                       </select>
                     </div>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-4">
                     <div className="form-group">
                       <label>Peso (kg)</label>
                       <input
@@ -339,6 +350,19 @@ class BipolarProductEdit extends React.Component {
                         placeholder="Opcional"
                         required
                       />
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label>Showroom Sale (Oculto)</label>
+                      <select className="form-control" onChange={this.handleHiddenShowroomChange}>
+                        <option value="true" selected={this.state.product.is_showroom_sale}>
+                          Si
+                        </option>
+                        <option value="false" selected={!this.state.product.is_showroom_sale}>
+                          No
+                        </option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -416,6 +440,7 @@ class BipolarProductEdit extends React.Component {
             productInState.description_english =
               product.description_english !== null ? product.description_english : '';
             productInState.free_shipping = product['free_shipping'];
+            productInState.is_showroom_sale = product['is_showroom_sale'];
             productInState.salient = product['is_salient'] !== null;
             productInState.shopUrl = product['shop_route'];
             productInState.previewUrl = product['preview_route'];

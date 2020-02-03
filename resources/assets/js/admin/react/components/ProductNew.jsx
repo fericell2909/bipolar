@@ -20,6 +20,7 @@ class BipolarProductNew extends React.Component {
       description_english: '',
       weight: '',
       free_shipping: false,
+      is_showroom_sale: false,
       salient: false,
       // Colors info
       colors: [],
@@ -101,6 +102,13 @@ class BipolarProductNew extends React.Component {
     this.setState({ editorStateEnglish: editorState, description_english: htmlText });
   };
 
+  handleHiddenShowroomChange = event => {
+    this.setState({
+      ...this.state,
+      is_showroom_sale: event.target.value === 'true',
+    });
+  };
+
   handleSaveProduct = event => {
     event.preventDefault();
 
@@ -113,6 +121,7 @@ class BipolarProductNew extends React.Component {
         description: this.state.description,
         description_english: this.state.description_english,
         free_shipping: this.state.free_shipping,
+        is_showroom_sale: this.state.is_showroom_sale,
         salient: this.state.salient,
         colors: this.state.selectedColors,
         sizes: this.state.selectedSizes,
@@ -218,7 +227,7 @@ class BipolarProductNew extends React.Component {
                   />
                 </div>
                 <div className="form-row">
-                  <div className="col-md-6">
+                  <div className="col-md-4">
                     <div className="form-group">
                       <label>Estado</label>
                       <select
@@ -233,7 +242,7 @@ class BipolarProductNew extends React.Component {
                       </select>
                     </div>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-4">
                     <div className="form-group">
                       <label>Peso (kg)</label>
                       <input
@@ -246,6 +255,18 @@ class BipolarProductNew extends React.Component {
                         placeholder="Opcional"
                         required
                       />
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label>Showroom Sale (Oculto)</label>
+                      <select
+                        className="form-control"
+                        value={this.state.is_showroom_sale.toString()}
+                        onChange={this.handleHiddenShowroomChange}>
+                        <option value="true">Si</option>
+                        <option value="false">No</option>
+                      </select>
                     </div>
                   </div>
                 </div>

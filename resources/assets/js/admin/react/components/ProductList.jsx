@@ -309,6 +309,7 @@ class BipolarProductList extends React.Component {
           priceDiscountUSD={product['price_usd_discount']}
           state={product['state']}
           freeShipping={product['free_shipping']}
+          isShowroomSale={product['is_showroom_sale']}
           isSalient={product['is_salient']}
           previewUrl={product['preview_route']}
           clickDelete={this.handleDelete}
@@ -392,8 +393,6 @@ class BipolarProductList extends React.Component {
                       <th className="align-middle text-center">Descuento (PEN/USD)</th>
                       <th className="align-middle text-right">Desc. (PEN/USD)</th>
                       <th className="align-middle text-center">Estado</th>
-                      <th className="align-middle text-center">Envío gratis</th>
-                      <th className="align-middle text-center">Destacado</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
