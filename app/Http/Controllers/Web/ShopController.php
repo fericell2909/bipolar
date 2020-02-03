@@ -138,7 +138,6 @@ class ShopController extends Controller
         $products = $this->getPaginatedProducts($products, LengthAwarePaginator::resolveCurrentPage(), $request->fullUrl());
 
         return view('web.shop.shop', compact(
-            'countProducts',
             'products',
             'types',
             'sizes',
