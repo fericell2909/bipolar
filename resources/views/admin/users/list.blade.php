@@ -78,6 +78,9 @@
               </tbody>
             </table>
           </div>
+          @if($users instanceof \Illuminate\Pagination\LengthAwarePaginator)
+            {!! $users->links() !!}
+          @endif
         </div>
       </div>
     </div>

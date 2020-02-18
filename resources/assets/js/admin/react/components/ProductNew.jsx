@@ -2,15 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { removeFromSimpleArray } from '../helpers';
-import ProductColors from "./partials/ProductColors";
-import ProductSizes from "./partials/ProductSizes";
-import ProductTypes from "./partials/ProductTypes";
+import ProductColors from './partials/ProductColors';
+import ProductSizes from './partials/ProductSizes';
+import ProductTypes from './partials/ProductTypes';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 
 class BipolarProductNew extends React.Component {
-
   constructor() {
     super();
     this.state = {
@@ -21,6 +20,7 @@ class BipolarProductNew extends React.Component {
       description_english: '',
       weight: '',
       free_shipping: false,
+      is_showroom_sale: false,
       salient: false,
       // Colors info
       colors: [],
@@ -38,11 +38,11 @@ class BipolarProductNew extends React.Component {
   }
 
   handleInputChange = event => {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   handleSalientChange = event => {
-    this.setState({salient: event.target.checked});
+    this.setState({ salient: event.target.checked });
   };
 
   handleColorChange = event => {
@@ -55,7 +55,7 @@ class BipolarProductNew extends React.Component {
       selected = removeFromSimpleArray(selected, colorHashId);
     }
 
-    return this.setState({selectedColors: selected});
+    return this.setState({ selectedColors: selected });
   };
 
   handleSizeChange = event => {
@@ -68,7 +68,7 @@ class BipolarProductNew extends React.Component {
       selected = removeFromSimpleArray(selected, sizeHashId);
     }
 
-    return this.setState({selectedSizes: selected});
+    return this.setState({ selectedSizes: selected });
   };
 
   handleSubtypeChange = event => {
@@ -81,54 +81,72 @@ class BipolarProductNew extends React.Component {
       selected = removeFromSimpleArray(selected, subtypeHashId);
     }
 
-    return this.setState({selectedSubtypes: selected});
+    return this.setState({ selectedSubtypes: selected });
   };
 
   handleProductStateChange = event => {
-    this.setState({selectedState: event.target.value});
+    this.setState({ selectedState: event.target.value });
   };
 
   handleChangeFreeShipping = event => {
-    this.setState({free_shipping: event.target.checked});
+    this.setState({ free_shipping: event.target.checked });
   };
 
   handleEditorDescription = editorState => {
     const htmlText = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-    this.setState({editorState, description: htmlText});
+    this.setState({ editorState, description: htmlText });
   };
 
   handleEditorDescriptionEnglish = editorState => {
     const htmlText = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-    this.setState({editorStateEnglish: editorState, description_english: htmlText});
+    this.setState({ editorStateEnglish: editorState, description_english: htmlText });
+  };
+
+  handleHiddenShowroomChange = event => {
+    this.setState({
+      ...this.state,
+      is_showroom_sale: event.target.value === 'true',
+    });
   };
 
   handleSaveProduct = event => {
     event.preventDefault();
 
-    axios.post('/ajax-admin/products', {
-      name: this.state.name,
-      name_english: this.state.name_english,
-      price: this.state.price,
-      weight: this.state.weight,
-      description: this.state.description,
-      description_english: this.state.description_english,
-      free_shipping: this.state.free_shipping,
-      salient: this.state.salient,
-      colors: this.state.selectedColors,
-      sizes: this.state.selectedSizes,
-      subtypes: this.state.selectedSubtypes,
-      state: this.state.selectedState,
-    })
+    axios
+      .post('/ajax-admin/products', {
+        name: this.state.name,
+        name_english: this.state.name_english,
+        price: this.state.price,
+        weight: this.state.weight,
+        description: this.state.description,
+        description_english: this.state.description_english,
+        free_shipping: this.state.free_shipping,
+        is_showroom_sale: this.state.is_showroom_sale,
+        salient: this.state.salient,
+        colors: this.state.selectedColors,
+        sizes: this.state.selectedSizes,
+        subtypes: this.state.selectedSubtypes,
+        state: this.state.selectedState,
+      })
       .then(response => {
         const data = response.data;
-        return (response.status === 201) ? window.location.href = data['edit_route'] : alert('algo malo paso');
+        return response.status === 201
+          ? (window.location.href = data['edit_route'])
+          : alert('algo malo paso');
       });
   };
 
   render() {
-    const isInvalidForm = this.state.name.length === 0 || this.state.price <= 0 || this.state.selectedState.length === 0;
+    const isInvalidForm =
+      this.state.name.length === 0 ||
+      this.state.price <= 0 ||
+      this.state.selectedState.length === 0;
     const productStatesRender = this.state.productStates.map(state => {
-      return <option key={state['hash_id']} value={state['hash_id']}>{state['name']}</option>
+      return (
+        <option key={state['hash_id']} value={state['hash_id']}>
+          {state['name']}
+        </option>
+      );
     });
     const { editorState, editorStateEnglish } = this.state;
     const toolbarEditor = {
@@ -150,48 +168,105 @@ class BipolarProductNew extends React.Component {
                   <div className="col-md-4">
                     <div className="form-group">
                       <label>Nombre</label>
-                      <input value={this.state.name} onChange={this.handleInputChange} name="name" type="text"
-                             className="form-control" required/>
+                      <input
+                        value={this.state.name}
+                        onChange={this.handleInputChange}
+                        name="name"
+                        type="text"
+                        className="form-control"
+                        required
+                      />
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
                       <label>Nombre (Inglés)</label>
-                      <input value={this.state.name_english} onChange={this.handleInputChange} name="name_english" type="text"
-                             className="form-control" required/>
+                      <input
+                        value={this.state.name_english}
+                        onChange={this.handleInputChange}
+                        name="name_english"
+                        type="text"
+                        className="form-control"
+                        required
+                      />
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
                       <label>Precio</label>
-                      <input value={this.state.price} onChange={this.handleInputChange} name="price" type="number" step="any"
-                             className="form-control" required/>
+                      <input
+                        value={this.state.price}
+                        onChange={this.handleInputChange}
+                        name="price"
+                        type="number"
+                        step="any"
+                        className="form-control"
+                        required
+                      />
                     </div>
                   </div>
                 </div>
                 <div className="form-group">
                   <label>Descripción (Opcional)</label>
-                  <Editor toolbar={toolbarEditor} stripPastedStyles={true} editorState={editorState} onEditorStateChange={this.handleEditorDescription} editorClassName="demo-editor-content"/>
+                  <Editor
+                    toolbar={toolbarEditor}
+                    stripPastedStyles={true}
+                    editorState={editorState}
+                    onEditorStateChange={this.handleEditorDescription}
+                    editorClassName="demo-editor-content"
+                  />
                 </div>
                 <div className="form-group">
                   <label>Descripción en inglés (Opcional)</label>
-                  <Editor toolbar={toolbarEditor} stripPastedStyles={true} editorState={editorStateEnglish} onEditorStateChange={this.handleEditorDescriptionEnglish} editorClassName="demo-editor-content"/>
+                  <Editor
+                    toolbar={toolbarEditor}
+                    stripPastedStyles={true}
+                    editorState={editorStateEnglish}
+                    onEditorStateChange={this.handleEditorDescriptionEnglish}
+                    editorClassName="demo-editor-content"
+                  />
                 </div>
                 <div className="form-row">
-                  <div className="col-md-6">
+                  <div className="col-md-4">
                     <div className="form-group">
                       <label>Estado</label>
-                      <select className="custom-select col-12" value={this.state.selectedState} onChange={this.handleProductStateChange} required>
-                        <option value="" disabled>Seleccione un estado</option>
+                      <select
+                        className="custom-select col-12"
+                        value={this.state.selectedState}
+                        onChange={this.handleProductStateChange}
+                        required>
+                        <option value="" disabled>
+                          Seleccione un estado
+                        </option>
                         {productStatesRender.length ? productStatesRender : null}
                       </select>
                     </div>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-md-4">
                     <div className="form-group">
                       <label>Peso (kg)</label>
-                      <input value={this.state.weight} onChange={this.handleInputChange} name="weight" type="number" step="any"
-                             className="form-control" placeholder="Opcional" required/>
+                      <input
+                        value={this.state.weight}
+                        onChange={this.handleInputChange}
+                        name="weight"
+                        type="number"
+                        step="any"
+                        className="form-control"
+                        placeholder="Opcional"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label>Showroom Sale (Oculto)</label>
+                      <select
+                        className="form-control"
+                        value={this.state.is_showroom_sale.toString()}
+                        onChange={this.handleHiddenShowroomChange}>
+                        <option value="true">Si</option>
+                        <option value="false">No</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -199,7 +274,11 @@ class BipolarProductNew extends React.Component {
                   <div className="col-md-3">
                     <div className="form-group">
                       <div className="checkbox">
-                        <input checked={this.state.free_shipping} onChange={this.handleChangeFreeShipping} type="checkbox"/>
+                        <input
+                          checked={this.state.free_shipping}
+                          onChange={this.handleChangeFreeShipping}
+                          type="checkbox"
+                        />
                         <label> Envío gratuito</label>
                       </div>
                     </div>
@@ -207,13 +286,17 @@ class BipolarProductNew extends React.Component {
                   <div className="col-md-3">
                     <div className="form-group">
                       <div className="checkbox">
-                        <input checked={this.state.salient} onChange={this.handleSalientChange} type="checkbox"/>
+                        <input
+                          checked={this.state.salient}
+                          onChange={this.handleSalientChange}
+                          type="checkbox"
+                        />
                         <label> Destacado</label>
                       </div>
                     </div>
                   </div>
                 </div>
-                <hr/>
+                <hr />
                 <button disabled={isInvalidForm} type="submit" className="btn btn-dark btn-rounded">
                   Guardar e ir a subir fotos
                 </button>
@@ -222,35 +305,44 @@ class BipolarProductNew extends React.Component {
           </div>
         </div>
         <div className="col-md-3">
-          <ProductColors colors={this.state.colors}
-                         selected={this.state.selectedColors}
-                         toggleCheck={this.handleColorChange}/>
-          <ProductSizes sizes={this.state.sizes}
-                        selected={this.state.selectedSizes}
-                        toggleCheck={this.handleSizeChange}/>
-          <ProductTypes types={this.state.types}
-                        selected={this.state.selectedSubtypes}
-                        toggleCheck={this.handleSubtypeChange}/>
+          <ProductColors
+            colors={this.state.colors}
+            selected={this.state.selectedColors}
+            toggleCheck={this.handleColorChange}
+          />
+          <ProductSizes
+            sizes={this.state.sizes}
+            selected={this.state.selectedSizes}
+            toggleCheck={this.handleSizeChange}
+          />
+          <ProductTypes
+            types={this.state.types}
+            selected={this.state.selectedSubtypes}
+            toggleCheck={this.handleSubtypeChange}
+          />
         </div>
       </div>
     );
   }
 
   getAllInformation() {
-    axios.all([
-      axios.get('/ajax-admin/colors'),
-      axios.get('/ajax-admin/sizes'),
-      axios.get('/ajax-admin/types'),
-      axios.get('/ajax-admin/states'),
-    ])
-      .then(axios.spread((responseColors, responseSizes, responseTypes, responseStates) => {
-        this.setState({
-          colors: responseColors.data['data'],
-          sizes: responseSizes.data['data'],
-          types: responseTypes.data['data'],
-          productStates: responseStates.data['data'],
-        });
-      }));
+    axios
+      .all([
+        axios.get('/ajax-admin/colors'),
+        axios.get('/ajax-admin/sizes'),
+        axios.get('/ajax-admin/types'),
+        axios.get('/ajax-admin/states'),
+      ])
+      .then(
+        axios.spread((responseColors, responseSizes, responseTypes, responseStates) => {
+          this.setState({
+            colors: responseColors.data['data'],
+            sizes: responseSizes.data['data'],
+            types: responseTypes.data['data'],
+            productStates: responseStates.data['data'],
+          });
+        })
+      );
   }
 
   componentDidMount() {
@@ -259,8 +351,5 @@ class BipolarProductNew extends React.Component {
 }
 
 if (document.getElementById('bipolar-product-new')) {
-  ReactDOM.render(
-    <BipolarProductNew/>,
-    document.getElementById('bipolar-product-new')
-  );
+  ReactDOM.render(<BipolarProductNew />, document.getElementById('bipolar-product-new'));
 }
