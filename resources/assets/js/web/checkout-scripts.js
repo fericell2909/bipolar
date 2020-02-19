@@ -135,13 +135,13 @@ $(function() {
       const headingId = $(event.currentTarget).attr('aria-labelledby');
       const heading = $(`#${headingId}`);
       heading.removeClass('content-collapsed');
-      heading.children('.panel-icon').html("<i class='fa fa-chevron-up'></i>");
+      heading.children('.panel-icon').html("<i class='fas fa-chevron-up'></i>");
     })
     .on('hide.bs.collapse', event => {
       const headingId = $(event.currentTarget).attr('aria-labelledby');
       const heading = $(`#${headingId}`);
       heading.addClass('content-collapsed');
-      heading.children('.panel-icon').html("<i class='fa fa-chevron-down'></i>");
+      heading.children('.panel-icon').html("<i class='fas fa-chevron-down'></i>");
     });
 
   // Submit the checkout form
