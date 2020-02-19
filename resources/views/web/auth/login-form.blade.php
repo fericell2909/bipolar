@@ -2,7 +2,7 @@
 <p class="text-center">{{ __('login-register.login_text') }}.</p>
 <div class="text-center bipolar-facebook-button">
     <button id="authFacebook" class="btn btn-default btn-rounded text-uppercase">
-        <i class="fa fa-facebook"></i> Inicia sesión con Facebook
+        <i class="fab fa-facebook"></i> Inicia sesión con Facebook
     </button>
 </div>
 {!! Form::open(['route' => 'login.post']) !!}

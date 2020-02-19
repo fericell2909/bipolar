@@ -20,7 +20,7 @@
         </div>
       </div>
       <button type="submit" class="btn btn-sm btn-dark btn-rounded">
-        <i class="fa fa-fw fa-cloud-upload-alt"></i>
+        <i class="fas fa-fw fa-cloud-upload-alt"></i>
         Guardar
       </button>
       {!! Form::close() !!}

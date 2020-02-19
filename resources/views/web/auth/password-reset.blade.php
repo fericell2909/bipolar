@@ -15,7 +15,7 @@
     @endif
     @if(Session::has('status'))
       <div class="bipolar-success-message">
-        <i class="fa fa-check-circle-o"></i>
+        <i class="fas fa-check-circle-o"></i>
         <div class="success-content">
           <span>{{ Session::get('status') }}</span>
         </div>

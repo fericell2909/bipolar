@@ -13,7 +13,7 @@
           <div class="input-group">
             {!! Form::text('search', null, ['class' => 'form-control', 'placeholder' => __('bipolar.shop.search')]) !!}
             <div class="input-group-addon bipolar-search-button">
-              <i class="fa fa-search"></i>
+              <i class="fas fa-search"></i>
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@
                 @if($product->is_showroom_sale)
                   <div class="shop-discount-preview-container">
                     <div class="shop-discount">
-                      <i class="fa fa-eye-slash"></i>
+                      <i class="fas fa-eye-slash"></i>
                     </div>
                   </div>
                 @endif
@@ -184,7 +184,7 @@
                 @if($product->is_showroom_sale)
                   <div class="shop-discount-container-in-modal">
                     <div class="shop-discount">
-                      <i class="fa fa-eye-slash"></i>
+                      <i class="fas fa-eye-slash"></i>
                     </div>
                   </div>
                 @endif

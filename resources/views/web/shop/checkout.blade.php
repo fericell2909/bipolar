@@ -38,7 +38,7 @@
 								{{ __('bipolar.checkout.billing_address') }}
 							</a>
 						</h4>
-						<div class="panel-icon"><i class="fa fa-chevron-down"></i></div>
+						<div class="panel-icon"><i class="fas fa-chevron-down"></i></div>
 					</div>
 					<div id="sectionCollapseOne" class="panel-collapse collapse {{ !Request::has('part') ? 'in' : null }}" role="tabpanel" aria-labelledby="headingOne">
 						<div class="panel-body">
@@ -128,7 +128,7 @@
 								{{ __('bipolar.checkout.shipping_address') }}
 							</a>
 						</h4>
-						<div class="panel-icon"><i class="fa fa-chevron-down"></i></div>
+						<div class="panel-icon"><i class="fas fa-chevron-down"></i></div>
 					</div>
 					<div id="sectionCollapseTwo" class="panel-collapse collapse {{ Request::input('part') === "2" ? 'in' : null }}" role="tabpanel" aria-labelledby="headingTwo">
 						<div class="panel-body">
@@ -222,7 +222,7 @@
 								{{ __('bipolar.checkout.your_order') }}
 							</a>
 						</h4>
-						<div class="panel-icon"><i class="fa fa-chevron-down"></i></div>
+						<div class="panel-icon"><i class="fas fa-chevron-down"></i></div>
 					</div>
 					<div id="sectionCollapseThree" class="panel-collapse collapse {{ Request::input('part') === '3' ? 'in' : null }}" role="tabpanel" aria-labelledby="headingThree">
 						<div class="panel-body centered">
@@ -280,13 +280,13 @@
                 </tbody>
 							</table>
 							<div class="bipolar-alert-message" id="terms-check" style="display: none;">
-								<i class="fa fa-times-circle-o"></i>
+								<i class="fad fa-times-circle"></i>
 								<div class="success-content">
 									<span>{{ __('bipolar.checkout.terms_check') }}</span>
 								</div>
 							</div>
 							<div class="bipolar-alert-message" id="shipping-check" style="display: none;">
-								<i class="fa fa-times-circle-o"></i>
+								<i class="fad fa-times-circle"></i>
 								<div class="success-content">
 									<span>{{ __('bipolar.checkout.shipping_check') }}</span>
 								</div>

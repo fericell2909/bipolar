@@ -7,7 +7,7 @@
   @if($detailsWithoutStock = \Session::get('details_without_stock'))
     @foreach($detailsWithoutStock as $detailWithoutStock)
       <div class="bipolar-alert-message" style="margin-bottom: 20px">
-        <i class="fa fa-check-circle-o"></i>
+        <i class="fas fa-check-circle-o"></i>
         <div class="success-content">
           <span>{{ $detailWithoutStock['message'] }}</span>
           <a href="{{ route('cart.remove', $detailWithoutStock['product_slug']) }}" class="btn btn-dark-rounded">
@@ -51,9 +51,9 @@
         </td>
 				<td data-title="Cantidad">
           <div class="quantity-content">
-            <button type="button" class="btn-number" data-type="minus"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn-number" data-type="minus"><i class="fas fa-minus"></i></button>
             <input type="number" name="quantity[{{ $cartDetail->hash_id }}]" value="{{ $cartDetail->quantity }}" class="quantity-number" size="4" min="0" readonly>
-            <button type="button" class="btn-number" data-type="plus"><i class="fa fa-plus"></i></button>
+            <button type="button" class="btn-number" data-type="plus"><i class="fas fa-plus"></i></button>
           </div>
         </td>
 				<td class="product-price" data-title="Precio">

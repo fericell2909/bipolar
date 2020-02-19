@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
     {{-- Script de Font Awesome --}}
-    <script src="https://use.fontawesome.com/d71cf672b2.js"></script>
+    <script async src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script>
   </head>
   <body class="no-top">
     <div class="bipolar-wrapper">

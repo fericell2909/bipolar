@@ -4,12 +4,12 @@
   @include('web.partials.photoswipe', ['product' => $product])
     <div class="breadcrumb">
       <div class="breadcrumb-content container">
-        <i class="fa fa-home"></i> &raquo; <a href="{{ route('shop') }}">Shop</a> &raquo; {{ $product->name }}
+        <i class="fas fa-home"></i> &raquo; <a href="{{ route('shop') }}">Shop</a> &raquo; {{ $product->name }}
       </div>
     </div>
     <div class="breadcrumb-without-padding visible-sm-block">
       <div class="breadcrumb-content container">
-        <i class="fa fa-home"></i> &raquo; <a href="{{ route('shop') }}">Shop</a> &raquo; {{ $product->name }}
+        <i class="fas fa-home"></i> &raquo; <a href="{{ route('shop') }}">Shop</a> &raquo; {{ $product->name }}
       </div>
     </div>
     @includeWhen(\Session::has('success_add_product'), 'web.partials.success', ['product' => \Session::get('success_add_product')])
@@ -58,7 +58,7 @@
           {!! Form::hidden('product_id', $product->hash_id) !!}
           @if(count($stockWithSizes))
             <div class="bipolar-alert-message" style="display: none">
-              <i class="fa fa-times-circle-o"></i>
+              <i class="fad fa-times-circle"></i>
               <div class="success-content">
                 <span>{{ __('bipolar.shop.select_size') }}</span>
               </div>
@@ -96,7 +96,9 @@
               </button>
               <div class="bipolar-button-description-container">
                 <a class="wishlist-add" data-product-id="{{ $product->hash_id }}">
-                  <i class="fa fa-heart-o"></i>
+                  <div class="heart-icon">
+                    <i class="fas fa-heart"></i>
+                  </div>
                   <span>Wishlist</span>
                 </a>
               </div>
@@ -109,8 +111,8 @@
         <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="bipolar-action-button-container">
             <span class="text-uppercase">{{ __('bipolar.shop.share') }}:</span>
-            <a href="#" onclick="window.open('https://www.facebook.com/sharer.php?s=100&p[url]={{ urlencode(URL::current()) }}','sharer', 'toolbar=0,status=0,width=620,height=280');"><i class="fa fa-facebook"></i></a>
-            <a href="mailto:bipolar@bipolar.com.pe"><i class="fa fa-envelope-o"></i></a>
+            <a href="#" onclick="window.open('https://www.facebook.com/sharer.php?s=100&p[url]={{ urlencode(URL::current()) }}','sharer', 'toolbar=0,status=0,width=620,height=280');"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:bipolar@bipolar.com.pe"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6">

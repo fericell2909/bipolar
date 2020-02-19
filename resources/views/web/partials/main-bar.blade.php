@@ -12,7 +12,7 @@
 					@auth
 						<span>{{ Auth::user()->name }}</span>
 						<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-							<i class="fa fa-power-off"></i> {{ __('bipolar.navbar.logout') }}
+							<i class="fas fa-power-off"></i> {{ __('bipolar.navbar.logout') }}
 						</a>
 					@endauth
 				</div>
@@ -21,17 +21,17 @@
 				<li class="dropdown">
 					<a class="navbar-right-text" href="#">
 						{{ __('bipolar.navbar.my_settings') }}
-						<i class="fa fa-chevron-down"></i>
+						<i class="fas fa-chevron-down"></i>
 					</a>
 					<ul class="bipolar-dropdown-menu in-desktop hidden-xs hidden-sm">
-						<li><a href="{{ route('myaccount') }}"><i class="fa fa-fw fa-user"></i> {{ __('bipolar.navbar.my_account') }}</a></li>
-						<li><a href="{{ route('wishlist') }}"><i class="fa fa-fw fa-heart"></i> Wishlist</a></li>
-						<li><a href="{{ route('cart') }}"><i class="fa fa-fw fa-shopping-cart"></i> Shopping cart</a></li>
-						<li><a href="{{ route('checkout') }}"><i class="fa fa-fw fa-share"></i> Checkout</a></li>
-						<li><a><i class="fa fa-fw fa-usd"></i> {{ __('bipolar.navbar.change_currency') }}</a></li>
+						<li><a href="{{ route('myaccount') }}"><i class="fas fa-fw fa-user"></i> {{ __('bipolar.navbar.my_account') }}</a></li>
+						<li><a href="{{ route('wishlist') }}"><i class="fas fa-fw fa-heart"></i> Wishlist</a></li>
+						<li><a href="{{ route('cart') }}"><i class="fas fa-fw fa-shopping-cart"></i> Shopping cart</a></li>
+						<li><a href="{{ route('checkout') }}"><i class="fas fa-fw fa-share"></i> Checkout</a></li>
+						<li><a><i class="fad fa-fw fa-dollar-sign"></i> {{ __('bipolar.navbar.change_currency') }}</a></li>
 						<li><a class="inside" href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a></li>
 						<li><a class="inside" href="{{ route('change-currency', ['currency' => 'USD']) }}">Dólares (USD)</a></li>
-						<li><a><i class="fa fa-fw fa-language"></i> {{ __('bipolar.navbar.language') }}</a></li>
+						<li><a><i class="fas fa-fw fa-language"></i> {{ __('bipolar.navbar.language') }}</a></li>
 						@foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
 						<li>
 							<a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item inside" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
@@ -41,7 +41,7 @@
 						@endforeach
 						@auth
 						<li>
-							<a href="{{ route('logout') }}" 
+							<a href="{{ route('logout') }}"
 								onclick="event.preventDefault();document.getElementById('logout-form').submit();">
 								{{ __('bipolar.navbar.logout') }}
 							</a>
@@ -60,17 +60,17 @@
 				<ul class="bipolar-navbar-social-links">
 					<li>
 						<a href="mailto:bipolar@bipolar.com.pe">
-							<i class="fa fa-envelope-o"></i>
+							<i class="fad fa-envelope"></i>
 						</a>
 					</li>
 					<li>
 						<a href="https://www.facebook.com/bipolar.zapatos" target="_blank">
-							<i class="fa fa-facebook"></i>
+							<i class="fab fa-facebook"></i>
 						</a>
 					</li>
 					<li>
 						<a href="https://instagram.com/bipolar_zapatos" target="_blank">
-							<i class="fa fa-instagram"></i>
+							<i class="fab fa-instagram"></i>
 						</a>
 					</li>
 				</ul>
