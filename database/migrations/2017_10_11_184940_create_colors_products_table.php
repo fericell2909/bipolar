@@ -31,6 +31,6 @@ class CreateColorsProductsTable extends Migration
      */
     public function down()
     {
-
+        Schema::dropIfExists('colors_products');
     }
 }

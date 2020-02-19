@@ -17,7 +17,7 @@ class CartBipolarTest extends TestCase
     /** @var CartBipolar */
     private $cart;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
         $this->cart = new CartBipolar();

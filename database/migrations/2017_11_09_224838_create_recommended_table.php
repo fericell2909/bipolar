@@ -32,8 +32,10 @@ class CreateRecommendedTable extends Migration
     public function down()
     {
         Schema::table('recommendeds', function (Blueprint $table) {
-            $table->dropForeign(['parent_product_id']);
-            $table->dropForeign(['recommended_product_id']);
+            if (\DB::getDriverName() !== 'sqlite') {
+                $table->dropForeign(['parent_product_id']);
+                $table->dropForeign(['recommended_product_id']);
+            }
         });
 
         Schema::dropIfExists('recommendeds');
