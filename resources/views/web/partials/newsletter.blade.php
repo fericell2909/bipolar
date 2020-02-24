@@ -1,7 +1,7 @@
 <div class="content-newsletter" style="background-image: url({{ $showBackground ? $imageBackground->background_suscribe : '' }});">
   <div class="container-content">
     <div class="text-center">
-      <i class="fad fa-2x fa-envelope"></i>
+      <i class="fas fa-2x fa-envelope"></i>
     </div>
     <div class="newsletter-title">{{ __('bipolar.home.suscribe') }}</div>
     <div class="newsletter-subtitle">{{ __('bipolar.home.suscribe_details') }}</div>

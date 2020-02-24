@@ -34,7 +34,7 @@
   <div class="row">
     <div class="col-md">
       @include('admin.partials.widget', [
-        'icon' => 'fad fa-fw fa-envelope',
+        'icon' => 'fas fa-fw fa-envelope',
         'quantity' => $newsletterUsersInWeek,
         'description' => 'Nuevos suscriptores newsletter',
       ])

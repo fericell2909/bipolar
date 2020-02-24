@@ -69,7 +69,7 @@
           </p>
           <div class="footer-icons">
             <a href="mailto:bipolar@bipolar.com.pe">
-              <i class="fad fa-envelope"></i>
+              <i class="fas fa-envelope"></i>
             </a>
             <a href="https://www.facebook.com/bipolar.zapatos" target="_blank">
               <i class="fab fa-facebook"></i>

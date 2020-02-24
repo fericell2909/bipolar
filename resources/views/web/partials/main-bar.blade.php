@@ -60,7 +60,7 @@
 				<ul class="bipolar-navbar-social-links">
 					<li>
 						<a href="mailto:bipolar@bipolar.com.pe">
-							<i class="fad fa-envelope"></i>
+							<i class="fas fa-envelope"></i>
 						</a>
 					</li>
 					<li>
