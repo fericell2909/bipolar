@@ -34,7 +34,6 @@
               'class' => 'form-control datetimepicker-input',
               'id' => 'datetimepickerbegin',
               'data-target' => "#datetimepickerbegin",
-              'required',
             ]) !!}
             <div class="input-group-append" data-target="#datetimepickerbegin" data-toggle="datetimepicker">
               <button type="button" class="btn btn-dark"><i class="fas fa-fw fa-calendar"></i></button>
@@ -48,7 +47,6 @@
               'class' => 'form-control datetimepicker-input',
               'id' => 'datetimepickerend',
               'data-target' => "#datetimepickerend",
-              'required',
             ]) !!}
             <div class="input-group-append" data-target="#datetimepickerend" data-toggle="datetimepicker">
               <button type="button" class="btn btn-dark"><i class="fas fa-fw fa-calendar"></i></button>

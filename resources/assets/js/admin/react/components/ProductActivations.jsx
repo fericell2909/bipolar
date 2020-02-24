@@ -86,7 +86,7 @@ export default class BipolarProductActivations extends Component {
         const botonSincronizando =
             (this.state.waitingAjax === true) ? (
                 <span className="label label-pill label-inverse">
-                    <i className="fa fa-spin fa-refresh"/> Sincronizando
+                    <i className="fas fa-spin fa-refresh"/> Sincronizando
                 </span>
             ) : null;
 
@@ -108,7 +108,7 @@ export default class BipolarProductActivations extends Component {
                         <button onClick={() => this.toggleActive(activeItem['hash_id'], activeItem['active'])}
                                 className="btn btn-dark btn-rounded"
                                 disabled={this.state.waitingAjax}>
-                            Desactivar <i className="fa fa-arrow-right"/>
+                            Desactivar <i className="fas fa-arrow-right"/>
                         </button>
                     </td>
                 </tr>
@@ -133,7 +133,7 @@ export default class BipolarProductActivations extends Component {
                         <button onClick={() => this.toggleActive(inactiveItem['hash_id'], inactiveItem['active'])}
                                 className="btn btn-dark btn-rounded"
                                 disabled={this.state.waitingAjax}>
-                            <i className="fa fa-arrow-left"/> Activar
+                            <i className="fas fa-arrow-left"/> Activar
                         </button>
                     </td>
                 </tr>
@@ -154,11 +154,11 @@ export default class BipolarProductActivations extends Component {
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th><i className="fa fa-photo"/></th>
+                                <th><i className="fas fa-photo"/></th>
                                 <th>Nombre</th>
                                 <th>Precio</th>
                                 <th>Estado</th>
-                                <th className="text-center"><i className="fa fa-cog"/></th>
+                                <th className="text-center"><i className="fas fa-cog"/></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -179,11 +179,11 @@ export default class BipolarProductActivations extends Component {
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th><i className="fa fa-photo"/></th>
+                                <th><i className="fas fa-photo"/></th>
                                 <th>Nombre</th>
                                 <th>Precio</th>
                                 <th>Estado</th>
-                                <th className="text-center"><i className="fa fa-cog"/></th>
+                                <th className="text-center"><i className="fas fa-cog"/></th>
                             </tr>
                             </thead>
                             <tbody>

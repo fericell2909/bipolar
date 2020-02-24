@@ -26,7 +26,9 @@ class AddProductIdForeignToPhotos extends Migration
     public function down()
     {
         Schema::table('photos', function (Blueprint $table) {
-            $table->dropForeign(['product_id']);
+            if (\DB::getDriverName() !== 'sqlite') {
+                $table->dropForeign(['product_id']);
+            }
         });
     }
 }

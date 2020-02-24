@@ -36,10 +36,10 @@
                       {{ $buy->shipping_address->address }} {{ $buy->shipping_address->country_state->name }} {{ $buy->shipping_address->country_state->country->name }}
                     </td>
                     <td class="align-middle">{{ ucfirst($buy->status) }}</td>
-                    <td class="align-middle">{!! $buy->payed ? "<i class='fa fa-check'></i>" : null !!}</td>
+                    <td class="align-middle">{!! $buy->payed ? "<i class='fas fa-check'></i>" : null !!}</td>
                     <td class="align-middle">{{ $buy->created_at->format('d/m/Y') }}</td>
                     <td class="align-middle">{{ $buy->total }} {{ $buy->currency }}</td>
-                    <td class="text-center align-middle">{!! $buy->showroom ? "<i class='fa fa-check'></i>" : null !!}</td>
+                    <td class="text-center align-middle">{!! $buy->showroom ? "<i class='fas fa-check'></i>" : null !!}</td>
                     <td class="align-middle">
                       <div class="button-group">
                         <a href="{{ route('buys.edit', $buy->id) }}" class="btn btn-dark btn-sm btn-rounded">
@@ -51,10 +51,10 @@
                           </a>
                         @endif
                         <button class="btn btn-dark btn-sm btn-rounded" data-target="#payments_{{ $buy->id }}" data-toggle="modal">
-                          <i class="fa fa-credit-card"></i> Intentos de pago
+                          <i class="fas fa-credit-card"></i> Intentos de pago
                         </button>
                         <button class="btn btn-dark btn-rounded btn-sm" data-target="#buy_details_{{ $buy->id }}" data-toggle="modal">
-                          <i class="fa fa-eye"></i> Ver
+                          <i class="fas fa-eye"></i> Ver
                         </button>
                       </div>
                     </td>

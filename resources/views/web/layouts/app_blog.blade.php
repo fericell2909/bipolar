@@ -4,7 +4,7 @@
     <div class="breadcrumb-wrapper">
       <div class="container">
         <ul class="breadcrumbs">
-          <li><a href="{{ route('home') }}"><i class="fa fa-home"></i></a></li>
+          <li><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
           <li><span>{{ __('bipolar.blog.blog_posts') }}</span></li>
         </ul>
       </div>

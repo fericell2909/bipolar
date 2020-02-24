@@ -30,7 +30,9 @@ class AddPhotosToBlogPosts extends Migration
     public function down()
     {
         Schema::table('photos', function (Blueprint $table) {
-            $table->dropForeign(['post_id']);
+            if (\DB::getDriverName() !== 'sqlite') {
+                $table->dropForeign(['post_id']);
+            }
         });
 
         Schema::table('photos', function (Blueprint $table) {

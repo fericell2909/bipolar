@@ -11,7 +11,7 @@
         <div class="col-md-6 col-md-offset-3">
           @if(\Session::has('sent_message'))
           <div class="bipolar-success-message" style="margin-bottom: 20px;">
-            <i class="fa fa-check-circle-o"></i>
+            <i class="fas fa-check-circle-o"></i>
             <div class="success-content">
               <span>Tu mensaje ha sido enviado</span>
             </div>

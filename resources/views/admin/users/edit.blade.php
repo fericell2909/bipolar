@@ -38,7 +38,7 @@
       <div class="form-row">
         <div class="col-md-6">
           <div class="form-group">
-            <label><i class="fa fa-eye-slash"></i> <strong>Brindar acceso a Shoowroom oculto</strong></label>
+            <label><i class="fas fa-eye-slash"></i> <strong>Brindar acceso a Shoowroom oculto</strong></label>
             {!! Form::select('has_showroom_sale', ['0' => 'No', '1' => 'Si'], (string)$user->has_showroom_sale, ['class' => 'form-control']) !!}
           </div>
         </div>

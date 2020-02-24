@@ -44,7 +44,9 @@ class CreateCouponsTable extends Migration
     public function down()
     {
         Schema::table('coupons', function (Blueprint $table) {
-            $table->dropForeign(['type_id']);
+            if (\DB::getDriverName() !== 'sqlite') {
+                $table->dropForeign(['type_id']);
+            }
         });
 
         Schema::dropIfExists('coupons');

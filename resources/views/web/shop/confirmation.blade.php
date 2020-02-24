@@ -21,7 +21,7 @@
   @if(isset($paymeCode))
     @if($paymeCode !== '00')
       <div class="bipolar-alert-message" style="margin-bottom: 20px;">
-        <i class="fa fa-times-circle-o"></i>
+        <i class="fad fa-times-circle"></i>
         <div class="success-content">
           <span>La compra no tiene un resultado de pago exitoso, intente de nuevamente presionando el siguiente botón</span>
         </div>
@@ -54,7 +54,7 @@
     <p class="text-left">
       <a href="#" class="btn btn-dark btn-rounded" onclick="javascript:AlignetVPOS2.openModal('{{ env('APP_ENV') === "production" ? "" : env('PAYME_URL_ALIGNET') }}', '2')">
         <span class="icon">
-          <i class="fa fa-credit-card"></i>
+          <i class="fas fa-credit-card"></i>
         </span>
         <span>{{ __('bipolar.confirmation.make_payment') }}</span>
       </a>

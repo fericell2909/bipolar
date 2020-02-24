@@ -27,8 +27,10 @@ class AddForeignSizeProductToStocks extends Migration
     public function down()
     {
         Schema::table('stocks', function (Blueprint $table) {
-            $table->dropForeign(['product_id']);
-            $table->dropForeign(['size_id']);
+            if (\DB::getDriverName() !== 'sqlite') {
+                $table->dropForeign(['product_id']);
+                $table->dropForeign(['size_id']);
+            }
         });
     }
 }

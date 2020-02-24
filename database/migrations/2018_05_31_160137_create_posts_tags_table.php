@@ -32,8 +32,10 @@ class CreatePostsTagsTable extends Migration
     public function down()
     {
         Schema::table('posts_tags', function (Blueprint $table) {
-            $table->dropForeign(['post_id']);
-            $table->dropForeign(['tag_id']);
+            if (\DB::getDriverName() !== 'sqlite') {
+                $table->dropForeign(['post_id']);
+                $table->dropForeign(['tag_id']);
+            }
         });
 
         Schema::dropIfExists('posts_tags');

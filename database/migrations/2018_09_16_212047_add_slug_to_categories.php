@@ -14,7 +14,7 @@ class AddSlugToCategories extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('slug')->after('name');
+            $table->string('slug')->after('name')->default('slug');
         });
     }
 

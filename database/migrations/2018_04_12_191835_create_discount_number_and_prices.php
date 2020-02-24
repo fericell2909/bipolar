@@ -31,7 +31,14 @@ class CreateDiscountNumberAndPrices extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('discount', 'price_discount', 'price_dolar_discount');
+            $table->dropColumn(
+                'begin_discount',
+                'end_discount',
+                'discount_usd',
+                'discount_pen',
+                'price_pen_discount',
+                'price_usd_discount'
+            );
         });
     }
 }
