@@ -57,10 +57,6 @@
                      class="btn btn-sm btn-rounded btn-dark">
                     <i class="fas fa-fw fa-edit"></i> Editar
                   </a>
-                  <button class="btn btn-sm btn-rounded btn-dark type-delete" data-type-id="{{ $label->id }}">
-                    <i class="fas fa-fw fa-trash"></i>
-                    Eliminar
-                  </button>
                 </div>
               </td>
             </tr>

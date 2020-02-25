@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import get from 'lodash/get';
 import swal from 'sweetalert2';
@@ -12,37 +12,36 @@ import ProductColors from './partials/ProductColors';
 import ProductSizes from './partials/ProductSizes';
 import ProductTypes from './partials/ProductTypes';
 
-class BipolarProductEdit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      product: {
-        name: '',
-        name_english: '',
-        price: 0,
-        weight: '',
-        description: '',
-        description_english: '',
-        free_shipping: false,
-        is_showroom_sale: false,
-        salient: false,
-        previewUrl: '',
-        shopUrl: '',
-        selectedState: '',
-        selectedColors: [],
-        selectedSizes: [],
-        selectedSubtypes: [],
-      },
-      // data for info
-      colors: [],
-      sizes: [],
-      types: [],
-      productStates: [],
-      // data for editors
-      editorState: EditorState.createEmpty(),
-      editorStateEnglish: EditorState.createEmpty(),
-    };
-  }
+class BipolarProductEdit extends Component {
+  state = {
+    product: {
+      name: '',
+      name_english: '',
+      price: 0,
+      weight: '',
+      description: '',
+      description_english: '',
+      free_shipping: false,
+      is_showroom_sale: false,
+      salient: false,
+      previewUrl: '',
+      shopUrl: '',
+      selectedState: '',
+      selectedColors: [],
+      selectedSizes: [],
+      selectedSubtypes: [],
+      selectedLabel: null,
+    },
+    // data for info
+    colors: [],
+    sizes: [],
+    types: [],
+    productStates: [],
+    labels: [],
+    // data for editors
+    editorState: EditorState.createEmpty(),
+    editorStateEnglish: EditorState.createEmpty(),
+  };
 
   handleInputChange = event => {
     this.setState({
@@ -203,6 +202,9 @@ class BipolarProductEdit extends React.Component {
     });
   };
 
+  handleLabelUpdate = event =>
+    this.setState({ product: { ...this.state.product, selectedLabel: event.target.value } });
+
   render() {
     const isInvalidForm =
       this.state.product.name.length === 0 ||
@@ -322,11 +324,11 @@ class BipolarProductEdit extends React.Component {
                   />
                 </div>
                 <div className="form-row">
-                  <div className="col-md-4">
+                  <div className="col-md-3">
                     <div className="form-group">
                       <label>Estado</label>
                       <select
-                        className="custom-select col-12"
+                        className="form-control"
                         value={this.state.product.selectedState}
                         onChange={this.handleProductStateChange}
                         required>
@@ -337,7 +339,7 @@ class BipolarProductEdit extends React.Component {
                       </select>
                     </div>
                   </div>
-                  <div className="col-md-4">
+                  <div className="col-md-3">
                     <div className="form-group">
                       <label>Peso (kg)</label>
                       <input
@@ -352,10 +354,29 @@ class BipolarProductEdit extends React.Component {
                       />
                     </div>
                   </div>
-                  <div className="col-md-4">
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>Label (Opcional)</label>
+                      <select
+                        value={this.state.selectedLabel}
+                        onChange={this.handleLabelUpdate}
+                        className="form-control">
+                        <option disabled>Selecciona un label</option>
+                        {this.state.labels.map(label => (
+                          <option key={label.id} value={label.id}>
+                            {label.name.es}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
                     <div className="form-group">
                       <label>Showroom Sale (Oculto)</label>
-                      <select className="form-control" onChange={this.handleHiddenShowroomChange}>
+                      <select
+                        className="form-control"
+                        defaultValue="false"
+                        onChange={this.handleHiddenShowroomChange}>
                         <option value="true" selected={this.state.product.is_showroom_sale}>
                           Si
                         </option>
@@ -424,11 +445,19 @@ class BipolarProductEdit extends React.Component {
         axios.get('/ajax-admin/sizes'),
         axios.get('/ajax-admin/types'),
         axios.get('/ajax-admin/states'),
+        axios.get('/ajax-admin/labels'),
         axios.get(`/ajax-admin/products/${this.props.productHashId}`),
       ])
       .then(
         axios.spread(
-          (responseColors, responseSizes, responseTypes, responseStates, responseProduct) => {
+          (
+            responseColors,
+            responseSizes,
+            responseTypes,
+            responseStates,
+            responseLabels,
+            responseProduct
+          ) => {
             const product = responseProduct.data['data'];
             const productInState = { ...this.state.product };
 
@@ -470,6 +499,7 @@ class BipolarProductEdit extends React.Component {
               colors: responseColors.data['data'],
               sizes: responseSizes.data['data'],
               types: responseTypes.data['data'],
+              labels: responseLabels.data['data'],
               productStates: responseStates.data['data'],
               editorState,
               editorStateEnglish,
