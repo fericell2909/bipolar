@@ -4617,7 +4617,7 @@
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/switchery/switchery.css":
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/switchery/switchery.css?8179":
 /*!********************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--10-1!./node_modules/postcss-loader/src??ref--10-2!./node_modules/switchery/switchery.css ***!
   \********************************************************************************************************************************/
@@ -51576,7 +51576,7 @@ if (typeof window !== 'undefined' && window.Sweetalert2){  window.swal = window.
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../css-loader??ref--10-1!../postcss-loader/src??ref--10-2!./switchery.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/switchery/switchery.css");
+var content = __webpack_require__(/*! !../css-loader??ref--10-1!../postcss-loader/src??ref--10-2!./switchery.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/switchery/switchery.css?8179");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -54684,66 +54684,51 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/admin/app-admin-scripts.js":
+/***/ "./resources/assets/js/admin/app-admin-scripts.ts":
 /*!********************************************************!*\
-  !*** ./resources/assets/js/admin/app-admin-scripts.js ***!
+  !*** ./resources/assets/js/admin/app-admin-scripts.ts ***!
   \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+var windowObject = window;
 try {
-  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js").default;
-
-  __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-
-  window.moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-} catch (e) {}
-
+    windowObject.$ = windowObject.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+    windowObject.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js").default;
+    __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+    windowObject.moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+}
+catch (e) { }
 var token = document.head.querySelector('meta[name="csrf-token"]');
-
 if (token) {
-  window.$.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': token.content
-    }
-  });
-} else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-} // Plugins
-
-
+    windowObject.$.ajaxSetup({
+        headers: { 'X-CSRF-TOKEN': token.content },
+    });
+}
+else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+// Plugins
 __webpack_require__(/*! dropzone */ "./node_modules/dropzone/dist/dropzone.js");
-
 __webpack_require__(/*! tempusdominus-bootstrap-4 */ "./node_modules/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.js");
-
 __webpack_require__(/*! ./plugins/perfect-scrollbar.jquery.min */ "./resources/assets/js/admin/plugins/perfect-scrollbar.jquery.min.js");
-
 __webpack_require__(/*! ./plugins/sidebarmenu */ "./resources/assets/js/admin/plugins/sidebarmenu.js");
-
 __webpack_require__(/*! ./plugins/waves */ "./resources/assets/js/admin/plugins/waves.js");
-
 __webpack_require__(/*! ./plugins/theme-scripts */ "./resources/assets/js/admin/plugins/theme-scripts.js");
-
 __webpack_require__(/*! ./plugins/jscolor.min */ "./resources/assets/js/admin/plugins/jscolor.min.js");
+__webpack_require__(/*! ./common-scripts */ "./resources/assets/js/admin/common-scripts.ts");
+__webpack_require__(/*! ./settings-scripts */ "./resources/assets/js/admin/settings-scripts.ts");
+__webpack_require__(/*! ./order-scripts */ "./resources/assets/js/admin/order-scripts.ts");
+__webpack_require__(/*! ./banner-scripts */ "./resources/assets/js/admin/banner-scripts.ts");
+__webpack_require__(/*! ./buys-scripts */ "./resources/assets/js/admin/buys-scripts.ts");
+__webpack_require__(/*! ./coupon-scripts */ "./resources/assets/js/admin/coupon-scripts.ts");
 
-__webpack_require__(/*! ./common-scripts */ "./resources/assets/js/admin/common-scripts.js");
-
-__webpack_require__(/*! ./settings-scripts */ "./resources/assets/js/admin/settings-scripts.js");
-
-__webpack_require__(/*! ./order-scripts */ "./resources/assets/js/admin/order-scripts.js");
-
-__webpack_require__(/*! ./banner-scripts */ "./resources/assets/js/admin/banner-scripts.js");
-
-__webpack_require__(/*! ./buys-scripts */ "./resources/assets/js/admin/buys-scripts.js");
-
-__webpack_require__(/*! ./coupon-scripts */ "./resources/assets/js/admin/coupon-scripts.js");
 
 /***/ }),
 
-/***/ "./resources/assets/js/admin/banner-scripts.js":
+/***/ "./resources/assets/js/admin/banner-scripts.ts":
 /*!*****************************************************!*\
-  !*** ./resources/assets/js/admin/banner-scripts.js ***!
+  !*** ./resources/assets/js/admin/banner-scripts.ts ***!
   \*****************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -54754,158 +54739,118 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 
 $(function () {
-  var $deleteBanner = $(".delete-banner");
-
-  if ($deleteBanner.length) {
-    $deleteBanner.on('click', function () {
-      var _this = this;
-
-      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
-        title: 'Eliminar banner',
-        text: 'Seguro que desea eliminar',
-        type: 'question',
-        showCancelButton: true,
-        cancelButtonText: "Cancelar",
-        showLoaderOnConfirm: true
-      }).then(function (result) {
-        if (result.value) {
-          var bannerId = $(_this).data('bannerId');
-          $.ajax({
-            method: 'DELETE',
-            url: "/ajax-admin/banners/".concat(bannerId)
-          }).done(function () {
-            return location.reload();
-          });
-        }
-      });
-    });
-  }
+    var $deleteBanner = $(".delete-banner");
+    if ($deleteBanner.length) {
+        $deleteBanner.on('click', function () {
+            var _this = this;
+            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
+                title: 'Eliminar banner',
+                text: 'Seguro que desea eliminar',
+                type: 'question',
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                showLoaderOnConfirm: true,
+            }).then(function (result) {
+                if (result.value) {
+                    var bannerId = $(_this).data('bannerId');
+                    $.ajax({
+                        method: 'DELETE',
+                        url: "/ajax-admin/banners/" + bannerId
+                    }).done(function () { return location.reload(); });
+                }
+            });
+        });
+    }
 });
+
 
 /***/ }),
 
-/***/ "./resources/assets/js/admin/buys-scripts.js":
+/***/ "./resources/assets/js/admin/buys-scripts.ts":
 /*!***************************************************!*\
-  !*** ./resources/assets/js/admin/buys-scripts.js ***!
+  !*** ./resources/assets/js/admin/buys-scripts.ts ***!
   \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 //import swal from 'sweetalert2';
 
+
 /***/ }),
 
-/***/ "./resources/assets/js/admin/common-scripts.js":
+/***/ "./resources/assets/js/admin/common-scripts.ts":
 /*!*****************************************************!*\
-  !*** ./resources/assets/js/admin/common-scripts.js ***!
+  !*** ./resources/assets/js/admin/common-scripts.ts ***!
   \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    var ownKeys = Object.keys(source);
-
-    if (typeof Object.getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
-    }
-
-    ownKeys.forEach(function (key) {
-      _defineProperty(target, key, source[key]);
-    });
-  }
-
-  return target;
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var switcher = __webpack_require__(/*! switchery/switchery */ "./node_modules/switchery/switchery.js");
-
 var select2 = __webpack_require__(/*! select2/dist/js/select2.full */ "./node_modules/select2/dist/js/select2.full.js");
-
 $(function () {
-  // Select 2
-  $('.select2').select2(); // Switchery
-
-  if ($('.js-switch').length) {
-    var elem = document.querySelector('.js-switch');
-    var init = new switcher(elem, {
-      color: '#F9967B'
-    });
-  }
-
-  if ($('.js-switch-salient').length) {
-    var _elem = document.querySelector('.js-switch-salient');
-
-    var _init = new switcher(_elem, {
-      color: '#F9967B'
-    });
-  }
-
-  var generalDateTimeOptions = {
-    icons: {
-      time: 'far fa-clock',
-      date: 'far fa-calendar',
-      up: 'fas fa-arrow-up',
-      down: 'fas fa-arrow-down',
-      previous: 'fas fa-chevron-left',
-      next: 'fas fa-chevron-right',
-      today: 'far fa-calendar-check',
-      clear: 'fas fa-trash',
-      close: 'fas fa-times'
+    // Select 2
+    $('.select2').select2();
+    // Switchery
+    if ($('.js-switch').length) {
+        var elem = document.querySelector('.js-switch');
+        new switcher(elem, { color: '#F9967B' });
     }
-  };
-
-  var datePickerOptions = _objectSpread({}, generalDateTimeOptions, {
-    format: 'DD/MM/YYYY'
-  });
-
-  var dateTimePickerOptions = _objectSpread({}, generalDateTimeOptions, {
-    format: 'DD/MM/YYYY HH:mm'
-  });
-
-  var datePickerBegin = $("#datepickerbegin");
-  var datePickerEnd = $("#datepickerend");
-
-  if (datePickerBegin.length) {
-    datePickerBegin.datetimepicker(datePickerOptions);
-  }
-
-  if (datePickerEnd.length) {
-    datePickerEnd.datetimepicker(datePickerOptions);
-  }
-
-  if ($("#datetimepickerbegin").length) {
-    $("#datetimepickerbegin").datetimepicker(dateTimePickerOptions);
-  }
-
-  if ($("#datetimepickerend").length) {
-    $("#datetimepickerend").datetimepicker(dateTimePickerOptions);
-  }
+    if ($('.js-switch-salient').length) {
+        var elem = document.querySelector('.js-switch-salient');
+        new switcher(elem, { color: '#F9967B' });
+    }
+    var generalDateTimeOptions = {
+        icons: {
+            time: 'far fa-clock',
+            date: 'far fa-calendar',
+            up: 'fas fa-arrow-up',
+            down: 'fas fa-arrow-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'far fa-calendar-check',
+            clear: 'fas fa-trash',
+            close: 'fas fa-times',
+        },
+    };
+    var datePickerOptions = __assign(__assign({}, generalDateTimeOptions), { format: 'DD/MM/YYYY' });
+    var dateTimePickerOptions = __assign(__assign({}, generalDateTimeOptions), { format: 'DD/MM/YYYY HH:mm' });
+    var datePickerBegin = $('#datepickerbegin');
+    var datePickerEnd = $('#datepickerend');
+    if (datePickerBegin.length) {
+        // @ts-ignore
+        datePickerBegin.datetimepicker(datePickerOptions);
+    }
+    if (datePickerEnd.length) {
+        // @ts-ignore
+        datePickerEnd.datetimepicker(datePickerOptions);
+    }
+    if ($('#datetimepickerbegin').length) {
+        // @ts-ignore
+        $('#datetimepickerbegin').datetimepicker(dateTimePickerOptions);
+    }
+    if ($('#datetimepickerend').length) {
+        // @ts-ignore
+        $('#datetimepickerend').datetimepicker(dateTimePickerOptions);
+    }
 });
+
 
 /***/ }),
 
-/***/ "./resources/assets/js/admin/coupon-scripts.js":
+/***/ "./resources/assets/js/admin/coupon-scripts.ts":
 /*!*****************************************************!*\
-  !*** ./resources/assets/js/admin/coupon-scripts.js ***!
+  !*** ./resources/assets/js/admin/coupon-scripts.ts ***!
   \*****************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -54916,43 +54861,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 
 $(function () {
-  var $deleteCoupon = $(".delete-coupon");
-
-  if ($deleteCoupon.length) {
-    $deleteCoupon.on('click', function () {
-      var _this = this;
-
-      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
-        title: 'Eliminar cupón',
-        text: 'Seguro que desea eliminar',
-        type: 'question',
-        showCancelButton: true,
-        cancelButtonText: "Cancelar",
-        showLoaderOnConfirm: true
-      }).then(function (result) {
-        if (result.value) {
-          var couponId = $(_this).data('couponId');
-          $.ajax({
-            method: 'DELETE',
-            url: "/ajax-admin/coupons/".concat(couponId)
-          }).done(function (response) {
-            if (response.success) {
-              location.reload();
-            } else {
-              sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()('Error', response.message, 'danger');
-            }
-          });
-        }
-      });
-    });
-  }
+    var $deleteCoupon = $('.delete-coupon');
+    if ($deleteCoupon.length) {
+        $deleteCoupon.on('click', function () {
+            var _this = this;
+            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
+                title: 'Eliminar cupón',
+                text: 'Seguro que desea eliminar',
+                type: 'question',
+                showCancelButton: true,
+                cancelButtonText: 'Cancelar',
+                showLoaderOnConfirm: true,
+            }).then(function (result) {
+                if (result.value) {
+                    var couponId = $(_this).data('couponId');
+                    $.ajax({
+                        method: 'DELETE',
+                        url: "/ajax-admin/coupons/" + couponId,
+                    }).done(function (response) {
+                        if (response.success) {
+                            location.reload();
+                        }
+                        else {
+                            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()('Error', response.message, 'error');
+                        }
+                    });
+                }
+            });
+        });
+    }
 });
+
 
 /***/ }),
 
-/***/ "./resources/assets/js/admin/order-scripts.js":
+/***/ "./resources/assets/js/admin/order-scripts.ts":
 /*!****************************************************!*\
-  !*** ./resources/assets/js/admin/order-scripts.js ***!
+  !*** ./resources/assets/js/admin/order-scripts.ts ***!
   \****************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -54963,50 +54908,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 var Sortable = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/Sortable.js");
 
-
-
-var createSortable = function createSortable(elementId, urlToSave) {
-  if ($(elementId).length) {
-    var elem = document.querySelector(elementId);
-    var sortable = new Sortable(elem, {
-      scroll: true,
-      onEnd: function onEnd() {
-        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
-          text: 'Cargando.',
-          timer: 1000,
-          onOpen: function onOpen() {
-            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.showLoading();
-          }
-        }).then(function (result) {
-          if (result.dismiss === 'timer') {
-            $.post(urlToSave, {
-              newOrder: sortable.toArray()
-            }).done(function () {
-              return sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
-                title: "Hecho",
-                type: "success",
-                toast: true,
-                position: "top-right",
-                showConfirmButton: false,
-                timer: 3000
-              });
-            });
-          }
+var createSortable = function (elementId, urlToSave) {
+    if ($(elementId).length) {
+        var elem = document.querySelector(elementId);
+        var sortable_1 = new Sortable(elem, {
+            scroll: true,
+            onEnd: function () {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
+                    text: 'Cargando.',
+                    timer: 1000,
+                    onOpen: function () {
+                        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.showLoading();
+                    },
+                }).then(function (result) {
+                    if (result.dismiss) {
+                        $.post(urlToSave, { newOrder: sortable_1.toArray() }).done(function () {
+                            return sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
+                                title: 'Hecho',
+                                type: 'success',
+                                toast: true,
+                                position: 'top-right',
+                                showConfirmButton: false,
+                                timer: 3000,
+                            });
+                        });
+                    }
+                });
+            },
         });
-      }
-    });
-  }
+    }
 };
-
 $(function () {
-  createSortable('#sortable-items', '/ajax-admin/products/photos/order');
-  createSortable('#sortable-products', '/ajax-admin/products/order');
-  createSortable('#sortable-home-posts', '/ajax-admin/home-posts/order');
-  createSortable('#sortable-home-posts-photos', '/ajax-admin/home-posts/photos/order');
-  createSortable('#sortable-banners', '/ajax-admin/banners/order');
-  createSortable('#sortable-historics', '/ajax-admin/historics/order');
-  createSortable('#sortable-post-photos', '/ajax-admin/post/photos/order');
+    createSortable('#sortable-items', '/ajax-admin/products/photos/order');
+    createSortable('#sortable-products', '/ajax-admin/products/order');
+    createSortable('#sortable-home-posts', '/ajax-admin/home-posts/order');
+    createSortable('#sortable-home-posts-photos', '/ajax-admin/home-posts/photos/order');
+    createSortable('#sortable-banners', '/ajax-admin/banners/order');
+    createSortable('#sortable-historics', '/ajax-admin/historics/order');
+    createSortable('#sortable-post-photos', '/ajax-admin/post/photos/order');
 });
+
 
 /***/ }),
 
@@ -57263,9 +57204,9 @@ $(function () {
 
 /***/ }),
 
-/***/ "./resources/assets/js/admin/settings-scripts.js":
+/***/ "./resources/assets/js/admin/settings-scripts.ts":
 /*!*******************************************************!*\
-  !*** ./resources/assets/js/admin/settings-scripts.js ***!
+  !*** ./resources/assets/js/admin/settings-scripts.ts ***!
   \*******************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -57276,216 +57217,190 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 
 $(function () {
-  $('.size-delete').click(function () {
-    var _this = this;
-
-    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
-      title: 'Eliminar talla',
-      text: 'Seguro que desea eliminar',
-      type: 'question',
-      showCancelButton: true,
-      cancelButtonText: "Cancelar",
-      showLoaderOnConfirm: true
-    }).then(function (result) {
-      if (result.value) {
-        var sizeHashId = $(_this).data('sizeId');
-        $.ajax({
-          method: 'DELETE',
-          url: "/ajax-admin/sizes/".concat(sizeHashId)
-        }).done(function () {
-          return location.reload();
+    $('.size-delete').click(function () {
+        var _this = this;
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
+            title: 'Eliminar talla',
+            text: 'Seguro que desea eliminar',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+        }).then(function (result) {
+            if (result.value) {
+                var sizeHashId = $(_this).data('sizeId');
+                $.ajax({
+                    method: 'DELETE',
+                    url: "/ajax-admin/sizes/" + sizeHashId
+                }).done(function () { return location.reload(); });
+            }
         });
-      }
     });
-  });
-  $('.image-delete').click(function () {
-    var _this2 = this;
-
-    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
-      title: 'Eliminar cambio de imagen de fondo',
-      text: 'Seguro que desea eliminar',
-      type: 'question',
-      showCancelButton: true,
-      cancelButtonText: "Cancelar",
-      showLoaderOnConfirm: true
-    }).then(function (result) {
-      if (result.value) {
-        var imageId = $(_this2).data('imageId');
-        $.ajax({
-          method: 'DELETE',
-          url: "/ajax-admin/image/".concat(imageId)
-        }).done(function () {
-          return location.reload();
+    $('.image-delete').click(function () {
+        var _this = this;
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
+            title: 'Eliminar cambio de imagen de fondo',
+            text: 'Seguro que desea eliminar',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+        }).then(function (result) {
+            if (result.value) {
+                var imageId = $(_this).data('imageId');
+                $.ajax({
+                    method: 'DELETE',
+                    url: "/ajax-admin/image/" + imageId
+                }).done(function () { return location.reload(); });
+            }
         });
-      }
     });
-  });
-  $('.color-delete').click(function () {
-    var _this3 = this;
-
-    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
-      title: 'Eliminar color',
-      text: 'Seguro que desea eliminar',
-      type: 'question',
-      showCancelButton: true,
-      cancelButtonText: "Cancelar",
-      showLoaderOnConfirm: true
-    }).then(function (result) {
-      if (result.value) {
-        var colorHashId = $(_this3).data('colorId');
-        $.ajax({
-          method: 'DELETE',
-          url: "/ajax-admin/colors/".concat(colorHashId)
-        }).done(function () {
-          return location.reload();
+    $('.color-delete').click(function () {
+        var _this = this;
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
+            title: 'Eliminar color',
+            text: 'Seguro que desea eliminar',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+        }).then(function (result) {
+            if (result.value) {
+                var colorHashId = $(_this).data('colorId');
+                $.ajax({
+                    method: 'DELETE',
+                    url: "/ajax-admin/colors/" + colorHashId
+                }).done(function () { return location.reload(); });
+            }
         });
-      }
     });
-  });
-  $('.type-delete').click(function () {
-    var _this4 = this;
-
-    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
-      title: 'Eliminar tipo',
-      text: 'Seguro que desea eliminar',
-      type: 'question',
-      showCancelButton: true,
-      cancelButtonText: "Cancelar",
-      showLoaderOnConfirm: true
-    }).then(function (result) {
-      if (result.value) {
-        var typeHashId = $(_this4).data('typeId');
-        $.ajax({
-          method: 'DELETE',
-          url: "/ajax-admin/types/".concat(typeHashId)
-        }).done(function () {
-          return location.reload();
+    $('.type-delete').click(function () {
+        var _this = this;
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
+            title: 'Eliminar tipo',
+            text: 'Seguro que desea eliminar',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+        }).then(function (result) {
+            if (result.value) {
+                var typeHashId = $(_this).data('typeId');
+                $.ajax({
+                    method: 'DELETE',
+                    url: "/ajax-admin/types/" + typeHashId
+                }).done(function () { return location.reload(); });
+            }
         });
-      }
     });
-  });
-  $('.subtype-delete').click(function () {
-    var _this5 = this;
-
-    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
-      title: 'Eliminar subtipo',
-      text: 'Seguro que desea eliminar',
-      type: 'question',
-      showCancelButton: true,
-      cancelButtonText: "Cancelar",
-      showLoaderOnConfirm: true
-    }).then(function (result) {
-      if (result.value) {
-        var subtypeHashId = $(_this5).data('subtypeId');
-        $.ajax({
-          method: 'DELETE',
-          url: "/ajax-admin/subtypes/".concat(subtypeHashId)
-        }).done(function () {
-          return location.reload();
+    $('.subtype-delete').click(function () {
+        var _this = this;
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
+            title: 'Eliminar subtipo',
+            text: 'Seguro que desea eliminar',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+        }).then(function (result) {
+            if (result.value) {
+                var subtypeHashId = $(_this).data('subtypeId');
+                $.ajax({
+                    method: 'DELETE',
+                    url: "/ajax-admin/subtypes/" + subtypeHashId
+                }).done(function () { return location.reload(); });
+            }
         });
-      }
     });
-  });
-  $('.photo-delete').click(function () {
-    var _this6 = this;
-
-    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
-      title: 'Eliminar foto',
-      text: 'Seguro que desea eliminar la foto',
-      type: 'question',
-      showCancelButton: true,
-      cancelButtonText: "Cancelar",
-      showLoaderOnConfirm: true
-    }).then(function (result) {
-      if (result.value) {
-        var photoId = $(_this6).data('photoId');
-        $.ajax({
-          method: 'DELETE',
-          url: "/ajax-admin/photo/".concat(photoId)
-        }).done(function () {
-          return location.reload();
+    $('.photo-delete').click(function () {
+        var _this = this;
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
+            title: 'Eliminar foto',
+            text: 'Seguro que desea eliminar la foto',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+        }).then(function (result) {
+            if (result.value) {
+                var photoId = $(_this).data('photoId');
+                $.ajax({
+                    method: 'DELETE',
+                    url: "/ajax-admin/photo/" + photoId
+                }).done(function () { return location.reload(); });
+            }
         });
-      }
     });
-  });
-  $('.home-post-delete').click(function () {
-    var _this7 = this;
-
-    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
-      title: 'Eliminar publicación Home',
-      text: 'Se eliminarán todos los datos y fotos del producto',
-      type: 'question',
-      showCancelButton: true,
-      cancelButtonText: "Cancelar",
-      showLoaderOnConfirm: true
-    }).then(function (result) {
-      if (result.value) {
-        var homePostId = $(_this7).data('homePostId');
-        $.ajax({
-          method: 'DELETE',
-          url: "/ajax-admin/home-posts/".concat(homePostId)
-        }).done(function () {
-          return location.reload();
+    $('.home-post-delete').click(function () {
+        var _this = this;
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
+            title: 'Eliminar publicación Home',
+            text: 'Se eliminarán todos los datos y fotos del producto',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+        }).then(function (result) {
+            if (result.value) {
+                var homePostId = $(_this).data('homePostId');
+                $.ajax({
+                    method: 'DELETE',
+                    url: "/ajax-admin/home-posts/" + homePostId
+                }).done(function () { return location.reload(); });
+            }
         });
-      }
     });
-  });
-  $('.product-delete').click(function () {
-    var _this8 = this;
-
-    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
-      title: 'Eliminar producto',
-      text: 'Se eliminarán todos los datos, stock y fotos del producto',
-      type: 'question',
-      showCancelButton: true,
-      cancelButtonText: "Cancelar",
-      showLoaderOnConfirm: true
-    }).then(function (result) {
-      if (result.value) {
-        var productHashId = $(_this8).data('productId');
-        $.ajax({
-          method: 'DELETE',
-          url: "/ajax-admin/products/remove/".concat(productHashId)
-        }).done(function () {
-          return location.reload();
+    $('.product-delete').click(function () {
+        var _this = this;
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
+            title: 'Eliminar producto',
+            text: 'Se eliminarán todos los datos, stock y fotos del producto',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+        }).then(function (result) {
+            if (result.value) {
+                var productHashId = $(_this).data('productId');
+                $.ajax({
+                    method: 'DELETE',
+                    url: "/ajax-admin/products/remove/" + productHashId
+                }).done(function () { return location.reload(); });
+            }
         });
-      }
     });
-  });
-  $('.blog-post-delete').click(function () {
-    var _this9 = this;
-
-    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
-      title: 'Eliminar post',
-      text: 'Se eliminarán todos los datos y fotos del post',
-      type: 'question',
-      showCancelButton: true,
-      cancelButtonText: "Cancelar",
-      showLoaderOnConfirm: true
-    }).then(function (result) {
-      if (result.value) {
-        var blogPostId = $(_this9).data('blogPost');
-        $.ajax({
-          method: 'DELETE',
-          url: "/ajax-admin/post/".concat(blogPostId, "/delete")
-        }).done(function () {
-          return location.reload();
+    $('.blog-post-delete').click(function () {
+        var _this = this;
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default()({
+            title: 'Eliminar post',
+            text: 'Se eliminarán todos los datos y fotos del post',
+            type: 'question',
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            showLoaderOnConfirm: true,
+        }).then(function (result) {
+            if (result.value) {
+                var blogPostId = $(_this).data('blogPost');
+                $.ajax({
+                    method: 'DELETE',
+                    url: "/ajax-admin/post/" + blogPostId + "/delete"
+                }).done(function () { return location.reload(); });
+            }
         });
-      }
     });
-  });
 });
+
 
 /***/ }),
 
 /***/ 3:
 /*!**************************************************************!*\
-  !*** multi ./resources/assets/js/admin/app-admin-scripts.js ***!
+  !*** multi ./resources/assets/js/admin/app-admin-scripts.ts ***!
   \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/helmer/ProjectsPhp/bipolar/resources/assets/js/admin/app-admin-scripts.js */"./resources/assets/js/admin/app-admin-scripts.js");
+module.exports = __webpack_require__(/*! /Users/helmer/ProjectsPhp/bipolar/resources/assets/js/admin/app-admin-scripts.ts */"./resources/assets/js/admin/app-admin-scripts.ts");
 
 
 /***/ })

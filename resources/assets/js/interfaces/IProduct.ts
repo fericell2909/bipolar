@@ -1,3 +1,8 @@
+import { IState } from './IState';
+import { ISubtype } from './ISubtype';
+import { IColor } from './IColor';
+import { ISize } from './ISize';
+
 export interface IProduct {
   id?: number;
   hash_id?: string;
@@ -23,37 +28,14 @@ export interface IProduct {
   preview_route?: string;
   edit_route?: string;
   shop_route?: string;
-  subtypes?: Subtype[];
-  state?: State;
-  colors?: Color[];
-  sizes?: Size[];
+  subtypes?: ISubtype[];
+  state?: IState;
+  colors?: IColor[];
+  sizes?: ISize[];
+  photos?: any[];
   created_at_month_year?: string;
 }
 
 export interface IProductCollection {
   data: IProduct[];
-}
-
-export interface Subtype {
-  id: number;
-  hash_id: string;
-  name: string;
-  slug: string;
-}
-
-export interface State {
-  hash_id: string;
-  name: string;
-  color: string;
-  html: string;
-}
-
-export interface Color {
-  hash_id: string;
-  name: string;
-}
-
-export interface Size {
-  hash_id: string;
-  name: string;
 }

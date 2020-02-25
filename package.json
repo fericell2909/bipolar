@@ -12,8 +12,11 @@
     "devDependencies": {
         "@babel/preset-react": "^7.8.3",
         "@fortawesome/fontawesome": "^1.1.8",
+        "@types/jquery": "^3.3.33",
+        "@types/node": "^12.12.28",
         "@types/react": "^16.9.22",
         "@types/react-dom": "^16.9.5",
+        "@types/select2": "^4.0.48",
         "animate.css": "^3.7.0",
         "axios": "^0.19.2",
         "babel-plugin-transform-class-properties": "^6.24.1",

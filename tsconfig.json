@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "target": "es6", 
+      "target": "es5", 
       "allowJs": true, 
       "skipLibCheck": true, 
       "esModuleInterop": true, 
@@ -9,14 +9,14 @@
       "module": "esnext", 
       "moduleResolution": "node", 
       "resolveJsonModule": true, 
+      "incremental": true,
       "jsx": "react", 
-      "sourceMap": true,
+      "sourceMap": false,
       "noUnusedLocals": true, 
       "noUnusedParameters": true, 
       "experimentalDecorators": true, 
-      "incremental": true, 
       "noFallthroughCasesInSwitch": true
     },
-    "exclude": ["node_modules"] 
+    "exclude": ["node_modules", "public"] 
   }
   
