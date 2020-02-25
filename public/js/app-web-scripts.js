@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -3427,7 +3427,7 @@ module.exports = forEach;
 
 /* WEBPACK VAR INJECTION */(function(global) {var topLevel = typeof global !== 'undefined' ? global :
     typeof window !== 'undefined' ? window : {}
-var minDoc = __webpack_require__(/*! min-document */ 2);
+var minDoc = __webpack_require__(/*! min-document */ 1);
 
 var doccy;
 
@@ -91237,19 +91237,43 @@ $(function () {
 
 /***/ }),
 
-/***/ 1:
-/*!**********************************************************!*\
-  !*** multi ./resources/assets/js/web/app-web-scripts.js ***!
-  \**********************************************************/
+/***/ "./resources/assets/sass/admin/style.scss":
+/*!************************************************!*\
+  !*** ./resources/assets/sass/admin/style.scss ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/web/app-web-styles.scss":
+/*!*******************************************************!*\
+  !*** ./resources/assets/sass/web/app-web-styles.scss ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 0:
+/*!***************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/web/app-web-scripts.js ./resources/assets/sass/admin/style.scss ./resources/assets/sass/web/app-web-styles.scss ***!
+  \***************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/helmer/ProjectsPhp/bipolar/resources/assets/js/web/app-web-scripts.js */"./resources/assets/js/web/app-web-scripts.js");
+__webpack_require__(/*! /Users/helmer/ProjectsPhp/bipolar/resources/assets/js/web/app-web-scripts.js */"./resources/assets/js/web/app-web-scripts.js");
+__webpack_require__(/*! /Users/helmer/ProjectsPhp/bipolar/resources/assets/sass/admin/style.scss */"./resources/assets/sass/admin/style.scss");
+module.exports = __webpack_require__(/*! /Users/helmer/ProjectsPhp/bipolar/resources/assets/sass/web/app-web-styles.scss */"./resources/assets/sass/web/app-web-styles.scss");
 
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!******************************!*\
   !*** min-document (ignored) ***!
   \******************************/

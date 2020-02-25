@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -4618,9 +4618,9 @@
 /***/ }),
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/switchery/switchery.css":
-/*!******************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--8-1!./node_modules/postcss-loader/src??ref--8-2!./node_modules/switchery/switchery.css ***!
-  \******************************************************************************************************************************/
+/*!********************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--10-1!./node_modules/postcss-loader/src??ref--10-2!./node_modules/switchery/switchery.css ***!
+  \********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -51576,7 +51576,7 @@ if (typeof window !== 'undefined' && window.Sweetalert2){  window.swal = window.
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../css-loader??ref--8-1!../postcss-loader/src??ref--8-2!./switchery.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/switchery/switchery.css");
+var content = __webpack_require__(/*! !../css-loader??ref--10-1!../postcss-loader/src??ref--10-2!./switchery.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/switchery/switchery.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -55900,7 +55900,21 @@ window.jscolor || (window.jscolor = function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+var require;var require;var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof3(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof3 = function _typeof3(obj) { return typeof obj; }; } else { _typeof3 = function _typeof3(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof3(obj); }
+
+function _typeof2(obj) {
+  if (typeof Symbol === "function" && _typeof3(Symbol.iterator) === "symbol") {
+    _typeof2 = function _typeof2(obj) {
+      return _typeof3(obj);
+    };
+  } else {
+    _typeof2 = function _typeof2(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof3(obj);
+    };
+  }
+
+  return _typeof2(obj);
+}
 
 function _typeof(obj) {
   if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
@@ -57464,38 +57478,14 @@ $(function () {
 
 /***/ }),
 
-/***/ "./resources/assets/sass/admin/style.scss":
-/*!************************************************!*\
-  !*** ./resources/assets/sass/admin/style.scss ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/web/app-web-styles.scss":
-/*!*******************************************************!*\
-  !*** ./resources/assets/sass/web/app-web-styles.scss ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!*******************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/admin/app-admin-scripts.js ./resources/assets/sass/admin/style.scss ./resources/assets/sass/web/app-web-styles.scss ***!
-  \*******************************************************************************************************************************************************/
+/***/ 3:
+/*!**************************************************************!*\
+  !*** multi ./resources/assets/js/admin/app-admin-scripts.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/helmer/ProjectsPhp/bipolar/resources/assets/js/admin/app-admin-scripts.js */"./resources/assets/js/admin/app-admin-scripts.js");
-__webpack_require__(/*! /Users/helmer/ProjectsPhp/bipolar/resources/assets/sass/admin/style.scss */"./resources/assets/sass/admin/style.scss");
-module.exports = __webpack_require__(/*! /Users/helmer/ProjectsPhp/bipolar/resources/assets/sass/web/app-web-styles.scss */"./resources/assets/sass/web/app-web-styles.scss");
+module.exports = __webpack_require__(/*! /Users/helmer/ProjectsPhp/bipolar/resources/assets/js/admin/app-admin-scripts.js */"./resources/assets/js/admin/app-admin-scripts.js");
 
 
 /***/ })
