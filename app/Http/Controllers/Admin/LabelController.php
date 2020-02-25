@@ -36,4 +36,32 @@ class LabelController extends Controller
 
         return back();
     }
+
+    public function edit(int $labelId)
+    {
+        $label = Label::findOrFail($labelId);
+
+        return view('admin.labels.edit', compact('label'));
+    }
+
+    public function update(Request $request, int $labelId)
+    {
+        $this->validate($request, [
+            'name'         => 'required|between:1,255',
+            'name_english' => 'required|between:1,255',
+            'color'        => 'required|max:8',
+        ]);
+
+        $label = Label::findOrFail($labelId);
+        $label->setTranslations('name', [
+            'es' => $request->input('name'),
+            'en' => $request->input('name_english'),
+        ]);
+        $label->color = $request->input('color');
+        $label->save();
+
+        flash()->success('Label actualizado con éxito');
+
+        return back();
+    }
 }

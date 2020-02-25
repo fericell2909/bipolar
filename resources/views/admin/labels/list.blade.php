@@ -53,7 +53,7 @@
               <td class="align-middle" style="background-color:{{ $label->color }}">{{ $label->color }}</td>
               <td class="align-middle">
                 <div class="button-group">
-                  <a href="{{ route('settings.types.edit', $label->id) }}"
+                  <a href="{{ route('settings.labels.edit', $label->id) }}"
                      class="btn btn-sm btn-rounded btn-dark">
                     <i class="fas fa-fw fa-edit"></i> Editar
                   </a>

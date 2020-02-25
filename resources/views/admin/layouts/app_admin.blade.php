@@ -208,7 +208,7 @@
                   <li><a href="{{ route('backgrounds.all') }}">Fondos</a></li>
                   <li><a href="{{ route('settings.sizes') }}">Tallas</a></li>
                   <li><a href="{{ route('settings.colors') }}">Colores</a></li>
-                  <li><a href="{{ route('labels.index') }}">Labels</a></li>
+                  <li><a href="{{ route('settings.labels.index') }}">Labels</a></li>
                   <li><a href="{{ route('settings.types') }}">Tipos</a></li>
                   <li><a href="{{ route('settings.shipping.index') }}">Shipping rates</a></li>
                   <li><a href="{{ route('admin.logs') }}">Logs (Desarrollador)</a></li>
