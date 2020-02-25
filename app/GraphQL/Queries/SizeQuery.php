@@ -12,13 +12,13 @@ use Rebing\GraphQL\Support\Query;
 class SizeQuery extends Query
 {
     protected $attributes = [
-        'name' => 'Size query',
-        'description' => 'Get all sizes'
+        'name'        => 'Size query',
+        'description' => 'Get all sizes',
     ];
 
     public function type(): Type
     {
-        return Type::listOf(\GraphQL::type('Size'));
+        return Type::listOf(\GraphQL::type('size'));
     }
 
     public function args(): array

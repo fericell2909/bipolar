@@ -1,9 +1,13 @@
 <?php
 
+use App\GraphQL\Queries\CategoryQuery;
 use App\GraphQL\Queries\ColorQuery;
 use App\GraphQL\Queries\SizeQuery;
+use App\GraphQL\Queries\StateQuery;
+use App\GraphQL\Types\CategoryType;
 use App\GraphQL\Types\ColorType;
 use App\GraphQL\Types\SizeType;
+use App\GraphQL\Types\StateType;
 
 return [
 
@@ -101,6 +105,8 @@ return [
             'query' => [
                 'colors' => ColorQuery::class,
                 'sizes' => SizeQuery::class,
+                'states' => StateQuery::class,
+                'categories' => CategoryQuery::class,
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,
@@ -120,8 +126,10 @@ return [
     // ]
     //
     'types' => [
-        ColorType::class,
-        SizeType::class,
+        'color' => ColorType::class,
+        'size' => SizeType::class,
+        'state' => StateType::class,
+        'category' => CategoryType::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request

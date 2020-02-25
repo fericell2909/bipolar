@@ -1,24 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\GraphQL\Queries;
 
-use App\Models\Color;
+use App\Models\State;
 use Closure;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\SelectFields;
 use Rebing\GraphQL\Support\Query;
 
-class ColorQuery extends Query
+class StateQuery extends Query
 {
     protected $attributes = [
-        'name' => 'Color query',
-        'description' => 'Get all colors'
+        'name'        => 'State query',
+        'description' => 'Get states',
     ];
 
     public function type(): Type
     {
-        return Type::listOf(\GraphQL::type('color'));
+        return Type::listOf(\GraphQL::type('state'));
     }
 
     public function args(): array
@@ -35,6 +37,6 @@ class ColorQuery extends Query
         $select = $fields->getSelect();
         $with = $fields->getRelations();
 
-        return Color::all();
+        return State::all();
     }
 }
