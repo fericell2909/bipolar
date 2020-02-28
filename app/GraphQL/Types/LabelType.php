@@ -17,6 +17,13 @@ class LabelType extends GraphQLType
     public function fields(): array
     {
         return [
+            'hash_id' => [
+                'type'        => Type::nonNull(Type::string()),
+                'description' => 'Slug',
+                'resolve'     => function ($root) {
+                    /** @var Label $root */
+                    return $root->hash_id;
+                }],
             'slug'    => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Slug',

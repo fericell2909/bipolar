@@ -449,6 +449,7 @@ namespace App\Models{
  * @property-read mixed $price_currency
  * @property-read mixed $price_discount_currency
  * @property-read mixed $translations
+ * @property-read \App\Models\Label|null $label
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read int|null $photos_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommendeds
@@ -773,6 +774,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  * @property-read int|null $activities_count
+ * @property-read string $hash_id
  * @property-read mixed $translations
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label newModelQuery()
