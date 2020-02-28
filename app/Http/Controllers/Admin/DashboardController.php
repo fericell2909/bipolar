@@ -29,19 +29,31 @@ class DashboardController extends Controller
             ->whereDate('created_at', '>=', now()->startOfWeek())
             ->whereDate('created_at', '<=', now()->endOfWeek())
             ->count();
-        $newsletterUsersInWeek = Newsletter::getApi()->get('lists/' . env('MAILCHIMP_LIST_ID') . '/members', [
-            'since_timestamp_opt' => now()->startOfWeek()->toIso8601String(),
-            'before_timestamp_opt' => now()->endOfWeek()->toIso8601String(),
-        ]);
-        $newsletterUsersInWeek = array_get($newsletterUsersInWeek, 'total_items', 0);
+
+        $newsletterUsersInWeek = 0;
         $visitorsThisWeek = 0;
-        try {
-            $visitorsThisWeek = \Analytics::fetchVisitorsAndPageViews(Period::create(now()->startOfWeek(), now()->endOfWeek()))->sum('visitors');
-        } catch (\Exception $e) {
-            // Nothing
-            $visitorsThisWeek = 0;
+
+        if (env('MAILCHIMP_APIKEY')) {
+            $newsletterUsersInWeek = Newsletter::getApi()->get('lists/' . env('MAILCHIMP_LIST_ID') . '/members', [
+                'since_timestamp_opt'  => now()->startOfWeek()->toIso8601String(),
+                'before_timestamp_opt' => now()->endOfWeek()->toIso8601String(),
+            ]);
+
+            $newsletterUsersInWeek = array_get($newsletterUsersInWeek, 'total_items', 0);
         }
 
+        $visitorsThisWeek = $this->getVisitors();
+
         return view('admin.home', compact('usersInWeek', 'firstBuyUsers', 'sumTotalBuys', 'productsBuyWeek', 'cartsInWeek', 'usersTotal', 'newsletterUsersInWeek', 'visitorsThisWeek'));
+    }
+
+    private function getVisitors()
+    {
+        try {
+            return \Analytics::fetchVisitorsAndPageViews(Period::create(now()->startOfWeek(), now()->endOfWeek()))->sum('visitors');
+        } catch (\Exception $e) {
+            // Nothing
+            return 0;
+        }
     }
 }

@@ -61,8 +61,8 @@
       ])
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-4">
+  <div class="row m-b-10">
+    <div class="col-md-3">
       <a href="{{ url('/admin/settings/types/1zyP4KGYeL/subtypes') }}" class="btn btn-dark btn-rounded btn-block">
         Ordenar colecciones
       </a>
