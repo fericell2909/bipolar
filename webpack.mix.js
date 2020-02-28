@@ -7,7 +7,7 @@ mix
   }) */
   // This is only for the web app
   //.copy('node_modules/jquery/dist/jquery.min.js', 'public/js')
-  .react('resources/assets/js/admin/react/bipolar-admin-app.js', 'public/js')
+  .ts('resources/assets/js/admin/react/bipolar-admin-app.ts', 'public/js')
   .ts('resources/assets/js/admin/app-admin-scripts.ts', 'public/js')
   .js('resources/assets/js/web/app-web-scripts.js', 'public/js')
   .sass('resources/assets/sass/admin/style.scss', 'public/css/app-admin-styles.css')

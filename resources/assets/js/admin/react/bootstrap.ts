@@ -14,10 +14,10 @@ windowAdmin.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
  * a simple convenience so we don't have to attach every token manually.
  */
 
-let adminToken = document.head.querySelector('meta[name="csrf-token"]');
+let adminToken: any = document.head.querySelector('meta[name="csrf-token"]');
 
 if (adminToken) {
-  windowAdmin.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  windowAdmin.axios.defaults.headers.common['X-CSRF-TOKEN'] = adminToken.content;
   windowAdmin.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
