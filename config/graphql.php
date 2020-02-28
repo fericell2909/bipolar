@@ -2,12 +2,14 @@
 
 use App\GraphQL\Queries\CategoryQuery;
 use App\GraphQL\Queries\ColorQuery;
+use App\GraphQL\Queries\LabelQuery;
 use App\GraphQL\Queries\PageQuery;
 use App\GraphQL\Queries\PhotoQuery;
 use App\GraphQL\Queries\SizeQuery;
 use App\GraphQL\Queries\StateQuery;
 use App\GraphQL\Types\CategoryType;
 use App\GraphQL\Types\ColorType;
+use App\GraphQL\Types\LabelType;
 use App\GraphQL\Types\PageType;
 use App\GraphQL\Types\PhotoType;
 use App\GraphQL\Types\SizeType;
@@ -113,6 +115,7 @@ return [
                 'categories' => CategoryQuery::class,
                 'pages' => PageQuery::class,
                 'photos' => PhotoQuery::class,
+                'labels' => LabelQuery::class,
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,
@@ -137,7 +140,8 @@ return [
         'state' => StateType::class,
         'category' => CategoryType::class,
         'page' => PageType::class,
-        'photo' => PhotoType::class
+        'photo' => PhotoType::class,
+        'label' => LabelType::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request
