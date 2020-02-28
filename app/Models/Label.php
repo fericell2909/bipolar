@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Hashable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Label extends Model
 {
-    use Sluggable, SluggableScopeHelpers, HasTranslations, LogsActivity;
+    use Sluggable, SluggableScopeHelpers, HasTranslations, LogsActivity, Hashable;
 
     public $translatable = ['name'];
     protected static $logAttributes = ['name', 'slug'];

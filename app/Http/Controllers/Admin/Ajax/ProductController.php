@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductNewRequest;
 use App\Http\Resources\AdminStockResource;
 use App\Models\Color;
+use App\Models\Label;
 use App\Models\Product;
 use App\Models\Settings;
 use App\Models\Size;
@@ -109,7 +110,7 @@ class ProductController extends Controller
     {
         $product = Product::findByHash($productHashId);
 
-        $product->load('state', 'colors', 'subtypes', 'stocks');
+        $product->load('state', 'colors', 'subtypes', 'stocks', 'label');
 
         return new ProductResource($product);
     }
@@ -161,6 +162,12 @@ class ProductController extends Controller
                 $stock->active = now();
                 $stock->save();
             }
+        }
+
+        if ($request->filled('label')) {
+            $label = Label::findByHash($request->input('label'));
+            $product->label()->associate($label);
+            $product->save();
         }
 
         return response()->json(new ProductResource($product), Response::HTTP_CREATED);
@@ -227,6 +234,15 @@ class ProductController extends Controller
                 $stock->active = now();
                 $stock->save();
             }
+        }
+
+        if ($request->filled('label')) {
+            $label = Label::findByHash($request->input('label'));
+            $product->label()->associate($label);
+            $product->save();
+        } else {
+            $product->label()->dissociate();
+            $product->save();
         }
 
         return response()->json(new ProductResource($product));

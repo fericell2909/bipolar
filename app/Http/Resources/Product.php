@@ -51,6 +51,7 @@ class Product extends Resource
             'photos'                => Photo::collection($this->whenLoaded('photos')),
             'subtypes'              => Subtype::collection($this->whenLoaded('subtypes')),
             'state'                 => new State($this->whenLoaded('state')),
+            'label'                 => new LabelResource($this->whenLoaded('label')),
             'colors'                => Color::collection($this->whenLoaded('colors')),
             'sizes'                 => Size::collection($product->sizes_mapped()),
             'created_at_month_year' => $product->created_at->format('n-Y'),

@@ -2,6 +2,7 @@ import { IState } from './IState';
 import { ISubtype } from './ISubtype';
 import { IColor } from './IColor';
 import { ISize } from './ISize';
+import { ILabel } from './ILabel';
 
 export interface IProduct {
   id?: number;
@@ -24,7 +25,7 @@ export interface IProduct {
   publish_date?: any;
   free_shipping?: boolean;
   is_showroom_sale?: boolean;
-  is_salient?: any;
+  is_salient?: string | null;
   preview_route?: string;
   edit_route?: string;
   shop_route?: string;
@@ -33,6 +34,7 @@ export interface IProduct {
   colors?: IColor[];
   sizes?: ISize[];
   photos?: any[];
+  label?: ILabel;
   created_at_month_year?: string;
 }
 

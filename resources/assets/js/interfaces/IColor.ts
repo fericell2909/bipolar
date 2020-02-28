@@ -1,4 +1,4 @@
 export interface IColor {
-  hash_id: string;
-  name: string;
+  hash_id?: string;
+  name?: string;
 }

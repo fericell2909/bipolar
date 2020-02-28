@@ -11,6 +11,8 @@ import ProductColors from './partials/ProductColors';
 import ProductSizes from './partials/ProductSizes';
 import ProductTypes from './partials/ProductTypes';
 import { IProduct } from '../../../interfaces/IProduct';
+import { ILabel } from '../../../interfaces/ILabel';
+import GraphQLAdmin from '../../GraphQLAdmin';
 
 interface IProductState extends IProduct {
   previewUrl: string;
@@ -19,8 +21,8 @@ interface IProductState extends IProduct {
   selectedColors: string[];
   selectedSizes: string[];
   selectedSubtypes: string[];
-  selectedLabel: null | string;
   salient: boolean;
+  labelSelected: string;
 }
 
 interface Props {
@@ -33,13 +35,13 @@ interface State {
   sizes: any[];
   types: any[];
   productStates: any[];
-  labels: any[];
+  labels: ILabel[];
   editorState: EditorState;
   editorStateEnglish: EditorState;
 }
 
 class BipolarProductEdit extends Component<Props, State> {
-  state = {
+  state: State = {
     product: {
       name: '',
       name_english: '',
@@ -56,7 +58,7 @@ class BipolarProductEdit extends Component<Props, State> {
       selectedColors: [],
       selectedSizes: [],
       selectedSubtypes: [],
-      selectedLabel: null,
+      labelSelected: '',
     },
     // data for info
     colors: [],
@@ -181,6 +183,7 @@ class BipolarProductEdit extends Component<Props, State> {
         sizes: this.state.product.selectedSizes,
         subtypes: this.state.product.selectedSubtypes,
         state: this.state.product.selectedState,
+        label: this.state.product.labelSelected,
       })
       .then(response => {
         const data = response.data;
@@ -229,7 +232,7 @@ class BipolarProductEdit extends Component<Props, State> {
   };
 
   handleLabelUpdate = event =>
-    this.setState({ product: { ...this.state.product, selectedLabel: event.target.value } });
+    this.setState({ product: { ...this.state.product, labelSelected: event.target.value } });
 
   getAllInformation() {
     axios
@@ -238,19 +241,11 @@ class BipolarProductEdit extends Component<Props, State> {
         axios.get('/ajax-admin/sizes'),
         axios.get('/ajax-admin/types'),
         axios.get('/ajax-admin/states'),
-        axios.get('/ajax-admin/labels'),
         axios.get<IProduct>(`/ajax-admin/products/${this.props.productHashId}`),
       ])
       .then(
         axios.spread(
-          (
-            responseColors,
-            responseSizes,
-            responseTypes,
-            responseStates,
-            responseLabels,
-            responseProduct
-          ) => {
+          (responseColors, responseSizes, responseTypes, responseStates, responseProduct) => {
             const product: IProduct = responseProduct.data['data'];
             const productInState: IProductState = { ...this.state.product };
 
@@ -262,13 +257,14 @@ class BipolarProductEdit extends Component<Props, State> {
             productInState.description_english = product.description_english ?? '';
             productInState.free_shipping = product.free_shipping;
             productInState.is_showroom_sale = product.is_showroom_sale;
-            productInState.salient = product.is_salient;
+            productInState.salient = !!product.is_salient;
             productInState.shopUrl = product.shop_route;
             productInState.previewUrl = product.preview_route;
             productInState.selectedState = product?.state?.hash_id ?? '';
             productInState.selectedColors = product.colors?.map(color => color.hash_id);
             productInState.selectedSubtypes = product.subtypes?.map(subtype => subtype.hash_id);
             productInState.selectedSizes = product.sizes?.map(size => size.hash_id);
+            productInState.labelSelected = product.label?.hash_id ?? '';
 
             let contentBlock,
               contentBlockEnglish = null;
@@ -291,7 +287,6 @@ class BipolarProductEdit extends Component<Props, State> {
               colors: responseColors.data['data'],
               sizes: responseSizes.data['data'],
               types: responseTypes.data['data'],
-              labels: responseLabels.data['data'],
               productStates: responseStates.data['data'],
               editorState,
               editorStateEnglish,
@@ -301,7 +296,13 @@ class BipolarProductEdit extends Component<Props, State> {
       );
   }
 
-  componentDidMount() {
+  async getLabels() {
+    const response = await GraphQLAdmin.getLabels();
+    this.setState({ labels: response.data.labels });
+  }
+
+  async componentDidMount() {
+    await this.getLabels();
     this.getAllInformation();
   }
 
@@ -318,6 +319,11 @@ class BipolarProductEdit extends Component<Props, State> {
         </option>
       );
     });
+    const labelsOptions = this.state.labels.map(label => (
+      <option key={label.hash_id} value={label.hash_id}>
+        {label.name_es} / {label.name_en}
+      </option>
+    ));
 
     const toolbarEditor = {
       fontFamily: {
@@ -456,22 +462,6 @@ class BipolarProductEdit extends Component<Props, State> {
                   </div>
                   <div className="col-md-3">
                     <div className="form-group">
-                      <label>Label (Opcional)</label>
-                      <select
-                        value={this.state.product.selectedLabel}
-                        onChange={this.handleLabelUpdate}
-                        className="form-control">
-                        <option disabled>Selecciona un label</option>
-                        {this.state.labels.map(label => (
-                          <option key={label.id} value={label.id}>
-                            {label.name.es}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="form-group">
                       <label>Showroom Sale (Oculto)</label>
                       <select
                         className="form-control"
@@ -483,6 +473,18 @@ class BipolarProductEdit extends Component<Props, State> {
                         <option value="false" selected={!this.state.product.is_showroom_sale}>
                           No
                         </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>Label (Opcional)</label>
+                      <select
+                        value={this.state.product.labelSelected}
+                        onChange={this.handleLabelUpdate}
+                        className="form-control">
+                        <option value="">Ninguno</option>
+                        {labelsOptions}
                       </select>
                     </div>
                   </div>

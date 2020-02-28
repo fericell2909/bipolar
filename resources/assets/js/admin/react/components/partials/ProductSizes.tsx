@@ -1,7 +1,14 @@
 import React from 'react';
 import { existInArray } from '../../helpers';
+import { ISize } from '../../../../interfaces/ISize';
 
-const ProductSizes = props => {
+interface Props {
+  sizes: ISize[];
+  selected: string[];
+  toggleCheck: (event: any) => void;
+}
+
+const ProductSizes = (props: Props) => {
   const sizesRender = props.sizes.map(size => {
     const isSelected = existInArray(props.selected, size['hash_id']);
     return (

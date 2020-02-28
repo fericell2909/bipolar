@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { removeFromSimpleArray } from '../helpers';
@@ -8,9 +8,38 @@ import ProductTypes from './partials/ProductTypes';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
+import GraphQLAdmin from '../../GraphQLAdmin';
+import { ILabel } from '../../../interfaces/ILabel';
+import { IColor } from '../../../interfaces/IColor';
+import { ISize } from '../../../interfaces/ISize';
+import { IState } from '../../../interfaces/IState';
 
-class BipolarProductNew extends React.Component<any, any> {
-  state = {
+interface State {
+  name: string;
+  name_english: string;
+  price: number;
+  description: string;
+  description_english: string;
+  weight: string;
+  free_shipping: boolean;
+  is_showroom_sale: boolean;
+  salient: boolean;
+  colors: IColor[];
+  selectedColors: string[];
+  sizes: ISize[];
+  selectedSizes: string[];
+  types: string[];
+  selectedSubtypes: string[];
+  productStates: IState[];
+  selectedState: string;
+  labels: ILabel[];
+  labelSelected: string;
+  editorState: EditorState;
+  editorStateEnglish: EditorState;
+}
+
+class BipolarProductNew extends Component<any, State> {
+  state: State = {
     name: '',
     name_english: '',
     price: 1,
@@ -24,6 +53,8 @@ class BipolarProductNew extends React.Component<any, any> {
     colors: [],
     selectedColors: [],
     // Other info
+    labels: [],
+    labelSelected: '',
     sizes: [],
     selectedSizes: [],
     types: [],
@@ -35,7 +66,7 @@ class BipolarProductNew extends React.Component<any, any> {
   };
 
   handleInputChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ ...this.state, [event.target.name]: event.target.value });
   };
 
   handleSalientChange = event => {
@@ -85,6 +116,11 @@ class BipolarProductNew extends React.Component<any, any> {
     this.setState({ selectedState: event.target.value });
   };
 
+  onLabelStateChange = event =>
+    this.setState({ labelSelected: event.target.value }, () =>
+      console.log(this.state.labelSelected)
+    );
+
   handleChangeFreeShipping = event => {
     this.setState({ free_shipping: event.target.checked });
   };
@@ -124,6 +160,7 @@ class BipolarProductNew extends React.Component<any, any> {
         sizes: this.state.selectedSizes,
         subtypes: this.state.selectedSubtypes,
         state: this.state.selectedState,
+        label: this.state.labelSelected,
       })
       .then(response => {
         const data = response.data;
@@ -138,13 +175,16 @@ class BipolarProductNew extends React.Component<any, any> {
       this.state.name.length === 0 ||
       this.state.price <= 0 ||
       this.state.selectedState.length === 0;
-    const productStatesRender = this.state.productStates.map(state => {
-      return (
-        <option key={state['hash_id']} value={state['hash_id']}>
-          {state['name']}
-        </option>
-      );
-    });
+    const productStatesRender = this.state.productStates.map(state => (
+      <option key={state.hash_id} value={state.hash_id}>
+        {state.name}
+      </option>
+    ));
+    const labelsOptions = this.state.labels.map(label => (
+      <option key={label.hash_id} value={label.hash_id}>
+        {label.name_es} / {label.name_en}
+      </option>
+    ));
     const { editorState, editorStateEnglish } = this.state;
     const toolbarEditor = {
       fontFamily: {
@@ -224,7 +264,7 @@ class BipolarProductNew extends React.Component<any, any> {
                   />
                 </div>
                 <div className="form-row">
-                  <div className="col-md-4">
+                  <div className="col-md-3">
                     <div className="form-group">
                       <label>Estado</label>
                       <select
@@ -239,7 +279,7 @@ class BipolarProductNew extends React.Component<any, any> {
                       </select>
                     </div>
                   </div>
-                  <div className="col-md-4">
+                  <div className="col-md-3">
                     <div className="form-group">
                       <label>Peso (kg)</label>
                       <input
@@ -254,7 +294,7 @@ class BipolarProductNew extends React.Component<any, any> {
                       />
                     </div>
                   </div>
-                  <div className="col-md-4">
+                  <div className="col-md-3">
                     <div className="form-group">
                       <label>Showroom Sale (Oculto)</label>
                       <select
@@ -263,6 +303,18 @@ class BipolarProductNew extends React.Component<any, any> {
                         onChange={this.handleHiddenShowroomChange}>
                         <option value="true">Si</option>
                         <option value="false">No</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>Label (Opcional)</label>
+                      <select
+                        className="form-control"
+                        value={this.state.labelSelected}
+                        onChange={this.onLabelStateChange}>
+                        <option value="">Ninguno</option>
+                        {labelsOptions}
                       </select>
                     </div>
                   </div>
@@ -323,27 +375,29 @@ class BipolarProductNew extends React.Component<any, any> {
   }
 
   getAllInformation() {
-    axios
-      .all([
-        axios.get('/ajax-admin/colors'),
-        axios.get('/ajax-admin/sizes'),
-        axios.get('/ajax-admin/types'),
-        axios.get('/ajax-admin/states'),
-      ])
-      .then(
-        axios.spread((responseColors, responseSizes, responseTypes, responseStates) => {
-          this.setState({
-            colors: responseColors.data['data'],
-            sizes: responseSizes.data['data'],
-            types: responseTypes.data['data'],
-            productStates: responseStates.data['data'],
-          });
-        })
-      );
+    axios.all([axios.get('/ajax-admin/types')]).then(
+      axios.spread(responseTypes => {
+        this.setState({
+          types: responseTypes.data['data'],
+        });
+      })
+    );
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.getAllInformation();
+    const [responseLabels, responseColors, responseSizes, responseStates] = await Promise.all([
+      GraphQLAdmin.getLabels(),
+      GraphQLAdmin.getColors(),
+      GraphQLAdmin.getSizes(),
+      GraphQLAdmin.getStates(),
+    ]);
+    this.setState({
+      labels: responseLabels.data.labels,
+      colors: responseColors.data.colors,
+      sizes: responseSizes.data.sizes,
+      productStates: responseStates.data.states,
+    });
   }
 }
 

@@ -33,10 +33,10 @@ class ProductNewRequest extends FormRequest
             'weight'              => 'nullable|numeric',
             'free_shipping'       => 'boolean',
             'is_showroom_sale'    => 'boolean',
-            'salient'             => 'boolean',
             'subtype'             => 'nullable|array',
             'sizes'               => 'nullable|array',
             'state'               => 'required|string',
+            'label'               => 'nullable|string',
         ];
     }
 }

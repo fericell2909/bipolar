@@ -1,7 +1,19 @@
 import React, { CSSProperties } from 'react';
 import { existInArray } from '../../helpers';
+import { IColor } from '../../../../interfaces/IColor';
 
-export default class ProductColors extends React.Component<any> {
+interface Props {
+  colors: IColor[];
+  selected: string[];
+  toggleCheck: (event: any) => void;
+}
+
+interface State {
+  searchedColors: IColor[];
+  textSearchColors: string;
+}
+
+export default class ProductColors extends React.Component<Props, State> {
   state = {
     searchedColors: [],
     textSearchColors: '',
