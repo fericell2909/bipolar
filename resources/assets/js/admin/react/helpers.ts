@@ -23,7 +23,7 @@ export function calculatePercentage(total, percentage, likeInteger = false) {
   const discount = total * (percentage / 100);
 
   if (likeInteger) {
-    return parseInt(discount);
+    return parseInt(discount.toString());
   }
 
   return discount;
