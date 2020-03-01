@@ -23509,6 +23509,21 @@ input:focus:-ms-input-placeholder {
   right: 3%;
 }
 
+.bipolar-label-container {
+  background-color: #000000;
+  display: inline-block;
+  position: absolute;
+  top: 7%;
+  left: 9%;
+}
+
+.bipolar-label-container > .bipolar-label-text {
+  display: block;
+  color: #fcbeb9;
+  font-weight: 700;
+  padding: 2px 7px;
+}
+
 .shop-discount-preview-container {
   position: absolute;
   top: 5%;
@@ -24078,17 +24093,6 @@ input:focus:-ms-input-placeholder {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
-
-.product-link {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  height: 100%;
-  text-decoration: none;
-  color: transparent;
-  background-color: transparent;
 }
 
 .overlay-shop-container:hover .overlay-shop-image {

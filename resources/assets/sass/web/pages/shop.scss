@@ -1,4 +1,4 @@
-@import "../../mixins";
+@import '../../mixins';
 
 .shop-container {
   margin-top: 70px;
@@ -78,7 +78,7 @@
   @include xxs {
     margin-bottom: 18px;
   }
-  
+
   @include sm {
     margin-bottom: 30px;
   }
@@ -138,7 +138,8 @@
       margin-left: 8px;
       margin-top: 8px;
 
-      &.active, &:hover {
+      &.active,
+      &:hover {
         background: $bipolar-black;
         color: $bipolar-gray;
       }
@@ -156,7 +157,7 @@
       justify-content: center;
       align-content: center;
       border-radius: 30px;
-      transition: all .3s;
+      transition: all 0.3s;
       top: 0;
       bottom: 0;
       cursor: pointer;
@@ -168,7 +169,7 @@
       background-color: $bipolar-white;
       color: #2e2e2e;
       margin: auto;
-      
+
       &:hover {
         background-color: $bipolar-color;
         color: $bipolar-white;
@@ -184,7 +185,6 @@
     }
   }
 }
-
 
 .owl-dots {
   display: none;
@@ -216,6 +216,21 @@
 .shop-discount-container-in-modal {
   @extend .shop-discount-container;
   right: 3%;
+}
+
+.bipolar-label-container {
+  background-color: $bipolar-black;
+  display: inline-block;
+  position: absolute;
+  top: 7%;
+  left: 9%;
+
+  > .bipolar-label-text {
+    display: block;
+    color: $bipolar-color;
+    font-weight: 700;
+    padding: 2px 7px;
+  }
 }
 
 .shop-discount-preview-container {
