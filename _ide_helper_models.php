@@ -768,6 +768,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property array $name
+ * @property string $color_text
  * @property string $color
  * @property string $slug
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -781,6 +782,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereColorText($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereName($value)

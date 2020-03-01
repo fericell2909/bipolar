@@ -20,7 +20,13 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            {!! Form::label('Color') !!}
+            {!! Form::label('Color (Texto)') !!}
+            {!! Form::color('color_text', null, ['class' => 'form-control', 'required' => true]) !!}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            {!! Form::label('Color (Fondo)') !!}
             {!! Form::color('color', null, ['class' => 'form-control', 'required' => true]) !!}
           </div>
         </div>
@@ -50,7 +56,7 @@
             <tr>
               <td class="align-middle">{{ $label->id }}</td>
               <td class="align-middle">{{ $label->getTranslation('name', 'es') }} / {{ $label->getTranslation('name', 'en') }} </td>
-              <td class="align-middle" style="background-color:{{ $label->color }}">{{ $label->color }}</td>
+              <td class="align-middle" style="background-color:{{ $label->color }}; color: {{ $label->color_text }}">{{ $label->color }}</td>
               <td class="align-middle">
                 <div class="button-group">
                   <a href="{{ route('settings.labels.edit', $label->id) }}"

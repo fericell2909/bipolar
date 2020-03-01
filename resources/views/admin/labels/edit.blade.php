@@ -20,7 +20,13 @@
         </div>
         <div class="col-md">
           <div class="form-group">
-            {!! Form::label('Color') !!}
+            {!! Form::label("Color (texto). Actual: {$label->color_text}") !!}
+            {!! Form::color('color_text', $label->color_text, ['class' => 'form-control', 'required' => true]) !!}
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-group">
+            {!! Form::label("Color (Fondo). Actual: {$label->color}") !!}
             {!! Form::color('color', $label->color, ['class' => 'form-control', 'required' => true]) !!}
           </div>
         </div>

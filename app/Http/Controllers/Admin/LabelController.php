@@ -29,6 +29,7 @@ class LabelController extends Controller
             'es' => $request->input('name'),
             'en' => $request->input('name_english'),
         ]);
+        $label->color_text = $request->input('color_text');
         $label->color = $request->input('color');
         $label->save();
 
@@ -57,6 +58,7 @@ class LabelController extends Controller
             'es' => $request->input('name'),
             'en' => $request->input('name_english'),
         ]);
+        $label->color_text = $request->input('color_text');
         $label->color = $request->input('color');
         $label->save();
 

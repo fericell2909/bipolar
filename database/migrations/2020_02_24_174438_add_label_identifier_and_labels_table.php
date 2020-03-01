@@ -16,6 +16,7 @@ class AddLabelIdentifierAndLabelsTable extends Migration
         Schema::create('labels', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->json('name');
+            $table->string('color_text', 25);
             $table->string('color', 25);
             $table->string('slug', 300);
             $table->timestamps();
