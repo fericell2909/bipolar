@@ -25,7 +25,7 @@
                 {!! Form::checkbox("subtypes[]", $subtype->slug, in_array($subtype->slug, $selectedSubtypes)) !!}
                 <div class="state p-primary">
                   <i class="icon mdi mdi-check"></i>
-                  <label>{{ $subtype->name }} ({{ count($subtype->products) }})</label>
+                  <label>{{ $subtype->name }}</label>
                 </div>
               </div>
             @endforeach
@@ -91,8 +91,12 @@
           @foreach($productChunk as $product)
             <?php /** @var \App\Models\Product $product */ ?>
             <div class="col-md-4 bipolar-product">
-              <a class="product-link" href="{{ route('shop.product', $product->slug) }}"></a>
               <div class="overlay-shop-container">
+                @if($product->label)
+                  <div class="bipolar-label-container" style="background-color: {{ $product->label->color  }} !important;">
+                    <span class="bipolar-label-text" style="color: {{ $product->label->color_text }} !important;">{{ $product->label->name }}</span>
+                  </div>
+                @endif
                 @if($product->discount_pen && $product->discount_usd)
                   <div class="shop-discount-preview-container">
                     <div class="shop-discount">

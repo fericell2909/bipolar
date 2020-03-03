@@ -12,6 +12,11 @@
     "devDependencies": {
         "@babel/preset-react": "^7.8.3",
         "@fortawesome/fontawesome": "^1.1.8",
+        "@types/jquery": "^3.3.33",
+        "@types/node": "^12.12.28",
+        "@types/react": "^16.9.22",
+        "@types/react-dom": "^16.9.5",
+        "@types/select2": "^4.0.48",
         "animate.css": "^3.7.0",
         "axios": "^0.19.2",
         "babel-plugin-transform-class-properties": "^6.24.1",
@@ -50,15 +55,20 @@
         "switchery": "^0.0.2",
         "tempusdominus-bootstrap-4": "^5.0.1",
         "tippy.js": "^2.0.8",
+        "ts-loader": "^6.2.1",
+        "typescript": "^3.8.2",
         "video.js": "^7.4.1",
         "videojs-youtube": "^2.6.1",
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "@apollo/react-hooks": "^3.1.3",
         "@fortawesome/fontawesome-svg-core": "^1.2.27",
         "@fortawesome/free-solid-svg-icons": "^5.12.1",
         "@fortawesome/react-fontawesome": "^0.1.8",
+        "apollo-boost": "^0.4.7",
         "browser-sync": "^2.26.7",
-        "browser-sync-webpack-plugin": "^2.2.2"
+        "browser-sync-webpack-plugin": "^2.2.2",
+        "graphql": "^14.6.0"
     }
 }

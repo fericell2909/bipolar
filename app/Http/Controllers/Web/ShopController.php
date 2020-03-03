@@ -85,6 +85,7 @@ class ShopController extends Controller
                 'stocks',
                 'stocks.size',
                 'colors',
+                'label',
             ])
             ->when($request->filled('subtypes'), function ($whereProducts) use ($selectedSubtypes) {
                 return $whereProducts->whereHas('subtypes', function ($whereSubtype) use ($selectedSubtypes) {

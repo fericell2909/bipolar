@@ -69,6 +69,8 @@ Route::get('coupons/{coupon}', 'Admin\Ajax\CouponsController@show');
 Route::post('coupons/{coupon}/types-subtypes', 'Admin\Ajax\CouponsController@saveTypesAndSubtypes');
 Route::delete('coupons/{coupon}', 'Admin\Ajax\CouponsController@destroy');
 
+Route::get('labels', 'Admin\Ajax\LabelController@index');
+
 Route::get('tags', 'Admin\Ajax\TagsController@index');
 Route::post('tags', 'Admin\Ajax\TagsController@store');
 

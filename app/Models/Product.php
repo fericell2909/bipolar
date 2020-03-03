@@ -33,6 +33,11 @@ class Product extends Model
         return $this->belongsToMany(Color::class, 'colors_products', 'product_id', 'color_id');
     }
 
+    public function label()
+    {
+        return $this->belongsTo(Label::class, 'label_id');
+    }
+
     public function photos()
     {
         return $this->hasMany(Photo::class, 'product_id');

@@ -1,0 +1,98 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+}
+
+"A type"
+type Category {
+    "Hashed ID"
+    hash_id: String!
+    "Name of the state"
+    name: String!
+}
+
+"Colors of a product"
+type Color {
+    "Hashed ID"
+    hash_id: String!
+    "Name of the color"
+    name: String!
+}
+
+"Label to indicate status of a product"
+type Label {
+    "Color"
+    color: String!
+    "Slug"
+    hash_id: String!
+    "Name in english"
+    name_en: String!
+    "Name in spanish"
+    name_es: String!
+    "Slug"
+    slug: String!
+}
+
+"A type"
+type Page {
+    "Body in english"
+    body_en: String!
+    "Body in spanish"
+    body_es: String!
+    "Image of the page"
+    main_image: String
+    "Page slug"
+    slug: String!
+    "Title in english"
+    title_en: String!
+    "Title in spanish"
+    title_es: String!
+}
+
+"A type"
+type Photo {
+    "Hashed ID"
+    hash_id: String!
+    "Appareance order"
+    order: Int!
+    "Photo url"
+    url: String!
+}
+
+type Query {
+    "Get all categories"
+    categories: [Category]
+    "Get all colors"
+    colors: [Color]
+    "Get all labels"
+    labels: [Label]
+    "Pages from Bipolar"
+    pages: [Page]
+    "Get all photos"
+    photos: [Photo]
+    "Get all sizes"
+    sizes: [Size]
+    "Get states"
+    states: [State]
+}
+
+"Sizes from a product"
+type Size {
+    "Hashed ID"
+    hash_id: String!
+    "Name of the size"
+    name: String!
+}
+
+"State of the products"
+type State {
+    "Color of the state"
+    color: String!
+    "Hashed ID"
+    hash_id: String!
+    "Label build from the admin"
+    html: String
+    "Name of the state"
+    name: String!
+}
