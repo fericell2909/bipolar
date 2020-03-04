@@ -43,6 +43,11 @@ class Product extends Model
         return $this->hasMany(Photo::class, 'product_id');
     }
 
+    public function recommended_by()
+    {
+        return $this->belongsToMany(Product::class, 'recommendeds', 'recommended_product_id', 'parent_product_id');
+    }
+
     public function recommendations()
     {
         return $this->belongsToMany(Product::class, 'recommendeds', 'parent_product_id', 'recommended_product_id');

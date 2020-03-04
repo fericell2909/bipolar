@@ -82,6 +82,7 @@ class ProductController extends Controller
         $product = Product::findByHashTrashed($productHashId);
 
         $product->recommendations()->detach();
+        $product->recommended_by()->detach();
         $product->subtypes()->detach();
         $product->stocks->each(function ($stock) {
             /** @var Stock $stock */
