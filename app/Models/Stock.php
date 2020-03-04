@@ -15,6 +15,11 @@ class Stock extends Model
 
     protected $table = 'stocks';
 
+    public function buy_details()
+    {
+        return $this->hasMany(BuyDetail::class, 'stock_id');
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');

@@ -807,6 +807,8 @@ namespace App\Models{
  * @property string|null $active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $buy_details
+ * @property-read int|null $buy_details_count
  * @property-read string $hash_id
  * @property-read \App\Models\Product $product
  * @property-read \App\Models\Size|null $size

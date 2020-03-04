@@ -81,10 +81,11 @@ class ProductController extends Controller
     {
         $product = Product::findByHashTrashed($productHashId);
 
-        $product->recommendeds()->sync([]);
-        $product->subtypes()->sync([]);
+        $product->recommendations()->detach();
+        $product->subtypes()->detach();
         $product->stocks->each(function ($stock) {
             /** @var Stock $stock */
+            $stock->buy_details()->delete();
             $stock->delete();
         });
         $product->photos->each(function ($photo) {
