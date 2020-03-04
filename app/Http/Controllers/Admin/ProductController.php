@@ -129,7 +129,7 @@ class ProductController extends Controller
 
         $product->load(['stocks.size', 'photos' => function ($withPhotos) {
             return $withPhotos->orderBy('order');
-        }, 'recommendeds.photos' => function ($withPhotos) {
+        }, 'recommendations.photos' => function ($withPhotos) {
             return $withPhotos->orderBy('order');
         }]);
 

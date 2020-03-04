@@ -452,8 +452,8 @@ namespace App\Models{
  * @property-read \App\Models\Label|null $label
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read int|null $photos_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommendeds
- * @property-read int|null $recommendeds_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommendations
+ * @property-read int|null $recommendations_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Size[] $sizes_active
  * @property-read int|null $sizes_active_count
  * @property-read \App\Models\State|null $state

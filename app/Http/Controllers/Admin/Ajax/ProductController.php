@@ -39,10 +39,10 @@ class ProductController extends Controller
         $product = Product::findByHash($productHashId);
         $product->load('photos');
 
-        $recommendeds = $product->recommendeds;
-        $recommendeds->load('photos', 'state', 'stocks.size');
+        $recommendations = $product->recommendations;
+        $recommendations->load('photos', 'state', 'stocks.size');
 
-        return new ProductCollection($recommendeds);
+        return new ProductCollection($recommendations);
     }
 
     public function recommend($productParentHashId, $productRecommendedHashId)
@@ -50,7 +50,7 @@ class ProductController extends Controller
         $product = Product::findByHash($productParentHashId);
         $recommended = Product::findByHash($productRecommendedHashId);
 
-        $product->recommendeds()->syncWithoutDetaching($recommended->id);
+        $product->recommendations()->syncWithoutDetaching($recommended->id);
 
         return response()->json(['success' => true]);
     }
@@ -60,7 +60,7 @@ class ProductController extends Controller
         $product = Product::findByHash($productParentHashId);
         $recommended = Product::findByHash($productRecommendedHashId);
 
-        $product->recommendeds()->detach($recommended->id);
+        $product->recommendations()->detach($recommended->id);
 
         return response()->json(['success' => true]);
     }

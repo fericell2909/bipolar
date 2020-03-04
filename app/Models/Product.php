@@ -43,7 +43,7 @@ class Product extends Model
         return $this->hasMany(Photo::class, 'product_id');
     }
 
-    public function recommendeds()
+    public function recommendations()
     {
         return $this->belongsToMany(Product::class, 'recommendeds', 'parent_product_id', 'recommended_product_id');
     }

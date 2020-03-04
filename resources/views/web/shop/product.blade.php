@@ -123,11 +123,11 @@
               ['id' => 'product-currency-select', 'class' => 'product-currency-select']) !!}
         </div>
       </div>
-      @if($product->recommendeds->count() > 0)
+      @if($product->recommendations->count() > 0)
         <div class="recommended-products">
           <h3>{{ __('bipolar.shop.recommended') }}</h3>
           <div class="row">
-            @foreach($product->recommendeds as $recommended)
+            @foreach($product->recommendations as $recommended)
               <div class="col-xs-6 col-md-2 recommended">
                 @if(count($recommended->photos))
                   <a href="{{ route('shop.product', $recommended->slug) }}">
