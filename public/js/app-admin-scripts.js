@@ -4617,7 +4617,7 @@
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/switchery/switchery.css":
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/switchery/switchery.css?4f93":
 /*!******************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--9-1!./node_modules/postcss-loader/src??ref--9-2!./node_modules/switchery/switchery.css ***!
   \******************************************************************************************************************************/
@@ -51576,7 +51576,7 @@ if (typeof window !== 'undefined' && window.Sweetalert2){  window.swal = window.
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../css-loader??ref--9-1!../postcss-loader/src??ref--9-2!./switchery.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/switchery/switchery.css");
+var content = __webpack_require__(/*! !../css-loader??ref--9-1!../postcss-loader/src??ref--9-2!./switchery.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/switchery/switchery.css?4f93");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
