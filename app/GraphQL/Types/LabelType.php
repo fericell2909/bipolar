@@ -31,6 +31,7 @@ class LabelType extends GraphQLType
             'name_es' => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Name in spanish',
+                'alias'       => 'name',
                 'resolve'     => function ($root) {
                     /** @var Label $root */
                     return $root->getTranslation('name', 'es');
@@ -38,6 +39,7 @@ class LabelType extends GraphQLType
             'name_en' => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Name in english',
+                'alias'       => 'name',
                 'resolve'     => function ($root) {
                     /** @var Label $root */
                     return $root->getTranslation('name', 'en');

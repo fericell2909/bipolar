@@ -5,6 +5,7 @@ use App\GraphQL\Queries\ColorQuery;
 use App\GraphQL\Queries\LabelQuery;
 use App\GraphQL\Queries\PageQuery;
 use App\GraphQL\Queries\PhotoQuery;
+use App\GraphQL\Queries\ProductQuery;
 use App\GraphQL\Queries\SizeQuery;
 use App\GraphQL\Queries\StateQuery;
 use App\GraphQL\Types\CategoryType;
@@ -12,6 +13,7 @@ use App\GraphQL\Types\ColorType;
 use App\GraphQL\Types\LabelType;
 use App\GraphQL\Types\PageType;
 use App\GraphQL\Types\PhotoType;
+use App\GraphQL\Types\ProductType;
 use App\GraphQL\Types\SizeType;
 use App\GraphQL\Types\StateType;
 
@@ -109,18 +111,18 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'colors' => ColorQuery::class,
-                'sizes' => SizeQuery::class,
-                'states' => StateQuery::class,
                 'categories' => CategoryQuery::class,
+                'colors' => ColorQuery::class,
+                'labels' => LabelQuery::class,
                 'pages' => PageQuery::class,
                 'photos' => PhotoQuery::class,
-                'labels' => LabelQuery::class,
+                'products' => ProductQuery::class,
+                'sizes' => SizeQuery::class,
+                'states' => StateQuery::class,
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,
             ],
-            'middleware' => [],
             'method' => ['get', 'post'],
         ],
     ],
@@ -142,6 +144,7 @@ return [
         'page' => PageType::class,
         'photo' => PhotoType::class,
         'label' => LabelType::class,
+        'product' => ProductType::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request
