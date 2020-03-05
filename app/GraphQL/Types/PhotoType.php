@@ -20,7 +20,7 @@ class PhotoType extends GraphQLType
             'hash_id' => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Hashed ID',
-                'alias'       => 'photo_id',
+                'alias'       => 'id',
                 'resolve'     => function ($root, $args) {
                     return $root->hash_id;
                 },

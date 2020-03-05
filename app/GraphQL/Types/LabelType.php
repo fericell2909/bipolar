@@ -20,6 +20,7 @@ class LabelType extends GraphQLType
             'hash_id' => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Slug',
+                'alias' => 'id',
                 'resolve'     => function ($root) {
                     /** @var Label $root */
                     return $root->hash_id;

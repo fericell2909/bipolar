@@ -24,28 +24,28 @@ class PageType extends GraphQLType
             'title_es'   => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Title in spanish',
-                'resolve'    => function ($root) {
+                'resolve'     => function ($root) {
                     /** @var Page $root */
                     return $root->getTranslation('title', 'es');
                 }],
             'title_en'   => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Title in english',
-                'resolve'    => function ($root) {
+                'resolve'     => function ($root) {
                     /** @var Page $root */
                     return $root->getTranslation('title', 'en');
                 }],
             'body_es'    => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Body in spanish',
-                'resolve'    => function ($root) {
+                'resolve'     => function ($root) {
                     /** @var Page $root */
                     return $root->getTranslation('body', 'es');
                 }],
             'body_en'    => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Body in english',
-                'resolve'    => function ($root) {
+                'resolve'     => function ($root) {
                     /** @var Page $root */
                     return $root->getTranslation('body', 'en');
                 }],

@@ -22,6 +22,7 @@ class ProductType extends GraphQLType
             'hash_id'               => [
                 'type'        => Type::nonNull(Type::string()),
                 'description' => 'Hashed id',
+                'alias'       => 'id',
                 'resolve'     => function ($root) {
                     /** @var $root Product */
                     return $root->hash_id;
