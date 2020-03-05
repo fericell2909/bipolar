@@ -93,9 +93,17 @@
             <div class="col-md-4 bipolar-product">
               <div class="overlay-shop-container">
                 @if($product->label)
-                  <div class="bipolar-label-container" style="background-color: {{ $product->label->color  }} !important;">
-                    <span class="bipolar-label-text" style="color: {{ $product->label->color_text }} !important;">{{ $product->label->name }}</span>
-                  </div>
+                  @php
+                    $labelSplitted = explode("<br>", $product->label->name);
+                  @endphp
+                    <div class="bipolar-label-container">
+                  @foreach($labelSplitted as $label)
+                      <span class="bipolar-label-text"
+                            style="color: {{ $product->label->color_text }} !important;
+                                background-color: {{ $product->label->color  }} !important;">
+                        {{ trim($label) }}</span>
+                  @endforeach
+                    </div>
                 @endif
                 @if($product->discount_pen && $product->discount_usd)
                   <div class="shop-discount-preview-container">

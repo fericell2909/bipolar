@@ -23510,36 +23510,46 @@ input:focus:-ms-input-placeholder {
 }
 
 .bipolar-label-container {
-  background-color: #000000;
   display: inline-block;
   position: absolute;
-  top: 7%;
-  left: 9%;
+  top: 1em;
+  left: 2em;
 }
 
 .bipolar-label-container > .bipolar-label-text {
+  font-family: "GothamBold", sans-serif;
+  font-weight: normal;
   display: block;
+  background-color: #000000;
   color: #fcbeb9;
-  font-weight: 700;
-  padding: 2px 7px;
+  border-radius: 50px;
+  padding: 4px 14px;
+  line-height: 1em;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.bipolar-label-container > .bipolar-label-text:not(:first-child) {
+  margin-top: 0.3em;
 }
 
 .shop-discount-preview-container {
   position: absolute;
-  top: 5%;
-  right: 8%;
+  top: 1em;
+  right: 2em;
   z-index: 4;
-  font-family: "BauerBodoniStdBold", "Times New Roman Bold";
 }
 
 .shop-discount-preview-container .shop-discount {
+  font-family: "GothamBold", sans-serif;
+  font-weight: normal;
   background-color: #000000;
   color: #fcbeb9;
   text-align: center;
   line-height: 48px;
   width: 44px;
   height: 44px;
-  font-size: 15px;
+  font-size: 13px;
   border-radius: 100%;
 }
 

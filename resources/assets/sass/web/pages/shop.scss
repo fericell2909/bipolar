@@ -219,35 +219,43 @@
 }
 
 .bipolar-label-container {
-  background-color: $bipolar-black;
   display: inline-block;
   position: absolute;
-  top: 7%;
-  left: 9%;
+  top: 1em;
+  left: 2em;
 
   > .bipolar-label-text {
+    @include gotham_bold_font;
     display: block;
+    background-color: $bipolar-black;
     color: $bipolar-color;
-    font-weight: 700;
-    padding: 2px 7px;
+    border-radius: 50px;
+    padding: 4px 14px;
+    line-height: 1em;
+    font-size: 10px;
+    text-transform: uppercase;
+
+    &:not(:first-child) {
+      margin-top: 0.3em;
+    }
   }
 }
 
 .shop-discount-preview-container {
   position: absolute;
-  top: 5%;
-  right: 8%;
+  top: 1em;
+  right: 2em;
   z-index: $z-index-shop-discount;
-  font-family: $bodoni-bold-font;
 
   .shop-discount {
+    @include gotham_bold_font;
     background-color: $bipolar-black;
     color: $bipolar-color;
     text-align: center;
     line-height: 48px;
     width: 44px;
     height: 44px;
-    font-size: 15px;
+    font-size: 13px;
     border-radius: 100%;
   }
 }

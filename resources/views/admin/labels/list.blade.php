@@ -4,6 +4,10 @@
   <div class="card">
     <div class="card-header">Nuevo Label</div>
     <div class="card-body">
+      <div class="alert alert-info">
+        <i class="fas fa-fw fa-info"></i>
+        Se puede usar <strong>&lt;br&gt;</strong> para hacer multilínea
+      </div>
       {!! Form::open() !!}
       <div class="form-row">
         <div class="col-md-6">
