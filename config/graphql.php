@@ -5,6 +5,7 @@ use App\GraphQL\Queries\ColorQuery;
 use App\GraphQL\Queries\LabelQuery;
 use App\GraphQL\Queries\PageQuery;
 use App\GraphQL\Queries\PhotoQuery;
+use App\GraphQL\Queries\ProductPaginatedQuery;
 use App\GraphQL\Queries\ProductQuery;
 use App\GraphQL\Queries\SizeQuery;
 use App\GraphQL\Queries\StateQuery;
@@ -117,6 +118,7 @@ return [
                 'pages' => PageQuery::class,
                 'photos' => PhotoQuery::class,
                 'products' => ProductQuery::class,
+                'products_pagination' => ProductPaginatedQuery::class,
                 'sizes' => SizeQuery::class,
                 'states' => StateQuery::class,
             ],
