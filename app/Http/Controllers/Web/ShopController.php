@@ -236,7 +236,7 @@ class ShopController extends Controller
             'recommendations'     => function ($withRecommendeds) {
                 return $withRecommendeds->where('state_id', config('constants.STATE_ACTIVE_ID'));
             },
-            'recommendeds.photos' => function ($withPhotos) {
+            'recommendations.photos' => function ($withPhotos) {
                 return $withPhotos->orderBy('order');
             },
         ]);
