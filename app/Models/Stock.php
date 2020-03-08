@@ -4,16 +4,16 @@ namespace App\Models;
 
 use App\Traits\Hashable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /** @mixin \Eloquent */
 class Stock extends Model
 {
-    use Hashable;
-    protected $casts = [
-        'bsale_stock_ids' => 'array',
-    ];
+    use Hashable, LogsActivity;
 
+    protected $casts = ['bsale_stock_ids' => 'array'];
     protected $table = 'stocks';
+    protected static $logAttributes = ['bsale_stock_ids', 'quantity'];
 
     public function buy_details()
     {

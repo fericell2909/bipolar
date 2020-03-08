@@ -8,12 +8,13 @@ use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Translatable\HasTranslations;
 
 /** @mixin \Eloquent */
 class Product extends Model
 {
-    use Hashable, Sluggable, SluggableScopeHelpers, SoftDeletes, HasTranslations;
+    use Hashable, Sluggable, SluggableScopeHelpers, SoftDeletes, HasTranslations, LogsActivity;
 
     protected $table = 'products';
     protected $dates = ['deleted_at', 'begin_discount', 'end_discount', 'publish_date'];
@@ -27,6 +28,7 @@ class Product extends Model
         'price_usd_discount',
         'publish_date',
     ];
+    protected static $logAttributes = ['state_id'];
 
     public function colors()
     {
