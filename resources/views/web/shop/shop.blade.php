@@ -187,14 +187,14 @@
             @if(count($product->photos))
               <div>
                 @if($product->discount_pen && $product->discount_usd)
-                  <div class="shop-discount-container-in-modal">
+                  <div class="shop-discount-preview-container">
                     <div class="shop-discount">
                       <span>{{ $product->discount_amount }}%</span>
                     </div>
                   </div>
                 @endif
                 @if($product->is_showroom_sale)
-                  <div class="shop-discount-container-in-modal">
+                  <div class="shop-discount-preview-container">
                     <div class="shop-discount">
                       <i class="fas fa-eye-slash"></i>
                     </div>

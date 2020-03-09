@@ -17,9 +17,9 @@
       <div class="row">
         <div class="col-sm-6 col-md-6">
           @if(count($product->photos))
-            <div>
+            <div style="position: relative">
               @if($product->discount_pen && $product->discount_usd)
-                <div class="shop-discount-container">
+                <div class="shop-discount-preview-container">
                   <div class="shop-discount">
                     <span>{{ $product->discount_amount }}%</span>
                   </div>
