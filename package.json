@@ -69,6 +69,7 @@
         "apollo-boost": "^0.4.7",
         "browser-sync": "^2.26.7",
         "browser-sync-webpack-plugin": "^2.2.2",
-        "graphql": "^14.6.0"
+        "graphql": "^14.6.0",
+        "include-media": "^1.4.9"
     }
 }

@@ -1,3 +1,13 @@
+// Replacing including media breakpoints
+$breakpoints: (
+  'phone': 414px,
+  'phone_landscape': 736px,
+  'tablet': 768px,
+  'desktop': 1024px,
+  'desktop_hd': 1366px,
+) !default;
+@import '~include-media/dist/include-media';
+
 // Fonts
 @mixin bodoni_font() {
   font-family: 'BauerBodoniStd', 'Times New Roman', sans-serif;
@@ -79,6 +89,11 @@ $widescreen-enabled: true !default;
 // 1344px container + 4rem
 $fullhd: 1344px + (2 * $gap) !default;
 $fullhd-enabled: true !default;
+
+// Custom variables
+$landscape_mobile: 736px;
+$hd_desktop: 1366px;
+$tablet_width_min: 1024px;
 
 // Bulma Media Queries
 @mixin from($device) {

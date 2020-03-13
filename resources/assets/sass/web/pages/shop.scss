@@ -1,7 +1,5 @@
 @import '../../mixins';
 
-$landscape_mobile: 736px;
-
 .shop-container {
   margin-top: 70px;
 
@@ -202,6 +200,11 @@ $landscape_mobile: 736px;
   top: 1em;
   left: 1em;
 
+  @include media('>=desktop', '<desktop_hd') {
+    top: 0.6em;
+    left: 0.6em;
+  }
+
   > .bipolar-label-text {
     @include gotham_bold_font;
     display: block;
@@ -213,20 +216,12 @@ $landscape_mobile: 736px;
     font-size: 11px;
     text-transform: uppercase;
 
-    @include from($landscape_mobile) {
+    @include media('>phone', '<=phone_landscape') {
       font-size: 20px;
     }
 
-    @include iphone_landscape() {
-      font-size: 20px;
-    }
-
-    @include tablet-only() {
+    @include media('>=desktop', '<desktop_hd') {
       font-size: 7px;
-    }
-
-    @include desktop() {
-      font-size: 11px;
     }
 
     &:not(:first-child) {
@@ -241,6 +236,11 @@ $landscape_mobile: 736px;
   right: 1em;
   z-index: $z-index-shop-discount;
 
+  @include media('>=desktop', '<desktop_hd') {
+    top: 0.6em;
+    right: 0.6em;
+  }
+
   .shop-discount {
     @include gotham_bold_font;
     display: flex;
@@ -254,28 +254,16 @@ $landscape_mobile: 736px;
     font-size: 12px;
     border-radius: 100%;
 
-    @include from($landscape_mobile) {
+    @include media('>phone', '<=phone_landscape') {
       font-size: 20px;
       width: 60px;
       height: 60px;
     }
 
-    @include iphone_landscape() {
-      font-size: 20px;
-      width: 60px;
-      height: 60px;
-    }
-
-    @include tablet-only() {
+    @include media('>=desktop', '<desktop_hd') {
       font-size: 8px;
       width: 30px;
       height: 30px;
-    }
-
-    @include desktop() {
-      width: 44px;
-      height: 44px;
-      font-size: 12px;
     }
 
     & > span {
