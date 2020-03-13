@@ -25,7 +25,7 @@
                 {!! Form::checkbox("subtypes[]", $subtype->slug, in_array($subtype->slug, $selectedSubtypes)) !!}
                 <div class="state p-primary">
                   <i class="icon mdi mdi-check"></i>
-                  <label>{{ $subtype->name }} ({{ count($subtype->products) }})</label>
+                  <label>{{ $subtype->name }}</label>
                 </div>
               </div>
             @endforeach
@@ -91,8 +91,20 @@
           @foreach($productChunk as $product)
             <?php /** @var \App\Models\Product $product */ ?>
             <div class="col-md-4 bipolar-product">
-              <a class="product-link" href="{{ route('shop.product', $product->slug) }}"></a>
               <div class="overlay-shop-container">
+                @if($product->label)
+                  @php
+                    $labelSplitted = explode("<br>", $product->label->name);
+                  @endphp
+                    <div class="bipolar-label-container">
+                  @foreach($labelSplitted as $label)
+                      <span class="bipolar-label-text"
+                            style="color: {{ $product->label->color_text }} !important;
+                                background-color: {{ $product->label->color  }} !important;">
+                        {{ trim($label) }}</span>
+                  @endforeach
+                    </div>
+                @endif
                 @if($product->discount_pen && $product->discount_usd)
                   <div class="shop-discount-preview-container">
                     <div class="shop-discount">
@@ -175,14 +187,14 @@
             @if(count($product->photos))
               <div>
                 @if($product->discount_pen && $product->discount_usd)
-                  <div class="shop-discount-container-in-modal">
+                  <div class="shop-discount-preview-container">
                     <div class="shop-discount">
                       <span>{{ $product->discount_amount }}%</span>
                     </div>
                   </div>
                 @endif
                 @if($product->is_showroom_sale)
-                  <div class="shop-discount-container-in-modal">
+                  <div class="shop-discount-preview-container">
                     <div class="shop-discount">
                       <i class="fas fa-eye-slash"></i>
                     </div>

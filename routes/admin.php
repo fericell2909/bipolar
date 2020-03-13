@@ -123,6 +123,11 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('colors', 'Admin\ColorController@create')->name('settings.colors.save');
         Route::get('colors/{colorHashid}', 'Admin\ColorController@show')->name('settings.colors.show');
         Route::post('colors/{colorHashid}', 'Admin\ColorController@update');
+        // Labels
+        Route::get('labels', 'Admin\LabelController@index')->name('settings.labels.index');
+        Route::post('labels', 'Admin\LabelController@store');
+        Route::get('labels/{labelId}', 'Admin\LabelController@edit')->name('settings.labels.edit');
+        Route::post('labels/{labelId}', 'Admin\LabelController@update');
         // Types
         Route::get('types', 'Admin\TypesController@index')->name('settings.types');
         Route::post('types', 'Admin\TypesController@store');

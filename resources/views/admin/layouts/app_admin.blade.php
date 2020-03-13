@@ -21,7 +21,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <script async src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script>
   </head>
 
   <body class="skin-red fixed-layout">
@@ -208,6 +208,7 @@
                   <li><a href="{{ route('backgrounds.all') }}">Fondos</a></li>
                   <li><a href="{{ route('settings.sizes') }}">Tallas</a></li>
                   <li><a href="{{ route('settings.colors') }}">Colores</a></li>
+                  <li><a href="{{ route('settings.labels.index') }}">Labels</a></li>
                   <li><a href="{{ route('settings.types') }}">Tipos</a></li>
                   <li><a href="{{ route('settings.shipping.index') }}">Shipping rates</a></li>
                   <li><a href="{{ route('admin.logs') }}">Logs (Desarrollador)</a></li>

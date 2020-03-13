@@ -421,6 +421,7 @@ namespace App\Models{
  * @mixin \Eloquent
  * @property int $id
  * @property int|null $state_id
+ * @property int|null $label_id
  * @property array $name
  * @property string|null $slug
  * @property array|null $description
@@ -448,10 +449,13 @@ namespace App\Models{
  * @property-read mixed $price_currency
  * @property-read mixed $price_discount_currency
  * @property-read mixed $translations
+ * @property-read \App\Models\Label|null $label
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read int|null $photos_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommendeds
- * @property-read int|null $recommendeds_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommendations
+ * @property-read int|null $recommendations_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommended_by
+ * @property-read int|null $recommended_by_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Size[] $sizes_active
  * @property-read int|null $sizes_active_count
  * @property-read \App\Models\State|null $state
@@ -477,6 +481,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSalient($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsShowroomSale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereLabelId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePrice($value)
@@ -761,6 +766,36 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Label
+ *
+ * @property int $id
+ * @property array $name
+ * @property string $color_text
+ * @property string $color
+ * @property string $slug
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property-read int|null $activities_count
+ * @property-read string $hash_id
+ * @property-read mixed $translations
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label findSimilarSlugs($attribute, $config, $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereColorText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereUpdatedAt($value)
+ */
+	class Label extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Stock
  *
  * @mixin \Eloquent
@@ -774,6 +809,8 @@ namespace App\Models{
  * @property string|null $active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $buy_details
+ * @property-read int|null $buy_details_count
  * @property-read string $hash_id
  * @property-read \App\Models\Product $product
  * @property-read \App\Models\Size|null $size

@@ -8,12 +8,13 @@ use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Translatable\HasTranslations;
 
 /** @mixin \Eloquent */
 class Product extends Model
 {
-    use Hashable, Sluggable, SluggableScopeHelpers, SoftDeletes, HasTranslations;
+    use Hashable, Sluggable, SluggableScopeHelpers, SoftDeletes, HasTranslations, LogsActivity;
 
     protected $table = 'products';
     protected $dates = ['deleted_at', 'begin_discount', 'end_discount', 'publish_date'];
@@ -27,10 +28,16 @@ class Product extends Model
         'price_usd_discount',
         'publish_date',
     ];
+    protected static $logAttributes = ['state_id'];
 
     public function colors()
     {
         return $this->belongsToMany(Color::class, 'colors_products', 'product_id', 'color_id');
+    }
+
+    public function label()
+    {
+        return $this->belongsTo(Label::class, 'label_id');
     }
 
     public function photos()
@@ -38,7 +45,12 @@ class Product extends Model
         return $this->hasMany(Photo::class, 'product_id');
     }
 
-    public function recommendeds()
+    public function recommended_by()
+    {
+        return $this->belongsToMany(Product::class, 'recommendeds', 'recommended_product_id', 'parent_product_id');
+    }
+
+    public function recommendations()
     {
         return $this->belongsToMany(Product::class, 'recommendeds', 'parent_product_id', 'recommended_product_id');
     }

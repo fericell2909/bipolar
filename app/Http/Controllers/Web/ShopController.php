@@ -85,6 +85,7 @@ class ShopController extends Controller
                 'stocks',
                 'stocks.size',
                 'colors',
+                'label',
             ])
             ->when($request->filled('subtypes'), function ($whereProducts) use ($selectedSubtypes) {
                 return $whereProducts->whereHas('subtypes', function ($whereSubtype) use ($selectedSubtypes) {
@@ -232,10 +233,10 @@ class ShopController extends Controller
             'photos'              => function ($withPhotos) {
                 return $withPhotos->orderBy('order');
             },
-            'recommendeds'        => function ($withRecommendeds) {
+            'recommendations'     => function ($withRecommendeds) {
                 return $withRecommendeds->where('state_id', config('constants.STATE_ACTIVE_ID'));
             },
-            'recommendeds.photos' => function ($withPhotos) {
+            'recommendations.photos' => function ($withPhotos) {
                 return $withPhotos->orderBy('order');
             },
         ]);

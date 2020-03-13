@@ -81,10 +81,12 @@ class ProductController extends Controller
     {
         $product = Product::findByHashTrashed($productHashId);
 
-        $product->recommendeds()->sync([]);
-        $product->subtypes()->sync([]);
+        $product->recommendations()->detach();
+        $product->recommended_by()->detach();
+        $product->subtypes()->detach();
         $product->stocks->each(function ($stock) {
             /** @var Stock $stock */
+            $stock->buy_details()->delete();
             $stock->delete();
         });
         $product->photos->each(function ($photo) {
@@ -129,7 +131,7 @@ class ProductController extends Controller
 
         $product->load(['stocks.size', 'photos' => function ($withPhotos) {
             return $withPhotos->orderBy('order');
-        }, 'recommendeds.photos' => function ($withPhotos) {
+        }, 'recommendations.photos' => function ($withPhotos) {
             return $withPhotos->orderBy('order');
         }]);
 

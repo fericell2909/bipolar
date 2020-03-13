@@ -17,9 +17,9 @@
       <div class="row">
         <div class="col-sm-6 col-md-6">
           @if(count($product->photos))
-            <div>
+            <div style="position: relative">
               @if($product->discount_pen && $product->discount_usd)
-                <div class="shop-discount-container">
+                <div class="shop-discount-preview-container">
                   <div class="shop-discount">
                     <span>{{ $product->discount_amount }}%</span>
                   </div>
@@ -123,11 +123,11 @@
               ['id' => 'product-currency-select', 'class' => 'product-currency-select']) !!}
         </div>
       </div>
-      @if($product->recommendeds->count() > 0)
+      @if($product->recommendations->count() > 0)
         <div class="recommended-products">
           <h3>{{ __('bipolar.shop.recommended') }}</h3>
           <div class="row">
-            @foreach($product->recommendeds as $recommended)
+            @foreach($product->recommendations as $recommended)
               <div class="col-xs-6 col-md-2 recommended">
                 @if(count($recommended->photos))
                   <a href="{{ route('shop.product', $recommended->slug) }}">

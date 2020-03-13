@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2020-02-18 21:01:13.
+    * Generated on 2020-02-24 23:36:43.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -163,6 +163,7 @@ namespace PHPSTORM_META {
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'flash' => \Laracasts\Flash\FlashNotifier::class,
         'form' => \Collective\Html\FormBuilder::class,
+        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
@@ -360,6 +361,7 @@ namespace PHPSTORM_META {
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'flash' => \Laracasts\Flash\FlashNotifier::class,
         'form' => \Collective\Html\FormBuilder::class,
+        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
@@ -557,6 +559,7 @@ namespace PHPSTORM_META {
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'flash' => \Laracasts\Flash\FlashNotifier::class,
         'form' => \Collective\Html\FormBuilder::class,
+        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
@@ -754,6 +757,7 @@ namespace PHPSTORM_META {
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'flash' => \Laracasts\Flash\FlashNotifier::class,
         'form' => \Collective\Html\FormBuilder::class,
+        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
@@ -951,6 +955,7 @@ namespace PHPSTORM_META {
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'flash' => \Laracasts\Flash\FlashNotifier::class,
         'form' => \Collective\Html\FormBuilder::class,
+        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
@@ -1148,6 +1153,7 @@ namespace PHPSTORM_META {
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'flash' => \Laracasts\Flash\FlashNotifier::class,
         'form' => \Collective\Html\FormBuilder::class,
+        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
@@ -1345,6 +1351,7 @@ namespace PHPSTORM_META {
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'flash' => \Laracasts\Flash\FlashNotifier::class,
         'form' => \Collective\Html\FormBuilder::class,
+        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,
@@ -1542,6 +1549,7 @@ namespace PHPSTORM_META {
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'flash' => \Laracasts\Flash\FlashNotifier::class,
         'form' => \Collective\Html\FormBuilder::class,
+        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'hashids' => \Vinkla\Hashids\HashidsManager::class,

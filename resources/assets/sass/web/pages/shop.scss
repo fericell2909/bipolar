@@ -1,4 +1,4 @@
-@import "../../mixins";
+@import '../../mixins';
 
 .shop-container {
   margin-top: 70px;
@@ -78,7 +78,7 @@
   @include xxs {
     margin-bottom: 18px;
   }
-  
+
   @include sm {
     margin-bottom: 30px;
   }
@@ -138,7 +138,8 @@
       margin-left: 8px;
       margin-top: 8px;
 
-      &.active, &:hover {
+      &.active,
+      &:hover {
         background: $bipolar-black;
         color: $bipolar-gray;
       }
@@ -156,7 +157,7 @@
       justify-content: center;
       align-content: center;
       border-radius: 30px;
-      transition: all .3s;
+      transition: all 0.3s;
       top: 0;
       bottom: 0;
       cursor: pointer;
@@ -168,7 +169,7 @@
       background-color: $bipolar-white;
       color: #2e2e2e;
       margin: auto;
-      
+
       &:hover {
         background-color: $bipolar-color;
         color: $bipolar-white;
@@ -185,7 +186,6 @@
   }
 }
 
-
 .owl-dots {
   display: none;
 }
@@ -194,45 +194,80 @@
   margin-top: 10px;
 }
 
-.shop-discount-container {
+.bipolar-label-container {
+  display: inline-block;
   position: absolute;
-  top: 3%;
-  right: 5%;
-  z-index: $z-index-shop-discount;
-  font-family: $bodoni-bold-font;
+  top: 1em;
+  left: 1em;
 
-  .shop-discount {
+  @include media('>=desktop', '<desktop_hd') {
+    top: 0.6em;
+    left: 0.6em;
+  }
+
+  > .bipolar-label-text {
+    @include gotham_bold_font;
+    display: block;
     background-color: $bipolar-black;
     color: $bipolar-color;
-    text-align: center;
-    line-height: 48px;
-    width: 44px;
-    height: 44px;
-    font-size: 15px;
-    border-radius: 100%;
-  }
-}
+    border-radius: 50px;
+    padding: 0.9em 1em 0.8em 1em;
+    line-height: 0;
+    font-size: 11px;
+    text-transform: uppercase;
 
-.shop-discount-container-in-modal {
-  @extend .shop-discount-container;
-  right: 3%;
+    @include media('>phone', '<=phone_landscape') {
+      font-size: 20px;
+    }
+
+    @include media('>=desktop', '<desktop_hd') {
+      font-size: 7px;
+    }
+
+    &:not(:first-child) {
+      margin-top: 0.3em;
+    }
+  }
 }
 
 .shop-discount-preview-container {
   position: absolute;
-  top: 5%;
-  right: 8%;
+  top: 1em;
+  right: 1em;
   z-index: $z-index-shop-discount;
-  font-family: $bodoni-bold-font;
+
+  @include media('>=desktop', '<desktop_hd') {
+    top: 0.6em;
+    right: 0.6em;
+  }
 
   .shop-discount {
+    @include gotham_bold_font;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: $bipolar-black;
     color: $bipolar-color;
     text-align: center;
-    line-height: 48px;
     width: 44px;
     height: 44px;
-    font-size: 15px;
+    font-size: 12px;
     border-radius: 100%;
+
+    @include media('>phone', '<=phone_landscape') {
+      font-size: 20px;
+      width: 60px;
+      height: 60px;
+    }
+
+    @include media('>=desktop', '<desktop_hd') {
+      font-size: 8px;
+      width: 30px;
+      height: 30px;
+    }
+
+    & > span {
+      line-height: 0;
+    }
   }
 }
