@@ -1,5 +1,7 @@
 @import '../../mixins';
 
+$landscape_mobile: 736px;
+
 .shop-container {
   margin-top: 70px;
 
@@ -211,6 +213,22 @@
     font-size: 11px;
     text-transform: uppercase;
 
+    @include from($landscape_mobile) {
+      font-size: 20px;
+    }
+
+    @include iphone_landscape() {
+      font-size: 20px;
+    }
+
+    @include tablet-only() {
+      font-size: 7px;
+    }
+
+    @include desktop() {
+      font-size: 11px;
+    }
+
     &:not(:first-child) {
       margin-top: 0.3em;
     }
@@ -235,6 +253,30 @@
     height: 44px;
     font-size: 12px;
     border-radius: 100%;
+
+    @include from($landscape_mobile) {
+      font-size: 20px;
+      width: 60px;
+      height: 60px;
+    }
+
+    @include iphone_landscape() {
+      font-size: 20px;
+      width: 60px;
+      height: 60px;
+    }
+
+    @include tablet-only() {
+      font-size: 8px;
+      width: 30px;
+      height: 30px;
+    }
+
+    @include desktop() {
+      width: 44px;
+      height: 44px;
+      font-size: 12px;
+    }
 
     & > span {
       line-height: 0;

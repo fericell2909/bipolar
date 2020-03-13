@@ -10,46 +10,60 @@
 }
 
 @mixin sahari_bodoni_font() {
-  font-family: "SaharaBodoni", monospace;
+  font-family: 'SaharaBodoni', monospace;
 }
 
 @mixin gotham_light_font() {
-  font-family: "GothamLight", sans-serif;
+  font-family: 'GothamLight', sans-serif;
   font-weight: normal;
 }
 
 @mixin gotham_bold_font() {
-  font-family: "GothamBold", sans-serif;
+  font-family: 'GothamBold', sans-serif;
   font-weight: normal;
 }
 
 // Bootstrap Media Queries
 @mixin xxs {
-  @media only screen and (min-width : 320px) { @content }
+  @media only screen and (min-width: 320px) {
+    @content;
+  }
 }
 
 @mixin xs {
-  @media only screen and (min-width : 480px) { @content }
+  @media only screen and (min-width: 480px) {
+    @content;
+  }
 }
 
 @mixin sm {
-  @media only screen and (min-width : 768px) { @content }
+  @media only screen and (min-width: 768px) {
+    @content;
+  }
 }
 
 @mixin md {
-  @media only screen and (min-width : 992px) { @content }
+  @media only screen and (min-width: 992px) {
+    @content;
+  }
 }
 
 @mixin lg {
-  @media only screen and (min-width : 1200px) { @content }
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
 }
 
 @mixin xlg {
-  @media only screen and (min-width : 1408px) { @content }
+  @media only screen and (min-width: 1408px) {
+    @content;
+  }
 }
 
 @mixin xxlg {
-  @media only screen and (min-width : 2000px) { @content }
+  @media only screen and (min-width: 2000px) {
+    @content;
+  }
 }
 
 // Variables media querie from Bulma
@@ -67,58 +81,160 @@ $fullhd: 1344px + (2 * $gap) !default;
 $fullhd-enabled: true !default;
 
 // Bulma Media Queries
+@mixin from($device) {
+  @media screen and (min-width: $device) {
+    @content;
+  }
+}
+
+@mixin until($device) {
+  @media screen and (max-width: $device - 1px) {
+    @content;
+  }
+}
+
 @mixin mobile {
-  @media screen and (max-width: $tablet - 1px) { @content }
+  @media screen and (max-width: $tablet - 1px) {
+    @content;
+  }
 }
 
 @mixin tablet {
-  @media screen and (min-width: $tablet), print { @content }
+  @media screen and (min-width: $tablet), print {
+    @content;
+  }
 }
 
 @mixin tablet-only {
-  @media screen and (min-width: $tablet) and (max-width: $desktop - 1px) { @content }
+  @media screen and (min-width: $tablet) and (max-width: $desktop - 1px) {
+    @content;
+  }
 }
 
 @mixin touch {
-  @media screen and (max-width: $desktop - 1px) { @content }
+  @media screen and (max-width: $desktop - 1px) {
+    @content;
+  }
 }
 
 @mixin desktop {
-  @media screen and (min-width: $desktop) { @content }
+  @media screen and (min-width: $desktop) {
+    @content;
+  }
 }
 
 @mixin desktop-only {
   @if $widescreen-enabled {
-    @media screen and (min-width: $desktop) and (max-width: $widescreen - 1px) { @content }
+    @media screen and (min-width: $desktop) and (max-width: $widescreen - 1px) {
+      @content;
+    }
   }
 }
 
 @mixin until-widescreen {
   @if $widescreen-enabled {
-    @media screen and (max-width: $widescreen - 1px) { @content }
+    @media screen and (max-width: $widescreen - 1px) {
+      @content;
+    }
   }
 }
 
 @mixin widescreen {
   @if $widescreen-enabled {
-    @media screen and (min-width: $widescreen) { @content }
+    @media screen and (min-width: $widescreen) {
+      @content;
+    }
   }
 }
 
 @mixin widescreen-only {
   @if $widescreen-enabled and $fullhd-enabled {
-    @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1px) { @content }
+    @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1px) {
+      @content;
+    }
   }
 }
 
 @mixin until-fullhd {
   @if $fullhd-enabled {
-    @media screen and (max-width: $fullhd - 1px) { @content }
+    @media screen and (max-width: $fullhd - 1px) {
+      @content;
+    }
   }
 }
 
 @mixin fullhd {
   @if $fullhd-enabled {
-    @media screen and (min-width: $fullhd) { @content }
+    @media screen and (min-width: $fullhd) {
+      @content;
+    }
+  }
+}
+
+// Device mediaqueries
+
+@mixin iphone678plus_full {
+  @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+    @content;
+  }
+}
+
+@mixin iphone678plus_portrait {
+  @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin iphone678plus_landscape {
+  @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin iphoneX_full {
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    @content;
+  }
+}
+
+@mixin iphoneX_portrait {
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin iphoneX_landscape {
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin iphone_full {
+  @include iphone678plus_full() {
+    @content;
+  }
+
+  @include iphoneX_full() {
+    @content;
+  }
+}
+
+@mixin iphone_portrait {
+  @include iphone678plus_portrait() {
+    @content;
+  }
+
+  @include iphoneX_portrait() {
+    @content;
+  }
+}
+
+@mixin iphone_landscape {
+  @include iphone678plus_landscape() {
+    @content;
+  }
+
+  @include iphoneX_landscape() {
+    @content;
   }
 }
