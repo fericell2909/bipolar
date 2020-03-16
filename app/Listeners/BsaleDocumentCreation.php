@@ -41,6 +41,11 @@ class BsaleDocumentCreation implements ShouldQueue
         }
     }
 
+    public function failed(SaleSuccessful $event)
+    {
+        \Log::error("Event for {$event->buy->id} failed");
+    }
+
     private function removeBsaleStockIdEmpty(Buy $buy)
     {
         $buy->loadMissing(['details.product.stocks']);
