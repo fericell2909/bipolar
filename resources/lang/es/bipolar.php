@@ -100,6 +100,7 @@ return [
         'usd_currency' => 'Dólares americanos (USD)',
         'size_guide_url' => 'storage/bipolar-images/assets/size_esp_20180913.png',
         'added' => ':product ha sido agregado al carro',
+        'soldout' => 'Agotado',
     ],
     'mails' => [
         'buy_received_subject' => 'Gracias por tu compra!',

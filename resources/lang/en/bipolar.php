@@ -100,6 +100,7 @@ return [
         'usd_currency' => 'US Dollars (USD)',
         'size_guide_url' => 'storage/bipolar-images/assets/size_eng_20180913.png',
         'added' => ':product has been added to the cart',
+        'soldout' => 'Sold out',
     ],
     'mails' => [
         'buy_received_subject' => 'Thank you for your purchase!',

@@ -439,9 +439,12 @@ namespace App\Models{
  * @property int $free_shipping
  * @property int $is_showroom_sale
  * @property string|null $is_salient
+ * @property int $is_soldout
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property-read int|null $activities_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
  * @property-read int|null $colors_count
  * @property-read mixed $discount_amount
@@ -481,6 +484,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSalient($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsShowroomSale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSoldout($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereLabelId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereOrder($value)
@@ -809,6 +813,8 @@ namespace App\Models{
  * @property string|null $active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property-read int|null $activities_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BuyDetail[] $buy_details
  * @property-read int|null $buy_details_count
  * @property-read string $hash_id

@@ -86,11 +86,9 @@ class PaymeController extends Controller
 
         $this->authorize('view', $buy);
         $buy->load(['details.product.photos', 'details.stock.size', 'details.product']);
-        //abort_if($buy->tipo_pago_id == config('constants.TIPO_PAGO_MEMBRESIA_ID'), 403);
 
         // Comprobando si el pago fue realizado correctamente
         $paymeCode = $buy->payments->sortByDesc('id')->first()->auth_result ?? null;
-        //$esCompraOnline = $buy->tipo_pago_id == config('constants.TIPO_PAGO_ONLINE') ? true : false;
         $tokenUsuario = null;
 
         if ($paymeCode != '00') {
@@ -252,7 +250,7 @@ class PaymeController extends Controller
             $setting->current_buy = $setting->current_buy + 1;
             $setting->save();
         }
-        
+
         $setting->save();
 
         return $setting->current_buy;
