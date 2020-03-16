@@ -20,7 +20,7 @@ class UploadFileS3
 
     public function getAmazonPath($imageRelativePath)
     {
-        $bucket = env('AWS_BUCKET');
+        $bucket = config('app.aws_bucket');
 
         return "https://s3.amazonaws.com/{$bucket}/{$imageRelativePath}";
     }

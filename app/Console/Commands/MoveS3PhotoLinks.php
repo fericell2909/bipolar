@@ -43,21 +43,21 @@ class MoveS3PhotoLinks extends Command
         $photos = Photo::whereNotNull('url')->get();
 
         $photos->each(function ($photo) {
-            $photo->url = str_replace('https://s3.amazonaws.com/bipolar-peru', env('APP_URL') . '/storage/bipolar-images', $photo->url);
+            $photo->url = str_replace('https://s3.amazonaws.com/bipolar-peru', config('app.env') . '/storage/bipolar-images', $photo->url);
             $photo->save();
         });
 
         $banners = Banner::all();
 
         $banners->each(function ($banner) {
-            $banner->url = str_replace('https://s3.amazonaws.com/bipolar-peru', env('APP_URL') . '/storage/bipolar-images', $banner->url);
+            $banner->url = str_replace('https://s3.amazonaws.com/bipolar-peru', config('app.env') . '/storage/bipolar-images', $banner->url);
             $banner->save();
         });
 
         $historics = Historic::all();
 
         $historics->each(function ($historic) {
-            $historic->photo = str_replace('https://s3.amazonaws.com/bipolar-peru', env('APP_URL') . '/storage/bipolar-images', $historic->photo);
+            $historic->photo = str_replace('https://s3.amazonaws.com/bipolar-peru', config('app.env') . '/storage/bipolar-images', $historic->photo);
             $historic->save();
         });
 

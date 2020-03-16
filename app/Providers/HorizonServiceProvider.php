@@ -19,8 +19,8 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
 
         // Horizon::routeSmsNotificationsTo('15556667777');
         // Horizon::routeMailNotificationsTo('example@example.com');
-        if (env('LOG_SLACK_WEBHOOK_URL')) {
-            Horizon::routeSlackNotificationsTo(env('LOG_SLACK_WEBHOOK_URL'), '#bipolar');
+        if (config('logging.channels.slack.url')) {
+            Horizon::routeSlackNotificationsTo(config('logging.channels.slack.url'), '#bipolar');
         }
 
         // Horizon::night();
@@ -38,14 +38,14 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
         Gate::define('viewHorizon', function ($user = null) {
             if (\Auth::guard('admin')->check()) {
                 $auth = \Auth::guard('admin')->user();
-                
+
                 return in_array($auth->email, [
                     'info@helmerdavila.com',
                 ]);
             }
 
             return false;
-            
+
         });
     }
 }

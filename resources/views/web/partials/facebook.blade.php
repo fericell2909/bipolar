@@ -17,7 +17,7 @@
         });
       });
     }
-  
+
     function loginUser() {
       FB.login(function (respuesta) {
         if (respuesta.status === 'connected') {
@@ -25,17 +25,17 @@
         }
       }, {scope: 'public_profile,email'});
     }
-  
+
     window.fbAsyncInit = function () {
       FB.init({
-        appId: '{{ env('FACEBOOK_APP_API') }}',
+        appId: '{{ config('app.facebook_id') }}',
         xfbml: true,
         version: 'v2.10',
         cookie: true
       });
       //FB.AppEvents.logPageView();
     };
-  
+
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;

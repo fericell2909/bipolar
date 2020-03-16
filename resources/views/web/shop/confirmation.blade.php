@@ -1,7 +1,7 @@
 @extends('web.layouts.app_web')
 @push('css_plus')
 {{-- Script de Alignet --}}
-<script type="text/javascript" src="{{ env('PAYME_URL_MODAL') }}"></script>
+<script type="text/javascript" src="{{ config('payme.url_modal') }}"></script>
 @endpush
 @section('content')
 <?php /** @var \App\Models\Buy $buy */ ?>
@@ -52,7 +52,7 @@
     <input type="hidden" name="programmingLanguage" value="PHP">
     <input type="hidden" name="descriptionProducts" value="Pedido en Bipolar.com.pe">
     <p class="text-left">
-      <a href="#" class="btn btn-dark btn-rounded" onclick="javascript:AlignetVPOS2.openModal('{{ env('APP_ENV') === "production" ? "" : env('PAYME_URL_ALIGNET') }}', '2')">
+      <a href="#" class="btn btn-dark btn-rounded" onclick="javascript:AlignetVPOS2.openModal('{{ config('app.env') === "production" ? "" : config('payme.url_alignet') }}', '2')">
         <span class="icon">
           <i class="fas fa-credit-card"></i>
         </span>
@@ -123,7 +123,7 @@
         {{ $buy->billing_address->address }}<br>
         {{ $buy->billing_address->country_state->name }} {{ $buy->billing_address->zip }}<br>
         {{ $buy->billing_address->phone }} {{ $buy->billing_address->email }}
-      </address>        
+      </address>
     </div>
     @endif
     @if($buy->shipping_address)
@@ -150,7 +150,7 @@
       }
   }
   (ready(function () {
-      //AlignetVPOS2.openModal("{{ env('PAYME_URL_ALIGNET') }}", '2');
+      //AlignetVPOS2.openModal("{{ config('payme.url_alignet') }}", '2');
   }));
 </script>
 @endpush

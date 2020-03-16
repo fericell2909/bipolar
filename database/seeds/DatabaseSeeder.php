@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if (env('APP_ENV') === 'production') {
+        if (config('app.env') === 'production') {
             $this->call(CountriesTableSeeder::class);
             $this->call(CountryStatesTableSeeder::class);
             $this->call(StateSeeder::class);

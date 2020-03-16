@@ -145,7 +145,7 @@ class CheckoutController extends Controller
         }
 
         // The email only sends in not a production environment
-        if (env('APP_ENV') !== 'production') {
+        if (config('app.env') !== 'production') {
             event(new SaleSuccessful($buy));
         }
 
