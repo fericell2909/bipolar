@@ -33,8 +33,8 @@ class DashboardController extends Controller
         $newsletterUsersInWeek = 0;
         $visitorsThisWeek = 0;
 
-        if (env('MAILCHIMP_APIKEY')) {
-            $newsletterUsersInWeek = Newsletter::getApi()->get('lists/' . env('MAILCHIMP_LIST_ID') . '/members', [
+        if (config('app.mailchimp_key')) {
+            $newsletterUsersInWeek = Newsletter::getApi()->get('lists/' . config('app.mailchimp_list_id') . '/members', [
                 'since_timestamp_opt'  => now()->startOfWeek()->toIso8601String(),
                 'before_timestamp_opt' => now()->endOfWeek()->toIso8601String(),
             ]);

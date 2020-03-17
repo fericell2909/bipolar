@@ -17,6 +17,9 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SaleEmail',
             'App\Listeners\BsaleDocumentCreation',
         ],
+        'App\Events\ProductSold' => [
+            'App\Listeners\ProductCheckIfSoldOut',
+        ]
     ];
 
     /**

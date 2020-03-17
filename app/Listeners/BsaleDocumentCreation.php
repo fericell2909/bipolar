@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\ProductSold;
 use App\Events\SaleSuccessful;
 use App\Http\Services\BSale;
 use App\Models\Buy;
@@ -36,9 +37,15 @@ class BsaleDocumentCreation implements ShouldQueue
             $buy->save();
             // Check product detail stocks and delete if is 0
             $this->removeBsaleStockIdEmpty($buy);
+            event(new ProductSold($buy));
         } else {
             \Log::warning($response->body());
         }
+    }
+
+    public function failed(SaleSuccessful $event)
+    {
+        \Log::error("Event for {$event->buy->id} failed");
     }
 
     private function removeBsaleStockIdEmpty(Buy $buy)
@@ -61,17 +68,20 @@ class BsaleDocumentCreation implements ShouldQueue
         return function ($detail) {
             /** @var BuyDetail $detail */
             $stock = $detail->stock;
+            $totalQuantity = 0;
             $bsaleStockIds = collect($stock->bsale_stock_ids);
 
-            $checkedBsaleStocks = $bsaleStockIds->filter(function ($bsaleStockId) {
+            $checkedBsaleStocks = $bsaleStockIds->filter(function ($bsaleStockId) use (&$totalQuantity) {
                 $response = BSale::stocksGet($bsaleStockId);
                 $stockAPIResult = $response->json();
                 $quantity = data_get($stockAPIResult, 'items.0.quantity');
+                $totalQuantity += $quantity;
 
                 return intval($quantity) > 0;
             })->values()->toArray();
 
             $stock->bsale_stock_ids = $checkedBsaleStocks;
+            $stock->quantity = $totalQuantity;
             $stock->save();
         };
     }

@@ -18,28 +18,28 @@ class BSale
         $params = [
             'expand'   => 'office,variant.product',
             'limit'    => 100000000,
-            'officeid' => env('BSALE_MAIN_OFFICE', 1),
+            'officeid' => config('bsale.main_office'),
         ];
 
         if (filled($variantId)) {
             $params = [
                 'limit'     => 1,
-                'officeid'  => env('BSALE_MAIN_OFFICE', 1),
+                'officeid'  => config('bsale.main_office'),
                 'variantid' => $variantId,
             ];
         }
 
-        $response = Zttp::withHeaders(['access_token' => env('BSALE_TOKEN')])
+        $response = Zttp::withHeaders(['access_token' => config('bsale.token')])
             ->get('https://api.bsale.com.pe/v1/stocks.json', $params);
 
         return $response;
     }
 
-    public static function documentGet(int $documentId) : ZttpResponse
+    public static function documentGet(int $documentId): ZttpResponse
     {
         $params = ['expand' => '[details]'];
 
-        $response = Zttp::withHeaders(['access_token' => env('BSALE_TOKEN')])
+        $response = Zttp::withHeaders(['access_token' => config('bsale.token')])
             ->get("https://api.bsale.com.pe/v1/documents/{$documentId}.json", $params);
 
         return $response;
@@ -50,10 +50,10 @@ class BSale
      */
     public static function stocksForSync(): ZttpResponse
     {
-        $response = Zttp::withHeaders(['access_token' => env('BSALE_TOKEN')])
+        $response = Zttp::withHeaders(['access_token' => config('bsale.token')])
             ->get('https://api.bsale.com.pe/v1/stocks.json', [
                 'limit'    => 100000000,
-                'officeid' => env('BSALE_MAIN_OFFICE', 1),
+                'officeid' => config('bsale.main_office'),
             ]);
 
         return $response;
@@ -125,8 +125,8 @@ class BSale
         });
 
         $dataDocument = [
-            'documentTypeId' => strval(env('BSALE_SELL_DOCUMENT_TYPE', 23)),
-            'priceListId'    => $buy->currency === 'USD' ? strval(env('BSALE_PRICE_LIST_USD')) : strval(env('BSALE_PRICE_LIST_PEN')),
+            'documentTypeId' => strval(config('bsale.sell_document_type')),
+            'priceListId'    => $buy->currency === 'USD' ? strval(config('bsale.price_list_usd')) : strval(config('bsale.price_list_pen')),
             'emissionDate'   => now()->timestamp,
             'expirationDate' => now()->addMonth()->timestamp,
             'declareSii'     => intval(false),
@@ -142,7 +142,7 @@ class BSale
 
         \Log::info("Documento creado", $dataDocument);
 
-        $response = Zttp::asJson()->withHeaders(['access_token' => env('BSALE_TOKEN')])
+        $response = Zttp::asJson()->withHeaders(['access_token' => config('bsale.token')])
             ->post('https://api.bsale.com.pe/v1/documents.json', $dataDocument);
 
         return $response;

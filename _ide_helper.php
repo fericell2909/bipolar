@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.37 on 2020-02-24 23:36:43.
+ * Generated for Laravel 5.8.37 on 2020-03-16 18:57:45.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -22667,7 +22667,7 @@ if (!function_exists('bipolar_mail_subject_env_header')) {
      */
     function bipolar_mail_subject_env_header(string $subject)
     {
-        return env('APP_ENV') !== 'production' ? '[BETA] ' . $subject : $subject;
+        return config('app.env') !== 'production' ? '[BETA] ' . $subject : $subject;
     }
 }
 
@@ -22679,7 +22679,7 @@ if (!function_exists('bipolar_mail_asset_url')) {
      */
     function bipolar_mail_asset_url(string $url, $message)
     {
-        return env('APP_ENV') !== 'production' ? "https://www.bipolar.com.pe/{$url}" : $message->embed(public_path() . "/{$url}");
+        return config('app.env') !== 'production' ? "https://www.bipolar.com.pe/{$url}" : $message->embed(public_path() . "/{$url}");
     }
 }
 

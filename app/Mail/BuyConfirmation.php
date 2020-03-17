@@ -33,7 +33,7 @@ class BuyConfirmation extends Mailable implements ShouldQueue
     {
         $shippingMethod = $this->buy->showroom ? __('bipolar.mails.shipping_method_showroom') : optional($this->buy->shipping)->title;
 
-        $subjectConfirmation = env('APP_ENV') !== 'production' ? '[BETA] ' . __('bipolar.mails.buy_received_subject') : __('bipolar.mails.buy_received_subject');
+        $subjectConfirmation = config('app.env') !== 'production' ? '[BETA] ' . __('bipolar.mails.buy_received_subject') : __('bipolar.mails.buy_received_subject');
 
         return $this->cc('shop@bipolar.com.pe')
             ->subject($subjectConfirmation)

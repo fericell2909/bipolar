@@ -44,12 +44,12 @@ class PaymeController extends Controller
 
         $tokenUsuario = $this->getOrRegisterInWallet($request, $buy->currency);
 
-        $acquirerId = env('PAYME_ACQUIRER_ID');
-        $idCommerce = $buy->currency === 'USD' ? env('PAYME_COMMERCE_ID_ENGLISH') : env('PAYME_COMMERCE_ID');
+        $acquirerId = config('payme.acquirer_id');
+        $idCommerce = $buy->currency === 'USD' ? config('payme.commerce_usd_id') : config('payme.commerce_pen_id');
         $purchaseOperationNumber = sprintf('%06d', $buy->buy_number);
         $purchaseAmount = intval($buy->total * 100);
         $purchaseCurrencyCode = $buy->currency === 'USD' ? '840' : '604';
-        $claveVPOS = $buy->currency === 'USD' ? env('PAYME_VPOS_COMMERCE_SECRET_ENGLISH') : env('PAYME_VPOS_COMMERCE_SECRET');
+        $claveVPOS = $buy->currency === 'USD' ? config('payme.vpos_commerce_usd_secret') : config('payme.vpos_commerce_pen_secret');
 
         $purchaseVerification = openssl_digest($acquirerId . $idCommerce . $purchaseOperationNumber . $purchaseAmount . $purchaseCurrencyCode . $claveVPOS, 'sha512');
 
@@ -86,11 +86,9 @@ class PaymeController extends Controller
 
         $this->authorize('view', $buy);
         $buy->load(['details.product.photos', 'details.stock.size', 'details.product']);
-        //abort_if($buy->tipo_pago_id == config('constants.TIPO_PAGO_MEMBRESIA_ID'), 403);
 
         // Comprobando si el pago fue realizado correctamente
         $paymeCode = $buy->payments->sortByDesc('id')->first()->auth_result ?? null;
-        //$esCompraOnline = $buy->tipo_pago_id == config('constants.TIPO_PAGO_ONLINE') ? true : false;
         $tokenUsuario = null;
 
         if ($paymeCode != '00') {
@@ -99,12 +97,12 @@ class PaymeController extends Controller
 
             $tokenUsuario = $this->getOrRegisterInWallet($request, $buy->currency);
 
-            $acquirerId = env('PAYME_ACQUIRER_ID');
-            $idCommerce = $buy->currency === 'USD' ? env('PAYME_COMMERCE_ID_ENGLISH') : env('PAYME_COMMERCE_ID');
+            $acquirerId = config('payme.acquirer_id');
+            $idCommerce = $buy->currency === 'USD' ? config('payme.commerce_usd_id') : config('payme.commerce_pen_id');
             $purchaseOperationNumber = sprintf('%06d', $buy->buy_number);
             $purchaseAmount = intval(number_format($buy->total, 2) * 100);
             $purchaseCurrencyCode = $buy->currency === 'USD' ? '840' : '604';
-            $claveVPOS = $buy->currency === 'USD' ? env('PAYME_VPOS_COMMERCE_SECRET_ENGLISH') : env('PAYME_VPOS_COMMERCE_SECRET');
+            $claveVPOS = $buy->currency === 'USD' ? config('payme.vpos_commerce_usd_secret') : config('payme.vpos_commerce_pen_secret');
 
             $purchaseVerification = openssl_digest($acquirerId . $idCommerce . $purchaseOperationNumber . $purchaseAmount . $purchaseCurrencyCode . $claveVPOS, 'sha512');
         } elseif ($paymeCode === "00") {
@@ -191,6 +189,7 @@ class PaymeController extends Controller
      * Get or register the user wallen token
      *
      * @param Request $request
+     * @param string $currency
      * @return bool
      */
     private function getOrRegisterInWallet(Request $request, string $currency)
@@ -202,7 +201,7 @@ class PaymeController extends Controller
         }
 
         try {
-            $client = new \SoapClient(env('PAYME_URL_PASARELA'), [
+            $client = new \SoapClient(config('payme.url_pasarela'), [
                 'stream_context' => stream_context_create([
                     'http' => ['user_agent' => 'PHPSoapClient'],
                 ]),
@@ -210,9 +209,9 @@ class PaymeController extends Controller
             ]);
 
             //Creación de Arreglo para el almacenamiento y envío de parametros.
-            $idEntCommerce = $currency === 'USD' ? env('PAYME_WALLET_COMMERCE_ID') : env('PAYME_WALLET_COMMERCE_ID_ENGLISH');
+            $idEntCommerce = $currency === 'USD' ? config('payme.wallet_usd_commerce_id') : config('payme.wallet_pen_commerce_id');
             $codCardHolderCommerce = $user->id;
-            $claveSecretaWallet = $currency === 'USD' ? env('PAYME_WALLET_COMMERCE_SECRET') : env('PAYME_WALLET_COMMERCE_SECRET_ENGLISH');
+            $claveSecretaWallet = $currency === 'USD' ? config('payme.wallet_usd_commerce_secret') : config('payme.wallet_pen_commerce_secret');
             $emailUser = $user->email;
             $registerVerification = openssl_digest($idEntCommerce . $codCardHolderCommerce . $emailUser . $claveSecretaWallet, 'sha512');
 
@@ -223,9 +222,6 @@ class PaymeController extends Controller
                 'lastNames'             => $user->lastname ?? $user->name,
                 'mail'                  => $emailUser,
                 'registerVerification'  => $registerVerification,
-                /*'reserved1'             => '',
-                'reserved2'             => '',
-                'reserved3'             => '',*/
             );
 
             $paymeUser = $client->RegisterCardHolder($params);
@@ -252,7 +248,7 @@ class PaymeController extends Controller
             $setting->current_buy = $setting->current_buy + 1;
             $setting->save();
         }
-        
+
         $setting->save();
 
         return $setting->current_buy;

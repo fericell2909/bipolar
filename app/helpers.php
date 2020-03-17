@@ -30,7 +30,7 @@ if (!function_exists('bipolar_mail_subject_env_header')) {
      */
     function bipolar_mail_subject_env_header(string $subject)
     {
-        return env('APP_ENV') !== 'production' ? '[BETA] ' . $subject : $subject;
+        return config('app.env') !== 'production' ? '[BETA] ' . $subject : $subject;
     }
 }
 
@@ -42,6 +42,6 @@ if (!function_exists('bipolar_mail_asset_url')) {
      */
     function bipolar_mail_asset_url(string $url, $message)
     {
-        return env('APP_ENV') !== 'production' ? "https://www.bipolar.com.pe/{$url}" : $message->embed(public_path() . "/{$url}");
+        return config('app.env') !== 'production' ? "https://www.bipolar.com.pe/{$url}" : $message->embed(public_path() . "/{$url}");
     }
 }

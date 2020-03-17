@@ -92,25 +92,33 @@
             <?php /** @var \App\Models\Product $product */ ?>
             <div class="col-md-4 bipolar-product">
               <div class="overlay-shop-container">
-                @if($product->label)
-                  @php
-                    $labelSplitted = explode("<br>", $product->label->name);
-                  @endphp
-                    <div class="bipolar-label-container">
-                  @foreach($labelSplitted as $label)
-                      <span class="bipolar-label-text"
-                            style="color: {{ $product->label->color_text }} !important;
-                                background-color: {{ $product->label->color  }} !important;">
-                        {{ trim($label) }}</span>
-                  @endforeach
-                    </div>
-                @endif
-                @if($product->discount_pen && $product->discount_usd)
-                  <div class="shop-discount-preview-container">
-                    <div class="shop-discount">
-                      <span>{{ $product->discount_amount }}%</span>
-                    </div>
+                @if($product->is_soldout)
+                  <div class="bipolar-label-container">
+                    <span class="bipolar-label-text" style="background-color: black !important; color: white !important;">
+                      {{ __('bipolar.shop.soldout') }}
+                    </span>
                   </div>
+                @else
+                  @if($product->label)
+                    @php
+                      $labelSplitted = explode("<br>", $product->label->name);
+                    @endphp
+                    <div class="bipolar-label-container">
+                      @foreach($labelSplitted as $label)
+                        <span class="bipolar-label-text"
+                              style="color: {{ $product->label->color_text }} !important;
+                                  background-color: {{ $product->label->color  }} !important;">
+                        {{ trim($label) }}</span>
+                      @endforeach
+                    </div>
+                  @endif
+                  @if($product->discount_pen && $product->discount_usd)
+                    <div class="shop-discount-preview-container">
+                      <div class="shop-discount">
+                        <span>{{ $product->discount_amount }}%</span>
+                      </div>
+                    </div>
+                  @endif
                 @endif
                 @if($product->is_showroom_sale)
                   <div class="shop-discount-preview-container">
