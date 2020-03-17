@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 /** @mixin \Eloquent */
 class HomePost extends Model
 {
-    protected $dates = ['begin_date', 'end_date'];
-
     use Hashable, Sluggable, SluggableScopeHelpers;
+
+    protected $dates = ['begin_date', 'end_date'];
 
     protected $table = 'home_posts';
 
@@ -36,7 +36,7 @@ class HomePost extends Model
         return [
             'slug' => [
                 'source' => 'name',
-            ]
+            ],
         ];
     }
 }

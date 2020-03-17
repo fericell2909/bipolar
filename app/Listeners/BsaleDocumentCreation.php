@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\ProductSold;
 use App\Events\SaleSuccessful;
 use App\Http\Services\BSale;
 use App\Models\Buy;
@@ -36,6 +37,7 @@ class BsaleDocumentCreation implements ShouldQueue
             $buy->save();
             // Check product detail stocks and delete if is 0
             $this->removeBsaleStockIdEmpty($buy);
+            event(new ProductSold($buy));
         } else {
             \Log::warning($response->body());
         }
