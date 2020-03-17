@@ -17,6 +17,7 @@ use App\GraphQL\Types\PhotoType;
 use App\GraphQL\Types\ProductType;
 use App\GraphQL\Types\SizeType;
 use App\GraphQL\Types\StateType;
+use App\GraphQL\Types\SubtypeType;
 
 return [
 
@@ -147,6 +148,7 @@ return [
         'photo' => PhotoType::class,
         'label' => LabelType::class,
         'product' => ProductType::class,
+        'subtype' => SubtypeType::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request
