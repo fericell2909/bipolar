@@ -66,17 +66,20 @@ class BsaleDocumentCreation implements ShouldQueue
         return function ($detail) {
             /** @var BuyDetail $detail */
             $stock = $detail->stock;
+            $totalQuantity = 0;
             $bsaleStockIds = collect($stock->bsale_stock_ids);
 
-            $checkedBsaleStocks = $bsaleStockIds->filter(function ($bsaleStockId) {
+            $checkedBsaleStocks = $bsaleStockIds->filter(function ($bsaleStockId) use (&$totalQuantity) {
                 $response = BSale::stocksGet($bsaleStockId);
                 $stockAPIResult = $response->json();
                 $quantity = data_get($stockAPIResult, 'items.0.quantity');
+                $totalQuantity += $quantity;
 
                 return intval($quantity) > 0;
             })->values()->toArray();
 
             $stock->bsale_stock_ids = $checkedBsaleStocks;
+            $stock->quantity = $totalQuantity;
             $stock->save();
         };
     }
