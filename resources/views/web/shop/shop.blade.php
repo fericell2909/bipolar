@@ -94,7 +94,7 @@
               <div class="overlay-shop-container">
                 @if($product->is_soldout)
                   <div class="bipolar-label-container">
-                    <span class="bipolar-label-text" style="background-color: black !important; color: white !important;">
+                    <span class="bipolar-label-text" style="background-color: #9d262a !important; color: white !important;">
                       {{ __('bipolar.shop.soldout') }}
                     </span>
                   </div>
