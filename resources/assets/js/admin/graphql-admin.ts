@@ -3,12 +3,13 @@ import { ILabel } from '../interfaces/ILabel';
 import { IColor } from '../interfaces/IColor';
 import { ISize } from '../interfaces/ISize';
 import { IState } from '../interfaces/IState';
+import { IProduct } from '../interfaces/IProduct';
 
 const client = new ApolloClient({
   uri: '/graphql',
 });
 
-export default class GraphQLAdmin {
+export default class GraphqlAdmin {
   public static getLabels() {
     return client.query<{ labels: ILabel[] }>({
       query: gql`
@@ -59,6 +60,25 @@ export default class GraphQLAdmin {
           }
         }
       `,
+    });
+  }
+
+  public static getPaginatedProducts(page: number = 1) {
+    return client.query<{ products_pagination: { data: IProduct[] } }>({
+      query: gql`
+        query GetPaginatedProducts($page: Int!) {
+          products_pagination(page: $page, limit: 20) {
+            current_page
+            last_page
+            data {
+              hash_id
+              name_en
+              name_en
+            }
+          }
+        }
+      `,
+      variables: { page },
     });
   }
 }

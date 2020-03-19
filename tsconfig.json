@@ -16,7 +16,20 @@
       "noUnusedParameters": true,
       "experimentalDecorators": true,
       "noFallthroughCasesInSwitch": true,
-      "inlineSourceMap": true
+      "inlineSourceMap": true,
+      "baseUrl": ".",
+      "paths": {
+        "@admin/*": ["resources/assets/js/admin/*"],
+        "@interfaces/*": ["resources/assets/js/interfaces/*"]
+      }
     },
-    "exclude": ["node_modules", "public"]
+    "include": ["resources/assets/js/**/*"],
+    "exclude": [
+      "node_modules",
+      "public",
+      "vendor",
+      "resources/assets/js/web",
+      "resources/assets/js/admin/plugins",
+      "webpack.mix.js"
+    ]
   }
