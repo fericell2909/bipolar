@@ -8,7 +8,7 @@ import ProductTypes from './partials/ProductTypes';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
-import GraphQLAdmin from '../../GraphQLAdmin';
+import GraphqlAdmin from '../../graphql-admin';
 import { ILabel } from '../../../interfaces/ILabel';
 import { IColor } from '../../../interfaces/IColor';
 import { ISize } from '../../../interfaces/ISize';
@@ -387,10 +387,10 @@ class BipolarProductNew extends Component<any, State> {
   async componentDidMount() {
     this.getAllInformation();
     const [responseLabels, responseColors, responseSizes, responseStates] = await Promise.all([
-      GraphQLAdmin.getLabels(),
-      GraphQLAdmin.getColors(),
-      GraphQLAdmin.getSizes(),
-      GraphQLAdmin.getStates(),
+      GraphqlAdmin.getLabels(),
+      GraphqlAdmin.getColors(),
+      GraphqlAdmin.getSizes(),
+      GraphqlAdmin.getStates(),
     ]);
     this.setState({
       labels: responseLabels.data.labels,

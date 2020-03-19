@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, Component } from 'react';
 import { existInArray } from '../../helpers';
 import { IColor } from '../../../../interfaces/IColor';
 
@@ -13,7 +13,7 @@ interface State {
   textSearchColors: string;
 }
 
-export default class ProductColors extends React.Component<Props, State> {
+export default class ProductColors extends Component<Props, State> {
   state = {
     searchedColors: [],
     textSearchColors: '',

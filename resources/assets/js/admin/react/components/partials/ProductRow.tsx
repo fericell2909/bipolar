@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faParachuteBox, faStar, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { IState } from '../../../../interfaces/IState';
 import { ISubtype } from '../../../../interfaces/ISubtype';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 interface Props {
   key: string;
@@ -21,7 +23,7 @@ interface Props {
   state: IState;
   freeShipping: boolean;
   isShowroomSale: boolean;
-  isSalient: string;
+  isSalient: boolean;
   previewUrl: string;
   clickDelete: (hashId: string) => void;
   clickProductSelect: (event: any) => void;
@@ -29,10 +31,10 @@ interface Props {
 
 const ProductRow = (props: Props) => {
   const isSelected = existInArray(props.selectedProducts, props.hashId);
-  const badgesSubtypes = props.subtypes.map(subtype => {
+  const badgesSubtypes = props.subtypes.map((subtype, id) => {
     return (
-      <span key={subtype['hash_id']} className="label label-rounded label-inverse">
-        {subtype['name']}
+      <span key={id.toString()} className="label label-rounded label-inverse">
+        {subtype.name_es} / {subtype.name_en}
       </span>
     );
   });
@@ -59,16 +61,11 @@ const ProductRow = (props: Props) => {
       <FontAwesomeIcon icon={faParachuteBox} />
     </span>
   ) : null;
-  const iconSalient =
-    props.isSalient !== null ? (
-      <span
-        className="badge badge-dark"
-        data-toggle="tooltip"
-        data-placement="top"
-        title="Destacado">
-        <FontAwesomeIcon icon={faStar} />
-      </span>
-    ) : null;
+  const iconSalient = props.isSalient ? (
+    <span className="badge badge-dark" data-toggle="tooltip" data-placement="top" title="Destacado">
+      <FontAwesomeIcon icon={faStar} />
+    </span>
+  ) : null;
   const labelShowroomSale = props.isShowroomSale ? (
     <span
       className="badge badge-dark"
@@ -80,7 +77,7 @@ const ProductRow = (props: Props) => {
   ) : null;
 
   return (
-    <tr>
+    <tr key={props.hashId}>
       <td className="align-middle">
         <input
           type="checkbox"
@@ -90,7 +87,11 @@ const ProductRow = (props: Props) => {
         />
       </td>
       <td className="align-middle text-center">
-        {props.imageUrl ? <img src={props.imageUrl} width="100" /> : '--'}
+        {props.imageUrl ? (
+          <LazyLoadImage alt="Bipolar" effect="blur" width={100} src={props.imageUrl} />
+        ) : (
+          '--'
+        )}
       </td>
       <td className="align-middle">
         {labelShowroomSale} {iconFreeShipping} {iconSalient} {props.name}

@@ -64,7 +64,9 @@ export default class GraphqlAdmin {
   }
 
   public static getPaginatedProducts(page: number = 1) {
-    return client.query<{ products_pagination: { data: IProduct[] } }>({
+    return client.query<{
+      products_pagination: { current_page: number; last_page: number; data: IProduct[] };
+    }>({
       query: gql`
         query GetPaginatedProducts($page: Int!) {
           products_pagination(page: $page, limit: 20) {
@@ -74,6 +76,25 @@ export default class GraphqlAdmin {
               hash_id
               name_en
               name_en
+              fullname
+              first_photo_url
+              route_preview
+              price_pen
+              price_usd
+              discount_pen
+              discount_usd
+              price_pen_discount
+              price_usd_discount
+              free_shipping
+              is_showroom_sale
+              is_salient
+              state {
+                name
+              }
+              subtypes {
+                name_es
+                name_en
+              }
             }
           }
         }

@@ -12,7 +12,7 @@ import ProductSizes from './partials/ProductSizes';
 import ProductTypes from './partials/ProductTypes';
 import { IProduct } from '../../../interfaces/IProduct';
 import { ILabel } from '../../../interfaces/ILabel';
-import GraphQLAdmin from '../../GraphQLAdmin';
+import GraphqlAdmin from '../../graphql-admin';
 
 interface IProductState extends IProduct {
   previewUrl: string;
@@ -297,7 +297,7 @@ class BipolarProductEdit extends Component<Props, State> {
   }
 
   async getLabels() {
-    const response = await GraphQLAdmin.getLabels();
+    const response = await GraphqlAdmin.getLabels();
     this.setState({ labels: response.data.labels });
   }
 

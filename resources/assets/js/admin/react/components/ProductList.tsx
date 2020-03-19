@@ -7,10 +7,14 @@ import ProductRow from './partials/ProductRow';
 import { IProduct } from '../../../interfaces/IProduct';
 import { IState } from '../../../interfaces/IState';
 import { IType } from '../../../interfaces/IType';
+import GraphqlAdmin from '../../graphql-admin';
+import BottomScrollListener from 'react-bottom-scroll-listener';
 
 interface State {
+  productsLoading: boolean;
+  productsCurrentPage: number;
+  productsLastPage: number;
   products: IProduct[];
-  filteredProducts: IProduct[];
   searchText: string;
   selectedProducts: string[];
   selectedMassiveAction: string;
@@ -27,8 +31,10 @@ interface State {
 
 class BipolarProductList extends Component<any, State> {
   state: State = {
+    productsLoading: true,
+    productsCurrentPage: 1,
+    productsLastPage: 99,
     products: [],
-    filteredProducts: [],
     searchText: '',
     selectedProducts: [],
     selectedMassiveAction: '',
@@ -77,7 +83,7 @@ class BipolarProductList extends Component<any, State> {
             showConfirmButton: false,
             timer: 3000,
           });
-          this.getAllProducts();
+          // this.getAllProducts();
         });
       }
     });
@@ -113,12 +119,11 @@ class BipolarProductList extends Component<any, State> {
   };
 
   handleSelectAllProducts = event => {
+    // TODO: Send a "Selected all event" (as mutation)
     let allProductsIds = [];
 
     if (event.target.checked) {
-      const productSource = this.state.filteredProducts.length
-        ? this.state.filteredProducts
-        : this.state.products;
+      const productSource = this.state.products.length ? this.state.products : this.state.products;
       allProductsIds = productSource.map(product => product['hash_id']);
     }
 
@@ -183,6 +188,7 @@ class BipolarProductList extends Component<any, State> {
           }
         }
 
+        /*
         axios
           .post(actionUrl, { products })
           .then(this.getAllProducts)
@@ -197,6 +203,7 @@ class BipolarProductList extends Component<any, State> {
             });
             this.setState({ selectedProducts: [] });
           });
+          */
       }
     });
   };
@@ -236,11 +243,60 @@ class BipolarProductList extends Component<any, State> {
       });
     }
 
-    this.setState({ filteredProducts: products });
+    // TODO: filter in the backend
+    // this.setState({ filteredProducts: products });
   };
 
+  getProducts = async () => {
+    this.setState({ productsLoading: true });
+
+    if (this.state.productsCurrentPage + 1 >= this.state.productsLastPage) {
+      return;
+    }
+    const response = await GraphqlAdmin.getPaginatedProducts(this.state.productsCurrentPage);
+    const products = response.data.products_pagination.data;
+    const currentPage = response.data.products_pagination.current_page;
+    const lastPage = response.data.products_pagination.last_page;
+
+    this.setState({
+      products: [...this.state.products, ...products],
+      productsCurrentPage: currentPage,
+      productsLastPage: lastPage,
+      productsLoading: false,
+    });
+  };
+
+  async componentDidMount() {
+    const creationDates = [];
+    for (let indexYear = 0; indexYear < this.state.years.length; indexYear++) {
+      for (let indexMonth = 0; indexMonth < this.state.months.length; indexMonth++) {
+        creationDates.push({
+          value: `${indexMonth + 1}-${this.state.years[indexYear]}`,
+          name: `${this.state.months[indexMonth]} ${this.state.years[indexYear]}`,
+        });
+      }
+    }
+
+    await this.getProducts();
+    const responseStates = await GraphqlAdmin.getStates();
+
+    this.setState({
+      statesForSelect: [...responseStates.data.states],
+      productsLoading: false,
+    });
+
+    return axios.all([axios.get('/ajax-admin/types')]).then(
+      axios.spread(responseTypes => {
+        this.setState({
+          subtypesForSelect: responseTypes.data['data'],
+          creationDates,
+        });
+      })
+    );
+  }
+
   render() {
-    const productsSource = this.state.filteredProducts;
+    const productsSource = this.state.products;
     const subtypes = this.state.subtypesForSelect.map(type => {
       return type.subtypes.map(subtype => {
         return (
@@ -304,26 +360,26 @@ class BipolarProductList extends Component<any, State> {
       </div>
     );
 
-    const productsRender = productsSource.map(product => {
+    const productsRender = productsSource.map((product, id) => {
       return (
         <ProductRow
-          key={product['hash_id']}
+          key={id.toString()}
           selectedProducts={this.state.selectedProducts}
-          hashId={product['hash_id']}
-          imageUrl={product['firstImageUrl']}
-          name={product['fullname']}
-          subtypes={product['subtypes']}
-          price={product['price']}
-          priceDolar={product['price_dolar']}
-          discountPEN={product['discount_pen']}
-          discountUSD={product['discount_usd']}
-          priceDiscountPEN={product['price_pen_discount']}
-          priceDiscountUSD={product['price_usd_discount']}
-          state={product['state']}
-          freeShipping={product['free_shipping']}
-          isShowroomSale={product['is_showroom_sale']}
-          isSalient={product['is_salient']}
-          previewUrl={product['preview_route']}
+          hashId={product.hash_id}
+          imageUrl={product.first_photo_url}
+          name={product.fullname}
+          subtypes={product.subtypes}
+          price={product.price_pen}
+          priceDolar={product.price_dolar}
+          discountPEN={product.discount_pen}
+          discountUSD={product.discount_usd}
+          priceDiscountPEN={product.price_pen_discount}
+          priceDiscountUSD={product.price_usd_discount}
+          state={product.state}
+          freeShipping={product.free_shipping}
+          isShowroomSale={product.is_showroom_sale}
+          isSalient={product.is_salient}
+          previewUrl={product.route_preview}
           clickDelete={this.handleDelete}
           clickProductSelect={this.handleProductSelect}
         />
@@ -331,139 +387,102 @@ class BipolarProductList extends Component<any, State> {
     });
 
     return (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="card">
-            <div className="card-body">
-              <div className="row">
-                <div className="col-md-9">
-                  <label className="control-label">Buscar producto</label>
-                  <div className="input-group">
-                    <div className="input-group-prepend">
-                      <button className="btn btn-dark btn-sm" onClick={this.toggleFilters}>
-                        <i className="fas fa-fw fa-filter" /> Filtros
-                      </button>
+      <BottomScrollListener onBottom={() => this.getProducts()}>
+        <div className="row">
+          <div className="col-md-12">
+            <div className="card">
+              <div className="card-body">
+                <div className="row">
+                  <div className="col-md-9">
+                    <label className="control-label">Buscar producto</label>
+                    <div className="input-group">
+                      <div className="input-group-prepend">
+                        <button className="btn btn-dark btn-sm" onClick={this.toggleFilters}>
+                          <i className="fas fa-fw fa-filter" /> Filtros
+                        </button>
+                      </div>
+                      <input
+                        value={this.state.searchText}
+                        onChange={this.handleSearch}
+                        type="text"
+                        className="form-control"
+                      />
                     </div>
-                    <input
-                      value={this.state.searchText}
-                      onChange={this.handleSearch}
-                      type="text"
-                      className="form-control"
-                    />
+                  </div>
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>Acciones (pendiente)</label>
+                      <select
+                        value={this.state.selectedMassiveAction}
+                        onChange={this.handleMassiveSelection}
+                        className="custom-select col-12">
+                        <option value="" disabled>
+                          Seleccione
+                        </option>
+                        <optgroup label="Estado publicación">
+                          <option value="change_published">Cambiar a activo (Publicado)</option>
+                          <option value="change_draft">Cambiar a borrador</option>
+                          <option value="change_pending">Cambiar a pendiente de revisión</option>
+                          <option value="change_reviewed">Cambiar a revisado</option>
+                        </optgroup>
+                        <optgroup label="Destacado">
+                          <option value="activate_salient">Activar destacado</option>
+                          <option value="deactivate_salient">Desactivar destacado</option>
+                        </optgroup>
+                        <optgroup label="Envío gratuito">
+                          <option value="activate_free">Activar envío gratuito</option>
+                          <option value="deactivate_free">Desactivar envío gratuito</option>
+                        </optgroup>
+                        <optgroup label="Precio">
+                          <option value="dolar_price">Asignar precio en dólares</option>
+                        </optgroup>
+                      </select>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-3">
-                  <div className="form-group">
-                    <label>Acciones (pendiente)</label>
-                    <select
-                      value={this.state.selectedMassiveAction}
-                      onChange={this.handleMassiveSelection}
-                      className="custom-select col-12">
-                      <option value="" disabled>
-                        Seleccione
-                      </option>
-                      <optgroup label="Estado publicación">
-                        <option value="change_published">Cambiar a activo (Publicado)</option>
-                        <option value="change_draft">Cambiar a borrador</option>
-                        <option value="change_pending">Cambiar a pendiente de revisión</option>
-                        <option value="change_reviewed">Cambiar a revisado</option>
-                      </optgroup>
-                      <optgroup label="Destacado">
-                        <option value="activate_salient">Activar destacado</option>
-                        <option value="deactivate_salient">Desactivar destacado</option>
-                      </optgroup>
-                      <optgroup label="Envío gratuito">
-                        <option value="activate_free">Activar envío gratuito</option>
-                        <option value="deactivate_free">Desactivar envío gratuito</option>
-                      </optgroup>
-                      <optgroup label="Precio">
-                        <option value="dolar_price">Asignar precio en dólares</option>
-                      </optgroup>
-                    </select>
-                  </div>
+                {this.state.showFilters ? filters : null}
+                <div className="table-responsive">
+                  <table className="table table-hover color-table dark-table">
+                    <thead>
+                      <tr>
+                        <th className="align-middle">
+                          <input
+                            type="checkbox"
+                            checked={productsSource.length === this.state.selectedProducts.length}
+                            onChange={this.handleSelectAllProducts}
+                          />
+                        </th>
+                        <th className="align-middle text-center">
+                          <i className="fas fa-fw fa-image" />
+                        </th>
+                        <th>Nombre</th>
+                        <th>Tipos</th>
+                        <th className="align-middle text-right">Precio (S/)</th>
+                        <th className="align-middle text-right">Precio ($)</th>
+                        <th className="align-middle text-center">Descuento (PEN/USD)</th>
+                        <th className="align-middle text-right">Desc. (PEN/USD)</th>
+                        <th className="align-middle text-center">Estado</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>{productsRender.length ? productsRender : null}</tbody>
+                    {this.state.productsLoading ? (
+                      <tfoot>
+                        <tr>
+                          <td className="text-center" colSpan={10}>
+                            <strong>Loading...</strong>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    ) : null}
+                  </table>
                 </div>
-              </div>
-              {this.state.showFilters ? filters : null}
-              <div className="table-responsive">
-                <table className="table table-hover color-table dark-table">
-                  <thead>
-                    <tr>
-                      <th className="align-middle">
-                        <input
-                          type="checkbox"
-                          checked={productsSource.length === this.state.selectedProducts.length}
-                          onChange={this.handleSelectAllProducts}
-                        />
-                      </th>
-                      <th className="align-middle text-center">
-                        <i className="fas fa-fw fa-image" />
-                      </th>
-                      <th>Nombre</th>
-                      <th>Tipos</th>
-                      <th className="align-middle text-right">Precio (S/)</th>
-                      <th className="align-middle text-right">Precio ($)</th>
-                      <th className="align-middle text-center">Descuento (PEN/USD)</th>
-                      <th className="align-middle text-right">Desc. (PEN/USD)</th>
-                      <th className="align-middle text-center">Estado</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>{productsRender.length ? productsRender : null}</tbody>
-                </table>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </BottomScrollListener>
     );
-  }
-
-  copyProductsToState = responseProducts => {
-    const products = responseProducts.data['data'];
-    const formattedProducts = products.map(product => {
-      return {
-        ...product,
-        firstImageUrl: product?.photos[0]?.url ?? null,
-      };
-    });
-
-    return this.setState({ products: formattedProducts, filteredProducts: formattedProducts });
-  };
-
-  getAllProducts = () => {
-    axios
-      .get('/ajax-admin/products')
-      .then(this.copyProductsToState)
-      .then(this.filterProducts);
-  };
-
-  componentDidMount() {
-    const creationDates = [];
-    for (let indexYear = 0; indexYear < this.state.years.length; indexYear++) {
-      for (let indexMonth = 0; indexMonth < this.state.months.length; indexMonth++) {
-        creationDates.push({
-          value: `${indexMonth + 1}-${this.state.years[indexYear]}`,
-          name: `${this.state.months[indexMonth]} ${this.state.years[indexYear]}`,
-        });
-      }
-    }
-
-    return axios
-      .all([
-        axios.get('/ajax-admin/products'),
-        axios.get('/ajax-admin/states'),
-        axios.get('/ajax-admin/types'),
-      ])
-      .then(
-        axios.spread((responseProducts, responseStates, responseTypes) => {
-          this.copyProductsToState(responseProducts);
-          this.setState({
-            statesForSelect: responseStates.data['data'],
-            subtypesForSelect: responseTypes.data['data'],
-            creationDates,
-          });
-        })
-      );
   }
 }
 
