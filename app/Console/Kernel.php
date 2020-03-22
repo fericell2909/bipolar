@@ -45,6 +45,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(SendBuyReminderEmail::class)->dailyAt('10:30:00');
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
         $schedule->command(ClearRedisCache::class)->quarterly();
+        $schedule->command('telescope:prune')->monthly();
     }
 
     /**
