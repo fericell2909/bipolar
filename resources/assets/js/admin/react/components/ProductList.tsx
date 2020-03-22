@@ -4,9 +4,9 @@ import axios from 'axios';
 import swal from 'sweetalert2';
 import { removeFromSimpleArray } from '../helpers';
 import ProductRow from './partials/ProductRow';
-import { IProduct } from '../../../interfaces/IProduct';
-import { IState } from '../../../interfaces/IState';
-import { IType } from '../../../interfaces/IType';
+import { IProduct } from '@interfaces/IProduct';
+import { IState } from '@interfaces/IState';
+import { IType } from '@interfaces/IType';
 import GraphqlAdmin from '../../graphql-admin';
 import BottomScrollListener from 'react-bottom-scroll-listener';
 
@@ -74,7 +74,7 @@ class BipolarProductList extends Component<any, State> {
     }).then(result => {
       if (result.value) {
         swal.showLoading();
-        axios.delete(`/ajax-admin/products/remove/${productHashId}`).then(() => {
+        axios.delete(`/ajax-admin/products/remove/${productHashId}`).then(async () => {
           swal({
             title: 'Descartado',
             type: 'success',
@@ -83,7 +83,8 @@ class BipolarProductList extends Component<any, State> {
             showConfirmButton: false,
             timer: 3000,
           });
-          // this.getAllProducts();
+          await this.cleanProducts();
+          this.getProducts();
         });
       }
     });
@@ -119,7 +120,7 @@ class BipolarProductList extends Component<any, State> {
   };
 
   handleMassiveSelection = event => {
-    const optionSelected = event.target.value;
+    const operationSelected = event.target.value;
 
     if (this.state.selectedProducts.length === 0) {
       return swal('Error', 'Seleccione un producto o más para continuar', 'error');
@@ -132,66 +133,22 @@ class BipolarProductList extends Component<any, State> {
       confirmButtonText: 'Sí, cambiar',
       showCancelButton: true,
       cancelButtonText: 'No hacer nada',
-    }).then(result => {
+    }).then(async result => {
       if (result.value) {
-        const products = this.state.selectedProducts;
-        let actionUrl;
+        const productsHashIds = this.state.selectedProducts;
+        const { data } = await GraphqlAdmin.updateProducts(productsHashIds, operationSelected);
 
-        switch (optionSelected) {
-          case 'change_published': {
-            actionUrl = '/ajax-admin/products/state/published';
-            break;
-          }
-          case 'change_draft': {
-            actionUrl = '/ajax-admin/products/state/draft';
-            break;
-          }
-          case 'change_pending': {
-            actionUrl = '/ajax-admin/products/state/pending';
-            break;
-          }
-          case 'change_reviewed': {
-            actionUrl = '/ajax-admin/products/state/reviewed';
-            break;
-          }
-          case 'activate_salient': {
-            actionUrl = '/ajax-admin/products/salient/1';
-            break;
-          }
-          case 'deactivate_salient': {
-            actionUrl = '/ajax-admin/products/salient/0';
-            break;
-          }
-          case 'activate_free': {
-            actionUrl = '/ajax-admin/products/freeshipping/1';
-            break;
-          }
-          case 'deactivate_free': {
-            actionUrl = '/ajax-admin/products/freeshipping/0';
-            break;
-          }
-          case 'dolar_price': {
-            actionUrl = '/ajax-admin/products/dolar-price';
-            break;
-          }
-        }
+        swal({
+          title: `${data.products_update.map(product => product.fullname).join(', ')} actualizados`,
+          type: 'success',
+          toast: true,
+          position: 'top-right',
+          showConfirmButton: false,
+          timer: 5000,
+        });
 
-        /*
-        axios
-          .post(actionUrl, { products })
-          .then(this.getAllProducts)
-          .then(() => {
-            swal({
-              title: 'Hecho',
-              type: 'success',
-              toast: true,
-              position: 'top-right',
-              showConfirmButton: false,
-              timer: 5000,
-            });
-            this.setState({ selectedProducts: [] });
-          });
-          */
+        await this.cleanProducts();
+        await this.getProducts();
       }
     });
   };
@@ -235,20 +192,27 @@ class BipolarProductList extends Component<any, State> {
     // this.setState({ filteredProducts: products });
   };
 
+  cleanProducts = async () =>
+    this.setState(
+      { productsCurrentPage: 1, products: [], selectedProducts: [] },
+      () => Promise.resolve
+    );
+
   getProducts = async () => {
     this.setState({ productsLoading: true });
+    console.log('Entro aca');
 
     if (this.state.productsCurrentPage + 1 >= this.state.productsLastPage) {
       return;
     }
-    const response = await GraphqlAdmin.getPaginatedProducts(this.state.productsCurrentPage);
-    const products = response.data.products_pagination.data;
-    const currentPage = response.data.products_pagination.current_page;
-    const lastPage = response.data.products_pagination.last_page;
+    const { data } = await GraphqlAdmin.getPaginatedProducts(this.state.productsCurrentPage);
+    const products = data.products_pagination.data;
+    const currentPage = data.products_pagination.current_page;
+    const lastPage = data.products_pagination.last_page;
 
     this.setState({
       products: [...this.state.products, ...products],
-      productsCurrentPage: currentPage,
+      productsCurrentPage: currentPage + 1,
       productsLastPage: lastPage,
       productsLoading: false,
     });

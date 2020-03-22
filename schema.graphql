@@ -2,6 +2,7 @@
 
 schema {
     query: Query
+    mutation: Mutation
 }
 
 "A type"
@@ -32,6 +33,11 @@ type Label {
     name_es: String!
     "Slug"
     slug: String!
+}
+
+type Mutation {
+    "Operations with Product"
+    products_update(operation_name: String!, products_id: [ID]!): [Product]
 }
 
 "A type"

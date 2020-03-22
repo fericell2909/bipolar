@@ -1,9 +1,9 @@
 import ApolloClient, { gql } from 'apollo-boost';
-import { ILabel } from '../interfaces/ILabel';
-import { IColor } from '../interfaces/IColor';
-import { ISize } from '../interfaces/ISize';
-import { IState } from '../interfaces/IState';
-import { IProduct } from '../interfaces/IProduct';
+import { ILabel } from '@interfaces/ILabel';
+import { IColor } from '@interfaces/IColor';
+import { ISize } from '@interfaces/ISize';
+import { IState } from '@interfaces/IState';
+import { IProduct } from '@interfaces/IProduct';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -90,6 +90,7 @@ export default class GraphqlAdmin {
               is_salient
               state {
                 name
+                color
               }
               subtypes {
                 name_es
@@ -100,6 +101,21 @@ export default class GraphqlAdmin {
         }
       `,
       variables: { page },
+      fetchPolicy: 'network-only',
+    });
+  }
+
+  public static updateProducts(productIds: string[], operation: string) {
+    return client.mutate<{ products_update: Partial<IProduct>[] }>({
+      mutation: gql`
+        mutation ProductsUpdate($products_id: [ID]!, $operation_name: String!) {
+          products_update(products_id: $products_id, operation_name: $operation_name) {
+            hash_id
+            fullname
+          }
+        }
+      `,
+      variables: { products_id: productIds, operation_name: operation },
     });
   }
 }

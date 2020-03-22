@@ -1,5 +1,6 @@
 <?php
 
+use App\GraphQL\Mutations\ProductUpdateMutation;
 use App\GraphQL\Queries\CategoryQuery;
 use App\GraphQL\Queries\ColorQuery;
 use App\GraphQL\Queries\LabelQuery;
@@ -124,7 +125,7 @@ return [
                 'states' => StateQuery::class,
             ],
             'mutation' => [
-                // 'example_mutation'  => ExampleMutation::class,
+                'products_update' => ProductUpdateMutation::class,
             ],
             'method' => ['get', 'post'],
         ],
