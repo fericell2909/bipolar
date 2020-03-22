@@ -9,9 +9,9 @@ import { IState } from '@interfaces/IState';
 import { IType } from '@interfaces/IType';
 import GraphqlAdmin from '../../graphql-admin';
 import BottomScrollListener from 'react-bottom-scroll-listener';
+import { toastLoading, toastSuccess } from '../../modals';
 
 interface State {
-  productsLoading: boolean;
   productsCurrentPage: number;
   productsLastPage: number;
   products: IProduct[];
@@ -31,7 +31,6 @@ interface State {
 
 class BipolarProductList extends Component<any, State> {
   state: State = {
-    productsLoading: true,
     productsCurrentPage: 1,
     productsLastPage: 99,
     products: [],
@@ -137,16 +136,9 @@ class BipolarProductList extends Component<any, State> {
       if (result.value) {
         const productsHashIds = this.state.selectedProducts;
         const { data } = await GraphqlAdmin.updateProducts(productsHashIds, operationSelected);
-
-        swal({
-          title: `${data.products_update.map(product => product.fullname).join(', ')} actualizados`,
-          type: 'success',
-          toast: true,
-          position: 'top-right',
-          showConfirmButton: false,
-          timer: 5000,
-        });
-
+        toastSuccess(
+          `${data.products_update.map(product => product.fullname).join(', ')} actualizados`
+        );
         await this.cleanProducts();
         await this.getProducts();
       }
@@ -193,15 +185,9 @@ class BipolarProductList extends Component<any, State> {
   };
 
   cleanProducts = async () =>
-    this.setState(
-      { productsCurrentPage: 1, products: [], selectedProducts: [] },
-      () => Promise.resolve
-    );
+    this.setState({ productsCurrentPage: 1, products: [], selectedProducts: [] });
 
-  getProducts = async () => {
-    this.setState({ productsLoading: true });
-    console.log('Entro aca');
-
+  getProductsQuery = async () => {
     if (this.state.productsCurrentPage + 1 >= this.state.productsLastPage) {
       return;
     }
@@ -214,9 +200,10 @@ class BipolarProductList extends Component<any, State> {
       products: [...this.state.products, ...products],
       productsCurrentPage: currentPage + 1,
       productsLastPage: lastPage,
-      productsLoading: false,
     });
   };
+
+  getProducts = () => toastLoading(this.getProductsQuery);
 
   async componentDidMount() {
     const creationDates = [];
@@ -230,12 +217,9 @@ class BipolarProductList extends Component<any, State> {
     }
 
     await this.getProducts();
-    const responseStates = await GraphqlAdmin.getStates();
+    const { data } = await GraphqlAdmin.getStates();
 
-    this.setState({
-      statesForSelect: [...responseStates.data.states],
-      productsLoading: false,
-    });
+    this.setState({ statesForSelect: [...data.states] });
 
     return axios.all([axios.get('/ajax-admin/types')]).then(
       axios.spread(responseTypes => {
@@ -412,15 +396,6 @@ class BipolarProductList extends Component<any, State> {
                       </tr>
                     </thead>
                     <tbody>{productsRender.length ? productsRender : null}</tbody>
-                    {this.state.productsLoading ? (
-                      <tfoot>
-                        <tr>
-                          <td className="text-center" colSpan={10}>
-                            <strong>Loading...</strong>
-                          </td>
-                        </tr>
-                      </tfoot>
-                    ) : null}
                   </table>
                 </div>
               </div>
