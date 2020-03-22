@@ -118,18 +118,6 @@ class BipolarProductList extends Component<any, State> {
     return this.setState({ selectedProducts: selected });
   };
 
-  handleSelectAllProducts = event => {
-    // TODO: Send a "Selected all event" (as mutation)
-    let allProductsIds = [];
-
-    if (event.target.checked) {
-      const productSource = this.state.products.length ? this.state.products : this.state.products;
-      allProductsIds = productSource.map(product => product['hash_id']);
-    }
-
-    this.setState({ selectedProducts: [...allProductsIds] });
-  };
-
   handleMassiveSelection = event => {
     const optionSelected = event.target.value;
 
@@ -445,13 +433,7 @@ class BipolarProductList extends Component<any, State> {
                   <table className="table table-hover color-table dark-table">
                     <thead>
                       <tr>
-                        <th className="align-middle">
-                          <input
-                            type="checkbox"
-                            checked={productsSource.length === this.state.selectedProducts.length}
-                            onChange={this.handleSelectAllProducts}
-                          />
-                        </th>
+                        <th className="align-middle" />
                         <th className="align-middle text-center">
                           <i className="fas fa-fw fa-image" />
                         </th>
