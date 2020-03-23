@@ -1,8 +1,8 @@
 {
-    "/js/app-admin-scripts.js": "/js/app-admin-scripts.js",
-    "/js/app-web-scripts.js": "/js/app-web-scripts.js",
-    "/css/app-admin-styles.css": "/css/app-admin-styles.css",
-    "/css/app-web-styles.css": "/css/app-web-styles.css",
-    "/js/bipolar-admin-app.js": "/js/bipolar-admin-app.js",
-    "/css/animate.min.css": "/css/animate.min.css"
+    "/js/app-admin-scripts.js": "/js/app-admin-scripts.js?id=b3d074990e1b88187eca",
+    "/js/app-web-scripts.js": "/js/app-web-scripts.js?id=bf189297410c434822b6",
+    "/css/app-admin-styles.css": "/css/app-admin-styles.css?id=4055647ea7d1eee314f3",
+    "/css/app-web-styles.css": "/css/app-web-styles.css?id=1cbbaf6f78c48257b1cd",
+    "/js/bipolar-admin-app.js": "/js/bipolar-admin-app.js?id=30de94f74789474a2d4c",
+    "/css/animate.min.css": "/css/animate.min.css?id=bc1a6a99c43f5ccc97d2"
 }
