@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2020-03-16 18:57:23.
+    * Generated on 2020-03-22 00:17:06.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -53,6 +53,9 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Laravel\Telescope\Contracts\ClearableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\EntriesRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\PrunableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
@@ -251,6 +254,9 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Laravel\Telescope\Contracts\ClearableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\EntriesRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\PrunableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
@@ -449,6 +455,9 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Laravel\Telescope\Contracts\ClearableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\EntriesRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\PrunableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
@@ -647,6 +656,9 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Laravel\Telescope\Contracts\ClearableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\EntriesRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\PrunableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
@@ -845,6 +857,9 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Laravel\Telescope\Contracts\ClearableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\EntriesRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\PrunableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
@@ -1043,6 +1058,9 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Laravel\Telescope\Contracts\ClearableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\EntriesRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\PrunableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
@@ -1241,6 +1259,9 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Laravel\Telescope\Contracts\ClearableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\EntriesRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\PrunableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
@@ -1439,6 +1460,9 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Laravel\Telescope\Contracts\ClearableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\EntriesRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
+        'Laravel\Telescope\Contracts\PrunableRepository' => \Laravel\Telescope\Storage\DatabaseEntriesRepository::class,
         'Mcamara\LaravelLocalization\LaravelLocalization' => \Mcamara\LaravelLocalization\LaravelLocalization::class,
         'NunoMaduro\Collision\Contracts\Adapters\Phpunit\Listener' => \NunoMaduro\Collision\Adapters\Phpunit\Listener::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,

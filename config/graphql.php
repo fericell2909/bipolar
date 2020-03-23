@@ -1,5 +1,6 @@
 <?php
 
+use App\GraphQL\Mutations\ProductUpdateMutation;
 use App\GraphQL\Queries\CategoryQuery;
 use App\GraphQL\Queries\ColorQuery;
 use App\GraphQL\Queries\LabelQuery;
@@ -17,6 +18,7 @@ use App\GraphQL\Types\PhotoType;
 use App\GraphQL\Types\ProductType;
 use App\GraphQL\Types\SizeType;
 use App\GraphQL\Types\StateType;
+use App\GraphQL\Types\SubtypeType;
 
 return [
 
@@ -123,7 +125,7 @@ return [
                 'states' => StateQuery::class,
             ],
             'mutation' => [
-                // 'example_mutation'  => ExampleMutation::class,
+                'products_update' => ProductUpdateMutation::class,
             ],
             'method' => ['get', 'post'],
         ],
@@ -147,6 +149,9 @@ return [
         'photo' => PhotoType::class,
         'label' => LabelType::class,
         'product' => ProductType::class,
+        'subtype' => SubtypeType::class,
+        // Input types
+        'product_filters' => \App\GraphQL\Inputs\ProductFilters::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request

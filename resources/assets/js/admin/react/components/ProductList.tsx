@@ -4,42 +4,52 @@ import axios from 'axios';
 import swal from 'sweetalert2';
 import { removeFromSimpleArray } from '../helpers';
 import ProductRow from './partials/ProductRow';
-import { IProduct } from '../../../interfaces/IProduct';
-import { IState } from '../../../interfaces/IState';
-import { IType } from '../../../interfaces/IType';
+import { IProduct } from '@interfaces/IProduct';
+import { IState } from '@interfaces/IState';
+import { IType } from '@interfaces/IType';
+import GraphqlAdmin from '../../graphql-admin';
+import BottomScrollListener from 'react-bottom-scroll-listener';
+import { toastLoading, toastSuccess } from '../../modals';
+import _debounce from 'lodash/debounce';
 
 interface State {
+  productsCurrentPage: number;
+  productsLastPage: number;
   products: IProduct[];
-  filteredProducts: IProduct[];
-  searchText: string;
   selectedProducts: string[];
   selectedMassiveAction: string;
   showFilters: boolean;
   statesForSelect: IState[];
-  stateSelected: string;
   subtypesForSelect: IType[];
-  subtypeSelected: string;
   creationDates: { value: string; name: string }[];
-  creationDateSelected: string;
   months: string[];
   years: string[];
+  filterProductsBy: {
+    search?: string;
+    state?: string | undefined;
+    subtype?: string | undefined;
+    creationDate: string | undefined;
+  };
 }
 
 class BipolarProductList extends Component<any, State> {
   state: State = {
+    productsCurrentPage: 1,
+    productsLastPage: 99,
     products: [],
-    filteredProducts: [],
-    searchText: '',
     selectedProducts: [],
     selectedMassiveAction: '',
     // Filter selects
+    filterProductsBy: {
+      search: undefined,
+      state: undefined,
+      subtype: undefined,
+      creationDate: undefined,
+    },
     showFilters: false,
     statesForSelect: [],
-    stateSelected: '',
     subtypesForSelect: [],
-    subtypeSelected: '',
     creationDates: [],
-    creationDateSelected: '',
     months: [
       'Enero',
       'Febrero',
@@ -54,8 +64,12 @@ class BipolarProductList extends Component<any, State> {
       'Noviembre',
       'Diciembre',
     ],
-    years: ['2016', '2017'],
+    years: ['2016', '2017', '2018', '2019', '2020'],
   };
+
+  debouncedFn: any;
+
+  searchInput = React.createRef<HTMLInputElement>();
 
   handleDelete = productHashId => {
     swal({
@@ -68,7 +82,7 @@ class BipolarProductList extends Component<any, State> {
     }).then(result => {
       if (result.value) {
         swal.showLoading();
-        axios.delete(`/ajax-admin/products/remove/${productHashId}`).then(() => {
+        axios.delete(`/ajax-admin/products/remove/${productHashId}`).then(async () => {
           swal({
             title: 'Descartado',
             type: 'success',
@@ -77,26 +91,47 @@ class BipolarProductList extends Component<any, State> {
             showConfirmButton: false,
             timer: 3000,
           });
-          this.getAllProducts();
+          this.refetchAllProducts();
         });
       }
     });
   };
 
   handleSearch = event => {
-    this.setState({ searchText: event.target.value }, this.filterProducts);
+    event.persist();
+    if (!this.debouncedFn) {
+      this.debouncedFn = _debounce(() => {
+        let search = event.target.value;
+        this.setState(
+          { filterProductsBy: { ...this.state.filterProductsBy, search } },
+          this.refetchAllProducts
+        );
+      }, 1500);
+    }
+    this.debouncedFn();
   };
 
   handleStateChange = event => {
-    this.setState({ stateSelected: event.target.value }, this.filterProducts);
+    this.setState(
+      { filterProductsBy: { ...this.state.filterProductsBy, state: event.target.value } },
+      this.refetchAllProducts
+    );
   };
 
   handleSubtypeChange = event => {
-    this.setState({ subtypeSelected: event.target.value }, this.filterProducts);
+    this.setState(
+      { filterProductsBy: { ...this.state.filterProductsBy, subtype: event.target.value } },
+      this.refetchAllProducts
+    );
   };
 
   handleCreationDateChange = event => {
-    this.setState({ creationDateSelected: event.target.value }, this.filterProducts);
+    this.setState(
+      {
+        filterProductsBy: { ...this.state.filterProductsBy, creationDate: event.target.value },
+      },
+      this.refetchAllProducts
+    );
   };
 
   handleProductSelect = event => {
@@ -112,21 +147,8 @@ class BipolarProductList extends Component<any, State> {
     return this.setState({ selectedProducts: selected });
   };
 
-  handleSelectAllProducts = event => {
-    let allProductsIds = [];
-
-    if (event.target.checked) {
-      const productSource = this.state.filteredProducts.length
-        ? this.state.filteredProducts
-        : this.state.products;
-      allProductsIds = productSource.map(product => product['hash_id']);
-    }
-
-    this.setState({ selectedProducts: [...allProductsIds] });
-  };
-
   handleMassiveSelection = event => {
-    const optionSelected = event.target.value;
+    const operationSelected = event.target.value;
 
     if (this.state.selectedProducts.length === 0) {
       return swal('Error', 'Seleccione un producto o más para continuar', 'error');
@@ -139,64 +161,14 @@ class BipolarProductList extends Component<any, State> {
       confirmButtonText: 'Sí, cambiar',
       showCancelButton: true,
       cancelButtonText: 'No hacer nada',
-    }).then(result => {
+    }).then(async result => {
       if (result.value) {
-        const products = this.state.selectedProducts;
-        let actionUrl;
-
-        switch (optionSelected) {
-          case 'change_published': {
-            actionUrl = '/ajax-admin/products/state/published';
-            break;
-          }
-          case 'change_draft': {
-            actionUrl = '/ajax-admin/products/state/draft';
-            break;
-          }
-          case 'change_pending': {
-            actionUrl = '/ajax-admin/products/state/pending';
-            break;
-          }
-          case 'change_reviewed': {
-            actionUrl = '/ajax-admin/products/state/reviewed';
-            break;
-          }
-          case 'activate_salient': {
-            actionUrl = '/ajax-admin/products/salient/1';
-            break;
-          }
-          case 'deactivate_salient': {
-            actionUrl = '/ajax-admin/products/salient/0';
-            break;
-          }
-          case 'activate_free': {
-            actionUrl = '/ajax-admin/products/freeshipping/1';
-            break;
-          }
-          case 'deactivate_free': {
-            actionUrl = '/ajax-admin/products/freeshipping/0';
-            break;
-          }
-          case 'dolar_price': {
-            actionUrl = '/ajax-admin/products/dolar-price';
-            break;
-          }
-        }
-
-        axios
-          .post(actionUrl, { products })
-          .then(this.getAllProducts)
-          .then(() => {
-            swal({
-              title: 'Hecho',
-              type: 'success',
-              toast: true,
-              position: 'top-right',
-              showConfirmButton: false,
-              timer: 5000,
-            });
-            this.setState({ selectedProducts: [] });
-          });
+        const productsHashIds = this.state.selectedProducts;
+        const { data } = await GraphqlAdmin.updateProducts(productsHashIds, operationSelected);
+        toastSuccess(
+          `${data.products_update.map(product => product.fullname).join(', ')} actualizados`
+        );
+        this.refetchAllProducts();
       }
     });
   };
@@ -205,42 +177,66 @@ class BipolarProductList extends Component<any, State> {
     this.setState({ showFilters: !this.state.showFilters });
   };
 
-  filterProducts = () => {
-    let products = this.state.products;
-
-    if (this.state.searchText.length > 0) {
-      products = products.filter(product => {
-        return product.name.search(this.state.searchText) !== -1;
-      });
-    }
-
-    if (this.state.stateSelected.length > 0) {
-      products = products.filter(product => {
-        return (product?.state?.hash_id ?? null) === this.state.stateSelected;
-      });
-    }
-
-    if (this.state.subtypeSelected.length > 0) {
-      products = products.filter(product => {
-        let hasSubtypes = product.subtypes.filter(subtype => {
-          return subtype['hash_id'] === this.state.subtypeSelected;
-        });
-
-        return hasSubtypes.length > 0;
-      });
-    }
-
-    if (this.state.creationDateSelected.length > 0) {
-      products = products.filter(product => {
-        return product['created_at_month_year'] === this.state.creationDateSelected;
-      });
-    }
-
-    this.setState({ filteredProducts: products });
+  refetchAllProducts = async () => {
+    await this.cleanProducts();
+    await this.getProducts();
   };
 
+  cleanProducts = async () =>
+    this.setState({ productsCurrentPage: 1, products: [], selectedProducts: [] });
+
+  getProductsQuery = async () => {
+    if (
+      this.state.productsCurrentPage !== 1 &&
+      this.state.productsCurrentPage + 1 >= this.state.productsLastPage
+    ) {
+      return;
+    }
+    const { data } = await GraphqlAdmin.getPaginatedProducts(this.state.productsCurrentPage, {
+      ...this.state.filterProductsBy,
+      creation_date: this.state.filterProductsBy.creationDate,
+    });
+    const products = data.products_pagination.data;
+    const currentPage = data.products_pagination.current_page;
+    const lastPage = data.products_pagination.last_page;
+
+    this.setState({
+      products: [...this.state.products, ...products],
+      productsCurrentPage: currentPage + 1,
+      productsLastPage: lastPage,
+    });
+  };
+
+  getProducts = () => toastLoading(this.getProductsQuery);
+
+  async componentDidMount() {
+    const creationDates = [];
+    for (let indexYear = 0; indexYear < this.state.years.length; indexYear++) {
+      for (let indexMonth = 0; indexMonth < this.state.months.length; indexMonth++) {
+        creationDates.push({
+          value: `${indexMonth + 1}-${this.state.years[indexYear]}`,
+          name: `${this.state.months[indexMonth]} ${this.state.years[indexYear]}`,
+        });
+      }
+    }
+
+    await this.getProducts();
+    const { data } = await GraphqlAdmin.getStates();
+
+    this.setState({ statesForSelect: [...data.states] });
+
+    return axios.all([axios.get('/ajax-admin/types')]).then(
+      axios.spread(responseTypes => {
+        this.setState({
+          subtypesForSelect: responseTypes.data['data'],
+          creationDates,
+        });
+      })
+    );
+  }
+
   render() {
-    const productsSource = this.state.filteredProducts;
+    const productsSource = this.state.products;
     const subtypes = this.state.subtypesForSelect.map(type => {
       return type.subtypes.map(subtype => {
         return (
@@ -257,7 +253,7 @@ class BipolarProductList extends Component<any, State> {
           <div className="form-group">
             <label>Filtrar por estado publicación</label>
             <select
-              value={this.state.stateSelected}
+              value={this.state.filterProductsBy.state}
               onChange={this.handleStateChange}
               className="custom-select col-12">
               <option value="">Todos</option>
@@ -275,7 +271,7 @@ class BipolarProductList extends Component<any, State> {
           <div className="form-group">
             <label>Filtrar por tipo</label>
             <select
-              value={this.state.subtypeSelected}
+              value={this.state.filterProductsBy.subtype}
               onChange={this.handleSubtypeChange}
               className="custom-select col-12">
               <option value="">Todos</option>
@@ -287,7 +283,7 @@ class BipolarProductList extends Component<any, State> {
           <div className="form-group">
             <label>Filtrar por fecha de creación</label>
             <select
-              value={this.state.creationDateSelected}
+              value={this.state.filterProductsBy.creationDate}
               onChange={this.handleCreationDateChange}
               className="custom-select col-12">
               <option value="">Todos</option>
@@ -304,26 +300,26 @@ class BipolarProductList extends Component<any, State> {
       </div>
     );
 
-    const productsRender = productsSource.map(product => {
+    const productsRender = productsSource.map((product, id) => {
       return (
         <ProductRow
-          key={product['hash_id']}
+          key={id.toString()}
           selectedProducts={this.state.selectedProducts}
-          hashId={product['hash_id']}
-          imageUrl={product['firstImageUrl']}
-          name={product['fullname']}
-          subtypes={product['subtypes']}
-          price={product['price']}
-          priceDolar={product['price_dolar']}
-          discountPEN={product['discount_pen']}
-          discountUSD={product['discount_usd']}
-          priceDiscountPEN={product['price_pen_discount']}
-          priceDiscountUSD={product['price_usd_discount']}
-          state={product['state']}
-          freeShipping={product['free_shipping']}
-          isShowroomSale={product['is_showroom_sale']}
-          isSalient={product['is_salient']}
-          previewUrl={product['preview_route']}
+          hashId={product.hash_id}
+          imageUrl={product.first_photo_url}
+          name={product.fullname}
+          subtypes={product.subtypes}
+          price={product.price_pen}
+          priceDolar={product.price_dolar}
+          discountPEN={product.discount_pen}
+          discountUSD={product.discount_usd}
+          priceDiscountPEN={product.price_pen_discount}
+          priceDiscountUSD={product.price_usd_discount}
+          state={product.state}
+          freeShipping={product.free_shipping}
+          isShowroomSale={product.is_showroom_sale}
+          isSalient={product.is_salient}
+          previewUrl={product.route_preview}
           clickDelete={this.handleDelete}
           clickProductSelect={this.handleProductSelect}
         />
@@ -331,139 +327,87 @@ class BipolarProductList extends Component<any, State> {
     });
 
     return (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="card">
-            <div className="card-body">
-              <div className="row">
-                <div className="col-md-9">
-                  <label className="control-label">Buscar producto</label>
-                  <div className="input-group">
-                    <div className="input-group-prepend">
-                      <button className="btn btn-dark btn-sm" onClick={this.toggleFilters}>
-                        <i className="fas fa-fw fa-filter" /> Filtros
-                      </button>
+      <BottomScrollListener onBottom={() => this.getProducts()}>
+        <div className="row">
+          <div className="col-md-12">
+            <div className="card">
+              <div className="card-body">
+                <div className="row">
+                  <div className="col-md-9">
+                    <label className="control-label">Buscar producto</label>
+                    <div className="input-group">
+                      <div className="input-group-prepend">
+                        <button className="btn btn-dark btn-sm" onClick={this.toggleFilters}>
+                          <i className="fas fa-fw fa-filter" /> Filtros
+                        </button>
+                      </div>
+                      <input
+                        ref={this.searchInput}
+                        onChange={this.handleSearch}
+                        type="text"
+                        className="form-control"
+                      />
                     </div>
-                    <input
-                      value={this.state.searchText}
-                      onChange={this.handleSearch}
-                      type="text"
-                      className="form-control"
-                    />
+                  </div>
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>Acciones (pendiente)</label>
+                      <select
+                        value={this.state.selectedMassiveAction}
+                        onChange={this.handleMassiveSelection}
+                        className="custom-select col-12">
+                        <option value="" disabled>
+                          Seleccione
+                        </option>
+                        <optgroup label="Estado publicación">
+                          <option value="change_published">Cambiar a activo (Publicado)</option>
+                          <option value="change_draft">Cambiar a borrador</option>
+                          <option value="change_pending">Cambiar a pendiente de revisión</option>
+                          <option value="change_reviewed">Cambiar a revisado</option>
+                        </optgroup>
+                        <optgroup label="Destacado">
+                          <option value="activate_salient">Activar destacado</option>
+                          <option value="deactivate_salient">Desactivar destacado</option>
+                        </optgroup>
+                        <optgroup label="Envío gratuito">
+                          <option value="activate_free">Activar envío gratuito</option>
+                          <option value="deactivate_free">Desactivar envío gratuito</option>
+                        </optgroup>
+                        <optgroup label="Precio">
+                          <option value="dolar_price">Asignar precio en dólares</option>
+                        </optgroup>
+                      </select>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-3">
-                  <div className="form-group">
-                    <label>Acciones (pendiente)</label>
-                    <select
-                      value={this.state.selectedMassiveAction}
-                      onChange={this.handleMassiveSelection}
-                      className="custom-select col-12">
-                      <option value="" disabled>
-                        Seleccione
-                      </option>
-                      <optgroup label="Estado publicación">
-                        <option value="change_published">Cambiar a activo (Publicado)</option>
-                        <option value="change_draft">Cambiar a borrador</option>
-                        <option value="change_pending">Cambiar a pendiente de revisión</option>
-                        <option value="change_reviewed">Cambiar a revisado</option>
-                      </optgroup>
-                      <optgroup label="Destacado">
-                        <option value="activate_salient">Activar destacado</option>
-                        <option value="deactivate_salient">Desactivar destacado</option>
-                      </optgroup>
-                      <optgroup label="Envío gratuito">
-                        <option value="activate_free">Activar envío gratuito</option>
-                        <option value="deactivate_free">Desactivar envío gratuito</option>
-                      </optgroup>
-                      <optgroup label="Precio">
-                        <option value="dolar_price">Asignar precio en dólares</option>
-                      </optgroup>
-                    </select>
-                  </div>
+                {this.state.showFilters ? filters : null}
+                <div className="table-responsive">
+                  <table className="table table-hover color-table dark-table">
+                    <thead>
+                      <tr>
+                        <th className="align-middle" />
+                        <th className="align-middle text-center">
+                          <i className="fas fa-fw fa-image" />
+                        </th>
+                        <th>Nombre</th>
+                        <th>Tipos</th>
+                        <th className="align-middle text-right">Precio (S/)</th>
+                        <th className="align-middle text-right">Precio ($)</th>
+                        <th className="align-middle text-center">Descuento (PEN/USD)</th>
+                        <th className="align-middle text-right">Desc. (PEN/USD)</th>
+                        <th className="align-middle text-center">Estado</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>{productsRender.length ? productsRender : null}</tbody>
+                  </table>
                 </div>
-              </div>
-              {this.state.showFilters ? filters : null}
-              <div className="table-responsive">
-                <table className="table table-hover color-table dark-table">
-                  <thead>
-                    <tr>
-                      <th className="align-middle">
-                        <input
-                          type="checkbox"
-                          checked={productsSource.length === this.state.selectedProducts.length}
-                          onChange={this.handleSelectAllProducts}
-                        />
-                      </th>
-                      <th className="align-middle text-center">
-                        <i className="fas fa-fw fa-image" />
-                      </th>
-                      <th>Nombre</th>
-                      <th>Tipos</th>
-                      <th className="align-middle text-right">Precio (S/)</th>
-                      <th className="align-middle text-right">Precio ($)</th>
-                      <th className="align-middle text-center">Descuento (PEN/USD)</th>
-                      <th className="align-middle text-right">Desc. (PEN/USD)</th>
-                      <th className="align-middle text-center">Estado</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>{productsRender.length ? productsRender : null}</tbody>
-                </table>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </BottomScrollListener>
     );
-  }
-
-  copyProductsToState = responseProducts => {
-    const products = responseProducts.data['data'];
-    const formattedProducts = products.map(product => {
-      return {
-        ...product,
-        firstImageUrl: product?.photos[0]?.url ?? null,
-      };
-    });
-
-    return this.setState({ products: formattedProducts, filteredProducts: formattedProducts });
-  };
-
-  getAllProducts = () => {
-    axios
-      .get('/ajax-admin/products')
-      .then(this.copyProductsToState)
-      .then(this.filterProducts);
-  };
-
-  componentDidMount() {
-    const creationDates = [];
-    for (let indexYear = 0; indexYear < this.state.years.length; indexYear++) {
-      for (let indexMonth = 0; indexMonth < this.state.months.length; indexMonth++) {
-        creationDates.push({
-          value: `${indexMonth + 1}-${this.state.years[indexYear]}`,
-          name: `${this.state.months[indexMonth]} ${this.state.years[indexYear]}`,
-        });
-      }
-    }
-
-    return axios
-      .all([
-        axios.get('/ajax-admin/products'),
-        axios.get('/ajax-admin/states'),
-        axios.get('/ajax-admin/types'),
-      ])
-      .then(
-        axios.spread((responseProducts, responseStates, responseTypes) => {
-          this.copyProductsToState(responseProducts);
-          this.setState({
-            statesForSelect: responseStates.data['data'],
-            subtypesForSelect: responseTypes.data['data'],
-            creationDates,
-          });
-        })
-      );
   }
 }
 

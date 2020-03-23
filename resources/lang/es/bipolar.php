@@ -216,7 +216,7 @@ return [
         'shipping' => 'Envío',
         'showroom_shipping' => 'Recoger en tienda (gratis)',
         'terms_check' => 'Necesita aceptar los términos y condiciones para continuar',
-        'terms_accept' => 'He leído y acepto los <a href="{{ route(\'landings.exchange\') }}" target="_blank">términos y condiciones</a>',
+        'terms_accept' => "He leído y acepto los <a href='" . route('page', 'exchange-and-return') . "' target='_blank'>términos y condiciones</a>",
         'shipping_check' => 'Necesita seleccionar una opción de envío',
         'continue' => 'Continuar',
         'select' => 'SELECCIONAR',

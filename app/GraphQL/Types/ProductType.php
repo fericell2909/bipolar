@@ -111,11 +111,19 @@ class ProductType extends GraphQLType
                 /** @var $root Product */
                 return $root->created_at->format('n-Y');
             }],
+            'first_photo_url'         => [
+                'type'        => Type::string(),
+                'description' => "First photo url",
+                'resolve'     => function ($root) {
+                    /** @var $root Product */
+                    return optional($root->photos->first())->url;
+                },
+            ],
             'colors'                => ['type' => Type::listOf(\GraphQL::type('color'))],
             'photos'                => ['type' => Type::listOf(\GraphQL::type('photo'))],
             'state'                 => ['type' => \GraphQL::type('state')],
             'label'                 => ['type' => \GraphQL::type('label')],
-            //TODO: 'subtypes'              => Subtype::collection($this->whenLoaded('subtypes')),
+            'subtypes'              => ['type' => Type::listOf(\GraphQL::type('subtype'))],
             //TODO 'sizes'                 => Size::collection($product->sizes_mapped()),
         ];
     }

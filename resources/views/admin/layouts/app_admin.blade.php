@@ -211,7 +211,6 @@
                   <li><a href="{{ route('settings.labels.index') }}">Labels</a></li>
                   <li><a href="{{ route('settings.types') }}">Tipos</a></li>
                   <li><a href="{{ route('settings.shipping.index') }}">Shipping rates</a></li>
-                  <li><a href="{{ route('admin.logs') }}">Logs (Desarrollador)</a></li>
                 </ul>
               </li>
               <li>
@@ -220,6 +219,20 @@
                   <span class="hide-menu"> Logs</span>
                 </a>
               </li>
+              @if(\Auth::guard('admin')->user()->email === 'info@helmerdavila.com')
+              <li>
+                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                  <i class="fas fa-fw fa-code"></i>
+                  <span class="hide-menu"> Desarrollador</span>
+                </a>
+                <ul aria-expanded="false" class="collapse">
+                  <li><a href="{{ url('/horizon') }}" target="_blank">Horizon</a></li>
+                  <li><a href="{{ url('/admin/telescope') }}" target="_blank">Telescope</a></li>
+                  <li><a href="{{ url('/admin/graphql') }}" target="_blank">GraphQL</a></li>
+                  <li><a href="{{ route('admin.logs') }}" target="_blank">Logs (Desarrollador)</a></li>
+                </ul>
+              </li>
+              @endif
             </ul>
           </div>
         </div>

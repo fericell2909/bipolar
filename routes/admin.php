@@ -5,6 +5,7 @@ Route::post('login', 'Admin\Auth\LoginController@login')->name('login.admin.post
 Route::post('logout', 'Admin\Auth\LoginController@logout');
 
 Route::middleware('auth:admin')->group(function () {
+    Route::view('/graphql', 'admin.graphql');
     Route::get('/', 'Admin\DashboardController@dashboard')->name('admin.dashboard');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('admin.logs');
     Route::get('activity-logs', 'Admin\LogController@index')->name('admin.activity_log');

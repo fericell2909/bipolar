@@ -25,10 +25,6 @@ Route::prefix('products')->group(function () {
     Route::post('{productHashId}/recommendeds/{recommendedHashId}', 'Admin\Ajax\ProductController@recommend');
     Route::delete('{productHashId}/recommendeds/{recommendedHashId}', 'Admin\Ajax\ProductController@removeRecommend');
     Route::post('{productHashId}/discount', 'Admin\Ajax\ProductController@updateDiscount');
-    Route::post('state/{action}', 'Admin\Ajax\ProductController@stateToggle');
-    Route::post('freeshipping/{activate}', 'Admin\Ajax\ProductController@freeShippingToggle');
-    Route::post('salient/{activate}', 'Admin\Ajax\ProductController@salientToggle');
-    Route::post('dolar-price', 'Admin\Ajax\ProductController@changeDolarPrice');
     Route::post('order', 'Admin\Ajax\ProductController@orderProductsAndSave');
     Route::post('{productHashId}/photo/upload', 'Admin\Ajax\PhotoController@productUpload')->name('products.photo.upload');
     Route::post('photos/order', 'Admin\Ajax\PhotoController@orderPhotos');

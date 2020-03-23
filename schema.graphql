@@ -2,6 +2,7 @@
 
 schema {
     query: Query
+    mutation: Mutation
 }
 
 "A type"
@@ -34,6 +35,11 @@ type Label {
     slug: String!
 }
 
+type Mutation {
+    "Operations with Product"
+    products_update(operation_name: String!, products_id: [ID]!): [Product]
+}
+
 "A type"
 type Page {
     "Body in english"
@@ -60,6 +66,62 @@ type Photo {
     url: String!
 }
 
+"A product"
+type Product {
+    begin_discount: String
+    colors: [Color]
+    created_at_month_year: String
+    description_en: String
+    description_es: String
+    discount_pen: Int
+    discount_usd: Int
+    end_discount: String
+    "First photo url"
+    first_photo_url: String
+    free_shipping: Boolean!
+    "[Requires colors] Get product fullname"
+    fullname: String
+    "Hashed id"
+    hash_id: String!
+    is_salient: Boolean!
+    is_showroom_sale: Boolean!
+    label: Label
+    name_en: String!
+    name_es: String!
+    photos: [Photo]
+    price_pen: Float!
+    price_pen_discount: Float
+    price_usd: Float!
+    price_usd_discount: Float
+    publish_date: String
+    route_edit: String
+    route_preview: String
+    route_shop: String
+    slug: String!
+    state: State
+    subtypes: [Subtype]
+    weight: Float
+}
+
+type ProductsPagination {
+    "Current page of the cursor"
+    current_page: Int!
+    "List of items on the current page"
+    data: [Product]
+    "Number of the first item returned"
+    from: Int
+    "Determines if cursor has more pages after the current page"
+    has_more_pages: Boolean!
+    "The last page (number of pages)"
+    last_page: Int!
+    "Number of items returned per page"
+    per_page: Int!
+    "Number of the last item returned"
+    to: Int
+    "Number of total items selected by the query"
+    total: Int!
+}
+
 type Query {
     "Get all categories"
     categories: [Category]
@@ -71,6 +133,10 @@ type Query {
     pages: [Page]
     "Get all photos"
     photos: [Photo]
+    "Get all products"
+    products: [Product]
+    "Get products paginated"
+    products_pagination(filters: ProductFilters, limit: Int!, page: Int!): ProductsPagination
     "Get all sizes"
     sizes: [Size]
     "Get states"
@@ -95,4 +161,26 @@ type State {
     html: String
     "Name of the state"
     name: String!
+}
+
+"A subtype"
+type Subtype {
+    "Hashed id"
+    hash_id: String!
+    name_en: String!
+    name_es: String!
+    order: Int
+    slug: String!
+}
+
+"Filter fields for products"
+input ProductFilters {
+    "Search by creation date"
+    creation_date: String
+    "Search by name"
+    search: String
+    "Search by state id"
+    state: String
+    "Search by subtype id"
+    subtype: String
 }

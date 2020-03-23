@@ -14,7 +14,7 @@ export interface IProduct {
   description_english?: string;
   slug?: string;
   weight?: string;
-  price?: number;
+  price_pen?: number;
   price_dolar?: number;
   price_pen_discount?: number;
   price_usd_discount?: number;
@@ -25,8 +25,8 @@ export interface IProduct {
   publish_date?: any;
   free_shipping?: boolean;
   is_showroom_sale?: boolean;
-  is_salient?: string | null;
-  preview_route?: string;
+  is_salient?: boolean | null;
+  route_preview?: string;
   edit_route?: string;
   shop_route?: string;
   subtypes?: ISubtype[];
@@ -36,6 +36,10 @@ export interface IProduct {
   photos?: any[];
   label?: ILabel;
   created_at_month_year?: string;
+  first_photo_url?: string;
+  // TODO: Deprecated
+  preview_route?: string;
+  price?: number;
 }
 
 export interface IProductCollection {
