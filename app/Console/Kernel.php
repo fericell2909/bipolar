@@ -15,7 +15,7 @@ use App\Console\Commands\SendBuyReminderEmail;
 
 class Kernel extends ConsoleKernel
 {
-    private $thirtySecondsAfterMidnight = '00:00:30';
+    private $oneMinuteBeforeMidnight = '23:59';
 
     /**
      * The Artisan commands provided by your application.
@@ -34,9 +34,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(ExecuteDiscountTasks::class)->dailyAt($this->thirtySecondsAfterMidnight);
-        $schedule->command(RevertDiscountTasks::class)->dailyAt($this->thirtySecondsAfterMidnight);
-        $schedule->command(CopyFacebookFansToSettings::class)->dailyAt($this->thirtySecondsAfterMidnight);
+        $schedule->command(ExecuteDiscountTasks::class)->daily();
+        $schedule->command(RevertDiscountTasks::class)->dailyAt($this->oneMinuteBeforeMidnight);
+        $schedule->command(CopyFacebookFansToSettings::class)->daily();
         $schedule->command(PublishStuff::class)->everyMinute()->withoutOverlapping();
         $schedule->command('sitemap:generate')->weekly();
         $schedule->command(CheckProductStock::class)->dailyAt('03:00:00');

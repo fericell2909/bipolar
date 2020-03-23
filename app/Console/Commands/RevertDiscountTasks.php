@@ -44,13 +44,13 @@ class RevertDiscountTasks extends Command
         if ($this->option('discount')) {
             $discountTasks = DiscountTask::whereKey($this->option('discount'))->get();
         } else {
-            $discountTasks = DiscountTask::where('end', '<', now()->toDateTimeString())
+            $discountTasks = DiscountTask::whereDate('end', '=', now()->toDateString())
                 ->where('available', true)
                 ->where('executed', true)
                 ->get();
         }
         if ($discountTasks->isNotEmpty()) {
-            \Log::info("Task #ID reverted", $discountTasks->pluck('name', 'id')->toArray());
+            \Log::info("Task #ID reverting started", $discountTasks->pluck('name', 'id')->toArray());
         }
 
         $discountTasks->each(function ($discount) {
@@ -87,7 +87,9 @@ class RevertDiscountTasks extends Command
             $discount->save();
         });
 
-        $this->info('Task completed');
+        if ($discountTasks->isNotEmpty()) {
+            \Log::info("Task #ID reverting finished", $discountTasks->pluck('name', 'id')->toArray());
+        }
     }
 
     private function assignMassiveDiscount($discountPEN, $discountUSD, $mainParams, $convertToNull)
