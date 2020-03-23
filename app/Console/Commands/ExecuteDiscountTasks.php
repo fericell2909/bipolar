@@ -51,7 +51,7 @@ class ExecuteDiscountTasks extends Command
                 ->get();
         }
         if ($discountTasks->isNotEmpty()) {
-            \Log::info("Task #ID executed", $discountTasks->pluck('name', 'id')->toArray());
+            \Log::info("Task #ID activating started", $discountTasks->pluck('name', 'id')->toArray());
         }
 
         $discountTasks->each(function ($discount) {
@@ -88,7 +88,9 @@ class ExecuteDiscountTasks extends Command
             $discount->save();
         });
 
-        $this->info('Task completed');
+        if ($discountTasks->isNotEmpty()) {
+            \Log::info("Task #ID activating finished", $discountTasks->pluck('name', 'id')->toArray());
+        }
     }
 
     private function assignMassiveDiscount($discountPEN, $discountUSD, $mainParams, $convertToNull)
