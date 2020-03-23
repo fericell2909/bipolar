@@ -8,6 +8,7 @@ use App\Http\Services\BSale;
 use App\Models\Buy;
 use App\Models\BuyDetail;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Arr;
 
 class BsaleDocumentCreation implements ShouldQueue
 {
@@ -33,7 +34,7 @@ class BsaleDocumentCreation implements ShouldQueue
         $response = BSale::documentCreate($buy);
         if ($response->isSuccess()) {
             $content = $response->json();
-            $buy->bsale_document_url = array_get($content, 'urlPdf');
+            $buy->bsale_document_url = Arr::get($content, 'urlPdf');
             $buy->save();
             // Check product detail stocks and delete if is 0
             $this->removeBsaleStockIdEmpty($buy);

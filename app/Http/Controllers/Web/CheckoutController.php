@@ -121,6 +121,10 @@ class CheckoutController extends Controller
             $buyDetail = new BuyDetail;
             $buyDetail->buy()->associate($buy);
             $buyDetail->product()->associate($cartDetail->product);
+            if ($cartDetail->stock) {
+                $buyDetail->stock()->associate($cartDetail->stock);
+                $buyDetail->stock->save();
+            }
             $buyDetail->quantity = $cartDetail->quantity;
             $buyDetail->total = $request->session()->get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $cartDetail->total_dolar : $cartDetail->total;
             $buyDetail->save();
