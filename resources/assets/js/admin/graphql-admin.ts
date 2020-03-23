@@ -63,13 +63,16 @@ export default class GraphqlAdmin {
     });
   }
 
-  public static getPaginatedProducts(page: number = 1) {
+  public static getPaginatedProducts(
+    page: number = 1,
+    filters: { search?: string; state?: string; subtype?: string; creation_date?: string } = {}
+  ) {
     return client.query<{
       products_pagination: { current_page: number; last_page: number; data: IProduct[] };
     }>({
       query: gql`
-        query GetPaginatedProducts($page: Int!) {
-          products_pagination(page: $page, limit: 20) {
+        query GetPaginatedProducts($page: Int!, $filters: ProductFilters) {
+          products_pagination(page: $page, limit: 20, filters: $filters) {
             current_page
             last_page
             data {
@@ -100,7 +103,7 @@ export default class GraphqlAdmin {
           }
         }
       `,
-      variables: { page },
+      variables: { page, filters },
       fetchPolicy: 'network-only',
     });
   }

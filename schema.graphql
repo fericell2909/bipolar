@@ -136,7 +136,7 @@ type Query {
     "Get all products"
     products: [Product]
     "Get products paginated"
-    products_pagination(limit: Int, page: Int): ProductsPagination
+    products_pagination(filters: ProductFilters, limit: Int!, page: Int!): ProductsPagination
     "Get all sizes"
     sizes: [Size]
     "Get states"
@@ -171,4 +171,16 @@ type Subtype {
     name_es: String!
     order: Int
     slug: String!
+}
+
+"Filter fields for products"
+input ProductFilters {
+    "Search by creation date"
+    creation_date: String
+    "Search by name"
+    search: String
+    "Search by state id"
+    state: String
+    "Search by subtype id"
+    subtype: String
 }

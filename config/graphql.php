@@ -150,6 +150,8 @@ return [
         'label' => LabelType::class,
         'product' => ProductType::class,
         'subtype' => SubtypeType::class,
+        // Input types
+        'product_filters' => \App\GraphQL\Inputs\ProductFilters::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request

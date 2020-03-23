@@ -10,23 +10,26 @@ import { IType } from '@interfaces/IType';
 import GraphqlAdmin from '../../graphql-admin';
 import BottomScrollListener from 'react-bottom-scroll-listener';
 import { toastLoading, toastSuccess } from '../../modals';
+import _debounce from 'lodash/debounce';
 
 interface State {
   productsCurrentPage: number;
   productsLastPage: number;
   products: IProduct[];
-  searchText: string;
   selectedProducts: string[];
   selectedMassiveAction: string;
   showFilters: boolean;
   statesForSelect: IState[];
-  stateSelected: string;
   subtypesForSelect: IType[];
-  subtypeSelected: string;
   creationDates: { value: string; name: string }[];
-  creationDateSelected: string;
   months: string[];
   years: string[];
+  filterProductsBy: {
+    search?: string;
+    state?: string | undefined;
+    subtype?: string | undefined;
+    creationDate: string | undefined;
+  };
 }
 
 class BipolarProductList extends Component<any, State> {
@@ -34,17 +37,19 @@ class BipolarProductList extends Component<any, State> {
     productsCurrentPage: 1,
     productsLastPage: 99,
     products: [],
-    searchText: '',
     selectedProducts: [],
     selectedMassiveAction: '',
     // Filter selects
+    filterProductsBy: {
+      search: undefined,
+      state: undefined,
+      subtype: undefined,
+      creationDate: undefined,
+    },
     showFilters: false,
     statesForSelect: [],
-    stateSelected: '',
     subtypesForSelect: [],
-    subtypeSelected: '',
     creationDates: [],
-    creationDateSelected: '',
     months: [
       'Enero',
       'Febrero',
@@ -59,8 +64,12 @@ class BipolarProductList extends Component<any, State> {
       'Noviembre',
       'Diciembre',
     ],
-    years: ['2016', '2017'],
+    years: ['2016', '2017', '2018', '2019', '2020'],
   };
+
+  debouncedFn: any;
+
+  searchInput = React.createRef<HTMLInputElement>();
 
   handleDelete = productHashId => {
     swal({
@@ -82,27 +91,47 @@ class BipolarProductList extends Component<any, State> {
             showConfirmButton: false,
             timer: 3000,
           });
-          await this.cleanProducts();
-          this.getProducts();
+          this.refetchAllProducts();
         });
       }
     });
   };
 
   handleSearch = event => {
-    this.setState({ searchText: event.target.value }, this.filterProducts);
+    event.persist();
+    if (!this.debouncedFn) {
+      this.debouncedFn = _debounce(() => {
+        let search = event.target.value;
+        this.setState(
+          { filterProductsBy: { ...this.state.filterProductsBy, search } },
+          this.refetchAllProducts
+        );
+      }, 1500);
+    }
+    this.debouncedFn();
   };
 
   handleStateChange = event => {
-    this.setState({ stateSelected: event.target.value }, this.filterProducts);
+    this.setState(
+      { filterProductsBy: { ...this.state.filterProductsBy, state: event.target.value } },
+      this.refetchAllProducts
+    );
   };
 
   handleSubtypeChange = event => {
-    this.setState({ subtypeSelected: event.target.value }, this.filterProducts);
+    this.setState(
+      { filterProductsBy: { ...this.state.filterProductsBy, subtype: event.target.value } },
+      this.refetchAllProducts
+    );
   };
 
   handleCreationDateChange = event => {
-    this.setState({ creationDateSelected: event.target.value }, this.filterProducts);
+    this.setState(
+      {
+        filterProductsBy: { ...this.state.filterProductsBy, creationDate: event.target.value },
+      },
+      this.refetchAllProducts
+    );
   };
 
   handleProductSelect = event => {
@@ -139,8 +168,7 @@ class BipolarProductList extends Component<any, State> {
         toastSuccess(
           `${data.products_update.map(product => product.fullname).join(', ')} actualizados`
         );
-        await this.cleanProducts();
-        await this.getProducts();
+        this.refetchAllProducts();
       }
     });
   };
@@ -149,49 +177,25 @@ class BipolarProductList extends Component<any, State> {
     this.setState({ showFilters: !this.state.showFilters });
   };
 
-  filterProducts = () => {
-    let products = this.state.products;
-
-    if (this.state.searchText.length > 0) {
-      products = products.filter(product => {
-        return product.name.search(this.state.searchText) !== -1;
-      });
-    }
-
-    if (this.state.stateSelected.length > 0) {
-      products = products.filter(product => {
-        return (product?.state?.hash_id ?? null) === this.state.stateSelected;
-      });
-    }
-
-    if (this.state.subtypeSelected.length > 0) {
-      products = products.filter(product => {
-        let hasSubtypes = product.subtypes.filter(subtype => {
-          return subtype['hash_id'] === this.state.subtypeSelected;
-        });
-
-        return hasSubtypes.length > 0;
-      });
-    }
-
-    if (this.state.creationDateSelected.length > 0) {
-      products = products.filter(product => {
-        return product['created_at_month_year'] === this.state.creationDateSelected;
-      });
-    }
-
-    // TODO: filter in the backend
-    // this.setState({ filteredProducts: products });
+  refetchAllProducts = async () => {
+    await this.cleanProducts();
+    await this.getProducts();
   };
 
   cleanProducts = async () =>
     this.setState({ productsCurrentPage: 1, products: [], selectedProducts: [] });
 
   getProductsQuery = async () => {
-    if (this.state.productsCurrentPage + 1 >= this.state.productsLastPage) {
+    if (
+      this.state.productsCurrentPage !== 1 &&
+      this.state.productsCurrentPage + 1 >= this.state.productsLastPage
+    ) {
       return;
     }
-    const { data } = await GraphqlAdmin.getPaginatedProducts(this.state.productsCurrentPage);
+    const { data } = await GraphqlAdmin.getPaginatedProducts(this.state.productsCurrentPage, {
+      ...this.state.filterProductsBy,
+      creation_date: this.state.filterProductsBy.creationDate,
+    });
     const products = data.products_pagination.data;
     const currentPage = data.products_pagination.current_page;
     const lastPage = data.products_pagination.last_page;
@@ -249,7 +253,7 @@ class BipolarProductList extends Component<any, State> {
           <div className="form-group">
             <label>Filtrar por estado publicación</label>
             <select
-              value={this.state.stateSelected}
+              value={this.state.filterProductsBy.state}
               onChange={this.handleStateChange}
               className="custom-select col-12">
               <option value="">Todos</option>
@@ -267,7 +271,7 @@ class BipolarProductList extends Component<any, State> {
           <div className="form-group">
             <label>Filtrar por tipo</label>
             <select
-              value={this.state.subtypeSelected}
+              value={this.state.filterProductsBy.subtype}
               onChange={this.handleSubtypeChange}
               className="custom-select col-12">
               <option value="">Todos</option>
@@ -279,7 +283,7 @@ class BipolarProductList extends Component<any, State> {
           <div className="form-group">
             <label>Filtrar por fecha de creación</label>
             <select
-              value={this.state.creationDateSelected}
+              value={this.state.filterProductsBy.creationDate}
               onChange={this.handleCreationDateChange}
               className="custom-select col-12">
               <option value="">Todos</option>
@@ -338,7 +342,7 @@ class BipolarProductList extends Component<any, State> {
                         </button>
                       </div>
                       <input
-                        value={this.state.searchText}
+                        ref={this.searchInput}
                         onChange={this.handleSearch}
                         type="text"
                         className="form-control"
