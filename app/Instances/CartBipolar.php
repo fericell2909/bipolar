@@ -37,7 +37,7 @@ class CartBipolar
         // Destroy another instances
         if ($this->cart->getKey()) {
             try {
-                $anotherCart = Cart::whereId($this->cart->id)->where('user_id', $this->cart->user_id)->first();
+                $anotherCart = Cart::whereUserId($this->cart->user_id)->whereNotIn('id', [$this->cart->id])->first();
                 if ($anotherCart) {
                     Log::info("Carro {$anotherCart->id} encontrado, borrando {$this->cart->id}");
                     $this->cart->delete();

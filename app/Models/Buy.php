@@ -20,7 +20,7 @@ class Buy extends Model
     {
         return $this->belongsTo(Coupon::class, 'coupon_id');
     }
-    
+
     public function shipping_address()
     {
         return $this->belongsTo(Address::class, 'shipping_address_id')->withTrashed();
@@ -77,5 +77,10 @@ class Buy extends Model
     public function getCurrentStatusLabel()
     {
         return __("bipolar.buy.statuses." . $this->status);
+    }
+
+    public function getPaymeFormattedNumber()
+    {
+        return intval($this->total * 100);
     }
 }

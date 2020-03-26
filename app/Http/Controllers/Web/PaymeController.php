@@ -47,7 +47,7 @@ class PaymeController extends Controller
         $acquirerId = config('payme.acquirer_id');
         $idCommerce = $buy->currency === 'USD' ? config('payme.commerce_usd_id') : config('payme.commerce_pen_id');
         $purchaseOperationNumber = sprintf('%06d', $buy->buy_number);
-        $purchaseAmount = intval($buy->total * 100);
+        $purchaseAmount = $buy->getPaymeFormattedNumber();
         $purchaseCurrencyCode = $buy->currency === 'USD' ? '840' : '604';
         $claveVPOS = $buy->currency === 'USD' ? config('payme.vpos_commerce_usd_secret') : config('payme.vpos_commerce_pen_secret');
 
@@ -100,7 +100,7 @@ class PaymeController extends Controller
             $acquirerId = config('payme.acquirer_id');
             $idCommerce = $buy->currency === 'USD' ? config('payme.commerce_usd_id') : config('payme.commerce_pen_id');
             $purchaseOperationNumber = sprintf('%06d', $buy->buy_number);
-            $purchaseAmount = intval(number_format($buy->total, 2) * 100);
+            $purchaseAmount = $buy->getPaymeFormattedNumber();
             $purchaseCurrencyCode = $buy->currency === 'USD' ? '840' : '604';
             $claveVPOS = $buy->currency === 'USD' ? config('payme.vpos_commerce_usd_secret') : config('payme.vpos_commerce_pen_secret');
 
