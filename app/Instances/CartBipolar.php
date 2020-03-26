@@ -7,11 +7,17 @@ use App\Models\CartDetail;
 use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\User;
+use Auth;
+use Closure;
+use Exception;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Log;
+use Session;
 
 class CartBipolar
 {
-    /** @var \Illuminate\Database\Eloquent\Model|Cart $cart */
+    /** @var Model|Cart $cart */
     private $cart;
     private $relationships = [
         'details',
@@ -22,10 +28,10 @@ class CartBipolar
 
     public function __construct()
     {
-        if (\Auth::check()) {
-            $this->cart = Cart::firstOrCreate(['user_id' => \Auth::id()]);
+        if (Auth::check()) {
+            $this->cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
         } else {
-            $this->cart = Cart::firstOrNew(['session_id' => \Session::getId()]);
+            $this->cart = Cart::firstOrNew(['session_id' => Session::getId()]);
         }
 
         // Destroy another instances
@@ -33,12 +39,12 @@ class CartBipolar
             if ($this->cart->getKey()) {
                 $anotherCart = Cart::whereKeyNot($this->cart->id)->where('user_id', $this->cart->user_id)->first();
                 if ($anotherCart) {
-                    CartDetail::whereCartId($anotherCart->id)->delete();
-                    $anotherCart->delete();
+                    $this->cart->delete();
+                    $this->cart = $anotherCart;
                 }
             }
-        } catch (\Exception $e) {
-            debug($e);
+        } catch (Exception $e) {
+            Log::error($e);
         }
 
         $this->cart->loadMissing($this->relationships);
@@ -187,7 +193,7 @@ class CartBipolar
     public function remove($productSlug)
     {
         $this->cart->details->each(function ($detail) use ($productSlug) {
-            /** @var \App\Models\CartDetail $detail */
+            /** @var CartDetail $detail */
             if ($detail->product->slug === $productSlug) {
                 $detail->delete();
             }
@@ -215,17 +221,17 @@ class CartBipolar
 
     public function getSubtotalBySessionCurrency(): float
     {
-        return \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->subtotal_dolar : $this->cart->subtotal;
+        return Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->subtotal_dolar : $this->cart->subtotal;
     }
 
     public function getTotalBySessionCurrency(): float
     {
-        return \Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->total_dolar : $this->cart->total;
+        return Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->total_dolar : $this->cart->total;
     }
 
     /**
      * @param Coupon $coupon
-     * @return Cart|\Illuminate\Database\Eloquent\Model
+     * @return Cart|Model
      */
     private function recalculateWithCoupon(Coupon $coupon)
     {
@@ -262,7 +268,7 @@ class CartBipolar
 
     /**
      * @param Coupon $coupon
-     * @return Cart|\Illuminate\Database\Eloquent\Model
+     * @return Cart|Model
      */
     public function addCoupon(Coupon $coupon)
     {
@@ -275,7 +281,7 @@ class CartBipolar
      * Filter details for check if it is contained in the coupon
      *
      * @param Coupon $coupon
-     * @return \Closure
+     * @return Closure
      */
     private function detailsInCoupon(Coupon $coupon)
     {
