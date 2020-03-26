@@ -61,7 +61,7 @@
         "sass": "^1.25.0",
         "sass-loader": "8.0.2",
         "select2": "4.0.13",
-        "sortablejs": "^1.6.1",
+        "sortablejs": "1.10.2",
         "sweetalert2": "^7.25.0",
         "switchery": "^0.0.2",
         "tempusdominus-bootstrap-4": "^5.0.1",

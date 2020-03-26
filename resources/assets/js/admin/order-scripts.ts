@@ -1,11 +1,12 @@
-const Sortable = require('sortablejs');
+import Sortable, { AutoScroll } from 'sortablejs/modular/sortable.core.esm.js'
 import swal from 'sweetalert2';
+
+Sortable.mount(new AutoScroll());
 
 const createSortable = (elementId, urlToSave) => {
   if ($(elementId).length) {
     const elem = document.querySelector(elementId);
-    const sortable = new Sortable(elem, {
-      scroll: true,
+    const sortable = new Sortable.create(elem, {
       onEnd() {
         swal({
           text: 'Cargando.',
