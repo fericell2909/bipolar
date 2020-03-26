@@ -10,8 +10,8 @@ import { Editor } from 'react-draft-wysiwyg';
 import ProductColors from './partials/ProductColors';
 import ProductSizes from './partials/ProductSizes';
 import ProductTypes from './partials/ProductTypes';
-import { IProduct } from '../../../interfaces/IProduct';
-import { ILabel } from '../../../interfaces/ILabel';
+import { IProduct } from '@interfaces/IProduct';
+import { ILabel } from '@interfaces/ILabel';
 import GraphqlAdmin from '../../graphql-admin';
 
 interface IProductState extends IProduct {
@@ -21,6 +21,7 @@ interface IProductState extends IProduct {
   selectedColors: string[];
   selectedSizes: string[];
   selectedSubtypes: string[];
+  isSoldout: boolean;
   salient: boolean;
   labelSelected: string;
 }
@@ -59,6 +60,7 @@ class BipolarProductEdit extends Component<Props, State> {
       selectedSizes: [],
       selectedSubtypes: [],
       labelSelected: '',
+      isSoldout: false,
     },
     // data for info
     colors: [],
@@ -88,6 +90,9 @@ class BipolarProductEdit extends Component<Props, State> {
       },
     });
   };
+
+  handleSoldoutChange = event =>
+    this.setState({ product: { ...this.state.product, isSoldout: event.target.checked } });
 
   handleColorChange = event => {
     const colorHashId = event.target.value;
@@ -178,6 +183,7 @@ class BipolarProductEdit extends Component<Props, State> {
         description_english: this.state.product.description_english,
         free_shipping: this.state.product.free_shipping,
         is_showroom_sale: this.state.product.is_showroom_sale,
+        is_soldout: this.state.product.isSoldout,
         salient: this.state.product.salient,
         colors: this.state.product.selectedColors,
         sizes: this.state.product.selectedSizes,
@@ -257,6 +263,7 @@ class BipolarProductEdit extends Component<Props, State> {
             productInState.description_english = product.description_english ?? '';
             productInState.free_shipping = product.free_shipping;
             productInState.is_showroom_sale = product.is_showroom_sale;
+            productInState.isSoldout = product.is_soldout;
             productInState.salient = !!product.is_salient;
             productInState.shopUrl = product.shop_route;
             productInState.previewUrl = product.preview_route;
@@ -508,6 +515,16 @@ class BipolarProductEdit extends Component<Props, State> {
                         type="checkbox"
                       />
                       Destacado
+                    </label>
+                  </div>
+                  <div className="col-md-3">
+                    <label className="checkbox-inline">
+                      <input
+                        checked={this.state.product.isSoldout}
+                        onChange={this.handleSoldoutChange}
+                        type="checkbox"
+                      />
+                      Marcar como agotado
                     </label>
                   </div>
                 </div>

@@ -26,6 +26,7 @@ export interface IProduct {
   free_shipping?: boolean;
   is_showroom_sale?: boolean;
   is_salient?: boolean | null;
+  is_soldout ?: boolean;
   route_preview?: string;
   edit_route?: string;
   shop_route?: string;

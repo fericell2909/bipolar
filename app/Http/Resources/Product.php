@@ -44,6 +44,7 @@ class Product extends Resource
             'publish_date'          => optional($product->publish_date)->toDateTimeString(),
             'free_shipping'         => boolval($product->free_shipping),
             'is_showroom_sale'      => (bool)$product->is_showroom_sale,
+            'is_soldout'            => (bool)$product->is_soldout,
             'is_salient'            => $product->is_salient,
             'preview_route'         => $this->when(\Auth::guard('admin')->check(), route('products.preview', $product->slug)),
             'edit_route'            => $this->when(\Auth::guard('admin')->check(), route('products.photos', $product->slug)),

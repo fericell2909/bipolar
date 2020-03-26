@@ -1,4 +1,4 @@
-@extends('web.layouts.app_web') 
+@extends('web.layouts.app_web')
 @section('content')
 <div class="background-title-image">
 	<h1>Shopping cart</h1>
@@ -7,7 +7,7 @@
   @if($detailsWithoutStock = \Session::get('details_without_stock'))
     @foreach($detailsWithoutStock as $detailWithoutStock)
       <div class="bipolar-alert-message" style="margin-bottom: 20px">
-        <i class="fas fa-check-circle-o"></i>
+        <i class="fas fa-check-circle"></i>
         <div class="success-content">
           <span>{{ $detailWithoutStock['message'] }}</span>
           <a href="{{ route('cart.remove', $detailWithoutStock['product_slug']) }}" class="btn btn-dark-rounded">
