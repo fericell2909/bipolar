@@ -35,16 +35,17 @@ class CartBipolar
         }
 
         // Destroy another instances
-        try {
-            if ($this->cart->getKey()) {
-                $anotherCart = Cart::whereKeyNot($this->cart->id)->where('user_id', $this->cart->user_id)->first();
+        if ($this->cart->getKey()) {
+            try {
+                $anotherCart = Cart::whereId($this->cart->id)->where('user_id', $this->cart->user_id)->first();
                 if ($anotherCart) {
+                    Log::info("Carro {$anotherCart->id} encontrado, borrando {$this->cart->id}");
                     $this->cart->delete();
                     $this->cart = $anotherCart;
                 }
+            } catch (Exception $e) {
+                Log::error($e);
             }
-        } catch (Exception $e) {
-            Log::error($e);
         }
 
         $this->cart->loadMissing($this->relationships);
