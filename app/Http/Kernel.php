@@ -66,7 +66,7 @@ class Kernel extends HttpKernel
         'localizationRedirect' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
         'localeSessionRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
         'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
-        'removeEmptyCarts' => RemoveEmptyUserCarts::class,
+        //'removeEmptyCarts' => RemoveEmptyUserCarts::class,
         'location.detect' => LocalizationDetection::class,
         'checkStockAvailability' => CheckStockAvailability::class,
     ];
