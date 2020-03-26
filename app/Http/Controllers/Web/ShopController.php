@@ -242,7 +242,7 @@ class ShopController extends Controller
         ]);
 
         if ($this->isOutOfStock($product)) {
-            $product->state_id = config('constants.STATE_REVIEW_ID');
+            $product->is_soldout = true;
             $product->save();
         }
 
