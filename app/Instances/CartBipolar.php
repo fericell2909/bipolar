@@ -35,7 +35,7 @@ class CartBipolar
         }
 
         // Destroy another instances
-        if ($this->cart->getKey()) {
+        if ($this->cart->user_id) {
             try {
                 $anotherCart = Cart::whereUserId($this->cart->user_id)->whereNotIn('id', [$this->cart->id])->first();
                 if ($anotherCart) {
