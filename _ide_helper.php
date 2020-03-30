@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.37 on 2020-03-22 00:17:06.
+ * Generated for Laravel 5.8.37 on 2020-03-29 22:06:35.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -17366,7 +17366,7 @@ namespace Facades\App\Instances {
          * 
          *
          * @param \App\Instances\Coupon $coupon
-         * @return \App\Instances\Cart|\Illuminate\Database\Eloquent\Model 
+         * @return \App\Instances\Cart|\App\Instances\Model 
          * @static 
          */ 
         public static function addCoupon($coupon)
