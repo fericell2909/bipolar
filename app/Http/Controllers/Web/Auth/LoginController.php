@@ -106,7 +106,8 @@ class LoginController extends Controller
 
     private function convertOrDestroyCart($sessionCartId)
     {
-        $userCartExists = Cart::has('details')->whereUserId(\Auth::id())->exists();
+        $userId = \Auth::id();
+        $userCartExists = Cart::has('details')->whereUserId($userId)->exists();
 
         if ($userCartExists) {
             /** @var Cart $sessionCart */
@@ -116,7 +117,7 @@ class LoginController extends Controller
 
         $userCartId = $this->convertSessionCartToUserCart($sessionCartId);
 
-        return $this->removeOtherCarts($userCartId);
+        return $this->removeOtherCarts($userId, $userCartId);
     }
 
     private function convertSessionCartToUserCart($sessionCartId)
@@ -130,9 +131,9 @@ class LoginController extends Controller
         return $sessionCart->id;
     }
 
-    private function removeOtherCarts($userCartId)
+    private function removeOtherCarts($userId, $userCartId)
     {
-        $carts = Cart::whereKeyNot($userCartId)->get();
+        $carts = Cart::whereUserId($userId)->whereKeyNot($userCartId)->get();
 
         $carts->each(function ($cart) {
             /** @var Cart $cart */
