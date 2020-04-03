@@ -39,7 +39,8 @@ class Kernel extends ConsoleKernel
         $schedule->command(CopyFacebookFansToSettings::class)->daily();
         $schedule->command(PublishStuff::class)->everyMinute()->withoutOverlapping();
         $schedule->command('sitemap:generate')->weekly();
-        $schedule->command(CheckProductStock::class)->dailyAt('03:00:00');
+        // TODO: Deprecated, delete in June 2020
+        // $schedule->command(CheckProductStock::class)->dailyAt('03:00:00');
         $schedule->command('activitylog:clean')->daily();
         $schedule->command(SendNoBuyedCarts::class)->hourly();
         $schedule->command(SendBuyReminderEmail::class)->dailyAt('10:30:00');
