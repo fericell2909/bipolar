@@ -121,24 +121,18 @@ class ShopController extends Controller
                 return $products;
             });
 
+        /** @var \App\Models\Banner $firstBanner */
+        $firstBanner = Banner::orderBy('order')->first();
+        $seoHeaderUrl = optional($firstBanner)->url ?? config('constants.SEO_IMAGE_DEFAULT_URL');
         if ($request->anyFilled(['search', 'sizes', 'subtypes', 'orderBy']) && $products->count() > 0) {
             /** @var Product $seoProduct */
             $seoProduct = $products->first();
-            \SEO::twitter()->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'));
-            \SEO::opengraph()->setType('article')->addImage(optional($seoProduct->photos->first())->url ?? config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024,
-                                                                                                                                                       'height' => 680]);
-        } else {
-            /** @var \App\Models\Banner $firstBanner */
-            $firstBanner = Banner::orderBy('order')->first();
-            if ($firstBanner->url) {
-                \SEO::twitter()->addImage($firstBanner->url);
-                \SEO::opengraph()->setType('article')->addImage($firstBanner->url, ['width' => 1024, 'height' => 680]);
-            } else {
-                \SEO::twitter()->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'));
-                \SEO::opengraph()->setType('article')->addImage(config('constants.SEO_IMAGE_DEFAULT_URL'), ['width'  => 1024,
-                                                                                                            'height' => 680]);
+            if (!is_null(optional($seoProduct->photos->first())->url)) {
+                $seoHeaderUrl = optional($seoProduct->photos->first())->url;
             }
         }
+        \SEO::twitter()->addImage($seoHeaderUrl);
+        \SEO::opengraph()->setType('article')->addImage($seoHeaderUrl, ['width' => 1024, 'height' => 680]);
 
         $products = $this->getPaginatedProducts($products, LengthAwarePaginator::resolveCurrentPage(), $request->fullUrl());
 
@@ -230,10 +224,10 @@ class ShopController extends Controller
 
         $product->load([
             'stocks.size',
-            'photos'              => function ($withPhotos) {
+            'photos'                 => function ($withPhotos) {
                 return $withPhotos->orderBy('order');
             },
-            'recommendations'     => function ($withRecommendeds) {
+            'recommendations'        => function ($withRecommendeds) {
                 return $withRecommendeds->where('state_id', config('constants.STATE_ACTIVE_ID'));
             },
             'recommendations.photos' => function ($withPhotos) {
