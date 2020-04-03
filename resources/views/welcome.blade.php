@@ -123,6 +123,7 @@
     </div>
     @include('web.partials.footer')
     @include('web.partials.googletagmanager')
+    @include('web.partials.tawk')
     <script src="{{ mix('js/app-web-scripts.js') }}"></script>
   </body>
 </html>
