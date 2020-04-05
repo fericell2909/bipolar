@@ -319,6 +319,7 @@ namespace App\Models{
  * @property int $id
  * @property float $dolar_change
  * @property int $free_shipping
+ * @property int $deal_2x1
  * @property int $bipolar_counts
  * @property int $facebook_counts
  * @property int $instagram_counts
@@ -334,6 +335,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBackgroundSuscribe($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBipolarCounts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereCurrentBuy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDeal2x1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDolarChange($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFacebookCounts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFreeShipping($value)

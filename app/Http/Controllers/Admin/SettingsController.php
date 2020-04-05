@@ -127,4 +127,17 @@ class SettingsController extends Controller
 
         return redirect()->route('settings.passwords');
     }
+
+    public function toggleDeals2x1($value = 'disable')
+    {
+        $settings = Settings::first();
+        if ($value === "enable") {
+            $settings->deal_2x1 = true;
+        } else {
+            $settings->deal_2x1 = false;
+        }
+        $settings->save();
+
+        return back();
+    }
 }
