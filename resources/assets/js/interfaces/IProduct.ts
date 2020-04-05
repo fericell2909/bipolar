@@ -27,6 +27,7 @@ export interface IProduct {
   is_showroom_sale?: boolean;
   is_salient?: boolean | null;
   is_soldout ?: boolean;
+  is_deal_2x1 ?: boolean;
   route_preview?: string;
   edit_route?: string;
   shop_route?: string;
