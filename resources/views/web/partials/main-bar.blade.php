@@ -86,7 +86,7 @@
 						<div class="cart-inside">
 							@if(CartBipolar::count() > 0)
 								<ul class="cart-list">
-									@foreach(CartBipolar::content() as $cartDetail)
+									@foreach($bipolarCartContent as $cartDetail)
 									<?php /** @var \App\Models\CartDetail $cartDetail */ ?>
 									<li>
 										<a href="{{ route('shop.product', $cartDetail->product->slug) }}" class="product-link-cart">
