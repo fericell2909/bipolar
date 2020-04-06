@@ -11,8 +11,8 @@
 </head>
 <body class="no-top">
   <div class="bipolar-wrapper">
-    @include('web.partials.main-bar', ['background' => false])
-    @include('web.partials.mobile-bar')
+    @includeWhen(\Agent::isDesktop() || \Agent::isTablet(), 'web.partials.main-bar', ['background' => false])
+    @includeWhen(\Agent::isMobile(), 'web.partials.mobile-bar')
     @include('web.partials.banners', ['banners' => $banners])
   </div>
   <script src="{{ mix('js/app-web-scripts.js') }}"></script>
