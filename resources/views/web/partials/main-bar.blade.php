@@ -93,7 +93,7 @@
 											<img src="{{ optional($cartDetail->product->mainPhoto())->url ?? 'https://placehold.it/300x300' }}" alt="{{ $cartDetail->product->name }}"> {{ $cartDetail->product->name }}
 										</a>
 										<span class="quantity">{{ $cartDetail->quantity }} x {{ $cartDetail->total_currency }}</span>
-										<a href="{{ route('cart.remove', $cartDetail->product->slug) }}" class="product-delete-cart">
+										<a href="{{ route('cart.remove', $cartDetail->hash_id) }}" class="product-delete-cart">
 											<img src="{{ asset('images/close.svg') }}" width="20" alt="Delete">
 										</a>
 									</li>

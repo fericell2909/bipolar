@@ -70,7 +70,7 @@
               {{ $cartDetail->product->name }}
             </a>
             <span class="quantity">{{ $cartDetail->quantity }} x {{ $cartDetail->total_currency }}</span>
-            <a href="{{ route('cart.remove', $cartDetail->product->slug) }}" class="product-delete-cart"><img src="{{ asset('images/close.svg') }}" width="20" alt="Delete"></a>
+            <a href="{{ route('cart.remove', $cartDetail->hash_id) }}" class="product-delete-cart"><img src="{{ asset('images/close.svg') }}" width="20" alt="Delete"></a>
           </li>
           @endforeach
         </ul>

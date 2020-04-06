@@ -194,16 +194,13 @@ class CartBipolar
         return $this->cart->save();
     }
 
-    public function remove($productSlug)
+    public function remove(string $detailHashId)
     {
-        $this->cart->details->each(function ($detail) use ($productSlug) {
-            /** @var CartDetail $detail */
-            if ($detail->product->slug === $productSlug) {
-                $detail->delete();
-            }
+        $detail = CartDetail::findByHash($detailHashId);
 
-            return true;
-        });
+        abort_if(is_null($detail), 404);
+
+        $detail->delete();
 
         $this->recalculate();
 

@@ -38,9 +38,9 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    public function remove($productSlug)
+    public function remove(string $detailHashId)
     {
-        \CartBipolar::remove($productSlug);
+        \CartBipolar::remove($detailHashId);
 
         return redirect()->back();
     }

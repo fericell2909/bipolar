@@ -37,7 +37,7 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::post('contacto', 'Web\LandingsController@contactProcess');
 
         Route::get('cart', 'Web\CartController@cart')->name('cart');
-        Route::get('cart/remove/{productSlug}', 'Web\CartController@remove')->name('cart.remove');
+        Route::get('cart/remove/{detailHashId}', 'Web\CartController@remove')->name('cart.remove');
         Route::post('cart', 'Web\CartController@update')->name('cart.update');
 
         Route::middleware('auth:web')->group(function () {
