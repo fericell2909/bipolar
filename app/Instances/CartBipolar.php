@@ -21,6 +21,7 @@ class CartBipolar
     private $cart;
     private $relationships = [
         'details',
+        'details.product',
         'details.product.subtypes',
         'details.product.photos',
         'details.stock.size',
@@ -52,6 +53,7 @@ class CartBipolar
         }
 
         $this->cart->loadMissing($this->relationships);
+        $this->recalculate();
     }
 
     /**
@@ -74,14 +76,8 @@ class CartBipolar
             'stock_id'   => $stockId,
         ]);
 
-        $pricePEN = $cartDetail->product->discount_pen ? $cartDetail->product->price_pen_discount : $cartDetail->product->price;
-        $priceUSD = $cartDetail->product->discount_usd ? $cartDetail->product->price_usd_discount : $cartDetail->product->price_dolar;
         $cartDetail->quantity = $cartDetail->quantity + $quantity;
-        $cartDetail->total = $pricePEN * $cartDetail->quantity;
-        $cartDetail->total_dolar = $priceUSD * $cartDetail->quantity;
         $cartDetail->save();
-
-        $this->recalculate();
 
         return $cartDetail;
     }
@@ -136,10 +132,6 @@ class CartBipolar
             return;
         });
 
-        $this->recalculate();
-
-        $this->cart->loadMissing($this->relationships);
-
         return $this->cart->details;
     }
 
@@ -162,10 +154,25 @@ class CartBipolar
         return $cart;
     }
 
-    public function recalculate()
+    private function recalculateNormalCase()
     {
-        $this->cart = $this->cart->fresh();
+        $this->cart->details->reject($this->isDeal2x1())->each(function ($detail) {
+            /** @var CartDetail $detail */
+            $this->storeDetailPrice($detail);
+        });
 
+        $total = $this->cart->details->sum('total');
+        $totalDolar = $this->cart->details->sum('total_dolar');
+
+        $this->cart->subtotal = $total;
+        $this->cart->subtotal_dolar = $totalDolar;
+        $this->cart->total = $total;
+        $this->cart->total_dolar = $totalDolar;
+        $this->cart->save();
+    }
+
+    public function recalculate(): void
+    {
         if (empty($this->cart)) {
             return;
         }
@@ -175,23 +182,24 @@ class CartBipolar
             $this->cart->subtotal_dolar = 0;
             $this->cart->total = 0;
             $this->cart->total_dolar = 0;
+            $this->cart->save();
 
-            return $this->cart->save();
+            return;
+        }
+
+        if ($this->hasDeal2x1()) {
+            $this->recalculateWithDeal2x1();
+
+            return;
         }
 
         if ($this->hasCoupon()) {
-            return $this->recalculateWithCoupon($this->cart->coupon);
+            $this->recalculateWithCoupon($this->cart->coupon);
+
+            return;
         }
 
-        $total = $this->cart->details->sum('total');
-        $totalDolar = $this->cart->details->sum('total_dolar');
-
-        $this->cart->subtotal = $total;
-        $this->cart->subtotal_dolar = $totalDolar;
-        $this->cart->total = $total;
-        $this->cart->total_dolar = $totalDolar;
-
-        return $this->cart->save();
+        $this->recalculateNormalCase();
     }
 
     public function remove(string $detailHashId)
@@ -228,6 +236,83 @@ class CartBipolar
     public function getTotalBySessionCurrency(): float
     {
         return Session::get('BIPOLAR_CURRENCY', 'USD') === 'USD' ? $this->cart->total_dolar : $this->cart->total;
+    }
+
+    /**
+     * @param CartDetail $detail
+     * @param float $overrideTotalPEN
+     * @param float $overrideTotalUSD
+     * @return CartDetail
+     */
+    private function storeDetailPrice(CartDetail $detail, float $overrideTotalPEN = null, float $overrideTotalUSD = null): CartDetail
+    {
+        if ($overrideTotalPEN && $overrideTotalUSD) {
+            $detail->total = $overrideTotalPEN;
+            $detail->total_dolar = $overrideTotalUSD;
+        } else {
+            $pricePEN = $detail->product->discount_pen ? $detail->product->price_pen_discount : $detail->product->price;
+            $priceUSD = $detail->product->discount_usd ? $detail->product->price_usd_discount : $detail->product->price_dolar;
+            $detail->total = $pricePEN * $detail->quantity;
+            $detail->total_dolar = $priceUSD * $detail->quantity;
+        }
+        $detail->save();
+
+        return $detail;
+    }
+
+    private function isDeal2x1()
+    {
+        return function ($detail) {
+            /** @var CartDetail $detail */
+            return $detail->product->is_deal_2x1;
+        };
+    }
+
+    private function recalculateWithDeal2x1(): void
+    {
+        $detailsWithDeal2x1 = $this->cart->details->filter($this->isDeal2x1())->sortByDesc('price');
+        $dettachedDetails = collect();
+
+        $detailsWithDeal2x1->each(function ($detail) use ($dettachedDetails) {
+            /** @var CartDetail $detail */
+            if ($detail->quantity === 1) {
+                $dettachedDetails->push($detail);
+
+                return;
+            }
+
+            for ($detailIndex = 1; $detailIndex <= $detail->quantity; $detailIndex++) {
+                $clonedDetail = $detail->replicate();
+                $clonedDetail->quantity = 1;
+                $clonedDetail->save();
+                $dettachedDetails->push($clonedDetail);
+            }
+
+            $detail->delete();
+        });
+
+        $dettachedDetails->chunk(2)->each(function ($detailChunk) {
+            /**
+             * @var Collection $detailChunk
+             * @var CartDetail $firstDetail
+             * @var CartDetail $lastDetail
+             */
+            if ($detailChunk->count() === 1) {
+                $firstDetail = $detailChunk->first();
+                $this->storeDetailPrice($firstDetail, $firstDetail->product->price, $firstDetail->product->price_dolar);
+
+                return;
+            }
+
+            $firstDetail = $detailChunk->first();
+            $lastDetail = $detailChunk->last();
+
+            $this->storeDetailPrice($firstDetail, $firstDetail->product->price / 2, $firstDetail->product->price_dolar / 2);
+            $this->storeDetailPrice($lastDetail, $firstDetail->product->price / 2, $firstDetail->product->price_dolar / 2);
+        });
+
+        $this->recalculateNormalCase();
+        $this->cart = $this->cart->fresh();
     }
 
     /**
@@ -309,6 +394,21 @@ class CartBipolar
         $this->cart->save();
 
         return $this->recalculate();
+    }
+
+    public function hasDeal2x1(): bool
+    {
+        if ($this->cart->details->count() === 0) {
+            return false;
+        }
+
+        $detailsWithDeal2x1 = $this->cart->details->filter(function ($detail) {
+            /** @var CartDetail $detail */
+            return $detail->product->is_deal_2x1;
+        });
+
+        // More than 1 because we need another product with 2x1 activated
+        return $detailsWithDeal2x1->sum('quantity') > 0;
     }
 
     public function hasCoupon()
