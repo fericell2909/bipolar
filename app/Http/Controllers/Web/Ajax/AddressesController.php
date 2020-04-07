@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Ajax;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\ShippingService;
+use App\Instances\CartBipolar;
 use App\Models\Address;
 
 class AddressesController extends Controller
@@ -26,7 +27,7 @@ class AddressesController extends Controller
         Address::whereIn('id', $addressSameTypeIds)->whereKeyNot($address->id)->update(['main' => false]);
 
         /** @var \App\Models\Cart $cart */
-        $cart = \CartBipolar::last();
+        $cart = CartBipolar::getInstance()->last();
         list($shipping, $shippingFee) = ShippingService::calculateShippingByCart($cart, $addresses, \Session::get('BIPOLAR_CURRENCY'));
 
         return response()->json([

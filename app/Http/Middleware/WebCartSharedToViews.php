@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Instances\CartBipolar;
 use Closure;
 
 class WebCartSharedToViews
@@ -15,8 +16,8 @@ class WebCartSharedToViews
      */
     public function handle($request, Closure $next)
     {
-        $content = \CartBipolar::content();
-        \View::share('bipolarCartContent', $content);
+        $cart = CartBipolar::getInstance();
+        \View::share('bipolarCart', $cart);
 
         return $next($request);
     }

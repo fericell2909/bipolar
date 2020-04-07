@@ -1,3 +1,6 @@
+<?php
+/** @var \App\Instances\CartBipolar $bipolarCart */
+?>
 <section class="container visible-xs-block visible-sm-block">
 	<p class="text-center text-heading-mobile">
     <span>{{ Auth::check() ? __('bipolar.navbar.welcome') : __('bipolar.navbar.hi') }}</span>
@@ -59,9 +62,9 @@
   </div>
   <div class="cart-white-mobile">
     <img src="{{ asset('images/cart-white.svg') }}" width="35">
-    <span class="cart-number-count-inverse">{{ CartBipolar::count() }}</span>
+    <span class="cart-number-count-inverse">{{ $bipolarCart->count() }}</span>
     <div class="cart-inside-mobile">
-      @if(CartBipolar::count() > 0)
+      @if($bipolarCart->count() > 0)
         <ul class="cart-list">
           @foreach($bipolarCartContent as $cartDetail)
           <li>
@@ -76,7 +79,7 @@
         </ul>
         <div class="total">
           <strong>Subtotal:</strong>
-          <span class="amount">{{ CartBipolar::totalCurrency() }}</span>
+          <span class="amount">{{ $bipolarCart->totalCurrency() }}</span>
         </div>
         <div class="buttons">
           <a href="{{ route('cart') }}" class="btn btn-dark btn-rounded">{{ __('bipolar.navbar.see_cart') }}</a>

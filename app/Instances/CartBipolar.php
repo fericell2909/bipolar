@@ -19,6 +19,7 @@ class CartBipolar
 {
     /** @var Model|Cart $cart */
     private $cart;
+    private static $instance = null;
     private $relationships = [
         'details',
         'details.product',
@@ -27,7 +28,7 @@ class CartBipolar
         'details.stock.size',
     ];
 
-    public function __construct()
+    private function __construct()
     {
         if (Auth::check()) {
             $this->cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
@@ -54,6 +55,20 @@ class CartBipolar
 
         $this->cart->loadMissing($this->relationships);
         $this->recalculate();
+    }
+
+    private function __clone()
+    {
+        // Prevent cloning
+    }
+
+    public static function getInstance()
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new CartBipolar();
+        }
+
+        return self::$instance;
     }
 
     /**
@@ -223,6 +238,8 @@ class CartBipolar
 
         $this->cart->delete();
 
+        $this->cart = null;
+
         $this->recalculate();
 
         return true;
@@ -313,6 +330,7 @@ class CartBipolar
 
         $this->recalculateNormalCase();
         $this->cart = $this->cart->fresh();
+        $this->cart->loadMissing($this->relationships);
     }
 
     /**

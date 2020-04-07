@@ -1,5 +1,6 @@
 @extends('web.layouts.app_web')
 @section('content')
+<?php /** @var \App\Instances\CartBipolar $bipolarCart */?>
 <div class="background-title-image">
 	<h1>Shopping cart</h1>
 </div>
@@ -29,7 +30,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			@forelse(CartBipolar::content() as $cartDetail)
+			@forelse($bipolarCart->content() as $cartDetail)
       <?php /** @var \App\Models\CartDetail $cartDetail */ ?>
 			<tr>
         <td class="product-remove"><a href="{{ route('cart.remove', $cartDetail->product->slug) }}"><img src="{{ asset('images/close.svg') }}" width="20"></a></td>
@@ -66,7 +67,7 @@
 		</tbody>
   </table>
   <div class="cart-total-inner">
-    @if(CartBipolar::count() > 0)
+    @if($bipolarCart->count() > 0)
       <button type="submit" class="btn btn-dark-rounded" style="margin-right: 10px;">
         {{ __('bipolar.cart.update') }}
       </button>
@@ -79,11 +80,11 @@
       <tbody>
         <tr>
           <td><span class="concept">Subtotal</span></td>
-          <td><span class="amount">{{ CartBipolar::totalCurrency() }}</span></td>
+          <td><span class="amount">{{ $bipolarCart->totalCurrency() }}</span></td>
         </tr>
         <tr>
           <td><span class="concept">Total</span></td>
-          <td><span class="amount">{{ CartBipolar::totalCurrency() }}</span></td>
+          <td><span class="amount">{{ $bipolarCart->totalCurrency() }}</span></td>
         </tr>
       </tbody>
     </table>
