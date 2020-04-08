@@ -11,6 +11,10 @@ class CartDetail extends Model
     use Hashable;
 
     protected $fillable = ['cart_id', 'product_id', 'stock_id'];
+    protected $casts = [
+        'total'       => 'float',
+        'total_dolar' => 'float',
+    ];
     public $timestamps = false;
 
     public function cart()

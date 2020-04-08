@@ -151,6 +151,8 @@ Route::middleware('auth:admin')->group(function () {
         // Passwords
         Route::view('password', 'admin.settings.password')->name('settings.passwords');
         Route::post('password', 'Admin\SettingsController@changePassword');
+        // 2x1
+        Route::get('2x1/{value}', 'Admin\SettingsController@toggleDeals2x1')->name('settings.2x1');
     });
 
     Route::prefix('backgrounds')->name('backgrounds.')->group(function () {

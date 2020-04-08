@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Instances\CartBipolar;
 use Closure;
 
 class CheckStockAvailability
@@ -16,7 +17,7 @@ class CheckStockAvailability
     public function handle($request, Closure $next)
     {
         /** @var \App\Models\Cart $cart */
-        $cart = \CartBipolar::model();
+        $cart = CartBipolar::getInstance()->model();
 
         if (empty($cart)) {
             return redirect(route('shop'));

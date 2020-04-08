@@ -1,8 +1,8 @@
 const tippy = require('tippy.js');
 import swal from 'sweetalert2';
 
-$(function () {
-  $('.product-size').on('click', function (event) {
+$(function() {
+  $('.product-size').on('click', function(event) {
     event.preventDefault();
     const $sizeButton = $(this);
     $('.product-sizes>.product-size').removeClass('product-size-selected');
@@ -12,38 +12,36 @@ $(function () {
   });
 
   // Add to wishlist
-  $('.wishlist-add').on('click', function () {
+  $('.wishlist-add').on('click', function() {
     const productHashId = $(this).data('productId');
-    $.post(`/ajax/wishlist/add/${productHashId}`)
-      .done(response => {
-        swal({
-          title: `<span class="color-white">${response['message']}</span>`,
-          background: 'black',
-          toast: true,
-          position: "top-right",
-          showConfirmButton: false,
-          timer: 3000,
-          animation: false,
-        });
+    $.post(`/ajax/wishlist/add/${productHashId}`).done(response => {
+      swal({
+        title: `<span class="color-white">${response['message']}</span>`,
+        background: 'black',
+        toast: true,
+        position: 'top-right',
+        showConfirmButton: false,
+        timer: 3000,
+        animation: false,
       });
+    });
   });
 
-  $('.form-suscribe').submit(function (event) {
+  $('.form-suscribe').submit(function(event) {
     event.preventDefault();
     $('#newsletter-submit-button').attr('disabled', true);
-    $.post($(this).attr('action'), $(this).serializeArray())
-      .done(response => {
-        $('#newsletter-submit-button').removeAttr('disabled');
-        swal({
-          title: `<span class="color-white">${response['message']}</span>`,
-          background: 'black',
-          toast: true,
-          position: "top-right",
-          showConfirmButton: false,
-          timer: 3000,
-          animation: false,
-        });
+    $.post($(this).attr('action'), $(this).serializeArray()).done(response => {
+      $('#newsletter-submit-button').removeAttr('disabled');
+      swal({
+        title: `<span class="color-white">${response['message']}</span>`,
+        background: 'black',
+        toast: true,
+        position: 'top-right',
+        showConfirmButton: false,
+        timer: 3000,
+        animation: false,
       });
+    });
   });
 
   if ($('.tooltip-container').length) {
@@ -55,15 +53,15 @@ $(function () {
     });
   }
 
-  $('#product-currency-select').change(function (event) {
+  $('#product-currency-select').change(function(event) {
     event.preventDefault();
     const currency = $(this).val();
     window.location.href = `/change-currency?currency=${currency}`;
   });
 
-  $('.btn-number').on('click', function () {
+  $('.btn-number').on('click', function() {
     const operation = $(this).data('type');
-    const $quantity = $(this).siblings(".quantity-number");
+    const $quantity = $(this).siblings('.quantity-number');
     let quantity = parseInt($quantity.val());
     if (operation === 'minus') {
       let newValue = quantity - 1;
@@ -76,7 +74,7 @@ $(function () {
     }
   });
 
-  $('#product-add-cart').submit(function (event) {
+  $('#product-add-cart').submit(function(event) {
     event.preventDefault();
 
     if ($('.product-sizes').length) {
@@ -87,9 +85,11 @@ $(function () {
     }
 
     const fields = {};
-    $(this).serializeArray().map(field => {
-      fields[field['name']] = field['value'];
-    });
+    $(this)
+      .serializeArray()
+      .map(field => {
+        fields[field['name']] = field['value'];
+      });
 
     return $.post('/ajax/cart/product', fields).done(() => location.reload());
   });

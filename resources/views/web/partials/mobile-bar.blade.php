@@ -1,3 +1,6 @@
+<?php
+/** @var \App\Instances\CartBipolar $bipolarCart */
+?>
 <section class="container visible-xs-block visible-sm-block">
 	<p class="text-center text-heading-mobile">
     <span>{{ Auth::check() ? __('bipolar.navbar.welcome') : __('bipolar.navbar.hi') }}</span>
@@ -59,24 +62,24 @@
   </div>
   <div class="cart-white-mobile">
     <img src="{{ asset('images/cart-white.svg') }}" width="35">
-    <span class="cart-number-count-inverse">{{ CartBipolar::count() }}</span>
+    <span class="cart-number-count-inverse">{{ $bipolarCart->count() }}</span>
     <div class="cart-inside-mobile">
-      @if(CartBipolar::count() > 0)
+      @if($bipolarCart->count() > 0)
         <ul class="cart-list">
-          @foreach(CartBipolar::content() as $cartDetail)
+          @foreach($bipolarCartContent as $cartDetail)
           <li>
             <a href="{{ route('shop.product', $cartDetail->product->slug) }}" class="product-link-cart">
               <img src="{{ optional($cartDetail->product->photos->first())->url ?? 'https://placehold.it/300x300' }}" alt="{{ $cartDetail->product->name }}">
               {{ $cartDetail->product->name }}
             </a>
             <span class="quantity">{{ $cartDetail->quantity }} x {{ $cartDetail->total_currency }}</span>
-            <a href="{{ route('cart.remove', $cartDetail->product->slug) }}" class="product-delete-cart"><img src="{{ asset('images/close.svg') }}" width="20" alt="Delete"></a>
+            <a href="{{ route('cart.remove', $cartDetail->hash_id) }}" class="product-delete-cart"><img src="{{ asset('images/close.svg') }}" width="20" alt="Delete"></a>
           </li>
           @endforeach
         </ul>
         <div class="total">
           <strong>Subtotal:</strong>
-          <span class="amount">{{ CartBipolar::totalCurrency() }}</span>
+          <span class="amount">{{ $bipolarCart->totalCurrency() }}</span>
         </div>
         <div class="buttons">
           <a href="{{ route('cart') }}" class="btn btn-dark btn-rounded">{{ __('bipolar.navbar.see_cart') }}</a>

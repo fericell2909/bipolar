@@ -134,6 +134,7 @@ class ProductController extends Controller
         $product->price_dolar = !is_null($settings) ? round($request->input('price') / $settings->dolar_change) : 0;
         $product->weight = $request->filled('weight') ? $request->input('weight') : null;
         $product->free_shipping = boolval($request->input('free_shipping'));
+        $product->is_deal_2x1 = boolval($request->input('is_deal_2x1'));
         $product->is_showroom_sale = boolval($request->input('is_showroom_sale'));
         $product->is_salient = boolval($request->input('salient')) ? now() : null;
         $product->state()->associate($state);
@@ -191,6 +192,7 @@ class ProductController extends Controller
         $product->price_dolar = !is_null($settings) ? round($request->input('price') / $settings->dolar_change) : 0;
         $product->weight = $request->filled('weight') ? $request->input('weight') : null;
         $product->free_shipping = boolval($request->input('free_shipping'));
+        $product->is_deal_2x1 = boolval($request->input('is_deal_2x1'));
         $product->is_showroom_sale = boolval($request->input('is_showroom_sale'));
         $product->is_soldout = boolval($request->input('is_soldout'));
         $product->is_salient = boolval($request->input('salient')) ? now() : null;

@@ -83,6 +83,7 @@ type Product {
     fullname: String
     "Hashed id"
     hash_id: String!
+    is_deal_2x1: Boolean!
     is_salient: Boolean!
     is_showroom_sale: Boolean!
     label: Label

@@ -319,6 +319,7 @@ namespace App\Models{
  * @property int $id
  * @property float $dolar_change
  * @property int $free_shipping
+ * @property int $deal_2x1
  * @property int $bipolar_counts
  * @property int $facebook_counts
  * @property int $instagram_counts
@@ -334,6 +335,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBackgroundSuscribe($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBipolarCounts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereCurrentBuy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDeal2x1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDolarChange($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFacebookCounts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFreeShipping($value)
@@ -438,6 +440,7 @@ namespace App\Models{
  * @property int $order
  * @property int $free_shipping
  * @property int $is_showroom_sale
+ * @property int $is_deal_2x1
  * @property string|null $is_salient
  * @property int $is_soldout
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -482,6 +485,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereEndDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFreeShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsDeal2x1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSalient($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsShowroomSale($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSoldout($value)

@@ -78,6 +78,7 @@ class ProductType extends GraphQLType
             }],
             'free_shipping'         => ['type' => Type::nonNull(Type::boolean())],
             'is_showroom_sale'      => ['type' => Type::nonNull(Type::boolean())],
+            'is_deal_2x1'           => ['type' => Type::nonNull(Type::boolean())],
             'is_salient'            => ['type' => Type::nonNull(Type::boolean()), 'resolve' => function ($root) {
                 /** @var $root Product */
                 return (boolean)$root->is_salient;
@@ -111,7 +112,7 @@ class ProductType extends GraphQLType
                 /** @var $root Product */
                 return $root->created_at->format('n-Y');
             }],
-            'first_photo_url'         => [
+            'first_photo_url'       => [
                 'type'        => Type::string(),
                 'description' => "First photo url",
                 'resolve'     => function ($root) {

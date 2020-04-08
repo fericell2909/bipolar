@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Ajax;
 
+use App\Instances\CartBipolar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Buy;
@@ -23,9 +24,9 @@ class CartController extends Controller
         if ($request->filled('size')) {
             $stock = Stock::findByHash($request->input('size'));
 
-            \CartBipolar::add($request->input('quantity'), $product, $stock->id);
+            CartBipolar::getInstance()->add($request->input('quantity'), $product, $stock->id);
         } else {
-            \CartBipolar::add($request->input('quantity'), $product);
+            CartBipolar::getInstance()->add($request->input('quantity'), $product);
         }
 
         \Session::flash('success_add_product', $product->name);

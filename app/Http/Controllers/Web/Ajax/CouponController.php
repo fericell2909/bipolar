@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Ajax;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\CouponService;
+use App\Instances\CartBipolar;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +13,7 @@ class CouponController extends Controller
 {
     public function add(Request $request)
     {
-        if (\CartBipolar::count() === 0) {
+        if (CartBipolar::getInstance()->count() === 0) {
             return $this->errorResponse("No hay elementos en el carrito");
         }
 
@@ -21,7 +22,7 @@ class CouponController extends Controller
         $couponName = $request->input('coupon_name');
 
         /** @var Cart $cart */
-        $cart = \CartBipolar::last();
+        $cart = CartBipolar::getInstance()->last();
 
         $couponService = new CouponService($cart, $couponName, \Session::get('BIPOLAR_CURRENCY', 'PEN'));
 
@@ -43,14 +44,14 @@ class CouponController extends Controller
                 break;
         }
 
-        \CartBipolar::addCoupon($couponService->getCoupon());
+        CartBipolar::getInstance()->addCoupon($couponService->getCoupon());
 
         return response()->json(['success' => 'Guardado con éxito']);
     }
 
     public function remove()
     {
-        \CartBipolar::removeCoupon();
+        CartBipolar::getInstance()->removeCoupon();
 
         return response()->json(['success' => 'Guardado']);
     }

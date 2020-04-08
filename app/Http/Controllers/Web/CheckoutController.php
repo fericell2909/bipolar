@@ -21,12 +21,12 @@ class CheckoutController extends Controller
 {
     public function checkout()
     {
-        if (\CartBipolar::count() === 0) {
+        if (CartBipolar::getInstance()->count() === 0) {
             return redirect(route('shop'));
         }
 
         /** @var Cart $cart */
-        $cart = \CartBipolar::last();
+        $cart = CartBipolar::getInstance()->model();
 
         $countries = Country::orderBy('name')->get()->mapWithKeys(function ($country) {
             return [$country->id => mb_strtoupper($country->name)];
@@ -55,7 +55,7 @@ class CheckoutController extends Controller
 
     public function buy(Request $request)
     {
-        $cart = new CartBipolar;
+        $cart = CartBipolar::getInstance();
 
         if ($cart->count() === 0) {
             return redirect()->back();

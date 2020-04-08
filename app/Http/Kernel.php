@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\CheckStockAvailability;
 use App\Http\Middleware\LocalizationDetection;
 use App\Http\Middleware\RemoveEmptyUserCarts;
+use App\Http\Middleware\WebCartSharedToViews;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -38,6 +39,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            WebCartSharedToViews::class,
         ],
 
         'api' => [
