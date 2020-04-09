@@ -33,7 +33,7 @@
 			@forelse($bipolarCart->content() as $cartDetail)
       <?php /** @var \App\Models\CartDetail $cartDetail */ ?>
 			<tr>
-        <td class="product-remove"><a href="{{ route('cart.remove', $cartDetail->product->slug) }}"><img src="{{ asset('images/close.svg') }}" width="20"></a></td>
+        <td class="product-remove"><a href="{{ route('cart.remove', $cartDetail->hash_id) }}"><img src="{{ asset('images/close.svg') }}" width="20"></a></td>
 				<td class="product-thumbnail">
 					<img src="{{ optional($cartDetail->product->mainPhoto())->url ?? 'https://placehold.it/300x300' }}" width="70">
 				</td>
