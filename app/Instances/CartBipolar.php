@@ -287,7 +287,10 @@ class CartBipolar
 
     private function recalculateWithDeal2x1(): void
     {
-        $detailsWithDeal2x1 = $this->cart->details->filter($this->isDeal2x1())->sortByDesc('price');
+        $detailsWithDeal2x1 = $this->cart->details->filter($this->isDeal2x1())->sortByDesc(function ($detail) {
+            /** @var CartDetail $detail */
+            return $detail->product->price;
+        });
         $dettachedDetails = collect();
 
         $detailsWithDeal2x1->each(function ($detail) use ($dettachedDetails) {
