@@ -1,4 +1,4 @@
-import ApolloClient, { gql } from 'apollo-boost';
+import ApolloClient, { DocumentNode, gql } from 'apollo-boost';
 import { ILabel } from '@interfaces/ILabel';
 import { IColor } from '@interfaces/IColor';
 import { ISize } from '@interfaces/ISize';
@@ -61,6 +61,10 @@ export default class GraphqlAdmin {
         }
       `,
     });
+  }
+
+  public static query<T>(query: DocumentNode) {
+    return client.query<T>({ query });
   }
 
   public static getPaginatedProducts(

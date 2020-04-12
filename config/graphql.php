@@ -116,6 +116,7 @@ return [
             'query' => [
                 'categories' => CategoryQuery::class,
                 'colors' => ColorQuery::class,
+                'discount_tasks' => \App\GraphQL\Queries\DiscountTaskQuery::class,
                 'labels' => LabelQuery::class,
                 'pages' => PageQuery::class,
                 'photos' => PhotoQuery::class,
@@ -123,6 +124,7 @@ return [
                 'products_pagination' => ProductPaginatedQuery::class,
                 'sizes' => SizeQuery::class,
                 'states' => StateQuery::class,
+                'subtypes' => \App\GraphQL\Queries\SubtypeQuery::class,
             ],
             'mutation' => [
                 'products_update' => ProductUpdateMutation::class,
@@ -142,6 +144,7 @@ return [
     //
     'types' => [
         'color' => ColorType::class,
+        'discount_task' => \App\GraphQL\Types\DiscountTaskType::class,
         'size' => SizeType::class,
         'state' => StateType::class,
         'category' => CategoryType::class,

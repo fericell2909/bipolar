@@ -21,6 +21,22 @@ type Color {
     name: String!
 }
 
+"A discount task to apply discount or 2x1"
+type DiscountTask {
+    available: Boolean
+    begin: String!
+    discount_pen: Int
+    discount_usd: Int
+    end: String!
+    executed: Boolean
+    "Slug"
+    hash_id: String!
+    is_2x1: Boolean
+    name: String!
+    products_model: [Product]
+    subtypes_model: [Subtype]
+}
+
 "Label to indicate status of a product"
 type Label {
     "Color"
@@ -128,6 +144,8 @@ type Query {
     categories: [Category]
     "Get all colors"
     colors: [Color]
+    "Get list of discount tasks"
+    discount_tasks: [DiscountTask]
     "Get all labels"
     labels: [Label]
     "Pages from Bipolar"
@@ -142,6 +160,8 @@ type Query {
     sizes: [Size]
     "Get states"
     states: [State]
+    "Get all subtypes"
+    subtypes: [Subtype]
 }
 
 "Sizes from a product"
