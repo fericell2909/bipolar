@@ -79,7 +79,7 @@ Table-Layout
 ******************/
 .color-table{
     th{
-        border: 0px;    
+        border: 0px;
     }
 }
 .color-table.primary-table thead th {
@@ -218,7 +218,7 @@ Table-Layout
 
 
 @each $color, $value in $theme-colors {
-  .full-color-table.full-#{$color}-table {
+  .full-color-table.full-#{'' + $color + ''}-table {
     @include alert-variant(theme-color-level($color, $table-bg-level), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
       thead th {
           @include alert-variant(theme-color-level($color, $table-bg-level2), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
