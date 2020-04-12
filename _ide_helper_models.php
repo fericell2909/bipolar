@@ -278,19 +278,21 @@ namespace App\Models{
  * @mixin \Eloquent
  * @property int $id
  * @property string $name
- * @property int $discount_pen
- * @property int $discount_usd
+ * @property int|null $discount_pen
+ * @property int|null $discount_usd
  * @property \Illuminate\Support\Carbon $begin
  * @property \Illuminate\Support\Carbon $end
  * @property array|null $products
  * @property array|null $product_subtypes
  * @property array|null $product_types
+ * @property int $is_2x1
  * @property int $available
  * @property int $executed
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  * @property-read int|null $activities_count
+ * @property-read string $hash_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask query()
@@ -302,6 +304,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereEnd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereExecuted($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereIs2x1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereProductSubtypes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereProductTypes($value)
