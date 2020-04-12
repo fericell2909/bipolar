@@ -145,7 +145,7 @@ type Query {
     "Get all colors"
     colors: [Color]
     "Get list of discount tasks"
-    discount_tasks: [DiscountTask]
+    discount_tasks(filters: DiscountTaskFilters): [DiscountTask]
     "Get all labels"
     labels: [Label]
     "Pages from Bipolar"
@@ -192,6 +192,12 @@ type Subtype {
     name_es: String!
     order: Int
     slug: String!
+}
+
+"Filter discount tasks by selected values"
+input DiscountTaskFilters {
+    "Filter if discount is 2x1"
+    is_2x1: Boolean
 }
 
 "Filter fields for products"

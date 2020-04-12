@@ -28,7 +28,7 @@ class DiscountTaskQuery extends Query
     public function args(): array
     {
         return [
-
+            'filters' => ['name' => 'filters', 'type' => \GraphQL::type('discount_task_filters')],
         ];
     }
 
@@ -40,7 +40,11 @@ class DiscountTaskQuery extends Query
         $with = $fields->getRelations();
         $querySelector = $resolveInfo->getFieldSelection(1);
 
-        $discountTasks = DiscountTask::orderByDesc('id')->get();
+        $discountTasks = DiscountTask::orderByDesc('id')
+            ->when(!is_null(Arr::get($args, 'filters.is_2x1', null)), function ($whereDiscountTask) use ($args) {
+                /** @var \Illuminate\Database\Query\Builder $whereDiscountTask */
+                $whereDiscountTask->where("is_2x1", Arr::get($args, 'filters.is_2x1'));
+            })->get();
 
         if (Arr::has($querySelector, 'products_model')) {
             $productsIds = $discountTasks->pluck('products')->flatten()->toArray();
