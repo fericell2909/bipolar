@@ -147,7 +147,7 @@ class CartBipolar
             return;
         });
 
-        return $this->cart->details;
+        return $this->cart->details->sortByDesc('total');
     }
 
     public function totalCurrency()
@@ -319,7 +319,7 @@ class CartBipolar
              */
             if ($detailChunk->count() === 1) {
                 $firstDetail = $detailChunk->first();
-                $this->storeDetailPrice($firstDetail, $firstDetail->product->price, $firstDetail->product->price_dolar);
+                $this->storeDetailPrice($firstDetail);
 
                 return;
             }
