@@ -41,7 +41,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('stocks/{stock}/quantity', 'Admin\ProductController@stockSave')->name('products.stock.save');
         Route::get('{slug}/discount', 'Admin\ProductController@discount')->name('products.discount');
         Route::view('multiple-discounts', 'admin.products.multiple_discounts')->name('products.multiple-discounts');
-        Route::get('multiple-discounts/edit/{task}', 'Admin\ProductController@multipleDiscountEdit')->name('products.multiple-discounts.edit');
+        Route::get('multiple-discounts/edit/{hashId}', 'Admin\ProductController@multipleDiscountEdit')->name('products.multiple-discounts.edit');
         Route::get('massive', 'Admin\ProductController@massive')->name('products.massive-publication');
         Route::view('multiple-2x1', 'admin.products.multiple_2x1')->name('products.multiple-2x1');
     });
