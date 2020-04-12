@@ -47,7 +47,7 @@ class DiscountTaskQuery extends Query
             })->get();
 
         if (Arr::has($querySelector, 'products_model')) {
-            $productsIds = $discountTasks->pluck('products')->flatten()->toArray();
+            $productsIds = $discountTasks->pluck('products')->reject($this->nonEmptyValues())->flatten()->toArray();
             $products = Product::whereIn('id', $productsIds)->with(['stocks.size', 'colors'])->get();
 
             $discountTasks = $discountTasks->map(function ($discountTask) use ($products) {
@@ -58,7 +58,7 @@ class DiscountTaskQuery extends Query
         }
 
         if (Arr::has($querySelector, 'types_model')) {
-            $typesIds = $discountTasks->pluck('product_types')->flatten()->toArray();
+            $typesIds = $discountTasks->pluck('product_types')->reject($this->nonEmptyValues())->flatten()->toArray();
             $types = TypeModel::find($typesIds);
 
             $discountTasks = $discountTasks->map(function ($discountTask) use ($types) {
@@ -69,7 +69,7 @@ class DiscountTaskQuery extends Query
         }
 
         if (Arr::has($querySelector, 'subtypes_model')) {
-            $subtypesIds = $discountTasks->pluck('product_subtypes')->flatten()->toArray();
+            $subtypesIds = $discountTasks->pluck('product_subtypes')->reject($this->nonEmptyValues())->flatten()->toArray();
             $subtypes = Subtype::find($subtypesIds);
 
             $discountTasks = $discountTasks->map(function ($discountTask) use ($subtypes) {
@@ -80,5 +80,12 @@ class DiscountTaskQuery extends Query
         }
 
         return $discountTasks;
+    }
+
+    private function nonEmptyValues()
+    {
+        return function ($element) {
+            return is_null($element);
+        };
     }
 }

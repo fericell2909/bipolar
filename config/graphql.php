@@ -128,6 +128,7 @@ return [
             ],
             'mutation' => [
                 'products_update' => ProductUpdateMutation::class,
+                'discount_task_creation' => \App\GraphQL\Mutations\DiscountTaskCreation::class,
             ],
             'method' => ['get', 'post'],
         ],

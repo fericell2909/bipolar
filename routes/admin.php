@@ -43,6 +43,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::view('multiple-discounts', 'admin.products.multiple_discounts')->name('products.multiple-discounts');
         Route::get('multiple-discounts/edit/{task}', 'Admin\ProductController@multipleDiscountEdit')->name('products.multiple-discounts.edit');
         Route::get('massive', 'Admin\ProductController@massive')->name('products.massive-publication');
+        Route::view('multiple-2x1', 'admin.products.multiple_2x1')->name('products.multiple-2x1');
     });
 
     Route::prefix('home-posts')->group(function () {

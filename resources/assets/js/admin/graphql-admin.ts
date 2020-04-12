@@ -64,7 +64,11 @@ export default class GraphqlAdmin {
   }
 
   public static query<T>(query: DocumentNode) {
-    return client.query<T>({ query });
+    return client.query<T>({ query, fetchPolicy: 'network-only' });
+  }
+
+  public static mutation<T>(mutation: DocumentNode, variables = {}) {
+    return client.mutate<T>({ mutation, variables });
   }
 
   public static getPaginatedProducts(

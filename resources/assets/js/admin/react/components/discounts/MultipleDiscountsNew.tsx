@@ -7,6 +7,11 @@ import moment from 'moment';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import MultipleDiscountList from './MultipleDiscountsList';
+import GraphqlAdmin from '../../../graphql-admin';
+import { IDiscountTask } from '@interfaces/IDiscountTask';
+import { gql } from 'apollo-boost';
+import { IProduct } from '@interfaces/IProduct';
+import { ISubtype } from '@interfaces/ISubtype';
 
 class MultipleDiscountsNew extends React.Component {
   state = {
@@ -102,25 +107,62 @@ class MultipleDiscountsNew extends React.Component {
   };
 
   getTasks = async () => {
-    // @ts-ignore
-    const { data } = await axios.get('/ajax-admin/discount-tasks').catch(console.warn);
-    this.setState({ tasks: data['data'] });
+    const { data } = await GraphqlAdmin.query<{ discount_tasks: IDiscountTask[] }>(gql`
+      query {
+        discount_tasks(filters: { is_2x1: false }) {
+          hash_id
+          name
+          begin
+          end
+          discount_pen
+          discount_usd
+          is_2x1
+          available
+          executed
+          edit_route
+          products_model {
+            hash_id
+            fullname
+          }
+          subtypes_model {
+            hash_id
+            name_es
+          }
+        }
+      }
+    `);
+    this.setState({ tasks: [...data.discount_tasks] });
   };
 
   getProducts = async () => {
-    // @ts-ignore
-    const { data } = await axios.get('/ajax-admin/products').catch(console.warn);
-    this.setState({ products: data['data'], productsCopy: data['data'] });
+    const { data } = await GraphqlAdmin.query<{ products: IProduct[] }>(gql`
+      query {
+        products {
+          hash_id
+          fullname
+          price_pen
+          price_usd
+          colors {
+            name
+          }
+        }
+      }
+    `);
+    this.setState({ products: [...data.products], productsCopy: [...data.products] });
   };
 
   getData = async () => {
-    const dataTypes = await axios.get('/ajax-admin/types').catch(console.warn);
-    const dataSubtypes = await axios.get('/ajax-admin/subtypes').catch(console.warn);
+    const { data } = await GraphqlAdmin.query<{ subtypes: ISubtype[] }>(gql`
+      query {
+        subtypes {
+          hash_id
+          name_en
+          name_es
+        }
+      }
+    `);
 
-    this.setState({
-      subtypes: dataSubtypes['data']['data'],
-      types: dataTypes['data']['data'],
-    });
+    this.setState({ subtypes: [...data.subtypes] });
   };
 
   componentDidMount() {

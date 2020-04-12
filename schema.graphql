@@ -27,12 +27,14 @@ type DiscountTask {
     begin: String!
     discount_pen: Int
     discount_usd: Int
+    edit_route: String
     end: String!
     executed: Boolean
     "Slug"
     hash_id: String!
     is_2x1: Boolean
     name: String!
+    products: [Int]
     products_model: [Product]
     subtypes_model: [Subtype]
 }
@@ -52,6 +54,8 @@ type Label {
 }
 
 type Mutation {
+    "Create a discount task"
+    discount_task_creation(begin: String!, discount_pen: Int, discount_usd: Int, end: String!, is_2x1: Boolean, name: String!, products: [String], subtypes: [String], types: [String]): DiscountTask
     "Operations with Product"
     products_update(operation_name: String!, products_id: [ID]!): [Product]
 }
