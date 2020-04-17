@@ -147,7 +147,7 @@ class CartBipolar
             return;
         });
 
-        return $this->cart->details->sortByDesc('total');
+        return $this->cart->details->sortBy('order');
     }
 
     public function totalCurrency()
@@ -311,7 +311,8 @@ class CartBipolar
             $detail->delete();
         });
 
-        $dettachedDetails->chunk(2)->each(function ($detailChunk) {
+        $order = 1;
+        $dettachedDetails->chunk(2)->each(function ($detailChunk) use (&$order) {
             /**
              * @var Collection $detailChunk
              * @var CartDetail $firstDetail
@@ -319,13 +320,18 @@ class CartBipolar
              */
             if ($detailChunk->count() === 1) {
                 $firstDetail = $detailChunk->first();
+                $firstDetail->order = $order;
                 $this->storeDetailPrice($firstDetail);
 
                 return;
             }
 
             $firstDetail = $detailChunk->first();
+            $firstDetail->order = $order;
+            $order++;
             $lastDetail = $detailChunk->last();
+            $lastDetail->order = $order;
+            $order++;
 
             $this->storeDetailPrice($firstDetail, $firstDetail->product->price / 2, $firstDetail->product->price_dolar / 2);
             $this->storeDetailPrice($lastDetail, $firstDetail->product->price / 2, $firstDetail->product->price_dolar / 2);

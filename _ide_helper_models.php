@@ -160,6 +160,7 @@ namespace App\Models{
  * @property int $product_id
  * @property int|null $stock_id
  * @property int $quantity
+ * @property int|null $order
  * @property float $total
  * @property float $total_dolar
  * @property-read \App\Models\Cart $cart
@@ -172,6 +173,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereCartId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereStockId($value)
