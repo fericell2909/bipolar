@@ -137,7 +137,7 @@ class BSale
                 'municipality' => $buy->shipping_address->country_state->name,
                 'address'      => $buy->shipping_address->address,
                 'email'        => $buy->user->email,
-                'code'         => '12345678901',
+                // 'code'         => '12345678901',
             ],
         ];
 
