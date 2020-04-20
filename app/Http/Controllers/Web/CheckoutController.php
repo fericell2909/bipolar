@@ -40,16 +40,17 @@ class CheckoutController extends Controller
             return $address->address_type->name == 'shipping';
         });
 
-        list($shipping, $shippingFee, $hasShowroomPickup) = ShippingService::calculateShippingByCart($cart, $addresses, \Session::get('BIPOLAR_CURRENCY'));
+        list($shipping, $shippingFee, $hasShowroomPickup, $isDniRequired) = ShippingService::calculateShippingByCart($cart, $addresses, \Session::get('BIPOLAR_CURRENCY'));
 
         return view('web.shop.checkout', [
-            'cart'               => $cart,
-            'countries'          => $countries,
-            'billingAddresses'   => $billingAddresses,
-            'shippingAddresses'  => $shippingAddresses,
-            'shippingName'       => $shipping,
-            'shippingFee'        => $shippingFee,
-            'hasShowroomPickup'  => $hasShowroomPickup
+            'cart'              => $cart,
+            'countries'         => $countries,
+            'billingAddresses'  => $billingAddresses,
+            'shippingAddresses' => $shippingAddresses,
+            'shippingName'      => $shipping,
+            'shippingFee'       => $shippingFee,
+            'hasShowroomPickup' => $hasShowroomPickup,
+            'isDniRequired'     => $isDniRequired,
         ]);
     }
 
@@ -102,11 +103,11 @@ class CheckoutController extends Controller
 
         $agent = new Agent();
 
-        $buy->metadata = json_encode([
+        $buy->metadata = collect([
             'platform' => $agent->platform() ?? '--',
-            'browser' => $agent->browser() ?? '--',
-            'device' => $agent->device() ?? '--',
-        ]);
+            'browser'  => $agent->browser() ?? '--',
+            'device'   => $agent->device() ?? '--',
+        ])->toJson();
 
         if ($cart->hasCoupon()) {
             $buy->coupon()->associate($cart->getCoupon());
@@ -142,7 +143,13 @@ class CheckoutController extends Controller
             $this->shippingFeeByBuy($buy);
         }
 
-        // The email only sends in not a production environment
+        if ($request->filled('dni_hidden')) {
+            $user = \Auth::user();
+            $user->dni = $request->input('dni_hidden');
+            $user->save();
+        }
+
+        // The email only sends in a non production environment
         if (config('app.env') !== 'production') {
             event(new SaleSuccessful($buy));
         }

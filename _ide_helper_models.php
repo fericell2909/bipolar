@@ -631,6 +631,7 @@ namespace App\Models{
  * @property int $id
  * @property array $title
  * @property int $allow_showroom
+ * @property int $is_dni_required
  * @property int $active
  * @property float|null $g200
  * @property float|null $g200_dolar
@@ -681,6 +682,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG500($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG500Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereIsDniRequired($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg10($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg10Dolar($value)
@@ -877,6 +879,7 @@ namespace App\Models{
  * @property string $email
  * @property string $name
  * @property string|null $lastname
+ * @property string|null $dni
  * @property string|null $photo
  * @property string $password
  * @property string|null $active
@@ -902,6 +905,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereBirthdayDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereDni($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereFacebookId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereHasShowroomSale($value)

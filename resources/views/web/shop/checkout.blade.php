@@ -1,4 +1,4 @@
-@extends('web.layouts.app_web') 
+@extends('web.layouts.app_web')
 @section('content')
 <div class="background-title-image">
 	<h1>Checkout</h1>
@@ -270,6 +270,12 @@
                           <span>{{ $shippingName }}:</span>
                           <span>{{ $shippingFee }}</span>
                         </div>
+												@if($isDniRequired)
+													<div class="form-group" style="margin-top: 1em">
+														{!! Form::label('DNI') !!}
+														{!! Form::text('dni', \Auth::user()->dni ?? null, ['class' => 'form-control', 'required' => true, 'autocomplete' => 'off']) !!}
+													</div>
+												@endif
 											</div>
 										</td>
 									</tr>
@@ -291,11 +297,18 @@
 									<span>{{ __('bipolar.checkout.shipping_check') }}</span>
 								</div>
 							</div>
+							<div class="bipolar-alert-message" id="dni-alert" style="display: none;">
+								<i class="fad fa-times-circle"></i>
+								<div class="success-content">
+									<span>{{ __('bipolar.checkout.dni_alert') }}</span>
+								</div>
+							</div>
 							{!! Form::open(['id' => 'checkout-form']) !!}
 								<div class="submit-payment">
 									<a href="{{ route('cart') }}" class="btn btn-gray-rounded">{{ __('bipolar.checkout.edit') }}</a>
 									<button type="submit" class="btn btn-dark-rounded">{{ __('bipolar.checkout.continue') }}</button>
 									{!! Form::hidden('showroom_pick') !!}
+									{!! Form::hidden('dni_hidden') !!}
 									<p>
 										{!! Form::checkbox('terms', '1', null) !!}
 										<label for="terms">{!! __('bipolar.checkout.terms_accept') !!}</label>

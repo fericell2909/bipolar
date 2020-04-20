@@ -10,12 +10,12 @@
   width: auto;
   word-wrap: break-word;
 
-  i.fa {
+  > svg {
     color: $color;
-    margin-right: 10px;
   }
 
   >.success-content {
+    margin-left: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;

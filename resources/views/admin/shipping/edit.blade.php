@@ -34,8 +34,16 @@
       </div>
     </div>
     <div class="card-footer text-muted">
-      {!! Form::checkbox('allow_showroom', 1, boolval($shipping->allow_showroom)) !!}
-      Permitir recojo en showroom junto a este envío
+      <div class="row">
+        <div class="col-md-6">
+          {!! Form::checkbox('allow_showroom', 1, boolval($shipping->allow_showroom)) !!}
+          <span class="font-bold">Permitir recojo en showroom junto a este envío</span>
+        </div>
+        <div class="col-md-6">
+          {!! Form::checkbox('is_dni_required', 1, boolval($shipping->is_dni_required)) !!}
+          <span class="font-bold">Requerir DNI para compras</span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="card">
