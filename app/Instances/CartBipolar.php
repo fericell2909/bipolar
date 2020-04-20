@@ -263,7 +263,7 @@ class CartBipolar
      */
     private function storeDetailPrice(CartDetail $detail, float $overrideTotalPEN = null, float $overrideTotalUSD = null): CartDetail
     {
-        if ($overrideTotalPEN && $overrideTotalUSD) {
+        if ($overrideTotalPEN !== null && $overrideTotalUSD !== null) {
             $detail->total = $overrideTotalPEN;
             $detail->total_dolar = $overrideTotalUSD;
         } else {
@@ -333,8 +333,8 @@ class CartBipolar
             $lastDetail->order = $order;
             $order++;
 
-            $this->storeDetailPrice($firstDetail, $firstDetail->product->price / 2, $firstDetail->product->price_dolar / 2);
-            $this->storeDetailPrice($lastDetail, $firstDetail->product->price / 2, $firstDetail->product->price_dolar / 2);
+            $this->storeDetailPrice($firstDetail, $firstDetail->product->price, $firstDetail->product->price_dolar);
+            $this->storeDetailPrice($lastDetail, 0, 0);
         });
 
         $this->recalculateNormalCase();
