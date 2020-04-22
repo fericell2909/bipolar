@@ -138,7 +138,7 @@ class BSale
                 'address'      => $buy->shipping_address->address,
                 'email'        => $buy->user->email,
                 'isForeigner'  => 1,
-                // 'code'         => '12345678901',
+                'code'         => bipolar_generate_buyer_id($buy->user_id),
             ],
         ];
 

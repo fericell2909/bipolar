@@ -45,3 +45,14 @@ if (!function_exists('bipolar_mail_asset_url')) {
         return config('app.env') !== 'production' ? "https://www.bipolar.com.pe/{$url}" : $message->embed(public_path() . "/{$url}");
     }
 }
+
+if (!function_exists('bipolar_generate_buyer_id')) {
+    /**
+     * @param int $userId
+     * @return string
+     */
+    function bipolar_generate_buyer_id(int $userId)
+    {
+        return str_pad((string)$userId, 11, "0", STR_PAD_LEFT);
+    }
+}
