@@ -135,6 +135,7 @@ class BSale
         if ($buy->user->dni) {
             $clientData['code'] = $buy->user->dni;
         } else {
+            $clientData['code'] = bipolar_generate_buyer_id($buy->user_id);
             $clientData['isForeigner'] = 1;
         }
 
