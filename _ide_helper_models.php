@@ -160,6 +160,7 @@ namespace App\Models{
  * @property int $product_id
  * @property int|null $stock_id
  * @property int $quantity
+ * @property int|null $order
  * @property float $total
  * @property float $total_dolar
  * @property-read \App\Models\Cart $cart
@@ -172,6 +173,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereCartId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereStockId($value)
@@ -278,19 +280,21 @@ namespace App\Models{
  * @mixin \Eloquent
  * @property int $id
  * @property string $name
- * @property int $discount_pen
- * @property int $discount_usd
+ * @property int|null $discount_pen
+ * @property int|null $discount_usd
  * @property \Illuminate\Support\Carbon $begin
  * @property \Illuminate\Support\Carbon $end
  * @property array|null $products
  * @property array|null $product_subtypes
  * @property array|null $product_types
+ * @property int $is_2x1
  * @property int $available
  * @property int $executed
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  * @property-read int|null $activities_count
+ * @property-read string $hash_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask query()
@@ -302,6 +306,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereEnd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereExecuted($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereIs2x1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereProductSubtypes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereProductTypes($value)
@@ -319,6 +324,7 @@ namespace App\Models{
  * @property int $id
  * @property float $dolar_change
  * @property int $free_shipping
+ * @property int $deal_2x1
  * @property int $bipolar_counts
  * @property int $facebook_counts
  * @property int $instagram_counts
@@ -334,6 +340,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBackgroundSuscribe($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBipolarCounts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereCurrentBuy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDeal2x1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDolarChange($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFacebookCounts($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFreeShipping($value)
@@ -438,6 +445,7 @@ namespace App\Models{
  * @property int $order
  * @property int $free_shipping
  * @property int $is_showroom_sale
+ * @property int $is_deal_2x1
  * @property string|null $is_salient
  * @property int $is_soldout
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -482,6 +490,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereEndDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFreeShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsDeal2x1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSalient($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsShowroomSale($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSoldout($value)
@@ -622,6 +631,7 @@ namespace App\Models{
  * @property int $id
  * @property array $title
  * @property int $allow_showroom
+ * @property int $is_dni_required
  * @property int $active
  * @property float|null $g200
  * @property float|null $g200_dolar
@@ -672,6 +682,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG500($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG500Dolar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereIsDniRequired($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg10($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg10Dolar($value)
@@ -868,6 +879,7 @@ namespace App\Models{
  * @property string $email
  * @property string $name
  * @property string|null $lastname
+ * @property string|null $dni
  * @property string|null $photo
  * @property string $password
  * @property string|null $active
@@ -893,6 +905,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereBirthdayDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereDni($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereFacebookId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereHasShowroomSale($value)

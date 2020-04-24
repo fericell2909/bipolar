@@ -180,6 +180,14 @@ class ShippingController extends Controller
             $shipping->save();
         }
 
+        if ($request->filled('is_dni_required')) {
+            $shipping->is_dni_required = true;
+            $shipping->save();
+        } else {
+            $shipping->is_dni_required = false;
+            $shipping->save();
+        }
+
         if ($request->filled('include_countries')) {
             $this->saveIncludedCountries($request->input('include_countries'), $shipping);
         } else {

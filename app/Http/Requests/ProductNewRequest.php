@@ -32,6 +32,7 @@ class ProductNewRequest extends FormRequest
             'price'               => 'required|numeric',
             'weight'              => 'nullable|numeric',
             'free_shipping'       => 'boolean',
+            'is_deal_2x1'         => 'boolean',
             'is_showroom_sale'    => 'boolean',
             'subtype'             => 'nullable|array',
             'sizes'               => 'nullable|array',

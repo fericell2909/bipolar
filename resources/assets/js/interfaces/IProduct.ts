@@ -15,8 +15,8 @@ export interface IProduct {
   slug?: string;
   weight?: string;
   price_pen?: number;
-  price_dolar?: number;
   price_pen_discount?: number;
+  price_usd?: number;
   price_usd_discount?: number;
   discount_pen?: number;
   discount_usd?: number;
@@ -26,7 +26,8 @@ export interface IProduct {
   free_shipping?: boolean;
   is_showroom_sale?: boolean;
   is_salient?: boolean | null;
-  is_soldout ?: boolean;
+  is_soldout?: boolean;
+  is_deal_2x1?: boolean;
   route_preview?: string;
   edit_route?: string;
   shop_route?: string;
@@ -41,6 +42,7 @@ export interface IProduct {
   // TODO: Deprecated
   preview_route?: string;
   price?: number;
+  price_dolar?: number;
 }
 
 export interface IProductCollection {

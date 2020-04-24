@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Instances\CartBipolar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CartDetail;
@@ -33,14 +34,14 @@ class CartController extends Controller
             $cartDetail->save();
         }
 
-        \CartBipolar::recalculate();
+        CartBipolar::getInstance()->recalculate();
 
         return redirect()->back();
     }
 
-    public function remove($productSlug)
+    public function remove(string $detailHashId)
     {
-        \CartBipolar::remove($productSlug);
+        CartBipolar::getInstance()->remove($detailHashId);
 
         return redirect()->back();
     }

@@ -18,6 +18,7 @@
               <th>Enviar a</th>
               <th>Excepto a</th>
               <th class="text-center">Showroom pickup</th>
+              <th class="text-center">DNI requerido</th>
               <th class="text-center">Activa</th>
               <th><i class="fas fa-fw fa-cog"></i></th>
             </tr>
@@ -55,6 +56,13 @@
                 </td>
                 <td class="align-middle text-center">
                   @if($shipping->allow_showroom)
+                    <i class="fas fa-fw fa-check"></i>
+                  @else
+                    <i class="fas fa-fw fa-times"></i>
+                  @endif
+                </td>
+                <td class="align-middle text-center">
+                  @if($shipping->is_dni_required)
                     <i class="fas fa-fw fa-check"></i>
                   @else
                     <i class="fas fa-fw fa-times"></i>

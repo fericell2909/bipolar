@@ -41,6 +41,7 @@
                   <th>Nombre</th>
                   <th>Apellidos</th>
                   <th>Correo</th>
+                  <th>DNI</th>
                   <th>Nacimiento</th>
                   <th>Activo</th>
                   <th>Acciones</th>
@@ -61,6 +62,7 @@
                     <td class="align-middle">{{ $user->name }}</td>
                     <td class="align-middle">{{ $user->lastname }}</td>
                     <td class="align-middle">{{ $user->email }}</td>
+                    <td class="align-middle">{{ $user->dni }}</td>
                     <td class="align-middle">{{ $user->getBirthdayOrNull() }}</td>
                     <td class="align-middle">{!! $user->getActiveLabelAdmin() !!}</td>
                     <td class="align-middle">

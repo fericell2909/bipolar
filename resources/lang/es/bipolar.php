@@ -218,6 +218,7 @@ return [
         'terms_check' => 'Necesita aceptar los términos y condiciones para continuar',
         'terms_accept' => "He leído y acepto los <a href='" . route('page', 'exchange-and-return') . "' target='_blank'>términos y condiciones</a>",
         'shipping_check' => 'Necesita seleccionar una opción de envío',
+        'dni_alert' => 'Para generar su boleta de compra necesita ingresar un DNI (sólo números) en Perú',
         'continue' => 'Continuar',
         'select' => 'SELECCIONAR',
         'another_address' => '¿Enviar a una dirección diferente?',

@@ -21,7 +21,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script async src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script>
   </head>
 
   <body class="skin-red fixed-layout">
@@ -128,10 +128,14 @@
                 </ul>
               </li>
               <li>
-                <a class="waves-effect waves-dark" href="{{ route('products.multiple-discounts') }}" aria-expanded="false">
-                  <i class="fas fa-fw fa-percent"></i>
-                  <span class="hide-menu"> Descuentos</span>
+                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                  <i class="fas fa-fw fa-play"></i>
+                  <span class="hide-menu"> Tareas</span>
                 </a>
+                <ul aria-expanded="false" class="collapse">
+                  <li><a href="{{ route('products.multiple-discounts') }}">Descuentos</a></li>
+                  <li><a href="{{ route('products.multiple-2x1') }}">2x1</a></li>
+                </ul>
               </li>
               <li>
                 <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">

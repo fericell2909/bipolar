@@ -218,6 +218,7 @@ return [
         'terms_check' => 'You need to check the terms to continue',
         'terms_accept' => "I have read the <a href='" .  route('page', 'exchange-and-return')  . "' target='_blank'>terms and conditions</a>",
         'shipping_check' => 'You need to choose a shipping option',
+        'dni_alert' => 'You need to provide a DNI (only numbers) for peruvian orders',
         'continue' => 'Continue',
         'select' => 'SELECT',
         'another_address' => 'Ship to a different address?',

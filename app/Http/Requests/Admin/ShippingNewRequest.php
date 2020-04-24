@@ -30,6 +30,7 @@ class ShippingNewRequest extends FormRequest
             'include_states'    => 'nullable|array',
             'exclude_countries' => 'nullable|array',
             'exclude_states'    => 'nullable|array',
+            'allow_showroom'    => 'nullable'
         ];
     }
 }

@@ -1,14 +1,15 @@
-import ApolloClient, { gql } from 'apollo-boost';
-import { ILabel } from '../interfaces/ILabel';
-import { IColor } from '../interfaces/IColor';
-import { ISize } from '../interfaces/ISize';
-import { IState } from '../interfaces/IState';
+import ApolloClient, { DocumentNode, gql } from 'apollo-boost';
+import { ILabel } from '@interfaces/ILabel';
+import { IColor } from '@interfaces/IColor';
+import { ISize } from '@interfaces/ISize';
+import { IState } from '@interfaces/IState';
+import { IProduct } from '@interfaces/IProduct';
 
 const client = new ApolloClient({
   uri: '/graphql',
 });
 
-export default class GraphQLAdmin {
+export default class GraphqlAdmin {
   public static getLabels() {
     return client.query<{ labels: ILabel[] }>({
       query: gql`
@@ -59,6 +60,73 @@ export default class GraphQLAdmin {
           }
         }
       `,
+    });
+  }
+
+  public static query<T>(query: DocumentNode) {
+    return client.query<T>({ query, fetchPolicy: 'network-only' });
+  }
+
+  public static mutation<T>(mutation: DocumentNode, variables = {}) {
+    return client.mutate<T>({ mutation, variables });
+  }
+
+  public static getPaginatedProducts(
+    page: number = 1,
+    filters: { search?: string; state?: string; subtype?: string; creation_date?: string } = {}
+  ) {
+    return client.query<{
+      products_pagination: { current_page: number; last_page: number; data: IProduct[] };
+    }>({
+      query: gql`
+        query GetPaginatedProducts($page: Int!, $filters: ProductFilters) {
+          products_pagination(page: $page, limit: 20, filters: $filters) {
+            current_page
+            last_page
+            data {
+              hash_id
+              name_en
+              name_en
+              fullname
+              first_photo_url
+              route_preview
+              price_pen
+              price_usd
+              discount_pen
+              discount_usd
+              price_pen_discount
+              price_usd_discount
+              free_shipping
+              is_showroom_sale
+              is_salient
+              state {
+                name
+                color
+              }
+              subtypes {
+                name_es
+                name_en
+              }
+            }
+          }
+        }
+      `,
+      variables: { page, filters },
+      fetchPolicy: 'network-only',
+    });
+  }
+
+  public static updateProducts(productIds: string[], operation: string) {
+    return client.mutate<{ products_update: Partial<IProduct>[] }>({
+      mutation: gql`
+        mutation ProductsUpdate($products_id: [ID]!, $operation_name: String!) {
+          products_update(products_id: $products_id, operation_name: $operation_name) {
+            hash_id
+            fullname
+          }
+        }
+      `,
+      variables: { products_id: productIds, operation_name: operation },
     });
   }
 }

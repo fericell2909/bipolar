@@ -21,6 +21,24 @@ type Color {
     name: String!
 }
 
+"A discount task to apply discount or 2x1"
+type DiscountTask {
+    available: Boolean
+    begin: String!
+    discount_pen: Int
+    discount_usd: Int
+    edit_route: String
+    end: String!
+    executed: Boolean
+    "Slug"
+    hash_id: String!
+    is_2x1: Boolean
+    name: String!
+    products: [Int]
+    products_model: [Product]
+    subtypes_model: [Subtype]
+}
+
 "Label to indicate status of a product"
 type Label {
     "Color"
@@ -36,6 +54,8 @@ type Label {
 }
 
 type Mutation {
+    "Create a discount task"
+    discount_task_creation(begin: String!, discount_pen: Int, discount_usd: Int, end: String!, is_2x1: Boolean, name: String!, products: [String], subtypes: [String], types: [String]): DiscountTask
     "Operations with Product"
     products_update(operation_name: String!, products_id: [ID]!): [Product]
 }
@@ -83,6 +103,7 @@ type Product {
     fullname: String
     "Hashed id"
     hash_id: String!
+    is_deal_2x1: Boolean!
     is_salient: Boolean!
     is_showroom_sale: Boolean!
     label: Label
@@ -127,6 +148,8 @@ type Query {
     categories: [Category]
     "Get all colors"
     colors: [Color]
+    "Get list of discount tasks"
+    discount_tasks(filters: DiscountTaskFilters): [DiscountTask]
     "Get all labels"
     labels: [Label]
     "Pages from Bipolar"
@@ -141,6 +164,8 @@ type Query {
     sizes: [Size]
     "Get states"
     states: [State]
+    "Get all subtypes"
+    subtypes: [Subtype]
 }
 
 "Sizes from a product"
@@ -171,6 +196,12 @@ type Subtype {
     name_es: String!
     order: Int
     slug: String!
+}
+
+"Filter discount tasks by selected values"
+input DiscountTaskFilters {
+    "Filter if discount is 2x1"
+    is_2x1: Boolean
 }
 
 "Filter fields for products"

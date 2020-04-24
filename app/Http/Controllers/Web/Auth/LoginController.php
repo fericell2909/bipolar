@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Web\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\SocialNetworkService;
+use App\Instances\CartBipolar;
 use App\Models\Cart;
-use App\Models\CartDetail;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -39,8 +39,8 @@ class LoginController extends Controller
         }
 
         $sessionCartId = null;
-        if (\CartBipolar::count() > 0) {
-            $sessionCartId = \CartBipolar::id();
+        if (CartBipolar::getInstance()->count() > 0) {
+            $sessionCartId = CartBipolar::getInstance()->id();
         }
 
         if ($this->attemptLogin($request)) {
@@ -87,8 +87,8 @@ class LoginController extends Controller
         }
 
         $sessionCartId = null;
-        if (\CartBipolar::count() > 0) {
-            $sessionCartId = \CartBipolar::id();
+        if (CartBipolar::getInstance()->count() > 0) {
+            $sessionCartId = CartBipolar::getInstance()->id();
         }
 
         \Auth::loginUsingId($user->id);
@@ -143,7 +143,7 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        \CartBipolar::removeCoupon();
+        CartBipolar::getInstance()->removeCoupon();
 
         $this->guard()->logout();
 

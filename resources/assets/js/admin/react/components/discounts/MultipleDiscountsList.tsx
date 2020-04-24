@@ -2,9 +2,26 @@ import React from 'react';
 import swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+import {
+  faCalendar,
+  faCheck,
+  faClock,
+  faEdit,
+  faPercent,
+  faPlay,
+  faTimes,
+  faTrash,
+  faUndoAlt,
+} from '@fortawesome/free-solid-svg-icons';
+import { IDiscountTask } from '@interfaces/IDiscountTask';
 
-export default class MultipleDiscountsList extends React.Component<any> {
-  toggleAvailability = (taskId, available) => {
+interface Props {
+  tasks: IDiscountTask[];
+  onUpdateTasks: () => void;
+}
+
+export default class MultipleDiscountsList extends React.Component<Props, any> {
+  toggleAvailability = (taskId: string, available: boolean) => {
     return swal({
       title: '¿Cambiar disponibilidad de la tarea?',
       text: 'Cambiarla a activa hará que esté disponible para ejecutarse automáticamente',
@@ -28,7 +45,7 @@ export default class MultipleDiscountsList extends React.Component<any> {
     });
   };
 
-  executeTask = taskId => {
+  executeTask = (taskId: string) => {
     return swal({
       title: '¿Ejecutar tarea?',
       text: 'Esta tarea se ejecutará ahora, se aplicarán descuentos a los productos',
@@ -52,7 +69,7 @@ export default class MultipleDiscountsList extends React.Component<any> {
     });
   };
 
-  revertTask = taskId => {
+  revertTask = (taskId: string) => {
     return swal({
       title: '¿Revertir tarea?',
       text: 'La reversión se ejecutará ahora, se removerán descuentos a los productos',
@@ -76,7 +93,7 @@ export default class MultipleDiscountsList extends React.Component<any> {
     });
   };
 
-  deleteDiscount = taskId => {
+  deleteDiscount = (taskId: string) => {
     return swal({
       title: '¿Eliminar tarea de descuento?',
       showCancelButton: true,
@@ -101,86 +118,124 @@ export default class MultipleDiscountsList extends React.Component<any> {
 
   render() {
     const tasks = this.props.tasks.map(task => {
-      const subtypes = task['product_subtypes_full']
-        ? task['product_subtypes_full'].map(type => type['name']).join(',')
-        : '';
-      const types = task['product_types_full']
-        ? task['product_types_full'].map(type => type['name']).join(',')
-        : '';
-      const products = task['products_full']
-        ? task['products_full'].map(product => product['fullname']).join(',')
-        : '';
+      const subtypes = (
+        <ul className="row">
+          {task.subtypes_model?.map(type => (
+            <li key={type.hash_id} className="col-sm-6">{type.name_es}</li>
+          ))}
+        </ul>
+      );
+      const products = (
+        <ul className="row">
+          {task.products_model?.map(product => (
+            <li key={product.hash_id} className="col-sm-6">{product.fullname}</li>
+          ))}
+        </ul>
+      );
       let executable;
       let available;
       let buttonExecute;
       let buttonActivate;
 
-      if (task['available']) {
-        available = <FontAwesomeIcon icon="check" />;
+      if (task.available) {
+        available = (
+          <>
+            <FontAwesomeIcon icon={faCheck} />
+            <span className="ml-2">Auto activar</span>
+          </>
+        );
         buttonActivate = (
           <button
-            onClick={() => this.toggleAvailability(task['id'], false)}
+            onClick={() => this.toggleAvailability(task.hash_id, false)}
             className="btn btn-sm btn-dark btn-rounded">
-            <FontAwesomeIcon icon="times" /> Desactivar
+            <FontAwesomeIcon icon={faTimes} /> Desactivar
           </button>
         );
       } else {
-        available = <FontAwesomeIcon icon="times" />;
+        available = (
+          <>
+            <FontAwesomeIcon icon={faCheck} />
+            <span className="ml-2">Activacion manual</span>
+          </>
+        );
         buttonActivate = (
           <button
-            onClick={() => this.toggleAvailability(task['id'], true)}
+            onClick={() => this.toggleAvailability(task.hash_id, true)}
             className="btn btn-sm btn-dark btn-rounded">
-            <FontAwesomeIcon icon="check" /> Activar
+            <FontAwesomeIcon icon={faCheck} /> Activar
           </button>
         );
       }
 
-      if (task['available'] && !task['executed']) {
+      if (task.available && !task.executed) {
         buttonExecute = (
           <button
-            onClick={() => this.executeTask(task['id'])}
+            onClick={() => this.executeTask(task.hash_id)}
             className="btn btn-sm btn-dark btn-rounded">
-            <FontAwesomeIcon icon="play" /> Ejecutar
+            <FontAwesomeIcon icon={faPlay} /> Ejecutar
           </button>
         );
       }
 
-      if (task['executed']) {
-        executable = <FontAwesomeIcon icon="check" />;
+      if (task.executed) {
+        executable = (
+          <>
+            <FontAwesomeIcon icon={faCheck} />
+            <span className="ml-2">Activada</span>
+          </>
+        );
         buttonExecute = (
           <button
-            onClick={() => this.revertTask(task['id'])}
+            onClick={() => this.revertTask(task.hash_id)}
             className="btn btn-sm btn-dark btn-rounded">
-            <FontAwesomeIcon icon="undo-alt" /> Revertir
+            <FontAwesomeIcon icon={faUndoAlt} /> Revertir
           </button>
         );
       } else {
-        executable = <FontAwesomeIcon icon="times" />;
+        executable = (
+          <>
+            <FontAwesomeIcon icon={faClock} />
+            <span className="ml-2">Pendiente</span>
+          </>
+        );
       }
 
       return (
-        <tr key={task['id']}>
-          <td className="align-middle text-center">{task['name']}</td>
-          <td className="align-middle text-center">{task['discount_pen']}</td>
-          <td className="align-middle text-center">{task['discount_usd']}</td>
-          <td className="align-middle text-center">{task['begin']}</td>
-          <td className="align-middle text-center">{task['end']}</td>
-          <td className="align-middle text-center">{types}</td>
-          <td className="align-middle text-center">{subtypes}</td>
-          <td className="align-middle text-center">{products}</td>
-          <td className="align-middle text-center">{available}</td>
-          <td className="align-middle text-center">{executable}</td>
+        <tr key={task.hash_id}>
+          <td className="align-middle">
+            <span className="d-block font-16" style={{ fontWeight: 600 }}>
+              {task.name}
+            </span>
+            <div className="d-block text-black-50">
+              <FontAwesomeIcon icon={faCalendar} />
+              <span className="ml-2">
+                De {task.begin} a {task.end}
+              </span>
+            </div>
+            {!task.is_2x1 ? (
+              <div className="d-block text-black-50">
+                <FontAwesomeIcon icon={faPercent} />
+                <span className="ml-2">
+                  USD: {task.discount_usd} / PEN: {task.discount_pen}
+                </span>
+              </div>
+            ) : null}
+            <div className="d-block text-black-50">{executable}</div>
+            <div className="d-block text-black-50">{available}</div>
+          </td>
+          <td className="align-middle w-25">{subtypes}</td>
+          <td className="align-middle w-25">{products}</td>
           <td className="align-middle text-center">
             <div className="button-group">
               {buttonActivate}
               {buttonExecute}
-              <a href={task['edit_route']} className="btn btn-sm btn-dark btn-rounded">
-                <FontAwesomeIcon icon="edit" /> Editar
+              <a href={task.edit_route} className="btn btn-sm btn-dark btn-rounded">
+                <FontAwesomeIcon icon={faEdit} /> Editar
               </a>
               <button
                 onClick={() => this.deleteDiscount(task['id'])}
                 className="btn btn-sm btn-dark btn-rounded">
-                <FontAwesomeIcon icon="trash" /> Eliminar
+                <FontAwesomeIcon icon={faTrash} /> Eliminar
               </button>
             </div>
           </td>
@@ -191,21 +246,14 @@ export default class MultipleDiscountsList extends React.Component<any> {
     return (
       <div className="card">
         <div className="card-body">
-          <h4 className="card-title">Tareas de descuento pendientes</h4>
+          <h4 className="card-title">Tareas pendientes</h4>
           <div className="table-responsive">
-            <table className="table table-hover color-table dark-table">
+            <table className="table color-table dark-table table-hover table-bordered">
               <thead>
                 <tr>
                   <th className="text-center">Nombre</th>
-                  <th className="text-center">Desc. S/</th>
-                  <th className="text-center">Desc. $</th>
-                  <th className="text-center">Inicio</th>
-                  <th className="text-center">Fin</th>
-                  <th className="text-center">Tipos</th>
-                  <th className="text-center">Subtipos</th>
-                  <th className="text-center">Productos</th>
-                  <th className="text-center">Auto-ejecutar</th>
-                  <th className="text-center">Ejecutada</th>
+                  <th className="w-25">Subtipos</th>
+                  <th className="w-25">Productos</th>
                   <th className="text-center">Acciones</th>
                 </tr>
               </thead>

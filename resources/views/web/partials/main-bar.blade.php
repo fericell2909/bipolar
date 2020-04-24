@@ -1,3 +1,6 @@
+<?php
+ /** @var \App\Instances\CartBipolar $bipolarCart */
+?>
 <div class="bipolar-grand-header hidden-sm hidden-xs {{ $background === true ? 'bipolar-background' : null  }}">
 	<nav class="navbar bipolar-navbar-styles bipolar-first-navbar">
 		<div class="container">
@@ -82,18 +85,18 @@
 				<div class="bipolar-shopping-cart-wrapper">
 					<div class="bipolar-shopping-cart-content">
 						<img src="{{ asset('images/cart.svg') }}" width="35">
-						<span class="cart-number-count">{{ CartBipolar::count() }}</span>
+						<span class="cart-number-count">{{ $bipolarCart->count() }}</span>
 						<div class="cart-inside">
-							@if(CartBipolar::count() > 0)
+							@if($bipolarCart->count() > 0)
 								<ul class="cart-list">
-									@foreach(CartBipolar::content() as $cartDetail)
+									@foreach($bipolarCart->content() as $cartDetail)
 									<?php /** @var \App\Models\CartDetail $cartDetail */ ?>
 									<li>
 										<a href="{{ route('shop.product', $cartDetail->product->slug) }}" class="product-link-cart">
 											<img src="{{ optional($cartDetail->product->mainPhoto())->url ?? 'https://placehold.it/300x300' }}" alt="{{ $cartDetail->product->name }}"> {{ $cartDetail->product->name }}
 										</a>
 										<span class="quantity">{{ $cartDetail->quantity }} x {{ $cartDetail->total_currency }}</span>
-										<a href="{{ route('cart.remove', $cartDetail->product->slug) }}" class="product-delete-cart">
+										<a href="{{ route('cart.remove', $cartDetail->hash_id) }}" class="product-delete-cart">
 											<img src="{{ asset('images/close.svg') }}" width="20" alt="Delete">
 										</a>
 									</li>
@@ -101,7 +104,7 @@
 								</ul>
 								<div class="total">
 									<strong>Subtotal:</strong>
-									<span class="amount">{{ CartBipolar::totalCurrency() }}</span>
+									<span class="amount">{{ $bipolarCart->totalCurrency() }}</span>
 								</div>
 								<div class="buttons">
 									<a href="{{ route('cart') }}" class="btn btn-dark-rounded">{{ __('bipolar.navbar.see_cart') }}</a>

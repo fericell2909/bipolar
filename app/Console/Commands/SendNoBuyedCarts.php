@@ -55,8 +55,6 @@ class SendNoBuyedCarts extends Command
         foreach ($carts as $cart) {
             \Mail::to($cart->user->email)->send(new CartsUnbuyed($cart));
         }
-
-        \Log::channel('single')->debug("Carritos no comprados: Se enviaron correos a {$carts->count()} personas");
     }
 
     /**

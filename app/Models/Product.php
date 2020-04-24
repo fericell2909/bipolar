@@ -27,6 +27,7 @@ class Product extends Model
         'price_pen_discount',
         'price_usd_discount',
         'publish_date',
+        'is_deal_2x1',
     ];
     protected static $logAttributes = ['state_id'];
 

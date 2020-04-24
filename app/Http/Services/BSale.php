@@ -124,6 +124,21 @@ class BSale
                 });
         });
 
+        $clientData = [
+            'firstName'    => $buy->user->name,
+            'city'         => $buy->shipping_address->country_state->name,
+            'municipality' => $buy->shipping_address->country_state->name,
+            'address'      => $buy->shipping_address->address,
+            'email'        => $buy->user->email,
+        ];
+
+        if ($buy->user->dni) {
+            $clientData['code'] = $buy->user->dni;
+        } else {
+            $clientData['code'] = bipolar_generate_buyer_id($buy->user_id);
+            $clientData['isForeigner'] = 1;
+        }
+
         $dataDocument = [
             'documentTypeId' => strval(config('bsale.sell_document_type')),
             'priceListId'    => $buy->currency === 'USD' ? strval(config('bsale.price_list_usd')) : strval(config('bsale.price_list_pen')),
@@ -131,15 +146,7 @@ class BSale
             'expirationDate' => now()->addMonth()->timestamp,
             'declareSii'     => intval(false),
             'details'        => $bsaleDetails,
-            'client'         => [
-                'firstName'    => $buy->user->name,
-                'city'         => $buy->shipping_address->country_state->name,
-                'municipality' => $buy->shipping_address->country_state->name,
-                'address'      => $buy->shipping_address->address,
-                'email'        => $buy->user->email,
-                'isForeigner'  => 1,
-                'code'         => bipolar_generate_buyer_id($buy->user_id),
-            ],
+            'client'         => $clientData,
         ];
 
         \Log::info("Documento creado", $dataDocument);

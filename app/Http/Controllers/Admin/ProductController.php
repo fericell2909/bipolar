@@ -179,9 +179,9 @@ class ProductController extends Controller
         return view('admin.products.discount', compact('product'));
     }
 
-    public function multipleDiscountEdit($discountTaskId)
+    public function multipleDiscountEdit($discountHashId)
     {
-        $discount = DiscountTask::findOrFail($discountTaskId);
+        $discount = DiscountTask::findByHash($discountHashId);
 
         return view('admin.products.multiple_discounts_edit', compact('discount'));
     }

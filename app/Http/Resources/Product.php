@@ -43,6 +43,7 @@ class Product extends Resource
             'end_discount'          => optional($product->end_discount)->toDateString(),
             'publish_date'          => optional($product->publish_date)->toDateTimeString(),
             'free_shipping'         => boolval($product->free_shipping),
+            'is_deal_2x1'           => (bool)$product->is_deal_2x1,
             'is_showroom_sale'      => (bool)$product->is_showroom_sale,
             'is_soldout'            => (bool)$product->is_soldout,
             'is_salient'            => $product->is_salient,

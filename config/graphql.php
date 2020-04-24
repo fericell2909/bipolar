@@ -116,6 +116,7 @@ return [
             'query' => [
                 'categories' => CategoryQuery::class,
                 'colors' => ColorQuery::class,
+                'discount_tasks' => \App\GraphQL\Queries\DiscountTaskQuery::class,
                 'labels' => LabelQuery::class,
                 'pages' => PageQuery::class,
                 'photos' => PhotoQuery::class,
@@ -123,9 +124,11 @@ return [
                 'products_pagination' => ProductPaginatedQuery::class,
                 'sizes' => SizeQuery::class,
                 'states' => StateQuery::class,
+                'subtypes' => \App\GraphQL\Queries\SubtypeQuery::class,
             ],
             'mutation' => [
                 'products_update' => ProductUpdateMutation::class,
+                'discount_task_creation' => \App\GraphQL\Mutations\DiscountTaskCreation::class,
             ],
             'method' => ['get', 'post'],
         ],
@@ -142,6 +145,7 @@ return [
     //
     'types' => [
         'color' => ColorType::class,
+        'discount_task' => \App\GraphQL\Types\DiscountTaskType::class,
         'size' => SizeType::class,
         'state' => StateType::class,
         'category' => CategoryType::class,
@@ -152,6 +156,7 @@ return [
         'subtype' => SubtypeType::class,
         // Input types
         'product_filters' => \App\GraphQL\Inputs\ProductFilters::class,
+        'discount_task_filters' => \App\GraphQL\Inputs\DiscountTaskFilters::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request

@@ -24,6 +24,7 @@ require('./components/ProductMassivePublication');
 require('./components/CouponAssociation');
 require('./components/discounts/MultipleDiscountsNew');
 require('./components/discounts/MultipleDiscountsEdit');
+require('./components/ProductMassive2x1');
 require('./components/PostNew');
 require('./components/PostEdit');
 require('./components/PageNew');

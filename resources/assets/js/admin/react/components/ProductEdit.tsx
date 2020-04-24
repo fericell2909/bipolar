@@ -13,6 +13,7 @@ import ProductTypes from './partials/ProductTypes';
 import { IProduct } from '@interfaces/IProduct';
 import { ILabel } from '@interfaces/ILabel';
 import GraphqlAdmin from '../../graphql-admin';
+import BinarySelector from './partials/BinarySelector';
 
 interface IProductState extends IProduct {
   previewUrl: string;
@@ -52,6 +53,7 @@ class BipolarProductEdit extends Component<Props, State> {
       description_english: '',
       free_shipping: false,
       is_showroom_sale: false,
+      is_deal_2x1: false,
       salient: false,
       previewUrl: '',
       shopUrl: '',
@@ -82,17 +84,17 @@ class BipolarProductEdit extends Component<Props, State> {
     });
   };
 
-  handleSalientChange = event => {
+  handleSalientChange = (value: boolean) => {
     this.setState({
       product: {
         ...this.state.product,
-        salient: event.target.checked,
+        salient: value,
       },
     });
   };
 
-  handleSoldoutChange = event =>
-    this.setState({ product: { ...this.state.product, isSoldout: event.target.checked } });
+  handleSoldoutChange = (value: boolean) =>
+    this.setState({ product: { ...this.state.product, isSoldout: value } });
 
   handleColorChange = event => {
     const colorHashId = event.target.value;
@@ -170,9 +172,10 @@ class BipolarProductEdit extends Component<Props, State> {
     });
   };
 
-  handleUpdateProduct = event => {
-    event.preventDefault();
+  toggleDeal = (value: boolean) =>
+    this.setState({ product: { ...this.state.product, is_deal_2x1: value } });
 
+  handleUpdateProduct = () => {
     axios
       .put(`/ajax-admin/products/${this.props.productHashId}`, {
         name: this.state.product.name,
@@ -182,6 +185,7 @@ class BipolarProductEdit extends Component<Props, State> {
         description: this.state.product.description,
         description_english: this.state.product.description_english,
         free_shipping: this.state.product.free_shipping,
+        is_deal_2x1: this.state.product.is_deal_2x1,
         is_showroom_sale: this.state.product.is_showroom_sale,
         is_soldout: this.state.product.isSoldout,
         salient: this.state.product.salient,
@@ -210,11 +214,11 @@ class BipolarProductEdit extends Component<Props, State> {
       });
   };
 
-  handleChangeFreeShipping = event => {
+  handleChangeFreeShipping = (value: boolean) => {
     this.setState({
       product: {
         ...this.state.product,
-        free_shipping: event.target.checked,
+        free_shipping: value,
       },
     });
   };
@@ -228,17 +232,22 @@ class BipolarProductEdit extends Component<Props, State> {
     });
   };
 
-  handleHiddenShowroomChange = event => {
+  toggleHiddenShowroomChange = (value: boolean) => {
     this.setState({
       product: {
         ...this.state.product,
-        is_showroom_sale: event.target.value === 'true',
+        is_showroom_sale: value,
       },
     });
   };
 
   handleLabelUpdate = event =>
-    this.setState({ product: { ...this.state.product, labelSelected: event.target.value } });
+    this.setState({
+      product: {
+        ...this.state.product,
+        labelSelected: event.target.value,
+      },
+    });
 
   getAllInformation() {
     axios
@@ -263,6 +272,7 @@ class BipolarProductEdit extends Component<Props, State> {
             productInState.description_english = product.description_english ?? '';
             productInState.free_shipping = product.free_shipping;
             productInState.is_showroom_sale = product.is_showroom_sale;
+            productInState.is_deal_2x1 = product.is_deal_2x1;
             productInState.isSoldout = product.is_soldout;
             productInState.salient = !!product.is_salient;
             productInState.shopUrl = product.shop_route;
@@ -346,193 +356,186 @@ class BipolarProductEdit extends Component<Props, State> {
         <div className="col-md-9">
           <div className="card">
             <div className="card-body">
-              <form onSubmit={this.handleUpdateProduct}>
-                <div className="form-row">
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label>Nombre</label>
-                      <input
-                        value={this.state.product.name}
-                        onChange={this.handleInputChange}
-                        name="name"
-                        type="text"
-                        className="form-control"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label>Nombre (Inglés)</label>
-                      <input
-                        value={this.state.product.name_english}
-                        onChange={this.handleInputChange}
-                        name="name_english"
-                        className="form-control"
-                        type="text"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label>Precio</label>
-                      <input
-                        value={this.state.product.price}
-                        onChange={this.handleInputChange}
-                        name="price"
-                        type="number"
-                        className="form-control"
-                        required
-                      />
-                    </div>
+              <div className="form-row">
+                <div className="col-md-4">
+                  <div className="form-group">
+                    <label>Nombre</label>
+                    <input
+                      value={this.state.product.name}
+                      onChange={this.handleInputChange}
+                      name="name"
+                      type="text"
+                      className="form-control"
+                      required
+                    />
                   </div>
                 </div>
-                <div className="form-row">
-                  <div className="col-6">
-                    <div className="input-group mb-3">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">URL Shop</span>
-                      </div>
-                      <input
-                        type="text"
-                        value={this.state.product.shopUrl}
-                        className="form-control"
-                        readOnly={true}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-6">
-                    <div className="input-group mb-3">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">URL Preview</span>
-                      </div>
-                      <input
-                        type="text"
-                        value={this.state.product.previewUrl}
-                        className="form-control"
-                        readOnly={true}
-                      />
-                    </div>
+                <div className="col-md-4">
+                  <div className="form-group">
+                    <label>Nombre (Inglés)</label>
+                    <input
+                      value={this.state.product.name_english}
+                      onChange={this.handleInputChange}
+                      name="name_english"
+                      className="form-control"
+                      type="text"
+                      required
+                    />
                   </div>
                 </div>
-                <div className="form-group">
-                  <label>Descripción (Opcional)</label>
-                  <Editor
-                    toolbar={toolbarEditor}
-                    stripPastedStyles={true}
-                    editorState={this.state.editorState}
-                    onEditorStateChange={this.handleEditorDescription}
-                    editorClassName="demo-editor-content"
+                <div className="col-md-4">
+                  <div className="form-group">
+                    <label>Precio</label>
+                    <input
+                      value={this.state.product.price}
+                      onChange={this.handleInputChange}
+                      name="price"
+                      type="number"
+                      className="form-control"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="col-6">
+                  <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">URL Shop</span>
+                    </div>
+                    <input
+                      type="text"
+                      value={this.state.product.shopUrl}
+                      className="form-control"
+                      readOnly={true}
+                    />
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text">URL Preview</span>
+                    </div>
+                    <input
+                      type="text"
+                      value={this.state.product.previewUrl}
+                      className="form-control"
+                      readOnly={true}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Descripción (Opcional)</label>
+                <Editor
+                  toolbar={toolbarEditor}
+                  stripPastedStyles={true}
+                  editorState={this.state.editorState}
+                  onEditorStateChange={this.handleEditorDescription}
+                  editorClassName="demo-editor-content"
+                />
+              </div>
+              <div className="form-group">
+                <label>Descripción en inglés (Opcional)</label>
+                <Editor
+                  toolbar={toolbarEditor}
+                  stripPastedStyles={true}
+                  editorState={this.state.editorStateEnglish}
+                  onEditorStateChange={this.handleEditorDescriptionEnglish}
+                  editorClassName="demo-editor-content"
+                />
+              </div>
+              <div className="form-row">
+                <div className="col-md-4">
+                  <div className="form-group">
+                    <label>Estado</label>
+                    <select
+                      className="form-control"
+                      value={this.state.product.selectedState}
+                      onChange={this.handleProductStateChange}
+                      required>
+                      <option value="" disabled>
+                        Seleccione un estado
+                      </option>
+                      {productStatesRender.length ? productStatesRender : null}
+                    </select>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className="form-group">
+                    <label>Peso (kg)</label>
+                    <input
+                      value={this.state.product.weight}
+                      onChange={this.handleInputChange}
+                      name="weight"
+                      type="number"
+                      step="any"
+                      className="form-control"
+                      placeholder="Opcional"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className="form-group">
+                    <label>Label (Opcional)</label>
+                    <select
+                      value={this.state.product.labelSelected}
+                      onChange={this.handleLabelUpdate}
+                      className="form-control">
+                      <option value="">Ninguno</option>
+                      {labelsOptions}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-4">
+                  <BinarySelector
+                    title="Agotado"
+                    optionSelected={this.state.product.isSoldout}
+                    toggleFunction={this.handleSoldoutChange}
                   />
                 </div>
-                <div className="form-group">
-                  <label>Descripción en inglés (Opcional)</label>
-                  <Editor
-                    toolbar={toolbarEditor}
-                    stripPastedStyles={true}
-                    editorState={this.state.editorStateEnglish}
-                    onEditorStateChange={this.handleEditorDescriptionEnglish}
-                    editorClassName="demo-editor-content"
+                <div className="col-md-4">
+                  <BinarySelector
+                    title="Destacado"
+                    optionSelected={this.state.product.salient}
+                    toggleFunction={this.handleSalientChange}
                   />
                 </div>
-                <div className="form-row">
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label>Estado</label>
-                      <select
-                        className="form-control"
-                        value={this.state.product.selectedState}
-                        onChange={this.handleProductStateChange}
-                        required>
-                        <option value="" disabled>
-                          Seleccione un estado
-                        </option>
-                        {productStatesRender.length ? productStatesRender : null}
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label>Peso (kg)</label>
-                      <input
-                        value={this.state.product.weight}
-                        onChange={this.handleInputChange}
-                        name="weight"
-                        type="number"
-                        step="any"
-                        className="form-control"
-                        placeholder="Opcional"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label>Showroom Sale (Oculto)</label>
-                      <select
-                        className="form-control"
-                        defaultValue="false"
-                        onChange={this.handleHiddenShowroomChange}>
-                        <option value="true" selected={this.state.product.is_showroom_sale}>
-                          Si
-                        </option>
-                        <option value="false" selected={!this.state.product.is_showroom_sale}>
-                          No
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label>Label (Opcional)</label>
-                      <select
-                        value={this.state.product.labelSelected}
-                        onChange={this.handleLabelUpdate}
-                        className="form-control">
-                        <option value="">Ninguno</option>
-                        {labelsOptions}
-                      </select>
-                    </div>
-                  </div>
+                <div className="col-md-4">
+                  <BinarySelector
+                    title="Envío gratuito"
+                    optionSelected={this.state.product.free_shipping}
+                    toggleFunction={this.handleChangeFreeShipping}
+                  />
                 </div>
-                <div className="form-row">
-                  <div className="col-md-3">
-                    <label className="checkbox-inline">
-                      <input
-                        checked={this.state.product.free_shipping}
-                        onChange={this.handleChangeFreeShipping}
-                        type="checkbox"
-                      />
-                      Envío gratuito
-                    </label>
-                  </div>
-                  <div className="col-md-3">
-                    <label className="checkbox-inline">
-                      <input
-                        checked={this.state.product.salient}
-                        onChange={this.handleSalientChange}
-                        type="checkbox"
-                      />
-                      Destacado
-                    </label>
-                  </div>
-                  <div className="col-md-3">
-                    <label className="checkbox-inline">
-                      <input
-                        checked={this.state.product.isSoldout}
-                        onChange={this.handleSoldoutChange}
-                        type="checkbox"
-                      />
-                      Marcar como agotado
-                    </label>
-                  </div>
+                <div className="col-md-4">
+                  <BinarySelector
+                    title="Showroom sale"
+                    optionSelected={this.state.product.is_showroom_sale}
+                    toggleFunction={this.toggleHiddenShowroomChange}
+                    trueText="Sí, es privado"
+                    falseText="No, es público"
+                  />
                 </div>
-                <hr />
-                <button disabled={isInvalidForm} type="submit" className="btn btn-dark btn-rounded">
-                  Actualizar e ir a subir fotos
-                </button>
-              </form>
+                <div className="col-md-4">
+                  <BinarySelector
+                    title="2x1"
+                    optionSelected={this.state.product.is_deal_2x1}
+                    toggleFunction={this.toggleDeal}
+                  />
+                </div>
+              </div>
+              <hr />
+              <button
+                disabled={isInvalidForm}
+                onClick={this.handleUpdateProduct}
+                type="submit"
+                className="btn btn-dark btn-rounded">
+                Actualizar e ir a subir fotos
+              </button>
             </div>
           </div>
         </div>
