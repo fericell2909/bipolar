@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
 import ReactSelect from 'react-select';
 import Animated from 'react-select/lib/animated';
 import moment from 'moment';
@@ -54,43 +53,69 @@ class MultipleDiscountsNew extends React.Component {
 
   handleNameChange = event => this.setState({ name: event.target.value });
 
-  handleSaveDiscount = event => {
+  handleSaveDiscount = async event => {
     event.preventDefault();
-    const selectedTypes = this.state.selectedTypes;
     const selectedSubtypes = this.state.selectedSubtypes;
     const selectedProducts = this.state.selectedProducts;
 
-    if (
-      selectedSubtypes.length === 0 &&
-      selectedTypes.length === 0 &&
-      selectedProducts.length === 0
-    ) {
+    if (selectedSubtypes.length === 0 && selectedProducts.length === 0) {
       return this.setState({ showErrorMessage: true });
     }
 
-    axios
-      .post('/ajax-admin/discount-tasks', {
-        name: this.state.name,
-        types: selectedTypes,
-        subtypes: selectedSubtypes,
-        products: selectedProducts,
-        beginDiscount: this.state.beginDate,
-        endDiscount: this.state.endDate,
-        discountPEN: this.state.qtyDiscountPEN,
-        discountUSD: this.state.qtyDiscountUSD,
-      })
+    let variables: {} = {
+      name: this.state.name,
+      begin: this.state.beginDate,
+      end: this.state.endDate,
+      discountPEN: this.state.qtyDiscountPEN,
+      discountUSD: this.state.qtyDiscountUSD,
+    };
+
+    if (this.state.selectedProducts.length) {
+      variables = {
+        ...variables,
+        products: this.state.selectedProducts.map(option => option.value),
+      };
+    }
+
+    if (this.state.selectedSubtypes.length) {
+      variables = {
+        ...variables,
+        subtypes: this.state.selectedSubtypes.map(option => option.value),
+      };
+    }
+
+    await GraphqlAdmin.mutation(
+      gql`
+        mutation DiscountTaskCreation(
+          $name: String!
+          $begin: String!
+          $end: String!
+          $products: [String]
+          $subtypes: [String]
+          $discountPEN: Int
+          $discountUSD: Int
+        ) {
+          discount_task_creation(
+            name: $name
+            begin: $begin
+            end: $end
+            is_2x1: false
+            products: $products
+            subtypes: $subtypes
+            discount_pen: $discountPEN
+            discount_usd: $discountUSD
+          ) {
+            hash_id
+          }
+        }
+      `,
+      variables
+    )
+      .catch(console.warn)
       .then(() => {
-        this.setState({
-          name: '',
-          selectedSubtypes: [],
-          selectedTypes: [],
-          selectedProducts: [],
-          qtyDiscountPEN: 0,
-          qtyDiscountUSD: 0,
-        });
-      })
-      .then(this.getTasks)
-      .catch(console.warn);
+        this.getTasks();
+        this.setState({ name: '', selectedSubtypes: [], selectedProducts: [] });
+      });
   };
 
   filterProductsWithDiscount = product => {
