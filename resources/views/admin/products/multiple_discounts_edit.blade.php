@@ -2,7 +2,7 @@
 @section('title', "Editar descuento")
 @push('before_scripts')
   <script>
-    window.BipolarDiscountTaskId = "{{ $discount->id }}";
+    window.BipolarDiscountTaskId = "{{ $discount->hash_id }}";
   </script>
 @endpush
 @section('content')
