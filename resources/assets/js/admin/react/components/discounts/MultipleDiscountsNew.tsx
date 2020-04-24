@@ -175,14 +175,14 @@ class MultipleDiscountsNew extends React.Component {
     const optionProducts = this.state.productsCopy.length
       ? this.state.productsCopy.map(product => {
           return {
-            value: product['id'],
-            label: `${product['fullname']} - PEN: ${product['price']} / USD: ${product['price_dolar']}`,
+            value: product.hash_id,
+            label: `${product.fullname} - PEN: ${product.price_pen} / USD: ${product.price_usd}`,
           };
         })
       : [];
     const optionSubtypes = this.state.subtypes.length
       ? this.state.subtypes.map(product => {
-          return { value: product['id'], label: product['name'] };
+          return { value: product.hash_id, label: product.name_es };
         })
       : [];
 

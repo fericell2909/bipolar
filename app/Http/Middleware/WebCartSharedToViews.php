@@ -17,7 +17,7 @@ class WebCartSharedToViews
     public function handle($request, Closure $next)
     {
         $cart = CartBipolar::getInstance();
-        \View::share('bipolarCart', $cart);
+        \View::share('bipolarCart', $cart ?? collect());
 
         return $next($request);
     }
