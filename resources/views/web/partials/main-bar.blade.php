@@ -85,9 +85,9 @@
 				<div class="bipolar-shopping-cart-wrapper">
 					<div class="bipolar-shopping-cart-content">
 						<img src="{{ asset('images/cart.svg') }}" width="35">
-						<span class="cart-number-count">{{ $bipolarCart->count() }}</span>
-						<div class="cart-inside">
-							@if($bipolarCart->count() > 0)
+						<span class="cart-number-count">{{ isset($bipolarCart) ? $bipolarCart->count() : 0 }}</span>
+							<div class="cart-inside">
+							@if(isset($bipolarCart) ? $bipolarCart->count() > 0 : false)
 								<ul class="cart-list">
 									@foreach($bipolarCart->content() as $cartDetail)
 									<?php /** @var \App\Models\CartDetail $cartDetail */ ?>

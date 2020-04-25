@@ -39,7 +39,7 @@ $(function() {
     }
   });
 
-  $('#form-coupon').on('submit', event => {
+  $('#form-coupon').on('submit', function(event) {
     event.preventDefault();
     const params = $(this).serializeArray();
     $.post(`/ajax/coupon`, params)
@@ -74,17 +74,17 @@ $(function() {
       });
   });
 
-  $('.address-billing-option').click(function() {
+  $('.address-billing-option').on('click', function() {
     const addressId = $(this).val();
     clickedBillingAddress(addressId);
   });
 
-  $('.address-shipping-option').on('click', () => {
+  $('.address-shipping-option').on('click', function() {
     const addressId = $(this).val();
     clickedShippingAddress(addressId);
   });
 
-  $('.first-part').on('click', () => {
+  $('.first-part').on('click', function() {
     const addressBillingRadio = $(this).find('.address-billing-option');
     const addressShippingRadio = $(this).find('.address-shipping-option');
     if (addressBillingRadio.length) {
@@ -100,7 +100,7 @@ $(function() {
     $('#checkoutContinuePartThree').toggle();
   });
 
-  $('.trash-icon').on('click', () => {
+  $('.trash-icon').on('click', function() {
     const addressId = $(this).data('addressHashId');
     swal({
       title: 'Eliminar dirección',
