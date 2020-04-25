@@ -66,7 +66,7 @@
     <div class="cart-inside-mobile">
       @if($bipolarCart->count() > 0)
         <ul class="cart-list">
-          @foreach($bipolarCartContent as $cartDetail)
+          @foreach($bipolarCart->content() as $cartDetail)
           <li>
             <a href="{{ route('shop.product', $cartDetail->product->slug) }}" class="product-link-cart">
               <img src="{{ optional($cartDetail->product->photos->first())->url ?? 'https://placehold.it/300x300' }}" alt="{{ $cartDetail->product->name }}">
