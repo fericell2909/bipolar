@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Arr;
 
 class Handler extends ExceptionHandler
 {
@@ -52,16 +53,16 @@ class Handler extends ExceptionHandler
         if (empty($exception->guards())) {
             return false;
         }
-        
-        $guard = array_first($exception->guards());
-        
+
+        $guard = Arr::first($exception->guards());
+
         $routeForAuth = '';
-        
+
         switch ($guard) {
             case 'web': $routeForAuth = route('login-with-register'); break;
             case 'admin': $routeForAuth = route('login.admin'); break;
         }
-        
+
         return $routeForAuth;
     }
 
