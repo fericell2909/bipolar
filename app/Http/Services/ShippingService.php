@@ -49,7 +49,7 @@ class ShippingService
             $shipping->title ?? 'General',
             $shippingFeeAsText,
             $showroomPickup,
-            $shipping->is_dni_required,
+            $shipping->is_dni_required ?? false,
         ];
     }
 

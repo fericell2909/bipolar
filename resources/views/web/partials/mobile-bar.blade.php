@@ -62,9 +62,9 @@
   </div>
   <div class="cart-white-mobile">
     <img src="{{ asset('images/cart-white.svg') }}" width="35">
-    <span class="cart-number-count-inverse">{{ $bipolarCart->count() }}</span>
+    <span class="cart-number-count-inverse">{{ isset($bipolarCart) ? $bipolarCart->count() : 0 }}</span>
     <div class="cart-inside-mobile">
-      @if($bipolarCart->count() > 0)
+      @if(isset($bipolarCart) ? $bipolarCart->count() > 0 : false)
         <ul class="cart-list">
           @foreach($bipolarCart->content() as $cartDetail)
           <li>

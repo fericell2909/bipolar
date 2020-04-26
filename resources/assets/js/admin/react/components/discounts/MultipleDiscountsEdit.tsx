@@ -116,7 +116,7 @@ class MultipleDiscountsEdit extends React.Component<any> {
     const products = dataProducts['data']['data'];
     // @ts-ignore
     const { data } = await axios
-      .get(`/ajax-admin/discount-tasks/${this.props.task}/edit`)
+      .get(`/ajax-admin/discount-tasks/${this.props.taskId}/edit`)
       .catch(console.warn);
     const task = data['data'];
 
