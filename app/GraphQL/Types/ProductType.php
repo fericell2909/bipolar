@@ -117,7 +117,7 @@ class ProductType extends GraphQLType
                 'description' => "First photo url",
                 'resolve'     => function ($root) {
                     /** @var $root Product */
-                    return optional($root->photos->first())->url;
+                    return optional($root->mainPhoto())->url;
                 },
             ],
             'colors'                => ['type' => Type::listOf(\GraphQL::type('color'))],

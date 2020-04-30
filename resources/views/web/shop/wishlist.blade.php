@@ -21,7 +21,7 @@
 						<tr>
 							<td><a href="{{ route('wishlist.remove', $wishlist->product->slug) }}"><img src="{{ asset('images/close.svg') }}" width="20"></a></td>
 							<td>
-								<img src="{{ optional($wishlist->product->photos)->first()->url }}" width="70">
+								<img src="{{ optional($wishlist->product->mainPhoto())->first()->url }}" width="70">
 							</td>
 							<td class="product-name">
 								<a href="{{ route('shop.product', $wishlist->product->slug) }}">{{ $wishlist->product->name }}</a>
@@ -43,7 +43,7 @@
 				<tr>
 					<td><a href="{{ route('wishlist.remove', $product->slug) }}"><img src="{{ asset('images/close.svg') }}" width="20"></a></td>
 					<td>
-						<img src="{{ optional($product->photos)->first()->url }}" width="70">
+						<img src="{{ optional($product->mainPhoto())->url }}" width="70">
 					</td>
 					<td class="product-name">
 						<a href="{{ route('shop.product', $product->slug) }}">{{ $product->name }}</a>

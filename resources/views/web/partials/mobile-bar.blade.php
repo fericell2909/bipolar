@@ -69,7 +69,7 @@
           @foreach($bipolarCart->content() as $cartDetail)
           <li>
             <a href="{{ route('shop.product', $cartDetail->product->slug) }}" class="product-link-cart">
-              <img src="{{ optional($cartDetail->product->photos->first())->url ?? 'https://placehold.it/300x300' }}" alt="{{ $cartDetail->product->name }}">
+              <img src="{{ optional($cartDetail->product->mainPhoto())->url ?? 'https://placehold.it/300x300' }}" alt="{{ $cartDetail->product->name }}">
               {{ $cartDetail->product->name }}
             </a>
             <span class="quantity">{{ $cartDetail->quantity }} x {{ $cartDetail->total_currency }}</span>
