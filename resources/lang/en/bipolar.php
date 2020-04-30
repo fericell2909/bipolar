@@ -226,6 +226,15 @@ return [
         'coupon_not_found' => "The cupon doesn't exist or is expired",
         'edit' => 'Edit cart',
     ],
+    'coupon' => [
+        'empty_cart' => 'There is no elements in the cart',
+        'not_exists' => "Coupon doesn't exists",
+        'out_of_dates' => 'The coupon is expired',
+        'doesnt_have_minimun' => 'For use this coupon you need a minimum of :minimum in the cart',
+        'doesnt_has_products_or_types_or_subtypes' => 'The cart has no any required products for this coupon',
+        'cant_use_for_frequency' => 'Coupon limit exceeded',
+        'user_is_using_2x1' => "You can't apply a coupon if you have a 2x1 deal in your cart",
+    ],
     'profile_edit' => [
         'my_account' => 'My account',
         'account_info' => 'Account info',

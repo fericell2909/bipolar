@@ -62,7 +62,7 @@ class CartBipolar
         // Prevent cloning
     }
 
-    public static function getInstance()
+    public static function getInstance() : CartBipolar
     {
         if (is_null(self::$instance)) {
             self::$instance = new CartBipolar();

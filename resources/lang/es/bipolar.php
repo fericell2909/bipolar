@@ -226,6 +226,15 @@ return [
         'coupon_not_found' => 'El cupón no existe o ha expirado',
         'edit' => 'Editar carrito',
     ],
+    'coupon' => [
+        'empty_cart' => 'No hay elementos en el carrito',
+        'not_exists' => 'El cupón no existe',
+        'out_of_dates' => 'El cupón se encuentra fuera del rango de fechas',
+        'doesnt_have_minimun' => 'Para usar este cupón necesita un mínimo de :minimum en el carro',
+        'doesnt_has_products_or_types_or_subtypes' => 'El carrito no tiene los requisitos para usar este cupón',
+        'cant_use_for_frequency' => 'Ya ha utilizado el cupón el máximo de veces permitidas',
+        'user_is_using_2x1' => 'No se puede aplicar cupón cuando se tiene productos 2x1',
+    ],
     'profile_edit' => [
         'my_account' => 'Mi cuenta',
         'account_info' => 'Información de tu cuenta',
