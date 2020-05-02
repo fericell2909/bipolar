@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Instances\CartBipolar;
 use App\Models\Cart;
 use App\Models\Coupon;
 
@@ -11,16 +12,19 @@ class CouponService
     private $coupon;
     private $cart;
     private $currency;
+    private $cartBipolar;
     const NOT_EXIST = 1;
     const OUT_OF_DATES = 2;
     const DOESNT_HAVE_MINIMUN = 4;
     const DOESNT_HAVE_PRODUCTS_OR_TYPES_OR_SUBTYPES = 5;
     const CANT_USE_FOR_FREQUENCY = 6;
+    const USER_IS_USING_2X1 = 7;
     const SUCCESS = 99;
 
-    public function __construct(Cart $cart, string $couponName, $currentCurrency)
+    public function __construct(CartBipolar $cartBipolar, string $couponName, $currentCurrency)
     {
-        $this->cart = $cart;
+        $this->cartBipolar = $cartBipolar;
+        $this->cart = $cartBipolar->last();
         $this->coupon = Coupon::whereCode($couponName)->first();
         $this->currency = $currentCurrency;
     }
@@ -29,6 +33,10 @@ class CouponService
     {
         if ($this->doesntExist()) {
             return self::NOT_EXIST;
+        }
+
+        if ($this->hasDeal2x1()) {
+            return self::USER_IS_USING_2X1;
         }
 
         if (!$this->isBetweenDates()) {
@@ -65,6 +73,11 @@ class CouponService
         return is_null($this->coupon);
     }
 
+    private function hasDeal2x1()
+    {
+        return $this->cartBipolar->hasDeal2x1();
+    }
+
     private function isBetweenDates() : bool
     {
         return now()->greaterThanOrEqualTo($this->coupon->begin) && now()->lessThanOrEqualTo($this->coupon->end);
@@ -75,11 +88,11 @@ class CouponService
         if ($this->currency === 'USD' && $this->coupon->minimum_usd) {
             return $this->cart->total_dolar >= $this->coupon->minimum_usd;
         }
-        
+
         if ($this->currency === 'PEN' && $this->coupon->minimum_pen) {
             return $this->cart->total >= $this->coupon->minimum_pen;
         }
-        
+
         return true;
     }
 

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Web\Ajax;
 use App\Http\Controllers\Controller;
 use App\Http\Services\CouponService;
 use App\Instances\CartBipolar;
-use App\Models\Cart;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -13,34 +12,37 @@ class CouponController extends Controller
 {
     public function add(Request $request)
     {
+        $locale = \Session::get('locale');
         if (CartBipolar::getInstance()->count() === 0) {
-            return $this->errorResponse("No hay elementos en el carrito");
+            return $this->errorResponse(__('bipolar.coupon.empty_cart'));
         }
 
         $this->validate($request, ['coupon_name' => 'required|between:1,255']);
 
         $couponName = $request->input('coupon_name');
 
-        /** @var Cart $cart */
-        $cart = CartBipolar::getInstance()->last();
+        $cart = CartBipolar::getInstance();
 
         $couponService = new CouponService($cart, $couponName, \Session::get('BIPOLAR_CURRENCY', 'PEN'));
 
         switch ($couponService->isValid()) {
             case $couponService::NOT_EXIST:
-                return $this->errorResponse("El cupón no existe");
+                return $this->errorResponse(__('bipolar.coupon.not_exists', [], $locale));
                 break;
             case $couponService::OUT_OF_DATES:
-                return $this->errorResponse("El cupón se encuentra fuera del rango de fechas");
+                return $this->errorResponse(__('bipolar.coupon.out_of_dates', [], $locale));
                 break;
             case $couponService::DOESNT_HAVE_MINIMUN:
-                return $this->errorResponse("Para usar este cupón necesita un mínimo de {$couponService->getMinimum()} en el carrito");
+                return $this->errorResponse(__('bipolar.coupon.doesnt_have_minimun', ['minimum' => $couponService->getMinimum()], $locale));
                 break;
             case $couponService::DOESNT_HAVE_PRODUCTS_OR_TYPES_OR_SUBTYPES:
-                return $this->errorResponse("El carrito no tiene los requisitos para usar este cupón");
+                return $this->errorResponse(__('bipolar.coupon.doesnt_has_products_or_types_or_subtypes', [], $locale));
                 break;
             case $couponService::CANT_USE_FOR_FREQUENCY:
-                return $this->errorResponse("Ya ha utilizado el cupón el máximo de veces permitidas");
+                return $this->errorResponse(__('bipolar.coupon.cant_use_for_frequency', [], $locale));
+                break;
+            case $couponService::USER_IS_USING_2X1:
+                return $this->errorResponse(__('bipolar.coupon.user_is_using_2x1', [], $locale));
                 break;
         }
 
