@@ -14,6 +14,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/', 'Admin\BuysController@index')->name('buys.index');
         Route::get('{buyId}/edit', 'Admin\BuysController@edit')->name('buys.edit');
         Route::post('{buyId}/edit', 'Admin\BuysController@update');
+        Route::get("{buyId}/resend-email", 'Admin\BuysController@resendMail')->name('buys.resend-email');
     });
 
     Route::prefix('users')->group(function () {

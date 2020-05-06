@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\BuyConfirmation;
 use App\Mail\BuySent;
 use App\Models\Buy;
 use Illuminate\Http\Request;
@@ -76,5 +77,14 @@ class BuysController extends Controller
         flash()->success('Actualizado con éxito');
 
         return redirect()->route('buys.index');
+    }
+
+    public function resendMail(int $buyId)
+    {
+        $buy = Buy::findOrFail($buyId);
+
+        \Mail::to($buy->user->email)->send(new BuyConfirmation($buy));
+
+        return back();
     }
 }

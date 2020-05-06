@@ -41,21 +41,33 @@
                     <td class="align-middle">{{ $buy->total }} {{ $buy->currency }}</td>
                     <td class="text-center align-middle">{!! $buy->showroom ? "<i class='fas fa-check'></i>" : null !!}</td>
                     <td class="align-middle">
-                      <div class="button-group">
-                        <a href="{{ route('buys.edit', $buy->id) }}" class="btn btn-dark btn-sm btn-rounded">
-                          <i class="fas fa-fw fa-edit"></i> Editar
-                        </a>
-                        @if($buy->bsale_document_url)
-                          <a href="{{ $buy->bsale_document_url }}" target="_blank" class="btn btn-dark btn-sm btn-rounded">
-                            Ver boleta
+                      <div class="dropdown">
+                        <button class="btn btn-dark btn-sm btn-rounded dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Acciones
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          @if($buy->bsale_document_url)
+                            <a href="{{ $buy->bsale_document_url }}" target="_blank" class="dropdown-item">
+                              <i class="fad fa-money-bill-alt"></i> Ver boleta
+                            </a>
+                            <div class="dropdown-divider"></div>
+                          @endif
+                          <a href="{{ route('buys.edit', $buy->id) }}" class="dropdown-item">
+                            <i class="fas fa-fw fa-edit"></i> Editar
                           </a>
-                        @endif
-                        <button class="btn btn-dark btn-sm btn-rounded" data-target="#payments_{{ $buy->id }}" data-toggle="modal">
-                          <i class="fas fa-credit-card"></i> Intentos de pago
-                        </button>
-                        <button class="btn btn-dark btn-rounded btn-sm" data-target="#buy_details_{{ $buy->id }}" data-toggle="modal">
-                          <i class="fas fa-eye"></i> Ver
-                        </button>
+                          <a href="#" class="dropdown-item" data-target="#buy_resend_email_{{ $buy->id }}" data-toggle="modal">
+                            <i class="fas fa-envelope"></i> Reenviar correo
+                          </a>
+                          <a href="#" class="dropdown-item" data-target="#payments_{{ $buy->id }}" data-toggle="modal">
+                            <i class="fas fa-credit-card"></i> Intentos de pago
+                          </a>
+                          <a href="#" class="dropdown-item" data-target="#buy_details_{{ $buy->id }}" data-toggle="modal">
+                            <i class="fas fa-eye"></i> Detalles
+                          </a>
+                        </div>
+                      </div>
+                      <div class="button-group">
+
                       </div>
                     </td>
                   </tr>
@@ -66,6 +78,7 @@
           {!! $buys->links() !!}
           @each('admin.partials.buy_details', $buys, 'buy')
           @each('admin.partials.payments', $buys, 'buy')
+          @each('admin.partials.buy_admin_resend_email', $buys, 'buy')
         </div>
       </div>
     </div>
