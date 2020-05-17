@@ -576,6 +576,7 @@ namespace App\Models{
  * @property float $padding_bottom_desktop
  * @property string $font
  * @property string $color
+ * @property string|null $background_color
  * @property float $font_size_mobile
  * @property float $font_size_tablet
  * @property float $font_size_desktop
@@ -594,6 +595,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereBackgroundColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereBeginDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereCreatedAt($value)

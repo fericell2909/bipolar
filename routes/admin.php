@@ -83,6 +83,16 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/{banner}/preview', 'Admin\BannersController@preview')->name('banners.preview');
     });
 
+    Route::prefix('banners-colors')->group(function () {
+        Route::get('/', 'Admin\BannerColorController@index')->name('banners_colors.index');
+        Route::get('new', 'Admin\BannerColorController@create')->name('banners_colors.create');
+        Route::post('new', 'Admin\BannerColorController@store');
+        Route::get('/{banner}/edit', 'Admin\BannerColorController@edit')->name('banners_colors.edit');
+        Route::post('/{banner}/edit', 'Admin\BannerColorController@update');
+        Route::get('order', 'Admin\BannerColorController@order')->name('banners_colors.order');
+//        Route::get('/{banner}/preview', 'Admin\BannersController@preview')->name('banners.preview');
+    });
+
     Route::prefix('pages')->group(function () {
         Route::get('/', 'Admin\PageController@index')->name('page_admin.index');
         Route::get('new', 'Admin\PageController@create')->name('page_admin.create');

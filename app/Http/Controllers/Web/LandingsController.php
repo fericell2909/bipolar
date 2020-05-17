@@ -45,6 +45,7 @@ class LandingsController extends Controller
         $settings = Settings::first();
         $imageBackground = Image::whereActive(true)->first();
         $banners = Banner::orderBy('order')
+            ->whereNull('background_color')
             ->where('state_id', config('constants.STATE_ACTIVE_ID'))
             ->where('begin_date', '<=', now())
             ->where('end_date', '>=', now())

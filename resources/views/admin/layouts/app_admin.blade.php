@@ -194,6 +194,18 @@
               </li>
               <li>
                 <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                  <i class="fad fa-fw fa-palette"></i>
+                  <span class="hide-menu"> Color Banners</span>
+                </a>
+                <ul aria-expanded="false" class="collapse">
+                  <li><a href="{{ route('banners_colors.create') }}">Nuevo banner</a></li>
+                  <li><a href="{{ route('banners_colors.index') }}">Listar banners</a></li>
+                  <li><a href="{{ route('banners_colors.order') }}">Ordenar</a></li>
+                </ul>
+              </li>
+
+              <li>
+                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                   <i class="fas fa-fw fa-file"></i>
                   <span class="hide-menu"> Páginas</span>
                 </a>
