@@ -50,6 +50,12 @@ class LandingsController extends Controller
             ->where('begin_date', '<=', now())
             ->where('end_date', '>=', now())
             ->get();
+        $bannerColors = Banner::orderBy('order')
+            ->whereNotNull('background_color')
+            ->where('state_id', config('constants.STATE_ACTIVE_ID'))
+            ->where('begin_date', '<=', now())
+            ->where('end_date', '>=', now())
+            ->get();
 
         if ($banners->count()) {
             $image = $banners->first()->url;
@@ -59,7 +65,7 @@ class LandingsController extends Controller
             $this->addSeoDefault();
         }
 
-        return view('welcome', compact('banners', 'homePosts', 'settings', 'posts', 'imageBackground'));
+        return view('welcome', compact('banners', 'bannerColors', 'homePosts', 'settings', 'posts', 'imageBackground'));
     }
 
     public function changeCurrency(Request $request)
@@ -122,6 +128,7 @@ class LandingsController extends Controller
                 $date = explode('-', $request->input('archive'));
                 $year = array_first($date);
                 $month = array_last($date);
+
                 return $wherePosts->whereYear('created_at', $year)->whereMonth('created_at', $month);
             })
             ->paginate(10);
@@ -199,6 +206,7 @@ class LandingsController extends Controller
         Date::setLocale(\LaravelLocalization::getCurrentLocale());
         $yearMonthSelect = $yearMonths->mapWithKeys(function ($element) {
             $dateMonth = Date::createFromFormat('Y-m', "{$element->year_post}-{$element->month_post}");
+
             return ["{$element->year_post}-{$element->month_post}" => mb_strtoupper($dateMonth->format('F Y'))];
         })->prepend(__('bipolar.blog.select_month'), '');
 

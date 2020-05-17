@@ -46,6 +46,13 @@ $(function() {
     loop: true,
   });
 
+  $('.owl-carousel-banner-colors').owlCarousel({
+    loop: true,
+    items: 1,
+    autoplay: true,
+    autoplayTimeout: 4000,
+  });
+
   // Historic change image
   $('#showHistoricModal').on('show.bs.modal', function(event) {
     const $button = $(event.relatedTarget);
@@ -67,7 +74,6 @@ $(function() {
       const $bipolarNavigation = $grandHeader.children('.bipolar-navigation');
       const $container = $bipolarNavigation.children('.container');
       const $logoInHeader = $container.find('.bipolar-logo');
-      //let $grandHeaderAlternate = $('.bipolar-alternate-grand-header');
       const isLongScroll = $(this).scrollTop() > $grandHeader.height();
       const homeIsLongScroll = $(this).scrollTop() > $transparentHeader.height();
       if (isLongScroll === true || homeIsLongScroll === true) {
@@ -76,14 +82,12 @@ $(function() {
         $logoInHeader.removeClass('hidden');
         $container.removeClass('resized-container');
         $bipolarNavigation.addClass('has-shadow').addClass('has-background');
-        //$grandHeaderAlternate.removeClass('hidden');
       } else {
         $transparentHeader.removeClass('hidden');
         $grandHeader.removeClass('bipolar-grand-header-hidden');
         $logoInHeader.addClass('hidden');
         $container.addClass('resized-container');
         $bipolarNavigation.removeClass('has-shadow').removeClass('has-background');
-        //$grandHeaderAlternate.addClass('hidden');
       }
     });
   });
