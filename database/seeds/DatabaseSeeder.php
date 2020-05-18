@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             $this->call(CountryStatesTableSeeder::class);
             $this->call(StateSeeder::class);
         } else {
+            $this->call(PageSeeder::class);
             $this->call(CountriesTableSeeder::class);
             $this->call(CountryStatesTableSeeder::class);
             $this->call(StateSeeder::class);
