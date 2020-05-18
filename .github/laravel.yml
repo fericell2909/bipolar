@@ -22,6 +22,6 @@ jobs:
           mkdir -p database
           touch database/database.sqlite
       - name: Running migrations at Sqlite
-          run: php artisan sqlite:fresh
+        run: php artisan sqlite:fresh
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: vendor/bin/phpunit
