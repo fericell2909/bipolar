@@ -132,10 +132,10 @@ class CartBipolar
     /**
      * @return \Illuminate\Database\Eloquent\Collection|array
      */
-    public function content()
+    public function content() : Collection
     {
         if ($this->count() === 0) {
-            return [];
+            return collect([]);
         }
 
         $this->cart->details->each(function ($detail) {
@@ -144,7 +144,7 @@ class CartBipolar
                 return $detail->delete();
             }
 
-            return;
+            return null;
         });
 
         return $this->cart->details->sortBy('order');
