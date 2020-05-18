@@ -20,7 +20,7 @@ class CartBipolarTest extends TestCase
     public function setUp() : void
     {
         parent::setUp();
-        $this->cart = new CartBipolar();
+        $this->cart = CartBipolar::getInstance();
     }
 
     public function test_add_coupon_quantity_to_cart()

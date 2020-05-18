@@ -1,13 +1,17 @@
 .bipolar-grand-header {
-  position: absolute;
+  position: relative;
   width: 100%;
   z-index: $z-index-navbar;
   top: 0;
   transition: all 0.5s;
 
   &.bipolar-grand-header-hidden {
-    position: fixed;
+    position: fixed !important;
     transform: translateY(-164px);
+  }
+
+  &.absolute-for-home {
+    position: absolute;
   }
 
   .bipolar-navigation {

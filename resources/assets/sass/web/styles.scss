@@ -4,7 +4,6 @@ body {
   @include gotham_light_font;
   font-size: 13px;
   color: $bipolar-text-gray;
-  padding-top: 224px;
   padding-bottom: 363px;
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
@@ -433,7 +432,7 @@ a {
 
 .bipolar-container {
   @extend .container;
-  margin-top: 20px;
+  padding-top: 20px;
   margin-bottom: 20px;
   padding-bottom: 20px;
 
