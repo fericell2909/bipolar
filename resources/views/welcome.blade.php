@@ -15,17 +15,7 @@
     <script async src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script>
   </head>
   <body class="no-top">
-    <div class="owl-carousel owl-carousel-banner-colors">
-      @foreach($bannerColors as $bannerColor)
-        <a class="owl-carousel-banner-colors-item"
-           href="{{ $bannerColor->link }}"
-           style="background-color: {{ $bannerColor->background_color }};
-               color: {{ $bannerColor->color }};
-               font-family: {{ $bannerColor->font }}">
-          {{ $bannerColor->text }}
-        </a>
-      @endforeach
-    </div>
+    @includeWhen(filled($bannerColors), 'web.partials.banner-colors', ['bannerColors' => $bannerColors])
     <div class="bipolar-wrapper">
       @includeWhen(\Agent::isDesktop() || \Agent::isTablet(), 'web.partials.main-bar', ['background' => false])
       @includeWhen(\Agent::isMobile(), 'web.partials.mobile-bar')

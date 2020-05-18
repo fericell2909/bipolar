@@ -50,12 +50,6 @@ class LandingsController extends Controller
             ->where('begin_date', '<=', now())
             ->where('end_date', '>=', now())
             ->get();
-        $bannerColors = Banner::orderBy('order')
-            ->whereNotNull('background_color')
-            ->where('state_id', config('constants.STATE_ACTIVE_ID'))
-            ->where('begin_date', '<=', now())
-            ->where('end_date', '>=', now())
-            ->get();
 
         if ($banners->count()) {
             $image = $banners->first()->url;
@@ -65,7 +59,7 @@ class LandingsController extends Controller
             $this->addSeoDefault();
         }
 
-        return view('welcome', compact('banners', 'bannerColors', 'homePosts', 'settings', 'posts', 'imageBackground'));
+        return view('welcome', compact('banners', 'homePosts', 'settings', 'posts', 'imageBackground'));
     }
 
     public function changeCurrency(Request $request)
