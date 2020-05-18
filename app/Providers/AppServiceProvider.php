@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Banner;
 use App\Models\Page;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Telescope\Telescope;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
 
         \View::share('pagesForFooter', $pagesForFooter);
         \View::share('bannerColors', $bannerColors);
+        Telescope::ignoreMigrations();
     }
 
     /**

@@ -36,6 +36,13 @@ class CreateCartDetails extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('cart_details', function (Blueprint $table) {
+            if ((\DB::getDriverName() !== 'sqlite')) {
+                $table->dropForeign(['cart_id']);
+                $table->dropForeign(['product_id']);
+            }
+        });
+
+        Schema::dropIfExists('cart_details');
     }
 }

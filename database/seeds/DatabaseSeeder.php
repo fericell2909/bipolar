@@ -19,10 +19,8 @@ class DatabaseSeeder extends Seeder
             $this->call(UserTableSeeder::class);
             $this->call(SizeSeeder::class);
             $this->call(ColorSeeder::class);
-            //$this->call(PhotoSeeder::class);
             $this->call(StateSeeder::class);
-            $this->call(TypeSeeder::class);
-            $this->call(SubtypeSeeder::class);
+            $this->call(TypeAndSubTypeSeeder::class);
             $this->call(ProductSeeder::class);
             $this->call(HomePostSeeder::class);
             $this->call(BannerSeeder::class);
