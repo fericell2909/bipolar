@@ -6,11 +6,14 @@ use App\Instances\CartBipolar;
 use App\Models\Buy;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mockery\Mock;
 use Tests\TestCase;
 
 class CartsJsonTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_add_product_without_content()
     {
         $response = $this->postJson('/ajax/cart/product');

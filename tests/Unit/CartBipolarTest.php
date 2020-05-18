@@ -6,13 +6,13 @@ use App\Instances\CartBipolar;
 use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\Subtype;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 
 class CartBipolarTest extends TestCase
 {
-    use WithFaker, DatabaseTransactions;
+    use WithFaker, RefreshDatabase;
 
     /** @var CartBipolar */
     private $cart;
@@ -22,6 +22,11 @@ class CartBipolarTest extends TestCase
         parent::setUp();
         $this->cart = CartBipolar::getInstance();
     }
+    // TODO: Test when you remove a product
+    // TODO: Test when you remove a detail
+    // TODO: Test when you add a 2x1 product
+    // TODO: Test if cart is converted to user
+    // TODO: Test price calculation after add / removing products
 
     public function test_add_single_product_to_cart()
     {
@@ -32,11 +37,11 @@ class CartBipolarTest extends TestCase
 
         $this->assertTrue($cartDetail->quantity === $quantity);
         $this->assertTrue($this->cart->count() === 1);
+        $this->cart->clean();
     }
 
     public function test_add_multiple_products_to_cart()
     {
-        $this->cart->clean();
         $randomProducts = $this->faker->numberBetween(1, 3);
 
         for ($productOrder = 1; $productOrder <= $randomProducts; $productOrder++) {
@@ -47,6 +52,7 @@ class CartBipolarTest extends TestCase
         }
 
         $this->assertTrue($this->cart->count() === $randomProducts);
+        $this->cart->clean();
     }
 
     public function test_add_coupon_quantity_to_cart()
