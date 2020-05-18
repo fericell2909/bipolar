@@ -13,6 +13,7 @@ class CouponController extends Controller
     public function add(Request $request)
     {
         $locale = \Session::get('locale');
+
         if (CartBipolar::getInstance()->count() === 0) {
             return $this->errorResponse(__('bipolar.coupon.empty_cart'));
         }
@@ -25,25 +26,10 @@ class CouponController extends Controller
 
         $couponService = new CouponService($cart, $couponName, \Session::get('BIPOLAR_CURRENCY', 'PEN'));
 
-        switch ($couponService->isValid()) {
-            case $couponService::NOT_EXIST:
-                return $this->errorResponse(__('bipolar.coupon.not_exists', [], $locale));
-                break;
-            case $couponService::OUT_OF_DATES:
-                return $this->errorResponse(__('bipolar.coupon.out_of_dates', [], $locale));
-                break;
-            case $couponService::DOESNT_HAVE_MINIMUN:
-                return $this->errorResponse(__('bipolar.coupon.doesnt_have_minimun', ['minimum' => $couponService->getMinimum()], $locale));
-                break;
-            case $couponService::DOESNT_HAVE_PRODUCTS_OR_TYPES_OR_SUBTYPES:
-                return $this->errorResponse(__('bipolar.coupon.doesnt_has_products_or_types_or_subtypes', [], $locale));
-                break;
-            case $couponService::CANT_USE_FOR_FREQUENCY:
-                return $this->errorResponse(__('bipolar.coupon.cant_use_for_frequency', [], $locale));
-                break;
-            case $couponService::USER_IS_USING_2X1:
-                return $this->errorResponse(__('bipolar.coupon.user_is_using_2x1', [], $locale));
-                break;
+        $couponIsValidResponse = $couponService->isValid();
+
+        if ($couponIsValidResponse !== $couponService::SUCCESS) {
+            return $this->errorResponse($couponService->resolveError($couponIsValidResponse, $locale));
         }
 
         CartBipolar::getInstance()->addCoupon($couponService->getCoupon());

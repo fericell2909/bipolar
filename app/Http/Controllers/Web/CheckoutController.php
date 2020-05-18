@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Events\SaleSuccessful;
 use App\Http\Controllers\Controller;
+use App\Http\Services\CouponService;
 use App\Http\Services\ShippingService;
 use App\Models\Cart;
 use App\Models\CartDetail;
@@ -19,7 +20,7 @@ use Jenssegers\Agent\Agent;
 
 class CheckoutController extends Controller
 {
-    public function checkout()
+    public function checkout(Request $request)
     {
         if (CartBipolar::getInstance()->count() === 0) {
             return redirect(route('shop'));
@@ -27,6 +28,16 @@ class CheckoutController extends Controller
 
         /** @var Cart $cart */
         $cart = CartBipolar::getInstance()->model();
+
+        if ($request->filled('promo')) {
+            $couponService = new CouponService($cart, $request->input('promo'), \Session::get('BIPOLAR_CURRENCY', 'PEN'));
+
+            $couponIsValidResponse = $couponService->isValid();
+
+            if ($couponIsValidResponse !== $couponService::SUCCESS) {
+                return flash()->error($couponService->resolveError($couponIsValidResponse, \Session::get('locale')));
+            }
+        }
 
         $countries = Country::orderBy('name')->get()->mapWithKeys(function ($country) {
             return [$country->id => mb_strtoupper($country->name)];

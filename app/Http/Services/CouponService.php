@@ -149,4 +149,28 @@ class CouponService
 
         return $usedCoupons >= $this->coupon->frequency;
     }
+
+    public function resolveError(int $response, string $locale) : string
+    {
+        switch ($response) {
+            case self::NOT_EXIST:
+                return __('bipolar.coupon.not_exists', [], $locale);
+                break;
+            case self::OUT_OF_DATES:
+                return __('bipolar.coupon.out_of_dates', [], $locale);
+                break;
+            case self::DOESNT_HAVE_MINIMUN:
+                return __('bipolar.coupon.doesnt_have_minimun', ['minimum' => $this->getMinimum()], $locale);
+                break;
+            case self::DOESNT_HAVE_PRODUCTS_OR_TYPES_OR_SUBTYPES:
+                return __('bipolar.coupon.doesnt_has_products_or_types_or_subtypes', [], $locale);
+                break;
+            case self::CANT_USE_FOR_FREQUENCY:
+                return __('bipolar.coupon.cant_use_for_frequency', [], $locale);
+                break;
+            case self::USER_IS_USING_2X1:
+                return __('bipolar.coupon.user_is_using_2x1', [], $locale);
+                break;
+        }
+    }
 }
