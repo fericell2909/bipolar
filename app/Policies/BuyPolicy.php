@@ -12,11 +12,11 @@ class BuyPolicy
 
     public function view(User $user, Buy $buy)
     {
-        return $buy->user_id === $user->id;
+        return (int)$buy->user_id === $user->id;
     }
 
     public function destroy(User $user, Buy $buy)
     {
-        return $buy->user_id === $user->id;
+        return (int)$buy->user_id === $user->id;
     }
 }
