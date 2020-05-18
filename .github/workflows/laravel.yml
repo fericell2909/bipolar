@@ -20,7 +20,7 @@ jobs:
       - name: Create Database
         run: |
           mkdir -p database
-          touch database/database.sqlite
+          touch database/bipolar.sqlite
       - name: Running migrations at Sqlite
         run: php artisan sqlite:fresh
       - name: Execute tests (Unit and Feature tests) via PHPUnit
