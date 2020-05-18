@@ -17,10 +17,36 @@ class CartBipolarTest extends TestCase
     /** @var CartBipolar */
     private $cart;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
         $this->cart = CartBipolar::getInstance();
+    }
+
+    public function test_add_single_product_to_cart()
+    {
+        $product = factory(Product::class)->create();
+        $quantity = $this->faker->numberBetween(1, 10);
+
+        $cartDetail = $this->cart->add($quantity, $product);
+
+        $this->assertTrue($cartDetail->quantity === $quantity);
+        $this->assertTrue($this->cart->count() === 1);
+    }
+
+    public function test_add_multiple_products_to_cart()
+    {
+        $this->cart->clean();
+        $randomProducts = $this->faker->numberBetween(1, 3);
+
+        for ($productOrder = 1; $productOrder <= $randomProducts; $productOrder++) {
+            $product = factory(Product::class)->create();
+            $quantity = $this->faker->numberBetween(1, 10);
+            $cartDetail = $this->cart->add($quantity, $product);
+            $this->assertTrue($cartDetail->quantity === $quantity);
+        }
+
+        $this->assertTrue($this->cart->count() === $randomProducts);
     }
 
     public function test_add_coupon_quantity_to_cart()

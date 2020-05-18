@@ -30,6 +30,11 @@ class CartBipolar
 
     private function __construct()
     {
+        $this->init();
+    }
+
+    private function init()
+    {
         if (Auth::check()) {
             $this->cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
         } else {
@@ -62,7 +67,7 @@ class CartBipolar
         // Prevent cloning
     }
 
-    public static function getInstance() : CartBipolar
+    public static function getInstance(): CartBipolar
     {
         if (is_null(self::$instance)) {
             self::$instance = new CartBipolar();
@@ -93,6 +98,8 @@ class CartBipolar
 
         $cartDetail->quantity = $cartDetail->quantity + $quantity;
         $cartDetail->save();
+
+        $this->cart->details->push($cartDetail);
 
         return $cartDetail;
     }
@@ -132,7 +139,7 @@ class CartBipolar
     /**
      * @return \Illuminate\Database\Eloquent\Collection|array
      */
-    public function content() : Collection
+    public function content(): Collection
     {
         if ($this->count() === 0) {
             return collect([]);
@@ -243,6 +250,20 @@ class CartBipolar
         $this->recalculate();
 
         return true;
+    }
+
+    // Used for testing
+    public function clean(): void
+    {
+        if ($this->cart->count() === 0) {
+            return;
+        }
+
+        $this->cart->details->each(function ($detail) {
+            $detail->delete();
+        });
+
+        $this->init();
     }
 
     public function getSubtotalBySessionCurrency(): float
