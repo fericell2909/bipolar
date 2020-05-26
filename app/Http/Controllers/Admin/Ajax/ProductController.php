@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Ajax;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductNewRequest;
 use App\Http\Resources\AdminStockResource;
+use App\Http\Services\BSale;
 use App\Models\Color;
 use App\Models\Label;
 use App\Models\Product;
@@ -280,6 +281,7 @@ class ProductController extends Controller
     public function stocks($productHashId)
     {
         $product = Product::findByHash($productHashId);
+        $product->load('stocks.size');
 
         return AdminStockResource::collection($product->stocks);
     }
@@ -288,13 +290,24 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'bsaleStockIds' => 'required|array',
-            'quantity'      => 'required',
         ]);
 
         /** @var Stock $productStock */
         $productStock = Stock::findOrFail($stockId);
-        $productStock->bsale_stock_ids = $request->input('bsaleStockIds');
-        $productStock->quantity = $request->input('quantity');
+
+        $variantIds = $request->input('bsaleStockIds');
+        $quantity = 0;
+        $productStock->bsale_stock_ids = $variantIds;
+        // Get stocks and store quantity from Bsale
+        foreach ($variantIds as $variantId) {
+            $response = BSale::stocksGet($variantId);
+            if (!$response->isSuccess()) {
+                continue;
+            }
+            $items = collect(collect($response->json())->get('items'));
+            $quantity += data_get($items->first(), 'quantityAvailable', 0);
+        }
+        $productStock->quantity = $quantity;
         $productStock->save();
 
         return new AdminStockResource($productStock);

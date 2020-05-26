@@ -6,70 +6,117 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
+import { IStock } from '@interfaces/IStock';
 
-class BipolarProductStocks extends React.Component<any> {
-  constructor(props) {
-    super(props);
-  }
+interface ISelectOption {
+  label: string;
+  value: number;
+}
 
-  state = {
+interface Props {
+  productHashId: string;
+}
+
+interface State {
+  stocks: IStock[];
+  stocksForSelect: ISelectOption[];
+  stockSelected: ISelectOption;
+  variantsSelected: ISelectOption[];
+  loading: boolean;
+  searchProduct: string;
+  productId: number;
+  productVariantsIds: string[];
+  isVariantsDisabled: boolean;
+  showSecondOption: boolean;
+}
+
+class BipolarProductStocks extends React.Component<Props, State> {
+  state: State = {
     stocks: [],
-    stocksBsale: [],
+    stocksForSelect: [],
+    stockSelected: null,
+    variantsSelected: [],
     loading: true,
     searchProduct: '',
     productId: 0,
-    productVariants: [],
-    variantsDisabled: true,
+    productVariantsIds: [],
+    isVariantsDisabled: true,
+    showSecondOption: false,
   };
 
-  onUpdateStock = () => {
+  refetchStock = () => {
     return this.getStocksByProduct().then(response => {
       return this.setState({ stocks: response.data.data });
     });
   };
 
   getStocksByProduct = () => {
-    return axios.get(`/ajax-admin/products/${this.props.productHashId}/stocks`);
+    return axios.get<{ data: IStock[] }>(`/ajax-admin/products/${this.props.productHashId}/stocks`);
   };
 
-  onSelectProduct = (element: { value: number; label: string }) =>
+  toggleSearchEngine = () => this.setState({ showSecondOption: !this.state.showSecondOption });
+
+  onSelectProduct = (element: ISelectOption) =>
     axios.get(`/ajax-admin/bsale/products/${element.value}/variants`).then(response => {
       this.setState({
         productId: element.value,
-        productVariants: response.data,
-        variantsDisabled: false,
+        productVariantsIds: response.data,
+        isVariantsDisabled: false,
       });
     });
 
-  loadProducts = (text: string) =>
+  onSelectVariant = (elements: ISelectOption[]) => this.setState({ variantsSelected: elements });
+
+  onSelectStock = async (element: ISelectOption) => {
+    const bsaleStockIds =
+      this.state.stocks.find(stock => stock.id === element.value)?.bsale_stock_ids ?? [];
+    const { data } = await this.getStockInfoFromBsale(bsaleStockIds);
+    this.setState({ variantsSelected: data, stockSelected: element });
+  };
+
+  searchProducts = (text: string) =>
     axios.get(`/ajax-admin/bsale/products/search?text=${text}`).then(response => response.data);
 
-  componentDidMount() {
-    // const getBsaleStocks = axios.get('/ajax-admin/bsale/products');
-    //
-    // axios.all([getBsaleStocks, this.getStocksByProduct()]).then(
-    //   axios.spread((responseBsale, responseStocks) => {
-    //     this.setState({
-    //       stocksBsale: responseBsale.data,
-    //       stocks: responseStocks.data.data,
-    //       loading: false,
-    //     });
-    //   })
-    // );
+  searchCrawlerProducts = (text: string) =>
+    axios
+      .get(`/ajax-admin/bsale/products-crawler/search?text=${text}`)
+      .then(response => response.data);
 
-    return this.setState({ loading: false });
+  getStockInfoFromBsale = (bsaleStockIds: number[]) =>
+    axios.get<ISelectOption[]>(`/ajax-admin/bsale/variants?variants=${bsaleStockIds.join(',')}`);
+
+  saveStockData = async () => {
+    if (this.state.variantsSelected.length === 0 || this.state.stockSelected === null) {
+      return alert('No ha seleccionado ningun stock');
+    }
+
+    const variantIds = this.state.variantsSelected.map(stock => stock.value);
+    await axios
+      .post(`/ajax-admin/stocks/${this.state.stockSelected.value}`, {
+        bsaleStockIds: variantIds,
+      })
+      .then(() => this.refetchStock());
+  };
+
+  componentDidMount() {
+    this.getStocksByProduct().then(responseStocks => {
+      const stocksForSelect = responseStocks.data.data.map(stock => ({
+        label: stock.size_name,
+        value: stock.id,
+      }));
+      this.setState({
+        stocks: responseStocks.data.data,
+        stocksForSelect,
+        loading: false,
+      });
+    });
   }
 
   render() {
     const stocks = this.state.stocks.length ? (
       this.state.stocks.map(stock => {
         return (
-          <StockRow
-            key={stock['id']}
-            stock={stock}
-            onUpdate={this.onUpdateStock}
-            stocksBsale={this.state.stocksBsale}
-          />
+          <StockRow key={stock.id} stock={stock} getStockFromBsale={this.getStockInfoFromBsale} />
         );
       })
     ) : (
@@ -78,35 +125,82 @@ class BipolarProductStocks extends React.Component<any> {
       </tr>
     );
 
-    /**
-     * Esto si funciona, lo voy a comentar por si banean mi solucion
-     */
-    const ProductsAndVariantsSelect =
-      this.state.loading === true ? (
-        <div className="row">
-          <div className="col-4">
-            <AsyncSelect
-              isMulti={false}
-              loadOptions={this.loadProducts}
-              onChange={this.onSelectProduct}
-            />
-          </div>
-          <div className="col-4">
-            <Select
-              isMulti={true}
-              options={this.state.productVariants}
-              isDisabled={this.state.variantsDisabled}
-            />
+    const StockSelector = (
+      <Select
+        options={this.state.stocksForSelect}
+        onChange={this.onSelectStock}
+        value={this.state.stockSelected}
+        placeholder="Talla"
+      />
+    );
+
+    const UpdateButton = (
+      <button
+        onClick={this.saveStockData}
+        className="btn btn-dark"
+        disabled={this.state.stockSelected === null}>
+        Actualizar
+      </button>
+    );
+
+    const SearchEngineCrawler = (
+      <div className="row mb-3">
+        <div className="col-7">
+          <div className="row">
+            <div className="col-3">{StockSelector}</div>
+            <div className="col-9">
+              <AsyncSelect
+                isMulti={true}
+                loadOptions={this.searchCrawlerProducts}
+                value={this.state.variantsSelected}
+                placeholder="Buscar producto"
+                onChange={this.onSelectVariant}
+                isDisabled={this.state.stockSelected === null}
+              />
+            </div>
           </div>
         </div>
-      ) : null;
+        <div className="col-2 d-flex">{UpdateButton}</div>
+        <div className="col-3 d-flex justify-content-end">
+          <button onClick={this.toggleSearchEngine} className="btn btn-outline-info">
+            ¿Buscador no funciona?
+          </button>
+        </div>
+      </div>
+    );
+
+    const SearchEngineAPI = (
+      <div className="row mb-3">
+        <div className="col-2">{StockSelector}</div>
+        <div className="col-4">
+          <AsyncSelect
+            isMulti={false}
+            loadOptions={this.searchProducts}
+            onChange={this.onSelectProduct}
+          />
+        </div>
+        <div className="col-4">
+          <Select
+            isMulti={true}
+            options={this.state.productVariantsIds}
+            value={this.state.variantsSelected}
+            onChange={this.onSelectVariant}
+            isDisabled={this.state.isVariantsDisabled}
+          />
+        </div>
+        <div className="col-2">
+          <div className="col-2 d-flex">{UpdateButton}</div>
+        </div>
+      </div>
+    );
 
     return (
       <div>
-        {ProductsAndVariantsSelect}
+        {SearchEngineCrawler}
+        {this.state.showSecondOption ? SearchEngineAPI : null}
         {this.state.loading ? (
           <div className="text-center">
-            <FontAwesomeIcon icon={faCircleNotch} spin /> Cargando contenido desde Bsale...{' '}
+            <FontAwesomeIcon icon={faCircleNotch} spin /> Cargando contenido...{' '}
             <FontAwesomeIcon icon={faCircleNotch} spin />
           </div>
         ) : (
@@ -116,7 +210,6 @@ class BipolarProductStocks extends React.Component<any> {
                 <th className="text-center">Talla</th>
                 <th className="text-center">Cantidad</th>
                 <th>Producto en Bsale</th>
-                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>{stocks}</tbody>

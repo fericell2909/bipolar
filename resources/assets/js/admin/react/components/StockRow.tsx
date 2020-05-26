@@ -1,97 +1,73 @@
 import React from 'react';
-import axios from 'axios';
+import { AxiosResponse } from 'axios';
+import { IStock } from '@interfaces/IStock';
 import Select from 'react-select';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-class StockRow extends React.Component<any> {
-  state = {
-    selectedBsaleQuantity: 0,
-    mappedStocks: [],
-    selectedStocks: [],
+interface Props {
+  stock: IStock;
+  getStockFromBsale: (bsaleStockIds: number[]) => Promise<AxiosResponse>;
+}
+
+interface State {
+  hasGetStocksFromBsale: boolean;
+  infoFromBsale: { label: string; value: number }[];
+  isLoading: boolean;
+}
+
+class StockRow extends React.Component<Props, State> {
+  state: State = {
+    hasGetStocksFromBsale: false,
+    infoFromBsale: [],
+    isLoading: false,
   };
 
-  handleSelectStock = async (selectedStocks = []) => {
-    await this.setState({ selectedStocks });
-
-    if (selectedStocks.length) {
-      let totalQuantity = 0;
-      const selectedStockIds = selectedStocks.map(thisStock => thisStock.value);
-      this.props.stocksBsale.filter(stock => {
-        if (selectedStockIds.includes(stock.id)) {
-          totalQuantity += stock.quantity;
-        }
-      });
-      return this.setState({ selectedBsaleQuantity: totalQuantity });
-    }
+  getStockInfoFromBsale = (bsaleStockIds: number[]) => {
+    this.setState({ isLoading: true });
+    return this.props.getStockFromBsale(bsaleStockIds).then(response =>
+      this.setState({
+        infoFromBsale: response.data,
+        hasGetStocksFromBsale: true,
+        isLoading: false,
+      })
+    );
   };
-
-  saveStockData = async () => {
-    if (this.state.selectedStocks.length === 0) {
-      return alert('No ha seleccionado ningun stock');
-    }
-    let totalQuantity = 0;
-
-    const bsaleStockIds = this.state.selectedStocks.map(stock => parseInt(stock['value']));
-
-    this.props.stocksBsale.filter(stock => {
-      if (bsaleStockIds.includes(stock.id)) {
-        totalQuantity += stock.quantity;
-      }
-    });
-
-    await axios.post(`/ajax-admin/stocks/${this.props.stock['id']}`, {
-      bsaleStockIds,
-      quantity: totalQuantity,
-    });
-
-    this.setState({ selectedBsaleQuantity: 0 });
-
-    return this.props.onUpdate();
-  };
-
-  mapStock = async () => {
-    const stocks = this.props.stocksBsale.map(stock => ({ value: stock.id, label: stock.text }));
-    return this.setState({ mappedStocks: stocks });
-  };
-
-  async componentDidMount() {
-    await this.mapStock();
-    const bsaleStockIdsFromStock = this.props.stock['bsale_stock_ids'];
-    if (bsaleStockIdsFromStock.length) {
-      const selectedStocks = [];
-      this.props.stocksBsale.filter(stock => {
-        if (bsaleStockIdsFromStock.includes(stock.id)) {
-          selectedStocks.push({ value: stock.id, label: stock.text });
-        }
-      });
-
-      return this.setState({ selectedStocks });
-    }
-  }
 
   render() {
     const stock = this.props.stock;
-    const { selectedStocks } = this.state;
+    const isLoadingText = this.state.isLoading ? (
+      <>
+        <FontAwesomeIcon icon={faCircleNotch} spin /> <span>Obteniendo...</span>{' '}
+      </>
+    ) : (
+      <span>Ver stock desde Bsale</span>
+    );
+    const hasGetStockFromBsale = this.state.hasGetStocksFromBsale ? (
+      <Select
+        options={this.state.infoFromBsale}
+        value={this.state.infoFromBsale}
+        isDisabled={true}
+        isMulti={true}
+      />
+    ) : (
+      <button
+        onClick={() => this.getStockInfoFromBsale(stock.bsale_stock_ids)}
+        className="btn btn-dark">
+        {isLoadingText}
+      </button>
+    );
+    const hasBsaleStock = this.props.stock.bsale_stock_ids.length ? (
+      hasGetStockFromBsale
+    ) : (
+      <span>No tiene stocks asociados a Bsale</span>
+    );
 
     return (
       <tr>
-        <td className="align-middle text-center">{stock['size_name']}</td>
-        <td className="align-middle text-center">
-          {stock['quantity']}{' '}
-          {this.state.selectedBsaleQuantity > 0 ? `-> ${this.state.selectedBsaleQuantity}` : ''}
-        </td>
-        <td className="align-middle">
-          <Select
-            isMulti={true}
-            onChange={this.handleSelectStock}
-            options={this.state.mappedStocks}
-            value={selectedStocks}
-          />
-        </td>
-        <td className="align-middle">
-          <button onClick={this.saveStockData} className="btn btn-dark btn-rounded btn-sm">
-            Actualizar
-          </button>
-        </td>
+        <td className="align-middle text-center">{stock.size_name}</td>
+        <td className="align-middle text-center">{stock.quantity}</td>
+        <td className="align-middle">{hasBsaleStock}</td>
       </tr>
     );
   }

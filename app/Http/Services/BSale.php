@@ -10,27 +10,31 @@ use Zttp\ZttpResponse;
 class BSale
 {
     /**
-     * @param null $variantId
+     * @param int $variantId
      * @return ZttpResponse
      */
-    public static function stocksGet($variantId = null): ZttpResponse
+    public static function stocksGet(int $variantId): ZttpResponse
     {
         $params = [
-            'expand'   => 'office,variant.product',
-            'limit'    => 100000000,
-            'officeid' => config('bsale.main_office'),
+            'limit'     => 1,
+            'officeid'  => config('bsale.main_office'),
+            'variantid' => $variantId,
         ];
-
-        if (filled($variantId)) {
-            $params = [
-                'limit'     => 1,
-                'officeid'  => config('bsale.main_office'),
-                'variantid' => $variantId,
-            ];
-        }
 
         $response = Zttp::withHeaders(['access_token' => config('bsale.token')])
             ->get('https://api.bsale.com.pe/v1/stocks.json', $params);
+
+        return $response;
+    }
+
+    /**
+     * @param int $variantId
+     * @return ZttpResponse
+     */
+    public static function variantGet(int $variantId): ZttpResponse
+    {
+        $response = Zttp::withHeaders(['access_token' => config('bsale.token')])
+            ->get("https://api.bsale.com.pe/v1/variants/{$variantId}.json", ['expand' => 'product']);
 
         return $response;
     }
@@ -52,7 +56,7 @@ class BSale
 
     public static function getVariantsByProduct(int $productId)
     {
-        $params = ['productid' => $productId, 'limit' => 1000];
+        $params = ['productid' => $productId, 'limit' => 1000, 'expand' => 'product'];
 
         /** @var ZttpResponse $response */
         $response = Zttp::withHeaders(['access_token' => config('bsale.token')])
