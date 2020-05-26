@@ -569,7 +569,7 @@ namespace App\Models{
  * @property int $order
  * @property string|null $link
  * @property array|null $text
- * @property string $url
+ * @property string|null $url
  * @property string|null $relative_url
  * @property float $padding_bottom_mobile
  * @property float $padding_bottom_tablet

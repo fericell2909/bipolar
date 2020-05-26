@@ -22,28 +22,29 @@
     <section id="wrapper" class="login-register login-sidebar" style="background-image: url({{ asset('storage/bipolar-images/assets/bipolar-gold.png') }});">
       <div class="login-box card">
         <div class="card-body">
-          {!! Form::open(['url' => route('login.admin.post'),'class' => 'form-horizontal form-material']) !!}
-          <a href="javascript:void(0)" class="text-center db">
-            <br/><img src="{{ asset('images/logo-linea.png') }}" width="160"/>
-          </a>
-          <div class="form-group m-t-40">
-            <div class="col-xs-12">
-              {!! Form::email('email', null, ['placeholder' => 'Correo electrónico', 'class' => 'form-control', 'required' => true]) !!}
+          <form action="{{ route('login.admin.post') }}" method="POST" class="form-horizontal form-material">
+            @csrf
+            <a href="javascript:void(0)" class="text-center db">
+              <br/><img src="{{ asset('images/logo-linea.png') }}" width="160"/>
+            </a>
+            <div class="form-group m-t-40">
+              <div class="col-xs-12">
+                {!! Form::email('email', null, ['placeholder' => 'Correo electrónico', 'class' => 'form-control', 'required' => true]) !!}
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="col-xs-12">
-              {!! Form::password('password', ['placeholder' => 'Contraseña', 'class' => 'form-control', 'required' => true]) !!}
+            <div class="form-group">
+              <div class="col-xs-12">
+                {!! Form::password('password', ['placeholder' => 'Contraseña', 'class' => 'form-control', 'required' => true]) !!}
+              </div>
             </div>
-          </div>
-          <div class="form-group text-center m-t-20">
-            <div class="col-xs-12">
-              <button class="btn btn-outline-warning btn-lg btn-block text-uppercase" type="submit">
-                Iniciar sesión
-              </button>
+            <div class="form-group text-center m-t-20">
+              <div class="col-xs-12">
+                <button class="btn btn-outline-warning btn-lg btn-block text-uppercase" type="submit">
+                  Iniciar sesión
+                </button>
+              </div>
             </div>
-          </div>
-          {!! Form::close() !!}
+          </form>
         </div>
       </div>
     </section>

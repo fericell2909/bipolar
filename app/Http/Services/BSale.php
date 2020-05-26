@@ -35,26 +35,38 @@ class BSale
         return $response;
     }
 
+    /**
+     * @param string $text
+     * @return array|ZttpResponse
+     */
+    public static function searchProductForSelect(string $text)
+    {
+        $params = ['name' => $text, 'limit' => 1000];
+
+        /** @var ZttpResponse $response */
+        $response = Zttp::withHeaders(['access_token' => config('bsale.token')])
+            ->get('https://api.bsale.com.pe/v1/products.json', $params);
+
+        return $response;
+    }
+
+    public static function getVariantsByProduct(int $productId)
+    {
+        $params = ['productid' => $productId, 'limit' => 1000];
+
+        /** @var ZttpResponse $response */
+        $response = Zttp::withHeaders(['access_token' => config('bsale.token')])
+            ->get('https://api.bsale.com.pe/v1/variants.json', $params);
+
+        return $response;
+    }
+
     public static function documentGet(int $documentId): ZttpResponse
     {
         $params = ['expand' => '[details]'];
 
         $response = Zttp::withHeaders(['access_token' => config('bsale.token')])
             ->get("https://api.bsale.com.pe/v1/documents/{$documentId}.json", $params);
-
-        return $response;
-    }
-
-    /**
-     * @return ZttpResponse
-     */
-    public static function stocksForSync(): ZttpResponse
-    {
-        $response = Zttp::withHeaders(['access_token' => config('bsale.token')])
-            ->get('https://api.bsale.com.pe/v1/stocks.json', [
-                'limit'    => 100000000,
-                'officeid' => config('bsale.main_office'),
-            ]);
 
         return $response;
     }

@@ -14,6 +14,8 @@ Route::get('search/products', 'Admin\Ajax\ProductController@search');
 
 Route::prefix('bsale')->group(function () {
     Route::get('products', 'Admin\BsaleController@products');
+    Route::get('products/search', 'Admin\BsaleController@searchProducts');
+    Route::get('products/{bsaleProductId}/variants', 'Admin\BsaleController@getVariantsByProductId');
 });
 
 Route::prefix('products')->group(function () {

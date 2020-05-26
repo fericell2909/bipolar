@@ -4,6 +4,8 @@ import axios from 'axios';
 import StockRow from './StockRow';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import Select from 'react-select';
+import AsyncSelect from 'react-select/async';
 
 class BipolarProductStocks extends React.Component<any> {
   constructor(props) {
@@ -14,6 +16,10 @@ class BipolarProductStocks extends React.Component<any> {
     stocks: [],
     stocksBsale: [],
     loading: true,
+    searchProduct: '',
+    productId: 0,
+    productVariants: [],
+    variantsDisabled: true,
   };
 
   onUpdateStock = () => {
@@ -26,18 +32,32 @@ class BipolarProductStocks extends React.Component<any> {
     return axios.get(`/ajax-admin/products/${this.props.productHashId}/stocks`);
   };
 
-  componentDidMount() {
-    const getBsaleStocks = axios.get('/ajax-admin/bsale/products');
+  onSelectProduct = (element: { value: number; label: string }) =>
+    axios.get(`/ajax-admin/bsale/products/${element.value}/variants`).then(response => {
+      this.setState({
+        productId: element.value,
+        productVariants: response.data,
+        variantsDisabled: false,
+      });
+    });
 
-    axios.all([getBsaleStocks, this.getStocksByProduct()]).then(
-      axios.spread((responseBsale, responseStocks) => {
-        this.setState({
-          stocksBsale: responseBsale.data,
-          stocks: responseStocks.data.data,
-          loading: false,
-        });
-      })
-    );
+  loadProducts = (text: string) =>
+    axios.get(`/ajax-admin/bsale/products/search?text=${text}`).then(response => response.data);
+
+  componentDidMount() {
+    // const getBsaleStocks = axios.get('/ajax-admin/bsale/products');
+    //
+    // axios.all([getBsaleStocks, this.getStocksByProduct()]).then(
+    //   axios.spread((responseBsale, responseStocks) => {
+    //     this.setState({
+    //       stocksBsale: responseBsale.data,
+    //       stocks: responseStocks.data.data,
+    //       loading: false,
+    //     });
+    //   })
+    // );
+
+    return this.setState({ loading: false });
   }
 
   render() {
@@ -58,8 +78,32 @@ class BipolarProductStocks extends React.Component<any> {
       </tr>
     );
 
+    /**
+     * Esto si funciona, lo voy a comentar por si banean mi solucion
+     */
+    const ProductsAndVariantsSelect =
+      this.state.loading === true ? (
+        <div className="row">
+          <div className="col-4">
+            <AsyncSelect
+              isMulti={false}
+              loadOptions={this.loadProducts}
+              onChange={this.onSelectProduct}
+            />
+          </div>
+          <div className="col-4">
+            <Select
+              isMulti={true}
+              options={this.state.productVariants}
+              isDisabled={this.state.variantsDisabled}
+            />
+          </div>
+        </div>
+      ) : null;
+
     return (
       <div>
+        {ProductsAndVariantsSelect}
         {this.state.loading ? (
           <div className="text-center">
             <FontAwesomeIcon icon={faCircleNotch} spin /> Cargando contenido desde Bsale...{' '}

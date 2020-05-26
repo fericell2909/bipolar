@@ -13,6 +13,7 @@ class BsaleController extends Controller
 
         if (!$response->isSuccess()) {
             \Log::info('Admin: Error getting stock from Bsale', $response->json());
+
             return response()->json([]);
         }
 
@@ -39,5 +40,59 @@ class BsaleController extends Controller
         })->sortByDesc('quantity')->values();
 
         return response()->json($items->toArray());
+    }
+
+    public function searchProducts()
+    {
+        $text = request()->input('text');
+        $response = BSale::searchProductForSelect($text);
+
+        if (!$response->isSuccess()) {
+            \Log::error("[Bsale Search Products] Error getting products with text: $text");
+
+            return response()->json([['label' => '[Error] Falló obtener productos desde Bsale', 'value' => 'error']]);
+        }
+
+        $contents = $response->json();
+
+        $items = collect($contents['items']);
+
+        $items = $items->map(function ($item) {
+            return [
+                'label' => data_get($item, 'name', '--'),
+                'value' => data_get($item, 'id', '--'),
+            ];
+        });
+
+        return response()->json($items);
+    }
+
+    public function getVariantsByProductId(int $productId)
+    {
+        $response = BSale::getVariantsByProduct($productId);
+
+        if (!$response->isSuccess()) {
+            \Log::error("[Bsale Search Products] Error getting variants for product: {$productId}");
+
+            return response()->json([
+                [
+                    'label' => "[Error] Falló obtener variantes para producto {$productId} desde Bsale",
+                    'value' => 'error',
+                ],
+            ]);
+        }
+
+        $contents = $response->json();
+
+        $items = collect($contents['items']);
+
+        $items = $items->map(function ($item) {
+            return [
+                'label' => data_get($item, 'description', '--'),
+                'value' => data_get($item, 'id', '--'),
+            ];
+        });
+
+        return response()->json($items);
     }
 }

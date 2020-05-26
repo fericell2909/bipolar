@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactSelect from 'react-select';
-import Animated from 'react-select/lib/animated';
+import Animated from 'react-select/animated';
 import moment from 'moment';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
