@@ -45,6 +45,7 @@ class LandingsController extends Controller
         $settings = Settings::first();
         $imageBackground = Image::whereActive(true)->first();
         $banners = Banner::orderBy('order')
+            ->whereNull('background_color')
             ->where('state_id', config('constants.STATE_ACTIVE_ID'))
             ->where('begin_date', '<=', now())
             ->where('end_date', '>=', now())
@@ -121,6 +122,7 @@ class LandingsController extends Controller
                 $date = explode('-', $request->input('archive'));
                 $year = array_first($date);
                 $month = array_last($date);
+
                 return $wherePosts->whereYear('created_at', $year)->whereMonth('created_at', $month);
             })
             ->paginate(10);
@@ -198,6 +200,7 @@ class LandingsController extends Controller
         Date::setLocale(\LaravelLocalization::getCurrentLocale());
         $yearMonthSelect = $yearMonths->mapWithKeys(function ($element) {
             $dateMonth = Date::createFromFormat('Y-m', "{$element->year_post}-{$element->month_post}");
+
             return ["{$element->year_post}-{$element->month_post}" => mb_strtoupper($dateMonth->format('F Y'))];
         })->prepend(__('bipolar.blog.select_month'), '');
 

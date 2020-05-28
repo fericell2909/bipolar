@@ -16,6 +16,7 @@
     @stack('css_plus')
 </head>
 <body>
+    @includeWhen(filled($bannerColors), 'web.partials.banner-colors', ['bannerColors' => $bannerColors])
     <!-- Google Tag Manager (noscript) -->
     <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLBLW98" height="0" width="0" style="display:none;visibility:hidden"></iframe>

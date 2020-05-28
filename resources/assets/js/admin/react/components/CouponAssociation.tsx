@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import swal from 'sweetalert2';
 import ReactSelect from 'react-select';
-import Animated from 'react-select/lib/animated';
+import Animated from 'react-select/animated';
 
 class CouponAssociation extends React.Component<any, any> {
   state = {

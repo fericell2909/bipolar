@@ -3,6 +3,7 @@
 use Faker\Generator as Faker;
 use App\Models\Banner;
 
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(Banner::class, function (Faker $faker) {
     return [
         'url'        => $faker->imageUrl(1700, 1218, 'city'),

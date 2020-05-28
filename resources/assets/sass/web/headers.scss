@@ -1,12 +1,17 @@
 .bipolar-grand-header {
-  position: fixed;
+  position: relative;
   width: 100%;
   z-index: $z-index-navbar;
   top: 0;
-  transition: all .5s;
+  transition: all 0.5s;
 
   &.bipolar-grand-header-hidden {
+    position: fixed !important;
     transform: translateY(-164px);
+  }
+
+  &.absolute-for-home {
+    position: absolute;
   }
 
   .bipolar-navigation {
@@ -15,7 +20,7 @@
     }
     &.has-background {
       background: $bipolar-color;
-      transition: .8s;
+      transition: 0.8s;
     }
 
     .container.resized-container {
@@ -35,7 +40,8 @@
         cursor: pointer;
 
         a {
-          &:hover, &:focus {
+          &:hover,
+          &:focus {
             text-decoration: none;
             outline: none;
           }
@@ -48,7 +54,8 @@
             text-transform: uppercase;
             letter-spacing: 4px;
 
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
               color: white;
               outline: none;
             }
@@ -58,7 +65,7 @@
             border-top: 1px solid white;
             width: 0%;
             margin: auto;
-            transition: all .5s;
+            transition: all 0.5s;
 
             &.is-active {
               width: 100%;
@@ -257,7 +264,7 @@
 
 .bipolar-alternate-grand-header {
   @extend .bipolar-grand-header;
-  transition: all .3s;
+  transition: all 0.3s;
   box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
   li:first-child {
     margin-top: 10px;
@@ -307,7 +314,7 @@
   background: transparent url('../../img/linea.png') repeat-x 0 25px;
 }
 
-.bipolar-navbar-styles  {
+.bipolar-navbar-styles {
   margin-bottom: 0;
   border-radius: 0;
 }
@@ -315,14 +322,16 @@
 .nav .open > a {
   background-color: transparent;
   border-color: transparent;
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: transparent;
     border-color: transparent;
   }
 }
 
 .nav > li > a {
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     text-decoration: none;
     background-color: transparent;
   }
@@ -397,7 +406,9 @@
       font-size: 12px;
       color: $bipolar-black;
       word-spacing: 1px;
-      &:hover, &:focus, &:active {
+      &:hover,
+      &:focus,
+      &:active {
         text-decoration: none;
         outline: none;
       }

@@ -6,21 +6,53 @@ use App\Instances\CartBipolar;
 use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\Subtype;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 
 class CartBipolarTest extends TestCase
 {
-    use WithFaker, DatabaseTransactions;
+    use WithFaker, RefreshDatabase;
 
     /** @var CartBipolar */
     private $cart;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
-        $this->cart = new CartBipolar();
+        $this->cart = CartBipolar::getInstance();
+    }
+    // TODO: Test when you remove a product
+    // TODO: Test when you remove a detail
+    // TODO: Test when you add a 2x1 product
+    // TODO: Test if cart is converted to user
+    // TODO: Test price calculation after add / removing products
+
+    public function test_add_single_product_to_cart()
+    {
+        $product = factory(Product::class)->create();
+        $quantity = $this->faker->numberBetween(1, 10);
+
+        $cartDetail = $this->cart->add($quantity, $product);
+
+        $this->assertTrue($cartDetail->quantity === $quantity);
+        $this->assertTrue($this->cart->count() === 1);
+        $this->cart->clean();
+    }
+
+    public function test_add_multiple_products_to_cart()
+    {
+        $randomProducts = $this->faker->numberBetween(1, 3);
+
+        for ($productOrder = 1; $productOrder <= $randomProducts; $productOrder++) {
+            $product = factory(Product::class)->create();
+            $quantity = $this->faker->numberBetween(1, 10);
+            $cartDetail = $this->cart->add($quantity, $product);
+            $this->assertTrue($cartDetail->quantity === $quantity);
+        }
+
+        $this->assertTrue($this->cart->count() === $randomProducts);
+        $this->cart->clean();
     }
 
     public function test_add_coupon_quantity_to_cart()

@@ -1,7 +1,7 @@
 <?php
  /** @var \App\Instances\CartBipolar $bipolarCart */
 ?>
-<div class="bipolar-grand-header hidden-sm hidden-xs {{ $background === true ? 'bipolar-background' : null  }}">
+<div class="bipolar-grand-header hidden-sm hidden-xs {{ $background === true ? 'bipolar-background' : 'absolute-for-home'  }}">
 	<nav class="navbar bipolar-navbar-styles bipolar-first-navbar">
 		<div class="container">
 			<div class="navbar-header">
