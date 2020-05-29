@@ -37,6 +37,6 @@ class ProductQuery extends Query
         $select = $fields->getSelect();
         $with = $fields->getRelations();
 
-        return Product::with($with)->get();
+        return Product::with($with)->orderByDesc('id')->get();
     }
 }
