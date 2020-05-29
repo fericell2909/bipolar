@@ -36,7 +36,9 @@ class AddLabelIdentifierAndLabelsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign(['label_id']);
+            if ((\DB::getDriverName() !== 'sqlite')) {
+                $table->dropForeign(['label_id']);
+            }
             $table->dropColumn('label_id');
         });
 

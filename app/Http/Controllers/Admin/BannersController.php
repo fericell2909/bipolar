@@ -14,7 +14,7 @@ class BannersController extends Controller
 {
     public function index()
     {
-        $banners = Banner::orderBy('order')->with('state')->get();
+        $banners = Banner::whereNull('background_color')->orderBy('order')->with('state')->get();
 
         return view('admin.banners.index', compact('banners'));
     }
@@ -116,7 +116,7 @@ class BannersController extends Controller
 
     public function order()
     {
-        $banners = Banner::whereStateId(config('constants.STATE_ACTIVE_ID'))->get();
+        $banners = Banner::whereStateId(config('constants.STATE_ACTIVE_ID'))->orderBy('order')->whereNull('background_color')->get();
 
         return view('admin.banners.order', compact('banners'));
     }

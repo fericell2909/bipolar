@@ -15,6 +15,7 @@
     <script async src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script>
   </head>
   <body class="no-top">
+    @includeWhen(filled($bannerColors), 'web.partials.banner-colors', ['bannerColors' => $bannerColors])
     <div class="bipolar-wrapper">
       @includeWhen(\Agent::isDesktop() || \Agent::isTablet(), 'web.partials.main-bar', ['background' => false])
       @includeWhen(\Agent::isMobile(), 'web.partials.mobile-bar')

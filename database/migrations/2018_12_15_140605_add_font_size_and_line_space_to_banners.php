@@ -33,16 +33,18 @@ class AddFontSizeAndLineSpaceToBanners extends Migration
      */
     public function down()
     {
-        Schema::table('banners', function (Blueprint $table) {
-            $table->dropColumn('letter_spacing_mobile');
-            $table->dropColumn('letter_spacing_desktop');
-            $table->dropColumn('letter_spacing_tablet');
-            $table->dropColumn('line_height_mobile');
-            $table->dropColumn('line_height_desktop');
-            $table->dropColumn('line_height_tablet');
-            $table->dropColumn('font_size_desktop');
-            $table->dropColumn('font_size_mobile');
-            $table->dropColumn('font_size_tablet');
-        });
+        if ((\DB::getDriverName() !== 'sqlite')) {
+            Schema::table('banners', function (Blueprint $table) {
+                $table->dropColumn('letter_spacing_mobile');
+                $table->dropColumn('letter_spacing_desktop');
+                $table->dropColumn('letter_spacing_tablet');
+                $table->dropColumn('line_height_mobile');
+                $table->dropColumn('line_height_desktop');
+                $table->dropColumn('line_height_tablet');
+                $table->dropColumn('font_size_desktop');
+                $table->dropColumn('font_size_mobile');
+                $table->dropColumn('font_size_tablet');
+            });
+        }
     }
 }

@@ -4,7 +4,6 @@ body {
   @include gotham_light_font;
   font-size: 13px;
   color: $bipolar-text-gray;
-  padding-top: 224px;
   padding-bottom: 363px;
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
@@ -179,11 +178,11 @@ button {
 
   .second-zone {
     margin-top: 30px;
-    
+
     @include touch {
       padding-bottom: 20px;
     }
-    
+
     @include desktop {
       padding-bottom: 50px;
     }
@@ -251,6 +250,7 @@ button {
           line-height: 16px;
           border-radius: 20px;
           color: #777;
+
           &:hover {
             text-decoration: none;
             background-color: $bipolar-color;
@@ -272,6 +272,7 @@ button {
 
 a {
   color: $bipolar-black;
+
   &:hover {
     color: $bipolar-black;
   }
@@ -346,6 +347,21 @@ a {
   z-index: $z-index-slider;
 }
 
+.owl-carousel-banner-colors {
+  display: block;
+  width: 100%;
+  .owl-carousel-banner-colors-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
 .owl-carousel-home {
   display: block;
   height: auto;
@@ -392,7 +408,7 @@ a {
       margin: 0 auto;
       text-transform: uppercase;
       width: 100%;
-      
+
       &:hover, &:focus {
         text-decoration: none;
       }
@@ -416,7 +432,7 @@ a {
 
 .bipolar-container {
   @extend .container;
-  margin-top: 20px;
+  padding-top: 20px;
   margin-bottom: 20px;
   padding-bottom: 20px;
 
@@ -462,10 +478,25 @@ input[type="text"], input[type="email"], input[type="password"], input[type="dat
 }
 
 // Remove placeholder on focus
-input:focus::-webkit-input-placeholder { color:transparent; }
-input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
-input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
-input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+input:focus:-moz-placeholder {
+  color: transparent;
+}
+
+/* FF 4-18 */
+input:focus::-moz-placeholder {
+  color: transparent;
+}
+
+/* FF 19+ */
+input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+/* IE 10+ */
 
 /* No Gutter Column Trick
 ================================================== */
@@ -488,6 +519,6 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
     [class^="col-"], [class*=" col-"] {
       padding-right: 0;
       padding-left: 0;
-    }    
+    }
   }
 }

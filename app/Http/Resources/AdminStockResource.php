@@ -20,7 +20,6 @@ class AdminStockResource extends Resource
 
         return [
             'id'              => $stock->id,
-            'bsale_stock_id'  => $stock->bsale_stock_id,
             'bsale_stock_ids' => $stock->bsale_stock_ids ?? [],
             'size_name'       => $stock->size->name ?? '--',
             'quantity'        => $stock->quantity,

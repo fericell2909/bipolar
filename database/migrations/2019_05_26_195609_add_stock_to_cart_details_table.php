@@ -26,7 +26,9 @@ class AddStockToCartDetailsTable extends Migration
     public function down()
     {
         Schema::table('cart_details', function (Blueprint $table) {
-            $table->dropForeign(['stock_id']);
+            if ((\DB::getDriverName() !== 'sqlite')) {
+                $table->dropForeign(['stock_id']);
+            }
         });
     }
 }
