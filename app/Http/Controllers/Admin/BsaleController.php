@@ -95,6 +95,10 @@ class BsaleController extends Controller
 
     public function getVariantsFromIds()
     {
+        if (!request()->filled('variants')) {
+            return response()->json([]);
+        }
+
         $variants = explode(',', request()->input('variants'));
 
         $variants = collect($variants)->map(function ($variantId) {
