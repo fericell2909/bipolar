@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Props {
   stock: IStock;
+  bsaleStockIds: number[];
   getStockFromBsale: (bsaleStockIds: number[]) => Promise<AxiosResponse>;
 }
 
@@ -23,9 +24,15 @@ class StockRow extends React.Component<Props, State> {
     isLoading: false,
   };
 
-  getStockInfoFromBsale = (bsaleStockIds: number[]) => {
+  componentDidMount() {
+    if (this.props.bsaleStockIds.length) {
+      this.getStockInfoFromBsale();
+    }
+  }
+
+  getStockInfoFromBsale = () => {
     this.setState({ isLoading: true });
-    return this.props.getStockFromBsale(bsaleStockIds).then(response =>
+    return this.props.getStockFromBsale(this.props.bsaleStockIds).then(response =>
       this.setState({
         infoFromBsale: response.data,
         hasGetStocksFromBsale: true,
@@ -51,9 +58,7 @@ class StockRow extends React.Component<Props, State> {
         isMulti={true}
       />
     ) : (
-      <button
-        onClick={() => this.getStockInfoFromBsale(stock.bsale_stock_ids)}
-        className="btn btn-dark">
+      <button onClick={this.getStockInfoFromBsale} className="btn btn-dark">
         {isLoadingText}
       </button>
     );
