@@ -289,7 +289,7 @@ class ProductController extends Controller
     public function updateStock(Request $request, $stockId)
     {
         $this->validate($request, [
-            'bsaleStockIds' => 'required|array',
+            'bsaleStockIds' => 'array',
         ]);
 
         /** @var Stock $productStock */

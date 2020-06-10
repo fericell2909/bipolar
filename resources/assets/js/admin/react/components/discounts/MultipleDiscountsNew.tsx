@@ -241,7 +241,7 @@ class MultipleDiscountsNew extends React.Component {
                       </div>
                     </div>
                     <span className="help-block">
-                      <small>0: Sin descuento, >= 0: Aplica descuento</small>
+                      <small>0: Sin descuento, &gt; 0: Aplica descuento</small>
                     </span>
                   </div>
                 </div>
@@ -264,7 +264,7 @@ class MultipleDiscountsNew extends React.Component {
                       </div>
                     </div>
                     <span className="help-block">
-                      <small>0: Sin descuento, >= 0: Aplica descuento</small>
+                      <small>0: Sin descuento, &gt; 0: Aplica descuento</small>
                     </span>
                   </div>
                 </div>

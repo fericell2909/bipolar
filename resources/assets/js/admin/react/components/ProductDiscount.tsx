@@ -169,7 +169,7 @@ class ProductDiscount extends React.Component<any, any> {
                     </div>
                   </div>
                   <span className="help-block">
-                    <small>0: Sin descuento, >= 0: Aplica descuento</small>
+                    <small>0: Sin descuento, &gt; 0: Aplica descuento</small>
                   </span>
                 </div>
               </div>
@@ -192,7 +192,7 @@ class ProductDiscount extends React.Component<any, any> {
                     </div>
                   </div>
                   <span className="help-block">
-                    <small>0: Sin descuento, >= 0: Aplica descuento</small>
+                    <small>0: Sin descuento, &gt; 0: Aplica descuento</small>
                   </span>
                 </div>
               </div>

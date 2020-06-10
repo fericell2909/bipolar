@@ -86,11 +86,7 @@ class BipolarProductStocks extends React.Component<Props, State> {
     axios.get<ISelectOption[]>(`/ajax-admin/bsale/variants?variants=${bsaleStockIds.join(',')}`);
 
   saveStockData = async () => {
-    if (this.state.variantsSelected.length === 0 || this.state.stockSelected === null) {
-      return alert('No ha seleccionado ningun stock');
-    }
-
-    const variantIds = this.state.variantsSelected.map(stock => stock.value);
+    const variantIds = this.state.variantsSelected?.map(stock => stock.value) ?? [];
     await axios
       .post(`/ajax-admin/stocks/${this.state.stockSelected.value}`, {
         bsaleStockIds: variantIds,
@@ -116,7 +112,12 @@ class BipolarProductStocks extends React.Component<Props, State> {
     const stocks = this.state.stocks.length ? (
       this.state.stocks.map(stock => {
         return (
-          <StockRow key={stock.id} stock={stock} getStockFromBsale={this.getStockInfoFromBsale} />
+          <StockRow
+            key={stock.bsale_stock_ids.toString()}
+            stock={stock}
+            bsaleStockIds={stock?.bsale_stock_ids ?? []}
+            getStockFromBsale={this.getStockInfoFromBsale}
+          />
         );
       })
     ) : (
