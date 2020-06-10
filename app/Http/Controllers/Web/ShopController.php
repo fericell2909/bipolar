@@ -56,16 +56,25 @@ class ShopController extends Controller
             ->orderBy('order')
             ->get();
 
-        $sizes = Size::with(['stocks' => function ($withStocks) {
-            /** @var Builder $withStocks */
-            $withStocks
+        $sizes = Size::whereHas('stocks', function ($whereStocks) {
+            $whereStocks
                 ->whereHas('product', function ($whereHasProduct) {
                     /** @var Builder $whereHasProduct */
                     $whereHasProduct->where('state_id', config('constants.STATE_ACTIVE_ID'));
                 })
                 ->whereNotNull('active')
                 ->where('quantity', '>', 0);
-        }, 'stocks.product'])
+        })
+            ->with(['stocks' => function ($withStocks) {
+                /** @var Builder $withStocks */
+                $withStocks
+                    ->whereHas('product', function ($whereHasProduct) {
+                        /** @var Builder $whereHasProduct */
+                        $whereHasProduct->where('state_id', config('constants.STATE_ACTIVE_ID'));
+                    })
+                    ->whereNotNull('active')
+                    ->where('quantity', '>', 0);
+            }, 'stocks.product'])
             ->orderBy('name')
             ->get();
 
