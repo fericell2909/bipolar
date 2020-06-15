@@ -57,18 +57,6 @@
             {!! Form::label('Enlace') !!}
             {!! Form::url('link', $banner->link, ['class' => 'form-control']) !!}
           </div>
-          <div class="col-6 form-group">
-            {!! Form::label('Texto 🇪🇸 (Opcional)') !!}
-            {!! Form::text('text_spa', $banner->getTranslation('text', 'es'), ['class' => 'form-control', 'placeholder' => 'Ej: Colección <br> #192']) !!}
-          </div>
-          <div class="col-6 form-group">
-            {!! Form::label('Texto 🇺🇸 (Opcional)') !!}
-            {!! Form::text('text_eng', $banner->getTranslation('text', 'en'), ['class' => 'form-control', 'placeholder' => 'Ej: Collection <br> #192']) !!}
-          </div>
-          <div class="col-6 form-group">
-            {!! Form::label('Fuente') !!}
-            {!! Form::select('font', ['SaharaBodoni' => 'Sahara Bodoni', 'BauerBodoniStdBold' => 'Bodoni Bold'], $banner->font, ['class' => 'form-control']) !!}
-          </div>
         </div>
         {!! Form::submit('Actualizar', ['class' => 'btn btn-dark btn-sm']) !!}
         {!! Form::close() !!}

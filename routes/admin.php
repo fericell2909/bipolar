@@ -89,6 +89,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('new', 'Admin\BannerColorController@store');
         Route::get('/{banner}/edit', 'Admin\BannerColorController@edit')->name('banners_colors.edit');
         Route::post('/{banner}/edit', 'Admin\BannerColorController@update');
+        Route::get('/{banner}/text', 'Admin\BannerColorController@setText')->name('banners_colors.set_text');
         Route::get('order', 'Admin\BannerColorController@order')->name('banners_colors.order');
 //        Route::get('/{banner}/preview', 'Admin\BannersController@preview')->name('banners.preview');
     });

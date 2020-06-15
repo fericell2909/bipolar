@@ -1,24 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\GraphQL\Queries;
 
-use App\Models\Category;
+use App\Models\Banner;
 use Closure;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\SelectFields;
 use Rebing\GraphQL\Support\Query;
 
-class CategoryQuery extends Query
+class BannerQuery extends Query
 {
     protected $attributes = [
-        'name'        => 'Category query',
-        'description' => 'Get all categories',
+        'name' => 'Banner query',
+        'description' => 'Get all banners'
     ];
 
     public function type(): Type
     {
-        return Type::listOf(\GraphQL::type('category'));
+        return Type::listOf(\GraphQL::type('banner'));
     }
 
     public function args(): array
@@ -35,6 +37,6 @@ class CategoryQuery extends Query
         $select = $fields->getSelect();
         $with = $fields->getRelations();
 
-        return Category::all();
+        return Banner::all();
     }
 }

@@ -111,6 +111,7 @@ class BannersController extends Controller
         $banner->save();
 
         flash()->success('Se actualizó con éxito');
+
         return redirect()->back();
     }
 
@@ -123,8 +124,14 @@ class BannersController extends Controller
 
     public function preview($bannerId)
     {
-        $banners = Banner::whereKey($bannerId)->get();
+        $bannersForFind = Banner::whereKey($bannerId)->get();
+        $banners = $bannersForFind->filter(function ($banner) {
+            return $banner->background_color === null;
+        });
+        $bannerColors = $bannersForFind->filter(function ($banner) {
+            return $banner->background_color !== null;
+        });
 
-        return view('admin.banners.preview', compact('banners'));
+        return view('admin.banners.preview', compact('banners', 'bannerColors'));
     }
 }

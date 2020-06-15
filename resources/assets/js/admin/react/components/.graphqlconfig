@@ -1,10 +1,10 @@
 {
-  "name": "Bipolar Admin GraphQL Schema",
+  "name": "Untitled GraphQL Schema",
   "schemaPath": "schema.graphql",
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "https://bipolar.test/graphql",
+        "url": "http://localhost:8080/graphql",
         "headers": {
           "user-agent": "JS GraphQL"
         },

@@ -3,9 +3,8 @@
     <a class="owl-carousel-banner-colors-item"
        href="{{ $bannerColor->link }}"
        style="background-color: {{ $bannerColor->background_color }};
-           color: {{ $bannerColor->color }};
-           font-family: {{ $bannerColor->font }}">
-      {{ $bannerColor->text }}
+           color: {{ $bannerColor->color }};">
+      {!! $bannerColor->text !!}
     </a>
   @endforeach
 </div>

@@ -1,6 +1,7 @@
 @extends('admin.layouts.app_admin')
 @section('title', 'Nuevo banner de color')
 @section('content')
+  @include('admin.partials.banner_color_steps', ['active' => 1])
   <div class="card">
     <div class="card-body">
       {!! Form::open(['files' => true]) !!}
@@ -54,18 +55,6 @@
         <div class="col-6 form-group">
           {!! Form::label('Enlace') !!}
           {!! Form::url('link', null, ['class' => 'form-control']) !!}
-        </div>
-        <div class="col-6 form-group">
-          {!! Form::label('Texto 🇪🇸 ') !!}
-          {!! Form::text('text_spa', null, ['class' => 'form-control', 'placeholder' => 'Ej: Colección <br> #192']) !!}
-        </div>
-        <div class="col-6 form-group">
-          {!! Form::label('Texto 🇺🇸 ') !!}
-          {!! Form::text('text_eng', null, ['class' => 'form-control', 'placeholder' => 'Ej: Collection <br> #192']) !!}
-        </div>
-        <div class="col-6 form-group">
-          {!! Form::label('Fuente') !!}
-          {!! Form::select('font', ['SaharaBodoni' => 'Sahara Bodoni', 'BauerBodoniStdBold' => 'Bodoni Bold'], null, ['class' => 'form-control']) !!}
         </div>
       </div>
       {!! Form::submit('Guardar', ['class' => 'btn btn-dark btn-sm']) !!}

@@ -64,6 +64,10 @@ $pretty--color-primary: $bipolar-black;
 }
 @import "~select2/dist/css/select2";
 
+p {
+  margin: 0;
+}
+
 @import "buttons";
 @import "alerts";
 @import "styles";

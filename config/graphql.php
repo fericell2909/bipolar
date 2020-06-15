@@ -114,6 +114,8 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
+                'banners' => \App\GraphQL\Queries\BannerQuery::class,
+                'banner' => \App\GraphQL\Queries\BannerSingleQuery::class,
                 'categories' => CategoryQuery::class,
                 'colors' => ColorQuery::class,
                 'discount_tasks' => \App\GraphQL\Queries\DiscountTaskQuery::class,
@@ -127,6 +129,7 @@ return [
                 'subtypes' => \App\GraphQL\Queries\SubtypeQuery::class,
             ],
             'mutation' => [
+                'banner_update' => \App\GraphQL\Mutations\BannerMutation::class,
                 'products_update' => ProductUpdateMutation::class,
                 'discount_task_creation' => \App\GraphQL\Mutations\DiscountTaskCreation::class,
             ],
@@ -134,16 +137,8 @@ return [
         ],
     ],
 
-    // The types available in the application. You can then access it from the
-    // facade like this: GraphQL::type('user')
-    //
-    // Example:
-    //
-    // 'types' => [
-    //     'user' => 'App\GraphQL\Type\UserType'
-    // ]
-    //
     'types' => [
+        'banner' => \App\GraphQL\Types\BannerType::class,
         'color' => ColorType::class,
         'discount_task' => \App\GraphQL\Types\DiscountTaskType::class,
         'size' => SizeType::class,

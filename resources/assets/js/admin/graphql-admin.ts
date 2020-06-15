@@ -4,12 +4,43 @@ import { IColor } from '@interfaces/IColor';
 import { ISize } from '@interfaces/ISize';
 import { IState } from '@interfaces/IState';
 import { IProduct } from '@interfaces/IProduct';
+import { IBanner } from '@interfaces/IBanner';
 
 const client = new ApolloClient({
   uri: '/graphql',
 });
 
 export default class GraphqlAdmin {
+  public static getBanner(hashId: string) {
+    return client.query<{ banner: IBanner }>({
+      query: gql`
+        query GetBanner($hashId: String!) {
+          banner(hash_id: $hashId) {
+            hash_id
+            text_es
+            text_en
+          }
+        }
+      `,
+      variables: { hashId: hashId },
+    });
+  }
+
+  public static updateBanner(banner: Partial<IBanner>) {
+    return client.mutate<{ banner: IBanner }>({
+      mutation: gql`
+        mutation BannerUpdate($hashId: String!, $textEs: String, $textEn: String) {
+          banner_update(hash_id: $hashId, text_es: $textEs, text_en: $textEn) {
+            hash_id
+            text_es
+            text_en
+          }
+        }
+      `,
+      variables: { hashId: banner.hash_id, textEs: banner.text_es, textEn: banner.text_en },
+    });
+  }
+
   public static getLabels() {
     return client.query<{ labels: ILabel[] }>({
       query: gql`

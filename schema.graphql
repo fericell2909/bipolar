@@ -5,6 +5,14 @@ schema {
     mutation: Mutation
 }
 
+"Banners and color banners"
+type Banner {
+    "Hashed id"
+    hash_id: String!
+    text_en: String
+    text_es: String
+}
+
 "A type"
 type Category {
     "Hashed ID"
@@ -54,6 +62,8 @@ type Label {
 }
 
 type Mutation {
+    "Update a baner"
+    banner_update(hash_id: String!, text_en: String, text_es: String): Banner
     "Create a discount task"
     discount_task_creation(begin: String!, discount_pen: Int, discount_usd: Int, end: String!, is_2x1: Boolean, name: String!, products: [String], subtypes: [String], types: [String]): DiscountTask
     "Operations with Product"
@@ -144,6 +154,10 @@ type ProductsPagination {
 }
 
 type Query {
+    "Get only one banner by hash id"
+    banner(hash_id: String!): Banner
+    "Get all banners"
+    banners: [Banner]
     "Get all categories"
     categories: [Category]
     "Get all colors"

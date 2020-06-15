@@ -32,8 +32,6 @@ class BannerColorRequest extends FormRequest
                 'required',
                 Rule::exists('states', 'id'),
             ],
-            'text_spa'         => 'nullable|max:2000',
-            'text_eng'         => 'nullable|max:2000',
             'link'             => 'nullable|url|max:3000',
         ];
     }

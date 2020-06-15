@@ -17,8 +17,8 @@
   <body class="no-top">
     @includeWhen(filled($bannerColors), 'web.partials.banner-colors', ['bannerColors' => $bannerColors])
     <div class="bipolar-wrapper">
-      @includeWhen(\Agent::isDesktop() || \Agent::isTablet(), 'web.partials.main-bar', ['background' => false])
-      @includeWhen(\Agent::isMobile(), 'web.partials.mobile-bar')
+      @include('web.partials.main-bar', ['background' => false])
+      @include('web.partials.mobile-bar')
       @include('web.partials.banners', ['banners' => $banners])
       @if ($errors->any())
         <div class="alert alert-danger">
