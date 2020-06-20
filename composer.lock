@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9a1e58dfc43f013733730117296ec87",
+    "content-hash": "74efc9cab88fabfdeb3178fa853866bb",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -2289,7 +2289,7 @@
             "time": "2019-10-04T10:46:28+00:00"
         },
         {
-            "name": "jeremeamia/SuperClosure",
+            "name": "jeremeamia/superclosure",
             "version": "2.4.0",
             "source": {
                 "type": "git",
@@ -4917,16 +4917,16 @@
         },
         {
             "name": "shipping-docker/vessel",
-            "version": "4.1.0",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shipping-docker/vessel.git",
-                "reference": "16ae9c1fc6beeb3e451fe08c837d3c538a2ceaa9"
+                "reference": "baf7e0481a48bd04b1bece2cdfa1a82edef64141"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shipping-docker/vessel/zipball/16ae9c1fc6beeb3e451fe08c837d3c538a2ceaa9",
-                "reference": "16ae9c1fc6beeb3e451fe08c837d3c538a2ceaa9",
+                "url": "https://api.github.com/repos/shipping-docker/vessel/zipball/baf7e0481a48bd04b1bece2cdfa1a82edef64141",
+                "reference": "baf7e0481a48bd04b1bece2cdfa1a82edef64141",
                 "shasum": ""
             },
             "type": "library",
@@ -4953,7 +4953,7 @@
                 }
             ],
             "description": "Simple Docker dev environments",
-            "time": "2019-09-12T12:06:00+00:00"
+            "time": "2020-01-04T12:32:35+00:00"
         },
         {
             "name": "spatie/browsershot",
@@ -5542,20 +5542,20 @@
             "authors": [
                 {
                     "name": "Sebastian De Deyne",
-                    "role": "Developer",
                     "email": "sebastian@spatie.be",
-                    "homepage": "https://spatie.be"
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
                 },
                 {
                     "name": "Freek Van der Herten",
-                    "role": "Developer",
                     "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be"
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
                 },
                 {
                     "name": "Mohamed Said",
-                    "role": "Original idea",
-                    "email": "theMohamedSaid@gmail.com"
+                    "email": "theMohamedSaid@gmail.com",
+                    "role": "Original idea"
                 }
             ],
             "description": "A trait to make an Eloquent model hold translations",
@@ -5604,9 +5604,9 @@
             "authors": [
                 {
                     "name": "Sebastian De Deyne",
-                    "role": "Developer",
                     "email": "sebastian@spatie.be",
-                    "homepage": "https://spatie.be"
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
                 }
             ],
             "description": "A sane interface for php's built in preg_* functions",
@@ -5654,9 +5654,9 @@
             "authors": [
                 {
                     "name": "Brent Roose",
-                    "role": "Developer",
                     "email": "brent@spatie.be",
-                    "homepage": "https://spatie.be"
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
                 }
             ],
             "description": "Determine if a page may be crawled from robots.txt and robots meta tags",
@@ -5885,6 +5885,20 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "https://symfony.com",
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2020-03-30T11:42:42+00:00"
         },
         {
@@ -6432,6 +6446,20 @@
             ],
             "description": "Symfony HttpClient component",
             "homepage": "https://symfony.com",
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
             "time": "2020-04-12T16:45:47+00:00"
         },
         {
@@ -6488,6 +6516,20 @@
                 "interfaces",
                 "interoperability",
                 "standards"
+            ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
             ],
             "time": "2020-05-09T18:37:03+00:00"
         },
@@ -9216,8 +9258,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Utility class for timing",
@@ -10102,8 +10144,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "Developer",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
@@ -10171,5 +10213,6 @@
         "ext-pcntl": "7.2",
         "ext-posix": "7.2",
         "ext-exif": "7.2"
-    }
+    },
+    "plugin-api-version": "1.1.0"
 }

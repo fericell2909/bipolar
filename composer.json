@@ -33,7 +33,7 @@
         "predis/predis": "^1.1",
         "rap2hpoutre/laravel-log-viewer": "^1.0",
         "rebing/graphql-laravel": "^4.0",
-        "shipping-docker/vessel": "^4.0",
+        "shipping-docker/vessel": "^5.0",
         "spatie/laravel-activitylog": "^3.2",
         "spatie/laravel-analytics": "^3.6",
         "spatie/laravel-model-status": "^1.0",
