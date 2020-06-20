@@ -16,3 +16,4 @@ yarn-error.log
 /public/sitemap.xml
 .htpasswd
 .DS_Store
+.env.bak.vessel
