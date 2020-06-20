@@ -36,13 +36,11 @@ return [
     'payme_modal_lang' => 'EN',
     'size_abbr' => 'Size',
     'navbar' => [
-        'change_currency' => 'Change currency',
         'contact_us' => 'Contact us',
         'empty_cart' => 'empty cart',
         'empty_cart_detail' => "You don't have any item in the cart",
         'enter' => 'Log In',
         'hi' => 'Hi',
-        'language' => 'language',
         'logout' => 'Logout',
         'my_settings' => 'My Settings',
         'my_account' => 'My account',
@@ -59,6 +57,9 @@ return [
             'caretips' => 'Care tips',
         ],
         'company' => 'Company',
+        'preferences' => 'Preferences',
+        'change_currency' => 'Change currency',
+        'language' => 'language',
         'contact' => 'Contact',
     ],
     'home' => [
