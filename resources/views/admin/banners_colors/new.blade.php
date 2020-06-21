@@ -1,7 +1,6 @@
 @extends('admin.layouts.app_admin')
 @section('title', 'Nuevo banner de color')
 @section('content')
-  @include('admin.partials.banner_color_steps', ['active' => 1])
   <div class="card">
     <div class="card-body">
       {!! Form::open(['files' => true]) !!}
