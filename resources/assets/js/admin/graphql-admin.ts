@@ -27,7 +27,7 @@ export default class GraphqlAdmin {
   }
 
   public static updateBanner(banner: Partial<IBanner>) {
-    return client.mutate<{ banner: IBanner }>({
+    return client.mutate<{ banner_update: IBanner }>({
       mutation: gql`
         mutation BannerUpdate($hashId: String!, $textEs: String, $textEn: String) {
           banner_update(hash_id: $hashId, text_es: $textEs, text_en: $textEn) {

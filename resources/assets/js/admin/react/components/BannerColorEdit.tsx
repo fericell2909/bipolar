@@ -50,7 +50,7 @@ class BannerColorEdit extends Component<Props, State> {
     await this.setState({ isLoading: true });
     const { hash_id, text_es, text_en } = this.state.banner;
     const { data } = await GraphqlAdmin.updateBanner({ hash_id, text_en, text_es });
-    this.setState({ banner: data.banner, isLoading: false });
+    this.setState({ banner: data.banner_update, isLoading: false });
   };
 
   async componentDidMount() {
