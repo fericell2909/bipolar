@@ -38,11 +38,11 @@
         </div>
         <div class="col-md-6 form-group">
           <label>Color de fondo</label>
-          {!! Form::color('background_color', '#fcbeb9', ['class' => 'form-control']) !!}
+          {!! Form::color('background_color', $banner->background_color, ['class' => 'form-control']) !!}
         </div>
         <div class="col-md-6 form-group">
           <label>Color de texto</label>
-          {!! Form::color('color', '#000000', ['class' => 'form-control']) !!}
+          {!! Form::color('color', $banner->color, ['class' => 'form-control']) !!}
         </div>
         <div class="col-md-6 form-group">
           {!! Form::label('Estado') !!}
