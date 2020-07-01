@@ -35,30 +35,20 @@
 			<div class="col-sm-6 col-md-3">
         <div class="item-content">
           <p class="title-section">
-            <span>{{ __('bipolar.footer.company') }}</span>
+            <span>{{ __('bipolar.footer.preferences') }}</span>
           </p>
           <ul>
-            <li>
-              <a href="{{ route('home') }}">Home</a>
-            </li>
-            @if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "bipolar"))
-              <li><a href="{{ route('page', $bipolarPage->slug) }}">{{ $bipolarPage->title }}</a></li>
-            @endif
-            @if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "showroom"))
-              <li><a href="{{ route('page', $bipolarPage->slug) }}">{{ $bipolarPage->title }}</a></li>
-            @endif
-            <li>
-              <a href="{{ route('shop') }}">Shop</a>
-            </li>
-            <li>
-              <a href="{{ route('landings.newsletter') }}">Newsletter</a>
-            </li>
-            <li>
-              <a href="{{ route('landings.blog') }}">Blog</a>
-            </li>
-            <li>
-              <a href="{{ route('landings.contacto') }}">{{ __('bipolar.contact.contact_us') }}</a>
-            </li>
+            <li>{{ mb_strtoupper(__('bipolar.footer.change_currency')) }}</li>
+            <li style="padding-left: 2em;"><a href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a></li>
+            <li style="padding-left: 2em;"><a href="{{ route('change-currency', ['currency' => 'USD']) }}">Dólares (USD)</a></li>
+            <li>{{ mb_strtoupper(__('bipolar.footer.language')) }}</li>
+            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+              <li>
+                <a rel="alternate" hreflang="{{ $localeCode }}" style="padding-left: 2em;" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                  {{ ucfirst($properties['native']) }}
+                </a>
+              </li>
+            @endforeach
           </ul>
         </div>
 			</div>

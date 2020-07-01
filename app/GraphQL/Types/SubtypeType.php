@@ -25,6 +25,9 @@ class SubtypeType extends GraphQLType
                     return $root->hash_id;
                 },
             ],
+            'uuid'    => [
+                'type' => Type::nonNull(Type::string()),
+            ],
             'name_es' => [
                 'type'    => Type::nonNull(Type::string()),
                 'alias'   => 'name',

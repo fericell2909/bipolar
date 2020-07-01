@@ -574,7 +574,7 @@ namespace App\Models{
  * @property float $padding_bottom_mobile
  * @property float $padding_bottom_tablet
  * @property float $padding_bottom_desktop
- * @property string $font
+ * @property string|null $font
  * @property string $color
  * @property string|null $background_color
  * @property float $font_size_mobile
@@ -590,8 +590,10 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon $end_date
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $hash_id
  * @property-read mixed $translations
  * @property-read \App\Models\State $state
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner fromColorType()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner query()

@@ -11,6 +11,7 @@ services:
       CONTAINER_ENV: "${APP_ENV}"
       XDEBUG_HOST: "${XDEBUG_HOST}"
       WWWUSER: "${WWWUSER}"
+      COMPOSER_MEMORY_LIMIT: -1
     volumes:
      - .:/var/www/html
     networks:
@@ -36,6 +37,7 @@ services:
       MYSQL_DATABASE: "${DB_DATABASE}"
       MYSQL_USER: "${DB_USERNAME}"
       MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
      - vesselmysql:/var/lib/mysql
      # - ./docker/mysql/conf.d:/etc/mysql/conf.d

@@ -354,8 +354,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding: 1em 2em;
     &:hover {
       text-decoration: none;
     }

@@ -1,30 +1,32 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\GraphQL\Queries;
 
-use App\Models\Category;
+use App\Models\Banner;
 use Closure;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\SelectFields;
 use Rebing\GraphQL\Support\Query;
 
-class CategoryQuery extends Query
+class BannerSingleQuery extends Query
 {
     protected $attributes = [
-        'name'        => 'Category query',
-        'description' => 'Get all categories',
+        'name' => 'Get banner query',
+        'description' => 'Get only one banner by hash id'
     ];
 
     public function type(): Type
     {
-        return Type::listOf(\GraphQL::type('category'));
+        return \GraphQL::type('banner');
     }
 
     public function args(): array
     {
         return [
-
+            'hash_id' => ['name' => 'hash_id', 'type' => Type::nonNull(Type::string())]
         ];
     }
 
@@ -35,6 +37,6 @@ class CategoryQuery extends Query
         $select = $fields->getSelect();
         $with = $fields->getRelations();
 
-        return Category::all();
+        return Banner::findByHash($args['hash_id']);
     }
 }

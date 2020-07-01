@@ -12,7 +12,7 @@ class BannerColorController extends Controller
 {
     public function index()
     {
-        $banners = Banner::orderBy('order')->whereNotNull('background_color')->with('state')->get();
+        $banners = Banner::fromColorType()->with('state')->orderBy('order')->get();
 
         return view('admin.banners_colors.index', compact('banners'));
     }
@@ -45,7 +45,14 @@ class BannerColorController extends Controller
         $banner->state()->associate($state);
         $banner->save();
 
-        return redirect()->route('banners_colors.edit', $banner->id);
+        return redirect()->route('banners_colors.set_text', $banner->id);
+    }
+
+    public function setText(int $id)
+    {
+        $banner = Banner::findOrFail($id);
+
+        return view('admin.banners_colors.text', compact('banner'));
     }
 
     public function edit($bannerId)
@@ -89,7 +96,7 @@ class BannerColorController extends Controller
 
     public function order()
     {
-        $banners = Banner::whereStateId(config('constants.STATE_ACTIVE_ID'))->orderBy('order')->whereNotNull('background_color')->get();
+        $banners = Banner::fromColorType()->whereStateId(config('constants.STATE_ACTIVE_ID'))->orderBy('order')->get();
 
         return view('admin.banners_colors.order', compact('banners'));
     }

@@ -9,24 +9,27 @@ use Rebing\GraphQL\Support\Type as GraphQLType;
 class SizeType extends GraphQLType
 {
     protected $attributes = [
-        'name' => 'Size',
+        'name'        => 'Size',
         'description' => 'Sizes from a product',
-        'model' => Size::class,
+        'model'       => Size::class,
     ];
 
     public function fields(): array
     {
         return [
             'hash_id' => [
-                'type' => Type::nonNull(Type::string()),
+                'type'        => Type::nonNull(Type::string()),
                 'description' => 'Hashed ID',
-                'alias' => 'id',
-                'resolve' => function ($root, $args) {
+                'alias'       => 'id',
+                'resolve'     => function ($root, $args) {
                     return $root->hash_id;
-                }
+                },
             ],
-            'name' => [
+            'uuid'    => [
                 'type' => Type::nonNull(Type::string()),
+            ],
+            'name'    => [
+                'type'        => Type::nonNull(Type::string()),
                 'description' => 'Name of the size',
             ],
         ];

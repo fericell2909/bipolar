@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Traits\Hashable;
+use Dyrynda\Database\Support\GeneratesUuid;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
 /** @mixin \Eloquent */
 class Color extends Model
 {
-    use Hashable, HasTranslations;
+    use Hashable, GeneratesUuid, HasTranslations;
 
     protected $table = 'colors';
     public $timestamps = false;

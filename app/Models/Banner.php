@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\Hashable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 use Spatie\Translatable\HasTranslations;
 
 /** @mixin \Eloquent */
 class Banner extends Model
 {
-    use HasTranslations;
+    use HasTranslations, Hashable;
 
     public $dates = ['begin_date', 'end_date'];
     public $translatable = ['text'];
@@ -16,5 +18,13 @@ class Banner extends Model
     public function state()
     {
         return $this->belongsTo(State::class);
+    }
+
+    /**
+     * @param Builder $query
+     */
+    public function scopeFromColorType($query)
+    {
+        return $query->whereNotNull('background_color');
     }
 }

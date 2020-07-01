@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Hashable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Dyrynda\Database\Support\GeneratesUuid;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Translatable\HasTranslations;
@@ -12,7 +13,7 @@ use Spatie\Translatable\HasTranslations;
 /** @mixin \Eloquent */
 class Type extends Model
 {
-    use Hashable, Sluggable, SluggableScopeHelpers, HasTranslations, LogsActivity;
+    use Hashable, GeneratesUuid, Sluggable, SluggableScopeHelpers, HasTranslations, LogsActivity;
 
     protected $table = 'types';
     public $timestamps = false;

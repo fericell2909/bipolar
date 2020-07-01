@@ -1,46 +1,4 @@
-<?php
-/** @var \App\Instances\CartBipolar $bipolarCart */
-?>
-<section class="container visible-xs-block visible-sm-block">
-	<p class="text-center text-heading-mobile">
-    <span>{{ Auth::check() ? __('bipolar.navbar.welcome') : __('bipolar.navbar.hi') }}</span>
-    @guest
-      <a href="{{ route('login-with-register', ['loginRegister' => 'login']) }}">{{ __('bipolar.navbar.enter') }}</a>
-      <span>{{ __('bipolar.navbar.or') }}</span>
-      <a href="{{ route('login-with-register', ['loginRegister' => 'register']) }}">{{ __('bipolar.navbar.register') }}</a>
-    @endguest
-    @auth
-      <span>{{ Auth::user()->name }}</span>
-      <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-        <i class="fas fa-power-off"></i> {{ __('bipolar.navbar.logout') }}
-      </a>
-    @endauth
-  </p>
-  <div class="text-heading-account">
-    {{ __('bipolar.navbar.my_settings') }}
-    <i class="fas fa-chevron-down"></i>
-  </div>
-  <ul class="bipolar-dropdown-menu in-mobile hidden-md hidden-lg">
-    <li><a href="{{ route('myaccount') }}"><i class="fas fa-fw fa-user"></i> {{ __('bipolar.navbar.my_account') }}</a></li>
-    <li><a href="{{ route('wishlist') }}"><i class="fas fa-fw fa-heart"></i> Wishlist</a></li>
-    <li><a href="{{ route('cart') }}"><i class="fas fa-fw fa-shopping-cart"></i> Shopping cart</a></li>
-    <li><a href="{{ route('checkout') }}"><i class="fas fa-fw fa-share"></i> Checkout</a></li>
-    <li><a><i class="fad fa-fw fa-dollar-sign"></i> {{ __('bipolar.navbar.change_currency') }}</a></li>
-    <li><a class="inside" href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a></li>
-    <li><a class="inside" href="{{ route('change-currency', ['currency' => 'USD']) }}">Dólares (USD)</a></li>
-    <li><a><i class="fas fa-fw fa-language"></i> {{ __('bipolar.navbar.language') }}</a></li>
-    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-      <li>
-        <a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item inside" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-          {{ ucfirst($properties['native']) }}
-        </a>
-      </li>
-    @endforeach
-    @auth
-      <li><a href="#">{{ __('bipolar.navbar.logout') }}</a></li>
-    @endauth
-  </ul>
-</section>
+<?php /** @var \App\Instances\CartBipolar $bipolarCart */ ?>
 <section class="header-mobile visible-xs-block visible-sm-block">
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
@@ -106,4 +64,8 @@
   <li><a href="{{ route('landings.newsletter') }}"><span>Newsletter</span></a></li>
   <li><a href="{{ route('landings.blog') }}"><span>Blog</span></a></li>
   <li><a href="{{ route('landings.contacto') }}"><span>{{ __('bipolar.navbar.contact_us') }}</span></a></li>
+  <li>
+    <a href="{{ route('myaccount') }}"><span>{{ __('bipolar.navbar.my_account') }}</span></a>
+    <a href="{{ route('wishlist') }}"><i class="fas fa-heart"></i></a>
+  </li>
 </ul>

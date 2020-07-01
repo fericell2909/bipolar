@@ -36,13 +36,11 @@ return [
     'payme_modal_lang' => 'SP',
     'size_abbr' => 'Talla',
     'navbar' => [
-        'change_currency' => 'Cambiar moneda',
         'contact_us' => 'Contacto',
         'empty_cart' => 'Carrito vacío',
         'empty_cart_detail' => 'No tienes ningún item en tu carrito',
         'enter' => 'Ingresa',
         'hi' => 'Hola',
-        'language' => 'Idioma',
         'logout' => 'Salir',
         'my_settings' => 'Mi cuenta',
         'my_account' => 'Mi cuenta',
@@ -59,6 +57,9 @@ return [
             'caretips' => 'Recomendaciones de uso',
         ],
         'company' => 'Contenidos',
+        'preferences' => 'Preferencias',
+        'change_currency' => 'Cambiar moneda',
+        'language' => 'Idioma',
         'contact' => 'Contacto',
     ],
     'home' => [

@@ -9,7 +9,6 @@
             <tr>
               <th>#</th>
               <th>Orden</th>
-              <th>Texto</th>
               <th>Color texto</th>
               <th>Color fondo</th>
               <th>Desde</th>
@@ -24,7 +23,6 @@
               <tr>
                 <td class="align-middle">{{ $banner->id }}</td>
                 <td class="align-middle">{{ $banner->order }}</td>
-                <td class="align-middle">{{ $banner->text }}</td>
                 <td class="align-middle" style="background-color: {{ $banner->color }}"></td>
                 <td class="align-middle" style="background-color: {{ $banner->background_color }}"></td>
                 <td class="align-middle">{{ $banner->begin_date->format('d-m-Y H:i') }}</td>

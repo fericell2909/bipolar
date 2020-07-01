@@ -5,12 +5,13 @@ namespace App\Models;
 use App\Traits\Hashable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Dyrynda\Database\Support\GeneratesUuid;
 use Illuminate\Database\Eloquent\Model;
 
 /** @mixin \Eloquent */
 class Size extends Model
 {
-    use Hashable, Sluggable, SluggableScopeHelpers;
+    use Hashable, GeneratesUuid, Sluggable, SluggableScopeHelpers;
 
     protected $table = 'sizes';
     public $timestamps = false;
