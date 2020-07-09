@@ -3,7 +3,7 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-      @include('admin.partials.product_header_steps', ['active' => 2])
+      @include('admin.partials.product_header_steps', ['active' => "photos"])
     </div>
     <div class="col-md-12">
       <div class="card">

@@ -431,8 +431,10 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
+ * @property mixed $uuid
  * @property int|null $state_id
  * @property int|null $label_id
+ * @property int $fit_id
  * @property array $name
  * @property string|null $slug
  * @property array|null $description
@@ -469,6 +471,7 @@ namespace App\Models{
  * @property-read int|null $activities_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
  * @property-read int|null $colors_count
+ * @property-read \App\Models\Fit $fit
  * @property-read mixed $discount_amount
  * @property-read string $hash_id
  * @property-read mixed $price_currency
@@ -502,6 +505,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDiscountPen($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDiscountUsd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereEndDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFitId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFreeShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelHigh($value)
@@ -524,6 +528,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUuid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWeight($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelHigh($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelLow($value)
@@ -989,6 +994,26 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereShippingId($value)
  */
 	class ShippingInclude extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Fit
+ *
+ * @property int $id
+ * @property string $uuid
+ * @property array $name
+ * @property float $value
+ * @property-read mixed $translations
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit whereValue($value)
+ */
+	class Fit extends \Eloquent {}
 }
 
 namespace App\Models{

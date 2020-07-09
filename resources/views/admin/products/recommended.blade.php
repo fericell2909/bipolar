@@ -8,7 +8,7 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-      @include('admin.partials.product_header_steps', ['active' => 4])
+      @include('admin.partials.product_header_steps', ['active' => "recommended"])
     </div>
     <div class="col-md-12">
       <div id="bipolar-product-recommended"></div>

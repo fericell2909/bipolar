@@ -34,6 +34,8 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('{productSlug}/preview', 'Admin\ProductController@preview')->name('products.preview');
         Route::get('{slug}/photos', 'Admin\ProductController@photos')->name('products.photos');
         Route::get('photos/{slug}/order', 'Admin\ProductController@seePhotos')->name('products.photos.order');
+        Route::get('{slug}/calculate-size', 'Admin\ProductController@sizeCalculation')->name('products.calculate');
+        Route::post('{slug}/calculate-size', 'Admin\ProductController@sizeCalculationStore');
         Route::get('{slug}/recommended', 'Admin\ProductController@recommended')->name('products.recommended');
         Route::get('trashed', 'Admin\ProductController@trashed')->name('products.trashed');
         Route::post('{productHashId}/hard-delete', 'Admin\ProductController@deletehard')->name('products.harddelete');

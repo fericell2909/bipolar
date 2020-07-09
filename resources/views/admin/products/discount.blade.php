@@ -7,6 +7,6 @@
   </script>
 @endpush
 @section('content')
-  @include('admin.partials.product_header_steps', ['active' => 6])
+  @include('admin.partials.product_header_steps', ['active' => "discounts"])
   <div id="bipolar-product-discount"></div>
 @endsection
