@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Hashable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Dyrynda\Database\Support\GeneratesUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
@@ -14,7 +15,7 @@ use Spatie\Translatable\HasTranslations;
 /** @mixin \Eloquent */
 class Product extends Model
 {
-    use Hashable, Sluggable, SluggableScopeHelpers, SoftDeletes, HasTranslations, LogsActivity;
+    use Hashable, Sluggable, SluggableScopeHelpers, SoftDeletes, HasTranslations, LogsActivity, GeneratesUuid;
 
     protected $table = 'products';
     protected $dates = ['deleted_at', 'begin_discount', 'end_discount', 'publish_date'];
@@ -34,6 +35,11 @@ class Product extends Model
     public function colors()
     {
         return $this->belongsToMany(Color::class, 'colors_products', 'product_id', 'color_id');
+    }
+
+    public function fit()
+    {
+        return $this->belongsTo(Fit::class);
     }
 
     public function label()

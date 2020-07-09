@@ -4,7 +4,7 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-      @include('admin.partials.product_header_steps', ['active' => 3])
+      @include('admin.partials.product_header_steps', ['active' => "order"])
     </div>
   </div>
   <div class="row" id="sortable-items">

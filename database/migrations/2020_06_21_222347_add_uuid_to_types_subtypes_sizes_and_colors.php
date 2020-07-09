@@ -41,8 +41,6 @@ class AddUuidToTypesSubtypesSizesAndColors extends Migration
      */
     public function up()
     {
-        Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
-
         $this->generateUUIDForTable('types');
         $this->generateUUIDForTable('subtypes');
         $this->generateUUIDForTable('sizes');
