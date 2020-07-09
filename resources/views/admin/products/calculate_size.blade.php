@@ -52,7 +52,7 @@
             </thead>
             <tbody>
               <tr>
-                <td class="align-middle">Anchura</td>
+                <td class="align-middle">Empeine</td>
                 <td class="form-group">{!! Form::number('instep_very_low', $product->instep_level_very_low, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.1']) !!}</td>
                 <td class="form-group">{!! Form::number('instep_low', $product->instep_level_low, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.1']) !!}</td>
                 <td class="form-group">{!! Form::number('instep_normal', $product->instep_level_normal, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.1']) !!}</td>
