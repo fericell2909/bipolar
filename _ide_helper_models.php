@@ -217,6 +217,7 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
+ * @property mixed $uuid
  * @property string $name
  * @property string|null $slug
  * @property-read string $hash_id
@@ -229,6 +230,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereUuid($value)
  */
 	class Size extends \Eloquent {}
 }
@@ -357,6 +359,7 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
+ * @property mixed $uuid
  * @property array $name
  * @property string|null $slug
  * @property int $order
@@ -374,6 +377,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereUuid($value)
  */
 	class Type extends \Eloquent {}
 }
@@ -442,6 +446,16 @@ namespace App\Models{
  * @property float $price_dolar
  * @property float|null $price_usd_discount
  * @property float|null $weight
+ * @property float $instep_level_very_high
+ * @property float $instep_level_high
+ * @property float $instep_level_normal
+ * @property float $instep_level_low
+ * @property float $instep_level_very_low
+ * @property float $width_level_very_high
+ * @property float $width_level_high
+ * @property float $width_level_normal
+ * @property float $width_level_low
+ * @property float $width_level_very_low
  * @property int $order
  * @property int $free_shipping
  * @property int $is_showroom_sale
@@ -490,6 +504,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereEndDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFreeShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelHigh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelLow($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelNormal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelVeryHigh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelVeryLow($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsDeal2x1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSalient($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsShowroomSale($value)
@@ -506,6 +525,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWeight($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelHigh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelLow($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelNormal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelVeryHigh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelVeryLow($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Product withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Product withoutTrashed()
  */
@@ -1082,6 +1106,7 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
+ * @property mixed $uuid
  * @property array $name
  * @property-read string $hash_id
  * @property-read mixed $translations
@@ -1092,6 +1117,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereUuid($value)
  */
 	class Color extends \Eloquent {}
 }
@@ -1125,6 +1151,7 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
+ * @property mixed $uuid
  * @property int $type_id
  * @property array $name
  * @property string|null $slug
@@ -1149,6 +1176,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereUuid($value)
  */
 	class Subtype extends \Eloquent {}
 }

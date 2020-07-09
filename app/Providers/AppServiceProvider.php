@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Banner;
 use App\Models\Page;
+use Doctrine\DBAL\Types\Type;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Telescope\Telescope;
 
@@ -39,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
         if ($this->app->environment() !== 'production') {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
