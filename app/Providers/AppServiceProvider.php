@@ -40,7 +40,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
+        if (!Type::hasType("uuid")) {
+            Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
+        }
         if ($this->app->environment() !== 'production') {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
