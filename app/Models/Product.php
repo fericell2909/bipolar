@@ -37,9 +37,14 @@ class Product extends Model
         return $this->belongsToMany(Color::class, 'colors_products', 'product_id', 'color_id');
     }
 
-    public function fit()
+    public function fit_size()
     {
-        return $this->belongsTo(Fit::class);
+        return $this->belongsTo(FitSize::class);
+    }
+
+    public function fit_width()
+    {
+        return $this->belongsTo(FitWidth::class);
     }
 
     public function label()

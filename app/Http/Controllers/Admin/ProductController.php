@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\DiscountTask;
-use App\Models\Fit;
+use App\Models\FitSize;
+use App\Models\FitWidth;
 use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Stock;
@@ -73,17 +74,21 @@ class ProductController extends Controller
     public function sizeCalculation(string $productSlug)
     {
         $product = Product::findBySlugOrFail($productSlug);
-        $fits = Fit::all();
+        $fitsSizes = FitSize::all();
+        $fitsWidths = FitWidth::all();
 
-        return view('admin.products.calculate_size', compact('product', 'fits'));
+        return view('admin.products.calculate_size', compact('product', 'fitsSizes', 'fitsWidths'));
     }
 
     public function sizeCalculationStore(string $productSlug)
     {
+        /** @var Product $product */
         $product = Product::findBySlugOrFail($productSlug);
-        $fit = Fit::whereUuid(request()->input('fit'))->first();
+        $fitSize = FitSize::whereUuid(request()->input('fit_size'))->first();
+        $fitWidth = FitWidth::whereUuid(request()->input('fit_width'))->first();
 
-        $product->fit_id = $fit->id;
+        $product->fit_size_id = $fitSize->id;
+        $product->fit_width_id = $fitWidth->id;
         $product->width_level_very_low = request()->input('width_very_low');
         $product->width_level_low = request()->input('width_low');
         $product->width_level_normal = request()->input('width_normal');

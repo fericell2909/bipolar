@@ -5,12 +5,21 @@
   <div class="card">
     <div class="card-body">
       {!! Form::open() !!}
-        <label><strong>Fit</strong></label>
+        <label><strong>Escoge tu talla</strong></label>
         <div class="d-flex btn-group btn-group-toggle mb-3" data-toggle="buttons">
-          @foreach($fits as $fit)
+          @foreach($fitsSizes as $fit)
             <label class="btn btn-outline-dark">
-              {!! Form::radio('fit', $fit->uuid, $product->fit->uuid === $fit->uuid, ['autocomplete' => 'off']) !!}
+              {!! Form::radio('fit_size', $fit->uuid, $product->fit_size->uuid === $fit->uuid, ['autocomplete' => 'off']) !!}
               {{ $fit->getTranslation('name', 'es') }}
+            </label>
+          @endforeach
+        </div>
+        <label><strong>Ancho</strong></label>
+        <div class="d-flex btn-group btn-group-toggle mb-3" data-toggle="buttons">
+          @foreach($fitsWidths as $fitWidth)
+            <label class="btn btn-outline-dark">
+              {!! Form::radio('fit_width', $fitWidth->uuid, $product->fit_width->uuid === $fitWidth->uuid, ['autocomplete' => 'off']) !!}
+              {{ $fitWidth->getTranslation('name', 'es') }}
             </label>
           @endforeach
         </div>
@@ -29,11 +38,11 @@
            <tbody>
              <tr>
                <td class="align-middle">Anchura</td>
-               <td class="form-group">{!! Form::number('width_very_low', $product->width_level_very_low, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.1']) !!}</td>
-               <td class="form-group">{!! Form::number('width_low', $product->width_level_low, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.1']) !!}</td>
-               <td class="form-group">{!! Form::number('width_normal', $product->width_level_normal, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.1']) !!}</td>
-               <td class="form-group">{!! Form::number('width_high', $product->width_level_high, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.1']) !!}</td>
-               <td class="form-group">{!! Form::number('width_very_high', $product->width_level_very_high, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.1']) !!}</td>
+               <td class="form-group">{!! Form::number('width_very_low', $product->width_level_very_low, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.01']) !!}</td>
+               <td class="form-group">{!! Form::number('width_low', $product->width_level_low, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.01']) !!}</td>
+               <td class="form-group">{!! Form::number('width_normal', $product->width_level_normal, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.01']) !!}</td>
+               <td class="form-group">{!! Form::number('width_high', $product->width_level_high, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.01']) !!}</td>
+               <td class="form-group">{!! Form::number('width_very_high', $product->width_level_very_high, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.01']) !!}</td>
              </tr>
            </tbody>
          </table>
@@ -53,11 +62,11 @@
             <tbody>
               <tr>
                 <td class="align-middle">Empeine</td>
-                <td class="form-group">{!! Form::number('instep_very_low', $product->instep_level_very_low, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.1']) !!}</td>
-                <td class="form-group">{!! Form::number('instep_low', $product->instep_level_low, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.1']) !!}</td>
-                <td class="form-group">{!! Form::number('instep_normal', $product->instep_level_normal, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.1']) !!}</td>
-                <td class="form-group">{!! Form::number('instep_high', $product->instep_level_high, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.1']) !!}</td>
-                <td class="form-group">{!! Form::number('instep_very_high', $product->instep_level_very_high, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.1']) !!}</td>
+                <td class="form-group">{!! Form::number('instep_very_low', $product->instep_level_very_low, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.01']) !!}</td>
+                <td class="form-group">{!! Form::number('instep_low', $product->instep_level_low, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.01']) !!}</td>
+                <td class="form-group">{!! Form::number('instep_normal', $product->instep_level_normal, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.01']) !!}</td>
+                <td class="form-group">{!! Form::number('instep_high', $product->instep_level_high, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.01']) !!}</td>
+                <td class="form-group">{!! Form::number('instep_very_high', $product->instep_level_very_high, ['class' => 'form-control form-control-success', 'min' => '-100', 'step' => '0.01']) !!}</td>
               </tr>
             </tbody>
           </table>

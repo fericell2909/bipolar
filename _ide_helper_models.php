@@ -434,7 +434,8 @@ namespace App\Models{
  * @property mixed $uuid
  * @property int|null $state_id
  * @property int|null $label_id
- * @property int $fit_id
+ * @property int $fit_size_id
+ * @property int $fit_width_id
  * @property array $name
  * @property string|null $slug
  * @property array|null $description
@@ -471,7 +472,8 @@ namespace App\Models{
  * @property-read int|null $activities_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
  * @property-read int|null $colors_count
- * @property-read \App\Models\Fit $fit
+ * @property-read \App\Models\FitSize $fit_size
+ * @property-read \App\Models\FitWidth $fit_width
  * @property-read mixed $discount_amount
  * @property-read string $hash_id
  * @property-read mixed $price_currency
@@ -505,7 +507,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDiscountPen($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDiscountUsd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereEndDiscount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFitId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFitSizeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFitWidthId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFreeShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelHigh($value)
@@ -998,22 +1001,22 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Fit
+ * App\Models\FitSize
  *
  * @property int $id
  * @property string $uuid
  * @property array $name
  * @property float $value
  * @property-read mixed $translations
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit whereUuid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Fit whereValue($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize whereValue($value)
  */
-	class Fit extends \Eloquent {}
+	class FitSize extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -1123,6 +1126,26 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereName($value)
  */
 	class State extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\FitWidth
+ *
+ * @property int $id
+ * @property string $uuid
+ * @property array $name
+ * @property float $value
+ * @property-read mixed $translations
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth whereValue($value)
+ */
+	class FitWidth extends \Eloquent {}
 }
 
 namespace App\Models{
