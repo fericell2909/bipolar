@@ -14,6 +14,8 @@ use App\Models\Historic;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Jenssegers\Date\Date;
 
 class LandingsController extends Controller
@@ -120,8 +122,8 @@ class LandingsController extends Controller
             })
             ->when($request->filled('archive'), function ($wherePosts) use ($request) {
                 $date = explode('-', $request->input('archive'));
-                $year = array_first($date);
-                $month = array_last($date);
+                $year = Arr::first($date);
+                $month = Arr::last($date);
 
                 return $wherePosts->whereYear('created_at', $year)->whereMonth('created_at', $month);
             })
@@ -153,7 +155,7 @@ class LandingsController extends Controller
         $tags = Tag::orderBy('name')->get();
         $yearMonthSelect = $this->getDateAndMonthFromPosts();
 
-        $seoDescription = !empty($post->content) ? str_limit(strip_tags($post->content), 200) : 'Zapatos de diseñador hechos a mano en Perú. Designer shoes handmade in Peru';
+        $seoDescription = !empty($post->content) ? Str::limit(strip_tags($post->content), 200) : 'Zapatos de diseñador hechos a mano en Perú. Designer shoes handmade in Peru';
         $image = optional($post->photos->first())->url;
         $this->seo()->metatags()->setTitle("{$post->title}")->setDescription($seoDescription);
         $this->seo()->twitter()

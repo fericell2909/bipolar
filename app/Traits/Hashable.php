@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 trait Hashable
@@ -28,7 +29,7 @@ trait Hashable
     {
         $ids = [];
         foreach($hashedIds as $hashId) {
-            array_push($ids, array_first(\Hashids::decode($hashId)));
+            array_push($ids, Arr::first(\Hashids::decode($hashId)));
         }
 
         return static::whereIn($key, $ids)->get();

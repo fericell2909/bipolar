@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Zttp\Zttp;
 use App\Models\Settings;
+use Illuminate\Support\Arr;
 
 class CopyFacebookFansToSettings extends Command
 {
@@ -47,7 +48,7 @@ class CopyFacebookFansToSettings extends Command
             return;
         }
 
-        $settings->facebook_counts = array_get($response->json(), 'fan_count', $settings->facebook_counts);
+        $settings->facebook_counts = Arr::get($response->json(), 'fan_count', $settings->facebook_counts);
         $settings->save();
     }
 }

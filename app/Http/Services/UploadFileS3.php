@@ -3,13 +3,14 @@
 namespace App\Http\Services;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
 
 class UploadFileS3
 {
     public function uploadPhoto(UploadedFile $image, string $folder, string $imageName): string
     {
         $now = now();
-        $randomString = str_random(3);
+        $randomString = Str::random(3);
         $fullNameImage = "{$imageName}_{$now->timestamp}_{$randomString}.{$image->extension()}";
 
         return $image->storePubliclyAs($folder, $fullNameImage, [

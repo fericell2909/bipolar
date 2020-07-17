@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\Ajax;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Wishlist;
+use Illuminate\Support\Arr;
 
 class WishlistController extends Controller
 {
@@ -31,7 +32,7 @@ class WishlistController extends Controller
 
     private function addWishlistIfGuest(Product $product)
     {
-        $existProduct = array_first(\Session::get('BIPOLAR_WISHLIST', []), function ($productInWishlist) use ($product) {
+        $existProduct = Arr::first(\Session::get('BIPOLAR_WISHLIST', []), function ($productInWishlist) use ($product) {
             return $productInWishlist->slug === $product->slug;
         });
 
