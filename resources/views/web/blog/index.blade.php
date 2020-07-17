@@ -28,7 +28,7 @@
       @endif
     </div>
     <footer>
-      <p>{!! str_limit($post->content, 50) !!}</p>
+      <p>{!! Illuminate\Support\Str::limit($post->content, 50) !!}</p>
       <a href="{{ route('landings.blog.post', $post->slug) }}" class="btn btn-dark-rounded">{{ __('bipolar.blog.read_more') }}</a>
     </footer>
   </article>

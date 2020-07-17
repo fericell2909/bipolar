@@ -20,7 +20,7 @@
             <?php /** @var \App\Models\Post $post */ ?>
             <tr>
               <td class="align-middle">{{ $post->id }}</td>
-              <td class="align-middle">{{ str_limit($post->getTranslation('title', 'es'), 60) }}</td>
+              <td class="align-middle">{{ Illuminate\Support\Str::limit($post->getTranslation('title', 'es'), 60) }}</td>
               <td class="align-middle">{{ $post->categories->implode('name', ', ') }}</td>
               <td class="align-middle">{{ $post->tags->implode('name', ', ') }}</td>
               <td class="align-middle">{!! $post->state->getAdminHtml() !!}</td>
