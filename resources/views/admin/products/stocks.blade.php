@@ -7,7 +7,7 @@
   </script>
 @endpush
 @section('content')
-  @include('admin.partials.product_header_steps', ['active' => 5])
+  @include('admin.partials.product_header_steps', ['active' => "stocks"])
   <div class="row">
     <div class="col-md-12 white-box">
       <div class="card">

@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\DiscountTask;
+use App\Models\FitSize;
+use App\Models\FitWidth;
 use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Stock;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -68,6 +69,39 @@ class ProductController extends Controller
         $product = Product::findBySlug($productoId);
 
         return view('admin.products.recommended', compact('product'));
+    }
+
+    public function sizeCalculation(string $productSlug)
+    {
+        $product = Product::findBySlugOrFail($productSlug);
+        $fitsSizes = FitSize::all();
+        $fitsWidths = FitWidth::all();
+
+        return view('admin.products.calculate_size', compact('product', 'fitsSizes', 'fitsWidths'));
+    }
+
+    public function sizeCalculationStore(string $productSlug)
+    {
+        /** @var Product $product */
+        $product = Product::findBySlugOrFail($productSlug);
+        $fitSize = FitSize::whereUuid(request()->input('fit_size'))->first();
+        $fitWidth = FitWidth::whereUuid(request()->input('fit_width'))->first();
+
+        $product->fit_size_id = $fitSize->id;
+        $product->fit_width_id = $fitWidth->id;
+        $product->width_level_very_low = request()->input('width_very_low');
+        $product->width_level_low = request()->input('width_low');
+        $product->width_level_normal = request()->input('width_normal');
+        $product->width_level_high = request()->input('width_high');
+        $product->width_level_very_high = request()->input('width_very_high');
+        $product->instep_level_very_low = request()->input('instep_very_low');
+        $product->instep_level_low = request()->input('instep_low');
+        $product->instep_level_normal = request()->input('instep_normal');
+        $product->instep_level_high = request()->input('instep_high');
+        $product->instep_level_very_high = request()->input('instep_very_high');
+        $product->save();
+
+        return back();
     }
 
     public function trashed()

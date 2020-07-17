@@ -111,7 +111,7 @@
                         @endforeach
                       </div>
                     @endif
-                    <p>{{ str_limit(strip_tags($post->content), 50) }}</p>
+                    <p>{{ \Illuminate\Support\Str::limit(strip_tags($post->content), 50) }}</p>
                     <a href="{{ route('landings.blog.post', $post->slug) }}">{{ __('bipolar.blog.read_more') }}</a>
                   </div>
                 </div>

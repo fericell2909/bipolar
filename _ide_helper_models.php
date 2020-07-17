@@ -90,7 +90,7 @@ namespace App\Models{
  * @property-read mixed $discount_coupon_currency
  * @property-read string $hash_id
  * @property-read mixed $shipping_fee_currency
- * @property-read mixed $status
+ * @property-read string $status
  * @property-read mixed $subtotal_currency
  * @property-read mixed $total_currency
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment[] $payments
@@ -136,7 +136,7 @@ namespace App\Models{
  * @property array $name
  * @property string|null $slug
  * @property-read string $hash_id
- * @property-read mixed $translations
+ * @property-read array $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\HomePost[] $home_posts
  * @property-read int|null $home_posts_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType findSimilarSlugs($attribute, $config, $slug)
@@ -217,6 +217,7 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
+ * @property mixed $uuid
  * @property string $name
  * @property string|null $slug
  * @property-read string $hash_id
@@ -229,6 +230,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereUuid($value)
  */
 	class Size extends \Eloquent {}
 }
@@ -332,7 +334,7 @@ namespace App\Models{
  * @property string|null $background_suscribe
  * @property string|null $background_counter
  * @property array|null $open_hours
- * @property-read mixed $translations
+ * @property-read array $translations
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings query()
@@ -357,13 +359,14 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
+ * @property mixed $uuid
  * @property array $name
  * @property string|null $slug
  * @property int $order
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  * @property-read int|null $activities_count
  * @property-read string $hash_id
- * @property-read mixed $translations
+ * @property-read array $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
  * @property-read int|null $subtypes_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type findSimilarSlugs($attribute, $config, $slug)
@@ -374,6 +377,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereUuid($value)
  */
 	class Type extends \Eloquent {}
 }
@@ -427,8 +431,11 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
+ * @property mixed $uuid
  * @property int|null $state_id
  * @property int|null $label_id
+ * @property int $fit_size_id
+ * @property int $fit_width_id
  * @property array $name
  * @property string|null $slug
  * @property array|null $description
@@ -442,6 +449,16 @@ namespace App\Models{
  * @property float $price_dolar
  * @property float|null $price_usd_discount
  * @property float|null $weight
+ * @property float $instep_level_very_high
+ * @property float $instep_level_high
+ * @property float $instep_level_normal
+ * @property float $instep_level_low
+ * @property float $instep_level_very_low
+ * @property float $width_level_very_high
+ * @property float $width_level_high
+ * @property float $width_level_normal
+ * @property float $width_level_low
+ * @property float $width_level_very_low
  * @property int $order
  * @property int $free_shipping
  * @property int $is_showroom_sale
@@ -455,11 +472,13 @@ namespace App\Models{
  * @property-read int|null $activities_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
  * @property-read int|null $colors_count
+ * @property-read \App\Models\FitSize $fit_size
+ * @property-read \App\Models\FitWidth $fit_width
  * @property-read mixed $discount_amount
  * @property-read string $hash_id
  * @property-read mixed $price_currency
  * @property-read mixed $price_discount_currency
- * @property-read mixed $translations
+ * @property-read array $translations
  * @property-read \App\Models\Label|null $label
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read int|null $photos_count
@@ -475,12 +494,10 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
  * @property-read int|null $subtypes_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product findSimilarSlugs($attribute, $config, $slug)
- * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product newQuery()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Product onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product query()
- * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereBeginDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDeletedAt($value)
@@ -488,8 +505,15 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDiscountPen($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDiscountUsd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereEndDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFitSizeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFitWidthId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFreeShipping($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelHigh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelLow($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelNormal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelVeryHigh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelVeryLow($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsDeal2x1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSalient($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsShowroomSale($value)
@@ -505,7 +529,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereStateId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUuid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWeight($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelHigh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelLow($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelNormal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelVeryHigh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelVeryLow($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Product withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Product withoutTrashed()
  */
@@ -530,8 +560,8 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories
  * @property-read int|null $categories_count
  * @property-read string $hash_id
- * @property-read mixed $status
- * @property-read mixed $translations
+ * @property-read string $status
+ * @property-read array $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read int|null $photos_count
  * @property-read \App\Models\State|null $state
@@ -591,7 +621,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $hash_id
- * @property-read mixed $translations
+ * @property-read array $translations
  * @property-read \App\Models\State $state
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner fromColorType()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner newModelQuery()
@@ -669,7 +699,7 @@ namespace App\Models{
  * @property-read int|null $excluded_states_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingExclude[] $excludes
  * @property-read int|null $excludes_count
- * @property-read mixed $translations
+ * @property-read array $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Country[] $included_countries
  * @property-read int|null $included_countries_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $included_states
@@ -757,12 +787,10 @@ namespace App\Models{
  * @property-read \App\Models\CountryState $country_state
  * @property-read string $hash_id
  * @property-read \App\Models\User $user
- * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address newQuery()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Address onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address query()
- * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddressTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereCountryStateId($value)
@@ -797,7 +825,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  * @property-read int|null $activities_count
  * @property-read string $hash_id
- * @property-read mixed $translations
+ * @property-read array $translations
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label newQuery()
@@ -969,6 +997,26 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\FitSize
+ *
+ * @property int $id
+ * @property string $uuid
+ * @property array $name
+ * @property float $value
+ * @property-read array $translations
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize whereValue($value)
+ */
+	class FitSize extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Payment
  *
  * @mixin \Eloquent
@@ -1078,13 +1126,32 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\FitWidth
+ *
+ * @property int $id
+ * @property string $uuid
+ * @property array $name
+ * @property-read array $translations
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth whereUuid($value)
+ */
+	class FitWidth extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Color
  *
  * @mixin \Eloquent
  * @property int $id
+ * @property mixed $uuid
  * @property array $name
  * @property-read string $hash_id
- * @property-read mixed $translations
+ * @property-read array $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @property-read int|null $products_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color newModelQuery()
@@ -1092,6 +1159,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereUuid($value)
  */
 	class Color extends \Eloquent {}
 }
@@ -1125,6 +1193,7 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
+ * @property mixed $uuid
  * @property int $type_id
  * @property array $name
  * @property string|null $slug
@@ -1134,7 +1203,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  * @property-read int|null $activities_count
  * @property-read string $hash_id
- * @property-read mixed $translations
+ * @property-read array $translations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @property-read int|null $products_count
  * @property-read \App\Models\Type $type
@@ -1149,6 +1218,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereUuid($value)
  */
 	class Subtype extends \Eloquent {}
 }
@@ -1207,7 +1277,7 @@ namespace App\Models{
  * @property string|null $main_image
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read mixed $translations
+ * @property-read array $translations
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page findSimilarSlugs($attribute, $config, $slug)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page newQuery()
@@ -1330,12 +1400,10 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read string $hash_id
- * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic newQuery()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Historic onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic query()
- * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereId($value)
