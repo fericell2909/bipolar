@@ -6,6 +6,7 @@ use App\Models\Buy;
 use App\Models\Cart;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Arr;
 use Newsletter;
 use Spatie\Analytics\Period;
 
@@ -39,7 +40,7 @@ class DashboardController extends Controller
                 'before_timestamp_opt' => now()->endOfWeek()->toIso8601String(),
             ]);
 
-            $newsletterUsersInWeek = array_get($newsletterUsersInWeek, 'total_items', 0);
+            $newsletterUsersInWeek = Arr::get($newsletterUsersInWeek, 'total_items', 0);
         }
 
         $visitorsThisWeek = $this->getVisitors();

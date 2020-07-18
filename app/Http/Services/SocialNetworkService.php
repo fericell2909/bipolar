@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class SocialNetworkService
 {
@@ -33,7 +34,7 @@ class SocialNetworkService
                 $user->name = $userFacebookData['first_name'] ?? null;
                 $user->lastname = $userFacebookData['last_name'] ?? null;
                 $user->photo = $userPhoto;
-                $user->password = bcrypt(str_random(16));
+                $user->password = bcrypt(Str::random(16));
                 $user->active = date('Y-m-d H:i:s');
                 $user->save();
             }

@@ -32,14 +32,14 @@
     <input type="hidden" name="purchaseOperationNumber" value="{{ $purchaseOperationNumber }}">
     <input type="hidden" name="purchaseAmount" value="{{ $purchaseAmount }}">
     <input type="hidden" name="purchaseCurrencyCode" value="{{ $purchaseCurrencyCode }}">
-    <input type="hidden" name="shippingFirstName" value="{{ str_limit($user->name, 30, '') }}">
-    <input type="hidden" name="shippingLastName" value="{{ str_limit($user->lastname ?? $user->name, 50, '') }}">
-    <input type="hidden" name="shippingEmail" value="{{ str_limit($user->email, 30, '') }}">
-    <input type="hidden" name="shippingAddress" value="{{ str_limit($buy->shipping_address->address ?? 'Av.Bipolar 1120', 50, '') }}">
-    <input type="hidden" name="shippingZIP" value="{{ str_limit($buy->shipping_address->zip ?? '123', 50, '') }}">
-    <input type="hidden" name="shippingCity" value="{{ str_limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
-    <input type="hidden" name="shippingState" value="{{ str_limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
-    <input type="hidden" name="shippingCountry" value="{{ str_limit($buy->shipping_address->country_state->name ?? 'Peru', 50, '') }}">
+    <input type="hidden" name="shippingFirstName" value="{{ Illuminate\Support\Str::limit($user->name, 30, '') }}">
+    <input type="hidden" name="shippingLastName" value="{{ Illuminate\Support\Str::limit($user->lastname ?? $user->name, 50, '') }}">
+    <input type="hidden" name="shippingEmail" value="{{ Illuminate\Support\Str::limit($user->email, 30, '') }}">
+    <input type="hidden" name="shippingAddress" value="{{ Illuminate\Support\Str::limit($buy->shipping_address->address ?? 'Av.Bipolar 1120', 50, '') }}">
+    <input type="hidden" name="shippingZIP" value="{{ Illuminate\Support\Str::limit($buy->shipping_address->zip ?? '123', 50, '') }}">
+    <input type="hidden" name="shippingCity" value="{{ Illuminate\Support\Str::limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
+    <input type="hidden" name="shippingState" value="{{ Illuminate\Support\Str::limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
+    <input type="hidden" name="shippingCountry" value="{{ Illuminate\Support\Str::limit($buy->shipping_address->country_state->name ?? 'Peru', 50, '') }}">
     {{--Parametro para la Integracion con Pay-me. Contiene el valor del parametro codCardHolderCommerce--}}
     <input type="hidden" name="userCommerce" value="{{ $codCardHolderCommerce }}" />
     {{--Parametro para la Integracion con Pay-me. Contiene el valor del parametro codAsoCardHolderWallet--}}

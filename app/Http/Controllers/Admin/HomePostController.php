@@ -9,6 +9,7 @@ use App\Models\State;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class HomePostController extends Controller
 {
@@ -22,7 +23,7 @@ class HomePostController extends Controller
     public function create()
     {
         $postTypes = PostType::orderBy('name')->get()->pluck('name', 'id')->toArray();
-        $postTypes = array_prepend($postTypes, 'Seleccione', '');
+        $postTypes = Arr::prepend($postTypes, 'Seleccione', '');
         $states = State::orderBy('name')->get()->pluck('name', 'id')->toArray();
 
         return view('admin.home_posts.new', compact('postTypes', 'states'));
@@ -58,7 +59,7 @@ class HomePostController extends Controller
     {
         $homePost = HomePost::findBySlugOrFail($homePostSlug);
         $postTypes = PostType::orderBy('name')->get()->pluck('name', 'id')->toArray();
-        $postTypes = array_prepend($postTypes, 'Seleccione', '');
+        $postTypes = Arr::prepend($postTypes, 'Seleccione', '');
         $states = State::orderBy('name')->get()->pluck('name', 'id')->toArray();
 
         return view('admin.home_posts.edit', compact('homePost', 'postTypes', 'states'));
