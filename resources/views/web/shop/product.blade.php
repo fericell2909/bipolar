@@ -104,6 +104,11 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <button class="btn btn-primary" data-toggle="modal" data-target="#sizeCalculate">Calcular talla</button>
+            </div>
+          </div>
           {!! Form::close() !!}
         </div>
       </div>
@@ -150,6 +155,47 @@
       <div class="modal-content">
         <div class="modal-body">
           <img src="{{ asset(__('bipolar.shop.size_guide_url')) }}" alt="Guia de tallas Bipolar" class="img-responsive">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="sizeCalculate" tabindex="-1" role="dialog" aria-labelledby="sizeCalculate">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h2>Calcula tu talla</h2>
+          <div>
+            <span>Mi talla habitual es</span>
+            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'quantity-select']) !!}
+          </div>
+          <div>
+            <span>El ancho de mi pie es</span>
+            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'quantity-select']) !!}
+          </div>
+          <div>
+            <span>Mi empeine es</span>
+            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'quantity-select']) !!}
+          </div>
+          <div>
+            <span>Tu talla ideal es</span>
+            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'quantity-select']) !!}
+          </div>
+          <p>
+            Esta talla sugerida es en base a tus respuestas, a las características de este modelo en particular y a nuestra experiencia
+            con modelos similares.
+          </p>
+        </div>
+        <h2>Tabla de equivalencias</h2>
+        <span>En Bipolar usamos el sistema de medida europeo</span>
+        <div>
+          <span>Bipolar/EU</span>
+          <span>US/Can</span>
+          <span>UK</span>
+        </div>
+        <div>
+          <span>34</span>
+          <span>3.5</span>
+          <span>1.5</span>
         </div>
       </div>
     </div>
