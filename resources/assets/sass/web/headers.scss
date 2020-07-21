@@ -1,3 +1,7 @@
+.dropdown-toggle::after {
+  display: none;
+}
+
 .bipolar-grand-header {
   position: relative;
   width: 100%;
@@ -108,7 +112,7 @@
 
   .bipolar-header-logo {
     width: 40%;
-    padding: 20px 0 0;
+    padding-top: 0.8em;
     margin: 0;
     display: inline-block;
     vertical-align: middle;
@@ -149,9 +153,8 @@
       }
 
       .cart-inside {
-        visibility: hidden;
+        display: none;
         position: absolute;
-        display: block;
         background: $bipolar-white;
         box-shadow: 0 3px 10px -2px #777;
         padding: 0 22px;
@@ -372,7 +375,6 @@
   position: absolute;
   list-style: none;
   top: 84%;
-  right: 15%;
   padding: 0;
   margin: 0;
   background: $bipolar-white;

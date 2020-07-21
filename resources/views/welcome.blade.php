@@ -86,37 +86,39 @@
         </div>
         <div class="second-zone">
           <div class="container">
-            @foreach($posts as $post)
-              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="row post">
-                  <div class="col-md-6">
-                    @if($post->photos->count() > 0)
-                      <div class="owl-carousel-blog owl-carousel owl-theme">
-                        @foreach($post->photos as $photo)
-                          <a href="{{ route('landings.blog.post', $post->slug) }}">
-                            <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $post->title }}">
-                          </a>
-                        @endforeach
-                      </div>
-                    @else
-                      <img class="img-responsive" src="https://placehold.it/300x100" alt="Title">
-                    @endif
-                  </div>
-                  <div class="col-md-6 content">
-                    <a href="{{ route('landings.blog.post', $post->slug) }}" class="title-link">{{ $post->title }}</a>
-                    @if($post->tags)
-                      <div class="tags">
-                        @foreach($post->tags as $tag)
-                          <a href="#">{{ $tag->name }}</a>
-                        @endforeach
-                      </div>
-                    @endif
-                    <p>{{ \Illuminate\Support\Str::limit(strip_tags($post->content), 50) }}</p>
-                    <a href="{{ route('landings.blog.post', $post->slug) }}">{{ __('bipolar.blog.read_more') }}</a>
+            <div class="row">
+              @foreach($posts as $post)
+                <div class="col-6">
+                  <div class="row post">
+                    <div class="col-md-6">
+                      @if($post->photos->count() > 0)
+                        <div class="owl-carousel-blog owl-carousel owl-theme">
+                          @foreach($post->photos as $photo)
+                            <a href="{{ route('landings.blog.post', $post->slug) }}">
+                              <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $post->title }}">
+                            </a>
+                          @endforeach
+                        </div>
+                      @else
+                        <img class="img-responsive" src="https://placehold.it/300x100" alt="Title">
+                      @endif
+                    </div>
+                    <div class="col-md-6 content">
+                      <a href="{{ route('landings.blog.post', $post->slug) }}" class="title-link">{{ $post->title }}</a>
+                      @if($post->tags)
+                        <div class="tags">
+                          @foreach($post->tags as $tag)
+                            <a href="#">{{ $tag->name }}</a>
+                          @endforeach
+                        </div>
+                      @endif
+                      <p>{{ \Illuminate\Support\Str::limit(strip_tags($post->content), 50) }}</p>
+                      <a href="{{ route('landings.blog.post', $post->slug) }}">{{ __('bipolar.blog.read_more') }}</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            @endforeach
+              @endforeach
+            </div>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 <?php
  /** @var \App\Instances\CartBipolar $bipolarCart */
 ?>
-<div class="bipolar-grand-header hidden-sm hidden-xs {{ $background === true ? 'bipolar-background' : 'absolute-for-home'  }}">
+<div class="bipolar-grand-header d-none d-sm-none d-md-block {{ $background === true ? 'bipolar-background' : 'absolute-for-home'  }}">
 	<nav class="navbar bipolar-navbar-styles bipolar-first-navbar">
 		<div class="container">
 			<div class="navbar-header">
@@ -21,12 +21,12 @@
 				</div>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
+				<li class="dropdown-toggle">
 					<a class="navbar-right-text" href="#">
 						{{ __('bipolar.navbar.my_settings') }}
 						<i class="fas fa-chevron-down"></i>
 					</a>
-					<ul class="bipolar-dropdown-menu in-desktop hidden-xs hidden-sm">
+					<ul class="bipolar-dropdown-menu in-desktop">
 						<li><a href="{{ route('myaccount') }}"><i class="fas fa-fw fa-user"></i> {{ __('bipolar.navbar.my_account') }}</a></li>
 						<li><a href="{{ route('wishlist') }}"><i class="fas fa-fw fa-heart"></i> Wishlist</a></li>
 						<li><a href="{{ route('cart') }}"><i class="fas fa-fw fa-shopping-cart"></i> Shopping cart</a></li>
@@ -48,7 +48,7 @@
 	</nav>
 	<nav class="navbar bipolar-navbar-styles background-line-image">
 		<div class="container">
-			<div class="bipolar-second-navbar">
+			<div class="bipolar-second-navbar w-100">
 				<ul class="bipolar-navbar-social-links">
 					<li>
 						<a href="mailto:bipolar@bipolar.com.pe">
@@ -96,8 +96,8 @@
 									<span class="amount">{{ $bipolarCart->totalCurrency() }}</span>
 								</div>
 								<div class="buttons">
-									<a href="{{ route('cart') }}" class="btn btn-dark-rounded">{{ __('bipolar.navbar.see_cart') }}</a>
-									<a href="{{ route('checkout') }}" class="btn btn-dark-rounded">Checkout</a>
+									<a href="{{ route('cart') }}" id="bipolar-button-see-cart" class="btn btn-dark-rounded">{{ __('bipolar.navbar.see_cart') }}</a>
+									<a href="{{ route('checkout') }}" id="bipolar-button-checkout" class="btn btn-dark-rounded">Checkout</a>
 								</div>
 							@else
 								<div class="empty-cart">
@@ -113,7 +113,7 @@
 	<section class="bipolar-navigation text-center">
 		<div class="container resized-container">
 			<ul class="bipolar-items">
-				<li class="bipolar-logo hidden">
+				<li class="bipolar-logo d-none">
 					<a href="{{ route('home') }}">
 						<img src="{{ asset('images/logo-linea.png') }}" width="160">
 					</a>

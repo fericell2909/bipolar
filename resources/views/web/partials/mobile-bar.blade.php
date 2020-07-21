@@ -1,5 +1,5 @@
 <?php /** @var \App\Instances\CartBipolar $bipolarCart */ ?>
-<section class="header-mobile visible-xs-block visible-sm-block">
+<section class="header-mobile d-block d-sm-block d-md-none">
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
       <a href="{{ route('home') }}">
@@ -8,7 +8,7 @@
     </div>
   </div>
 </section>
-<section class="header-mobile-menu visible-xs-block visible-sm-block">
+<section class="header-mobile-menu d-block d-sm-block d-md-none">
   <div class="menu-button">
     <button type="button" class="navbar-toggle bipolar-navbar-toggle collapsed" data-toggle="collapse" data-target="#responsive-menu-black" aria-expanded="false" aria-controls="navbar">
       <span class="sr-only">Toggle navigation</span>

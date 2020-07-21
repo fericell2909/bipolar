@@ -3,12 +3,12 @@
   <div class="bipolar-container">
     <div class="bipolar-contact-form">
       <p class="title-contact-form">{{ __('bipolar.contact.contact_us') }}</p>
-      <p class="text-contact-form">
+      <p class="text-contact-form mb-3">
         {{ __('bipolar.contact.if_you_want') }} <br>
-        {{ __('bipolar.contact.write_us_to') }} 
+        {{ __('bipolar.contact.write_us_to') }}
       </p>
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+      <div class="d-block">
+        <div class="w-75 mx-auto">
           @if(\Session::has('sent_message'))
           <div class="bipolar-success-message" style="margin-bottom: 20px;">
             <i class="fas fa-check-circle-o"></i>

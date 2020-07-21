@@ -3,7 +3,7 @@
   {!! Form::open(['id' => 'shopForm', 'method' => 'GET']) !!}
   <div class="bipolar-container">
     <div class="row shop-container">
-      <div class="col-md-3 see-filters-button visible-xs-block">
+      <div class="col-md-3 see-filters-button d-block d-sm-none">
         <button type="button" class="btn btn-dark-rounded btn-block btn-see-filters">
           {{ __('bipolar.shop.see_filters') }}
         </button>
@@ -82,7 +82,7 @@
         </div>
       </div>
       <div class="col-md-9">
-        <div class="bipolar-shop-results-filter hidden-xs">
+        <div class="bipolar-shop-results-filter d-none d-sm-block">
           <span class="text-uppercase">{{ __('bipolar.shop.show_results', ['total' => $products->total()]) }}</span>
           {!! Form::select('orderBy', $orderOptions, $selectedOrderOption, ['id' => 'shop-sort-by', 'class' => 'select-orders']) !!}
         </div>
@@ -128,9 +128,9 @@
                   </div>
                 @endif
                 @if(count($product->photos))
-                  <img src="{{ optional($product->mainPhoto())->url }}" alt="{{ $product->name }}" class="img-responsive">
+                  <img src="{{ optional($product->mainPhoto())->url }}" alt="{{ $product->name }}" class="d-block mw-100">
                 @else
-                    <img src="https://placehold.it/317x210" alt="{{ $product->name }}" class="img-responsive">
+                    <img src="https://placehold.it/317x210" alt="{{ $product->name }}" class="d-block mw-100">
                 @endif
                 <div class="overlay-shop-image">
                   <div class="overlay-shop-text">
@@ -210,12 +210,12 @@
                 @endif
                 <div class="owl-carousel-main owl-carousel owl-theme">
                   @foreach($product->photos->sortBy('order') as $photo)
-                    <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive">
+                    <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="d-block mw-100">
                   @endforeach
                 </div>
                 <div class="owl-carousel-thumbnails owl-carousel owl-theme">
                   @foreach($product->photos as $photo)
-                    <img class="img-responsive" src="{{ $photo->url }}" alt="{{ $product->name }}">
+                    <img class="d-block mw-100" src="{{ $photo->url }}" alt="{{ $product->name }}">
                   @endforeach
                 </div>
                 <p class="text-right" style="margin-top:10px;">
