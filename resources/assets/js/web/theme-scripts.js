@@ -68,7 +68,7 @@ $(function() {
 
   // Scroll header function
   $(function() {
-    $(document).scroll(function() {
+    $(document).on('scroll', function() {
       const $transparentHeader = $('.bipolar-header-desktop');
       const $grandHeader = $('.bipolar-grand-header');
       const $bipolarNavigation = $grandHeader.children('.bipolar-navigation');
@@ -77,15 +77,15 @@ $(function() {
       const isLongScroll = $(this).scrollTop() > $grandHeader.height();
       const homeIsLongScroll = $(this).scrollTop() > $transparentHeader.height();
       if (isLongScroll === true || homeIsLongScroll === true) {
-        $transparentHeader.addClass('hidden');
+        $transparentHeader.addClass('d-none');
         $grandHeader.addClass('bipolar-grand-header-hidden');
-        $logoInHeader.removeClass('hidden');
+        $logoInHeader.removeClass('d-none');
         $container.removeClass('resized-container');
         $bipolarNavigation.addClass('has-shadow').addClass('has-background');
       } else {
-        $transparentHeader.removeClass('hidden');
+        $transparentHeader.removeClass('d-none');
         $grandHeader.removeClass('bipolar-grand-header-hidden');
-        $logoInHeader.addClass('hidden');
+        $logoInHeader.addClass('d-none');
         $container.addClass('resized-container');
         $bipolarNavigation.removeClass('has-shadow').removeClass('has-background');
       }
@@ -107,8 +107,18 @@ $(function() {
     }
   );
 
-  // Bootstrap tooltip
-  $('[data-toggle="tooltip"]').tooltip();
+  // ==============================================================
+  //tooltip
+  // ==============================================================
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+  // ==============================================================
+  //Popover
+  // ==============================================================
+  $(function() {
+    $('[data-toggle="popover"]').popover();
+  });
 
   if ($('.bipolar-counts-title').length) {
     const $firstCounter = $('#bipolar-first-counter');

@@ -7,11 +7,6 @@
         <i class="fas fa-home"></i> &raquo; <a href="{{ route('shop') }}">Shop</a> &raquo; {{ $product->name }}
       </div>
     </div>
-    <div class="breadcrumb-without-padding visible-sm-block">
-      <div class="breadcrumb-content container">
-        <i class="fas fa-home"></i> &raquo; <a href="{{ route('shop') }}">Shop</a> &raquo; {{ $product->name }}
-      </div>
-    </div>
     @includeWhen(\Session::has('success_add_product'), 'web.partials.success', ['product' => \Session::get('success_add_product')])
     <div class="bipolar-container product-content">
       <div class="row">
@@ -27,12 +22,12 @@
               @endif
               <div id="viewer-images" class="owl-carousel-main owl-carousel owl-theme">
                 @foreach($product->photos as $photo)
-                  <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive image-photoswipe-trigger">
+                  <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="d-block mw-100 image-photoswipe-trigger">
                 @endforeach
               </div>
               <div class="owl-carousel-thumbnails owl-carousel owl-theme">
                 @foreach($product->photos as $photo)
-                  <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive">
+                  <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="d-block mw-100">
                 @endforeach
               </div>
             </div>
@@ -130,16 +125,16 @@
       </div>
       @if($product->recommendations->count() > 0)
         <div class="recommended-products">
-          <h3>{{ __('bipolar.shop.recommended') }}</h3>
+          <h3 class="mt-3">{{ __('bipolar.shop.recommended') }}</h3>
           <div class="row">
             @foreach($product->recommendations as $recommended)
-              <div class="col-xs-6 col-md-2 recommended">
+              <div class="col-6 col-sm-2 recommended">
                 @if(count($recommended->photos))
                   <a href="{{ route('shop.product', $recommended->slug) }}">
-                    <img src="{{ $recommended->photos->first()->url }}" class="img-responsive" alt="{{ $recommended->name }}">
+                    <img src="{{ $recommended->photos->first()->url }}" class="d-block mw-100" alt="{{ $recommended->name }}">
                   </a>
                 @else
-                  <img src="https://placehold.it/320x200" class="img-responsive" alt="{{ $recommended->name }}">
+                  <img src="https://placehold.it/320x200" class="d-block mw-100" alt="{{ $recommended->name }}">
                 @endif
               </div>
             @endforeach
@@ -154,7 +149,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-body">
-          <img src="{{ asset(__('bipolar.shop.size_guide_url')) }}" alt="Guia de tallas Bipolar" class="img-responsive">
+          <img src="{{ asset(__('bipolar.shop.size_guide_url')) }}" alt="Guia de tallas Bipolar" class="d-block mw-100">
         </div>
       </div>
     </div>

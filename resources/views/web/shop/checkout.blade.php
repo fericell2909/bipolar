@@ -32,7 +32,7 @@
 			@endif
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-default">
-					<div class="panel-heading {{ !Request::has('part') ? null : 'content-collapsed' }}" role="tab" id="headingOne">
+					<div class="panel-heading p-1 {{ !Request::has('part') ? null : 'content-collapsed' }}" role="tab" id="headingOne">
 						<h4 class="panel-title">
 							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseOne" aria-expanded="true" aria-controls="sectionCollapseOne">
 								{{ __('bipolar.checkout.billing_address') }}
@@ -41,7 +41,7 @@
 						<div class="panel-icon"><i class="fas fa-chevron-down"></i></div>
 					</div>
 					<div id="sectionCollapseOne" class="panel-collapse collapse {{ !Request::has('part') ? 'in' : null }}" role="tabpanel" aria-labelledby="headingOne">
-						<div class="panel-body">
+						<div class="panel-body p-3">
 							@foreach($billingAddresses as $billingAddress)
 								<div class="address-list">
 									<div class="first-part">
@@ -121,7 +121,7 @@
 					</div>
 				</div>
 				<div class="panel panel-default">
-					<div class="panel-heading {{ Request::input('part') === "2" ? null : 'content-collapsed' }}" role="tab" id="headingTwo">
+					<div class="panel-heading p-1 {{ Request::input('part') === "2" ? null : 'content-collapsed' }}" role="tab" id="headingTwo">
 						<h4 class="panel-title">
 							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseTwo" aria-expanded="false"
 							 aria-controls="collapseTwo">
@@ -131,7 +131,7 @@
 						<div class="panel-icon"><i class="fas fa-chevron-down"></i></div>
 					</div>
 					<div id="sectionCollapseTwo" class="panel-collapse collapse {{ Request::input('part') === "2" ? 'in' : null }}" role="tabpanel" aria-labelledby="headingTwo">
-						<div class="panel-body">
+						<div class="panel-body p-3">
 							<div id="bipolar-directions"></div>
               <div class="send-distinct-address">
                 <label>{{ __('bipolar.checkout.another_address') }}</label> {!! Form::checkbox('send-distinct-address', '1') !!}
@@ -215,7 +215,7 @@
 					</div>
 				</div>
 				<div class="panel panel-default">
-					<div class="panel-heading {{ Request::input('part') === '3' ? null : 'content-collapsed' }}" role="tab" id="headingThree">
+					<div class="panel-heading p-1 {{ Request::input('part') === '3' ? null : 'content-collapsed' }}" role="tab" id="headingThree">
 						<h4 class="panel-title">
 							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#sectionCollapseThree" aria-expanded="false"
 							 aria-controls="collapseThree">
@@ -225,7 +225,7 @@
 						<div class="panel-icon"><i class="fas fa-chevron-down"></i></div>
 					</div>
 					<div id="sectionCollapseThree" class="panel-collapse collapse {{ Request::input('part') === '3' ? 'in' : null }}" role="tabpanel" aria-labelledby="headingThree">
-						<div class="panel-body centered">
+						<div class="panel-body centered p-3">
 							<table class="table-review-order">
                 <thead>
                   <tr>
