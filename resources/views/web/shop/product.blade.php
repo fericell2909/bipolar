@@ -99,12 +99,12 @@
               </div>
             </div>
           </div>
+          {!! Form::close() !!}
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">
               <button class="btn btn-primary" data-toggle="modal" data-target="#sizeCalculate">Calcular talla</button>
             </div>
           </div>
-          {!! Form::close() !!}
         </div>
       </div>
       <div class="row product-below-content">
@@ -155,42 +155,42 @@
     </div>
   </div>
   <div class="modal fade" id="sizeCalculate" tabindex="-1" role="dialog" aria-labelledby="sizeCalculate">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-body">
-          <h2>Calcula tu talla</h2>
-          <div>
-            <span>Mi talla habitual es</span>
-            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'quantity-select']) !!}
+        <div class="modal-body p-5">
+          <h2 class="font-weight-bold font-bodoni text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one">¡Descubre tu talla ideal!</h2>
+          <div class="d-flex justify-content-between py-2 align-items-center border-top">
+            <span class="text-uppercase font-gotham-bold text-dark">Mi talla habitual es</span>
+            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'selectable-white']) !!}
           </div>
-          <div>
-            <span>El ancho de mi pie es</span>
-            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'quantity-select']) !!}
+          <div class="d-flex justify-content-between py-2 align-items-center border-top">
+            <span class="text-uppercase font-gotham-bold text-dark">El ancho de mi pie es</span>
+            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'selectable-white']) !!}
           </div>
-          <div>
-            <span>Mi empeine es</span>
-            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'quantity-select']) !!}
+          <div class="d-flex justify-content-between py-2 align-items-center border-top">
+            <span class="text-uppercase font-gotham-bold text-dark">Mi empeine es</span>
+            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'selectable-white']) !!}
           </div>
-          <div>
-            <span>Tu talla ideal es</span>
-            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'quantity-select']) !!}
+          <div class="d-flex justify-content-between py-2 align-items-center border-top border-bottom">
+            <span class="text-uppercase font-gotham-bold text-dark">Tu talla ideal es</span>
+            <span class="font-sahara-bodoni font-size-three text-dark">37</span>
           </div>
-          <p>
+          <p class="text-muted text-uppercase mt-3">
             Esta talla sugerida es en base a tus respuestas, a las características de este modelo en particular y a nuestra experiencia
             con modelos similares.
           </p>
-        </div>
-        <h2>Tabla de equivalencias</h2>
-        <span>En Bipolar usamos el sistema de medida europeo</span>
-        <div>
-          <span>Bipolar/EU</span>
-          <span>US/Can</span>
-          <span>UK</span>
-        </div>
-        <div>
-          <span>34</span>
-          <span>3.5</span>
-          <span>1.5</span>
+          <h2 class="font-weight-bold mt-5 font-bodoni text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one">Tabla de equivalencias</h2>
+          <span class="text-muted text-uppercase mb-3">En Bipolar usamos el sistema de medida europeo</span>
+          <div class="row py-2 border-top">
+            <span class="col-4 text-uppercase text-left text-dark font-gotham-bold">Bipolar/EU</span>
+            <span class="col-4 text-uppercase text-center text-dark font-gotham-bold">US/Can</span>
+            <span class="col-4 text-uppercase text-right text-dark font-gotham-bold">UK</span>
+          </div>
+          <div class="row py-2 border-top border-bottom">
+            <span class="col-4 text-left text-dark font-gotham-bold">34</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">3.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">1.5</span>
+          </div>
         </div>
       </div>
     </div>

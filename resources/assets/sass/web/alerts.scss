@@ -1,9 +1,0 @@
-@import "mixins";
-
-.bipolar-success-message {
-  @include bipolar_alert(#8fae1b);
-}
-
-.bipolar-alert-message {
-  @include bipolar_alert(#FF5C5C);
-}

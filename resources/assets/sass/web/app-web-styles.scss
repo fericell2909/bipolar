@@ -20,31 +20,11 @@
   src: url("../../fonts/Gotham/Gotham-Bold.otf");
 }
 
-// Important general styles
-// Remove arrows from input['number']
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
-input::-webkit-calendar-picker-indicator {
-  display: none;
-}
-
-input::-webkit-clear-button {
-  display: none;
-}
-
 // Variables
 @import "variables";
 // Bootstrap 3 Custom
 @import "~bootstrap/scss/bootstrap";
 // Owl Carousel
-//@import "~owl.carousel/dist/assets/owl.carousel.css";
 @import "~owl.carousel/src/scss/owl.carousel";
 @import "~owl.carousel/src/scss/owl.theme.default";
 // Pretty Checkbox
@@ -64,30 +44,30 @@ $pretty--color-primary: $bipolar-black;
 }
 @import "~select2/dist/css/select2";
 
-p {
-  margin: 0;
-}
-
-@import "buttons";
-@import "alerts";
-@import "styles";
-@import "headers";
-@import "headers_mobile";
+@import "components/buttons";
+@import "components/alerts";
+@import "components/breadcrumb";
+@import "components/headers";
+@import "components/headers_mobile";
+@import "components/footer";
+@import "components/overlay";
+@import "components/overlay_shop";
+@import "components/cart";
+@import "components/checkout";
+@import "components/burger_icon";
+@import "components/myaccount";
+@import "components/confirmation";
+@import "components/contact_form";
+@import "components/steps";
 @import "pages/shop";
 @import "pages/product";
-@import "footer";
-@import "overlay";
-@import "overlay_shop";
 @import "pages/login_and_register";
-@import "cart";
-@import "checkout";
-@import "burger_icon";
-@import "myaccount";
-@import "confirmation";
-@import "contact_form";
-@import "steps";
 @import "pages/shipping_landing";
 @import "pages/exchange_landing";
 @import "pages/historic";
 @import "pages/blog";
 @import "pages/password-reset";
+@import "pages/404";
+@import "pages/welcome";
+@import "general";
+@import "helpers";

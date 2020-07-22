@@ -1,0 +1,205 @@
+@import "../../mixins";
+
+.table-cart {
+  width: 100%;
+  margin-bottom: 25px;
+
+  thead th {
+    text-transform: uppercase;
+    padding: 10px 15px;
+    font-family: $bodoni-bold-font;
+    font-size: 17px;
+    color: $bipolar-black;
+    font-weight: normal;
+    letter-spacing: 2.55px;
+  }
+
+  tbody td {
+    padding: 10px 15px;
+    vertical-align: middle;
+
+    &.product-name {
+      > a {
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-family: $bodoni-bold-font;
+        font-size: 17px;
+        color: $bipolar-black;
+        font-weight: normal;
+      }
+
+      .product-variation {
+        font-family: $gotham-light-font;
+        font-weight: normal;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0;
+      }
+    }
+
+    &.product-price {
+      > .amount {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-family: $bodoni-bold-font;
+        font-size: 17px;
+        color: $bipolar-black;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .table-cart {
+    thead {
+      display: none;
+    }
+
+    tbody {
+      tr {
+        display: block;
+
+        td {
+          display: block;
+          border-top: 1px solid #eee;
+
+          &:nth-child(n+3) {
+            &::before {
+              content: attr(data-title) ": ";
+              font-family: $gotham-light-font;
+              font-weight: normal;
+              font-size: 12px;
+              text-transform: uppercase;
+              color: $bipolar-black;
+            }
+          }
+
+          &.product-remove {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.background-title-image {
+  background-image: url('../../../img/fondo-rayas-web-con-negro.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 50px;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-family: $bodoni-bold-font;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 40px;
+    color: $bipolar-white;
+    text-align: center;
+  }
+}
+
+.background-order-confirmed {
+  height: 430px;
+  background-color: $bipolar-black;
+
+  .content-order-confirmed {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+
+    h1 {
+      @include bodoni_bold_font;
+      font-size: 30px;
+      color: $bipolar-color;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0;
+    }
+
+    h2 {
+      @include bodoni_bold_font;
+      font-size: 15px;
+      color: $bipolar-color;
+      text-transform: uppercase;
+      margin: 0;
+
+      a {
+        text-decoration: underline;
+        color: inherit;
+      }
+    }
+  }
+}
+
+.cart-total-inner {
+  float: right;
+  padding: 0 15px;
+  margin-bottom: 50px;
+
+  @include xxs {
+    width: 100%;
+  }
+
+  @include sm {
+    width: 38%;
+  }
+
+  .checkout-button {
+    @include xxs {
+      margin-top: 15px;
+    }
+
+    @include sm {
+      margin-top: 0;
+    }
+  }
+
+  > h2 {
+    font-family: $bodoni-bold-font;
+    text-transform: uppercase;
+    color: $bipolar-black;
+    font-size: 17px;
+    letter-spacing: 2.55px;
+    font-weight: normal;
+    line-height: 17px;
+    margin-top: 45px;
+    margin-bottom: 40px;
+  }
+
+  tr {
+    > td:first-child {
+      width: 63%;
+      padding-left: 0;
+      vertical-align: middle;
+    }
+  }
+
+  td {
+    .concept {
+      font-family: $gotham-light-font;
+      font-weight: normal;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .amount {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: $bodoni-bold-font;
+      font-size: 17px;
+      color: $bipolar-black;
+      font-weight: normal;
+    }
+  }
+}

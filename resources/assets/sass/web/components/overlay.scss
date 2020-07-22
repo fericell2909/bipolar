@@ -1,0 +1,55 @@
+@import "../../mixins";
+
+.overlay-container {
+  position: relative;
+  display: block;
+  overflow: hidden;
+
+  &:hover .overlay-image {
+    opacity: 0.9;
+  }
+
+  .overlay-links {
+    a, button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: $bipolar-black;
+      color: $bipolar-color;
+      padding: 0;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      img {
+        width: 25px;
+      }
+    }
+  }
+}
+
+.overlay-image {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: $bipolar-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.overlay-text {
+  color: $bipolar-black;
+  font-family: $sahari-bodoni-font;
+  font-size: 122px;
+}
+
+.overlay-text-description {
+  @include bodoni_bold_font;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  color: $bipolar-black;
+  text-transform: uppercase;
+}

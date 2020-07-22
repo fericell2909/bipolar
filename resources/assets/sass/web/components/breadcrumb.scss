@@ -1,0 +1,14 @@
+.breadcrumb-without-padding {
+  background-color: #F5F5F5;
+}
+
+.breadcrumb {
+  @extend .breadcrumb-without-padding;
+}
+
+.breadcrumb-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}

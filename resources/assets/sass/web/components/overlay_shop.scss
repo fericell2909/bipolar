@@ -1,0 +1,87 @@
+.overlay-shop-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  opacity: 0;
+  -webkit-transition: ease .5s;
+  -moz-transition: ease .5s;
+  -ms-transition: ease .5s;
+  -o-transition: ease .5s;
+  transition: ease .5s;
+  background-color: $bipolar-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.overlay-shop-container {
+  position: relative;
+  &:hover .overlay-shop-image {
+    opacity: 1;
+  }
+}
+
+.overlay-shop-text {
+  position: relative;
+  font-family: $sahari-bodoni-font;
+  color: $bipolar-black;
+  font-size: 40px;
+  width: 100%;
+  text-align: center;
+
+  a {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.overlay-shop-color-text {
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1.65px;
+  font-size: 11px;
+  font-weight: 400;
+  font-style: normal;
+  font-family: $bodoni-bold-font;
+  color: $bipolar-black;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.overlay-discount-container {
+  span:first-child {
+    margin-right: .5em;
+  }
+
+  .overlay-shop-discount-text {
+    @extend .overlay-shop-color-text;
+    text-decoration: line-through;
+    margin-left: .5em;
+  }
+}
+
+.overlay-shop-buttons {
+  position: relative;
+  margin-top: 5px;
+  .overlay-radio-button {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    padding: 6px;
+    &:hover {
+      background: $bipolar-black;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .overlay-shop-container {
+    img.img-responsive {
+      width: 100%;
+    }
+  }
+}
