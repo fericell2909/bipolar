@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\ShopFilterRequest;
 use App\Models\Banner;
-use App\Models\FitSize;
-use App\Models\FitWidth;
 use App\Models\Product;
 use App\Models\Size;
 use App\Models\Stock;
@@ -232,8 +230,20 @@ class ShopController extends Controller
         $product = Product::findBySlugOrFail($slugProduct);
 
         abort_if($product->state_id !== config('constants.STATE_ACTIVE_ID'), 404);
-        $fitWidths = FitWidth::all();
-        $fitSizes = FitSize::all();
+        $fitWidths = collect([
+            ['name_es' => 'Muy angosto', 'value' => 1],
+            ['name_es' => 'Un poco angosto', 'value' => 2],
+            ['name_es' => 'Standard', 'value' => 3],
+            ['name_es' => 'Un poco ancho', 'value' => 4],
+            ['name_es' => 'Muy ancho', 'value' => 5],
+        ]);
+        $fitInsteps = collect([
+            ['name_es' => 'Muy bajo', 'value' => 1],
+            ['name_es' => 'Un poco bajo', 'value' => 2],
+            ['name_es' => 'Standard', 'value' => 3],
+            ['name_es' => 'Un poco alto', 'value' => 4],
+            ['name_es' => 'Muy alto', 'value' => 5],
+        ]);
 
         $product->load([
             'stocks.size',
@@ -299,7 +309,7 @@ class ShopController extends Controller
             'quantities',
             'productIsShoeType',
             'fitWidths',
-            'fitSizes'
+            'fitInsteps'
         ));
     }
 

@@ -1,6 +1,10 @@
 @import "../mixins";
 
-.font-bodoni {
+.font-bodoni-normal {
+  @include bodoni_font;
+}
+
+.font-bodoni-bold {
   @include bodoni_bold_font;
 }
 
@@ -10,6 +14,10 @@
 
 .font-gotham-bold {
   @include gotham_bold_font;
+}
+
+.font-gotham-light {
+  @include gotham_light_font;
 }
 
 .letter-spacing-zero-dot-one {
