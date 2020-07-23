@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\ShopFilterRequest;
 use App\Models\Banner;
+use App\Models\FitSize;
+use App\Models\FitWidth;
 use App\Models\Product;
 use App\Models\Size;
 use App\Models\Stock;
@@ -230,6 +232,8 @@ class ShopController extends Controller
         $product = Product::findBySlugOrFail($slugProduct);
 
         abort_if($product->state_id !== config('constants.STATE_ACTIVE_ID'), 404);
+        $fitWidths = FitWidth::all();
+        $fitSizes = FitSize::all();
 
         $product->load([
             'stocks.size',
@@ -289,7 +293,14 @@ class ShopController extends Controller
             ->setDescription($seoDescription)
             ->addImage($image, ['width' => 1024, 'height' => 680]);
 
-        return view('web.shop.product', compact('product', 'stockWithSizes', 'quantities', 'productIsShoeType'));
+        return view('web.shop.product', compact(
+            'product',
+            'stockWithSizes',
+            'quantities',
+            'productIsShoeType',
+            'fitWidths',
+            'fitSizes'
+        ));
     }
 
     private function productHasStock($product)

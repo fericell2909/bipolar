@@ -1,6 +1,8 @@
 @extends('web.layouts.app_web')
 @section('content')
   <?php /** @var \App\Models\Product $product */ ?>
+  <?php /** @var \Illuminate\Support\Collection $fitWidths */ ?>
+  <?php /** @var \Illuminate\Support\Collection $fitSizes */ ?>
   @include('web.partials.photoswipe', ['product' => $product])
     <div class="breadcrumb">
       <div class="breadcrumb-content container">
@@ -102,7 +104,7 @@
           {!! Form::close() !!}
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">
-              <button class="btn btn-primary" data-toggle="modal" data-target="#sizeCalculate">Calcular talla</button>
+              <button class="btn btn-bipolar-rounded" data-toggle="modal" data-target="#sizeCalculate">Calcular talla</button>
             </div>
           </div>
         </div>
@@ -157,21 +159,21 @@
   <div class="modal fade" id="sizeCalculate" tabindex="-1" role="dialog" aria-labelledby="sizeCalculate">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-body p-5">
+        <div class="modal-body p-4">
           <h2 class="font-weight-bold font-bodoni text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one">¡Descubre tu talla ideal!</h2>
           <div class="d-flex justify-content-between py-2 align-items-center border-top">
             <span class="text-uppercase font-gotham-bold text-dark">Mi talla habitual es</span>
-            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'selectable-white']) !!}
+            {!! Form::select('common_size', [34, 34.5, 35, 35.5, 36, 36.5, 37, 37.5, 38, 38.5, 39, 39.5, 40, 40.5, 41, 41.5], null, ['class' => 'selectable-white w-50']) !!}
           </div>
           <div class="d-flex justify-content-between py-2 align-items-center border-top">
             <span class="text-uppercase font-gotham-bold text-dark">El ancho de mi pie es</span>
-            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'selectable-white']) !!}
+            {!! Form::select('common_size', $fitWidths->pluck('name', 'id')->toArray(), null, ['class' => 'selectable-white']) !!}
           </div>
           <div class="d-flex justify-content-between py-2 align-items-center border-top">
             <span class="text-uppercase font-gotham-bold text-dark">Mi empeine es</span>
-            {!! Form::select('common_size', [22, 23, 25], null, ['class' => 'selectable-white']) !!}
+            {!! Form::select('common_size', $fitSizes->pluck('name', 'id')->toArray(), null, ['class' => 'selectable-white']) !!}
           </div>
-          <div class="d-flex justify-content-between py-2 align-items-center border-top border-bottom">
+          <div class="d-flex justify-content-between py-1 align-items-center border-top border-bottom">
             <span class="text-uppercase font-gotham-bold text-dark">Tu talla ideal es</span>
             <span class="font-sahara-bodoni font-size-three text-dark">37</span>
           </div>
@@ -180,7 +182,7 @@
             con modelos similares.
           </p>
           <h2 class="font-weight-bold mt-5 font-bodoni text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one">Tabla de equivalencias</h2>
-          <span class="text-muted text-uppercase mb-3">En Bipolar usamos el sistema de medida europeo</span>
+          <span class="text-muted text-uppercase mb-3 d-block">En Bipolar usamos el sistema de medida europeo</span>
           <div class="row py-2 border-top">
             <span class="col-4 text-uppercase text-left text-dark font-gotham-bold">Bipolar/EU</span>
             <span class="col-4 text-uppercase text-center text-dark font-gotham-bold">US/Can</span>
@@ -190,6 +192,45 @@
             <span class="col-4 text-left text-dark font-gotham-bold">34</span>
             <span class="col-4 text-center text-dark font-gotham-bold">3.5</span>
             <span class="col-4 text-right text-dark font-gotham-bold">1.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom">
+            <span class="col-4 text-left text-dark font-gotham-bold">35</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">4.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">2.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom">
+            <span class="col-4 text-left text-dark font-gotham-bold">36</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">5.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">3.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom">
+            <span class="col-4 text-left text-dark font-gotham-bold">37</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">6.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">4.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom">
+            <span class="col-4 text-left text-dark font-gotham-bold">38</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">7.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">5.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom">
+            <span class="col-4 text-left text-dark font-gotham-bold">39</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">8.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">6.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom">
+            <span class="col-4 text-left text-dark font-gotham-bold">40</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">9.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">7.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom">
+            <span class="col-4 text-left text-dark font-gotham-bold">41</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">10.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">8.5</span>
+          </div>
+          <div class="alert alert-danger text-center mt-5">
+            <span class="text-uppercase font-weight-bold d-block">¿Consultas adicionales?</span>
+            <span class="text-uppercase d-block">No dudes en contactarnos desde nuestro chat en línea o vía shop@bipolar.com.pe</span>
           </div>
         </div>
       </div>
