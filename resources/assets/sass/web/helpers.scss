@@ -33,7 +33,6 @@
 }
 
 .selectable-white {
-  border: none;
   color: #878787;
   line-height: 1;
   border-radius: 42px;
@@ -41,6 +40,13 @@
   padding: 0 25px;
   font-size: 15px;
   height: 35px;
-  background: $bipolar-gray url(../../img/arrow_down.png) no-repeat calc(100% - 10px);
+  border-color: #878787;
+  border-width: 1px;
+  background: #fff url(../../img/arrow_down.png) no-repeat calc(100% - 10px);
   appearance: none;
+}
+
+.alert-bipolar {
+  background-color: #fcd9d3;
+  border-radius: 0;
 }

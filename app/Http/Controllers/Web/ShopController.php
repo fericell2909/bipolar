@@ -231,18 +231,18 @@ class ShopController extends Controller
 
         abort_if($product->state_id !== config('constants.STATE_ACTIVE_ID'), 404);
         $fitWidths = collect([
-            ['name_es' => 'Muy angosto', 'value' => 1],
-            ['name_es' => 'Un poco angosto', 'value' => 2],
-            ['name_es' => 'Standard', 'value' => 3],
-            ['name_es' => 'Un poco ancho', 'value' => 4],
-            ['name_es' => 'Muy ancho', 'value' => 5],
+            ['name_es' => 'Muy angosto', 'value' => config('constants.FIT_VERY_LOW')],
+            ['name_es' => 'Un poco angosto', 'value' => config('constants.FIT_LOW')],
+            ['name_es' => 'Standard', 'value' => config('constants.FIT_NORMAL')],
+            ['name_es' => 'Un poco ancho', 'value' => config('constants.FIT_HIGH')],
+            ['name_es' => 'Muy ancho', 'value' => config('constants.FIT_VERY_HIGH')],
         ]);
         $fitInsteps = collect([
-            ['name_es' => 'Muy bajo', 'value' => 1],
-            ['name_es' => 'Un poco bajo', 'value' => 2],
-            ['name_es' => 'Standard', 'value' => 3],
-            ['name_es' => 'Un poco alto', 'value' => 4],
-            ['name_es' => 'Muy alto', 'value' => 5],
+            ['name_es' => 'Muy bajo', 'value' => config('constants.FIT_VERY_LOW')],
+            ['name_es' => 'Un poco bajo', 'value' => config('constants.FIT_LOW')],
+            ['name_es' => 'Standard', 'value' => config('constants.FIT_NORMAL')],
+            ['name_es' => 'Un poco alto', 'value' => config('constants.FIT_HIGH')],
+            ['name_es' => 'Muy alto', 'value' => config('constants.FIT_VERY_HIGH')],
         ]);
 
         $product->load([

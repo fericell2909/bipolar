@@ -78,5 +78,6 @@ require('./shop-scripts');
 require('./product-scripts');
 require('./select2-scripts');
 require('./checkout-scripts');
+require('./modal-calculate-size');
 require('./click-outside-handler');
 require('./hover-animation-script');

@@ -53,11 +53,7 @@
                   <tr>
                     <td class="align-middle">{{ $user->id }}</td>
                     <td class="align-middle text-center">
-                      @if($user->photo)
-                        <img src="{{ $user->photo }}" alt="" class="img-circle" style="width: 32px; height: 32px">
-                      @else
-                        <i class="fas fa-fw fa-image"></i>
-                      @endif
+                      <i class="fas fa-fw fa-image"></i>
                     </td>
                     <td class="align-middle">{{ $user->name }}</td>
                     <td class="align-middle">{{ $user->lastname }}</td>

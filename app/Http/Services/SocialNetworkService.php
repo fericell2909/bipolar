@@ -16,11 +16,6 @@ class SocialNetworkService
         $userPhoto = $image['data']['url'] ?? null;
 
         if ($user) {
-            if ((empty($user->photo) || $user->photo == 'https://lorempixel.com/300/000/fff') && !is_null($userPhoto)) {
-                $user->photo = $userPhoto;
-                $user->save();
-            }
-
             return $user;
         } else {
             $user = User::whereEmail($userFacebookData['email'])->first();
@@ -33,7 +28,6 @@ class SocialNetworkService
                 $user->email = $userFacebookData['email'];
                 $user->name = $userFacebookData['first_name'] ?? null;
                 $user->lastname = $userFacebookData['last_name'] ?? null;
-                $user->photo = $userPhoto;
                 $user->password = bcrypt(Str::random(16));
                 $user->active = date('Y-m-d H:i:s');
                 $user->save();

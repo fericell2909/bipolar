@@ -28,4 +28,10 @@ return [
     'SEO_IMAGE_DEFAULT_URL'       => 'https://www.bipolar.com.pe/storage/bipolar-images/assets/bipolar-gold-resized.jpg',
     // Product types
     'TYPES'                       => ['SHOES' => 1],
+    // Width and instep values
+    'FIT_VERY_LOW'                => 1,
+    'FIT_LOW'                     => 2,
+    'FIT_NORMAL'                  => 3,
+    'FIT_HIGH'                    => 4,
+    'FIT_VERY_HIGH'               => 5,
 ];
