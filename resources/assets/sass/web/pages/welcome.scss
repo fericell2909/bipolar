@@ -1,0 +1,243 @@
+.carousel-home {
+  height: auto;
+  z-index: $z-index-slider;
+}
+
+.owl-carousel-banner-colors {
+  display: block;
+  width: 100%;
+  .owl-carousel-banner-colors-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 2em;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.owl-carousel-home {
+  display: block;
+  height: auto;
+  max-height: 800px;
+  z-index: $z-index-slider;
+  background-color: $bipolar-white;
+
+  .owl-stage {
+    display: block;
+
+    // Fix for white clipping
+    .owl-item {
+      backface-visibility: hidden;
+      transform: translateZ(0) scale(1.0, 1.0);
+    }
+
+    .owl-animated-out {
+      animation-duration: 2000ms;
+    }
+  }
+
+
+  .owl-carousel-home-text-container {
+    display: block;
+    //height: 100%;
+    background: $bipolar-color;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+
+    .owl-carousel-home-text {
+      position: absolute;
+      bottom: 0;
+      color: $bipolar-black;
+      @include sahari_bodoni_font;
+      font-weight: 400;
+      font-size: inherit;
+      line-height: inherit;
+      text-align: center;
+      margin: 0 auto;
+      text-transform: uppercase;
+      width: 100%;
+
+      &:hover, &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+
+}
+
+.header-worldwide-shipping {
+  font-family: $bodoni-bold-font;
+  color: $bipolar-white;
+  background: $bipolar-black;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 68px;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+}
+
+.bipolar-blog-preview {
+  background-color: white;
+  padding-top: 50px;
+
+  .first-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      @include sahari_bodoni_font;
+      font-size: 60px;
+      text-transform: uppercase;
+      margin: 0;
+      color: $bipolar-black;
+      letter-spacing: 3px;
+    }
+
+    h4 {
+      @include bodoni_bold_font;
+      font-size: 15px;
+      padding: 0;
+      color: $bipolar-black;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      padding-top: 14px;
+    }
+  }
+
+  .second-zone {
+    margin-top: 30px;
+
+    @include touch {
+      padding-bottom: 20px;
+    }
+
+    @include desktop {
+      padding-bottom: 50px;
+    }
+
+    .title-link {
+      @include bodoni_bold_font;
+      letter-spacing: 3px;
+      font-size: 25px;
+      text-transform: uppercase;
+      color: $bipolar-black;
+      line-height: 28px;
+
+      &:hover {
+        text-decoration: none;
+        color: $bipolar-color;
+      }
+    }
+
+    a {
+      @include gotham_bold_font;
+      font-size: 11px;
+      color: #6d6e71;
+      text-transform: uppercase;
+    }
+
+    .post {
+      @include touch {
+        margin-bottom: 30px;
+      }
+
+      @include desktop {
+        margin-bottom: 0;
+      }
+
+      .img-responsive {
+        @include touch {
+          margin-bottom: 20px;
+        }
+
+        @include desktop {
+          margin: 0;
+        }
+      }
+
+      .content {
+        @include touch {
+          text-align: center;
+        }
+
+        @include desktop {
+          text-align: left;
+        }
+      }
+
+      .tags {
+        a {
+          @include gotham_light_font;
+          display: inline-block;
+          transition: all 0.2s ease-out;
+          text-transform: uppercase;
+          background-color: $bipolar-color;
+          padding: 2px 10px;
+          margin: 3px 0 5px;
+          font-size: 10px;
+          line-height: 16px;
+          border-radius: 20px;
+          color: #777;
+
+          &:hover {
+            text-decoration: none;
+            background-color: $bipolar-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.bipolar-counts-container {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  .bipolar-counts {
+    text-align: center;
+
+    @include touch {
+      padding: 0;
+
+      &:first-child, &:last-child {
+        padding: 6em 0;
+      }
+    }
+
+    @include desktop {
+      &:first-child, &:last-child {
+        padding: 172px 0;
+      }
+
+      padding: 172px 0;
+    }
+
+    .bipolar-counts-title {
+      @include sahari_bodoni_font;
+      font-size: 60px;
+      line-height: 1.2;
+      color: $bipolar-black;
+    }
+
+    .bipolar-counts-subtitle {
+      @include bodoni_bold_font;
+      font-size: 15px;
+      color: $bipolar-black;
+      line-height: 1.4;
+      margin-top: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+  }
+}

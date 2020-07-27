@@ -217,7 +217,7 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
- * @property mixed $uuid
+ * @property string $uuid
  * @property string $name
  * @property string|null $slug
  * @property-read string $hash_id
@@ -359,7 +359,7 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
- * @property mixed $uuid
+ * @property string $uuid
  * @property array $name
  * @property string|null $slug
  * @property int $order
@@ -912,7 +912,9 @@ namespace App\Models{
  * @property string $name
  * @property string|null $lastname
  * @property string|null $dni
- * @property string|null $photo
+ * @property int|null $foot_instep
+ * @property int|null $foot_width
+ * @property float|null $common_size
  * @property string $password
  * @property string|null $active
  * @property string|null $facebook_id
@@ -936,10 +938,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereBirthdayDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCommonSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereDni($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereFacebookId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereFootInstep($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereFootWidth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereHasShowroomSale($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereLanguage($value)
@@ -947,7 +952,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePaymeWalletToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoto($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  */
@@ -1148,7 +1152,7 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
- * @property mixed $uuid
+ * @property string $uuid
  * @property array $name
  * @property-read string $hash_id
  * @property-read array $translations
@@ -1193,7 +1197,7 @@ namespace App\Models{
  *
  * @mixin \Eloquent
  * @property int $id
- * @property mixed $uuid
+ * @property string $uuid
  * @property int $type_id
  * @property array $name
  * @property string|null $slug

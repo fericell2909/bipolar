@@ -91,6 +91,7 @@
 .bipolar-filters {
   display: none;
   margin-bottom: 40px;
+
   .pretty {
     display: block;
     margin: 8px 0;
@@ -126,8 +127,8 @@
   flex-wrap: wrap;
   justify-content: center;
 
-  li {
-    a.page-number {
+  .page-item {
+    .page-link {
       background: $bipolar-gray;
       color: $bipolar-black;
       border: none;
@@ -142,6 +143,13 @@
       &:hover {
         background: $bipolar-black;
         color: $bipolar-gray;
+      }
+    }
+
+    &:last-child {
+      .page-link {
+        border-top-right-radius: 100%;
+        border-bottom-right-radius: 100%;
       }
     }
   }

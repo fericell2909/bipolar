@@ -1,3 +1,7 @@
+.dropdown-toggle::after {
+  display: none;
+}
+
 .bipolar-grand-header {
   position: relative;
   width: 100%;
@@ -108,7 +112,7 @@
 
   .bipolar-header-logo {
     width: 40%;
-    padding: 20px 0 0;
+    padding-top: 0.8em;
     margin: 0;
     display: inline-block;
     vertical-align: middle;
@@ -149,9 +153,8 @@
       }
 
       .cart-inside {
-        visibility: hidden;
+        display: none;
         position: absolute;
-        display: block;
         background: $bipolar-white;
         box-shadow: 0 3px 10px -2px #777;
         padding: 0 22px;
@@ -259,7 +262,7 @@
 }
 
 .background-line-image {
-  background: url('../../img/linea.png') repeat-x 0 55px;
+  background: url('../../../img/linea.png') repeat-x 0 55px;
 }
 
 .bipolar-alternate-grand-header {
@@ -297,13 +300,13 @@
 }
 
 .header-mobile {
-  background: $bipolar-color url('../../img/linea.png') repeat-x 0 55px;
+  background: $bipolar-color url('../../../img/linea.png') repeat-x 0 55px;
   padding: 30px;
   text-align: center;
 }
 
 .header-desktop {
-  background: $bipolar-color url('../../img/linea.png') repeat-x 0 25px;
+  background: $bipolar-color url('../../../img/linea.png') repeat-x 0 25px;
   text-align: center;
   z-index: 3;
   margin-top: -25px;
@@ -311,7 +314,7 @@
 
 .header-desktop-transparent {
   @extend .header-desktop;
-  background: transparent url('../../img/linea.png') repeat-x 0 25px;
+  background: transparent url('../../../img/linea.png') repeat-x 0 25px;
 }
 
 .bipolar-navbar-styles {
@@ -372,7 +375,6 @@
   position: absolute;
   list-style: none;
   top: 84%;
-  right: 15%;
   padding: 0;
   margin: 0;
   background: $bipolar-white;

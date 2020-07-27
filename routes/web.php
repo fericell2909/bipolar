@@ -67,3 +67,4 @@ Route::post('ajax/wishlist/add/{productHashId}', 'Web\Ajax\WishlistController@ad
 Route::post('ajax/coupon', 'Web\Ajax\CouponController@add');
 Route::post('ajax/coupon-remove', 'Web\Ajax\CouponController@remove');
 Route::post('ajax/buy/{buyHashId}/delete', 'Web\Ajax\CartController@destroy_buy');
+Route::post('ajax/calculate-size', 'Web\Ajax\SizeController@calculate');

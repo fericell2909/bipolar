@@ -1,13 +1,10 @@
 @extends('web.layouts.app_web')
 @section('content')
   <?php /** @var \App\Models\Product $product */ ?>
+  <?php /** @var \Illuminate\Support\Collection $fitWidths */ ?>
+  <?php /** @var \Illuminate\Support\Collection $fitInsteps */ ?>
   @include('web.partials.photoswipe', ['product' => $product])
     <div class="breadcrumb">
-      <div class="breadcrumb-content container">
-        <i class="fas fa-home"></i> &raquo; <a href="{{ route('shop') }}">Shop</a> &raquo; {{ $product->name }}
-      </div>
-    </div>
-    <div class="breadcrumb-without-padding visible-sm-block">
       <div class="breadcrumb-content container">
         <i class="fas fa-home"></i> &raquo; <a href="{{ route('shop') }}">Shop</a> &raquo; {{ $product->name }}
       </div>
@@ -27,12 +24,12 @@
               @endif
               <div id="viewer-images" class="owl-carousel-main owl-carousel owl-theme">
                 @foreach($product->photos as $photo)
-                  <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive image-photoswipe-trigger">
+                  <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="d-block mw-100 image-photoswipe-trigger">
                 @endforeach
               </div>
               <div class="owl-carousel-thumbnails owl-carousel owl-theme">
                 @foreach($product->photos as $photo)
-                  <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="img-responsive">
+                  <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="d-block mw-100">
                 @endforeach
               </div>
             </div>
@@ -80,11 +77,6 @@
                   </button>
                 @endif
               @endforeach
-              @if($productIsShoeType)
-              <button type="button" class="btn btn-default btn-sizes-modal" data-toggle="modal" data-target="#testingModal">
-                {{ __('bipolar.shop.see_size_guide') }}
-              </button>
-              @endif
               {!! Form::hidden('size', null, ['id' => 'size-selected']) !!}
             </div>
           @endif
@@ -105,6 +97,13 @@
             </div>
           </div>
           {!! Form::close() !!}
+          @if($productIsShoeType)
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <button class="btn btn-bipolar-rounded" data-toggle="modal" data-target="#size_calculate_modal">Calcular mi talla ideal</button>
+            </div>
+          </div>
+          @endif
         </div>
       </div>
       <div class="row product-below-content">
@@ -125,16 +124,16 @@
       </div>
       @if($product->recommendations->count() > 0)
         <div class="recommended-products">
-          <h3>{{ __('bipolar.shop.recommended') }}</h3>
+          <h3 class="mt-3">{{ __('bipolar.shop.recommended') }}</h3>
           <div class="row">
             @foreach($product->recommendations as $recommended)
-              <div class="col-xs-6 col-md-2 recommended">
+              <div class="col-6 col-sm-2 recommended">
                 @if(count($recommended->photos))
                   <a href="{{ route('shop.product', $recommended->slug) }}">
-                    <img src="{{ $recommended->photos->first()->url }}" class="img-responsive" alt="{{ $recommended->name }}">
+                    <img src="{{ $recommended->photos->first()->url }}" class="d-block mw-100" alt="{{ $recommended->name }}">
                   </a>
                 @else
-                  <img src="https://placehold.it/320x200" class="img-responsive" alt="{{ $recommended->name }}">
+                  <img src="https://placehold.it/320x200" class="d-block mw-100" alt="{{ $recommended->name }}">
                 @endif
               </div>
             @endforeach
@@ -145,11 +144,114 @@
 @endsection
 @push('js_plus')
   {{-- Don't move! This code is here for prevent a modal z-index problem --}}
-  <div class="modal fade" id="testingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
+  <div class="modal fade" id="size_calculate_modal" tabindex="-1" role="dialog" aria-labelledby="size_calculate_modal">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-body">
-          <img src="{{ asset(__('bipolar.shop.size_guide_url')) }}" alt="Guia de tallas Bipolar" class="img-responsive">
+        <div id="product_uuid" class="d-none" data-uuid="{{ $product->uuid }}"></div>
+        <div class="modal-body pt-5 px-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="font-weight-bold font-bodoni-bold text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one m-0">
+              Descubre tu talla ideal!
+            </h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <i class="fas fa-fw fa-times"></i>
+            </button>
+          </div>
+          <div class="d-flex justify-content-between py-3 align-items-center border-top">
+            <span class="text-uppercase font-gotham-bold text-dark">Mi talla habitual es:</span>
+            <select name="common_size" class="selectable-white w-50" required>
+              <option disabled selected>Elegir</option>
+              @for ($size = 34; $size < 41.5; $size = $size + 0.5)
+                <option value="{{ $size }}" {{ (optional(Auth::user())->common_size ?? null === $size) ? 'selected' : null  }}>
+                  {{ $size }}
+                </option>
+              @endfor
+            </select>
+          </div>
+          <div class="d-flex justify-content-between py-3 align-items-center border-top">
+            <span class="text-uppercase font-gotham-bold text-dark">El ancho de mi pie es:</span>
+            <select name="foot_width" class="selectable-white w-50">
+              <option disabled selected>Elegir</option>
+              @foreach($fitWidths as $fitWidth)
+                <option value="{{ $fitWidth['value'] }}" {{ (optional(Auth::user())->foot_width ?? null === $size) ? 'selected' : null  }}>
+                  {{ $fitWidth['name_es'] }}
+                </option>
+              @endforeach
+            </select>
+          </div>
+          <div class="d-flex justify-content-between py-3 align-items-center border-top">
+            <span class="text-uppercase font-gotham-bold text-dark">Mi empeine es:</span>
+            <select name="foot_instep" class="selectable-white w-50">
+              <option disabled selected>Elegir</option>
+              @foreach($fitInsteps as $fitInstep)
+                <option value="{{ $fitInstep['value'] }}" {{ (optional(Auth::user())->foot_instep ?? null === $size) ? 'selected' : null  }}>
+                  {{ $fitInstep['name_es'] }}
+                </option>
+              @endforeach
+            </select>
+          </div>
+          <div class="d-flex justify-content-between py-1 align-items-center border-top border-bottom">
+            <span class="text-uppercase font-gotham-bold text-dark">Tu talla ideal es:</span>
+            <span id="size-number-result" class="font-sahara-bodoni font-size-three text-dark">--</span>
+          </div>
+          <p class="text-muted text-uppercase mt-3 font-gotham-light">
+            Esta talla sugerida es un estimado en base a tus respuestas, a las características de este modelo en particular y a nuestra experiencia
+            con modelos similares.
+          </p>
+          <p class="text-muted text-uppercase mt-3 font-gotham-bold">
+            Guardaremos tus respuestas para recomendarte la talla perfecta en cada modelo!
+          </p>
+          <h2 class="font-weight-bold mt-5 font-bodoni-bold text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one">Tabla de equivalencias</h2>
+          <span class="text-muted text-uppercase mb-3 d-block">En Bipolar usamos el sistema de medida europeo</span>
+          <div class="row py-2 border-top mx-0">
+            <span class="col-4 text-uppercase text-left text-dark font-gotham-bold">Bipolar/EU</span>
+            <span class="col-4 text-uppercase text-center text-dark font-gotham-bold">US/Can</span>
+            <span class="col-4 text-uppercase text-right text-dark font-gotham-bold">UK</span>
+          </div>
+          <div class="row py-2 border-top border-bottom mx-0">
+            <span class="col-4 text-left text-dark font-gotham-bold">34</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">3.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">1.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom mx-0">
+            <span class="col-4 text-left text-dark font-gotham-bold">35</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">4.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">2.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom mx-0">
+            <span class="col-4 text-left text-dark font-gotham-bold">36</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">5.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">3.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom mx-0">
+            <span class="col-4 text-left text-dark font-gotham-bold">37</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">6.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">4.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom mx-0">
+            <span class="col-4 text-left text-dark font-gotham-bold">38</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">7.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">5.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom mx-0">
+            <span class="col-4 text-left text-dark font-gotham-bold">39</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">8.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">6.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom mx-0">
+            <span class="col-4 text-left text-dark font-gotham-bold">40</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">9.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">7.5</span>
+          </div>
+          <div class="row py-2 border-top border-bottom mx-0">
+            <span class="col-4 text-left text-dark font-gotham-bold">41</span>
+            <span class="col-4 text-center text-dark font-gotham-bold">10.5</span>
+            <span class="col-4 text-right text-dark font-gotham-bold">8.5</span>
+          </div>
+          <div class="alert alert-bipolar text-center mt-5">
+            <span class="text-uppercase d-block text-dark font-gotham-bold">¿Consultas adicionales?</span>
+            <span class="text-uppercase text-dark d-block font-gotham-light">No dudes en contactarnos desde nuestro chat en línea o vía shop@bipolar.com.pe</span>
+          </div>
         </div>
       </div>
     </div>

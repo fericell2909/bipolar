@@ -1,0 +1,258 @@
+@import "../mixins";
+
+body {
+  p {
+    margin: 0;
+  }
+
+  @include gotham_light_font;
+  font-size: 13px;
+  color: $bipolar-text-gray;
+  padding-bottom: 363px;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &.no-top {
+    padding-top: 0;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  body {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+button {
+  &:hover, &:focus, &:active {
+    outline: none;
+  }
+}
+
+.swal2-popup {
+  font-size: 1.6rem !important;
+}
+
+.bipolar-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.bipolar-background {
+  background-color: $bipolar-color;
+}
+
+.bipolar-the-content {
+  background-color: $bipolar-white;
+
+  h2 {
+    @include bodoni_bold_font;
+    font-size: 26px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #000000;
+  }
+}
+
+.bipolar-page-container {
+  @extend .container;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+
+  h1 {
+    @include bodoni_bold_font;
+    font-size: 26px;
+    font-weight: 400;
+    color: $bipolar-black;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 40px 0;
+  }
+
+  h6 {
+    @include bodoni_bold_font;
+    font-size: 12px;
+    color: $bipolar-black;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  p {
+    @include gotham_light_font;
+    font-size: 13px;
+    margin: 0 0 10px;
+    line-height: 1.6;
+
+    &:last-of-type {
+      margin-bottom: 40px;
+    }
+  }
+
+  .table > tbody > tr > td {
+    vertical-align: middle;
+    padding-left: 0;
+  }
+
+  a.special-link {
+    @include gotham_bold_font;
+    color: $bipolar-color;
+    text-decoration: underline;
+  }
+}
+
+.color-transparent {
+  background: transparent;
+  margin-bottom: 0;
+}
+
+.color-white {
+  color: $bipolar-white;
+}
+
+a {
+  color: $bipolar-black;
+
+  &:hover {
+    color: $bipolar-black;
+  }
+}
+
+.btn-link {
+  color: $bipolar-black;
+}
+
+.content-newsletter {
+  color: $bipolar-black;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  padding: 30px;
+
+  .container-content {
+    max-width: 270px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .newsletter-title {
+      @include bodoni_bold_font;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 30px;
+      margin-top: 1em;
+    }
+
+    .newsletter-subtitle {
+      @include bodoni_bold_font;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 1em;
+    }
+
+    .form-suscribe {
+      margin-top: 1em;
+    }
+  }
+}
+
+.bipolar-container {
+  @extend .container;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+
+  .title-text-content {
+    font-family: $bodoni-bold-font;
+    font-size: 26px;
+    font-weight: 400;
+    color: $bipolar-black;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="date"] {
+  border: none;
+  border-radius: 36px;
+  padding: 0 15px;
+  text-transform: uppercase;
+  color: #878787;
+  font-size: 11px;
+  text-align: center;
+  font-family: $gotham-light-font;
+  background-color: $bipolar-gray;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+// Important general styles
+// Remove arrows from input['number']
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+input::-webkit-clear-button {
+  display: none;
+}
+
+// Remove placeholder on focus
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+input:focus:-moz-placeholder {
+  color: transparent;
+}
+
+/* FF 4-18 */
+input:focus::-moz-placeholder {
+  color: transparent;
+}
+
+/* FF 19+ */
+input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+/* IE 10+ */
+
+/* No Gutter Column Trick
+================================================== */
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.row.no-gutters [class^="col-"],
+.row.no-gutters [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.row.no-gutters-in-xss {
+  @include xxs {
+    margin-right: 0;
+    margin-left: 0;
+
+    [class^="col-"], [class*=" col-"] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}

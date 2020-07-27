@@ -230,6 +230,20 @@ class ShopController extends Controller
         $product = Product::findBySlugOrFail($slugProduct);
 
         abort_if($product->state_id !== config('constants.STATE_ACTIVE_ID'), 404);
+        $fitWidths = collect([
+            ['name_es' => 'Muy angosto', 'value' => config('constants.FIT_VERY_LOW')],
+            ['name_es' => 'Un poco angosto', 'value' => config('constants.FIT_LOW')],
+            ['name_es' => 'Standard', 'value' => config('constants.FIT_NORMAL')],
+            ['name_es' => 'Un poco ancho', 'value' => config('constants.FIT_HIGH')],
+            ['name_es' => 'Muy ancho', 'value' => config('constants.FIT_VERY_HIGH')],
+        ]);
+        $fitInsteps = collect([
+            ['name_es' => 'Muy bajo', 'value' => config('constants.FIT_VERY_LOW')],
+            ['name_es' => 'Un poco bajo', 'value' => config('constants.FIT_LOW')],
+            ['name_es' => 'Standard', 'value' => config('constants.FIT_NORMAL')],
+            ['name_es' => 'Un poco alto', 'value' => config('constants.FIT_HIGH')],
+            ['name_es' => 'Muy alto', 'value' => config('constants.FIT_VERY_HIGH')],
+        ]);
 
         $product->load([
             'stocks.size',
@@ -289,7 +303,14 @@ class ShopController extends Controller
             ->setDescription($seoDescription)
             ->addImage($image, ['width' => 1024, 'height' => 680]);
 
-        return view('web.shop.product', compact('product', 'stockWithSizes', 'quantities', 'productIsShoeType'));
+        return view('web.shop.product', compact(
+            'product',
+            'stockWithSizes',
+            'quantities',
+            'productIsShoeType',
+            'fitWidths',
+            'fitInsteps'
+        ));
     }
 
     private function productHasStock($product)

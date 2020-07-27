@@ -1,4 +1,4 @@
-@import "mixins";
+@import "resources/assets/sass/web/mixins";
 
 .bipolar-success-message {
   @include bipolar_alert(#8fae1b);

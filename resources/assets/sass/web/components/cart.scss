@@ -1,4 +1,4 @@
-@import "../mixins";
+@import "../../mixins";
 
 .table-cart {
   width: 100%;
@@ -59,7 +59,7 @@
     tbody {
       tr {
         display: block;
-  
+
         td {
           display: block;
           border-top: 1px solid #eee;
@@ -85,7 +85,7 @@
 }
 
 .background-title-image {
-  background-image: url('../../img/fondo-rayas-web-con-negro.jpg');
+  background-image: url('../../../img/fondo-rayas-web-con-negro.jpg');
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -109,7 +109,7 @@
 .background-order-confirmed {
   height: 430px;
   background-color: $bipolar-black;
-  
+
   .content-order-confirmed {
     display: flex;
     justify-content: space-evenly;
@@ -125,14 +125,14 @@
       text-align: center;
       margin: 0;
     }
-  
+
     h2 {
       @include bodoni_bold_font;
       font-size: 15px;
       color: $bipolar-color;
       text-transform: uppercase;
       margin: 0;
-  
+
       a {
         text-decoration: underline;
         color: inherit;
@@ -192,7 +192,7 @@
       text-transform: uppercase;
       letter-spacing: 0;
     }
-  
+
     .amount {
       text-transform: uppercase;
       letter-spacing: 1px;

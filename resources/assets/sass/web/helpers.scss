@@ -1,0 +1,52 @@
+@import "../mixins";
+
+.font-bodoni-normal {
+  @include bodoni_font;
+}
+
+.font-bodoni-bold {
+  @include bodoni_bold_font;
+}
+
+.font-sahara-bodoni {
+  @include sahari_bodoni_font;
+}
+
+.font-gotham-bold {
+  @include gotham_bold_font;
+}
+
+.font-gotham-light {
+  @include gotham_light_font;
+}
+
+.letter-spacing-zero-dot-one {
+  letter-spacing: 0.1em;
+}
+
+.font-size-one-and-half {
+  font-size: 1.5em;
+}
+
+.font-size-three {
+  font-size: 3em;
+}
+
+.selectable-white {
+  color: #878787;
+  line-height: 1;
+  border-radius: 42px;
+  outline: none;
+  padding: 0 25px;
+  font-size: 15px;
+  height: 35px;
+  border-color: #878787;
+  border-width: 1px;
+  background: #fff url(../../img/arrow_down.png) no-repeat calc(100% - 10px);
+  appearance: none;
+}
+
+.alert-bipolar {
+  background-color: #fcd9d3;
+  border-radius: 0;
+}

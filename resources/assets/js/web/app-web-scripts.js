@@ -1,6 +1,7 @@
 try {
   window.$ = window.jQuery = require('jquery');
-  require('bootstrap-sass');
+  window.Popper = require('popper.js').default;
+  require('bootstrap');
   require('./animate-css');
 } catch (e) {}
 
@@ -30,10 +31,16 @@ $('.cart-white-mobile').on('click', function() {
 
 $('.bipolar-shopping-cart-content').on('click', function() {
   const $cart = $('.cart-inside');
-  if ($cart.css('visibility') === 'hidden') {
-    $cart.css('visibility', 'visible');
-  } else if ($cart.css('visibility') === 'visible') {
-    $cart.css('visibility', 'hidden');
+  const $bipolarButtonSeeCart = $('#bipolar-button-see-cart');
+  const $bipolarButtonCheckout = $('#bipolar-button-checkout');
+  if ($cart.css('display') === 'none') {
+    $bipolarButtonSeeCart.css('display', 'inline-block');
+    $bipolarButtonCheckout.css('display', 'inline-block');
+    $cart.css('display', 'block');
+  } else if ($cart.css('display') === 'block') {
+    $bipolarButtonSeeCart.css('display', 'none');
+    $bipolarButtonCheckout.css('display', 'none');
+    $cart.css('display', 'none');
   }
 });
 
@@ -71,5 +78,6 @@ require('./shop-scripts');
 require('./product-scripts');
 require('./select2-scripts');
 require('./checkout-scripts');
+require('./modal-calculate-size');
 require('./click-outside-handler');
 require('./hover-animation-script');
