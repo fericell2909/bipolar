@@ -162,7 +162,7 @@
             <select name="common_size" class="selectable-white w-50" required>
               <option disabled selected>Elegir</option>
               @for ($size = 34; $size < 41.5; $size = $size + 0.5)
-                <option value="{{ $size }}" {{ (optional(Auth::user())->common_size ?? null === $size) ? 'selected' : null  }}>
+                <option value="{{ $size }}" {{ (float)data_get(Auth::user(), 'common_size', 0) === $size ? 'selected' : null  }}>
                   {{ $size }}
                 </option>
               @endfor
@@ -173,7 +173,7 @@
             <select name="foot_width" class="selectable-white w-50">
               <option disabled selected>Elegir</option>
               @foreach($fitWidths as $fitWidth)
-                <option value="{{ $fitWidth['value'] }}" {{ (optional(Auth::user())->foot_width ?? null === $size) ? 'selected' : null  }}>
+                <option value="{{ $fitWidth['value'] }}" {{ (int)data_get(Auth::user(), 'foot_width', 0) === $fitWidth['value'] ? 'selected' : null  }}>
                   {{ $fitWidth['name_es'] }}
                 </option>
               @endforeach
@@ -184,7 +184,7 @@
             <select name="foot_instep" class="selectable-white w-50">
               <option disabled selected>Elegir</option>
               @foreach($fitInsteps as $fitInstep)
-                <option value="{{ $fitInstep['value'] }}" {{ (optional(Auth::user())->foot_instep ?? null === $size) ? 'selected' : null  }}>
+                <option value="{{ $fitInstep['value'] }}" {{ (int)data_get(Auth::user(), 'foot_instep', 0) === $fitInstep['value'] ? 'selected' : null  }}>
                   {{ $fitInstep['name_es'] }}
                 </option>
               @endforeach
@@ -192,7 +192,7 @@
           </div>
           <div class="d-flex justify-content-between py-1 align-items-center border-top border-bottom">
             <span class="text-uppercase font-gotham-bold text-dark">Tu talla ideal es:</span>
-            <span id="size-number-result" class="font-sahara-bodoni font-size-three text-dark">--</span>
+            <span class="size-number-result font-sahara-bodoni font-size-three text-dark">--</span>
           </div>
           <p class="text-muted text-uppercase mt-3 font-gotham-light">
             Esta talla sugerida es un estimado en base a tus respuestas, a las características de este modelo en particular y a nuestra experiencia
