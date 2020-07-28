@@ -85,10 +85,8 @@ class ProductController extends Controller
         /** @var Product $product */
         $product = Product::findBySlugOrFail($productSlug);
         $fitSize = FitSize::whereUuid(request()->input('fit_size'))->first();
-        $fitWidth = FitWidth::whereUuid(request()->input('fit_width'))->first();
 
         $product->fit_size_id = $fitSize->id;
-        $product->fit_width_id = $fitWidth->id;
         $product->width_level_very_low = request()->input('width_very_low');
         $product->width_level_low = request()->input('width_low');
         $product->width_level_normal = request()->input('width_normal');
@@ -165,7 +163,7 @@ class ProductController extends Controller
 
         $product->load(['stocks.size', 'photos' => function ($withPhotos) {
             return $withPhotos->orderBy('order');
-        }, 'recommendations.photos' => function ($withPhotos) {
+        }, 'recommendations.photos'             => function ($withPhotos) {
             return $withPhotos->orderBy('order');
         }]);
 

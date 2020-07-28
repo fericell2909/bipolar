@@ -21,6 +21,10 @@ class SizeController extends Controller
 
         $size = (float)$request->input('common_size');
 
+        if ($product->fit_size) {
+            $size += $product->fit_size->value;
+        }
+
         switch ($request->input('foot_width')) {
             case config('constants.FIT_VERY_LOW'):
                 $size += $product->width_level_very_low;

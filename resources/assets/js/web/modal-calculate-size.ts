@@ -5,7 +5,7 @@ $(function() {
     const $commonSizeSelect = $('select[name="common_size"]');
     const $footWidth = $('select[name="foot_width"]');
     const $footInstep = $('select[name="foot_instep"]');
-    const $sizeResult = $('#size-number-result');
+    const $sizeResult = $('.size-number-result');
     const $productUUID = $('#product_uuid').data('uuid');
     const calculateSize = () => {
       if (
