@@ -64,7 +64,7 @@
               <div class="d-block font-gotham-bold mb-3">Tu talla ideal en este modelo es <span class="size-number-result">--</span></div>
             @endif
             <div class="product-sizes">
-              <h6 class="text-uppercase">{{ __('bipolar.shop.select_your_size') }}</h6>
+              <span class="d-block text-uppercase">{{ __('bipolar.shop.select_your_size') }}</span>
               @foreach($stockWithSizes as $stock)
                 @if($stock['quantity'] === 0)
                   <button type="button" class="product-size-disabled">
