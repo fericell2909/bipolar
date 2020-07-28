@@ -60,6 +60,9 @@
                 <span>{{ __('bipolar.shop.select_size') }}</span>
               </div>
             </div>
+            @if((float)data_get(Auth::user(), 'common_size', 0) !== 0)
+              <div class="d-block font-gotham-bold mb-3">Tu talla ideal en este modelo es <span class="size-number-result">--</span></div>
+            @endif
             <div class="product-sizes">
               <h6 class="text-uppercase">{{ __('bipolar.shop.select_your_size') }}</h6>
               @foreach($stockWithSizes as $stock)
