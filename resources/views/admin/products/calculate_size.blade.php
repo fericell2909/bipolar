@@ -5,7 +5,7 @@
   <div class="card">
     <div class="card-body">
       {!! Form::open() !!}
-        <label><strong>Escoge tu talla</strong></label>
+        <label><strong>Fit</strong></label>
         <div class="d-flex btn-group btn-group-toggle mb-3" data-toggle="buttons">
           @foreach($fitsSizes as $fit)
             <label class="btn btn-outline-dark">
@@ -14,15 +14,15 @@
             </label>
           @endforeach
         </div>
-        <label><strong>Ancho</strong></label>
-        <div class="d-flex btn-group btn-group-toggle mb-3" data-toggle="buttons">
-          @foreach($fitsWidths as $fitWidth)
-            <label class="btn btn-outline-dark">
-              {!! Form::radio('fit_width', $fitWidth->uuid, $product->fit_width->uuid === $fitWidth->uuid, ['autocomplete' => 'off']) !!}
-              {{ $fitWidth->getTranslation('name', 'es') }}
-            </label>
-          @endforeach
-        </div>
+{{--        <label><strong>Ancho</strong></label>--}}
+{{--        <div class="d-flex btn-group btn-group-toggle mb-3" data-toggle="buttons">--}}
+{{--          @foreach($fitsWidths as $fitWidth)--}}
+{{--            <label class="btn btn-outline-dark">--}}
+{{--              {!! Form::radio('fit_width', $fitWidth->uuid, $product->fit_width->uuid === $fitWidth->uuid, ['autocomplete' => 'off']) !!}--}}
+{{--              {{ $fitWidth->getTranslation('name', 'es') }}--}}
+{{--            </label>--}}
+{{--          @endforeach--}}
+{{--        </div>--}}
         <div class="table-responsive">
          <table class="table table-primary table-borderless">
            <thead>
