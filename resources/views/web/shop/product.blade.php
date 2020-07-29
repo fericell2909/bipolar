@@ -60,7 +60,7 @@
                 <span>{{ __('bipolar.shop.select_size') }}</span>
               </div>
             </div>
-            @if((float)data_get(Auth::user(), 'common_size', 0) !== 0)
+            @if((float)data_get(Auth::user(), 'common_size', 0.0) !== 0.0 && $productIsShoeType)
               <div class="d-block font-gotham-bold mb-3">Tu talla ideal en este modelo es <span class="size-number-result">--</span></div>
             @endif
             <div class="product-sizes">
@@ -101,11 +101,11 @@
           </div>
           {!! Form::close() !!}
           @if($productIsShoeType)
-          <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6">
-              <button class="btn btn-bipolar-rounded" data-toggle="modal" data-target="#size_calculate_modal">Calcular mi talla ideal</button>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <button class="btn btn-bipolar-rounded" data-toggle="modal" data-target="#size_calculate_modal">Calcular mi talla ideal</button>
+              </div>
             </div>
-          </div>
           @endif
         </div>
       </div>
