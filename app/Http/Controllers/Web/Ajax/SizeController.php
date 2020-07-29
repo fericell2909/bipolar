@@ -69,6 +69,6 @@ class SizeController extends Controller
             $user->save();
         }
 
-        return ['result' => $size, 'success' => true];
+        return ['result' => ceil($size), 'success' => true];
     }
 }
