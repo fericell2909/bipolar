@@ -11,6 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
+    <meta property="fb:app_id" content="100210840716931">
     {{-- Script de Font Awesome --}}
     <script async src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script>
   </head>

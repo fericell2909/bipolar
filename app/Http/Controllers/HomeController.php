@@ -15,7 +15,7 @@ class HomeController extends Controller
         $page = Page::findBySlugOrFail($pageSlug);
 
         if ($page->main_image) {
-            $this->seo()->opengraph()->addImage($page->main_image);
+            $this->seo()->opengraph()->setType('article')->addImage($page->main_image);
             $this->seo()->twitter()->addImage($page->main_image);
         } else {
             $imageUrl = asset('storage/bipolar-images/assets/jeringas-rosado.jpg');

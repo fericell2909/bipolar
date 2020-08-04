@@ -30,14 +30,15 @@ return [
          * The default configurations to be used by the opengraph generator.
          */
         'defaults' => [
-            'title'       => 'Bipolar', // set false to total remove
-            'description' => 'Zapatos de diseñador hechos a mano en Perú. Designer shoes handmade in Peru.',
+            'title'            => 'Bipolar', // set false to total remove
+            'description'      => 'Zapatos de diseñador hechos a mano en Perú. Designer shoes handmade in Peru.',
             // set false to total remove
-            'url'         => null, // Set null for using Url::current(), set false to total remove
-            'locale'      => 'en_US',
-            'type'        => 'website',
-            'site_name'   => 'Bipolar',
-            'images'      => [],
+            'url'              => null, // Set null for using Url::current(), set false to total remove
+            'locale'           => 'en_US',
+            'locale:alternate' => ['es_ES'],
+            'type'             => 'article',
+            'site_name'        => 'Bipolar',
+            'images'           => [],
         ],
     ],
     'twitter'   => [

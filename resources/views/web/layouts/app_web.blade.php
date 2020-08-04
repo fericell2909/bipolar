@@ -9,6 +9,7 @@
     {!! SEO::generate(true) !!}
     <link rel="stylesheet" href="{{ mix('css/app-web-styles.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta property="fb:app_id" content="100210840716931">
     <link rel="shortcut icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
     {{-- Script de Font Awesome --}}
