@@ -102,6 +102,23 @@ return [
         'size_guide_url' => 'storage/bipolar-images/assets/size_esp_20180913.png',
         'added' => ':product ha sido agregado al carro',
         'soldout' => 'Agotado',
+        'size' => [
+            'your_perfect_size_in_this_model' => 'Tu talla ideal en este modelo es',
+            'calculate_my_perfect_size' => 'Calcular mi talla ideal',
+            'discover_your_perfect_size' => 'Descubre tu talla ideal!',
+            'choose' => 'Elegir',
+            'my_usual_size_is' => 'Mi talla habitual es',
+            'my_food_width_is' => 'El ancho de mi pie es',
+            'my_instep_is' => 'Mi empeine es',
+            'your_perfect_size_is' => 'Tu talla ideal es',
+            'size_note_one' => 'Esta talla sugerida es un estimado en base a tus respuestas, a las características de este modelo en particular y a nuestra experiencia
+            con modelos similares.',
+            'we_will_save_your_answers' => 'Guardaremos tus respuestas para recomendarte la talla perfecta en cada modelo!',
+            'table_of_equivalences' => 'Tabla de equivalencias',
+            'bipolar_uses_the_european' => 'En Bipolar usamos el sistema de medida europeo',
+            'additional_queries' => 'Consultas adicionales?',
+            'feel_free_to_contact' => 'No dudes en contactarnos desde nuestro chat en línea o vía shop@bipolar.com.pe',
+        ]
     ],
     'mails' => [
         'buy_received_subject' => 'Gracias por tu compra!',

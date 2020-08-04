@@ -102,6 +102,22 @@ return [
         'size_guide_url' => 'storage/bipolar-images/assets/size_eng_20180913.png',
         'added' => ':product has been added to the cart',
         'soldout' => 'Sold out',
+        'size' => [
+            'your_perfect_size_in_this_model' => 'Your perfect size in this model is',
+            'calculate_my_perfect_size' => 'Calculate my perfect size',
+            'discover_your_perfect_size' => 'Discover your perfect size!',
+            'choose' => 'Choose',
+            'my_usual_size_is' => 'My usual size is',
+            'my_food_width_is' => 'The width of my foot is',
+            'my_instep_is' => 'My instep is',
+            'your_perfect_size_is' => 'Your perfect size is',
+            'size_note_one' => 'The suggested size is an estimate based on your answers, on the characteristics of this model in particular and on our experience with similar models',
+            'we_will_save_your_answers' => 'We will save your answer to recommend you the perfect size in each model!',
+            'table_of_equivalences' => 'Table of equivalences',
+            'bipolar_uses_the_european' => 'Bipolar uses the european sizing system',
+            'additional_queries' => 'Additional inquiries?',
+            'feel_free_to_contact' => 'Please feel free to contact us on our online chat or at shop@bipolar.com.pe',
+        ]
     ],
     'mails' => [
         'buy_received_subject' => 'Thank you for your purchase!',
