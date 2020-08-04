@@ -61,7 +61,7 @@
               </div>
             </div>
             @if((float)data_get(Auth::user(), 'common_size', 0.0) !== 0.0 && $productIsShoeType)
-              <div class="d-block font-gotham-bold mb-3">Tu talla ideal en este modelo es <span class="size-number-result">--</span></div>
+              <div class="d-block font-gotham-bold mb-3">{{ __('bipolar.shop.size.your_perfect_size_in_this_model') }} <span class="size-number-result">--</span></div>
             @endif
             <div class="product-sizes">
               <span class="d-block text-uppercase">{{ __('bipolar.shop.select_your_size') }}</span>
@@ -103,7 +103,8 @@
           @if($productIsShoeType)
             <div class="row">
               <div class="col-xs-12 col-sm-6 col-md-6">
-                <button class="btn btn-bipolar-rounded" data-toggle="modal" data-target="#size_calculate_modal">Calcular mi talla ideal</button>
+                <button class="btn btn-bipolar-rounded" data-toggle="modal" data-target="#size_calculate_modal">
+                  {{ __('bipolar.shop.size.calculate_my_perfect_size') }}</button>
               </div>
             </div>
           @endif
@@ -154,16 +155,16 @@
         <div class="modal-body pt-5 px-5">
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h2 class="font-weight-bold font-bodoni-bold text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one m-0">
-              Descubre tu talla ideal!
+              {{ __('bipolar.shop.size.discover_your_perfect_size') }}
             </h2>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <i class="fas fa-fw fa-times"></i>
             </button>
           </div>
           <div class="d-flex justify-content-between py-3 align-items-center border-top">
-            <span class="text-uppercase font-gotham-bold text-dark">Mi talla habitual es:</span>
+            <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.my_usual_size_is') }}:</span>
             <select name="common_size" class="selectable-white w-50" required>
-              <option disabled selected>Elegir</option>
+              <option class="text-uppercase" disabled selected>{{ __('bipolar.shop.size.choose') }}</option>
               @for ($size = 34; $size < 41.5; $size = $size + 0.5)
                 <option value="{{ $size }}" {{ (float)data_get(Auth::user(), 'common_size', 0) === $size ? 'selected' : null  }}>
                   {{ $size }}
@@ -172,40 +173,36 @@
             </select>
           </div>
           <div class="d-flex justify-content-between py-3 align-items-center border-top">
-            <span class="text-uppercase font-gotham-bold text-dark">El ancho de mi pie es:</span>
+            <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.my_food_width_is') }}:</span>
             <select name="foot_width" class="selectable-white w-50">
-              <option disabled selected>Elegir</option>
+              <option class="text-uppercase" disabled selected>{{ __('bipolar.shop.size.choose') }}</option>
               @foreach($fitWidths as $fitWidth)
                 <option value="{{ $fitWidth['value'] }}" {{ (int)data_get(Auth::user(), 'foot_width', 0) === $fitWidth['value'] ? 'selected' : null  }}>
-                  {{ $fitWidth['name_es'] }}
+                  {{ $fitWidth['name'] }}
                 </option>
               @endforeach
             </select>
           </div>
           <div class="d-flex justify-content-between py-3 align-items-center border-top">
-            <span class="text-uppercase font-gotham-bold text-dark">Mi empeine es:</span>
+            <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.my_instep_is') }}:</span>
             <select name="foot_instep" class="selectable-white w-50">
-              <option disabled selected>Elegir</option>
+              <option class="text-uppercase" disabled selected>{{ __('bipolar.shop.size.choose') }}</option>
               @foreach($fitInsteps as $fitInstep)
                 <option value="{{ $fitInstep['value'] }}" {{ (int)data_get(Auth::user(), 'foot_instep', 0) === $fitInstep['value'] ? 'selected' : null  }}>
-                  {{ $fitInstep['name_es'] }}
+                  {{ $fitInstep['name'] }}
                 </option>
               @endforeach
             </select>
           </div>
           <div class="d-flex justify-content-between py-1 align-items-center border-top border-bottom">
-            <span class="text-uppercase font-gotham-bold text-dark">Tu talla ideal es:</span>
+            <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.your_perfect_size_is') }}:</span>
             <span class="size-number-result font-sahara-bodoni font-size-three text-dark">--</span>
           </div>
-          <p class="text-muted text-uppercase mt-3 font-gotham-light">
-            Esta talla sugerida es un estimado en base a tus respuestas, a las características de este modelo en particular y a nuestra experiencia
-            con modelos similares.
-          </p>
-          <p class="text-muted text-uppercase mt-3 font-gotham-bold">
-            Guardaremos tus respuestas para recomendarte la talla perfecta en cada modelo!
-          </p>
-          <h2 class="font-weight-bold mt-5 font-bodoni-bold text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one">Tabla de equivalencias</h2>
-          <span class="text-muted text-uppercase mb-3 d-block">En Bipolar usamos el sistema de medida europeo</span>
+          <p class="text-muted text-uppercase mt-3 font-gotham-light">{{ __('bipolar.shop.size.size_note_one') }}</p>
+          <p class="text-muted text-uppercase mt-3 font-gotham-bold">{{ __('bipolar.shop.size.we_will_save_your_answers') }}</p>
+          <h2 class="font-weight-bold mt-5 font-bodoni-bold text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one">
+            {{ __('bipolar.shop.size.table_of_equivalences') }}</h2>
+          <span class="text-muted text-uppercase mb-3 d-block">{{ __('bipolar.shop.size.bipolar_uses_the_european') }}</span>
           <div class="row py-2 border-top mx-0">
             <span class="col-4 text-uppercase text-left text-dark font-gotham-bold">Bipolar/EU</span>
             <span class="col-4 text-uppercase text-center text-dark font-gotham-bold">US/Can</span>
@@ -252,8 +249,8 @@
             <span class="col-4 text-right text-dark font-gotham-bold">8.5</span>
           </div>
           <div class="alert alert-bipolar text-center mt-5">
-            <span class="text-uppercase d-block text-dark font-gotham-bold">¿Consultas adicionales?</span>
-            <span class="text-uppercase text-dark d-block font-gotham-light">No dudes en contactarnos desde nuestro chat en línea o vía shop@bipolar.com.pe</span>
+            <span class="text-uppercase d-block text-dark font-gotham-bold">{{ __('bipolar.shop.size.additional_queries') }}</span>
+            <span class="text-uppercase text-dark d-block font-gotham-light">{{ __('bipolar.shop.size.feel_free_to_contact') }}</span>
           </div>
         </div>
       </div>
