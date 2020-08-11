@@ -103,6 +103,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy currentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy orCurrentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy otherCurrentStatus($names)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
