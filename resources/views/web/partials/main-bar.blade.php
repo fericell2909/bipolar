@@ -48,7 +48,7 @@
 	</nav>
 	<nav class="navbar bipolar-navbar-styles background-line-image">
 		<div class="container">
-			<div class="bipolar-second-navbar w-100">
+			<div class="d-flex bipolar-second-navbar w-100">
 				<ul class="bipolar-navbar-social-links">
 					<li>
 						<a href="mailto:bipolar@bipolar.com.pe">

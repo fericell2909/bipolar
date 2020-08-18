@@ -1,6 +1,18 @@
 @extends('admin.layouts.app_admin')
 @section('title', 'Listado de compras')
 @section('content')
+  <div class="card">
+    <div class="card-body">
+      {!! Form::open(['route' => 'buys.index', 'method' => 'GET']) !!}
+        <div class="d-flex">
+          <div class="flex-grow-1 mr-3">
+            <input type="text" name="search" class="form-control" placeholder="Buscar por nombre, orden o estado">
+          </div>
+          <button type="submit" class="btn btn-rounded btn-dark">Buscar</button>
+        </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
   <div class="row">
     <div class="col-md">
       <div class="card">

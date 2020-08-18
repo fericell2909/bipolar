@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Mail\BuyConfirmation;
 use App\Mail\BuySent;
 use App\Models\Buy;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class BuysController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $buys = Buy::orderByDesc('id')
             ->with([
@@ -24,8 +26,21 @@ class BuysController extends Controller
                 'shipping_address',
                 'billing_address',
                 'payments',
-            ])
-            ->paginate(20);
+            ]);
+
+        $buys = $buys->when($request->filled('search'), function ($whereBuys) use ($request) {
+            /** @var Builder|Buy $whereBuys */
+            $users = User::where('name', 'LIKE', "%{$request->input('search')}%")
+                ->orWhere('lastname', 'LIKE', "%{$request->input('search')}%")
+                ->get();
+            if ($users->count()) {
+                $whereBuys->orWhereIn('user_id',  $users->pluck('id')->toArray());
+            }
+           $whereBuys->orWhere('id', $request->input('search'));
+           $whereBuys->orCurrentStatus($request->input('search'));
+        });
+
+        $buys = $buys->paginate(20);
 
         return view('admin.buys.index', compact('buys'));
     }

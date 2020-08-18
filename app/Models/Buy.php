@@ -3,7 +3,11 @@
 namespace App\Models;
 
 use App\Traits\Hashable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Spatie\ModelStatus\HasStatuses;
 
 /** @mixin \Eloquent */
@@ -82,5 +86,34 @@ class Buy extends Model
     public function getPaymeFormattedNumber()
     {
         return intval($this->total * 100);
+    }
+
+    /**
+     * I could add this method to: https://github.com/spatie/laravel-model-status as PR
+     *
+     * @param Builder $builder
+     * @param mixed ...$names
+     */
+    public function scopeOrCurrentStatus(Builder $builder, ...$names)
+    {
+        $names = is_array($names) ? Arr::flatten($names) : func_get_args();
+        $builder
+            ->orWhereHas(
+                'statuses',
+                function (Builder $query) use ($names) {
+                    $query
+                        ->whereIn('name', $names)
+                        ->whereIn(
+                            'id',
+                            function (QueryBuilder $query) {
+                                $query
+                                    ->select(DB::raw('max(id)'))
+                                    ->from($this->getStatusTableName())
+                                    ->where('model_type', $this->getStatusModelType())
+                                    ->whereColumn($this->getModelKeyColumnName(), $this->getQualifiedKeyName());
+                            }
+                        );
+                }
+            );
     }
 }
