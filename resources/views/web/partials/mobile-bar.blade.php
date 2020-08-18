@@ -66,6 +66,6 @@
   <li><a href="{{ route('landings.contacto') }}"><span>{{ __('bipolar.navbar.contact_us') }}</span></a></li>
   <li>
     <a href="{{ route('myaccount') }}"><span>{{ __('bipolar.navbar.my_account') }}</span></a>
-    <a href="{{ route('wishlist') }}"><i class="fas fa-heart"></i></a>
+    <a href="{{ route('wishlist') }}"><i class="fas fa-heart"></i> <span class="text-uppercase">Wishlist</span></a>
   </li>
 </ul>
