@@ -117,6 +117,20 @@ return [
             'bipolar_uses_the_european' => 'Bipolar uses the european sizing system',
             'additional_queries' => 'Additional inquiries?',
             'feel_free_to_contact' => 'Please feel free to contact us on our online chat or at shop@bipolar.com.pe',
+        ],
+        'fit_widths' => [
+            'very_low' => 'Very narrow',
+            'low' => 'Narrow',
+            'normal' => 'Standard',
+            'high' => 'Wide',
+            'very_high' => 'Extra Wide',
+        ],
+        'fit_instep' => [
+            'very_low' => 'Very low',
+            'low' => 'Low',
+            'normal' => 'Standard',
+            'high' => 'High',
+            'very_high' => 'Very high',
         ]
     ],
     'mails' => [

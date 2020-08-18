@@ -118,6 +118,20 @@ return [
             'bipolar_uses_the_european' => 'En Bipolar usamos el sistema de medida europeo',
             'additional_queries' => 'Consultas adicionales?',
             'feel_free_to_contact' => 'No dudes en contactarnos desde nuestro chat en línea o vía shop@bipolar.com.pe',
+        ],
+        'fit_widths' => [
+            'very_low' => 'Muy angosto',
+            'low' => 'Un poco angosto',
+            'normal' => 'Standard',
+            'high' => 'Un poco ancho',
+            'very_high' => 'Muy ancho',
+        ],
+        'fit_instep' => [
+            'very_low' => 'Muy bajo',
+            'low' => 'Un poco bajo',
+            'normal' => 'Standard',
+            'high' => 'Un poco alto',
+            'very_high' => 'Muy alto',
         ]
     ],
     'mails' => [

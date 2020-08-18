@@ -231,18 +231,18 @@ class ShopController extends Controller
 
         abort_if($product->state_id !== config('constants.STATE_ACTIVE_ID'), 404);
         $fitWidths = collect([
-            ['name' => 'Muy angosto', 'value' => config('constants.FIT_VERY_LOW')],
-            ['name' => 'Un poco angosto', 'value' => config('constants.FIT_LOW')],
-            ['name' => 'Standard', 'value' => config('constants.FIT_NORMAL')],
-            ['name' => 'Un poco ancho', 'value' => config('constants.FIT_HIGH')],
-            ['name' => 'Muy ancho', 'value' => config('constants.FIT_VERY_HIGH')],
+            ['name' => __('bipolar.shop.fit_widths.very_low'), 'value' => config('constants.FIT_VERY_LOW')],
+            ['name' => __('bipolar.shop.fit_widths.low'), 'value' => config('constants.FIT_LOW')],
+            ['name' => __('bipolar.shop.fit_widths.normal'), 'value' => config('constants.FIT_NORMAL')],
+            ['name' => __('bipolar.shop.fit_widths.high'), 'value' => config('constants.FIT_HIGH')],
+            ['name' => __('bipolar.shop.fit_widths.very_high'), 'value' => config('constants.FIT_VERY_HIGH')],
         ]);
         $fitInsteps = collect([
-            ['name' => 'Muy bajo', 'value' => config('constants.FIT_VERY_LOW')],
-            ['name' => 'Un poco bajo', 'value' => config('constants.FIT_LOW')],
-            ['name' => 'Standard', 'value' => config('constants.FIT_NORMAL')],
-            ['name' => 'Un poco alto', 'value' => config('constants.FIT_HIGH')],
-            ['name' => 'Muy alto', 'value' => config('constants.FIT_VERY_HIGH')],
+            ['name' => __('bipolar.shop.fit_instep.very_low'), 'value' => config('constants.FIT_VERY_LOW')],
+            ['name' => __('bipolar.shop.fit_instep.low'), 'value' => config('constants.FIT_LOW')],
+            ['name' => __('bipolar.shop.fit_instep.normal'), 'value' => config('constants.FIT_NORMAL')],
+            ['name' => __('bipolar.shop.fit_instep.high'), 'value' => config('constants.FIT_HIGH')],
+            ['name' => __('bipolar.shop.fit_instep.very_high'), 'value' => config('constants.FIT_VERY_HIGH')],
         ]);
 
         $product->load([
