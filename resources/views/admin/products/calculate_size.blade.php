@@ -2,6 +2,11 @@
 <?php /** @var \App\Models\Product $product */ ?>
 @section('title', "Variables para el cálculo de talla")
 @section('content')
+  <div class="row">
+    <div class="col-md-12">
+      @include('admin.partials.product_header_steps', ['active' => "calculate-size"])
+    </div>
+  </div>
   <div class="card">
     <div class="card-body">
       {!! Form::open() !!}
@@ -14,15 +19,6 @@
             </label>
           @endforeach
         </div>
-{{--        <label><strong>Ancho</strong></label>--}}
-{{--        <div class="d-flex btn-group btn-group-toggle mb-3" data-toggle="buttons">--}}
-{{--          @foreach($fitsWidths as $fitWidth)--}}
-{{--            <label class="btn btn-outline-dark">--}}
-{{--              {!! Form::radio('fit_width', $fitWidth->uuid, $product->fit_width->uuid === $fitWidth->uuid, ['autocomplete' => 'off']) !!}--}}
-{{--              {{ $fitWidth->getTranslation('name', 'es') }}--}}
-{{--            </label>--}}
-{{--          @endforeach--}}
-{{--        </div>--}}
         <div class="table-responsive">
          <table class="table table-primary table-borderless">
            <thead>
