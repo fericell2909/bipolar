@@ -151,48 +151,60 @@
   <div class="modal fade" id="size_calculate_modal" tabindex="-1" role="dialog" aria-labelledby="size_calculate_modal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
+        <button type="button" class="d-inline-block position-absolute pr-2 pt-2 close" style="z-index: 10; right: 0" data-dismiss="modal" aria-label="Close">
+          <i class="fas fa-fw fa-times"></i>
+        </button>
         <div id="product_uuid" class="d-none" data-uuid="{{ $product->uuid }}"></div>
         <div class="modal-body pt-5 px-5">
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h2 class="font-weight-bold font-bodoni-bold text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one m-0">
               {{ __('bipolar.shop.size.discover_your_perfect_size') }}
             </h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <i class="fas fa-fw fa-times"></i>
-            </button>
           </div>
-          <div class="d-flex justify-content-between py-3 align-items-center border-top">
-            <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.my_usual_size_is') }}:</span>
-            <select name="common_size" class="selectable-white w-50" required>
-              <option class="text-uppercase" disabled selected>{{ __('bipolar.shop.size.choose') }}</option>
-              @for ($size = 34; $size < 41.5; $size = $size + 0.5)
-                <option value="{{ $size }}" {{ (float)data_get(Auth::user(), 'common_size', 0) === $size ? 'selected' : null  }}>
-                  {{ $size }}
-                </option>
-              @endfor
-            </select>
+          <div class="row py-3 border-top">
+            <div class="col-6 d-flex align-items-center">
+              <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.my_usual_size_is') }}:</span>
+            </div>
+            <div class="col-6">
+              <select name="common_size" class="selectable-white w-100" required>
+                <option class="text-uppercase" disabled selected>{{ __('bipolar.shop.size.choose') }}</option>
+                @for ($size = 34; $size < 41.5; $size = $size + 0.5)
+                  <option value="{{ $size }}" {{ (float)data_get(Auth::user(), 'common_size', 0) === $size ? 'selected' : null  }}>
+                    {{ $size }}
+                  </option>
+                @endfor
+              </select>
+            </div>
           </div>
-          <div class="d-flex justify-content-between py-3 align-items-center border-top">
-            <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.my_food_width_is') }}:</span>
-            <select name="foot_width" class="selectable-white w-50">
-              <option class="text-uppercase" disabled selected>{{ __('bipolar.shop.size.choose') }}</option>
-              @foreach($fitWidths as $fitWidth)
-                <option value="{{ $fitWidth['value'] }}" {{ (int)data_get(Auth::user(), 'foot_width', 0) === $fitWidth['value'] ? 'selected' : null  }}>
-                  {{ $fitWidth['name'] }}
-                </option>
-              @endforeach
-            </select>
+          <div class="row py-3 border-top">
+            <div class="col-6 d-flex align-items-center">
+              <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.my_food_width_is') }}:</span>
+            </div>
+            <div class="col-6">
+              <select name="foot_width" class="selectable-white w-100">
+                <option class="text-uppercase" disabled selected>{{ __('bipolar.shop.size.choose') }}</option>
+                @foreach($fitWidths as $fitWidth)
+                  <option value="{{ $fitWidth['value'] }}" {{ (int)data_get(Auth::user(), 'foot_width', 0) === $fitWidth['value'] ? 'selected' : null  }}>
+                    {{ $fitWidth['name'] }}
+                  </option>
+                @endforeach
+              </select>
+            </div>
           </div>
-          <div class="d-flex justify-content-between py-3 align-items-center border-top">
-            <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.my_instep_is') }}:</span>
-            <select name="foot_instep" class="selectable-white w-50">
-              <option class="text-uppercase" disabled selected>{{ __('bipolar.shop.size.choose') }}</option>
-              @foreach($fitInsteps as $fitInstep)
-                <option value="{{ $fitInstep['value'] }}" {{ (int)data_get(Auth::user(), 'foot_instep', 0) === $fitInstep['value'] ? 'selected' : null  }}>
-                  {{ $fitInstep['name'] }}
-                </option>
-              @endforeach
-            </select>
+          <div class="row py-3 border-top">
+            <div class="col-6 d-flex align-items-center">
+              <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.my_instep_is') }}:</span>
+            </div>
+            <div class="col-6">
+              <select name="foot_instep" class="selectable-white w-100">
+                <option class="text-uppercase" disabled selected>{{ __('bipolar.shop.size.choose') }}</option>
+                @foreach($fitInsteps as $fitInstep)
+                  <option value="{{ $fitInstep['value'] }}" {{ (int)data_get(Auth::user(), 'foot_instep', 0) === $fitInstep['value'] ? 'selected' : null  }}>
+                    {{ $fitInstep['name'] }}
+                  </option>
+                @endforeach
+              </select>
+            </div>
           </div>
           <div class="d-flex justify-content-between py-1 align-items-center border-top border-bottom">
             <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.your_perfect_size_is') }}:</span>
@@ -204,49 +216,49 @@
             {{ __('bipolar.shop.size.table_of_equivalences') }}</h2>
           <span class="text-muted text-uppercase mb-3 d-block">{{ __('bipolar.shop.size.bipolar_uses_the_european') }}</span>
           <div class="row py-2 border-top mx-0">
-            <span class="col-4 text-uppercase text-left text-dark font-gotham-bold">Bipolar/EU</span>
-            <span class="col-4 text-uppercase text-center text-dark font-gotham-bold">US/Can</span>
-            <span class="col-4 text-uppercase text-right text-dark font-gotham-bold">UK</span>
+            <span class="col-4 p-0 text-uppercase text-left text-dark font-gotham-bold p">Bipolar/EU</span>
+            <span class="col-4 p-0 text-uppercase text-center text-dark font-gotham-bold">US/Can</span>
+            <span class="col-4 p-0 text-uppercase text-right text-dark font-gotham-bold">UK</span>
+          </div>
+          <div class="row py-2 border-top mx-0">
+            <span class="col-4 p-0 text-left text-dark font-gotham-bold">34</span>
+            <span class="col-4 p-0 text-center text-dark font-gotham-bold">3.5</span>
+            <span class="col-4 p-0 text-right text-dark font-gotham-bold">1.5</span>
+          </div>
+          <div class="row py-2 border-top mx-0">
+            <span class="col-4 p-0 text-left text-dark font-gotham-bold">35</span>
+            <span class="col-4 p-0 text-center text-dark font-gotham-bold">4.5</span>
+            <span class="col-4 p-0 text-right text-dark font-gotham-bold">2.5</span>
+          </div>
+          <div class="row py-2 border-top mx-0">
+            <span class="col-4 p-0 text-left text-dark font-gotham-bold">36</span>
+            <span class="col-4 p-0 text-center text-dark font-gotham-bold">5.5</span>
+            <span class="col-4 p-0 text-right text-dark font-gotham-bold">3.5</span>
+          </div>
+          <div class="row py-2 border-top mx-0">
+            <span class="col-4 p-0 text-left text-dark font-gotham-bold">37</span>
+            <span class="col-4 p-0 text-center text-dark font-gotham-bold">6.5</span>
+            <span class="col-4 p-0 text-right text-dark font-gotham-bold">4.5</span>
+          </div>
+          <div class="row py-2 border-top mx-0">
+            <span class="col-4 p-0 text-left text-dark font-gotham-bold">38</span>
+            <span class="col-4 p-0 text-center text-dark font-gotham-bold">7.5</span>
+            <span class="col-4 p-0 text-right text-dark font-gotham-bold">5.5</span>
+          </div>
+          <div class="row py-2 border-top mx-0">
+            <span class="col-4 p-0 text-left text-dark font-gotham-bold">39</span>
+            <span class="col-4 p-0 text-center text-dark font-gotham-bold">8.5</span>
+            <span class="col-4 p-0 text-right text-dark font-gotham-bold">6.5</span>
+          </div>
+          <div class="row py-2 border-top mx-0">
+            <span class="col-4 p-0 text-left text-dark font-gotham-bold">40</span>
+            <span class="col-4 p-0 text-center text-dark font-gotham-bold">9.5</span>
+            <span class="col-4 p-0 text-right text-dark font-gotham-bold">7.5</span>
           </div>
           <div class="row py-2 border-top border-bottom mx-0">
-            <span class="col-4 text-left text-dark font-gotham-bold">34</span>
-            <span class="col-4 text-center text-dark font-gotham-bold">3.5</span>
-            <span class="col-4 text-right text-dark font-gotham-bold">1.5</span>
-          </div>
-          <div class="row py-2 border-top border-bottom mx-0">
-            <span class="col-4 text-left text-dark font-gotham-bold">35</span>
-            <span class="col-4 text-center text-dark font-gotham-bold">4.5</span>
-            <span class="col-4 text-right text-dark font-gotham-bold">2.5</span>
-          </div>
-          <div class="row py-2 border-top border-bottom mx-0">
-            <span class="col-4 text-left text-dark font-gotham-bold">36</span>
-            <span class="col-4 text-center text-dark font-gotham-bold">5.5</span>
-            <span class="col-4 text-right text-dark font-gotham-bold">3.5</span>
-          </div>
-          <div class="row py-2 border-top border-bottom mx-0">
-            <span class="col-4 text-left text-dark font-gotham-bold">37</span>
-            <span class="col-4 text-center text-dark font-gotham-bold">6.5</span>
-            <span class="col-4 text-right text-dark font-gotham-bold">4.5</span>
-          </div>
-          <div class="row py-2 border-top border-bottom mx-0">
-            <span class="col-4 text-left text-dark font-gotham-bold">38</span>
-            <span class="col-4 text-center text-dark font-gotham-bold">7.5</span>
-            <span class="col-4 text-right text-dark font-gotham-bold">5.5</span>
-          </div>
-          <div class="row py-2 border-top border-bottom mx-0">
-            <span class="col-4 text-left text-dark font-gotham-bold">39</span>
-            <span class="col-4 text-center text-dark font-gotham-bold">8.5</span>
-            <span class="col-4 text-right text-dark font-gotham-bold">6.5</span>
-          </div>
-          <div class="row py-2 border-top border-bottom mx-0">
-            <span class="col-4 text-left text-dark font-gotham-bold">40</span>
-            <span class="col-4 text-center text-dark font-gotham-bold">9.5</span>
-            <span class="col-4 text-right text-dark font-gotham-bold">7.5</span>
-          </div>
-          <div class="row py-2 border-top border-bottom mx-0">
-            <span class="col-4 text-left text-dark font-gotham-bold">41</span>
-            <span class="col-4 text-center text-dark font-gotham-bold">10.5</span>
-            <span class="col-4 text-right text-dark font-gotham-bold">8.5</span>
+            <span class="col-4 p-0 text-left text-dark font-gotham-bold">41</span>
+            <span class="col-4 p-0 text-center text-dark font-gotham-bold">10.5</span>
+            <span class="col-4 p-0 text-right text-dark font-gotham-bold">8.5</span>
           </div>
           <div class="alert alert-bipolar text-center mt-5">
             <span class="text-uppercase d-block text-dark font-gotham-bold">{{ __('bipolar.shop.size.additional_queries') }}</span>

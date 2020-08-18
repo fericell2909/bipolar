@@ -8,11 +8,11 @@
           {{ __('bipolar.shop.see_filters') }}
         </button>
       </div>
-      <div class="col-md-3 filters-container">
+      <div class="d-none d-sm-block col-sm-3 filters-container">
         <div class="form-group">
           <div class="input-group">
             {!! Form::text('search', null, ['class' => 'form-control', 'placeholder' => __('bipolar.shop.search')]) !!}
-            <div class="input-group-addon bipolar-search-button">
+            <div class="d-flex align-items-center pr-3 input-group-addon bipolar-search-button">
               <i class="fas fa-search"></i>
             </div>
           </div>
