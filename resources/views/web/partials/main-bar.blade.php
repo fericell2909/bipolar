@@ -31,6 +31,17 @@
 						<li><a href="{{ route('wishlist') }}"><i class="fas fa-fw fa-heart"></i> Wishlist</a></li>
 						<li><a href="{{ route('cart') }}"><i class="fas fa-fw fa-shopping-cart"></i> Shopping cart</a></li>
 						<li><a href="{{ route('checkout') }}"><i class="fas fa-fw fa-share"></i> Checkout</a></li>
+						<li><a><i class="fad fa-fw fa-dollar-sign"></i> {{ __('bipolar.footer.change_currency') }}</a></li>
+						<li><a class="inside" href="{{ route('change-currency', ['currency' => 'PEN']) }}">Soles (PEN)</a></li>
+						<li><a class="inside" href="{{ route('change-currency', ['currency' => 'USD']) }}">Dólares (USD)</a></li>
+						<li><a><i class="fas fa-fw fa-language"></i> {{ __('bipolar.footer.language') }}</a></li>
+						@foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+							<li>
+								<a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item inside" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+									{{ ucfirst($properties['native']) }}
+								</a>
+							</li>
+						@endforeach
 						@auth
 						<li>
 							<a href="{{ route('logout') }}"
