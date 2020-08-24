@@ -142,13 +142,8 @@
 }
 
 .cart-total-inner {
-  float: right;
   padding: 0 15px;
-  margin-bottom: 50px;
-
-  @include xxs {
-    width: 100%;
-  }
+  width: 100%;
 
   @include sm {
     width: 38%;
