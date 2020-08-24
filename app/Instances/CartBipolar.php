@@ -228,9 +228,9 @@ class CartBipolar
     {
         $detail = CartDetail::findByHash($detailHashId);
 
-        abort_if(is_null($detail), 404);
-
-        $detail->delete();
+        if ($detail) {
+            $detail->delete();
+        }
 
         $this->recalculate();
 
