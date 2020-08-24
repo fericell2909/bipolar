@@ -157,15 +157,15 @@
         <div id="product_uuid" class="d-none" data-uuid="{{ $product->uuid }}"></div>
         <div class="modal-body pt-5 px-5">
           <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="font-weight-bold font-bodoni-bold text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one m-0">
+            <h2 class="font-bodoni-bold text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one m-0">
               {{ __('bipolar.shop.size.discover_your_perfect_size') }}
             </h2>
           </div>
-          <div class="row py-3 border-top">
-            <div class="col-6 d-flex align-items-center">
+          <div class="row m-0 py-3 border-top">
+            <div class="col-6 p-0 d-flex align-items-center">
               <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.my_usual_size_is') }}:</span>
             </div>
-            <div class="col-6">
+            <div class="col-6 p-0">
               <select name="common_size" class="selectable-white w-100" required>
                 <option class="text-uppercase" disabled selected>{{ __('bipolar.shop.size.choose') }}</option>
                 @for ($size = 34; $size < 41.5; $size = $size + 0.5)
@@ -176,11 +176,11 @@
               </select>
             </div>
           </div>
-          <div class="row py-3 border-top">
-            <div class="col-6 d-flex align-items-center">
+          <div class="row m-0 py-3 border-top">
+            <div class="col-6 p-0 d-flex align-items-center">
               <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.my_food_width_is') }}:</span>
             </div>
-            <div class="col-6">
+            <div class="col-6 p-0">
               <select name="foot_width" class="selectable-white w-100">
                 <option class="text-uppercase" disabled selected>{{ __('bipolar.shop.size.choose') }}</option>
                 @foreach($fitWidths as $fitWidth)
@@ -191,11 +191,11 @@
               </select>
             </div>
           </div>
-          <div class="row py-3 border-top">
-            <div class="col-6 d-flex align-items-center">
+          <div class="row m-0 py-3 border-top">
+            <div class="col-6 p-0 d-flex align-items-center">
               <span class="text-uppercase font-gotham-bold text-dark">{{ __('bipolar.shop.size.my_instep_is') }}:</span>
             </div>
-            <div class="col-6">
+            <div class="col-6 p-0">
               <select name="foot_instep" class="selectable-white w-100">
                 <option class="text-uppercase" disabled selected>{{ __('bipolar.shop.size.choose') }}</option>
                 @foreach($fitInsteps as $fitInstep)
