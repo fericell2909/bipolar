@@ -70,28 +70,30 @@
 			@endforelse
 		</tbody>
   </table>
-  <div class="cart-total-inner">
-    @if($bipolarCart->count() > 0)
-      <button type="submit" class="btn btn-dark-rounded" style="margin-right: 10px;">
-        {{ __('bipolar.cart.update') }}
-      </button>
-      <a href="{{ route('checkout') }}" class="btn btn-dark-rounded">
-        {{ __('bipolar.cart.checkout') }}
-      </a>
-    @endif
-    <h2>Total</h2>
-    <table class="table">
-      <tbody>
-        <tr>
-          <td><span class="concept">Subtotal</span></td>
-          <td><span class="amount">{{ $bipolarCart->totalCurrency() }}</span></td>
-        </tr>
-        <tr>
-          <td><span class="concept">Total</span></td>
-          <td><span class="amount">{{ $bipolarCart->totalCurrency() }}</span></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="d-flex mb-5 justify-content-end">
+    <div class="cart-total-inner">
+      @if($bipolarCart->count() > 0)
+        <button type="submit" class="btn btn-dark-rounded" style="margin-right: 10px;">
+          {{ __('bipolar.cart.update') }}
+        </button>
+        <a href="{{ route('checkout') }}" class="btn btn-dark-rounded">
+          {{ __('bipolar.cart.checkout') }}
+        </a>
+      @endif
+      <h2>Total</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td><span class="concept">Subtotal</span></td>
+            <td><span class="amount">{{ $bipolarCart->totalCurrency() }}</span></td>
+          </tr>
+          <tr>
+            <td><span class="concept">Total</span></td>
+            <td><span class="amount">{{ $bipolarCart->totalCurrency() }}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   {!! Form::close() !!}
 </div>

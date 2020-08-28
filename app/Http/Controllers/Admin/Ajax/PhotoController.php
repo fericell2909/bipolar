@@ -32,7 +32,7 @@ class PhotoController extends Controller
             $photo->save();
         }
 
-        return response()->json(compact('amazonPath'));
+        return response()->json($fullPath);
     }
 
     public function productUpload(Request $request, $productHashId)
@@ -55,7 +55,7 @@ class PhotoController extends Controller
             $photo->save();
         }
 
-        return response()->json(compact('amazonPath'));
+        return response()->json($fullPath);
     }
 
     public function postUpload(Request $request, $postHashId)
@@ -78,7 +78,7 @@ class PhotoController extends Controller
             $photo->save();
         }
 
-        return response()->json(compact('amazonPath'));
+        return response()->json($fullPath);
     }
 
     public function orderPhotos(Request $request)

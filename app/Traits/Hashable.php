@@ -17,7 +17,7 @@ trait Hashable
      */
     public static function findByHash($hashedId, array $columns = ['*'])
     {
-        return static::whereId(\Hashids::decode($hashedId))->firstOrFail($columns);
+        return static::whereId(\Hashids::decode($hashedId))->first($columns);
     }
 
     /**

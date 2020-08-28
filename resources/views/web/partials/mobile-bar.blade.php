@@ -36,7 +36,7 @@
           @endforeach
         </ul>
         <div class="total">
-          <strong>Subtotal:</strong>
+          <strong>Total:</strong>
           <span class="amount">{{ $bipolarCart->totalCurrency() }}</span>
         </div>
         <div class="buttons">
