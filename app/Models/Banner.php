@@ -27,4 +27,12 @@ class Banner extends Model
     {
         return $query->whereNotNull('background_color');
     }
+
+    /**
+     * @param Builder $query
+     */
+    public function scopeOnlyImageType($query)
+    {
+        return $query->whereNull('background_color');
+    }
 }

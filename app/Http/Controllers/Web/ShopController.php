@@ -131,7 +131,7 @@ class ShopController extends Controller
             });
 
         /** @var \App\Models\Banner $firstBanner */
-        $firstBanner = Banner::orderBy('order')->first();
+        $firstBanner = Banner::onlyImageType()->orderBy('order')->first();
         $seoHeaderUrl = optional($firstBanner)->url ?? config('constants.SEO_IMAGE_DEFAULT_URL');
         if ($request->anyFilled(['search', 'sizes', 'subtypes', 'orderBy']) && $products->count() > 0) {
             /** @var Product $seoProduct */
