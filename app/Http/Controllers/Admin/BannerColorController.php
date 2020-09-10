@@ -77,10 +77,6 @@ class BannerColorController extends Controller
 
         $banner->begin_date = Carbon::createFromFormat('d/m/Y H:i', $begin);
         $banner->end_date = Carbon::createFromFormat('d/m/Y H:i', $end);
-        $banner->setTranslations('text', [
-            'en' => filled($request->input('text_eng')) ? $request->input('text_eng') : null,
-            'es' => filled($request->input('text_spa')) ? $request->input('text_spa') : null,
-        ]);
         $banner->link = filled($request->input('link')) ? $request->input('link') : null;
         $banner->font = $request->input('font');
         $banner->color = $request->input('color');

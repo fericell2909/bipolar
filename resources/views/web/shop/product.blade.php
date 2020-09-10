@@ -212,7 +212,7 @@
           </div>
           <p class="text-muted text-uppercase mt-3 font-gotham-light">{{ __('bipolar.shop.size.size_note_one') }}</p>
           <p class="text-muted text-uppercase mt-3 font-gotham-bold">{{ __('bipolar.shop.size.we_will_save_your_answers') }}</p>
-          <h2 class="font-weight-bold mt-5 font-bodoni-bold text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one">
+          <h2 class="mt-5 font-bodoni-bold text-dark text-uppercase font-size-one-and-half letter-spacing-zero-dot-one">
             {{ __('bipolar.shop.size.table_of_equivalences') }}</h2>
           <span class="text-muted text-uppercase mb-3 d-block">{{ __('bipolar.shop.size.bipolar_uses_the_european') }}</span>
           <div class="row py-2 border-top mx-0">

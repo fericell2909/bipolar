@@ -23,8 +23,8 @@
     @endforeach
   </div>
   <p class="text-center">
-    <a href="{{ route('products.recommended', $product->slug) }}" class="btn btn-rounded btn-dark">
-      Continuar a recomendados &raquo;
+    <a href="{{ route('products.calculate', $product->slug) }}" class="btn btn-rounded btn-dark">
+      Continuar a cálculo de talla &raquo;
     </a>
   </p>
 @endsection
