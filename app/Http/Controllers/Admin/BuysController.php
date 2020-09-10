@@ -30,14 +30,15 @@ class BuysController extends Controller
 
         $buys = $buys->when($request->filled('search'), function ($whereBuys) use ($request) {
             /** @var Builder|Buy $whereBuys */
-            $users = User::where('name', 'LIKE', "%{$request->input('search')}%")
-                ->orWhere('lastname', 'LIKE', "%{$request->input('search')}%")
+            $searchText = mb_strtolower($request->input('search'));
+            $users = User::where('name', 'LIKE', "%{$searchText}%")
+                ->orWhere('lastname', 'LIKE', "%{$searchText}%")
                 ->get();
             if ($users->count()) {
                 $whereBuys->orWhereIn('user_id',  $users->pluck('id')->toArray());
             }
-           $whereBuys->orWhere('id', $request->input('search'));
-           $whereBuys->orCurrentStatus($request->input('search'));
+           $whereBuys->orWhere('id', $searchText);
+           $whereBuys->orCurrentStatus($searchText);
         });
 
         $buys = $buys->paginate(20);

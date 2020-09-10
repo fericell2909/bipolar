@@ -12,6 +12,19 @@ return [
         'zip' => 'Postcode / Zip',
         'birthdate' => 'Birth date',
     ],
+    'register_login_form' => [
+        'facebook' => 'Register with facebook',
+        'facebook_login' => 'Login with facebook',
+        'name' => 'Name',
+        'lastname' => 'Lastname',
+        'email' => 'Email',
+        'password' => 'Password',
+        'password_confirmation' => 'Repeat your password',
+        'birthday' => 'Birthday',
+        'register' => 'Register',
+        'login' => 'Login',
+        'forgot' => 'Forgot your password?'
+    ],
     'cart' => [
         'update' => 'Update cart',
         'checkout' => 'Go to checkout',
