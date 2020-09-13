@@ -40,7 +40,7 @@
                   <?php /** @var \App\Models\Buy $buy */ ?>
                   <tr>
                     <td class="align-middle">{{ $buy->id }}</td>
-                    <td class="align-middle">{{ $buy->user->name }}</td>
+                    <td class="align-middle">{{ $buy->user->name }} {{ $buy->user->lastname }}</td>
                     <td class="align-middle">{{ $buy->user->email }}</td>
                     <td class="align-middle">{{ $buy->shipping->title ?? '--' }}</td>
                     <td class="align-middle">{{ $buy->details->count() }} artículos</td>

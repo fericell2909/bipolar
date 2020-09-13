@@ -12,6 +12,19 @@ return [
         'zip' => 'Código zip',
         'birthdate' => 'Fecha de cumpleaños',
     ],
+    'register_login_form' => [
+        'facebook' => 'Regístrate con Facebook',
+        'facebook_login' => 'Inicia sesión con Facebook',
+        'name' => 'Nombre',
+        'lastname' => 'Apellidos',
+        'email' => 'Correo electrónico',
+        'password' => 'Contraseña',
+        'password_confirmation' => 'Repetir contraseña',
+        'birthday' => 'Tu cumpleaños',
+        'register' => 'Regístrate',
+        'login' => 'Identificarse',
+        'forgot' => '¿Olvidaste la contraseña?'
+    ],
     'cart' => [
         'update' => 'Actualizar',
         'checkout' => 'Ir a la caja',
