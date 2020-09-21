@@ -160,4 +160,12 @@ export default class GraphqlAdmin {
       variables: { products_id: productIds, operation_name: operation },
     });
   }
+
+  public static query_parameters<icontract>( query: DocumentNode , variables :any) {
+    return client.query<icontract>({
+      query: query,
+      variables: variables,
+    });
+  }
+
 }

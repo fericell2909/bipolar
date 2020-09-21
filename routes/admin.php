@@ -47,6 +47,10 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('multiple-discounts/edit/{hashId}', 'Admin\ProductController@multipleDiscountEdit')->name('products.multiple-discounts.edit');
         Route::get('massive', 'Admin\ProductController@massive')->name('products.massive-publication');
         Route::view('multiple-2x1', 'admin.products.multiple_2x1')->name('products.multiple-2x1');
+
+        Route::view('text-conditions', 'admin.products.text_conditions')->name('products.text-conditions');
+
+        Route::get('text-conditions/edit/{hashId}', 'Admin\ProductController@textConditiontEdit')->name ('products.text-conditions.edit');
     });
 
     Route::prefix('home-posts')->group(function () {

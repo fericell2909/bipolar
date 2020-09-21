@@ -9,6 +9,7 @@ use App\Models\FitWidth;
 use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Stock;
+use App\Models\TextCondition;
 
 class ProductController extends Controller
 {
@@ -194,7 +195,40 @@ class ProductController extends Controller
             $productIsShoeType = in_array(config('constants.TYPES.SHOES'), $product->subtypes->pluck('type_id')->toArray());
         }
 
-        return view('web.shop.product', compact('product', 'stockWithSizes', 'quantities', 'productIsShoeType'));
+        $fitWidths = collect([
+            ['name' => __('bipolar.shop.fit_widths.very_low'), 'value' => config('constants.FIT_VERY_LOW')],
+            ['name' => __('bipolar.shop.fit_widths.low'), 'value' => config('constants.FIT_LOW')],
+            ['name' => __('bipolar.shop.fit_widths.normal'), 'value' => config('constants.FIT_NORMAL')],
+            ['name' => __('bipolar.shop.fit_widths.high'), 'value' => config('constants.FIT_HIGH')],
+            ['name' => __('bipolar.shop.fit_widths.very_high'), 'value' => config('constants.FIT_VERY_HIGH')],
+        ]);
+        $fitInsteps = collect([
+            ['name' => __('bipolar.shop.fit_instep.very_low'), 'value' => config('constants.FIT_VERY_LOW')],
+            ['name' => __('bipolar.shop.fit_instep.low'), 'value' => config('constants.FIT_LOW')],
+            ['name' => __('bipolar.shop.fit_instep.normal'), 'value' => config('constants.FIT_NORMAL')],
+            ['name' => __('bipolar.shop.fit_instep.high'), 'value' => config('constants.FIT_HIGH')],
+            ['name' => __('bipolar.shop.fit_instep.very_high'), 'value' => config('constants.FIT_VERY_HIGH')],
+        ]);
+
+        $textCondition = TextCondition::where('available',1)->first();
+        
+        if($textCondition){
+            $textConditionDescription = urlencode($textCondition->getTranslation('description','es'));
+        } else 
+        {
+            $textConditionDescription  = '';
+        }
+
+        return view('web.shop.product', compact(
+            'product',
+            'stockWithSizes',
+            'quantities',
+            'productIsShoeType',
+            'fitWidths',
+            'fitInsteps',
+            'textConditionDescription'
+        ));
+        
     }
 
     public function stock($productSlug)
@@ -222,4 +256,19 @@ class ProductController extends Controller
     {
         return view('admin.products.massive_publication');
     }
+
+    public function textConditiontEdit($hashId)
+    {
+        $newsItem = new TextCondition();
+
+        $text_condition = TextCondition::findByHash($hashId);
+        $newsItem->name = $text_condition->name;
+        
+        $name = $newsItem->getTranslation('name','es');
+
+        $nesItem =  null;
+        return view('admin.products.text_conditions_edit', compact('text_condition','name'));
+
+    }
+
 }

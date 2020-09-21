@@ -12,6 +12,8 @@ use App\Models\Type;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use App\Models\TextCondition;
+use LaravelLocalization;
 
 class ShopController extends Controller
 {
@@ -303,14 +305,28 @@ class ShopController extends Controller
             ->setDescription($seoDescription)
             ->addImage($image, ['width' => 1024, 'height' => 680]);
 
+        
+        $textCondition = TextCondition::where('available',1)->first();
+        
+        if($textCondition){
+            $textConditionDescription = urlencode($textCondition->getTranslation('description','es'));
+        } else 
+        {
+            $textConditionDescription  = '';
+        }
+
         return view('web.shop.product', compact(
             'product',
             'stockWithSizes',
             'quantities',
             'productIsShoeType',
             'fitWidths',
-            'fitInsteps'
+            'fitInsteps',
+            'textConditionDescription'
         ));
+
+        
+
     }
 
     private function productHasStock($product)

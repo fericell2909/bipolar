@@ -125,6 +125,7 @@
                   <li><a href="{{ route('products.trashed') }}">Papelera</a></li>
                   <li><a href="{{ route('products.order') }}">Ordenar</a></li>
                   <li><a href="{{ route('products.massive-publication') }}">Publicación masiva</a></li>
+                  <li><a href="{{ route('products.text-conditions') }}">Texto Condiciones</a></li>
                 </ul>
               </li>
               <li>

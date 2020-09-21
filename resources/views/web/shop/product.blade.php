@@ -108,6 +108,25 @@
               </div>
             </div>
           @endif
+
+          @if($textConditionDescription <> '')
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <style>
+                div.style__inline_text_condition {
+                  margin-top : 25px;
+                  text-align: justify;
+                }
+                div.style__inline_text_condition a {
+                  color : #fcbeb9;
+                }
+              </style>
+              <div class="style__inline_text_condition">
+                {!! urldecode($textConditionDescription) !!}
+              </div>
+            </div>
+          </div>
+          @endif
         </div>
       </div>
       <div class="row product-below-content">
