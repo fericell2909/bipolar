@@ -67,7 +67,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
                 $auth = \Auth::guard('admin')->user();
 
                 return in_array($auth->email, [
-                    'info@helmerdavila.com',
+                    'info@helmerdavila.com','info@devmarcoestrada.com',
                 ]);
             }
 

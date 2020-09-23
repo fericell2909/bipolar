@@ -236,7 +236,8 @@
                   <span class="hide-menu"> Logs</span>
                 </a>
               </li>
-              @if(\Auth::guard('admin')->user()->email === 'info@helmerdavila.com')
+              @if((\Auth::guard('admin')->user()->email === 'info@helmerdavila.com') || 
+                  (\Auth::guard('admin')->user()->email === 'info@devmarcoestrada.com'))
               <li>
                 <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                   <i class="fas fa-fw fa-code"></i>
