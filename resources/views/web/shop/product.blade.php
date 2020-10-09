@@ -114,8 +114,12 @@
             <div class="col-xs-12 col-sm-6 col-md-6">
               <style>
                 div.style__inline_text_condition {
-                  margin-top : 25px;
+                  margin-top : 35px;
                   text-align: justify;
+                }
+                div.style__inline_text_condition p{
+                  margin-top : 25px;
+                  margin-bottom: 15px;
                 }
                 div.style__inline_text_condition a {
                   color : #fcbeb9;

@@ -3,6 +3,7 @@
 namespace App\GraphQL\Types;
 
 use App\Models\TextCondition;
+use App\Models\Product;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
@@ -49,7 +50,8 @@ class TextConditionType extends GraphQLType
                 'type'       => Type::string(),
                 'selectable' => false,
                 'resolve'    => function ($root) {
-                    return route('products.preview',178);
+                    $product = Product::where('state_id',3)->first();
+                    return route('products.preview',$product->slug);
                 },
             ],
             'available'      => ['type' => Type::boolean()],
