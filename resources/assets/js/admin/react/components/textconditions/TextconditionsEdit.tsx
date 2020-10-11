@@ -237,7 +237,7 @@ class TextConditionsEdit extends React.Component<Props,any> {
     
     const toolbarEditor = {
       fontFamily: {
-        options: ['GothamLight'],
+        options: ['GothamLight','GothamBold'],
       },
       fontSize: {
         options: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 24, 30, 36, 48],
