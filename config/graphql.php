@@ -128,6 +128,7 @@ return [
                 'states' => StateQuery::class,
                 'subtypes' => \App\GraphQL\Queries\SubtypeQuery::class,
                 'text_conditions' => \App\GraphQL\Queries\TextConditionQuery::class,
+                'premium_links' => \App\GraphQL\Queries\PremiumLinkQuery::class,
             ],
             'mutation' => [
                 'banner_update' => \App\GraphQL\Mutations\BannerMutation::class,
@@ -137,6 +138,9 @@ return [
                 'text_condition_status_updation' => \App\GraphQL\Mutations\TextConditionStatusUpdation::class,
                 'text_condition_deletion' => \App\GraphQL\Mutations\TextConditionDeletion::class,
                 'text_condition_updation' => \App\GraphQL\Mutations\TextConditionUpdation::class,
+                'premium_link_creation' => \App\GraphQL\Mutations\PremiumLinkCreation::class,
+                'premium_link_deletion' => \App\GraphQL\Mutations\PremiumLinkDeletion::class,
+                'premium_link_updation' => \App\GraphQL\Mutations\PremiumLinkUpdation::class,
             ],
             'method' => ['get', 'post'],
         ],
@@ -155,6 +159,7 @@ return [
         'product' => ProductType::class,
         'subtype' => SubtypeType::class,
         'text_condition' => \App\GraphQL\Types\TextConditionType::class,
+        'premium_link' => \App\GraphQL\Types\PremiumLinkType::class,
         // Input types
         'product_filters' => \App\GraphQL\Inputs\ProductFilters::class,
         'discount_task_filters' => \App\GraphQL\Inputs\DiscountTaskFilters::class,

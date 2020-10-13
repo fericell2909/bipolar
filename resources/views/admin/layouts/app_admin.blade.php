@@ -136,6 +136,7 @@
                 <ul aria-expanded="false" class="collapse">
                   <li><a href="{{ route('products.multiple-discounts') }}">Descuentos</a></li>
                   <li><a href="{{ route('products.multiple-2x1') }}">2x1</a></li>
+                  <li><a href="{{ route('products.premium-links') }}">Enlaces</a></li>
                 </ul>
               </li>
               <li>

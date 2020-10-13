@@ -51,6 +51,12 @@ Route::middleware('auth:admin')->group(function () {
         Route::view('text-conditions', 'admin.products.text_conditions')->name('products.text-conditions');
 
         Route::get('text-conditions/edit/{hashId}', 'Admin\ProductController@textConditiontEdit')->name ('products.text-conditions.edit');
+
+        Route::view('premium-links', 'admin.products.premium_links')->name('products.premium-links');
+
+        Route::get('premium-links/edit/{hashId}', 'Admin\ProductController@premiumLinkEdit')->name ('products.premium-links.edit');
+
+
     });
 
     Route::prefix('home-posts')->group(function () {

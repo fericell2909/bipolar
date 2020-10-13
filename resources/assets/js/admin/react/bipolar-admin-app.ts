@@ -32,3 +32,6 @@ require('./components/PageEdit');
 
 require('./components/textconditions/TextConditionsNew');
 require('./components/textconditions/TextconditionsEdit');
+
+require('./components/premiumlinks/PremiumLinksNew');
+require('./components/premiumlinks/PremiumLinksEdit');

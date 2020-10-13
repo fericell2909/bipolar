@@ -10,6 +10,7 @@ use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Stock;
 use App\Models\TextCondition;
+use App\Models\PremiumLink;
 
 class ProductController extends Controller
 {
@@ -268,6 +269,15 @@ class ProductController extends Controller
 
         $nesItem =  null;
         return view('admin.products.text_conditions_edit', compact('text_condition','name'));
+
+    }
+
+    public function premiumLinkEdit($hashId) {
+
+        
+        $premium_link = PremiumLink::findByHash($hashId);
+
+        return view('admin.products.premium_links_edit', compact('premium_link'));
 
     }
 

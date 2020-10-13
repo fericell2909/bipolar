@@ -114,15 +114,23 @@
             <div class="col-xs-12 col-sm-6 col-md-6">
               <style>
                 div.style__inline_text_condition {
-                  margin-top : 35px;
                   text-align: justify;
+                  display: flex;
+                  flex-direction: column;
+                  
                 }
                 div.style__inline_text_condition p{
-                  margin-top : 25px;
-                  margin-bottom: 15px;
+                  font-size: 12px;
+                  margin-top: 20px;
+                }
+                
+                div.style__inline_text_condition p:first-child{
+                  font-size: 12px;
+                  margin-top: 25px !important;
                 }
                 div.style__inline_text_condition a {
                   color : #fcbeb9;
+                  font-size: 12px;
                 }
               </style>
               <div class="style__inline_text_condition">
