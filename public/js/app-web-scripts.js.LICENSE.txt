@@ -20,13 +20,6 @@
  */
 
 /*!
- * The buffer module from node.js, for the browser.
- *
- * @author   Feross Aboukhadijeh <http://feross.org>
- * @license  MIT
- */
-
-/*!
  * iCheck v1.0.2, http://git.io/arlzeA
  * ===================================
  * Powerful jQuery and Zepto plugin for checkboxes and radio buttons customization
@@ -55,8 +48,6 @@
 * MIT
 */
 
-/*! @name @videojs/vhs-utils @version 1.3.0 @license MIT */
-
 /*! @name m3u8-parser @version 4.4.0 @license Apache-2.0 */
 
 /*! PhotoSwipe - v4.1.3 - 2019-01-08
@@ -76,13 +67,6 @@
  * @videojs/http-streaming
  * @version 1.11.2
  * @copyright 2019 Brightcove, Inc
- * @license Apache-2.0
- */
-
-/**
- * @videojs/http-streaming
- * @version 1.13.2
- * @copyright 2020 Brightcove, Inc
  * @license Apache-2.0
  */
 

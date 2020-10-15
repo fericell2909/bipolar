@@ -29,3 +29,9 @@ require('./components/PostNew');
 require('./components/PostEdit');
 require('./components/PageNew');
 require('./components/PageEdit');
+
+require('./components/textconditions/TextConditionsNew');
+require('./components/textconditions/TextconditionsEdit');
+
+require('./components/premiumlinks/PremiumLinksNew');
+require('./components/premiumlinks/PremiumLinksEdit');

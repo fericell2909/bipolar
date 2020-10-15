@@ -12,6 +12,11 @@ use App\Models\Type;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use App\Models\TextCondition;
+use App\Models\PremiumLink;
+use Carbon\Carbon;
+
+use LaravelLocalization;
 
 class ShopController extends Controller
 {
@@ -303,14 +308,182 @@ class ShopController extends Controller
             ->setDescription($seoDescription)
             ->addImage($image, ['width' => 1024, 'height' => 680]);
 
+        
+        $textCondition = TextCondition::where('available',1)->first();
+        
+        if($textCondition){
+            $textConditionDescription = urlencode($textCondition->getTranslation('description','es'));
+        } else 
+        {
+            $textConditionDescription  = '';
+        }
+
         return view('web.shop.product', compact(
             'product',
             'stockWithSizes',
             'quantities',
             'productIsShoeType',
             'fitWidths',
-            'fitInsteps'
+            'fitInsteps',
+            'textConditionDescription'
         ));
+
+        
+
+    }
+
+    public function shop_premium_link(ShopFilterRequest $request,$uuid){
+
+        $selectedSubtypes = $request->input('subtypes', []);
+        $selectedSizes = $request->input('sizes', []);
+
+        $productsSalient = Product::whereStateId(config('constants.STATE_ACTIVE_ID'))
+            ->whereNotNull('is_salient')
+            ->with([
+                'photos' => function ($withPhotos) {
+                    $withPhotos->orderBy('order');
+                },
+                'colors',
+            ])
+            ->orderBy('order')
+            ->get();
+
+        $types = Type::with([
+            'subtypes'          => function ($withSubtypes) {
+                $withSubtypes->whereHas('products', function ($whereProducts) {
+                    $whereProducts->where('state_id', config('constants.STATE_ACTIVE_ID'));
+                })->orderBy('order');
+            },
+            'subtypes.products' => function ($withProducts) {
+                $withProducts->where('state_id', config('constants.STATE_ACTIVE_ID'));
+            },
+        ])
+            ->has('subtypes')
+            ->orderBy('order')
+            ->get();
+
+        $sizes = Size::whereHas('stocks', function ($whereStocks) {
+            $whereStocks
+                ->whereHas('product', function ($whereHasProduct) {
+                    /** @var Builder $whereHasProduct */
+                    $whereHasProduct->where('state_id', config('constants.STATE_ACTIVE_ID'));
+                })
+                ->whereNotNull('active')
+                ->where('quantity', '>', 0);
+        })
+            ->with(['stocks' => function ($withStocks) {
+                /** @var Builder $withStocks */
+                $withStocks
+                    ->whereHas('product', function ($whereHasProduct) {
+                        /** @var Builder $whereHasProduct */
+                        $whereHasProduct->where('state_id', config('constants.STATE_ACTIVE_ID'));
+                    })
+                    ->whereNotNull('active')
+                    ->where('quantity', '>', 0);
+            }, 'stocks.product'])
+            ->orderBy('name')
+            ->get();
+
+        $orderOptions = [
+            'default'   => __('bipolar.shop.order_default'),
+            'priceup'   => __('bipolar.shop.order_priceup'),
+            'pricedown' => __('bipolar.shop.order_pricedown'),
+        ];
+        $selectedOrderOption = $request->filled('orderBy') ? $request->input('orderBy') : null;
+
+        $productsIds = [];
+
+        $premiumlinks = PremiumLink::where('uuid', $uuid)->first();
+        if($premiumlinks) {
+            if( $premiumlinks->end > Carbon::now()) {
+                $productsIds = $premiumlinks->pluck('products')->reject($this->nonEmptyValues())->flatten()->toArray();
+            } else {
+                $productsIds = [];
+            }
+        } else {
+            $productsIds = [];
+        }
+        
+
+        $products = Product::whereStateId(config('constants.STATE_ACTIVE_ID'))
+            ->whereIn('id', $productsIds)
+            ->with([
+                'photos' => function ($withPhotos) {
+                    $withPhotos->orderBy('order');
+                },
+                'subtypes',
+                'stocks',
+                'stocks.size',
+                'colors',
+                'label',
+            ])
+            ->when($request->filled('subtypes'), function ($whereProducts) use ($selectedSubtypes) {
+                return $whereProducts->whereHas('subtypes', function ($whereSubtype) use ($selectedSubtypes) {
+                    $whereSubtype->whereIn('slug', $selectedSubtypes);
+                });
+            })
+            ->when($request->filled('sizes'), function ($whereProducts) {
+                $whereProducts->has('stocks');
+            })
+            ->when((bool)optional(\Auth::user())->has_showroom_sale === false, function ($products) {
+                /** @var Builder $products */
+                $products->where('is_showroom_sale', false);
+            })
+            ->when($request->filled('search'), function ($products) use ($request) {
+                /** @var Collection $products */
+                return $products->where('name', 'like', "%{$request->input('search')}%");
+            })
+            ->orderBy('order')
+            ->get()
+            ->when($request->filled('sizes'), $this->filterBySize($selectedSizes))
+            ->when($request->filled('subtypes'), $this->filterBySubtype($selectedSubtypes))
+            ->when($request->filled('orderBy'), function ($products) use ($request) {
+                /** @var Collection $products */
+                switch ($request->input('orderBy')) {
+                    case 'priceup':
+                        $products = $products->sortBy($this->sortProductByPrice());
+                        break;
+                    case 'pricedown':
+                        $products = $products->sortByDesc($this->sortProductByPrice());
+                        break;
+                }
+
+                return $products;
+            });
+
+        /** @var \App\Models\Banner $firstBanner */
+        $firstBanner = Banner::onlyImageType()->orderBy('order')->first();
+        $seoHeaderUrl = optional($firstBanner)->url ?? config('constants.SEO_IMAGE_DEFAULT_URL');
+        if ($request->anyFilled(['search', 'sizes', 'subtypes', 'orderBy']) && $products->count() > 0) {
+            /** @var Product $seoProduct */
+            $seoProduct = $products->first();
+            if (!is_null(optional($seoProduct->photos->first())->url)) {
+                $seoHeaderUrl = optional($seoProduct->photos->first())->url;
+            }
+        }
+        \SEO::twitter()->addImage($seoHeaderUrl);
+        \SEO::opengraph()->setType('article')->addImage($seoHeaderUrl, ['width' => 1024, 'height' => 680]);
+
+        $products = $this->getPaginatedProducts($products, LengthAwarePaginator::resolveCurrentPage(), $request->fullUrl());
+
+        return view('web.shop.shop', compact(
+            'products',
+            'types',
+            'sizes',
+            'productsSalient',
+            'orderOptions',
+            'selectedOrderOption',
+            'selectedSubtypes',
+            'selectedSizes'
+        ));
+
+    }
+
+    private function nonEmptyValues()
+    {
+        return function ($element) {
+            return is_null($element);
+        };
     }
 
     private function productHasStock($product)

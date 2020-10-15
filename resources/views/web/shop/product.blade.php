@@ -108,6 +108,56 @@
               </div>
             </div>
           @endif
+
+          @if($textConditionDescription <> '')
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <style>
+                div.style__inline_text_condition {
+                  text-align: justify;
+                  display: flex;
+                  flex-direction: column;
+                  
+                }
+                div.style__inline_text_condition p{
+                  font-size: 12px;
+                }
+                
+                div.style__inline_text_condition p:first-child{
+                  font-size: 12px;
+                  margin-top: 42px !important;
+                  margin-bottom: 3px;
+                }
+
+                div.style__inline_text_condition p:last-child{
+                  font-size: 12px;
+                  margin-bottom: 15px !important;
+                }
+
+                div.style__inline_text_condition a {
+                  color : #fcbeb9;
+                  font-size: 12px;
+                }
+
+                @media (max-width: 320px)
+                {
+                  div.style__inline_text_condition p:first-child{
+                    font-size: 12px;
+                    margin-top: 30px !important;
+                    margin-bottom: 3px;
+                  }
+                  div.style__inline_text_condition p:last-child{
+                    font-size: 12px;
+                    margin-bottom: 0px !important;
+                  }
+                }
+              </style>
+              <div class="style__inline_text_condition">
+                {!! urldecode($textConditionDescription) !!}
+              </div>
+            </div>
+          </div>
+          @endif
         </div>
       </div>
       <div class="row product-below-content">
@@ -119,6 +169,14 @@
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6">
+          <style>
+            @media (max-width: 420px)
+            {
+              .product-below-content {
+                margin-top: 13px !important;
+              }
+            }
+          </style>
           <span class="text-uppercase">{{ __('bipolar.shop.change_your_currency') }}</span>
           {!! Form::select('currency_change',
               ['PEN' => mb_strtoupper(__('bipolar.shop.pen_currency')), 'USD' => mb_strtoupper(__('bipolar.shop.usd_currency'))],

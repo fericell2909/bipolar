@@ -125,6 +125,7 @@
                   <li><a href="{{ route('products.trashed') }}">Papelera</a></li>
                   <li><a href="{{ route('products.order') }}">Ordenar</a></li>
                   <li><a href="{{ route('products.massive-publication') }}">Publicación masiva</a></li>
+                  <li><a href="{{ route('products.text-conditions') }}">Texto Condiciones</a></li>
                 </ul>
               </li>
               <li>
@@ -135,6 +136,7 @@
                 <ul aria-expanded="false" class="collapse">
                   <li><a href="{{ route('products.multiple-discounts') }}">Descuentos</a></li>
                   <li><a href="{{ route('products.multiple-2x1') }}">2x1</a></li>
+                  <li><a href="{{ route('products.premium-links') }}">Enlaces</a></li>
                 </ul>
               </li>
               <li>
@@ -235,7 +237,8 @@
                   <span class="hide-menu"> Logs</span>
                 </a>
               </li>
-              @if(\Auth::guard('admin')->user()->email === 'info@helmerdavila.com')
+              @if((\Auth::guard('admin')->user()->email === 'info@helmerdavila.com') || 
+                  (\Auth::guard('admin')->user()->email === 'info@devmarcoestrada.com'))
               <li>
                 <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                   <i class="fas fa-fw fa-code"></i>
