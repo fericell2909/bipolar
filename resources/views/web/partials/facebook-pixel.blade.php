@@ -18,4 +18,3 @@
         src="https://www.facebook.com/tr?id=734891250285490&ev=PageView&noscript=1" />
 </noscript>
 <!-- End Facebook Pixel Code -->
-{{ debug(Route::currentRouteName()) }}
