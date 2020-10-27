@@ -15,14 +15,14 @@
 @include('web.partials.buy-steps', compact('buyStatuses'))
 <div class="container bipolar-detail-order">
   @if(isset($paymeCode))
-    @if($paymeCode !== '00')
-      <div class="bipolar-alert-message" style="margin-bottom: 20px;">
-        <i class="fad fa-times-circle"></i>
-        <div class="success-content">
-          <span>La compra no tiene un resultado de pago exitoso, intente de nuevamente presionando el siguiente botón</span>
-        </div>
-      </div>
-    @endif
+  @if($paymeCode !== '00')
+  <div class="bipolar-alert-message" style="margin-bottom: 20px;">
+    <i class="fad fa-times-circle"></i>
+    <div class="success-content">
+      <span>La compra no tiene un resultado de pago exitoso, intente de nuevamente presionando el siguiente botón</span>
+    </div>
+  </div>
+  @endif
   @endif
   @if(!$buy->payed)
   <form name="f1" action="#" id="f1" class="alignet-form-vpos2" method="post">
@@ -33,13 +33,19 @@
     <input type="hidden" name="purchaseAmount" value="{{ $purchaseAmount }}">
     <input type="hidden" name="purchaseCurrencyCode" value="{{ $purchaseCurrencyCode }}">
     <input type="hidden" name="shippingFirstName" value="{{ Illuminate\Support\Str::limit($user->name, 30, '') }}">
-    <input type="hidden" name="shippingLastName" value="{{ Illuminate\Support\Str::limit($user->lastname ?? $user->name, 50, '') }}">
+    <input type="hidden" name="shippingLastName"
+      value="{{ Illuminate\Support\Str::limit($user->lastname ?? $user->name, 50, '') }}">
     <input type="hidden" name="shippingEmail" value="{{ Illuminate\Support\Str::limit($user->email, 30, '') }}">
-    <input type="hidden" name="shippingAddress" value="{{ Illuminate\Support\Str::limit($buy->shipping_address->address ?? 'Av.Bipolar 1120', 50, '') }}">
-    <input type="hidden" name="shippingZIP" value="{{ Illuminate\Support\Str::limit($buy->shipping_address->zip ?? '123', 50, '') }}">
-    <input type="hidden" name="shippingCity" value="{{ Illuminate\Support\Str::limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
-    <input type="hidden" name="shippingState" value="{{ Illuminate\Support\Str::limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
-    <input type="hidden" name="shippingCountry" value="{{ Illuminate\Support\Str::limit($buy->shipping_address->country_state->name ?? 'Peru', 50, '') }}">
+    <input type="hidden" name="shippingAddress"
+      value="{{ Illuminate\Support\Str::limit($buy->shipping_address->address ?? 'Av.Bipolar 1120', 50, '') }}">
+    <input type="hidden" name="shippingZIP"
+      value="{{ Illuminate\Support\Str::limit($buy->shipping_address->zip ?? '123', 50, '') }}">
+    <input type="hidden" name="shippingCity"
+      value="{{ Illuminate\Support\Str::limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
+    <input type="hidden" name="shippingState"
+      value="{{ Illuminate\Support\Str::limit($buy->shipping_address->country_state->name ?? 'Lima', 50, '') }}">
+    <input type="hidden" name="shippingCountry"
+      value="{{ Illuminate\Support\Str::limit($buy->shipping_address->country_state->name ?? 'Peru', 50, '') }}">
     {{--Parametro para la Integracion con Pay-me. Contiene el valor del parametro codCardHolderCommerce--}}
     <input type="hidden" name="userCommerce" value="{{ $codCardHolderCommerce }}" />
     {{--Parametro para la Integracion con Pay-me. Contiene el valor del parametro codAsoCardHolderWallet--}}
@@ -48,7 +54,8 @@
     <input type="hidden" name="programmingLanguage" value="PHP">
     <input type="hidden" name="descriptionProducts" value="Pedido en Bipolar.com.pe">
     <p class="text-left">
-      <a href="#" class="btn btn-dark btn-rounded" onclick="javascript:AlignetVPOS2.openModal('{{ config('app.env') === "production" ? "" : config('payme.url_alignet') }}', '2')">
+      <a href="#" class="btn btn-dark btn-rounded"
+        onclick="javascript:AlignetVPOS2.openModal('{{ config('app.env') === "production" ? "" : config('payme.url_alignet') }}', '2')">
         <span class="icon">
           <i class="fas fa-credit-card"></i>
         </span>
@@ -68,10 +75,11 @@
       @foreach($buy->details as $buyDetail)
       <tr>
         <td>
-          <img style="margin-right: 10px" src="{{ optional($buyDetail->product->mainPhoto())->url }}" width="50" alt="{{ $buyDetail->product->name }}">
+          <img style="margin-right: 10px" src="{{ optional($buyDetail->product->mainPhoto())->url }}" width="50"
+            alt="{{ $buyDetail->product->name }}">
           <span>{{ $buyDetail->product->name }} x {{ $buyDetail->quantity }}</span>
           @if($buyDetail->stock)
-            <span>{{ __('bipolar.confirmation.size') }}: {{ $buyDetail->stock->size->name }}</span>
+          <span>{{ __('bipolar.confirmation.size') }}: {{ $buyDetail->stock->size->name }}</span>
           @endif
         </td>
         <td><span class="price">{{ $buyDetail->total_currency }}</span></td>
@@ -89,7 +97,9 @@
       @endif
       <tr>
         <td class="total-title">{{ __('bipolar.confirmation.shipping') }}:</td>
-        <td><span class="price">{{ $buy->showroom ? __('bipolar.confirmation.pick_showroom') : $buy->shipping_fee_currency }}</span></td>
+        <td><span
+            class="price">{{ $buy->showroom ? __('bipolar.confirmation.pick_showroom') : $buy->shipping_fee_currency }}</span>
+        </td>
       </tr>
       <tr>
         <td class="total-title">{{ __('bipolar.confirmation.payment') }}:</td>
@@ -148,5 +158,10 @@
   (ready(function () {
       //AlignetVPOS2.openModal("{{ config('payme.url_alignet') }}", '2');
   }));
+</script>
+@endpush
+@push('facebook_pixel_event')
+<script>
+  fbq('track', 'Purchase', {value: {{ $buy->total }}, currency: {{ $buy->currency }}  });
 </script>
 @endpush
