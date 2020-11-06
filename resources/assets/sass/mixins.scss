@@ -2,7 +2,7 @@
 $breakpoints: (
   'phone': 414px,
   'phone_landscape': 736px,
-  'tablet': 768px,
+  'tablet': 810px,
   'desktop': 1024px,
   'desktop_hd': 1366px,
 ) !default;
@@ -47,7 +47,7 @@ $breakpoints: (
 }
 
 @mixin sm {
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 810px) {
     @content;
   }
 }
@@ -80,7 +80,7 @@ $breakpoints: (
 // The container horizontal gap, which acts as the offset for breakpoints
 $gap: 32px !default;
 // 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
-$tablet: 768px !default;
+$tablet: 810px !default;
 // 960px container + 4rem
 $desktop: 960px + (2 * $gap) !default;
 // 1152px container + 4rem

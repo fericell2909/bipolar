@@ -84,7 +84,7 @@
             </div>
           @endif
           <div class="row" style="margin-bottom: 20px">
-            <div class="col-sm-6 col-md-12">
+            <div class="col-sm-12 col-md-12">
               {!! Form::select('quantity', $quantities, null, ['class' => 'quantity-select']) !!}
               <button class="btn btn-add-cart">
                 {{ __('bipolar.shop.add_to_cart') }}
@@ -102,7 +102,7 @@
           {!! Form::close() !!}
           @if($productIsShoeType)
             <div class="row">
-              <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="col-xs-12 col-sm-12 col-md-12">
                 <button class="btn btn-bipolar-rounded" data-toggle="modal" data-target="#size_calculate_modal">
                   {{ __('bipolar.shop.size.calculate_my_perfect_size') }}</button>
               </div>

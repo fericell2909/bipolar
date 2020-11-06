@@ -3,12 +3,12 @@
   {!! Form::open(['id' => 'shopForm', 'method' => 'GET']) !!}
   <div class="bipolar-container">
     <div class="row shop-container">
-      <div class="col-md-3 see-filters-button d-block d-sm-none">
+      <div class="col-md-3 see-filters-button d-block d-lg-none">
         <button type="button" class="btn btn-dark-rounded btn-block btn-see-filters">
           {{ __('bipolar.shop.see_filters') }}
         </button>
       </div>
-      <div class="d-none d-sm-block col-sm-3 filters-container">
+      <div class="col-lg-3 d-lg-block filters-container d-none">
         <div class="form-group">
           <div class="input-group">
             {!! Form::text('search', null, ['class' => 'form-control', 'placeholder' => __('bipolar.shop.search')]) !!}
@@ -81,7 +81,7 @@
           @endforeach
         </div>
       </div>
-      <div class="col-md-9">
+      <div class="col-sm-12 col-lg-9">
         <div class="bipolar-shop-results-filter d-none d-sm-flex">
           <span class="text-uppercase">{{ __('bipolar.shop.show_results', ['total' => $products->total()]) }}</span>
           {!! Form::select('orderBy', $orderOptions, $selectedOrderOption, ['id' => 'shop-sort-by', 'class' => 'select-orders']) !!}
@@ -90,7 +90,7 @@
           <div class="row">
           @foreach($productChunk as $product)
             <?php /** @var \App\Models\Product $product */ ?>
-            <div class="col-md-4 bipolar-product">
+            <div class="col-sm-6 col-lg-4 bipolar-product">
               <div class="overlay-shop-container">
                 @if($product->is_soldout)
                   <div class="bipolar-label-container">

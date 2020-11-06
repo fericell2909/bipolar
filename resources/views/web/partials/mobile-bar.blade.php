@@ -18,8 +18,8 @@
     </button>
     <span class="menu-text-header-mobile">MENU</span>
   </div>
-  <div class="cart-white-mobile">
-    <img src="{{ asset('images/cart-white.svg') }}" width="35">
+  <div class="cart-white-mobile bipolar-shopping-cart-content">
+    <img src="{{ asset('images/cart-white.svg') }}" width="35"  style="cursor: pointer;" onclick="$('.cart-inside-mobile').toggle();">
     <span class="cart-number-count-inverse">{{ isset($bipolarCart) ? $bipolarCart->count() : 0 }}</span>
     <div class="cart-inside-mobile">
       @if(isset($bipolarCart) ? $bipolarCart->count() > 0 : false)
@@ -65,7 +65,7 @@
   <li><a href="{{ route('landings.blog') }}"><span>Blog</span></a></li>
   <li><a href="{{ route('landings.contacto') }}"><span>{{ __('bipolar.navbar.contact_us') }}</span></a></li>
   <li>
-    <a href="{{ route('myaccount') }}"><span>{{ __('bipolar.navbar.my_account') }}</span></a>
-    <a href="{{ route('wishlist') }}"><i class="fas fa-heart"></i> <span class="text-uppercase">Wishlist</span></a>
+    <a href="{{ route('myaccount') }}"><span class="text-gothan-light">{{ __('bipolar.navbar.my_account') }}</span></a>
+    <a href="{{ route('wishlist') }}"><i class="fas fa-heart"></i> <span class="text-uppercase text-gothan-light">Wishlist</span></a>
   </li>
 </ul>

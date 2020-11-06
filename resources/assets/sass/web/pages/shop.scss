@@ -1,7 +1,7 @@
 @import '../../mixins';
 
 .shop-container {
-  margin-top: 70px;
+  margin-top: 0px;
 
   .see-filters-button {
     margin-bottom: 20px;
@@ -40,7 +40,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 810px) {
   .shop-container {
     margin-top: 0;
   }

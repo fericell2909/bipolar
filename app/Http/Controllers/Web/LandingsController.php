@@ -17,6 +17,7 @@ use App\Models\Tag;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Jenssegers\Date\Date;
+use Carbon\Carbon;
 
 class LandingsController extends Controller
 {
@@ -45,6 +46,9 @@ class LandingsController extends Controller
             ->get();
 
         $settings = Settings::first();
+
+        $settings['years'] = Carbon::createFromDate("2011-10-01 00:00:01")->diffInYears(Carbon::now());
+
         $imageBackground = Image::whereActive(true)->first();
         $banners = Banner::orderBy('order')
             ->whereNull('background_color')

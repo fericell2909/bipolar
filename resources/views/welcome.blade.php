@@ -80,8 +80,9 @@
           </div>
           <div class="col-md-4 bipolar-counts">
             <div id="bipolar-second-counter" class="bipolar-counts-title"
-              data-number="{{ $settings->facebook_counts }}"></div>
-            <div class="bipolar-counts-subtitle">Facebook Fans</div>
+              {{-- data-number="{{ $settings->facebook_counts }}"></div> --}}
+              data-number="{{ $settings->years }}"></div>
+            <div class="bipolar-counts-subtitle">years</div>
           </div>
         </div>
       </div>

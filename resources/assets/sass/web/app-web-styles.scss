@@ -23,7 +23,28 @@
 // Variables
 @import "variables";
 // Bootstrap 3 Custom
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 810px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+// new breakpoints
+$container-max-widths: (
+  sm: 576px,
+  md: 810px,
+  lg: 992px,
+  xl: 1200px
+);
+
 @import "~bootstrap/scss/bootstrap";
+
+
+
+
 // Owl Carousel
 @import "~owl.carousel/src/scss/owl.carousel";
 @import "~owl.carousel/src/scss/owl.theme.default";
@@ -42,6 +63,12 @@ $pretty--color-primary: $bipolar-black;
 .select2-container--default .select2-search--dropdown .select2-search__field {
   text-transform: uppercase;
 }
+
+.text-gothan-light {
+  font-family: 'Gothan-Light' !important;
+  font-size: 12px !important;
+}
+
 @import "~select2/dist/css/select2";
 
 @import "components/buttons";

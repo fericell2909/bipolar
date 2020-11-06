@@ -28,7 +28,8 @@
     <!-- End Google Tag Manager (noscript) -->
     <div class="bipolar-wrapper">
         @includeWhen(Agent::isDesktop() || Agent::isTablet(), 'web.partials.main-bar', ['background' => true])
-        @includeWhen(Agent::isMobile(), 'web.partials.mobile-bar')
+       {{--  @includeWhen(Agent::isMobile() , 'web.partials.mobile-bar') --}}
+        @include('web.partials.mobile-bar')
         <div class="bipolar-the-content">
             @yield('content')
         </div>
