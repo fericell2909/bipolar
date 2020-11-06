@@ -18,6 +18,7 @@
           </div>
           @endif
           {!! Form::open(['class' => 'contact-form']) !!}
+          @csrf
             <div class="form-group">
               {!! Form::label(__('bipolar.contact.name') . '*') !!}
               {!! Form::text('name', null, ['class' => 'form-control', 'required']) !!}
