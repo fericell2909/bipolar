@@ -15,15 +15,47 @@ class NewsletterController extends Controller
             'email' => 'required|email|max:255',
             'name'  => 'required|between:1,255',
         ]);
+        
 
-        $name = $request->input('name');
-
-        if (config('app.env') === 'production') {
-            Newsletter::subscribeOrUpdate($request->input('email'), ['firstName' => $name], '', ['state' => 'pending']);
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
+        $remoteip = $_SERVER['REMOTE_ADDR'];
+        $data = [
+                'secret' => config('recaptcha.api_secret_key'),
+                'response' => $request->get('recaptcha'),
+                'remoteip' => $remoteip
+            ];
+        $options = [
+                'http' => [
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
+                'content' => http_build_query($data)
+                ]
+            ];
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        $resultJson = json_decode($result);
+        
+        if($resultJson->success != true ) {
+             return response()->json(['message' => 'Mensaje No enviado']);
         }
 
-        \Mail::to($request->input('email'))->send(new NewsletterSuscribed($name));
+        if($resultJson->score >= 0.9 ) {
 
-        return response()->json(['message' => __('bipolar.mails.thankyou_newsletter')]);
+            $name = $request->input('name');
+
+            if(config('app.env') === 'production') {
+                Newsletter::subscribeOrUpdate($request->input('email'), ['firstName' => $name], '', ['state' => 'pending']);
+            }
+    
+            \Mail::to($request->input('email'))->send(new NewsletterSuscribed($name));
+    
+            return response()->json(['message' => 'Mensaje Enviado']);
+        
+        } else {
+
+            $request->session()->flash('Mensaje No Enviado', false);
+            return redirect()->back();
+        
+        } 
     }
 }

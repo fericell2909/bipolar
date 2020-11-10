@@ -83,7 +83,7 @@ return [
     'unique'               => 'El campo :attribute ya ha sido tomado.',
     'url'                  => 'El formato de :attribute es inválido.',
     'uploaded'             => 'El campo :attribute no ha podido ser cargado.',
-
+    'recaptcha'            => 'Hola!!! :attribute es incorrecto!',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

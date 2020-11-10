@@ -92,6 +92,9 @@ return [
         Vinkla\Hashids\HashidsServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
         Ip2location\IP2LocationLaravel\IP2LocationLaravelServiceProvider::class,
+
+        Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
+
     ],
 
     /*
@@ -155,6 +158,9 @@ return [
         'SEO'                 => Artesaos\SEOTools\Facades\SEOTools::class,
         'Analytics'           => Spatie\Analytics\AnalyticsFacade::class,
         'Crawler'             => Jaybizzle\LaravelCrawlerDetect\Facades\LaravelCrawlerDetect::class,
+
+        'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
+        
     ],
 
 ];

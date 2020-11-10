@@ -16,6 +16,7 @@
   {{-- Script de Font Awesome --}}
   <script async src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script>
   @include('web.partials.facebook-pixel')
+  @include('web.partials.recaptcha')
 </head>
 
 <body class="no-top">

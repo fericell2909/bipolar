@@ -1,4 +1,7 @@
 @extends('web.layouts.app_web')
+@section('recaptcha')
+  @include('web.partials.recaptcha')
+@endsection
 @section('content')
   <div class="bipolar-container">
     <div class="bipolar-contact-form">
@@ -17,21 +20,24 @@
             </div>
           </div>
           @endif
-          {!! Form::open(['class' => 'contact-form']) !!}
+          {!! Form::open(['id'=> 'contact-form' ,'class' => 'contact-form']) !!}
           @csrf
             <div class="form-group">
               {!! Form::label(__('bipolar.contact.name') . '*') !!}
-              {!! Form::text('name', null, ['class' => 'form-control', 'required']) !!}
+              {!! Form::text('name', null, ['id' => 'name' , 'class' => 'form-control', 'required']) !!}
             </div>
             <div class="form-group">
               {!! Form::label(__('bipolar.contact.email') . '*') !!}
-              {!! Form::email('email', null, ['class' => 'form-control', 'required']) !!}
+              {!! Form::email('email', null, ['id' => 'email' , 'class' => 'form-control', 'required']) !!}
             </div>
             <div class="form-group">
               {!! Form::label(__('bipolar.contact.message') . '*') !!}
-              {!! Form::textarea('message', null, ['class' => 'form-control', 'rows' => 4, 'required']) !!}
+              {!! Form::textarea('message', null, ['id' => 'message' , 'class' => 'form-control', 'rows' => 4, 'required']) !!}
             </div>
-            {!! Form::submit(__('bipolar.contact.send'), ['class' => 'btn btn-dark-rounded']) !!}
+            <input type="hidden" name="recaptcha" id="recaptcha">
+
+            <button class="btn btn-dark-rounded"  onclick="onClickContactForm(event)">Enviar</button>
+
           {!! Form::close() !!}
         </div>
       </div>

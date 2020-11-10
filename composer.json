@@ -8,6 +8,7 @@
         "php": "^7.2.0",
         "artesaos/seotools": "^0.18",
         "barryvdh/laravel-debugbar": "3.3.3",
+        "biscolab/laravel-recaptcha": "^4.4",
         "cviebrock/eloquent-sluggable": "6.0.3",
         "doctrine/dbal": "2.10.2",
         "dyrynda/laravel-model-uuid": "6.0.0",

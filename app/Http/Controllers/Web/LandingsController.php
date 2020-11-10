@@ -177,23 +177,57 @@ class LandingsController extends Controller
 
     public function contactProcess(Request $request)
     {
+        
         $this->validate($request, [
             'name'    => 'required|between:1,255',
             'email'   => 'required|email|between:1,255',
             'message' => 'required',
         ]);
 
-        $request->session()->flash('sent_message', true);
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
+        $remoteip = $_SERVER['REMOTE_ADDR'];
+        $data = [
+                'secret' => config('recaptcha.api_secret_key'),
+                'response' => $request->get('recaptcha'),
+                'remoteip' => $remoteip
+            ];
+        $options = [
+                'http' => [
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
+                'content' => http_build_query($data)
+                ]
+            ];
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        $resultJson = json_decode($result);
+        
+        if($resultJson->success != true ) {
+             $request->session()->flash('Mensaje No Enviado', false);
+        
+        }
 
-        \Mail::to('shop@bipolar.com.pe')->send(
-            new SendContactMessage(
-                $request->input('name'),
-                $request->input('email'),
-                $request->input('message')
-            )
-        );
+        if($resultJson->score >= 0.9 ) {
 
-        return redirect()->back();
+            $request->session()->flash('sent_message', true);
+
+            \Mail::to('shop@bipolar.com.pe')->send(
+                new SendContactMessage(
+                    $request->input('name'),
+                    $request->input('email'),
+                    $request->input('message')
+                )
+            );
+
+            return redirect()->back();
+        
+            } else {
+
+                $request->session()->flash('Mensaje No Enviado', false);
+
+                return redirect()->back();
+        } 
+       
     }
 
     private function getDateAndMonthFromPosts()
