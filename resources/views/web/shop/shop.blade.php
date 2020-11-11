@@ -174,7 +174,11 @@
         @empty
           <div class="row">
             <div class="col-md-12">
-              <h3>No se encontraron productos, cambie sus parámetros de búsqueda</h3>
+              @if($messagelinks <> '')
+                <h3>{{$messagelinks}}</h3>
+              @else 
+                <h3>{{ __('validation.product_nothing')}}</h3>
+              @endif
             </div>
           </div>
         @endforelse

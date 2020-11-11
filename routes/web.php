@@ -59,7 +59,7 @@ Route::prefix(LaravelLocalization::setLocale())
 
         Route::get('info/{page}', 'HomeController@page')->name('page');
 
-        Route::get('shop/premium-links/{uuid}', 'Web\ShopController@shop_premium_link')->name('shop.premium-links');
+        Route::get('shop/pl/{uuid}', 'Web\ShopController@shop_premium_link')->name('shop.premium-links');
 
     });
 

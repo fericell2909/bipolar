@@ -84,6 +84,7 @@ return [
     'url'                  => 'El formato de :attribute es inválido.',
     'uploaded'             => 'El campo :attribute no ha podido ser cargado.',
     'recaptcha'            => 'Hola!!! :attribute es incorrecto!',
+    'product_nothing'      => 'No se encontraron productos, cambie sus parámetros de búsqueda',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

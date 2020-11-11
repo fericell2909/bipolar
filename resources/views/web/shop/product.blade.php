@@ -114,7 +114,6 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
               <style>
                 div.style__inline_text_condition {
-                  text-align: justify;
                   display: flex;
                   flex-direction: column;
                   
@@ -127,6 +126,7 @@
                   font-size: 12px;
                   margin-top: 42px !important;
                   margin-bottom: 3px;
+                  line-height: 20px;
                 }
 
                 div.style__inline_text_condition p:last-child{

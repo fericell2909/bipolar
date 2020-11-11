@@ -150,6 +150,8 @@ class ShopController extends Controller
 
         $products = $this->getPaginatedProducts($products, LengthAwarePaginator::resolveCurrentPage(), $request->fullUrl());
 
+        $messagelinks='';
+
         return view('web.shop.shop', compact(
             'products',
             'types',
@@ -158,7 +160,8 @@ class ShopController extends Controller
             'orderOptions',
             'selectedOrderOption',
             'selectedSubtypes',
-            'selectedSizes'
+            'selectedSizes',
+            'messagelinks'
         ));
     }
 
@@ -312,7 +315,7 @@ class ShopController extends Controller
         $textCondition = TextCondition::where('available',1)->first();
         
         if($textCondition){
-            $textConditionDescription = urlencode($textCondition->getTranslation('description','es'));
+            $textConditionDescription =   $textCondition->description;// urlencode($textCondition->getTranslation('description','es'));
         } else 
         {
             $textConditionDescription  = '';
@@ -394,14 +397,26 @@ class ShopController extends Controller
         $productsIds = [];
 
         $premiumlinks = PremiumLink::where('uuid', $uuid)->first();
+        $messagelinks='';
         if($premiumlinks) {
             if( $premiumlinks->end > Carbon::now()) {
                 $productsIds = $premiumlinks->pluck('products')->reject($this->nonEmptyValues())->flatten()->toArray();
             } else {
                 $productsIds = [];
+                if(config('app.locale') == 'es') {
+                    $messagelinks= 'Esta campaña ya no está disponible.';
+                } else {
+                    $messagelinks= 'This campaign is no longer available.';
+                }
             }
         } else {
             $productsIds = [];
+            
+            if(config('app.locale') == 'es') {
+                $messagelinks= 'Esta campaña ya no está disponible.';
+            } else {
+                $messagelinks= 'This campaign is no longer available.';
+            }
         }
         
 
@@ -474,7 +489,8 @@ class ShopController extends Controller
             'orderOptions',
             'selectedOrderOption',
             'selectedSubtypes',
-            'selectedSizes'
+            'selectedSizes',
+            'messagelinks'
         ));
 
     }

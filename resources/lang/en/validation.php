@@ -89,6 +89,7 @@ return [
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
     'recaptcha'            => 'Hey!!! :attribute is wrong!',
+    'product_nothing'      => 'No products were found, change your search parameters',
 
     /*
     |--------------------------------------------------------------------------
