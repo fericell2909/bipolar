@@ -400,7 +400,8 @@ class ShopController extends Controller
         $messagelinks='';
         if($premiumlinks) {
             if( $premiumlinks->end > Carbon::now()) {
-                $productsIds = $premiumlinks->pluck('products')->reject($this->nonEmptyValues())->flatten()->toArray();
+                //$productsIds = $premiumlinks->pluck('products')->reject($this->nonEmptyValues())->flatten()->toArray();
+                $productsIds = $premiumlinks->products;
             } else {
                 $productsIds = [];
                 if(config('app.locale') == 'es') {
