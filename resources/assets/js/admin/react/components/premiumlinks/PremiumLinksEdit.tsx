@@ -121,7 +121,7 @@ class PremiumLinksEdit extends React.Component<any> {
   getPremiumLink = async () => {
     // @ts-ignore
     let variables: {} = {
-      uuid: this.props.uuId,
+      uuid: this.props.taskId,
     };
 
     swal({
@@ -135,8 +135,8 @@ class PremiumLinksEdit extends React.Component<any> {
 
     const { data } = await GraphqlAdmin.query_parameters<{ premium_links: IPremiumLink[]}>(
       gql`
-      query {
-        premium_links{
+      query getPremiumLink($uuid: String){
+        premium_links(uuid: $uuid){
             uuid
             hash_id
             name
@@ -153,7 +153,7 @@ class PremiumLinksEdit extends React.Component<any> {
             }
           }
       }
-    `, variables
+    `, { uuid: this.props.taskId }
     );
 
     swal.close();

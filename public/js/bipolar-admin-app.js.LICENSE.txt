@@ -11,6 +11,11 @@ object-assign
 */
 
 /*!
+ * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+
+/*!
  * UAParser.js v0.7.22
  * Lightweight JavaScript-based User-Agent string parser
  * https://github.com/faisalman/ua-parser-js
@@ -71,7 +76,5 @@ PERFORMANCE OF THIS SOFTWARE.
  */
 
 //! moment.js
-
-//! moment.js language configuration
 
 //! moment.js locale configuration

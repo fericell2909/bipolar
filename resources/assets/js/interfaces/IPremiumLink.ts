@@ -10,5 +10,5 @@ export interface IPremiumLink {
   products_model?: IProduct[];
   edit_route?: string;
   preview_route?: string;
-
+  uuid?: string;
 }

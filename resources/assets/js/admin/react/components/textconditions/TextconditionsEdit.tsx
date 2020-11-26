@@ -188,7 +188,7 @@ class TextConditionsEdit extends React.Component<Props,any> {
             available
           }
       }
-    `, variables
+    `, { uuid: this.props.uuId }
     );
 
     swal.close();
