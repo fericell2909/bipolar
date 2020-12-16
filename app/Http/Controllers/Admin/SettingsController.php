@@ -58,6 +58,7 @@ class SettingsController extends Controller
 
         $size = new Size;
         $size->name = $request->input('name');
+        $size->is_available_filter_sale = $request->is_available_filter_sale;
         $size->save();
 
         flash()->success('Talla registrada');
@@ -79,6 +80,7 @@ class SettingsController extends Controller
         $size = Size::findByHash($sizeHashId);
 
         $size->name = $request->input('name');
+        $size->is_available_filter_sale = $request->is_available_filter_sale;
         $size->save();
 
         flash()->success('Se actualizó con éxito');

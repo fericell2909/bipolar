@@ -67,17 +67,35 @@
               <span class="d-block text-uppercase">{{ __('bipolar.shop.select_your_size') }}</span>
               @foreach($stockWithSizes as $stock)
                 @if($stock['quantity'] === 0)
-                  <button type="button" class="product-size-disabled">
-                    <span class="product-size-text">{{ $stock['size'] }}</span>
-                  </button>
+                  @if(strlen($stock['size']) <= 2)
+                    <button type="button" class="product-size-disabled">
+                      <span class="product-size-text">{{ $stock['size'] }}</span>
+                    </button>
+                  @else
+                    <button type="button" class="product-size-disabled" style="width: max-content; height: max-content; border-radius: 42px; padding-left: 15px; padding-right: 15px; background-image: linear-gradient( to top right, white 48%,#c7c6c6, white 52% );">
+                      <span class="" style="display: inline-block; position: relative;font-size: 15px;">{{ $stock['size'] }}</span>
+                    </button>
+                  @endif
                 @elseif($stock['quantity'] === 1)
-                  <button type="button" class="product-size tooltip-container" title="QUEDA 1 EN STOCK" data-stock-hash-id={{ $stock['hash_id'] }}>
-                    <span class="product-size-text">{{ $stock['size'] }}</span>
-                  </button>
+                  @if(strlen($stock['size']) <= 2)
+                    <button type="button" class="product-size tooltip-container" title="QUEDA 1 EN STOCK" data-stock-hash-id={{ $stock['hash_id'] }}>
+                      <span class="product-size-text">{{ $stock['size'] }}</span>
+                    </button>
+                  @else
+                    <button type="button" class="product-size tooltip-container" title="QUEDA 1 EN STOCK" data-stock-hash-id={{ $stock['hash_id'] }} style="width: max-content; height: max-content; border-radius: 42px; padding-left: 15px; padding-right: 15px;">
+                      <span class="product-size-text">{{ $stock['size'] }}</span>
+                    </button> 
+                  @endif   
                 @else
-                  <button type="button" class="product-size" data-stock-hash-id={{ $stock['hash_id'] }}>
-                    <span class="product-size-text">{{ $stock['size'] }}</span>
-                  </button>
+                  @if(strlen($stock['size']) <= 2)
+                    <button type="button" class="product-size" data-stock-hash-id={{ $stock['hash_id'] }}>
+                      <span class="product-size-text">{{ $stock['size'] }}</span>
+                    </button>
+                  @else
+                    <button type="button" class="product-size" data-stock-hash-id={{ $stock['hash_id'] }} style="width: max-content; height: max-content; border-radius: 42px; padding-left: 15px; padding-right: 15px;">
+                      <span class="product-size-text">{{ $stock['size'] }}</span>
+                    </button>
+                  @endif
                 @endif
               @endforeach
               {!! Form::hidden('size', null, ['id' => 'size-selected']) !!}

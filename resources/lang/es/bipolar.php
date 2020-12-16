@@ -9,7 +9,7 @@ return [
         'country' => 'País',
         'city' => 'Estado / Ciudad',
         'address' => 'Dirección',
-        'zip' => 'Código zip',
+        'zip' => 'DISTRITO / CÓDIGO POSTAL',
         'birthdate' => 'Fecha de cumpleaños',
     ],
     'register_login_form' => [
@@ -104,7 +104,7 @@ return [
         'order_priceup' => 'ORDENAR DE PRECIO BAJO A PRECIO ALTO',
         'order_pricedown' => 'ORDENAR DE PRECIO ALTO A PRECIO BAJO',
         'select_size' => 'Necesita seleccionar una talla para continuar',
-        'select_your_size' => 'Selecciona tu talla',
+        'select_your_size' => 'Selecciona aquí',
         'see_size_guide' => 'Ver guía de tallas',
         'add_to_cart' => 'Añadir al carrito',
         'share' => 'Compártelo',

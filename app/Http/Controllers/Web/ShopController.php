@@ -61,7 +61,7 @@ class ShopController extends Controller
             ->orderBy('order')
             ->get();
 
-        $sizes = Size::whereHas('stocks', function ($whereStocks) {
+        $sizes = Size::Where('is_available_filter_sale',1)->whereHas('stocks', function ($whereStocks) {
             $whereStocks
                 ->whereHas('product', function ($whereHasProduct) {
                     /** @var Builder $whereHasProduct */

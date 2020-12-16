@@ -36,5 +36,20 @@
       });
     }
   }
+  function onClickPasswordResetForm(e){
+    e.preventDefault();
+    if(  document.getElementById('email').value == '' ) {
+        console.log('error validation')
+    } else {
+      grecaptcha.ready(function() {
+        grecaptcha.execute('{{  config('recaptcha.api_site_key')}}', {action: 'passwordsubmit'}).then(function(token) {
+          if (token) {
+            document.getElementById('recaptcha').value = token;
+            document.getElementById('recover-password').submit();
+          }
+        });
+      });
+    } 
+  }
   </script>
 </script>

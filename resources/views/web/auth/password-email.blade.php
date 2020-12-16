@@ -1,4 +1,7 @@
 @extends('web.layouts.app_web')
+@section('recaptcha')
+  @include('web.partials.recaptcha')
+@endsection
 @push('css_plus')
   <style>
     label {
@@ -40,16 +43,19 @@
       </div>
     @endif
     {!! Form::open(['id' => 'recover-password', 'route' => 'password.email']) !!}
+    @csrf
     <p>{{ __('bipolar.password_recovery.lost_question') }}</p>
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
           {!! Form::label(__('bipolar.password_recovery.email'), null, ['class' => 'text-uppercase text-label']) !!} <span class="text-danger">*</span>
-          {!! Form::email('email', null, ['class' => 'form-control', 'required']) !!}
+          {!! Form::email('email', null, ['id' => 'email' , 'class' => 'form-control', 'required']) !!}
         </div>
       </div>
     </div>
-    {!! Form::button(__('bipolar.password_recovery.recovery_password'), ['class' => 'btn btn-dark-rounded btn-submit-recover']) !!}
+    {{-- {!! Form::button(__('bipolar.password_recovery.recovery_password'), ['class' => 'btn btn-dark-rounded btn-submit-recover']) !!} --}}
+    <input type="hidden" name="recaptcha" id="recaptcha">
+    <button class="btn btn-dark-rounded"  onclick="onClickPasswordResetForm(event)">Enviar</button>
     {!! Form::close() !!}
   </div>
 @endsection
