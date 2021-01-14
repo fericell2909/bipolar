@@ -264,6 +264,9 @@ class ShopController extends Controller
             'recommendations.photos' => function ($withPhotos) {
                 return $withPhotos->orderBy('order');
             },
+            'videos' => function ($withVideos) {
+                return $withVideos->orderBy('order');
+            }
         ]);
 
         if ($this->isOutOfStock($product)) {

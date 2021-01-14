@@ -12,52 +12,171 @@
 
 namespace App\Models{
 /**
- * App\Models\Wishlist
+ * App\Models\Address
  *
  * @mixin \Eloquent
  * @property int $id
  * @property int $user_id
- * @property int $product_id
+ * @property int $address_type_id
+ * @property int $country_state_id
+ * @property string $name
+ * @property string $lastname
+ * @property string $email
+ * @property string $phone
+ * @property string $address
+ * @property string|null $zip
+ * @property int $main
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Product $product
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\AddressType $address_type
+ * @property-read \App\Models\CountryState $country_state
+ * @property-read string $hash_id
  * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Wishlist whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Address newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Address onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Address query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereAddressTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereCountryStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereLastname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereMain($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereZip($value)
+ * @method static \Illuminate\Database\Query\Builder|Address withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Address withoutTrashed()
  */
-	class Wishlist extends \Eloquent {}
+	class Address extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Category
+ * App\Models\AddressType
  *
  * @mixin \Eloquent
  * @property int $id
  * @property string $name
- * @property string $slug
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Address[] $addresses
+ * @property-read int|null $addresses_count
+ * @method static \Illuminate\Database\Eloquent\Builder|AddressType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AddressType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AddressType query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AddressType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AddressType whereName($value)
+ */
+	class AddressType extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Attachment
+ *
+ * @property int $id
+ * @property string|null $name
+ * @property string|null $alt
+ * @property string|null $name_original
+ * @property string|null $s3_url
+ * @property string|null $folder_path
+ * @property string|null $mime_type
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read mixed $url
+ * @method static \Illuminate\Database\Eloquent\Builder|Attachment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Attachment newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Attachment onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Attachment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Attachment whereAlt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attachment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attachment whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attachment whereFolderPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attachment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attachment whereMimeType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attachment whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attachment whereNameOriginal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attachment whereS3Url($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attachment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Attachment withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Attachment withoutTrashed()
+ */
+	class Attachment extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Banner
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property int $state_id
+ * @property int $order
+ * @property string|null $link
+ * @property array|null $text
+ * @property string|null $url
+ * @property string|null $relative_url
+ * @property string $padding_bottom_mobile
+ * @property string $padding_bottom_tablet
+ * @property string $padding_bottom_desktop
+ * @property string|null $font
+ * @property string $color
+ * @property string|null $background_color
+ * @property string $font_size_mobile
+ * @property string $font_size_tablet
+ * @property string $font_size_desktop
+ * @property string $line_height_mobile
+ * @property string $line_height_tablet
+ * @property string $line_height_desktop
+ * @property string $letter_spacing_mobile
+ * @property string $letter_spacing_tablet
+ * @property string $letter_spacing_desktop
+ * @property \Illuminate\Support\Carbon $begin_date
+ * @property \Illuminate\Support\Carbon $end_date
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $hash_id
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
- * @property-read int|null $posts_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereUpdatedAt($value)
+ * @property-read array $translations
+ * @property-read \App\Models\State $state
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner fromColorType()
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner onlyImageType()
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereBackgroundColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereBeginDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereFont($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereFontSizeDesktop($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereFontSizeMobile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereFontSizeTablet($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLetterSpacingDesktop($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLetterSpacingMobile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLetterSpacingTablet($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLineHeightDesktop($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLineHeightMobile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLineHeightTablet($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner wherePaddingBottomDesktop($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner wherePaddingBottomMobile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner wherePaddingBottomTablet($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereRelativeUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereUrl($value)
  */
-	class Category extends \Eloquent {}
+	class Banner extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -72,10 +191,10 @@ namespace App\Models{
  * @property int $billing_address_id
  * @property int $shipping_address_id
  * @property int|null $buy_number
- * @property float|null $discount_coupon
- * @property float $subtotal
- * @property float|null $shipping_fee
- * @property float $total
+ * @property string|null $discount_coupon
+ * @property string $subtotal
+ * @property string|null $shipping_fee
+ * @property string $total
  * @property string $currency
  * @property string|null $payed
  * @property int $showroom
@@ -100,55 +219,103 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
  * @property-read int|null $statuses_count
  * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy currentStatus($names)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy orCurrentStatus($names)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy otherCurrentStatus($names)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBillingAddressId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBsaleDocumentUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereBuyNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCouponId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereCurrency($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereDiscountCoupon($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereMetadata($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy wherePayed($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingAddressId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingFee($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShippingId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereShowroom($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereSubtotal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereTotal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Buy whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy currentStatus($names)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy orCurrentStatus($names)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy otherCurrentStatus($names)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereBillingAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereBsaleDocumentUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereBuyNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereCouponId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereCurrency($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereDiscountCoupon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereMetadata($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy wherePayed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereShippingAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereShippingFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereShippingId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereShowroom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereSubtotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buy whereUserId($value)
  */
 	class Buy extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\PostType
+ * App\Models\BuyDetail
  *
  * @mixin \Eloquent
  * @property int $id
- * @property array $name
- * @property string|null $slug
- * @property-read string $hash_id
- * @property-read array $translations
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\HomePost[] $home_posts
- * @property-read int|null $home_posts_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\PostType whereSlug($value)
+ * @property int $buy_id
+ * @property int $product_id
+ * @property int|null $stock_id
+ * @property int $quantity
+ * @property string $total
+ * @property-read \App\Models\Buy $buy
+ * @property-read mixed $total_currency
+ * @property-read \App\Models\Product $product
+ * @property-read \App\Models\Stock|null $stock
+ * @method static \Illuminate\Database\Eloquent\Builder|BuyDetail newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BuyDetail newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BuyDetail query()
+ * @method static \Illuminate\Database\Eloquent\Builder|BuyDetail whereBuyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuyDetail whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuyDetail whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuyDetail whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuyDetail whereStockId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BuyDetail whereTotal($value)
  */
-	class PostType extends \Eloquent {}
+	class BuyDetail extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Cart
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property int|null $user_id
+ * @property string|null $session_id
+ * @property int|null $coupon_id
+ * @property string|null $discount_coupon_pen
+ * @property string|null $discount_coupon_usd
+ * @property string $subtotal
+ * @property string $subtotal_dolar
+ * @property string $total
+ * @property string $total_dolar
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Coupon|null $coupon
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CartDetail[] $details
+ * @property-read int|null $details_count
+ * @property-read mixed $subtotal_currency
+ * @property-read mixed $total_currency
+ * @property-read mixed $total_discount_coupon
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereCouponId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereDiscountCouponPen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereDiscountCouponUsd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereSessionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereSubtotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereSubtotalDolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereTotalDolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cart whereUserId($value)
+ */
+	class Cart extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -169,111 +336,176 @@ namespace App\Models{
  * @property-read mixed $total_currency
  * @property-read \App\Models\Product $product
  * @property-read \App\Models\Stock|null $stock
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereCartId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereOrder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereStockId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereTotal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CartDetail whereTotalDolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CartDetail newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CartDetail newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CartDetail query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CartDetail whereCartId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CartDetail whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CartDetail whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CartDetail whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CartDetail whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CartDetail whereStockId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CartDetail whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CartDetail whereTotalDolar($value)
  */
 	class CartDetail extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\BuyDetail
+ * App\Models\Category
  *
  * @mixin \Eloquent
  * @property int $id
- * @property int $buy_id
- * @property int $product_id
- * @property int|null $stock_id
- * @property int $quantity
- * @property float $total
- * @property-read \App\Models\Buy $buy
- * @property-read mixed $total_currency
- * @property-read \App\Models\Product $product
- * @property-read \App\Models\Stock|null $stock
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereBuyId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereStockId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BuyDetail whereTotal($value)
+ * @property string $name
+ * @property string $slug
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $hash_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
+ * @property-read int|null $posts_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Category findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereUpdatedAt($value)
  */
-	class BuyDetail extends \Eloquent {}
+	class Category extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Size
+ * App\Models\Color
  *
  * @mixin \Eloquent
  * @property int $id
  * @property string $uuid
- * @property string $name
- * @property string|null $slug
+ * @property array $name
  * @property-read string $hash_id
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Stock[] $stocks
- * @property-read int|null $stocks_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Size whereUuid($value)
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read int|null $products_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Color newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Color newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Color query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Color whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Color whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Color whereUuid($value)
  */
-	class Size extends \Eloquent {}
+	class Color extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\HomePost
+ * App\Models\Country
  *
  * @mixin \Eloquent
  * @property int $id
- * @property int|null $post_type_id
- * @property int|null $state_id
+ * @property string $sortname
  * @property string $name
- * @property string|null $slug
- * @property string|null $redirection_link
- * @property int $order
- * @property \Illuminate\Support\Carbon|null $begin_date
- * @property \Illuminate\Support\Carbon|null $end_date
+ * @property int $phonecode
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $states
+ * @property-read int|null $states_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Country newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country wherePhonecode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereSortname($value)
+ */
+	class Country extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\CountryState
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @property int $country_id
+ * @property-read \App\Models\Country $country
+ * @method static \Illuminate\Database\Eloquent\Builder|CountryState newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CountryState newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CountryState query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CountryState whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CountryState whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CountryState whereName($value)
+ */
+	class CountryState extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Coupon
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property int $type_id
+ * @property string $code
+ * @property string $amount_pen
+ * @property string $amount_usd
+ * @property int $frequency
+ * @property string $minimum_pen
+ * @property string $minimum_usd
+ * @property \Illuminate\Support\Carbon $begin
+ * @property \Illuminate\Support\Carbon $end
+ * @property array|null $products
+ * @property array|null $product_subtypes
+ * @property array|null $product_types
+ * @property int $discounted_products
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read string $hash_id
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
- * @property-read int|null $photos_count
- * @property-read \App\Models\PostType|null $post_type
- * @property-read \App\Models\State|null $state
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereBeginDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereEndDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereOrder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost wherePostTypeId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereRedirectionLink($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereStateId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\HomePost whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Buy[] $buys
+ * @property-read int|null $buys_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Cart[] $carts
+ * @property-read int|null $carts_count
+ * @property-read mixed $discount_format
+ * @property-read \App\Models\CouponType $type
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereAmountPen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereAmountUsd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereBegin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereDiscountedProducts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereEnd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereFrequency($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereMinimumPen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereMinimumUsd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereProductSubtypes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereProductTypes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereProducts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Coupon whereUpdatedAt($value)
  */
-	class HomePost extends \Eloquent {}
+	class Coupon extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\CouponType
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Coupon[] $coupons
+ * @property-read int|null $coupons_count
+ * @method static \Illuminate\Database\Eloquent\Builder|CouponType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CouponType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CouponType query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CouponType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CouponType whereName($value)
+ */
+	class CouponType extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -298,249 +530,311 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
  * @property-read int|null $activities_count
  * @property-read string $hash_id
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereAvailable($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereBegin($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereDiscountPen($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereDiscountUsd($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereEnd($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereExecuted($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereIs2x1($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereProductSubtypes($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereProductTypes($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereProducts($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\DiscountTask whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask query()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereAvailable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereBegin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereDiscountPen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereDiscountUsd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereEnd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereExecuted($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereIs2x1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereProductSubtypes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereProductTypes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereProducts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiscountTask whereUpdatedAt($value)
  */
 	class DiscountTask extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Settings
+ * App\Models\FitSize
  *
- * @mixin \Eloquent
- * @property int $id
- * @property float $dolar_change
- * @property int $free_shipping
- * @property int $deal_2x1
- * @property int $bipolar_counts
- * @property int $facebook_counts
- * @property int $instagram_counts
- * @property int $current_buy
- * @property string|null $background_suscribe
- * @property string|null $background_counter
- * @property array|null $open_hours
- * @property-read array $translations
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBackgroundCounter($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBackgroundSuscribe($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereBipolarCounts($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereCurrentBuy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDeal2x1($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereDolarChange($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFacebookCounts($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereFreeShipping($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereInstagramCounts($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Settings whereOpenHours($value)
- */
-	class Settings extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Type
- *
- * @mixin \Eloquent
  * @property int $id
  * @property string $uuid
  * @property array $name
- * @property string|null $slug
- * @property int $order
- * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
- * @property-read int|null $activities_count
- * @property-read string $hash_id
+ * @property string $value
  * @property-read array $translations
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
- * @property-read int|null $subtypes_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereOrder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Type whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FitSize newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FitSize newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FitSize query()
+ * @method static \Illuminate\Database\Eloquent\Builder|FitSize whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FitSize whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FitSize whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FitSize whereValue($value)
  */
-	class Type extends \Eloquent {}
+	class FitSize extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Cart
+ * App\Models\FitWidth
  *
- * @mixin \Eloquent
  * @property int $id
- * @property int|null $user_id
- * @property string|null $session_id
- * @property int|null $coupon_id
- * @property float|null $discount_coupon_pen
- * @property float|null $discount_coupon_usd
- * @property float $subtotal
- * @property float $subtotal_dolar
- * @property float $total
- * @property float $total_dolar
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Coupon|null $coupon
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CartDetail[] $details
- * @property-read int|null $details_count
- * @property-read mixed $subtotal_currency
- * @property-read mixed $total_currency
- * @property-read mixed $total_discount_coupon
- * @property-read \App\Models\User|null $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereCouponId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereDiscountCouponPen($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereDiscountCouponUsd($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSessionId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSubtotal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereSubtotalDolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereTotal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereTotalDolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cart whereUserId($value)
- */
-	class Cart extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Product
- *
- * @mixin \Eloquent
- * @property int $id
- * @property mixed $uuid
- * @property int|null $state_id
- * @property int|null $label_id
- * @property int $fit_size_id
- * @property int $fit_width_id
+ * @property string $uuid
  * @property array $name
- * @property string|null $slug
- * @property array|null $description
- * @property int|null $discount_pen
- * @property int|null $discount_usd
- * @property \Illuminate\Support\Carbon|null $begin_discount
- * @property \Illuminate\Support\Carbon|null $end_discount
- * @property \Illuminate\Support\Carbon|null $publish_date
- * @property float $price
- * @property float|null $price_pen_discount
- * @property float $price_dolar
- * @property float|null $price_usd_discount
- * @property float|null $weight
- * @property float $instep_level_very_high
- * @property float $instep_level_high
- * @property float $instep_level_normal
- * @property float $instep_level_low
- * @property float $instep_level_very_low
- * @property float $width_level_very_high
- * @property float $width_level_high
- * @property float $width_level_normal
- * @property float $width_level_low
- * @property float $width_level_very_low
+ * @property-read array $translations
+ * @method static \Illuminate\Database\Eloquent\Builder|FitWidth newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FitWidth newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FitWidth query()
+ * @method static \Illuminate\Database\Eloquent\Builder|FitWidth whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FitWidth whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FitWidth whereUuid($value)
+ */
+	class FitWidth extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Historic
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @property string $photo
+ * @property string $photo_relative
  * @property int $order
- * @property int $free_shipping
- * @property int $is_showroom_sale
- * @property int $is_deal_2x1
- * @property string|null $is_salient
- * @property int $is_soldout
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
- * @property-read int|null $activities_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
- * @property-read int|null $colors_count
- * @property-read \App\Models\FitSize $fit_size
- * @property-read \App\Models\FitWidth $fit_width
- * @property-read mixed $discount_amount
  * @property-read string $hash_id
- * @property-read mixed $price_currency
- * @property-read mixed $price_discount_currency
- * @property-read array $translations
- * @property-read \App\Models\Label|null $label
+ * @method static \Illuminate\Database\Eloquent\Builder|Historic newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Historic newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Historic onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Historic query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Historic whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Historic whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Historic whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Historic whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Historic whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Historic wherePhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Historic wherePhotoRelative($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Historic whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Historic withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Historic withoutTrashed()
+ */
+	class Historic extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\HomePost
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property int|null $post_type_id
+ * @property int|null $state_id
+ * @property string $name
+ * @property string|null $slug
+ * @property string|null $redirection_link
+ * @property int $order
+ * @property \Illuminate\Support\Carbon|null $begin_date
+ * @property \Illuminate\Support\Carbon|null $end_date
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $hash_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
  * @property-read int|null $photos_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommendations
- * @property-read int|null $recommendations_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $recommended_by
- * @property-read int|null $recommended_by_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Size[] $sizes_active
- * @property-read int|null $sizes_active_count
+ * @property-read \App\Models\PostType|null $post_type
  * @property-read \App\Models\State|null $state
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Stock[] $stocks
- * @property-read int|null $stocks_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
- * @property-read int|null $subtypes_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Product onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereBeginDiscount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDiscountPen($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDiscountUsd($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereEndDiscount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFitSizeId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFitWidthId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereFreeShipping($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelHigh($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelLow($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelNormal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelVeryHigh($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereInstepLevelVeryLow($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsDeal2x1($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSalient($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsShowroomSale($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSoldout($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereLabelId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereOrder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePriceDolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePricePenDiscount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePriceUsdDiscount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePublishDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereStateId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUuid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWeight($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelHigh($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelLow($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelNormal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelVeryHigh($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereWidthLevelVeryLow($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Product withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Product withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost query()
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost whereBeginDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost whereEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost wherePostTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost whereRedirectionLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost whereStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|HomePost whereUpdatedAt($value)
  */
-	class Product extends \Eloquent {}
+	class HomePost extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Image
+ *
+ * @property int $id
+ * @property string|null $background_suscribe
+ * @property string|null $background_counter
+ * @property \Illuminate\Support\Carbon $start_time
+ * @property int $active
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Image newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Image newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Image query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Image whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Image whereBackgroundCounter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Image whereBackgroundSuscribe($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Image whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Image whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Image whereStartTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Image whereUpdatedAt($value)
+ */
+	class Image extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Label
+ *
+ * @property int $id
+ * @property array $name
+ * @property string $color_text
+ * @property string $color
+ * @property string $slug
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property-read int|null $activities_count
+ * @property-read string $hash_id
+ * @property-read array $translations
+ * @method static \Illuminate\Database\Eloquent\Builder|Label findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|Label newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Label newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Label query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Label whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Label whereColorText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Label whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Label whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Label whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Label whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Label whereUpdatedAt($value)
+ */
+	class Label extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Manager
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property int|null $role_id
+ * @property string $email
+ * @property string $name
+ * @property string $password
+ * @property string|null $remember_token
+ * @property-read \App\Models\Role|null $role
+ * @method static \Illuminate\Database\Eloquent\Builder|Manager newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Manager newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Manager query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Manager whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manager whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manager whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manager wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manager whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Manager whereRoleId($value)
+ */
+	class Manager extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Page
+ *
+ * @property int $id
+ * @property string $slug
+ * @property array $title
+ * @property array $body
+ * @property string|null $main_image
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read array $translations
+ * @method static \Illuminate\Database\Eloquent\Builder|Page findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereMainImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereUpdatedAt($value)
+ */
+	class Page extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Payment
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property int $buy_id
+ * @property string|null $auth_result
+ * @property string|null $auth_result_text
+ * @property string|null $auth_code
+ * @property string|null $error_code
+ * @property string|null $card_brand
+ * @property string|null $reference
+ * @property string|null $verification
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Buy $buy
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereAuthCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereAuthResult($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereAuthResultText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereBuyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereCardBrand($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereErrorCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereReference($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereVerification($value)
+ */
+	class Payment extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Photo
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property int|null $product_id
+ * @property int|null $post_id
+ * @property int|null $home_post_id
+ * @property string $url
+ * @property string|null $relative_url
+ * @property int $order
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $hash_id
+ * @property-read \App\Models\HomePost|null $home_post
+ * @property-read \App\Models\Post|null $post
+ * @property-read \App\Models\Product|null $product
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo whereHomePostId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo wherePostId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo whereRelativeUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo whereUrl($value)
+ */
+	class Photo extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -570,92 +864,249 @@ namespace App\Models{
  * @property-read int|null $statuses_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
  * @property-read int|null $tags_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post currentStatus($names)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post otherCurrentStatus($names)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereMainPhoto($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereMainVideo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereStateId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post currentStatus($names)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post otherCurrentStatus($names)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereMainPhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereMainVideo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereUpdatedAt($value)
  */
 	class Post extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Banner
+ * App\Models\PostType
  *
  * @mixin \Eloquent
  * @property int $id
- * @property int $state_id
- * @property int $order
- * @property string|null $link
- * @property array|null $text
- * @property string|null $url
- * @property string|null $relative_url
- * @property float $padding_bottom_mobile
- * @property float $padding_bottom_tablet
- * @property float $padding_bottom_desktop
- * @property string|null $font
- * @property string $color
- * @property string|null $background_color
- * @property float $font_size_mobile
- * @property float $font_size_tablet
- * @property float $font_size_desktop
- * @property float $line_height_mobile
- * @property float $line_height_tablet
- * @property float $line_height_desktop
- * @property float $letter_spacing_mobile
- * @property float $letter_spacing_tablet
- * @property float $letter_spacing_desktop
- * @property \Illuminate\Support\Carbon $begin_date
- * @property \Illuminate\Support\Carbon $end_date
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property array $name
+ * @property string|null $slug
  * @property-read string $hash_id
  * @property-read array $translations
- * @property-read \App\Models\State $state
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner fromColorType()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereBackgroundColor($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereBeginDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereColor($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereEndDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereFont($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereFontSizeDesktop($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereFontSizeMobile($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereFontSizeTablet($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLetterSpacingDesktop($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLetterSpacingMobile($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLetterSpacingTablet($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLineHeightDesktop($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLineHeightMobile($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLineHeightTablet($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereLink($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereOrder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner wherePaddingBottomDesktop($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner wherePaddingBottomMobile($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner wherePaddingBottomTablet($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereRelativeUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereStateId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereText($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Banner whereUrl($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\HomePost[] $home_posts
+ * @property-read int|null $home_posts_count
+ * @method static \Illuminate\Database\Eloquent\Builder|PostType findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|PostType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PostType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PostType query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PostType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PostType whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PostType whereSlug($value)
  */
-	class Banner extends \Eloquent {}
+	class PostType extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\PremiumLink
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property mixed $uuid
+ * @property array $name
+ * @property \Illuminate\Support\Carbon $end
+ * @property array|null $products
+ * @property int $available
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property-read int|null $activities_count
+ * @property-read string $hash_id
+ * @property-read array $translations
+ * @method static \Illuminate\Database\Eloquent\Builder|PremiumLink newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PremiumLink newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PremiumLink query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PremiumLink whereAvailable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PremiumLink whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PremiumLink whereEnd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PremiumLink whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PremiumLink whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PremiumLink whereProducts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PremiumLink whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PremiumLink whereUuid($value)
+ */
+	class PremiumLink extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Product
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property mixed $uuid
+ * @property int|null $state_id
+ * @property int|null $label_id
+ * @property int $fit_size_id
+ * @property int $fit_width_id
+ * @property array $name
+ * @property string|null $slug
+ * @property array|null $description
+ * @property int|null $discount_pen
+ * @property int|null $discount_usd
+ * @property \Illuminate\Support\Carbon|null $begin_discount
+ * @property \Illuminate\Support\Carbon|null $end_discount
+ * @property \Illuminate\Support\Carbon|null $publish_date
+ * @property string $price
+ * @property string|null $price_pen_discount
+ * @property string $price_dolar
+ * @property string|null $price_usd_discount
+ * @property string|null $weight
+ * @property string $instep_level_very_high
+ * @property string $instep_level_high
+ * @property string $instep_level_normal
+ * @property string $instep_level_low
+ * @property string $instep_level_very_low
+ * @property string $width_level_very_high
+ * @property string $width_level_high
+ * @property string $width_level_normal
+ * @property string $width_level_low
+ * @property string $width_level_very_low
+ * @property int $order
+ * @property int $free_shipping
+ * @property int $is_showroom_sale
+ * @property int $is_deal_2x1
+ * @property string|null $is_salient
+ * @property int $is_soldout
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property-read int|null $activities_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
+ * @property-read int|null $colors_count
+ * @property-read \App\Models\FitSize $fit_size
+ * @property-read \App\Models\FitWidth $fit_width
+ * @property-read mixed $discount_amount
+ * @property-read string $hash_id
+ * @property-read mixed $price_currency
+ * @property-read mixed $price_discount_currency
+ * @property-read array $translations
+ * @property-read \App\Models\Label|null $label
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Photo[] $photos
+ * @property-read int|null $photos_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|Product[] $recommendations
+ * @property-read int|null $recommendations_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|Product[] $recommended_by
+ * @property-read int|null $recommended_by_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Size[] $sizes_active
+ * @property-read int|null $sizes_active_count
+ * @property-read \App\Models\State|null $state
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Stock[] $stocks
+ * @property-read int|null $stocks_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
+ * @property-read int|null $subtypes_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Video[] $videos
+ * @property-read int|null $videos_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Product findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Product onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereBeginDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDiscountPen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDiscountUsd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereEndDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereFitSizeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereFitWidthId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereFreeShipping($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereInstepLevelHigh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereInstepLevelLow($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereInstepLevelNormal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereInstepLevelVeryHigh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereInstepLevelVeryLow($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereIsDeal2x1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereIsSalient($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereIsShowroomSale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereIsSoldout($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereLabelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePriceDolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePricePenDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePriceUsdDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePublishDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereWeight($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereWidthLevelHigh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereWidthLevelLow($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereWidthLevelNormal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereWidthLevelVeryHigh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereWidthLevelVeryLow($value)
+ * @method static \Illuminate\Database\Query\Builder|Product withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Product withoutTrashed()
+ */
+	class Product extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Role
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @method static \Illuminate\Database\Eloquent\Builder|Role newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Role newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Role query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Role whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Role whereName($value)
+ */
+	class Role extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Settings
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property string $dolar_change
+ * @property int $free_shipping
+ * @property int $deal_2x1
+ * @property int $bipolar_counts
+ * @property int $facebook_counts
+ * @property int $instagram_counts
+ * @property int $current_buy
+ * @property string|null $background_suscribe
+ * @property string|null $background_counter
+ * @property array|null $open_hours
+ * @property-read array $translations
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings whereBackgroundCounter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings whereBackgroundSuscribe($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings whereBipolarCounts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings whereCurrentBuy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings whereDeal2x1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings whereDolarChange($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings whereFacebookCounts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings whereFreeShipping($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings whereInstagramCounts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Settings whereOpenHours($value)
+ */
+	class Settings extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -668,30 +1119,30 @@ namespace App\Models{
  * @property int $allow_showroom
  * @property int $is_dni_required
  * @property int $active
- * @property float|null $g200
- * @property float|null $g200_dolar
- * @property float|null $g500
- * @property float|null $g500_dolar
- * @property float|null $kg1
- * @property float|null $kg1_dolar
- * @property float|null $kg2
- * @property float|null $kg2_dolar
- * @property float|null $kg3
- * @property float|null $kg3_dolar
- * @property float|null $kg4
- * @property float|null $kg4_dolar
- * @property float|null $kg5
- * @property float|null $kg5_dolar
- * @property float|null $kg6
- * @property float|null $kg6_dolar
- * @property float|null $kg7
- * @property float|null $kg7_dolar
- * @property float|null $kg8
- * @property float|null $kg8_dolar
- * @property float|null $kg9
- * @property float|null $kg9_dolar
- * @property float|null $kg10
- * @property float|null $kg10_dolar
+ * @property string|null $g200
+ * @property string|null $g200_dolar
+ * @property string|null $g500
+ * @property string|null $g500_dolar
+ * @property string|null $kg1
+ * @property string|null $kg1_dolar
+ * @property string|null $kg2
+ * @property string|null $kg2_dolar
+ * @property string|null $kg3
+ * @property string|null $kg3_dolar
+ * @property string|null $kg4
+ * @property string|null $kg4_dolar
+ * @property string|null $kg5
+ * @property string|null $kg5_dolar
+ * @property string|null $kg6
+ * @property string|null $kg6_dolar
+ * @property string|null $kg7
+ * @property string|null $kg7_dolar
+ * @property string|null $kg8
+ * @property string|null $kg8_dolar
+ * @property string|null $kg9
+ * @property string|null $kg9_dolar
+ * @property string|null $kg10
+ * @property string|null $kg10_dolar
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Buy[] $buys
  * @property-read int|null $buys_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Country[] $excluded_countries
@@ -707,139 +1158,135 @@ namespace App\Models{
  * @property-read int|null $included_states_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ShippingInclude[] $includes
  * @property-read int|null $includes_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereAllowShowroom($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG200($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG200Dolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG500($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereG500Dolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereIsDniRequired($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg1($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg10($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg10Dolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg1Dolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg2($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg2Dolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg3($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg3Dolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg4($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg4Dolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg5($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg5Dolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg6($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg6Dolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg7($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg7Dolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg8($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg8Dolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg9($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereKg9Dolar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shipping whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereAllowShowroom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereG200($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereG200Dolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereG500($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereG500Dolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereIsDniRequired($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg10($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg10Dolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg1Dolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg2Dolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg3Dolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg4($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg4Dolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg5($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg5Dolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg6($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg6Dolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg7($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg7Dolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg8($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg8Dolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg9($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereKg9Dolar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Shipping whereTitle($value)
  */
 	class Shipping extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Country
+ * App\Models\ShippingExclude
  *
  * @mixin \Eloquent
  * @property int $id
- * @property string $sortname
- * @property string $name
- * @property int $phonecode
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\CountryState[] $states
- * @property-read int|null $states_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country wherePhonecode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country whereSortname($value)
+ * @property int $shipping_id
+ * @property int|null $country_id
+ * @property int|null $country_state_id
+ * @property-read \App\Models\Country|null $country
+ * @property-read \App\Models\CountryState|null $country_state
+ * @property-read \App\Models\Shipping $shipping
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingExclude newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingExclude newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingExclude query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingExclude whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingExclude whereCountryStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingExclude whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingExclude whereShippingId($value)
  */
-	class Country extends \Eloquent {}
+	class ShippingExclude extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Address
+ * App\Models\ShippingInclude
  *
  * @mixin \Eloquent
  * @property int $id
- * @property int $user_id
- * @property int $address_type_id
- * @property int $country_state_id
+ * @property int $shipping_id
+ * @property int|null $country_id
+ * @property int|null $country_state_id
+ * @property int $all_countries
+ * @property-read \App\Models\Country|null $country
+ * @property-read \App\Models\CountryState|null $country_state
+ * @property-read \App\Models\Shipping $shipping
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingInclude newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingInclude newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingInclude query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingInclude whereAllCountries($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingInclude whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingInclude whereCountryStateId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingInclude whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShippingInclude whereShippingId($value)
+ */
+	class ShippingInclude extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Size
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property string $uuid
  * @property string $name
- * @property string $lastname
- * @property string $email
- * @property string $phone
- * @property string $address
- * @property string|null $zip
- * @property int $main
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \App\Models\AddressType $address_type
- * @property-read \App\Models\CountryState $country_state
+ * @property string|null $slug
+ * @property int $is_available_filter_sale
  * @property-read string $hash_id
- * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Address onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereAddressTypeId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereCountryStateId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereLastname($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereMain($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Address whereZip($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Address withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Address withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Stock[] $stocks
+ * @property-read int|null $stocks_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Size findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|Size newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Size newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Size query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Size whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Size whereIsAvailableFilterSale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Size whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Size whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Size whereUuid($value)
  */
-	class Address extends \Eloquent {}
+	class Size extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Label
+ * App\Models\State
  *
+ * @mixin \Eloquent
  * @property int $id
- * @property array $name
- * @property string $color_text
+ * @property string $name
  * @property string $color
- * @property string $slug
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
- * @property-read int|null $activities_count
  * @property-read string $hash_id
- * @property-read array $translations
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereColor($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereColorText($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Label whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read int|null $products_count
+ * @method static \Illuminate\Database\Eloquent\Builder|State newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|State newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|State query()
+ * @method static \Illuminate\Database\Eloquent\Builder|State whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|State whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|State whereName($value)
  */
-	class Label extends \Eloquent {}
+	class State extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -864,332 +1311,21 @@ namespace App\Models{
  * @property-read string $hash_id
  * @property-read \App\Models\Product $product
  * @property-read \App\Models\Size|null $size
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereBsaleStockId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereBsaleStockIds($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereIncomingDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereSizeId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stock whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stock newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Stock newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Stock query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Stock whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stock whereBsaleStockId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stock whereBsaleStockIds($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stock whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stock whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stock whereIncomingDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stock whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stock whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stock whereSizeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Stock whereUpdatedAt($value)
  */
 	class Stock extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Tag
- *
- * @mixin \Eloquent
- * @property int $id
- * @property string $name
- * @property string $slug
- * @property-read string $hash_id
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
- * @property-read int|null $posts_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tag whereSlug($value)
- */
-	class Tag extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\User
- *
- * @mixin \Eloquent
- * @property int $id
- * @property string $email
- * @property string $name
- * @property string|null $lastname
- * @property string|null $dni
- * @property int|null $foot_instep
- * @property int|null $foot_width
- * @property float|null $common_size
- * @property string $password
- * @property string|null $active
- * @property string|null $facebook_id
- * @property string|null $payme_wallet_token
- * @property string|null $birthday_date
- * @property string|null $language
- * @property int $has_showroom_sale
- * @property string|null $remember_token
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Buy[] $buys
- * @property-read int|null $buys_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Cart[] $carts
- * @property-read int|null $carts_count
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Wishlist[] $wishlists
- * @property-read int|null $wishlists_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereBirthdayDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCommonSize($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereDni($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereFacebookId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereFootInstep($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereFootWidth($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereHasShowroomSale($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereLanguage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereLastname($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePaymeWalletToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
- */
-	class User extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Role
- *
- * @mixin \Eloquent
- * @property int $id
- * @property string $name
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereName($value)
- */
-	class Role extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\ShippingInclude
- *
- * @mixin \Eloquent
- * @property int $id
- * @property int $shipping_id
- * @property int|null $country_id
- * @property int|null $country_state_id
- * @property int $all_countries
- * @property-read \App\Models\Country|null $country
- * @property-read \App\Models\CountryState|null $country_state
- * @property-read \App\Models\Shipping $shipping
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereAllCountries($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereCountryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereCountryStateId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingInclude whereShippingId($value)
- */
-	class ShippingInclude extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\FitSize
- *
- * @property int $id
- * @property string $uuid
- * @property array $name
- * @property float $value
- * @property-read array $translations
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize whereUuid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitSize whereValue($value)
- */
-	class FitSize extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Payment
- *
- * @mixin \Eloquent
- * @property int $id
- * @property int $buy_id
- * @property string|null $auth_result
- * @property string|null $auth_result_text
- * @property string|null $auth_code
- * @property string|null $error_code
- * @property string|null $card_brand
- * @property string|null $reference
- * @property string|null $verification
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Buy $buy
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereAuthCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereAuthResult($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereAuthResultText($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereBuyId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereCardBrand($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereErrorCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereReference($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Payment whereVerification($value)
- */
-	class Payment extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\CountryState
- *
- * @mixin \Eloquent
- * @property int $id
- * @property string $name
- * @property int $country_id
- * @property-read \App\Models\Country $country
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereCountryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CountryState whereName($value)
- */
-	class CountryState extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Photo
- *
- * @mixin \Eloquent
- * @property int $id
- * @property int|null $product_id
- * @property int|null $post_id
- * @property int|null $home_post_id
- * @property string $url
- * @property string|null $relative_url
- * @property int $order
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read string $hash_id
- * @property-read \App\Models\HomePost|null $home_post
- * @property-read \App\Models\Post|null $post
- * @property-read \App\Models\Product|null $product
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereHomePostId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereOrder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo wherePostId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereRelativeUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Photo whereUrl($value)
- */
-	class Photo extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\State
- *
- * @mixin \Eloquent
- * @property int $id
- * @property string $name
- * @property string $color
- * @property-read string $hash_id
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
- * @property-read int|null $products_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereColor($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereName($value)
- */
-	class State extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\FitWidth
- *
- * @property int $id
- * @property string $uuid
- * @property array $name
- * @property-read array $translations
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FitWidth whereUuid($value)
- */
-	class FitWidth extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Color
- *
- * @mixin \Eloquent
- * @property int $id
- * @property string $uuid
- * @property array $name
- * @property-read string $hash_id
- * @property-read array $translations
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
- * @property-read int|null $products_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Color whereUuid($value)
- */
-	class Color extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\ShippingExclude
- *
- * @mixin \Eloquent
- * @property int $id
- * @property int $shipping_id
- * @property int|null $country_id
- * @property int|null $country_state_id
- * @property-read \App\Models\Country|null $country
- * @property-read \App\Models\CountryState|null $country_state
- * @property-read \App\Models\Shipping $shipping
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereCountryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereCountryStateId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ShippingExclude whereShippingId($value)
- */
-	class ShippingExclude extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -1212,214 +1348,213 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @property-read int|null $products_count
  * @property-read \App\Models\Type $type
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereOrder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereTypeId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Subtype whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtype findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtype newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtype newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtype query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtype whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtype whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtype whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtype whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtype whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtype whereTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtype whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtype whereUuid($value)
  */
 	class Subtype extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Manager
- *
- * @mixin \Eloquent
- * @property int $id
- * @property int|null $role_id
- * @property string $email
- * @property string $name
- * @property string $password
- * @property string|null $remember_token
- * @property-read \App\Models\Role|null $role
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Manager whereRoleId($value)
- */
-	class Manager extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\AddressType
+ * App\Models\Tag
  *
  * @mixin \Eloquent
  * @property int $id
  * @property string $name
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Address[] $addresses
- * @property-read int|null $addresses_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AddressType whereName($value)
- */
-	class AddressType extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Page
- *
- * @property int $id
  * @property string $slug
- * @property array $title
- * @property array $body
- * @property string|null $main_image
+ * @property-read string $hash_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
+ * @property-read int|null $posts_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag whereSlug($value)
+ */
+	class Tag extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\TextCondition
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property mixed $uuid
+ * @property array|null $name
+ * @property array|null $description
+ * @property array|null $products
+ * @property int $available
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property-read int|null $activities_count
+ * @property-read string $hash_id
  * @property-read array $translations
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page findSimilarSlugs($attribute, $config, $slug)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereBody($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereMainImage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Page whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextCondition newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TextCondition newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TextCondition query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TextCondition whereAvailable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextCondition whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextCondition whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextCondition whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextCondition whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextCondition whereProducts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextCondition whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextCondition whereUuid($value)
  */
-	class Page extends \Eloquent {}
+	class TextCondition extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\CouponType
+ * App\Models\Type
  *
  * @mixin \Eloquent
  * @property int $id
+ * @property string $uuid
+ * @property array $name
+ * @property string|null $slug
+ * @property int $order
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activities
+ * @property-read int|null $activities_count
+ * @property-read string $hash_id
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subtype[] $subtypes
+ * @property-read int|null $subtypes_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Type findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder|Type newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Type newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Type query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Type whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Type whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Type whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Type whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Type whereUuid($value)
+ */
+	class Type extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\User
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property string $email
  * @property string $name
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Coupon[] $coupons
- * @property-read int|null $coupons_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponType newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponType newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponType query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponType whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponType whereName($value)
- */
-	class CouponType extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Coupon
- *
- * @mixin \Eloquent
- * @property int $id
- * @property int $type_id
- * @property string $code
- * @property float $amount_pen
- * @property float $amount_usd
- * @property int $frequency
- * @property float $minimum_pen
- * @property float $minimum_usd
- * @property \Illuminate\Support\Carbon $begin
- * @property \Illuminate\Support\Carbon $end
- * @property array|null $products
- * @property array|null $product_subtypes
- * @property array|null $product_types
- * @property int $discounted_products
+ * @property string|null $lastname
+ * @property string|null $dni
+ * @property int|null $foot_instep
+ * @property int|null $foot_width
+ * @property string|null $common_size
+ * @property string $password
+ * @property string|null $active
+ * @property string|null $facebook_id
+ * @property string|null $payme_wallet_token
+ * @property string|null $birthday_date
+ * @property string|null $language
+ * @property int $has_showroom_sale
+ * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Buy[] $buys
  * @property-read int|null $buys_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Cart[] $carts
  * @property-read int|null $carts_count
- * @property-read mixed $discount_format
- * @property-read \App\Models\CouponType $type
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereAmountPen($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereAmountUsd($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereBegin($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereDiscountedProducts($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereEnd($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereFrequency($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereMinimumPen($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereMinimumUsd($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereProductSubtypes($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereProductTypes($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereProducts($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereTypeId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Coupon whereUpdatedAt($value)
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Wishlist[] $wishlists
+ * @property-read int|null $wishlists_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereBirthdayDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCommonSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereDni($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereFacebookId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereFootInstep($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereFootWidth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereHasShowroomSale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLanguage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLastname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePaymeWalletToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
-	class Coupon extends \Eloquent {}
+	class User extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Image
- *
- * @property int $id
- * @property string|null $background_suscribe
- * @property string|null $background_counter
- * @property \Illuminate\Support\Carbon $start_time
- * @property int $active
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereBackgroundCounter($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereBackgroundSuscribe($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereStartTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereUpdatedAt($value)
- */
-	class Image extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Historic
+ * App\Models\Video
  *
  * @mixin \Eloquent
  * @property int $id
- * @property string $name
- * @property string $photo
- * @property string $photo_relative
+ * @property int|null $product_id
+ * @property int $attachment_id
+ * @property string|null $url
+ * @property string|null $relative_url
  * @property int $order
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Attachment $attachment
  * @property-read string $hash_id
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Historic onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereOrder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic wherePhoto($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic wherePhotoRelative($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Historic whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Historic withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Historic withoutTrashed()
+ * @property-read \App\Models\Product|null $product
+ * @method static \Illuminate\Database\Eloquent\Builder|Video newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Video newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Video query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereAttachmentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereRelativeUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereUrl($value)
  */
-	class Historic extends \Eloquent {}
+	class Video extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Wishlist
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property int $user_id
+ * @property int $product_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Product $product
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Wishlist newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Wishlist newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Wishlist query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Wishlist whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Wishlist whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Wishlist whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Wishlist whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Wishlist whereUserId($value)
+ */
+	class Wishlist extends \Eloquent {}
 }
 

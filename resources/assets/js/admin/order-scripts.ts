@@ -41,4 +41,7 @@ $(function() {
   createSortable('#sortable-banners', '/ajax-admin/banners/order');
   createSortable('#sortable-historics', '/ajax-admin/historics/order');
   createSortable('#sortable-post-photos', '/ajax-admin/post/photos/order');
+
+  createSortable('#sortable-items_video', '/ajax-admin/products/videos/order');
+
 });

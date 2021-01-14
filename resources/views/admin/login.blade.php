@@ -25,7 +25,7 @@
           <form action="{{ route('login.admin.post') }}" method="POST" class="form-horizontal form-material">
             @csrf
             <a href="javascript:void(0)" class="text-center db">
-              <br/><img src="{{ asset('images/logo-linea.png') }}" width="160"/>
+              <br/><img src="https://bipolar.nyc3.digitaloceanspaces.com/images/logo.svg" width="160"/>
             </a>
             <div class="form-group m-t-40">
               <div class="col-xs-12">

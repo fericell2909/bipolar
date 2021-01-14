@@ -86,7 +86,7 @@
           <span class="text-uppercase">{{ __('bipolar.shop.show_results', ['total' => $products->total()]) }}</span>
           {!! Form::select('orderBy', $orderOptions, $selectedOrderOption, ['id' => 'shop-sort-by', 'class' => 'select-orders']) !!}
         </div>
-        @forelse($products->chunk(3) as $productChunk)
+        @forelse($products->chunk(Agent::isTablet() ? 2 : 3) as $productChunk)
           <div class="row">
           @foreach($productChunk as $product)
             <?php /** @var \App\Models\Product $product */ ?>
@@ -171,16 +171,16 @@
             </div>
           @endforeach
           </div>
-        @empty
-          <div class="row">
-            <div class="col-md-12">
-              @if($messagelinks <> '')
-                <h3>{{$messagelinks}}</h3>
-              @else 
-                <h3>{{ __('validation.product_nothing')}}</h3>
-              @endif
+          @empty
+            <div class="row">
+              <div class="col-md-12">
+                @if($messagelinks <> '')
+                  <h3>{{$messagelinks}}</h3>
+                @else 
+                  <h3>{{ __('validation.product_nothing')}}</h3>
+                @endif
+              </div>
             </div>
-          </div>
         @endforelse
         <div class="text-center">
           {{ $products->links('web.partials.pagination-web') }}

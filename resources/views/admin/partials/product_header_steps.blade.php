@@ -9,7 +9,7 @@
   <a href="{{ route('products.photos', $product->slug) }}" class="col-md">
     <div class="card text-center {{ $active === "photos" ? 'text-white bg-primary' : null }}">
       <div class="card-body">
-        <h4 class="card-text">2. Fotos</h4>
+        <h4 class="card-text">2. Fotos y Videos</h4>
       </div>
     </div>
   </a>

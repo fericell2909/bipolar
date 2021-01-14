@@ -1,5 +1,6 @@
 @extends('web.layouts.app_web')
 @section('content')
+@include('web.shop.modal.video')
   <?php /** @var \App\Models\Product $product */ ?>
   <?php /** @var \Illuminate\Support\Collection $fitWidths */ ?>
   <?php /** @var \Illuminate\Support\Collection $fitInsteps */ ?>
@@ -31,6 +32,14 @@
                 @foreach($product->photos as $photo)
                   <img src="{{ $photo->url }}" alt="{{ $product->name }}" class="d-block mw-100">
                 @endforeach
+                @if(count($product->videos))
+                  @foreach($product->videos as $video)
+                    <a href="#" data-toggle="modal" data-target="#modalvideo" alt="Ver Video - {{$video->name}}" data-url="{{$video->url}}">
+                      <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/ver-video.png" 
+                        class="d-block mw-100 img-fluid z-depth-1" alt="Ver Video - {{$video->name}}">
+                    </a>
+                  @endforeach
+                @endif
               </div>
             </div>
           @endif

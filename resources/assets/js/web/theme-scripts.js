@@ -19,6 +19,7 @@ $(function() {
   let owlThumbnail = $('.owl-carousel-thumbnails').owlCarousel({
     margin: 10,
     items: thumbs,
+    video:true,
   });
 
   function draggedOwlMain(event) {

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Translatable\HasTranslations;
+use App\Models\Video;
 
 /** @mixin \Eloquent */
 class Product extends Model
@@ -153,5 +154,10 @@ class Product extends Model
         } elseif (\Session::get('BIPOLAR_CURRENCY') === 'USD') {
             return "$ " . intval($this->price_usd_discount);
         }
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class, 'product_id');
     }
 }

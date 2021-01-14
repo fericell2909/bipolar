@@ -55,6 +55,10 @@ class ProductController extends Controller
             return $queryWithPhotos->orderBy('order');
         }]);
 
+        $product->load(['videos' => function ($queryWithVideos) {
+            return $queryWithVideos->orderBy('order');
+        }]);
+
         return view('admin.products.photos_order', compact('product'));
     }
 
@@ -167,6 +171,8 @@ class ProductController extends Controller
             return $withPhotos->orderBy('order');
         }, 'recommendations.photos'             => function ($withPhotos) {
             return $withPhotos->orderBy('order');
+        }, 'videos' => function ($withVideos) {
+            return $withVideos->orderBy('order');
         }]);
 
         $stockWithSizes = $product->stocks

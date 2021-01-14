@@ -16,4 +16,10 @@ class Video extends Model
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
+
+    public function attachment()
+    {
+        return $this->belongsTo('App\Models\Attachment');
+    }
+    
 }

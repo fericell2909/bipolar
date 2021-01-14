@@ -171,4 +171,24 @@ $(function () {
       }
     });
   });
+
+  $('.video-delete').click(function () {
+    swal({
+      title: 'Eliminar Video',
+      text: 'Seguro que desea eliminar el Video',
+      type: 'question',
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      showLoaderOnConfirm: true,
+    }).then(result => {
+      if (result.value) {
+        const videoId = $(this).data('videoId');
+        $.ajax({
+          method: 'DELETE',
+          url: `/ajax-admin/products/video/${videoId}`
+        }).done(() => location.reload());
+      }
+    });
+  });
+
 });

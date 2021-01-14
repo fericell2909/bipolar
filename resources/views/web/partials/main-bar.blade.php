@@ -26,7 +26,7 @@
 						{{ __('bipolar.navbar.my_settings') }}
 						<i class="fas fa-chevron-down"></i>
 					</a>
-					<ul class="bipolar-dropdown-menu in-desktop">
+					<ul class="bipolar-dropdown-menu in-desktop" style="margin-left: -80px;">
 						<li><a href="{{ route('myaccount') }}"><i class="fas fa-fw fa-user"></i> {{ __('bipolar.navbar.my_account') }}</a></li>
 						<li><a href="{{ route('wishlist') }}"><i class="fas fa-fw fa-heart"></i> Wishlist</a></li>
 						<li><a href="{{ route('cart') }}"><i class="fas fa-fw fa-shopping-cart"></i> Shopping cart</a></li>
@@ -126,7 +126,7 @@
 			<ul class="bipolar-items">
 				<li class="bipolar-logo d-none">
 					<a href="{{ route('home') }}">
-						<img src="{{ asset('images/logo-linea.png') }}" width="160">
+						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/logo.svg" width="160">
 					</a>
 				</li>
 				<li class="bipolar-item">

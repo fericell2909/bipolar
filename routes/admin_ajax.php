@@ -34,6 +34,11 @@ Route::prefix('products')->group(function () {
     Route::delete('remove/{productId}', 'Admin\Ajax\ProductController@deletesoft');
     Route::get('{productHashId}/stocks', 'Admin\Ajax\ProductController@stocks');
     Route::post('publishdate', 'Admin\Ajax\ProductController@publishUpdate');
+
+    Route::post('{productHashId}/video/upload', 'Admin\Ajax\VideoController@videoUpload')->name('products.video.upload');
+    Route::post('videos/order', 'Admin\Ajax\VideoController@orderVideos')->name('products.video.order');
+    Route::delete('video/{videoHashId}', 'Admin\Ajax\VideoController@deleteVideo')->name('products.video.delete');
+
 });
 
 Route::post('stocks/{stockId}', 'Admin\Ajax\ProductController@updateStock');

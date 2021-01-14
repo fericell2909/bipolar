@@ -70,6 +70,20 @@ $('#archive-selector').on('change', function() {
   $('#form-archive-selector').trigger('submit');
 });
 
+$('#modalvideo').on('show.bs.modal', function (event) {
+
+  var a = $(event.relatedTarget)
+  var video = a.data('url')
+   //$("#myFrame").attr('src',video);  
+   $('#modalvideo iframe').attr("src", video);
+   
+})
+
+$('#modalvideo').on('hidden.bs.modal', function (e) {
+  // Quitar la reproduccion del video al ocutar el modal
+  $('#modalvideo iframe').attr("src", "");
+});
+
 require('owl.carousel/dist/owl.carousel');
 require('video.js');
 require('videojs-youtube');

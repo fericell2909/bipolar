@@ -51,7 +51,7 @@
           }
 
           .item-text {
-            font-size: 15px;
+            font-size: 13px;
             font-family: $bodoni-bold-font;
             font-style: normal;
             font-weight: 400;
@@ -118,6 +118,12 @@
     vertical-align: middle;
     font-size: 15px;
     text-align: center;
+  }
+
+  @media (min-width: 811px) {
+    .bipolar-header-logo {
+      padding-top: 15px;
+    }
   }
 
   .bipolar-shopping-cart-wrapper {
@@ -301,7 +307,7 @@
 
 .header-mobile {
   background: $bipolar-color url('../../../img/linea.png') repeat-x 0 55px;
-  padding: 30px;
+  padding: 33.5px;
   text-align: center;
 }
 

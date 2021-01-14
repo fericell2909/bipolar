@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
       <a href="{{ route('home') }}">
-        <img src="{{ asset('images/logo-linea.png') }}">
+        <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/logo.svg" width="160">
       </a>
     </div>
   </div>
