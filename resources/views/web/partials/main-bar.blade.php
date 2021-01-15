@@ -126,7 +126,7 @@
 			<ul class="bipolar-items">
 				<li class="bipolar-logo d-none">
 					<a href="{{ route('home') }}">
-						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/logo.svg" width="160">
+						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/logo_bipolar.svg" width="160">
 					</a>
 				</li>
 				<li class="bipolar-item">
