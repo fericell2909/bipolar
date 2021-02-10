@@ -13,7 +13,7 @@ class CountryStatesController extends Controller
     {
         $country = Country::findOrFail($countryId);
 
-        $countryStates = CountryState::whereCountryId($country->id)->get();
+        $countryStates = CountryState::whereCountryId($country->id)->orderBy('order')->get();
 
         $countryStates = $countryStates->transform(function ($countryState) {
             return [

@@ -32,7 +32,7 @@ class CreateTabblesVideos extends Migration
         Schema::dropIfExists('videos');
 
         Schema::create('videos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->change();
             $table->unsignedInteger('product_id')->nullable();
             $table->unsignedBigInteger('attachment_id');
             $table->string('url',500)->default('');

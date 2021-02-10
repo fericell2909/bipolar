@@ -72,15 +72,8 @@
   </table>
   <div class="d-flex mb-5 justify-content-end">
     <div class="cart-total-inner">
-      @if($bipolarCart->count() > 0)
-        <button type="submit" class="btn btn-dark-rounded" style="margin-right: 10px;">
-          {{ __('bipolar.cart.update') }}
-        </button>
-        <a href="{{ route('checkout') }}" class="btn btn-dark-rounded">
-          {{ __('bipolar.cart.checkout') }}
-        </a>
-      @endif
-      <h2>Total</h2>
+
+      <h2 style="margin-top: 5px; font-size: 17px;">RESUMEN</h2>
       <table class="table">
         <tbody>
           <tr>
@@ -93,6 +86,14 @@
           </tr>
         </tbody>
       </table>
+      @if($bipolarCart->count() > 0)
+        <button type="submit" class="btn btn-dark-rounded" style="margin-right: 10px; margin-bottom: 10px">
+          {{ __('bipolar.cart.update') }}
+        </button>
+        <a href="{{ route('checkout') }}" class="btn btn-dark-rounded"  style="margin-bottom: 10px">
+          {{ __('bipolar.cart.checkout') }}
+        </a>
+      @endif
     </div>
   </div>
   {!! Form::close() !!}

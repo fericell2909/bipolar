@@ -79,7 +79,8 @@
 				</ul>
 				<div class="bipolar-header-logo">
 					<a href="{{ route('home') }}">
-						<img src="{{ asset('images/logo-nolinea.png') }}">
+						{{-- <img src="{{ asset('images/logo-nolinea.png') }}"> --}}
+						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/logo.svg" alt="Logo Bipolar" height="50">
 					</a>
 				</div>
 				<div class="bipolar-shopping-cart-wrapper">
@@ -123,7 +124,7 @@
 	</nav>
 	<section class="bipolar-navigation text-center">
 		<div class="container resized-container">
-			<ul class="bipolar-items">
+			<ul class="bipolar-items" style="margin-top : -5px">
 				<li class="bipolar-logo d-none">
 					<a href="{{ route('home') }}">
 						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/logo_bipolar.svg" width="160">

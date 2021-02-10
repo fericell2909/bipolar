@@ -1,7 +1,10 @@
 <style>
   .modal-backdrop {
-    display: none !important;
-    z-index: 0 !important;
+     display: none !important;
+     z-index: 0 !important;
+  }
+  #modalvideo {
+    background-color: #000000b3;
   }
 </style>
 <div class="modal fade" id="modalvideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
