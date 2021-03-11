@@ -29,6 +29,9 @@
             @if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "care-tips"))
               <li><a href="{{ route('page', $bipolarPage->slug) }}">{{ $bipolarPage->title }}</a></li>
             @endif
+            @if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "politicas-privacidad"))
+              <li><a href="{{ route('page', $bipolarPage->slug) }}">{{ $bipolarPage->title }}</a></li>
+            @endif
           </ul>
         </div>
 			</div>
