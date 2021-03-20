@@ -13,6 +13,7 @@ class CouponAssociation extends React.Component<any, any> {
     couponTypes: [],
     couponProducts: [],
     couponSubtypes: [],
+    tsubtypes: [],
   };
 
   getData = async () => {
@@ -50,12 +51,21 @@ class CouponAssociation extends React.Component<any, any> {
       couponProducts: selectedProducts,
       couponTypes: selectedTypes,
       couponSubtypes: selectedSubtypes,
+      tsubtypes: subtypes,
     });
   };
 
   handleUpdateSubtype = values => this.setState({ couponSubtypes: values });
 
-  handleUpdateType = values => this.setState({ couponTypes: values });
+  handleUpdateType = (values) => {
+
+    this.setState({ couponTypes: values })
+
+    let tmp_subtypes = this.state.tsubtypes;
+    tmp_subtypes = tmp_subtypes.filter((c) => { return c.type_id === values.value})
+    this.setState({ subtypes: tmp_subtypes });
+
+    };
 
   handleUpdateProducts = values => this.setState({ couponProducts: values });
 
@@ -102,7 +112,7 @@ class CouponAssociation extends React.Component<any, any> {
     const optionProducts = this.state.products.length
       ? this.state.products.map(this.mapProduct)
       : [];
-    const optionSubtypes = this.state.subtypes.length
+    let optionSubtypes = this.state.subtypes.length
       ? this.state.subtypes.map(this.mapSubtype)
       : [];
 
@@ -118,7 +128,7 @@ class CouponAssociation extends React.Component<any, any> {
                   options={optionTypes}
                   onChange={this.handleUpdateType}
                   value={this.state.couponTypes}
-                  isMulti
+                  isMulti={false}
                   closeMenuOnSelect={false}
                 />
               </div>
@@ -131,7 +141,7 @@ class CouponAssociation extends React.Component<any, any> {
                   options={optionSubtypes}
                   onChange={this.handleUpdateSubtype}
                   value={this.state.couponSubtypes}
-                  isMulti
+                  isMulti={true}
                   closeMenuOnSelect={false}
                 />
               </div>

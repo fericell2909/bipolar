@@ -34,6 +34,8 @@ class CouponNewRequest extends FormRequest
             'minimum_usd' => 'required|numeric|min:1',
             'begin'       => 'required|date_format:d/m/Y',
             'end'         => 'required|date_format:d/m/Y',
+            'isunique'    => 'required|boolean',
+            'quantityproducts' => 'required|integer|between:0,99999',
         ];
     }
 }

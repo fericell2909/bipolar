@@ -250,9 +250,14 @@
                   @endforeach
                   @if($cart->coupon)
                     <tr>
-                      <td class="total">Cupón {{ $cart->coupon->code }} : {{ $cart->coupon->discount_format }}</td>
-                      <td><span class="amount">-{{ $cart->total_discount_coupon }}</span></td>
-                    </tr>
+					  <td class="total">Cupón {{ $cart->coupon->code }} : {{ $cart->coupon->discount_format }}
+						<br>
+							<span style="font-family: GothamLight,sans-serif; font-weight: 400;font-size: 12px;">
+								Cupón válido para {{ intval($cart->coupon->quantityproducts) >= 2 ? ' ' . $cart->coupon->quantityproducts . ' productos.' : ' 1 producto.' }}
+							</span>
+					  </td>
+					  <td><span class="amount">-{{ $cart->total_discount_coupon }}</span></td>
+					</tr>
                   @endif
                   <tr>
                     <td class="total">Subtotal</td>

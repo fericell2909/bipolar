@@ -37,4 +37,12 @@ class Coupon extends Model
             return \Session::get('BIPOLAR_CURRENCY', 'PEN') === 'PEN' ? "S/{$this->amount_pen}" : "\${$this->amount_usd}";
         }
     }
+
+    public function getCount() {
+        $records = $this->buys()->get()->filter(function ($buy) {
+            return $buy->coupon_id === $this->id;
+        })->count();
+
+        return $records;
+    }
 }

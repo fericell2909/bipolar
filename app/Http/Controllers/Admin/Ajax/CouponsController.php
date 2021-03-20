@@ -23,7 +23,7 @@ class CouponsController extends Controller
     public function saveTypesAndSubtypes(Request $request, $couponId)
     {
         $products = collect([]);
-        $types = collect([]);
+
         $subtypes = collect([]);
         if ($request->filled('products')) {
             $products = Product::find(array_map(function ($element) {
@@ -31,17 +31,38 @@ class CouponsController extends Controller
             }, $request->input('products')));
         }
         if ($request->filled('types')) {
-            $types = Type::find(array_map(function ($element) {
-                return $element["value"];
-            }, $request->input('types')));
+
+            $typesFromInput = $request->input('types');
+            
+            if(is_array($typesFromInput)) {
+
+                if(count($typesFromInput) == 1) {
+                    $aux =  $typesFromInput[0];
+
+                    if(is_array($aux)) {
+                        $typesArray = Type::where('id',$aux["value"])->pluck('id')->toArray();
+                    } else {
+                        $typesArray = Type::where('id',$typesFromInput["value"])->pluck('id')->toArray();
+                    }
+                           
+                }  else {
+                    
+                    $typesArray = Type::where('id',$typesFromInput["value"])->pluck('id')->toArray();  
+                }
+
+            } else {
+                $typesArray = Type::where('id',$typesFromInput["value"])->pluck('id')->toArray();
+            }
+             
         }
+
         if ($request->filled('subtypes')) {
             $subtypes = Subtype::find(array_map(function ($element) {
                 return $element["value"];
             }, $request->input('subtypes')));
         }
 
-        $typesArray = $types->pluck('id')->toArray();
+       
         $subtypesArray = $subtypes->pluck('id')->toArray();
         $productsArray = $products->pluck('id')->toArray();
 

@@ -18,4 +18,12 @@ class Wishlist extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function mainPhoto() {
+
+        $product = Photo::Where('product_id',$this->product_id)->orderBy('order','ASC')->first();
+        
+        return $product->url ?? '';
+
+    }
 }

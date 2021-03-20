@@ -114,8 +114,9 @@ class VideoController extends Controller
             if($attachment) {
 
                /*  try{
+                   
                     $DOFileService = (new UploadFileDO)->delete('videos/'.$this->folder);
-                } catch( \Exception $e){
+
                     return response()->json([
                         'success' => false,
                         'message' => 'Video eliminado correctamente',

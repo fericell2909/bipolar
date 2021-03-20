@@ -46,6 +46,7 @@ class UserController extends Controller
             'email'             => 'email|max:255',
             'birthday'          => 'nullable|date_format:Y-m-d',
             'has_showroom_sale' => 'required|boolean',
+            'active' => 'required|boolean',
         ]);
 
         $user->name = $request->input('name');
@@ -55,6 +56,21 @@ class UserController extends Controller
             $user->birthday_date = "{$request->input('birthday')} 00:00:00";
         }
         $user->has_showroom_sale = (bool)$request->input('has_showroom_sale');
+
+        if($user->active <> $request->input('active')){
+            if((bool)$request->input('active') === true){
+                $user->active = now();
+            } else {
+
+                $user->active = null;
+            }
+        }
+
+        if((bool)$request->input('has_new_password') === true){
+            $user->password = bcrypt('Bipol@r1234');
+            $user->active = now();
+        }
+
         $user->save();
 
         flash()->success('Actualizado con éxito');

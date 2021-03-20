@@ -24,6 +24,7 @@ class CouponController extends Controller
 
         $cart = CartBipolar::getInstance();
 
+
         $couponService = new CouponService($cart, $couponName, \Session::get('BIPOLAR_CURRENCY', 'PEN'));
 
         $couponIsValidResponse = $couponService->isValid();

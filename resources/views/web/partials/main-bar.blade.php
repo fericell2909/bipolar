@@ -72,7 +72,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="https://instagram.com/bipolar_zapatos" target="_blank">
+						<a href="https://instagram.com/________bipolar________/" target="_blank">
 							<i class="fab fa-instagram"></i>
 						</a>
 					</li>

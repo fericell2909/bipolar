@@ -21,43 +21,32 @@
 						<tr>
 							<td><a href="{{ route('wishlist.remove', $wishlist->product->slug) }}"><img src="{{ asset('images/close.svg') }}" width="20"></a></td>
 							<td>
-								<img src="{{ optional($wishlist->product->mainPhoto())->first()->url }}" width="70">
+								<img src="{{ $wishlist->mainPhoto() }}" width="70">
 							</td>
 							<td class="product-name">
-								<a href="{{ route('shop.product', $wishlist->product->slug) }}">{{ $wishlist->product->name }}</a>
+								@if($wishlist->product->state_id === 3) 
+									<a href="{{ route('shop.product', $wishlist->product->slug) }}">{{ $wishlist->product->name }}</a>
+								@else
+								<a href="#" style="cursor: none; text-decoration: none;">{{ $wishlist->product->name }}</a>
+								@endif
 							</td>
 							<td class="product-price">
-								<span class="amount">{{ $wishlist->price_currency }}</span>
+								@if($wishlist->product->hasOwnDiscount())
+									<span class="amount">{{ "S/. " . $wishlist->product->price_pen_discount  . " - $ " . $wishlist->product->price_usd_discount }}</span>
+								@else
+									<span class="amount">{{ "S/. " . $wishlist->product->price . " - $ " . $wishlist->product->price_dolar }}</span>
+								@endif
 							</td>
 							<td>
-								En stock
+								{{ $wishlist->product->state_id === 3 ? 'Disponible' : 'No Disponible'}}
 							</td>
 							<td>
-								<a href="{{ route('shop.product', $wishlist->product->slug) }}" class="btn btn-dark btn-rounded">Ver producto</a>
+								@if($wishlist->product->state_id === 3)
+									<a href="{{ route('shop.product', $wishlist->product->slug) }}" class="btn btn-dark btn-rounded">Ver producto</a>
+								@endif
 							</td>
 						</tr>
 					@endif
-				@endforeach
-			@elseif(Session::has('BIPOLAR_WISHLIST'))
-				@foreach(Session::get('BIPOLAR_WISHLIST') as $product)
-				<tr>
-					<td><a href="{{ route('wishlist.remove', $product->slug) }}"><img src="{{ asset('images/close.svg') }}" width="20"></a></td>
-					<td>
-						<img src="{{ optional($product->mainPhoto())->url }}" width="70">
-					</td>
-					<td class="product-name">
-						<a href="{{ route('shop.product', $product->slug) }}">{{ $product->name }}</a>
-					</td>
-					<td class="product-price">
-						<span class="amount">{{ $product->price_currency }}</span>
-					</td>
-					<td>
-						En stock
-					</td>
-					<td>
-						<a href="{{ route('shop.product', $product->slug) }}" class="btn btn-dark btn-rounded">Ver producto</a>
-					</td>
-				</tr>
 				@endforeach
 			@endif
 		</tbody>

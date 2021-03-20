@@ -102,15 +102,93 @@
                   @if($product->label)
                     @php
                       $labelSplitted = explode("<br>", $product->label->name);
+                      $showSizes = false;
+
+                      if($product->label->id === 3) {
+                          if(count($product->stocks
+                                ->filter(function ($stock) {
+                                    return !is_null($stock->size_id) && ($stock->quantity > 0);
+                                })->sortBy('size.name')
+                                    ->transform(function ($stock) {
+                                        return $stock->size->name;
+                                    })
+                                    ->toArray()) <= 2) {
+                                  $showSizes = true;
+                          }
+                      } elseif($product->label->id === 4) {
+                          $showSizes = true;
+                        }
+
                     @endphp
-                    <div class="bipolar-label-container">
-                      @foreach($labelSplitted as $label)
-                        <span class="bipolar-label-text"
-                              style="color: {{ $product->label->color_text }} !important;
-                                  background-color: {{ $product->label->color  }} !important;">
-                        {{ trim($label) }}</span>
-                      @endforeach
-                    </div>
+                    @if($product->label->id === 3)
+                      @if($showSizes === true && count($labelSplitted) > 0)
+                        <div class="bipolar-label-container">
+                            <span class="bipolar-label-text"
+                                  style="color: {{ $product->label->color_text }} !important;
+                                      background-color: {{ $product->label->color  }} !important;">
+                                  {{$labelSplitted[0]}}
+                            </span>
+                            <span class="bipolar-label-text"
+                                  style="color: {{ $product->label->color_text }} !important;
+                                      background-color: {{ $product->label->color  }} !important;">
+                                  {{ implode(" - " , $product->stocks
+                                  ->filter(function ($stock) {
+                                      return !is_null($stock->size_id) && ($stock->quantity > 0);
+                                  })->sortBy('size.name')
+                                      ->transform(function ($stock) {
+                                          return $stock->size->name;
+                                      })
+                                      ->toArray())}}
+                            </span>
+                        </div>
+                       @else
+                        <div class="bipolar-label-container">
+                          @foreach($labelSplitted as $label)
+                            <span class="bipolar-label-text"
+                                  style="color: {{ $product->label->color_text }} !important;
+                                      background-color: {{ $product->label->color  }} !important;">
+                            {{ trim($label) }}</span>
+                          @endforeach
+                        </div>
+                      @endif                   
+                    @endif
+                    @if($product->label->id === 4)
+                      @if($showSizes === true && count($labelSplitted) > 0)
+                        <div class="bipolar-label-container">
+                            <span class="bipolar-label-text"
+                                  style="color: {{ $product->label->color_text }} !important;
+                                      background-color: {{ $product->label->color  }} !important;">
+                                  {{$labelSplitted[0] . " " . implode(" - " , $product->stocks
+                                  ->filter(function ($stock) {
+                                      return !is_null($stock->size_id) && ($stock->quantity > 0);
+                                  })->sortBy('size.name')
+                                      ->transform(function ($stock) {
+                                          return $stock->size->name;
+                                      })
+                                      ->toArray())}}
+                            </span>
+                        </div>
+                      @else
+                        <div class="bipolar-label-container">
+                          @foreach($labelSplitted as $label)
+                            <span class="bipolar-label-text"
+                                  style="color: {{ $product->label->color_text }} !important;
+                                      background-color: {{ $product->label->color  }} !important;">
+                            {{ trim($label) }}</span>
+                          @endforeach
+                        </div>
+                      @endif
+                    @endif
+                    @if($product->label->id <> 3 && $product->label->id <> 4 )
+                      <div class="bipolar-label-container">
+                        @foreach($labelSplitted as $label)
+                          <span class="bipolar-label-text"
+                                style="color: {{ $product->label->color_text }} !important;
+                                    background-color: {{ $product->label->color  }} !important;">
+                          {{ trim($label) }}</span>
+                        @endforeach
+                      </div>
+                     @endif
                   @endif
                   @if($product->discount_pen && $product->discount_usd)
                     <div class="shop-discount-preview-container">

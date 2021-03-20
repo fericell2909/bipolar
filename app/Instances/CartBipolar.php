@@ -212,6 +212,12 @@ class CartBipolar
         if ($this->hasDeal2x1()) {
             $this->recalculateWithDeal2x1();
 
+            if ($this->hasCoupon()) {
+                $this->recalculateWithCoupon($this->cart->coupon);
+    
+                return;
+            }
+            
             return;
         }
 
@@ -372,18 +378,21 @@ class CartBipolar
         $discountPEN = 0;
         $discountUSD = 0;
         if ($coupon->type_id === config('constants.PERCENTAGE_DISCOUNT_ID')) {
-            // Sub the percentage
             $detailsInCoupon = $this->cart->details->filter($this->detailsInCoupon($coupon));
-            $percentagePEN = calculate_percentage($detailsInCoupon->sum('total'), $coupon->amount_pen);
-            $percentageUSD = calculate_percentage($detailsInCoupon->sum('total_dolar'), $coupon->amount_usd);
+            /* The calculate is por detail of product.*/ 
+            
+            $percentagePEN = $this->calculate_total_discount('PEN',$detailsInCoupon ,$coupon );
+            $percentageUSD = $this->calculate_total_discount('USD',$detailsInCoupon ,$coupon );
+
             $discountPEN = $detailsInCoupon->sum('total') - $percentagePEN > 0 ? $percentagePEN : $detailsInCoupon->sum('total');
             $discountUSD = $detailsInCoupon->sum('total_dolar') - $percentageUSD > 0 ? $percentageUSD : $detailsInCoupon->sum('total_dolar');
+       
         } elseif ($coupon->type_id === config('constants.QUANTITY_DISCOUNT_ID')) {
-            // Sum all products in coupon and sub the total amount
-            /** @var Collection $detailsInCoupon */
             $detailsInCoupon = $this->cart->details->filter($this->detailsInCoupon($coupon));
-            $discountPEN = $detailsInCoupon->sum('total') - $coupon->amount_pen > 0 ? $coupon->amount_pen : $detailsInCoupon->sum('total');
-            $discountUSD = $detailsInCoupon->sum('total_dolar') - $coupon->amount_usd > 0 ? $coupon->amount_usd : $detailsInCoupon->sum('total_dolar');
+            $amountPEN = $this->calculate_total_discount('PEN',$detailsInCoupon ,$coupon );
+            $amountUSD = $this->calculate_total_discount('USD',$detailsInCoupon ,$coupon );
+            $discountPEN = $detailsInCoupon->sum('total') - $amountPEN;
+            $discountUSD = $detailsInCoupon->sum('total_dolar') - $amountUSD;
         }
 
         $total = $this->cart->details->sum('total');
@@ -426,6 +435,11 @@ class CartBipolar
                 if ($detail->product->hasOwnDiscount()) {
                     return false;
                 }
+            }
+
+            // don't 2x1
+            if ($detail->product->is_deal_2x1) {
+                return false;
             }
 
             $detailInCouponProducts = in_array($detail->product_id, $coupon->products ?? []);
@@ -501,5 +515,60 @@ class CartBipolar
         }
 
         return $couponDiscount;
+    }
+
+    private function calculate_total_discount($currency,$detailsInCoupon,$coupon){
+
+        $records_discount = $coupon->quantityproducts;
+        $total_discount=0;
+        $id= 1;
+        $percentage = 0;
+
+        if( $currency === 'PEN') {
+            $percentage =  $coupon->amount_pen;
+        } else {
+            $percentage =  $coupon->amount_usd;
+        }
+
+        if($coupon->type_id === config('constants.PERCENTAGE_DISCOUNT_ID')){
+            foreach($detailsInCoupon as  $item){
+                
+                $subtypes_selected = $coupon->product_subtypes ?? [];
+
+                if(!$item->product->is_deal_2x1) {
+
+                    if($subtypes_selected == [] || 
+                    count(array_intersect($coupon->product_subtypes ?? [], $item->product->subtypes->pluck('id')->toArray())) > 0) {
+
+                        if($id <= $records_discount ) {
+
+                            if( $currency === 'PEN'){
+                                $total_discount = $total_discount + $item->total;
+                            } else {
+                                $total_discount = $total_discount + $item->total_dolar;
+                            }
+
+                            $id = $id + 1;
+
+                        }
+                    }
+                }                
+
+            }
+        }
+
+        if($coupon->type_id === config('constants.PERCENTAGE_DISCOUNT_ID')){ 
+            $discount = $total_discount * ($percentage / 100);
+        } else {
+            if( $currency === 'PEN'){
+                $discount = $coupon->amount_pen > 0 ? $coupon->amount_pen : 0;
+            } else {
+                $discount = $coupon->amount_usd > 0 ? $coupon->amount_usd : 0;
+            }
+        }
+        
+
+        return $discount;
+
     }
 }

@@ -22,6 +22,7 @@ class Subtype extends Resource
             'hash_id' => $subtype->hash_id,
             'name'    => $subtype->name,
             'slug'    => $subtype->slug,
+            'type_id' => $subtype->type_id,
         ];
     }
 }

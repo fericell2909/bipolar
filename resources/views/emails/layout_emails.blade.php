@@ -798,7 +798,7 @@
                                       <tbody>
                                       <tr>
                                         <td align="center" valign="middle" width="24" class="mcnFollowIconContent">
-                                          <a href="https://www.instagram.com/bipolar_zapatos/" target="_blank"><img src="https://gallery.mailchimp.com/d616f5c8cc9cff44a6ae9337a/images/a2c4c19e-6d92-484f-a935-8df6df24b182.png" style="display:block;" height="30" width="30" alt="a2c4c19e-6d92-484f-a935-8df6df24b182.png"></a>
+                                          <a href="https://www.instagram.com/________bipolar________/" target="_blank"><img src="https://gallery.mailchimp.com/d616f5c8cc9cff44a6ae9337a/images/a2c4c19e-6d92-484f-a935-8df6df24b182.png" style="display:block;" height="30" width="30" alt="a2c4c19e-6d92-484f-a935-8df6df24b182.png"></a>
                                         </td>
                                       </tr>
                                       </tbody>

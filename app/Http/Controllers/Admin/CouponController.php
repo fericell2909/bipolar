@@ -38,6 +38,14 @@ class CouponController extends Controller
         $coupon->discounted_products = boolval($request->input('discount_products'));
         $coupon->begin = Carbon::createFromFormat('d/m/Y', $request->input('begin'))->startOfDay();
         $coupon->end = Carbon::createFromFormat('d/m/Y', $request->input('end'))->endOfDay();
+        $coupon->vcupon = 1;
+        if((boolean)$request->input('isunique') === true){
+            $coupon->isunique = 1;
+        } else {
+            $coupon->isunique = 0;
+        }
+        $coupon->quantityproducts = $request->input('quantityproducts');
+
         $coupon->save();
 
         flash()->success('Cupón creado con éxito');
@@ -74,6 +82,18 @@ class CouponController extends Controller
         $coupon->discounted_products = boolval($request->input('discount_products'));
         $coupon->begin = Carbon::createFromFormat('d/m/Y', $request->input('begin'))->startOfDay();
         $coupon->end = Carbon::createFromFormat('d/m/Y', $request->input('end'))->endOfDay();
+
+        if($coupon->vcupon > 0){
+            $coupon->vcupon = 1;
+        }
+        
+        if((boolean)$request->input('isunique') === true){
+            $coupon->isunique = 1;
+        } else {
+            $coupon->isunique = 0;
+        }
+        $coupon->quantityproducts = $request->input('quantityproducts');
+
         $coupon->save();
 
         flash()->success('Cupón actualizado con éxito');

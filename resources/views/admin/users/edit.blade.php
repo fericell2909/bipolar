@@ -42,6 +42,25 @@
             {!! Form::select('has_showroom_sale', ['0' => 'No', '1' => 'Si'], (string)$user->has_showroom_sale, ['class' => 'form-control']) !!}
           </div>
         </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label><strong>Activo</strong></label>
+            {!! Form::select('active', ['0' => 'No', '1' => 'Si'], $user->active == null ? 0 : 1, ['class' => 'form-control']) !!}
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label><i class="fa fa-key"></i> <strong>Reiniciar contraseña</strong></label>
+            {!! Form::select('has_new_password', ['0' => 'No', '1' => 'Si'], 0, ['class' => 'form-control']) !!}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group mt-5">
+            <p>Si reinicia contraseña. Por defecto será: <strong>Bipol@r1234</strong></p>
+          </div>
+        </div>
       </div>
       {!! Form::submit('Actualizar', ['class' => 'btn btn-rounded btn-dark']) !!}
       {!! Form::close() !!}

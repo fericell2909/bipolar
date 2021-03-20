@@ -18,6 +18,8 @@
               <th class="text-center">Monto si S/</th>
               <th class="text-center">Monto si $</th>
               <th class="text-center">Veces por usuario</th>
+              <th class="text-center">Veces utilizado</th>
+              <th class="text-center">Hasta en ? producto(s)</th>
               <th>Inicio</th>
               <th>Fin</th>
               <th>Mínimo S/</th>
@@ -35,7 +37,9 @@
               <td class="align-middle">{{ $coupon->type->name }}</td>
               <td class="align-middle text-center">{{ $coupon->amount_pen }} {{ config('constants.PERCENTAGE_DISCOUNT_ID') ? '%' : 'S/' }}</td>
               <td class="align-middle text-center">{{ $coupon->amount_usd }} {{ config('constants.PERCENTAGE_DISCOUNT_ID') ? '%' : '$' }}</td>
-              <td class="align-middle text-center">{{ $coupon->frequency }}</td>
+              <td class="align-middle text-center">{{ $coupon->frequency == 0 ? 'Ilimitado' : $coupon->frequency }}</td>
+              <td class="align-middle text-center">{{ $coupon->getCount() }}</td>
+              <td class="align-middle text-center">{{ $coupon->quantityproducts }}</td>
               <td class="align-middle">{{ $coupon->begin->format('d/m/Y') }}</td>
               <td class="align-middle">{{ $coupon->end->format('d/m/Y') }}</td>
               <td class="align-middle">{{ $coupon->minimum_pen }}</td>

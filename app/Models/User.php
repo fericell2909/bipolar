@@ -47,7 +47,7 @@ class User extends Authenticatable
 
     public function getActiveLabelAdmin()
     {
-        if ($this->active) {
+        if ($this->active === null) {
             return "<span class='badge badge-danger'>Inactivo</span>";
         }
 
