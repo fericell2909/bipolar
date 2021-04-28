@@ -18,8 +18,13 @@ class LocalizationDetection
     public function handle($request, Closure $next)
     {
         if (\Crawler::isCrawler()) {
-            \LaravelLocalization::setLocale('en');
-            session(['BIPOLAR_CURRENCY' => 'USD']);
+            //\LaravelLocalization::setLocale('en');
+            //session(['BIPOLAR_CURRENCY' => 'USD']);
+
+            session(['BIPOLAR_CURRENCY' => 'PEN']);
+            \LaravelLocalization::setLocale('es');
+            //\Auth::check() ? \Auth::user()->fill(['language' => 'es'])->save() : null;
+
             return $next($request);
         }
 
@@ -40,13 +45,19 @@ class LocalizationDetection
             \LaravelLocalization::setLocale('es');
             \Auth::check() ? \Auth::user()->fill(['language' => 'es'])->save() : null;
         } elseif (in_array($location['countryCode'], $latamAndSpain)) {
-            session(['BIPOLAR_CURRENCY' => 'USD']);
+           /*  session(['BIPOLAR_CURRENCY' => 'USD']);
+            \LaravelLocalization::setLocale('es');
+            \Auth::check() ? \Auth::user()->fill(['language' => 'es'])->save() : null; */
+            session(['BIPOLAR_CURRENCY' => 'PEN']);
             \LaravelLocalization::setLocale('es');
             \Auth::check() ? \Auth::user()->fill(['language' => 'es'])->save() : null;
         } else {
             session(['BIPOLAR_CURRENCY' => 'USD']);
-            \LaravelLocalization::setLocale('en');
-            \Auth::check() ? \Auth::user()->fill(['language' => 'en'])->save() : null;
+          /*   \LaravelLocalization::setLocale('en');
+            \Auth::check() ? \Auth::user()->fill(['language' => 'en'])->save() : null; */
+            session(['BIPOLAR_CURRENCY' => 'PEN']);
+            \LaravelLocalization::setLocale('es');
+            \Auth::check() ? \Auth::user()->fill(['language' => 'es'])->save() : null;
         }
 
         session([$this->currentSessionKey => 1]);

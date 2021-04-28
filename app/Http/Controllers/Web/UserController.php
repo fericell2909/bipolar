@@ -24,12 +24,15 @@ class UserController extends Controller
         }
         if ($request->filled('old_password')) {
             if (\Hash::check($request->input('old_password'), $user->password) === false) {
+
                 $request->session()->flash('success', false);
                 $request->session()->flash('message', 'La contraseña actual no coincide');
 
                 return redirect()->back();
+            } else {
+                $user->password = bcrypt($request->input('new_password'));
             }
-            $user->password = bcrypt($request->input('old_password'));
+            
         }
 
         $user->save();
