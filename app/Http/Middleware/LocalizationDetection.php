@@ -28,13 +28,13 @@ class LocalizationDetection
             return $next($request);
         }
 
-        if ($request->session()->has($this->currentSessionKey)) {
+        /* if ($request->session()->has($this->currentSessionKey)) {
             if (\Auth::check() && optional(\Auth::user())->language !== null) {
                 return $next($request);
             } elseif (\Auth::guest()) {
                 return $next($request);
             }
-        }
+        } */
 
         $latamAndSpain = ['AR', 'BO', 'BR', 'CO', 'CL', 'EC', 'GY', 'SR', 'UY', 'VE', 'ES'];
 
