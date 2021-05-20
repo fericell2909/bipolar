@@ -14,7 +14,8 @@
   <link rel="shortcut icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
   <link rel="icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
   {{-- Script de Font Awesome --}}
-  <script async src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script>
+  {{-- <script async src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script> --}}
+  <script async src="https://bipolar.nyc3.digitaloceanspaces.com/fontawesome/all.min.js" crossorigin="anonymous"></script>
   @include('web.partials.facebook-pixel')
   @include('web.partials.recaptcha')
 </head>
