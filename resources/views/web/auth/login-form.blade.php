@@ -17,5 +17,6 @@
   </div>
 {!! Form::close() !!}
 <p class="text-center forgot-password">
+  {{ __('bipolar.register_login_form.forgot_text') }}
   <a href="{{ route('password.request') }}">{{ __('bipolar.register_login_form.forgot') }}</a>
 </p>
