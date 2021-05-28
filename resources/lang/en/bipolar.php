@@ -23,8 +23,8 @@ return [
         'birthday' => 'Birthday',
         'register' => 'Register',
         'login' => 'Login',
-        'forgot' => 'Forgot your password?',
-        'forgot_text' => 'Forgot your password or having trouble accessing your account? Click here.'
+        'forgot' => ' Click here.',
+        'forgot_text' => 'Forgot your password or having trouble accessing your account? '
     ],
     'cart' => [
         'update' => 'Update cart',

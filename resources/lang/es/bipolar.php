@@ -23,8 +23,8 @@ return [
         'birthday' => 'Tu cumpleaños',
         'register' => 'Regístrate',
         'login' => 'Identificarse',
-        'forgot' => '¿Olvidaste la contraseña?',
-        'forgot_text' => 'Olvidaste tu contraseña o tienes problemas para ingresar a tu cuenta? Ingresa aquí.'
+        'forgot' => ' Ingresa aquí.',
+        'forgot_text' => 'Olvidaste tu contraseña o tienes problemas para ingresar a tu cuenta?'
     ],
     'cart' => [
         'update' => 'Actualizar',
