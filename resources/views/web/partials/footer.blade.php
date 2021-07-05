@@ -72,6 +72,7 @@
             </a>
           </div>
         </div>
+        <img src="/images/logoperu.png" alt="Logo de Peru" style="width: 120px;">
 			</div>
 		</div>
 	</div>
