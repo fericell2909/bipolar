@@ -24,7 +24,7 @@
       </div>
       <div class="card">
         <div class="card-header bg-dark">
-          <h4 class="m-b-0 text-white">Videos :: Archivos en extension ( *.mp4) - Medidas (1080x540)</h4>
+          <h4 class="m-b-0 text-white">Videos :: Archivos en extension ( *.mp4) - Medidas (1920x1080)</h4>
         </div>
         <div class="card-body">
           <form action="{{ route('products.video.upload', $product->hash_id) }}" class="dropzone" id="my-awesome-dropzone_2">
