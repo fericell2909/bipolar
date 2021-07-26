@@ -70,6 +70,12 @@
             <a href="https://instagram.com/________bipolar________" target="_blank">
               <i class="fab fa-instagram"></i>
             </a>
+            <a href="https://vm.tiktok.com/ZMdtdw1PH/" target="_blank">
+              <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=51965367385&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Tus%20Servicios%20" target="_blank">
+              <i class="fab fa-whatsapp"></i>
+            </a>
           </div>
         </div>
         <img src="/images/logoperu.png" alt="Logo de Peru" style="width: 120px;">
