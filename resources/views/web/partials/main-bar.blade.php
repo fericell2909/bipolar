@@ -90,7 +90,7 @@
 				<div class="bipolar-header-logo">
 					<a href="{{ route('home') }}">
 						{{-- <img src="{{ asset('images/logo-nolinea.png') }}"> --}}
-						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasnegras.svg" alt="Logo Bipolar" height="50">
+						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" alt="Logo Bipolar" height="50">
 					</a>
 				</div>
 				<div class="bipolar-shopping-cart-wrapper">
@@ -137,7 +137,7 @@
 			<ul class="bipolar-items" style="margin-top : -5px">
 				<li class="bipolar-logo d-none">
 					<a href="{{ route('home') }}">
-						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasnegras.svg" width="160">
+						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" width="160">
 					</a>
 				</li>
 				<li class="bipolar-item">

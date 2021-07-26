@@ -23,7 +23,9 @@
       box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
     }
     &.has-background {
-      background: $bipolar-color;
+      // background: $bipolar-color;
+      background-color: #000;
+      color: #fff;
       transition: 0.8s;
     }
 

@@ -25115,7 +25115,8 @@ fieldset[disabled] .active.btn-dark-rounded {
 
 .bipolar-grand-header .bipolar-navigation.has-background,
 .bipolar-alternate-grand-header .bipolar-navigation.has-background {
-  background: #fcbeb9;
+  background-color: #000;
+  color: #fff;
   transition: 0.8s;
 }
 
@@ -28174,7 +28175,7 @@ button:active {
 }
 
 .bipolar-background {
-  background-color: #fcbeb9;
+  background-color: #000;
 }
 
 .bipolar-the-content {
@@ -28251,7 +28252,8 @@ button:active {
 }
 
 a {
-  color: #000000;
+  /* color: $bipolar-black; */
+  color: #fff;
 }
 
 a:hover {
