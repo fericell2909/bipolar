@@ -24,7 +24,7 @@
     }
     &.has-background {
       // background: $bipolar-color;
-      background-color: #000;
+      background-color: #000 !important;
       color: #fff;
       transition: 0.8s;
     }
@@ -308,7 +308,7 @@
 }
 
 .header-mobile {
-  background: $bipolar-color url('../../../img/linea.png') repeat-x 0 55px;
+  background: #000 url('../../../img/linea.png') repeat-x 0 55px;
   padding: 33.5px;
   text-align: center;
 }
