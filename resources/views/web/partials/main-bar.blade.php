@@ -76,11 +76,21 @@
 							<i class="fab fa-instagram"></i>
 						</a>
 					</li>
+					<li>
+						<a href="https://vm.tiktok.com/ZMdtdw1PH/" target="_blank">
+							<i class="fab fa-tiktok"></i>
+						</a>
+					</li>
+					<li>
+						<a href="https://api.whatsapp.com/send?phone=51965367385&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Tus%20Servicios%20" target="_blank">
+							<i class="fab fa-whatsapp"></i>
+						</a>
+					</li>
 				</ul>
 				<div class="bipolar-header-logo">
 					<a href="{{ route('home') }}">
 						{{-- <img src="{{ asset('images/logo-nolinea.png') }}"> --}}
-						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/logo.svg" alt="Logo Bipolar" height="50">
+						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasnegras.svg" alt="Logo Bipolar" height="50">
 					</a>
 				</div>
 				<div class="bipolar-shopping-cart-wrapper">
@@ -127,7 +137,7 @@
 			<ul class="bipolar-items" style="margin-top : -5px">
 				<li class="bipolar-logo d-none">
 					<a href="{{ route('home') }}">
-						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/logo_bipolar.svg" width="160">
+						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasnegras.svg" width="160">
 					</a>
 				</li>
 				<li class="bipolar-item">

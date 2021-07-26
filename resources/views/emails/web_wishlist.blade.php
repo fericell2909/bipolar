@@ -11,10 +11,10 @@
           <tbody>
             <tr>
               <td>
-                @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                <img src="{{ asset('storage/bipolar-images/assets/mails/pedido-recibido-esp.jpg') }}" style="max-width: 100%" alt="Bipolar">
-                @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                <img src="{{ asset('storage/bipolar-images/assets/mails/pedido-recibido-eng.jpg') }}" style="max-width: 100%" alt="Bipolar">
+                @if(\LaravelLocalization::getCurrentLocale() === 'en')
+                <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/eng_order_sent.png" style="max-width: 100%" alt="Bipolar">
+                @elseif(\LaravelLocalization::getCurrentLocale() === 'es')
+                <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/spa_order_sent.png" style="max-width: 100%" alt="Bipolar">
                 @endif
               </td>
             </tr>
