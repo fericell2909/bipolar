@@ -167,19 +167,23 @@
 	</nav>
 	@if( $background === false)
 		<div class="bipolar-header-logo" style="margin-top: -135px; margin-bottom: 15px; 
-			background: url('https://bipolar.nyc3.digitaloceanspaces.com/images/lgdkblck.svg');
-			background-position: center;
-			background-size: 100%;
-			height: 100px;
+				background: url('https://bipolar.nyc3.digitaloceanspaces.com/images/lgdkblck.svg');
+				background-position: center;
+				background-size: contain;
+				background-size: 100%;
+				height: 100px;
+				background-repeat: no-repeat;
 			">
 			<a href="{{ route('home') }}"></a>
 		</div>
 	@else 
 		<div class="bipolar-header-logo" style="margin-top: -135px; margin-bottom: 15px; 
-			background: url('https://bipolar.nyc3.digitaloceanspaces.com/images/logo%20vectorial%20rosado.svg');
-			background-position: center;
-			background-size: 100%;
-			height: 100px;
+				background: url('https://bipolar.nyc3.digitaloceanspaces.com/images/logo%20vectorial%20rosado.svg');
+				background-position: center;
+				background-size: contain;
+				background-size: 100%;
+				height: 100px;
+				background-repeat: no-repeat;
 			">
 			<a href="{{ route('home') }}"></a>
 		</div>
