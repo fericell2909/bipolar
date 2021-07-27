@@ -63,39 +63,68 @@
 				<ul class="bipolar-navbar-social-links">
 					<li>
 						<a href="mailto:bipolar@bipolar.com.pe">
-							<i class="fas fa-envelope"></i>
+							@if( $background === false)
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/gmailnegro.svg" alt="Logo Bipolar" height="17">
+							@else
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/gmailrosado.svg" alt="Logo Bipolar" height="17">
+							@endif
 						</a>
 					</li>
 					<li>
 						<a href="https://www.facebook.com/bipolar.zapatos" target="_blank">
-							<i class="fab fa-facebook"></i>
+							@if( $background === false)
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/facebooknegro.svg" alt="Logo Bipolar" height="17">
+							@else
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/facebookrosado.svg" alt="Logo Bipolar" height="17">
+							@endif
 						</a>
 					</li>
 					<li>
 						<a href="https://instagram.com/________bipolar________/" target="_blank">
-							<i class="fab fa-instagram"></i>
+							@if( $background === false)
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/instagramnegro.svg" alt="Logo Bipolar" height="17">
+							@else
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/instagramrosado.svg" alt="Logo Bipolar" height="17">
+							@endif
 						</a>
 					</li>
 					<li>
 						<a href="https://vm.tiktok.com/ZMdtdw1PH/" target="_blank">
-							<i class="fab fa-tiktok"></i>
+							@if( $background === false)
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/tiktoknegro.svg" alt="Logo Bipolar" height="17">
+							@else
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/tiktokrosado.svg" alt="Logo Bipolar" height="17">
+							@endif
 						</a>
 					</li>
 					<li>
 						<a href="https://api.whatsapp.com/send?phone=51965367385&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Tus%20Servicios%20" target="_blank">
-							<i class="fab fa-whatsapp"></i>
+							@if( $background === false)
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/wspnegro.svg" alt="Logo Bipolar" height="17">
+							@else
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/wsprosado.svg" alt="Logo Bipolar" height="17">
+							@endif
 						</a>
 					</li>
 				</ul>
 				<div class="bipolar-header-logo">
 					<a href="{{ route('home') }}">
 						{{-- <img src="{{ asset('images/logo-nolinea.png') }}"> --}}
-						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" alt="Logo Bipolar" height="50">
+						@if( $background === false)
+							<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasnegras.svg" alt="Logo Bipolar" height="50">
+						@else
+							<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" alt="Logo Bipolar" height="50">
+						@endif
+						
 					</a>
 				</div>
 				<div class="bipolar-shopping-cart-wrapper">
 					<div class="bipolar-shopping-cart-content">
-						<img src="{{ asset('images/cart.svg') }}" width="35">
+						@if( $background === false)
+							<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/cartnegro.svg" alt="Logo Bipolar" height="35">
+						@else
+						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/cartrosado.svg" width="35">
+						@endif
 						<span class="cart-number-count">{{ isset($bipolarCart) ? $bipolarCart->count() : 0 }}</span>
 							<div class="cart-inside">
 							@if(isset($bipolarCart) ? $bipolarCart->count() > 0 : false)
