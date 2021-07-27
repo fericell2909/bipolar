@@ -57,7 +57,7 @@
 			</ul>
 		</div>
 	</nav>
-	<nav class="navbar bipolar-navbar-styles background-line-image">
+	<nav class="navbar bipolar-navbar-styles">
 		<div class="container">
 			<div class="d-flex bipolar-second-navbar w-100">
 				<ul class="bipolar-navbar-social-links">
@@ -107,16 +107,20 @@
 						</a>
 					</li>
 				</ul>
-				<div class="bipolar-header-logo">
-					<a href="{{ route('home') }}">
-						{{-- <img src="{{ asset('images/logo-nolinea.png') }}"> --}}
-						@if( $background === false)
-							<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasnegras.svg" alt="Logo Bipolar" height="50">
-						@else
-							<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" alt="Logo Bipolar" height="50">
-						@endif
-						
-					</a>
+				<div class="bipolar-header-logo" style="visibility: hidden;">
+					<div style="display: flex;justify-content: center;align-content: space-between;">
+						<div style="background: url(https://www.bipolar.com.pe/images/linea.png?8e99a4a8251a549292e71ae09ef14c67);width: 100%;height: 2px;"></div>
+						<a href="{{ route('home') }}">
+							{{-- <img src="{{ asset('images/logo-nolinea.png') }}"> --}}
+							@if( $background === false)
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasnegras.svg" alt="Logo Bipolar" height="68">
+							@else
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" alt="Logo Bipolar" height="68">
+							@endif
+							
+						</a>
+						<div style="background: url(https://www.bipolar.com.pe/images/linea.png?8e99a4a8251a549292e71ae09ef14c67);width: 100%;height: 2px;"></div>
+					</div>
 				</div>
 				<div class="bipolar-shopping-cart-wrapper">
 					<div class="bipolar-shopping-cart-content">
@@ -161,6 +165,30 @@
 				</div>
 			</div>
 	</nav>
+	<div class="bipolar-header-logo" style="margin-top: -80px; margin-bottom: 15px;">
+		<div style="display: flex;justify-content: center;align-content: space-between;">
+			@if( $background === false)
+				<div style="background: none ;width: 100%;height: 2px; border-top: 3px solid #000; margin-top: 22.5px"></div>
+			@else
+				<div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 22.5px"></div>
+			@endif
+
+			<a href="{{ route('home') }}">
+				{{-- <img src="{{ asset('images/logo-nolinea.png') }}"> --}}
+				@if( $background === false)
+					<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasnegras.svg" style="margin-left: -5px; margin-right: -5px;" alt="Logo Bipolar" height="68">
+				@else
+					<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" style="margin-left: -5px; margin-right: -5px;"  alt="Logo Bipolar" height="68">
+				@endif
+				
+			</a>
+			@if( $background === false)
+				<div style="background: none ;width: 100%;height: 2px; border-top: 3px solid #000; margin-top: 22.5px"></div>
+			@else
+				<div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 22.5px"></div>
+			@endif
+		</div>
+	</div>
 	<section class="bipolar-navigation text-center">
 		<div class="container resized-container">
 			<ul class="bipolar-items" style="margin-top : -5px">

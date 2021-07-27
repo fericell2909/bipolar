@@ -12,14 +12,14 @@
   <div class="menu-button">
     <button type="button" class="navbar-toggle bipolar-navbar-toggle collapsed" data-toggle="collapse" data-target="#responsive-menu-black" aria-expanded="false" aria-controls="navbar">
       <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar top-bar"></span>
-      <span class="icon-bar middle-bar"></span>
-      <span class="icon-bar bottom-bar"></span>
+      <span class="icon-bar top-bar" style="background: #000;"></span>
+      <span class="icon-bar middle-bar" style="background: #000;"></span>
+      <span class="icon-bar bottom-bar" style="background: #000;"></span>
     </button>
     <span class="menu-text-header-mobile">MENU</span>
   </div>
   <div class="cart-white-mobile bipolar-shopping-cart-content">
-    <img src="{{ asset('images/cart-white.svg') }}" width="35"  style="cursor: pointer;" onclick="$('.cart-inside-mobile').toggle();">
+    <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/cartnegro.svg" width="35"  style="cursor: pointer;" onclick="$('.cart-inside-mobile').toggle();">
     <span class="cart-number-count-inverse">{{ isset($bipolarCart) ? $bipolarCart->count() : 0 }}</span>
     <div class="cart-inside-mobile">
       @if(isset($bipolarCart) ? $bipolarCart->count() > 0 : false)
