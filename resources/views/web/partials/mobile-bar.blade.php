@@ -1,6 +1,9 @@
 <?php /** @var \App\Instances\CartBipolar $bipolarCart */ ?>
 <section class="header-mobile d-block d-sm-block d-md-none" 
-  style="padding-left: 0; padding-right: 0; background: url('https://bipolar.nyc3.digitaloceanspaces.com/images/logomobilebg.png'); height: 110px; background-size: 100%;">
+  style="padding-left: 0; padding-right: 0; 
+    background: url('https://bipolar.nyc3.digitaloceanspaces.com/images/logomobilebg.png'); background-position: center;
+    background-size: 100%;
+    height: 140px;">
     <div style="display: none;justify-content: center;align-content: space-between;">
    {{--  <div class="col-md-offset-4 col-md-4"> --}}
     <div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 28px"></div>
