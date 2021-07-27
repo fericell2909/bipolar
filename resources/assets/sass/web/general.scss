@@ -41,7 +41,8 @@ button {
 }
 
 .bipolar-background {
-  background-color: $bipolar-color;
+  // background-color: $bipolar-color;
+  background-color: #000;
 }
 
 .bipolar-the-content {
@@ -114,15 +115,16 @@ button {
 }
 
 a {
-  color: $bipolar-black;
-
+  /* color: $bipolar-black; */
+  color: #fff;
   &:hover {
     color: $bipolar-black;
   }
 }
 
 .btn-link {
-  color: $bipolar-black;
+  // color: $bipolar-black;
+  color: #000;
 }
 
 .content-newsletter {

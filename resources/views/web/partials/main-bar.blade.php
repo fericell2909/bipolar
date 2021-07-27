@@ -57,35 +57,78 @@
 			</ul>
 		</div>
 	</nav>
-	<nav class="navbar bipolar-navbar-styles background-line-image">
+	<nav class="navbar bipolar-navbar-styles">
 		<div class="container">
 			<div class="d-flex bipolar-second-navbar w-100">
 				<ul class="bipolar-navbar-social-links">
 					<li>
 						<a href="mailto:bipolar@bipolar.com.pe">
-							<i class="fas fa-envelope"></i>
+							@if( $background === false)
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/gmailnegro.svg" alt="Logo Bipolar" height="17">
+							@else
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/gmailrosado.svg" alt="Logo Bipolar" height="17">
+							@endif
 						</a>
 					</li>
 					<li>
 						<a href="https://www.facebook.com/bipolar.zapatos" target="_blank">
-							<i class="fab fa-facebook"></i>
+							@if( $background === false)
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/facebooknegro.svg" alt="Logo Bipolar" height="17">
+							@else
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/facebookrosado.svg" alt="Logo Bipolar" height="17">
+							@endif
 						</a>
 					</li>
 					<li>
 						<a href="https://instagram.com/________bipolar________/" target="_blank">
-							<i class="fab fa-instagram"></i>
+							@if( $background === false)
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/instagramnegro.svg" alt="Logo Bipolar" height="17">
+							@else
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/instagramrosado.svg" alt="Logo Bipolar" height="17">
+							@endif
+						</a>
+					</li>
+					<li>
+						<a href="https://vm.tiktok.com/ZMdtdw1PH/" target="_blank">
+							@if( $background === false)
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/tiktoknegro.svg" alt="Logo Bipolar" height="17">
+							@else
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/tiktokrosado.svg" alt="Logo Bipolar" height="17">
+							@endif
+						</a>
+					</li>
+					<li>
+						<a href="https://api.whatsapp.com/send?phone=51965367385&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Tus%20Servicios%20" target="_blank">
+							@if( $background === false)
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/wspnegro.svg" alt="Logo Bipolar" height="17">
+							@else
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/wsprosado.svg" alt="Logo Bipolar" height="17">
+							@endif
 						</a>
 					</li>
 				</ul>
-				<div class="bipolar-header-logo">
-					<a href="{{ route('home') }}">
-						{{-- <img src="{{ asset('images/logo-nolinea.png') }}"> --}}
-						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/logo.svg" alt="Logo Bipolar" height="50">
-					</a>
+				<div class="bipolar-header-logo" style="visibility: hidden;">
+					<div style="display: flex;justify-content: center;align-content: space-between;">
+						<div style="background: url(https://www.bipolar.com.pe/images/linea.png?8e99a4a8251a549292e71ae09ef14c67);width: 100%;height: 2px;"></div>
+						<a href="{{ route('home') }}">
+							{{-- <img src="{{ asset('images/logo-nolinea.png') }}"> --}}
+							@if( $background === false)
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasnegras.svg" alt="Logo Bipolar" height="68">
+							@else
+								<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" alt="Logo Bipolar" height="68">
+							@endif
+							
+						</a>
+						<div style="background: url(https://www.bipolar.com.pe/images/linea.png?8e99a4a8251a549292e71ae09ef14c67);width: 100%;height: 2px;"></div>
+					</div>
 				</div>
 				<div class="bipolar-shopping-cart-wrapper">
 					<div class="bipolar-shopping-cart-content">
-						<img src="{{ asset('images/cart.svg') }}" width="35">
+						@if( $background === false)
+							<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/cartnegro.svg" alt="Logo Bipolar" height="35">
+						@else
+						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/cartrosado.svg" width="35">
+						@endif
 						<span class="cart-number-count">{{ isset($bipolarCart) ? $bipolarCart->count() : 0 }}</span>
 							<div class="cart-inside">
 							@if(isset($bipolarCart) ? $bipolarCart->count() > 0 : false)
@@ -122,12 +165,36 @@
 				</div>
 			</div>
 	</nav>
+	<div class="bipolar-header-logo" style="margin-top: -115px; margin-bottom: 15px;">
+		<div style="display: flex;justify-content: center;align-content: space-between;">
+			@if( $background === false)
+				<div style="background: none ;width: 100%;height: 2px; border-top: 3px solid #000; margin-top: 27px"></div>
+			@else
+				<div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 27px"></div>
+			@endif
+
+			<a href="{{ route('home') }}">
+				{{-- <img src="{{ asset('images/logo-nolinea.png') }}"> --}}
+				@if( $background === false)
+					<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasnegras.svg" style="margin-left: -5px; margin-right: -5px;" alt="Logo Bipolar" height="78">
+				@else
+					<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" style="margin-left: -5px; margin-right: -5px;"  alt="Logo Bipolar" height="78">
+				@endif
+				
+			</a>
+			@if( $background === false)
+				<div style="background: none ;width: 100%;height: 2px; border-top: 3px solid #000; margin-top: 27px"></div>
+			@else
+				<div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 27px"></div>
+			@endif
+		</div>
+	</div>
 	<section class="bipolar-navigation text-center">
 		<div class="container resized-container">
 			<ul class="bipolar-items" style="margin-top : -5px">
 				<li class="bipolar-logo d-none">
 					<a href="{{ route('home') }}">
-						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/logo_bipolar.svg" width="160">
+						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" width="160">
 					</a>
 				</li>
 				<li class="bipolar-item">

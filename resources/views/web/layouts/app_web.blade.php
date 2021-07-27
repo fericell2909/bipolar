@@ -12,6 +12,28 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
+    <style>
+        .navbar-brand span {
+            font-family: "GothamBold", Verdana;
+            color: #fcbeb9 !important;
+        }
+        .navbar-brand a {
+            color: #fcbeb9 !important;
+            font-weight: bold;
+        }
+          .bipolar-navbar-social-links li a {
+            color: #fcbeb9 !important;
+            font-weight: bold;
+        }
+          .navbar-right-text {
+            color: #fcbeb9 !important;
+            font-weight: bold;
+          }
+        .bipolar-shopping-cart-content {
+            color: #fcbeb9 !important;
+            font-weight: bold;
+        }
+    </style>
     {{-- Script de Font Awesome --}}
     {{-- <script async src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script> --}}
     <script async src="https://bipolar.nyc3.digitaloceanspaces.com/fontawesome/all.min.js" crossorigin="anonymous"></script>

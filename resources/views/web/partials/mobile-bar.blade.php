@@ -1,26 +1,36 @@
 <?php /** @var \App\Instances\CartBipolar $bipolarCart */ ?>
-<section class="header-mobile d-block d-sm-block d-md-none">
-  <div class="row">
-    <div class="col-md-offset-4 col-md-4">
-      <a href="{{ route('home') }}">
-        <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/logo.svg" width="160">
-      </a>
+<section class="header-mobile d-block d-sm-block d-md-none" 
+  style="padding-left: 0; padding-right: 0; 
+    background: url('https://bipolar.nyc3.digitaloceanspaces.com/images/logomobilebg.png'); background-position: center;
+    background-size: 100%;
+    height: 140px;">
+    <div style="display: none;justify-content: center;align-content: space-between;">
+   {{--  <div class="col-md-offset-4 col-md-4"> --}}
+    <div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 28px"></div>
+        <a href="{{ route('home') }}">
+          <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" 
+            width="286"
+            style="margin-top: 6px;
+            margin-left: -5px;
+            margin-right: -15px;">
+        </a>
+      <div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 28px"></div>
     </div>
-  </div>
 </section>
 <section class="header-mobile-menu d-block d-sm-block d-md-none">
   <div class="menu-button">
     <button type="button" class="navbar-toggle bipolar-navbar-toggle collapsed" data-toggle="collapse" data-target="#responsive-menu-black" aria-expanded="false" aria-controls="navbar">
       <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar top-bar"></span>
-      <span class="icon-bar middle-bar"></span>
-      <span class="icon-bar bottom-bar"></span>
+      <span class="icon-bar top-bar" style="background: #000;"></span>
+      <span class="icon-bar middle-bar" style="background: #000;"></span>
+      <span class="icon-bar bottom-bar" style="background: #000;"></span>
     </button>
     <span class="menu-text-header-mobile">MENU</span>
   </div>
   <div class="cart-white-mobile bipolar-shopping-cart-content">
-    <img src="{{ asset('images/cart-white.svg') }}" width="35"  style="cursor: pointer;" onclick="$('.cart-inside-mobile').toggle();">
-    <span class="cart-number-count-inverse">{{ isset($bipolarCart) ? $bipolarCart->count() : 0 }}</span>
+    <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/cartnegro.svg" width="35"  style="cursor: pointer;" onclick="$('.cart-inside-mobile').toggle();">
+    <span class="cart-number-count-inverse" style="color: #fcbeb9;
+    background-color: #000;">{{ isset($bipolarCart) ? $bipolarCart->count() : 0 }}</span>
     <div class="cart-inside-mobile">
       @if(isset($bipolarCart) ? $bipolarCart->count() > 0 : false)
         <ul class="cart-list">

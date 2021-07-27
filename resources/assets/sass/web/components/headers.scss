@@ -23,7 +23,9 @@
       box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.4);
     }
     &.has-background {
-      background: $bipolar-color;
+      // background: $bipolar-color;
+      background-color: #000 !important;
+      color: #fff;
       transition: 0.8s;
     }
 
@@ -271,6 +273,9 @@
   background: url('../../../img/linea.png') repeat-x 0 55px;
 }
 
+.bipolar-item a {
+  color: #fcbeb9 !important;
+}
 .bipolar-alternate-grand-header {
   @extend .bipolar-grand-header;
   transition: all 0.3s;
@@ -306,7 +311,7 @@
 }
 
 .header-mobile {
-  background: $bipolar-color url('../../../img/linea.png') repeat-x 0 55px;
+  background: #000 url('../../../img/linea.png') repeat-x 0 55px;
   padding: 33.5px;
   text-align: center;
 }
@@ -326,7 +331,7 @@
 .bipolar-navbar-styles {
   margin-bottom: 0;
   border-radius: 0;
-  padding: 0.3rem 1rem;
+  padding: 0.785rem 1rem;
 }
 
 .nav .open > a {
