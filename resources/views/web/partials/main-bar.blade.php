@@ -172,6 +172,7 @@
 			background-size: 100%;
 			height: 100px;
 			">
+			<a href="{{ route('home') }}"></a>
 		</div>
 	@else 
 		<div class="bipolar-header-logo" style="margin-top: -135px; margin-bottom: 15px; 
@@ -180,6 +181,7 @@
 			background-size: 100%;
 			height: 100px;
 			">
+			<a href="{{ route('home') }}"></a>
 		</div>
 	@endif
 	<section class="bipolar-navigation text-center">
