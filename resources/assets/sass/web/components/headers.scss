@@ -273,6 +273,9 @@
   background: url('../../../img/linea.png') repeat-x 0 55px;
 }
 
+.bipolar-item a {
+  color: #fcbeb9 !important;
+}
 .bipolar-alternate-grand-header {
   @extend .bipolar-grand-header;
   transition: all 0.3s;

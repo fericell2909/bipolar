@@ -13,6 +13,14 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="shortcut icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
   <link rel="icon" href="{{ asset('favicon-bipolar.jpg') }}" type="image/x-icon">
+  <style>
+      .navbar-brand a {
+          color: #000 !important;
+        }
+        .bipolar-navbar-social-links li a {
+          color: #000 !important;
+        }
+  </style>
   {{-- Script de Font Awesome --}}
   {{-- <script async src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script> --}}
   <script async src="https://bipolar.nyc3.digitaloceanspaces.com/fontawesome/all.min.js" crossorigin="anonymous"></script>
@@ -20,7 +28,7 @@
   @include('web.partials.recaptcha')
 </head>
 
-<body class="no-top">
+<body class="no-top bg-welcome-init">
   @includeWhen(filled($bannerColors), 'web.partials.banner-colors', ['bannerColors' => $bannerColors])
   <div class="bipolar-wrapper">
     @include('web.partials.main-bar', ['background' => false])
