@@ -213,7 +213,7 @@
                 <div class="overlay-shop-image">
                   <div class="overlay-shop-text">
                     <a href="{{ route('shop.product', $product->slug) }}"
-                       style="text-decoration:none;">{{ $product->name }}</a>
+                       style="text-decoration:none; color: #000 !important;">{{ $product->name }}</a>
                   </div>
                   @if($product->colors->count() > 0)
                     <div class="overlay-shop-color-text">

@@ -11,9 +11,9 @@
             <tr>
               <td>
                 @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/suscription_esp_two.png" style="max-width: 100%" alt="Bipolar">
+                <img src="{{ bipolar_mail_asset_url('storage/bipolar-images/assets/mails/suscription_esp_two.jpg', $message) }}" style="max-width: 100%" alt="Bipolar">
                 @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/suscription_eng_two.png" style="max-width: 100%" alt="Bipolar">
+                <img src="{{ bipolar_mail_asset_url('storage/bipolar-images/assets/mails/suscription_eng_two.jpg', $message) }}" style="max-width: 100%" alt="Bipolar">
                 @endif
               </td>
             </tr>

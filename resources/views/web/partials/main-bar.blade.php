@@ -165,30 +165,25 @@
 				</div>
 			</div>
 	</nav>
-	<div class="bipolar-header-logo" style="margin-top: -115px; margin-bottom: 15px;">
-		<div style="display: flex;justify-content: center;align-content: space-between;">
-			@if( $background === false)
-				<div style="background: none ;width: 100%;height: 2px; border-top: 3px solid #000; margin-top: 27px"></div>
-			@else
-				<div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 27px"></div>
-			@endif
-
-			<a href="{{ route('home') }}">
-				{{-- <img src="{{ asset('images/logo-nolinea.png') }}"> --}}
-				@if( $background === false)
-					<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasnegras.svg" style="margin-left: -5px; margin-right: -5px;" alt="Logo Bipolar" height="78">
-				@else
-					<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" style="margin-left: -5px; margin-right: -5px;"  alt="Logo Bipolar" height="78">
-				@endif
-				
-			</a>
-			@if( $background === false)
-				<div style="background: none ;width: 100%;height: 2px; border-top: 3px solid #000; margin-top: 27px"></div>
-			@else
-				<div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 27px"></div>
-			@endif
+	@if( $background === false)
+		<div class="bipolar-header-logo" style="margin-top: -135px; margin-bottom: 15px; 
+			background: url('https://bipolar.nyc3.digitaloceanspaces.com/images/lgdkblck.svg');
+			background-position: center;
+			background-size: 100%;
+			height: 100px;
+			">
+			<a href="{{ route('home') }}"></a>
 		</div>
-	</div>
+	@else 
+		<div class="bipolar-header-logo" style="margin-top: -135px; margin-bottom: 15px; 
+			background: url('https://bipolar.nyc3.digitaloceanspaces.com/images/logo%20vectorial%20rosado.svg');
+			background-position: center;
+			background-size: 100%;
+			height: 100px;
+			">
+			<a href="{{ route('home') }}"></a>
+		</div>
+	@endif
 	<section class="bipolar-navigation text-center">
 		<div class="container resized-container">
 			<ul class="bipolar-items" style="margin-top : -5px">
