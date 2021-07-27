@@ -198,7 +198,11 @@
 				</li>
 				<li class="bipolar-item">
 					<a href="{{ route('home') }}">
-						<div class="item-text">Home</div>
+						@if( $background === false)
+							<div class="item-text" style="color: #000">Home</div>
+						@else
+							<div class="item-text">Home</div>
+						@endif
 						<div class="the-line"></div>
 					</a>
 				</li>
@@ -220,25 +224,42 @@
 				@endif
 				<li class="bipolar-item">
 					<a href="{{ route('shop') }}">
-						<div class="item-text">Shop</div>
+						@if( $background === false)
+							<div class="item-text" style="color: #000">Shop</div>
+						@else
+							<div class="item-text">Shop</div>
+						@endif
+
 						<div class="the-line"></div>
 					</a>
 				</li>
 				<li class="bipolar-item">
 					<a href="{{ route('landings.newsletter') }}">
-						<div class="item-text">Newsletter</div>
+						@if( $background === false)
+							<div class="item-text" style="color: #000">Newsletter</div>
+						@else
+							<div class="item-text">Newsletter</div>
+						@endif
 						<div class="the-line"></div>
 					</a>
 				</li>
 				<li class="bipolar-item">
 					<a href="{{ route('landings.blog') }}">
-						<div class="item-text">Blog</div>
+						@if( $background === false)
+							<div class="item-text" style="color: #000">Blog</div>
+						@else
+							<div class="item-text">Blog</div>
+						@endif
 						<div class="the-line"></div>
 					</a>
 				</li>
 				<li class="bipolar-item">
 					<a href="{{ route('landings.contacto') }}">
-						<div class="item-text">{{ __('bipolar.navbar.contact_us') }}</div>
+						@if( $background === false)
+							<div class="item-text" style="color: #000">{{ __('bipolar.navbar.contact_us') }}</div>
+						@else
+							<div class="item-text">{{ __('bipolar.navbar.contact_us') }}</div>
+						@endif
 						<div class="the-line"></div>
 					</a>
 				</li>
