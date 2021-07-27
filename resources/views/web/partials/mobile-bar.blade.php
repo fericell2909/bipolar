@@ -1,16 +1,17 @@
 <?php /** @var \App\Instances\CartBipolar $bipolarCart */ ?>
-<section class="header-mobile d-block d-sm-block d-md-none" style="padding-left: 0; padding-right: 0;">
+<section class="header-mobile d-block d-sm-block d-md-none" 
+  style="padding-left: 0; padding-right: 0; background: #000 !important;">
     <div style="display: flex;justify-content: center;align-content: space-between;">
    {{--  <div class="col-md-offset-4 col-md-4"> --}}
-      <div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 27px"></div>
+    <div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 28px"></div>
         <a href="{{ route('home') }}">
           <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" 
-            width="280"
+            width="286"
             style="margin-top: 6px;
             margin-left: -5px;
             margin-right: -15px;">
         </a>
-      <div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 27px"></div>
+      <div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 28px"></div>
     </div>
 </section>
 <section class="header-mobile-menu d-block d-sm-block d-md-none">
@@ -25,7 +26,8 @@
   </div>
   <div class="cart-white-mobile bipolar-shopping-cart-content">
     <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/cartnegro.svg" width="35"  style="cursor: pointer;" onclick="$('.cart-inside-mobile').toggle();">
-    <span class="cart-number-count-inverse">{{ isset($bipolarCart) ? $bipolarCart->count() : 0 }}</span>
+    <span class="cart-number-count-inverse" style="color: #fcbeb9;
+    background-color: #000;">{{ isset($bipolarCart) ? $bipolarCart->count() : 0 }}</span>
     <div class="cart-inside-mobile">
       @if(isset($bipolarCart) ? $bipolarCart->count() > 0 : false)
         <ul class="cart-list">
