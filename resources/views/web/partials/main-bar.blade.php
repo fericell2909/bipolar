@@ -168,9 +168,9 @@
 	<div class="bipolar-header-logo" style="margin-top: -115px; margin-bottom: 15px;">
 		<div style="display: flex;justify-content: center;align-content: space-between;">
 			@if( $background === false)
-				<div style="background: none ;width: 100%;height: 2px; border-top: 4px solid #000; margin-top: 26px"></div>
+				<div style="background: none ;width: 100%;height: 2px; border-top: 3px solid #000; margin-top: 27px"></div>
 			@else
-				<div style="background: none; width: 100%;height: 2px; border-top: 4px solid #fcbeb9; margin-top: 26px"></div>
+				<div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 27px"></div>
 			@endif
 
 			<a href="{{ route('home') }}">
@@ -183,9 +183,9 @@
 				
 			</a>
 			@if( $background === false)
-				<div style="background: none ;width: 100%;height: 2px; border-top: 4px solid #000; margin-top: 26px"></div>
+				<div style="background: none ;width: 100%;height: 2px; border-top: 3px solid #000; margin-top: 27px"></div>
 			@else
-				<div style="background: none; width: 100%;height: 2px; border-top: 4px solid #fcbeb9; margin-top: 26px"></div>
+				<div style="background: none; width: 100%;height: 2px; border-top: 3px solid #fcbeb9; margin-top: 27px"></div>
 			@endif
 		</div>
 	</div>
