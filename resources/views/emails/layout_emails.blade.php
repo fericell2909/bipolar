@@ -598,11 +598,12 @@
         <tbody>
         <tr>
           <td>
-            @if(config('app.env') !== 'production')
+            {{-- @if(config('app.env') !== 'production')
               <img src="https://www.bipolar.com.pe/storage/bipolar-images/assets/mails/bipolar-mail-header.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
             @else
               <img src="{{ $message->embed(public_path() . '/storage/bipolar-images/assets/mails/bipolar-mail-header.png') }}" alt="Cabecera" style="width: 100%; max-width: 100%;">
-            @endif
+            @endif --}}
+            <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/bipolar-mail-header.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
           </td>
         </tr>
         </tbody>
@@ -699,6 +700,56 @@
                         <!--[if mso]>
                         <td align="center" valign="top">
                         <![endif]-->
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" style="display:inline;">
+                          <tbody>
+                          <tr>
+                            <td valign="top" style="padding-right:10px;padding-bottom:9px;" class="mcnFollowContentItemContainer">
+                              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnFollowContentItem">
+                                <tbody>
+                                <tr>
+                                  <td align="left" valign="middle" style="padding-top:5px;padding-right:0px;padding-bottom:5px;padding-left:0px;">
+                                    <table align="left" border="0" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                      <tr>
+                                        <td align="center" valign="middle" width="24" class="mcnFollowIconContent">
+                                          <a href="https://vm.tiktok.com/ZMdtdw1PH/" target="_blank"><img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/tiktok_footer.svg" style="display:block;" height="30" width="30" alt="tiktok_footer.svg"></a>
+                                        </td>
+                                      </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" style="display:inline;">
+                          <tbody>
+                          <tr>
+                            <td valign="top" style="padding-right:10px;padding-bottom:9px;" class="mcnFollowContentItemContainer">
+                              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnFollowContentItem">
+                                <tbody>
+                                <tr>
+                                  <td align="left" valign="middle" style="padding-top:5px;padding-right:0px;padding-bottom:5px;padding-left:0px;">
+                                    <table align="left" border="0" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                      <tr>
+                                        <td align="center" valign="middle" width="24" class="mcnFollowIconContent">
+                                          <a href="https://api.whatsapp.com/send?phone=51965367385&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Tus%20Servicios%20" target="_blank"><img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/whatsapp_footer.svg" style="display:block;" height="30" width="30" alt="whatsapp_footer.svg"></a>
+                                        </td>
+                                      </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
                       </td>
                     </tr>
                     </tbody>
