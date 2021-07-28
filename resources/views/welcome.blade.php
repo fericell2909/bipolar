@@ -20,7 +20,11 @@
         .bipolar-navbar-social-links li a {
           color: #000 !important;
         }
-  </style>
+        .item-no-rosa:hover {
+          color: #fff !important;
+          outline: none !important;
+      }
+ </style>
   {{-- Script de Font Awesome --}}
   {{-- <script async src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script> --}}
   <script async src="https://bipolar.nyc3.digitaloceanspaces.com/fontawesome/all.min.js" crossorigin="anonymous"></script>
