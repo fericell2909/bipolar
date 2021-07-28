@@ -70,6 +70,7 @@ $(function() {
   // Scroll header function
   $(function() {
     $(document).on('scroll', function() {
+      const $item_no_rosa = document.querySelectorAll('.item-no-rosa'); 
       const $transparentHeader = $('.bipolar-header-desktop');
       const $grandHeader = $('.bipolar-grand-header');
       const $bipolarNavigation = $grandHeader.children('.bipolar-navigation');
@@ -83,12 +84,31 @@ $(function() {
         $logoInHeader.removeClass('d-none');
         $container.removeClass('resized-container');
         $bipolarNavigation.addClass('has-shadow').addClass('has-background');
+
+        $item_no_rosa.forEach( function(valor, indice, $item_no_rosa) {
+          valor.style.color = '#fcbeb9';
+        });
+
       } else {
         $transparentHeader.removeClass('d-none');
         $grandHeader.removeClass('bipolar-grand-header-hidden');
         $logoInHeader.addClass('d-none');
         $container.addClass('resized-container');
         $bipolarNavigation.removeClass('has-shadow').removeClass('has-background');
+
+        $item_no_rosa.forEach( function(valor, indice, $item_no_rosa) {
+          valor.style.color = 'black';
+        });
+
+        if(homeIsLongScroll) {
+          $item_no_rosa.forEach( function(valor, indice, $item_no_rosa) {
+            valor.style.color = '#fcbeb9';
+          });
+        } else {
+          $item_no_rosa.forEach( function(valor, indice, $item_no_rosa) {
+            valor.style.color = 'black';
+          });
+        }
       }
     });
   });
