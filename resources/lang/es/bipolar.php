@@ -149,7 +149,9 @@ return [
         ]
     ],
     'mails' => [
-        'info_review_part_1' => 'Revisa <a href="https://www.bipolar.com.pe/es/info/shipping" style="color: #000000; font-weight: bold;">aquí</a> los tiempos de envío.',
+        'info_review_part_1' => 'Revisa ',
+        'info_review_part_2' => 'aquí',
+        'info_review_part_3' => ' los tiempos de envío.',
         'buy_received_subject' => 'Gracias por tu compra!',
         'questions' => '¿Preguntas?',
         'write_us'  => 'Escríbenos a <a href="mailto:shop@bipolar.com.pe" style="color: #000000">shop@bipolar.com.pe</a> o llámanos al <a href="tel:+51965367385" style="color: #000000">(+51) 965.367.385</a>',
