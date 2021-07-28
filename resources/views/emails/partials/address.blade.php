@@ -14,7 +14,7 @@
                       <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
                         <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 15px;line-height: 23px;">{{ __('bipolar.mails.we_wait') }}</h3>
                         <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">{!! __('bipolar.mails.address') !!}</p>
-                        <a href="https://www.bipolar.com.pe/info/shipping">Condiciones de Envío</a>
+                        <a href="https://www.bipolar.com.pe/info/shipping" style = "display: none;">Condiciones de Envío</a>
                       </td>
                     </tr>
                   </tbody>
