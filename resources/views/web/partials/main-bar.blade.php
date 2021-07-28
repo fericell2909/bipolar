@@ -129,7 +129,12 @@
 						@else
 						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/cartrosado.svg" width="35">
 						@endif
-						<span class="cart-number-count">{{ isset($bipolarCart) ? $bipolarCart->count() : 0 }}</span>
+						
+						@if( $background === false)
+							<span class="cart-number-count" style="background: #000; color: #fcbeb9;">{{ isset($bipolarCart) ? $bipolarCart->count() : 0 }}</span>
+						@else 
+							<span class="cart-number-count" style="background: #fcbeb9; color: #000 ">{{ isset($bipolarCart) ? $bipolarCart->count() : 0 }}</span>
+						@endif
 							<div class="cart-inside">
 							@if(isset($bipolarCart) ? $bipolarCart->count() > 0 : false)
 								<ul class="cart-list">
@@ -193,13 +198,13 @@
 			<ul class="bipolar-items" style="margin-top : -5px">
 				<li class="bipolar-logo d-none">
 					<a href="{{ route('home') }}">
-						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/LogoLetrasrosadas.svg" width="160">
+						<img src="https://bipolar.nyc3.digitaloceanspaces.com/images/logocortorosado.svg" width="160">
 					</a>
 				</li>
 				<li class="bipolar-item">
 					<a href="{{ route('home') }}">
 						@if( $background === false)
-							<div class="item-text" style="color: #000">Home</div>
+							<div class="item-text item-no-rosa" style="color: #000">Home</div>
 						@else
 							<div class="item-text">Home</div>
 						@endif
@@ -209,7 +214,11 @@
 				@if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "bipolar"))
 					<li class="bipolar-item">
 						<a href="{{ route('page', $bipolarPage->slug) }}">
-							<div class="item-text">{{ $bipolarPage->title }}</div>
+							@if( $background === false)
+								<div class="item-text item-no-rosa" style="color: #000">{{ $bipolarPage->title }}</div>
+							@else
+								<div class="item-text ">{{ $bipolarPage->title }}</div>
+							@endif
 							<div class="the-line"></div>
 						</a>
 					</li>
@@ -217,7 +226,12 @@
 				@if($bipolarPage = bipolar_get_page_from_slug_in_list($pagesForFooter, "showroom"))
 					<li class="bipolar-item">
 						<a href="{{ route('page', $bipolarPage->slug) }}">
-							<div class="item-text">{{ $bipolarPage->title }}</div>
+							@if( $background === false)
+								<div class="item-text item-no-rosa" style="color: #000">{{ $bipolarPage->title }}</div>
+							@else
+								<div class="item-text">{{ $bipolarPage->title }}</div>
+							@endif
+							
 							<div class="the-line"></div>
 						</a>
 					</li>
@@ -225,7 +239,7 @@
 				<li class="bipolar-item">
 					<a href="{{ route('shop') }}">
 						@if( $background === false)
-							<div class="item-text" style="color: #000">Shop</div>
+							<div class="item-text item-no-rosa" style="color: #000">Shop</div>
 						@else
 							<div class="item-text">Shop</div>
 						@endif
@@ -236,7 +250,7 @@
 				<li class="bipolar-item">
 					<a href="{{ route('landings.newsletter') }}">
 						@if( $background === false)
-							<div class="item-text" style="color: #000">Newsletter</div>
+							<div class="item-text item-no-rosa" style="color: #000">Newsletter</div>
 						@else
 							<div class="item-text">Newsletter</div>
 						@endif
@@ -246,7 +260,7 @@
 				<li class="bipolar-item">
 					<a href="{{ route('landings.blog') }}">
 						@if( $background === false)
-							<div class="item-text" style="color: #000">Blog</div>
+							<div class="item-text item-no-rosa" style="color: #000">Blog</div>
 						@else
 							<div class="item-text">Blog</div>
 						@endif
@@ -256,7 +270,7 @@
 				<li class="bipolar-item">
 					<a href="{{ route('landings.contacto') }}">
 						@if( $background === false)
-							<div class="item-text" style="color: #000">{{ __('bipolar.navbar.contact_us') }}</div>
+							<div class="item-text item-no-rosa" style="color: #000">{{ __('bipolar.navbar.contact_us') }}</div>
 						@else
 							<div class="item-text">{{ __('bipolar.navbar.contact_us') }}</div>
 						@endif
