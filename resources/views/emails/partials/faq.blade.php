@@ -12,7 +12,7 @@
                   <tbody>
                     <tr>
                       <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
-                        <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 15px;line-height: 23px;">{{ __('bipolar.mails.info_review_part_1') }}  {{ __('bipolar.mails.info_review_part_2') }} {{ __('bipolar.mails.info_review_part_3') }}</h3>
+                        <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 15px;line-height: 23px;">{{ __('bipolar.mails.info_review_part_1') }}  <a href="https://www.bipolar.com.pe/info/shipping" target="_blank" style="font-weight: bold;">{{ __('bipolar.mails.info_review_part_2') }}</a> {{ __('bipolar.mails.info_review_part_3') }}</h3>
                         <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">{!! __('bipolar.mails.write_us') !!}</p>
                       </td>
                     </tr>
