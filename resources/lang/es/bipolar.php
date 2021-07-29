@@ -154,7 +154,7 @@ return [
         'info_review_part_3' => ' los tiempos de envío.',
         'buy_received_subject' => 'Gracias por tu compra!',
         'questions' => '¿Preguntas?',
-        'write_us'  => 'Escríbenos a <a href="mailto:shop@bipolar.com.pe" style="color: #000000">shop@bipolar.com.pe</a> o llámanos al <a href="tel:+51965367385" style="color: #000000">(+51) 965.367.385</a>',
+        'write_us'  => 'Escríbenos a <a href="mailto:shop@bipolar.com.pe" style="color: #000000">shop@bipolar.com.pe</a> o llámanos al <a href="tel:+51965367385" style="color: #000000">(+51) 965.367.385(Whatsapp)</a>',
         'your_data' => 'TUS DATOS',
         'order_number' => 'Orden de pedido',
         'shipping_method' => 'Método de envío',
@@ -208,7 +208,7 @@ return [
         'find_us' => 'Encuéntranos',
         'opening' => 'Horario',
         'location' => 'Ubicación',
-        'schedule' => 'Lunes a Sábado de 11:00am-8:30pm',
+        'schedule' => 'Lunes a Sábado de 11:30am-8:00pm',
         'about' => 'Nuestra trienda se encuentra en San Isidro, Lima – Perú. <br>
         Buscamos darle a nuestras clientas una atención personalizada por lo que atendemos a puerta cerrada. <br>
         Para más información, escríbenos a shop@bipolar.com.pe o al (+51) 965.367.385.',
