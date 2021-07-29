@@ -153,7 +153,7 @@ return [
         'info_review_part_3' => ' ours shipping times.',
         'buy_received_subject' => 'Thank you for your purchase!',
         'questions' => 'Questions?',
-        'write_us'  => 'Email us at <a href="mailto:shop@bipolar.com.pe" style="color: #000000">shop@bipolar.com.pe</a> or call us at <a href="tel:+51965367385" style="color: #000000">(+51) 965.367.385</a>',
+        'write_us'  => 'Email us at <a href="mailto:shop@bipolar.com.pe" style="color: #000000">shop@bipolar.com.pe</a> or call us at <a href="tel:+51965367385" style="color: #000000">(+51) 965.367.385(Whatsapp)</a>',
         'your_data' => 'YOUR DATA',
         'order_number' => 'Order number',
         'shipping_method' => 'Shipping method',
@@ -207,7 +207,7 @@ return [
         'find_us' => 'Find us',
         'opening' => 'Opening hours',
         'location' => 'Location',
-        'schedule' => 'Monday-Saturday 11:00am-8:30pm',
+        'schedule' => 'Monday-Saturday 11:30am-8:00pm',
         'about' => 'Our store is located in San Isidro, Lima – Peru.
         We seek to give our clients personalized attention so we work behind closed doors.
         For more information, please write us at shop@bipolar.com.pe or call us at (+51) 965.367.385.',
