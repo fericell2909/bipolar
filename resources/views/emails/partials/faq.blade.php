@@ -13,9 +13,9 @@
                     <tr>
                       <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
                         @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                          <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 15px;line-height: 23px;">Revisa  <a href="https://www.bipolar.com.pe/info/shipping" target="_blank" style="font-weight: bold;">aquí</a> nuestros tiempos de envío</h3>
+                          <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 15px;line-height: 23px;">Revisa  <a href="https://www.bipolar.com.pe/info/shipping" target="_blank" style="font-weight: bold;">aquí</a> nuestros tiempos de envío.</h3>
                         @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                          <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 15px;line-height: 23px;">Review  <a href="https://www.bipolar.com.pe/info/shipping" target="_blank" style="font-weight: bold;">here</a> ours shippings times</h3>
+                          <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 15px;line-height: 23px;">Review  <a href="https://www.bipolar.com.pe/info/shipping" target="_blank" style="font-weight: bold;">here</a> ours shippings times.</h3>
                         @endif
                         <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">{!! __('bipolar.mails.write_us') !!}</p>
                       </td>
