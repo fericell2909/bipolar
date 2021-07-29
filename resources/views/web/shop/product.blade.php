@@ -7,7 +7,7 @@
   @include('web.partials.photoswipe', ['product' => $product])
     <div class="breadcrumb">
       <div class="breadcrumb-content container">
-        <i class="fas fa-home"></i> &raquo; <a href="{{ route('shop') }}">Shop</a> &raquo; {{ $product->name }}
+        <i class="fas fa-home"></i> &raquo; <a href="{{ route('shop') }}" styl="color: #0000;">Shop</a> &raquo; {{ $product->name }}
       </div>
     </div>
     @includeWhen(\Session::has('success_add_product'), 'web.partials.success', ['product' => \Session::get('success_add_product')])
