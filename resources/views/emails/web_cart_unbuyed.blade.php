@@ -12,9 +12,9 @@
               <td>
                 <a href="{{ route('cart') }}">
                   @if($cart->user->language === 'es')
-                    <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/cart-unbuyed-spa.png" style="max-width: 100%" alt="Bipolar">
+                    <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/cart-unbuyed-spa-new.png" style="max-width: 100%" alt="Bipolar">
                   @elseif($cart->user->language === 'en')
-                    <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/cart-unbuyed-eng.png" style="max-width: 100%" alt="Bipolar">
+                    <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/cart-unbuyed-spa-new.png" style="max-width: 100%" alt="Bipolar">
                   @endif
                 </a>
               </td>
