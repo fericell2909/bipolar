@@ -21,9 +21,9 @@
                 <td>
                   <a href="{{ route('confirmation', $buy->id) }}">
                     @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                      <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/eng_order_sent.png" style="max-width: 100%" alt="Bipolar">
+                      <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/pedido-en-camino-SPA.png" style="max-width: 100%" alt="Bipolar">
                       @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                      <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/spa_order_sent.png" style="max-width: 100%" alt="Bipolar">
+                      <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/pedido-en-camino-ING.png" style="max-width: 100%" alt="Bipolar">
                     @endif
                   </a>
                 </td>
@@ -35,5 +35,5 @@
     </tr>
   </tbody>
 </table>
-@include('emails.partials.faq')
+@include('emails.partials.buy_sent')
 @endsection

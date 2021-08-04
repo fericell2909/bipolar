@@ -57,5 +57,6 @@
     </tr>
   </tbody>
 </table>
-@include('emails.partials.faq')
+{{-- @include('emails.partials.faq') --}}
+@include('emails.partials.cart_un_buyed')
 @endsection

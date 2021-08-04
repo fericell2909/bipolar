@@ -213,6 +213,7 @@
   </tr>
   </tbody>
 </table>
-@includeWhen($buy->showroom, 'emails.partials.address')
-@includeWhen(!$buy->showroom, 'emails.partials.faq')
+{{-- @includeWhen($buy->showroom, 'emails.partials.address')
+@includeWhen(!$buy->showroom, 'emails.partials.faq') --}}
+@include('emails.partials.web_buy_confirmation')
 @endsection
