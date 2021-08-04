@@ -54,5 +54,6 @@
   </tbody>
 </table>
 @endpush
-@include('emails.partials.faq')
+{{-- @include('emails.partials.faq') --}}
+@include('emails.partials.notification_newsletter')
 @endsection
