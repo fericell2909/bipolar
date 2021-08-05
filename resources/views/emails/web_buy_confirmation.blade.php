@@ -15,7 +15,7 @@
                 @if(\LaravelLocalization::getCurrentLocale() === 'es')
                   <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/pedido-recibido-esp-new.png" style="max-width: 100%" alt="Bipolar">
                 @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                  <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/pedido-recibido-eng.png" style="max-width: 100%" alt="Bipolar">
+                  <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/pedido-recibido-en-new.png" style="max-width: 100%" alt="Bipolar">
                 @endif
               </td>
             </tr>
@@ -213,7 +213,5 @@
   </tr>
   </tbody>
 </table>
-{{-- @includeWhen($buy->showroom, 'emails.partials.address')
-@includeWhen(!$buy->showroom, 'emails.partials.faq') --}}
 @include('emails.partials.web_buy_confirmation')
 @endsection
