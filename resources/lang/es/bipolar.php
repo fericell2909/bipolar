@@ -154,7 +154,7 @@ return [
         'info_review_part_3' => ' los tiempos de envío.',
         'buy_received_subject' => 'Gracias por tu compra!',
         'questions' => '¿Preguntas?',
-        'write_us'  => 'Escríbenos a <a href="mailto:shop@bipolar.com.pe" style="color: #000000">shop@bipolar.com.pe</a> o llámanos al <a href="tel:+51965367385" style="color: #000000">(+51) 965.367.385(Whatsapp)</a>',
+        'write_us'  => 'Escríbenos a <a href="mailto:shop@bipolar.com.pe" style="color: #000000 !important;">shop@bipolar.com.pe</a> o llámanos al <a href="tel:+51965367385" style="color: #000000">(+51) 965.367.385(Whatsapp)</a>',
         'your_data' => 'TUS DATOS',
         'order_number' => 'Orden de pedido',
         'shipping_method' => 'Método de envío',
