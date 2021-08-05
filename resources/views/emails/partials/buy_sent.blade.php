@@ -20,7 +20,7 @@
                           @if(\LaravelLocalization::getCurrentLocale() === 'es')
                           <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">Escríbenos a shop@bipolar.com.pe o llámanos al (+51) 965.367.385 (Whatsapp)</p>
                           @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                          <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">Email us at  shop@bipolar.com.pe Email us at  (+51) 965.367.385( Whatsapp)</p>
+                          <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">Email us at  shop@bipolar.com.pe Email us at  (+51) 965.367.385 (Whatsapp)</p>
                           @endif
                           
                         </td>
