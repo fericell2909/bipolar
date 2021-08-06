@@ -776,11 +776,7 @@
         <tbody>
         <tr>
           <td>
-            @if(config('app.env') !== 'production')
-              <img src="https://www.bipolar.com.pe/storage/bipolar-images/assets/mails/bipolar-mail-footer.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
-            @else
-              <img src="{{ $message->embed(public_path() . '/storage/bipolar-images/assets/mails/bipolar-mail-footer.png') }}" alt="Cabecera" style="width: 100%; max-width: 100%;">
-            @endif
+              <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/footer_linea.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
           </td>
         </tr>
         </tbody>
