@@ -178,7 +178,9 @@
 				background-size: 100%;
 				height: 100px;
 				background-repeat: no-repeat;
-			">
+				position: relative;"
+				onclick="window.location.href='{{ route('home') }}'"
+			>
 			<a href="{{ route('home') }}"></a>
 		</div>
 	@else 
@@ -189,7 +191,8 @@
 				background-size: 100%;
 				height: 100px;
 				background-repeat: no-repeat;
-			">
+				position: relative;"
+				onclick="window.location.href='{{ route('home') }}'">
 			<a href="{{ route('home') }}"></a>
 		</div>
 	@endif
