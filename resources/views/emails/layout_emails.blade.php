@@ -776,7 +776,11 @@
         <tbody>
         <tr>
           <td>
+            @if(config('app.env') !== 'production')
               <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/footer_linea.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
+            @else
+              <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/footer_linea.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
+            @endif
           </td>
         </tr>
         </tbody>
