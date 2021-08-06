@@ -11,9 +11,10 @@
             <tr>
               <td>
                 @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/suscription_esp_two_new_final.png" style="max-width: 100%" alt="Bipolar">
+                <img src="https://bipolar.nyc3.digitaloceanspaces.com/mails/suscription_esp_two_new.png" style="max-width: 100%" alt="Bipolar Mail">
                 @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/suscription_eng_two_new_final.png" style="max-width: 100%" alt="Bipolar">                @endif
+                <img src="https://bipolar.nyc3.digitaloceanspaces.com/mails/suscription_eng_new.png" style="max-width: 100%" alt="Bipolar Mail">
+                @endif
               </td>
             </tr>
           </tbody>
