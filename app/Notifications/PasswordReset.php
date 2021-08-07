@@ -43,7 +43,7 @@ class PasswordReset extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->view('emails.password-email', ['token' => $this->token]);
+            ->view('emails.password-email-new', ['token' => $this->token]);
     }
 
     /**
