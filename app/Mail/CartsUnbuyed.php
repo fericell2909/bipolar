@@ -31,6 +31,6 @@ class CartsUnbuyed extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject(__('bipolar.unbought_cart_email.title'))->view('emails.web_cart_unbuyed');
+        return $this->subject(__('bipolar.unbought_cart_email.title'))->view('emails.web_cart_unbuyed_final');
     }
 }
