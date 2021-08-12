@@ -5,8 +5,8 @@
   </div>
   <div class="container">
     <p>
-      {{ __('bipolar.my_account.hello', ['username' => \Auth::user()->name]) }} <a style="text-decoration:underline;" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('bipolar.my_account.logout') }}</a>). 
-      {{ __('bipolar.my_account.from_your_account') }} <a style="text-decoration:underline;" href="{{ route('profile') }}">{{ __('bipolar.my_account.edit') }}.</a>
+      {{ __('bipolar.my_account.hello', ['username' => \Auth::user()->name]) }} <a style="text-decoration:underline; color: #000;" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('bipolar.my_account.logout') }}</a>). 
+      {{ __('bipolar.my_account.from_your_account') }} <a style="text-decoration:underline; color: #000;" href="{{ route('profile') }}">{{ __('bipolar.my_account.edit') }}.</a>
     </p>
     {!! Form::open(['route' => 'logout', 'style' => 'display:none', 'id' => 'logout-form']) !!}
     {!! Form::close() !!}
