@@ -11,7 +11,7 @@
                   <table role="presentation" class="column" width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-spacing: 0;width: 100%;min-width: 0 !important;">
                     <tbody>
                       <tr>
-                        <td class="column_cell tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
+                        <td class="tc" style="box-sizing: border-box;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;padding-left: 8px;padding-right: 8px;font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #757575;text-align: center;line-height: inherit;">
                           @if(\LaravelLocalization::getCurrentLocale() === 'es')
                             <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 15px;line-height: 23px;">Revisa  <a href="https://www.bipolar.com.pe/info/shipping" target="_blank" style="color:#000000 !important; font-weight: bold; text-decoration: underline;">aquí</a> los tiempos de envío.</h3>
                           @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
