@@ -37,7 +37,7 @@ class BuyConfirmation extends Mailable implements ShouldQueue
 
         return $this->cc('shop@bipolar.com.pe')
             ->subject($subjectConfirmation)
-            ->view('emails.web_buy_confirmation')
+            ->view('emails.we_buy_confirmation')
             ->with('shipping_method',  $shippingMethod);
     }
 }
