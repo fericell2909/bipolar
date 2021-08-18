@@ -603,7 +603,7 @@
             @else
               <img src="{{ $message->embed(public_path() . '/storage/bipolar-images/assets/mails/bipolar-mail-header.png') }}" alt="Cabecera" style="width: 100%; max-width: 100%;">
             @endif --}}
-            <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/bipolar-mail-header-new.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
+            <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/brand/logo_mail_640.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
           </td>
         </tr>
         </tbody>
@@ -777,9 +777,9 @@
         <tr>
           <td>
             @if(config('app.env') !== 'production')
-              <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/footer_linea.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
+              <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/brand/footer_640.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
             @else
-              <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/footer_linea.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
+              <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/brand/footer_640.png" alt="Cabecera" style="width: 100%; max-width: 100%;">
             @endif
           </td>
         </tr>

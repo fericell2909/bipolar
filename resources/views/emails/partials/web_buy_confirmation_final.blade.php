@@ -19,9 +19,9 @@
                           @endif
 
                           @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                          <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">Si tienes alguna duda, escríbenos a <span style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">shop@bipolar.com.pe</span> o al (+51) 965.367.385 (Whatsapp)</p>
+                          <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">Si tienes alguna duda, escríbenos a <span style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000 !important; line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">shop@bipolar.com.pe</span> o al (+51) 965.367.385 (Whatsapp)</p>
                           @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                          <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">If you have any questions, write to us at <span style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">shop@bipolar.com.pe</span> or at (+51) 965.367.385 (Whatsapp)</p>
+                          <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">If you have any questions, write to us at <span style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000 !important; line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">shop@bipolar.com.pe</span> or at (+51) 965.367.385 (Whatsapp)</p>
                           @endif
                           
                         </td>
