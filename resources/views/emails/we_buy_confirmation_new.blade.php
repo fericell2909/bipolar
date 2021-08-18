@@ -1,4 +1,11 @@
 @extends("emails.layout_emails")
+@push('css_plus')
+    <style>
+      .ii a[href] {
+          color: #000 !important;
+      }
+    </style>
+@endpush
 @section("content")
 <?php /** @var \App\Models\Buy $buy */ ?>
 <!-- product_extended -->
