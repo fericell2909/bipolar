@@ -15,13 +15,13 @@
                           @if(\LaravelLocalization::getCurrentLocale() === 'es')
                             <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 15px;line-height: 23px;">Revisa  <a href="https://www.bipolar.com.pe/info/shipping" target="_blank" style="color:#000000 !important; font-weight: bold; text-decoration: underline;">aquí</a> los tiempos de envío.</h3>
                           @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                            <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 15px;line-height: 23px;">Review  <a href="https://www.bipolar.com.pe/info/shipping" target="_blank" style="color:#000000 !important; font-weight: bold; text-decoration: underline;">here</a> ours shippings times.</h3>
+                            <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight: bold;padding: 0;margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0;color: #000000;font-size: 15px;line-height: 23px;">Check  <a href="https://www.bipolar.com.pe/info/shipping" target="_blank" style="color:#000000 !important; font-weight: bold; text-decoration: underline;">here</a> the shippings times.</h3>
                           @endif
 
                           @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                          <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">Si tiene alguna duda, escríbenos a shop@bipolar.com.pe o al (+51) 965.367.385 (Whatsapp)</p>
+                          <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">Si tienes alguna duda, escríbenos a <span style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">shop@bipolar.com.pe</span> o al (+51) 965.367.385 (Whatsapp)</p>
                           @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                          <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">If you have any questions, write to us at shop@bipolar.com.pe or at (+51) 965.367.385 (Whatsapp)</p>
+                          <p style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">If you have any questions, write to us at <span style="font-family: Arial, Helvetica, sans-serif;font-size: 16px;color: #000000;line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">shop@bipolar.com.pe</span> or at (+51) 965.367.385 (Whatsapp)</p>
                           @endif
                           
                         </td>

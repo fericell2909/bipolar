@@ -213,5 +213,5 @@
   </tr>
   </tbody>
 </table>
-@include('emails.partials.web_buy_confirmation')
+@include('emails.partials.web_buy_confirmation_final')
 @endsection
