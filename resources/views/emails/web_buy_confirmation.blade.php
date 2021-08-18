@@ -1,4 +1,18 @@
 @extends("emails.layout_emails")
+@push('css_plus')
+  <style>
+    .column_cell a,
+    .column_cell a span,
+    .column_cell.tp,
+    .column_cell .tp {
+      color: #000 !important;
+    }
+
+    .msg9148942440417763791 .m_9148942440417763791column_cell a, .msg9148942440417763791 .m_9148942440417763791column_cell a span, .msg9148942440417763791 .m_9148942440417763791column_cell.m_9148942440417763791tp, .msg9148942440417763791 .m_9148942440417763791column_cell .m_9148942440417763791tp {
+      color: #000 !important;
+    }
+  </style>
+@endpush
 @section("content")
 <?php /** @var \App\Models\Buy $buy */ ?>
 <!-- product_extended -->
