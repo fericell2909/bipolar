@@ -35,5 +35,5 @@
     </tr>
   </tbody>
 </table>
-@include('emails.partials.buy_sent')
+@include('emails.partials.buy_sent_final')
 @endsection
