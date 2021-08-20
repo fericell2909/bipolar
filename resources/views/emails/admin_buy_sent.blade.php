@@ -21,7 +21,7 @@
                 <td>
                   <a href="{{ route('confirmation', $buy->id) }}">
                     @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                      <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/pedido-en-camino-SPA.png" style="max-width: 100%" alt="Bipolar">
+                      <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/pedido-en-camino-SPA-NEW.png" style="max-width: 100%" alt="Bipolar">
                       @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
                       <img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/pedido-en-camino-ING.png" style="max-width: 100%" alt="Bipolar">
                     @endif
