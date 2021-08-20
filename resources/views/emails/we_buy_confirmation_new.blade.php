@@ -220,5 +220,10 @@
   </tr>
   </tbody>
 </table>
-@include('emails.partials.web_buy_confirmation_final')
+@if( $buy->showroom)
+  @include('emails.partials.web_buy_confirmation_final_en_tienda')
+@else
+  @include('emails.partials.web_buy_confirmation_final')
+@endif
+
 @endsection
