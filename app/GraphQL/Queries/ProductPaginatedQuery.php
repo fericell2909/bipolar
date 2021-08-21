@@ -45,7 +45,13 @@ class ProductPaginatedQuery extends Query
                 $whereProduct->where("name", "LIKE", "%{$search}%");
             })->orderByDesc('id');
 
+        $ts = Arr::get($args, 'filters.search', null);
 
-        return $query->paginate($args['limit'], ['*'], 'page', $args['page']);
+        if($ts <> '') {
+            return $query->paginate(100);
+        } else {
+            return $query->paginate($args['limit'], ['*'], 'page', $args['page']);
+        }
+        
     }
 }
