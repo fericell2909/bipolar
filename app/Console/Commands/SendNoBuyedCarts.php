@@ -53,7 +53,14 @@ class SendNoBuyedCarts extends Command
             ->reject($this->removeCartWithoutDetailsAndStock());
 
         foreach ($carts as $cart) {
-            \Mail::to($cart->user->email)->send(new CartsUnbuyed($cart));
+            try { 
+                \Mail::to($cart->user->email)->send(new CartsUnbuyed($cart));
+                \Log::info("Mail enviado Carrito ", $cart);
+            } catch (\Exception $e) { 
+                
+                \Log::error("Error al enviar carrito de compra", $cart);
+            }
+            
         }
     }
 
