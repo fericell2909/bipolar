@@ -116,7 +116,9 @@ class ShopController extends Controller
             ->when($request->filled('search'), function ($products) use ($request) {
                 /** @var Collection $products */
                 //return $products->where('name', 'like', "%{$request->input('search')}%");
-                return $products->where('slug', 'like', "%{Str::slug($request->input('search'))}%");
+                $tmp = Str::slug($request->input('search'));
+
+                return $products->where('slug', 'like', "%$tmp%");
             })
             ->orderBy('order')
             ->get()
