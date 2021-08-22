@@ -9,6 +9,7 @@ use GraphQL\Type\Definition\ResolveInfo;
 use Illuminate\Support\Arr;
 use Rebing\GraphQL\Support\SelectFields;
 use Rebing\GraphQL\Support\Query;
+use Illuminate\Support\Str;
 
 class ProductPaginatedQuery extends Query
 {
@@ -42,7 +43,10 @@ class ProductPaginatedQuery extends Query
             ->when(Arr::get($args, 'filters.search', null) !== null, function ($whereProduct) use ($args) {
                 /** @var \Illuminate\Database\Query\Builder $whereProduct */
                 $search = Arr::get($args, 'filters.search', null);
-                $whereProduct->where("name", "LIKE", "%{$search}%");
+                //$whereProduct->where("name", "LIKE", "%{$search}%");
+                $search = Str::slug($search);
+                $whereProduct->where("slug", "LIKE", "%{$search}%");
+
             })->orderByDesc('id');
 
         $ts = Arr::get($args, 'filters.search', null);
