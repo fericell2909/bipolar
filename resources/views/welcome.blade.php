@@ -27,7 +27,7 @@
 
       .bipolar-alternate-grand-header .bipolar-navigation.has-background, .bipolar-grand-header .bipolar-navigation.has-background
       {
-        margin-top: -15px !important;
+        margin-top: -18px !important;
       }
  </style>
   {{-- Script de Font Awesome --}}
