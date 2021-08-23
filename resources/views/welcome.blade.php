@@ -24,6 +24,11 @@
           color: #fff !important;
           outline: none !important;
       }
+
+      .bipolar-alternate-grand-header .bipolar-navigation.has-background, .bipolar-grand-header .bipolar-navigation.has-background
+      {
+        margin-top: -15px !important;
+      }
  </style>
   {{-- Script de Font Awesome --}}
   {{-- <script async src="https://kit.fontawesome.com/0511df7dc2.js" crossorigin="anonymous"></script> --}}
@@ -34,7 +39,7 @@
 
 <body class="no-top bg-welcome-init">
   @includeWhen(filled($bannerColors), 'web.partials.banner-colors', ['bannerColors' => $bannerColors])
-  <div class="bipolar-wrapper">
+  <div class="bipolar-wrapper" style="margin-bottom: -15px;">
     @include('web.partials.main-bar', ['background' => false])
     @include('web.partials.mobile-bar')
     @include('web.partials.banners', ['banners' => $banners])
