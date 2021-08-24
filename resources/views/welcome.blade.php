@@ -39,7 +39,7 @@
 
 <body class="no-top bg-welcome-init">
   @includeWhen(filled($bannerColors), 'web.partials.banner-colors', ['bannerColors' => $bannerColors])
-  <div class="bipolar-wrapper" style="margin-bottom: -15px;">
+  <div class="bipolar-wrapper" style="margin-bottom: -20px;">
     @include('web.partials.main-bar', ['background' => false])
     @include('web.partials.mobile-bar')
     @include('web.partials.banners', ['banners' => $banners])
