@@ -737,7 +737,7 @@
                                       <tbody>
                                       <tr>
                                         <td align="center" valign="middle" width="24" class="mcnFollowIconContent">
-                                          <a href="https://api.whatsapp.com/send?phone=51965367385&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Tus%20Servicios%20" target="_blank"><img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/whatsapp-footer.png" style="display:block;" height="30" width="30" alt="whatsapp_footer.svg"></a>
+                                          <a href="https://api.whatsapp.com/send?phone=51965367385&text=Hola%20Bipolar%21" target="_blank"><img src="https://bipolar.nyc3.digitaloceanspaces.com/images/emails/whatsapp-footer.png" style="display:block;" height="30" width="30" alt="whatsapp_footer.svg"></a>
                                         </td>
                                       </tr>
                                       </tbody>
