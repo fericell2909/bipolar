@@ -73,7 +73,7 @@
             <a href="https://vm.tiktok.com/ZMdtdw1PH/" target="_blank">
               <i class="fab fa-tiktok"></i>
             </a>
-            <a href="https://api.whatsapp.com/send?phone=51965367385&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Tus%20Servicios%20" target="_blank">
+            <a href="https://api.whatsapp.com/send?phone=51965367385&text=Hola%20Bipolar%21" target="_blank">
               <i class="fab fa-whatsapp"></i>
             </a>
           </div>
