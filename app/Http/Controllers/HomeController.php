@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         /** @var Page $page */
         $page = Page::findBySlugOrFail($pageSlug);
-
+        /*
         if ($page->main_image) {
             $this->seo()->opengraph()->setType('article')->addImage($page->main_image);
             $this->seo()->twitter()->addImage($page->main_image);
@@ -22,7 +22,7 @@ class HomeController extends Controller
             $this->seo()->opengraph()->addImage($imageUrl);
             $this->seo()->twitter()->addImage($imageUrl);
         }
-
+        */
         return view('web.landings.pages', compact('page'));
     }
 }
