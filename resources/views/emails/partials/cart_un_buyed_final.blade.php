@@ -18,9 +18,9 @@
                             <h3 style="font-family: Times; font-weight: bold; padding: 0; margin-left: 0;margin-right: 0;margin-top: 20px;margin-bottom: 0; color: #000000;font-size: 15px;line-height: 23px;">Do you need any help with your order?</h3>
                           @endif
                           @if(\LaravelLocalization::getCurrentLocale() === 'es')
-                            <p style="font-family: Times; font-size: 16px;color: #000000; line-height: 23px;mso-line-height-rule: exactly;margin-top: 0; margin-bottom: 20px;">Escríbenos a <span style="font-family: Times; font-size: 16px;color: #000000 !important; line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">shop@bipolar.com.pe</span> o llámanos al (+51) 965.367.385 (Whatsapp)</p>
+                            <p style="font-family: Times; font-size: 16px;color: #000000; line-height: 23px;mso-line-height-rule: exactly;margin-top: 0; margin-bottom: 20px;">Escríbenos a <label style="font-family: Times; font-size: 16px;color: #000000 !important; line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">shop@bipolar.com.pe</label> o llámanos al (+51) 965.367.385 (Whatsapp)</p>
                           @elseif(\LaravelLocalization::getCurrentLocale() === 'en')
-                            <p style="font-family: Times; font-size: 16px;color: #000000; line-height: 23px;mso-line-height-rule: exactly;margin-top: 0; margin-bottom: 20px;">Email us at  <span style="font-family: Times; font-size: 16px;color: #000000 !important; line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">shop@bipolar.com.pe</span> Email us at  (+51) 965.367.385( Whatsapp)</p>
+                            <p style="font-family: Times; font-size: 16px;color: #000000; line-height: 23px;mso-line-height-rule: exactly;margin-top: 0; margin-bottom: 20px;">Email us at  <label style="font-family: Times; font-size: 16px;color: #000000 !important; line-height: 23px;mso-line-height-rule: exactly;margin-top: 0;margin-bottom: 20px;">shop@bipolar.com.pe</label> Email us at  (+51) 965.367.385( Whatsapp)</p>
                           @endif
                           
                         </td>
