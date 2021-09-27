@@ -27,7 +27,7 @@ class BannerEditRequest extends FormRequest
         return [
             'begin'                  => 'nullable|date_format:d/m/Y H:i',
             'end'                    => 'nullable|date_format:d/m/Y H:i',
-            'photo'                  => 'nullable|image|max:2000',
+            //'photo'                  => 'nullable|image|max:2000',
             'state'                  => [
                 'required',
                 Rule::exists('states', 'id'),
