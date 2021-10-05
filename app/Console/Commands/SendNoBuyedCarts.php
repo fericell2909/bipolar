@@ -55,10 +55,10 @@ class SendNoBuyedCarts extends Command
         foreach ($carts as $cart) {
             try { 
                 \Mail::to($cart->user->email)->send(new CartsUnbuyed($cart));
-                \Log::info("Mail enviado Carrito ", $cart);
+                \Log::info("Mail enviado Carrito ", $cart->user->email);
             } catch (\Exception $e) { 
                 
-                \Log::error("Error al enviar carrito de compra", $cart);
+                \Log::error("Error al enviar carrito de compra", $e->getMessage());
             }
             
         }
