@@ -67,7 +67,7 @@
         </div>
         <div class="col-4 form-group">
           {!! Form::label('Fuente') !!}
-          {!! Form::select('font', ['SaharaBodoni' => 'Sahara Bodoni', 'BauerBodoniStdBold' => 'Bodoni Bold'], $banner->font, ['class' => 'form-control']) !!}
+          {!! Form::select('font', ['SaharaBodoni' => 'Sahara Bodoni', 'BauerBodoniStdBold' => 'Bodoni Bold' , 'Bipolar' => 'Bipolar'], $banner->font, ['class' => 'form-control']) !!}
         </div>
         <div class="col-12">
           <div class="alert alert-info">
