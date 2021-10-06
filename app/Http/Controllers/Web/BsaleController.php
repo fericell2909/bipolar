@@ -12,10 +12,14 @@ class BsaleController extends Controller
     public function sync(Request $request)
     {
         if ($request->input('topic') === 'stock' && $request->filled('resourceId')) {
+            \Log::info("Llamada BSALE sync - stock: ". $request->filled('resourceId') );
+
             $this->updateFromStockResource($request->input('resourceId'));
         } elseif ($request->input('topic') === 'document' && $request->filled('resourceId')) {
+            \Log::info("Llamada BSALE sync - document: ". $request->filled('resourceId') );
             $this->updateFromDocumentResource($request->input('resourceId'));
         } else {
+            \Log::info("Llamada BSALE sync - EVENTO DESCONOCIDO: ");
             return \Log::info('BSALE: Unknow event', $request->all());
         }
 
@@ -27,6 +31,7 @@ class BsaleController extends Controller
         $response = BSale::documentGet(intval($documentId));
 
         if (!$response->isOk()) {
+            Log::info('BSALE: Update from document failed ' , $documentId);
             return \Log::info('BSALE: Update from document failed');
         }
 
@@ -48,6 +53,7 @@ class BsaleController extends Controller
         $stock = Stock::where('bsale_stock_ids', 'LIKE', "%{$bsaleVariantId}%")->first();
 
         if (!$stock) {
+            \Log::info('BSALE: Stock NO ACTUALIZADO NO HAY ASOCIACION DE STOCK ID ' + $bsaleVariantId  );
             return;
         }
 
