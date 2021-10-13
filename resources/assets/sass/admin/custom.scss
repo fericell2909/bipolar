@@ -21,6 +21,11 @@
   src: url("../../fonts/Gotham/Gotham-Bold.otf");
 }
 
+@font-face {
+  font-family: "Bipolar";
+  src: url("../../fonts/Bipolar/Bipolar.otf");
+}
+
 // Plugins
 @import "~sweetalert2/src/sweetalert2";
 @import "~select2/dist/css/select2";
